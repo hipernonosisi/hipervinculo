@@ -139,12 +139,12 @@ export default function Index() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
-                        className="text-accent"
+                        className="text-dark-green"
                       >
                         {rotatingWords[wordIndex]}
                       </motion.span>
                     </AnimatePresence>
-                    <span className="text-accent">.</span>
+                    <span className="text-dark-green">.</span>
                   </span>
                 </h1>
               </motion.div>
@@ -155,42 +155,21 @@ export default function Index() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg text-muted-foreground max-w-lg mb-8"
               >
-                We help ambitious brands scale profitably through comprehensive, data-driven marketing strategies that deliver measurable results.
+                We help brands with validated products scale profitably through comprehensive, data-driven marketing strategies.
               </motion.p>
               
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 mb-8"
+                className="flex flex-col sm:flex-row gap-4"
               >
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-8 font-semibold shadow-sm">
-                  <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-6 font-semibold shadow-sm">
+                  <Link to="/audit">Request Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-xl px-8 bg-white border-border font-semibold shadow-sm">
-                  <Link to="/services">Book a Free Consultation</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-xl px-6 bg-white border-border font-semibold shadow-sm">
+                  <Link to="/services">View Our Services</Link>
                 </Button>
-              </motion.div>
-              
-              {/* Trust Badges */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex flex-wrap gap-x-6 gap-y-3 text-muted-foreground text-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-accent" />
-                  <span>20+ years experience</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-accent" />
-                  <span>$92M+ in tracked sales</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-accent" />
-                  <span>Performance-based pricing</span>
-                </div>
               </motion.div>
             </div>
             

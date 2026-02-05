@@ -62,16 +62,14 @@ export const GrowthMetricsCard = () => {
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
     >
-      <Card className="bg-white shadow-2xl border-0 w-full max-w-sm">
+      <Card className="bg-white shadow-xl border border-border/50 w-full max-w-sm rounded-2xl">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-semibold">Growth Metrics</CardTitle>
-            <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <TrendingUp className="h-5 w-5 text-accent" />
-            </div>
+            <CardTitle className="text-base font-medium text-muted-foreground">Growth Metrics</CardTitle>
+            <TrendingUp className="h-5 w-5 text-accent" />
           </div>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-5">
           <AnimatedMetric 
             label="Revenue Growth" 
             value={250} 
@@ -83,15 +81,8 @@ export const GrowthMetricsCard = () => {
             label="ROAS Improvement" 
             value={180} 
             suffix="%" 
-            progress={65}
+            progress={15}
             delay={800}
-          />
-          <AnimatedMetric 
-            label="Conversion Rate" 
-            value={45} 
-            suffix="%" 
-            progress={45}
-            delay={1100}
           />
         </CardContent>
       </Card>
