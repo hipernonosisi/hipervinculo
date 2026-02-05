@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logoFull from '@/assets/logo-hipervinculo.png';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -19,9 +20,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-flex items-center gap-2 mb-4">
-              <span className="text-3xl font-bold">HV</span>
-              <span className="text-xl font-semibold">Hipervínculo</span>
+            <Link to="/" className="inline-block mb-4">
+              <img 
+                src={logoFull} 
+                alt="Hipervínculo" 
+                className="h-12 brightness-0 invert" 
+              />
             </Link>
             <p className="text-primary-foreground/80 max-w-md">
               {t.footer.tagline}
