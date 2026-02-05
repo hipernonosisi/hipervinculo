@@ -4,6 +4,8 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
+import logoFull from '@/assets/logo-hipervinculo.png';
+import logoSymbol from '@/assets/symbol-hipervinculo.png';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,11 +28,17 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <div className="flex items-center">
-            <span className="text-2xl font-bold text-primary">HV</span>
-            <span className="ml-1 text-lg font-semibold text-primary hidden sm:inline">Hipervínculo</span>
-          </div>
+        <Link to="/" className="flex items-center">
+          <img 
+            src={logoFull} 
+            alt="Hipervínculo" 
+            className="h-10 hidden sm:block" 
+          />
+          <img 
+            src={logoSymbol} 
+            alt="Hipervínculo" 
+            className="h-10 sm:hidden" 
+          />
         </Link>
 
         {/* Desktop Navigation */}
