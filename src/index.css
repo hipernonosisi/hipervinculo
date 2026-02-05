@@ -1,59 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Hipervínculo Design System
-   Primary: Dark Green (#304D30) - HSL: 120 24% 24%
-   Accent: Lime Green (#9DC209) - HSL: 72 88% 40%
-   Background: White/Light Gray
+   Primary: Dark Green (#304D30) - for dark sections and some headings
+   Accent: Lime Green (#9DC209) - for CTAs, highlights, lime sections
+   Navy: Dark navy (#1a2d3d) - for main headings
+   Background: White/Light Gray (#f7f9f7)
    Text: Dark gray for body
+   
+   NO GRADIENTS - Only solid colors
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 15%;
+    --background: 100 10% 98%;
+    --foreground: 210 20% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 210 20% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
+    --popover-foreground: 210 20% 16%;
 
-    /* Dark Green - Primary brand color */
+    /* Dark Green - Primary brand color for dark sections */
     --primary: 120 24% 24%;
     --primary-foreground: 0 0% 100%;
 
     /* Light gray for secondary elements */
-    --secondary: 0 0% 96%;
+    --secondary: 100 10% 96%;
     --secondary-foreground: 120 24% 24%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 100 10% 96%;
+    --muted-foreground: 210 10% 45%;
 
     /* Lime Green - Accent/CTA color */
-    --accent: 72 88% 40%;
+    --accent: 72 80% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 100 10% 90%;
+    --input: 100 10% 90%;
     --ring: 120 24% 24%;
 
     --radius: 0.75rem;
 
     /* Custom brand colors */
-    --lime: 72 88% 40%;
+    --lime: 72 80% 45%;
     --lime-foreground: 0 0% 100%;
     --dark-green: 120 24% 24%;
-    --light-green: 120 24% 95%;
-    --gray-light: 0 0% 97%;
-    --gray-medium: 0 0% 45%;
-    --gray-dark: 0 0% 15%;
+    --navy: 210 40% 16%;
+    --light-green: 100 20% 95%;
+    --gray-light: 100 10% 97%;
+    --gray-medium: 210 10% 45%;
+    --gray-dark: 210 20% 16%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -75,7 +79,7 @@
     --popover: 120 24% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 72 88% 40%;
+    --primary: 72 80% 45%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 120 20% 18%;
@@ -84,7 +88,7 @@
     --muted: 120 20% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 72 88% 40%;
+    --accent: 72 80% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
@@ -92,16 +96,16 @@
 
     --border: 120 20% 20%;
     --input: 120 20% 20%;
-    --ring: 72 88% 40%;
+    --ring: 72 80% 45%;
 
     --sidebar-background: 120 24% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 72 88% 40%;
+    --sidebar-primary: 72 80% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 120 20% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 120 20% 15%;
-    --sidebar-ring: 72 88% 40%;
+    --sidebar-ring: 72 80% 45%;
   }
 }
 
@@ -116,8 +120,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-primary;
+    @apply font-bold tracking-tight;
     font-family: 'Lora', serif;
+    color: hsl(var(--navy));
   }
 }
 
@@ -126,14 +131,70 @@
     text-wrap: balance;
   }
 
-  .gradient-lime {
-    background: linear-gradient(135deg, hsl(var(--lime)) 0%, hsl(72 88% 50%) 100%);
+  /* Brand background colors - NO GRADIENTS */
+  .bg-lime {
+    background-color: hsl(var(--lime));
   }
 
-  .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--lime)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .bg-dark-green {
+    background-color: hsl(var(--dark-green));
+  }
+
+  .bg-light-green {
+    background-color: hsl(var(--light-green));
+  }
+
+  /* Text colors */
+  .text-navy {
+    color: hsl(var(--navy));
+  }
+
+  .text-lime {
+    color: hsl(var(--lime));
+  }
+
+  .text-dark-green {
+    color: hsl(var(--dark-green));
+  }
+}
+
+@layer components {
+  /* Primary CTA button - solid lime */
+  .btn-primary {
+    @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-full;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover {
+    @apply opacity-90;
+  }
+
+  /* Secondary button - white with border */
+  .btn-secondary {
+    @apply bg-white text-foreground font-semibold px-6 py-3 rounded-full border border-border;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-secondary;
+  }
+
+  /* Card with lime border */
+  .card-lime-border {
+    @apply bg-white rounded-2xl border-2 border-accent p-8;
+  }
+
+  /* Section backgrounds */
+  .section-dark-green {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .section-lime {
+    background-color: hsl(var(--lime));
+    @apply text-white;
+  }
+
+  .section-light {
+    background-color: hsl(var(--light-green));
   }
 }
