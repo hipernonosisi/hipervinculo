@@ -1,14 +1,31 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp, Shield, CheckCircle, Users, BarChart3, Target, Zap, LineChart, ShoppingCart, Download, ShieldCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, TrendingUp, Shield, CheckCircle, Users, BarChart3, Target, Zap, LineChart, ShoppingCart, Download, ShieldCheck, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Layout } from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection, StaggerContainer, StaggerItem, FloatingCard, AnimatedCounter } from '@/components/ui/motion';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const heroHeadlines = [
+  "High-Converting Lead Generation Systems",
+  "eCommerce Growth Partner Strategies That Scale Revenue",
+  "Inbound Websites Built to Capture Demand",
+  "Conversion Infrastructure, Not Just Campaigns",
+];
 
 export default function Index() {
   const { t } = useLanguage();
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeadlineIndex((prev) => (prev + 1) % heroHeadlines.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const services = [
     { icon: Target, title: t.services.paidMedia.title, description: t.services.paidMedia.description },
@@ -33,58 +50,55 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-secondary py-20 md:py-32">
         <div className="container relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection direction="left" duration={0.8}>
-              <div className="space-y-8">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-navy">
-                  {t.hero.title}
-                </h1>
-                <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-                  {t.hero.subtitle}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full">
-                    <Link to="/audit">{t.hero.cta1} <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="rounded-full">
-                    <Link to="/services">{t.hero.cta2}</Link>
-                  </Button>
-                </div>
+          <div className="max-w-4xl">
+            <p className="text-lg md:text-xl text-muted-foreground mb-6">
+              Hipervinculo builds performance-driven growth systems for businesses ready to scale.
+            </p>
+            
+            {/* Rotating Headlines */}
+            <div className="min-h-[200px] md:min-h-[280px] mb-8">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={headlineIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary"
+                >
+                  {heroHeadlines[headlineIndex]}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
+            
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
+              Websites, inbound architecture, and paid acquisition designed to turn traffic into real opportunities — whether you're generating local leads or scaling an established brand.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">
+                <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8 bg-white border-border">
+                <Link to="/services">Explore Our Services</Link>
+              </Button>
+            </div>
+            
+            {/* Trust Badges */}
+            <div className="flex flex-wrap gap-x-8 gap-y-3 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Check className="h-5 w-5 text-accent" />
+                <span>20+ years in digital growth</span>
               </div>
-            </AnimatedSection>
-
-            {/* Metrics Card */}
-            <FloatingCard className="relative">
-              <Card className="bg-card shadow-xl border">
-                <CardContent className="p-8">
-                  <p className="text-sm font-medium text-muted-foreground mb-6">Growth Metrics</p>
-                  <div className="space-y-6">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="text-sm text-muted-foreground">{t.metrics.revenueGrowth}</p>
-                        <p className="text-2xl font-bold text-accent">
-                          <AnimatedCounter value="+250%" />
-                        </p>
-                      </div>
-                      <div className="h-2 bg-secondary rounded-full">
-                        <div className="h-2 bg-primary rounded-full w-4/5"></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="text-sm text-muted-foreground">{t.metrics.roasImprovement}</p>
-                        <p className="text-2xl font-bold text-accent">
-                          <AnimatedCounter value="+180%" />
-                        </p>
-                      </div>
-                      <div className="h-2 bg-secondary rounded-full">
-                        <div className="h-2 bg-accent rounded-full w-3/5"></div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </FloatingCard>
+              <div className="flex items-center gap-2">
+                <Check className="h-5 w-5 text-accent" />
+                <span>Long-term client retention</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="h-5 w-5 text-accent" />
+                <span>Built for serious businesses only</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
