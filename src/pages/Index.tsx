@@ -139,12 +139,12 @@ export default function Index() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
-                        className="text-brand-green"
+                        className="text-accent"
                       >
                         {rotatingWords[wordIndex]}
                       </motion.span>
                     </AnimatePresence>
-                    <span className="text-brand-green">.</span>
+                    <span className="text-accent">.</span>
                   </span>
                 </h1>
               </motion.div>
@@ -164,11 +164,11 @@ export default function Index() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4 mb-8"
               >
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8 font-semibold">
-                  <Link to="/audit">Request Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-8 font-semibold shadow-sm">
+                  <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full px-8 bg-white border-border font-semibold">
-                  <Link to="/services">View Our Services</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-xl px-8 bg-white border-border font-semibold shadow-sm">
+                  <Link to="/services">Book a Free Consultation</Link>
                 </Button>
               </motion.div>
               

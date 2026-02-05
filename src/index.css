@@ -2,40 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hipervínculo Design System
-   Primary: Dark Green (#203B2C) - for dark sections and headings
-   Brand Green: (#3C5C2E) - for highlighted text like "eCommerce"
-   Accent: Lime Green (#9DC209) - for CTAs, highlights
-   Background: White/Light Gray (#f7f9f7)
+/* Hipervínculo Design System - Extracted from hipervinculo.net
+   Primary/Accent: #8BC34A (lime green)
+   Text Primary: #2F4F2F (dark forest green)
+   Background: #FFFFFF
    
-   Typography: Plus Jakarta Sans (similar to Gilroy)
+   Typography: Inter
+   Border Radius: 12px for buttons
    NO GRADIENTS - Only solid colors
 */
 
 @layer base {
   :root {
-    --background: 100 10% 98%;
-    --foreground: 145 28% 17%;
+    --background: 0 0% 100%;
+    --foreground: 147 25% 25%;
 
     --card: 0 0% 100%;
-    --card-foreground: 145 28% 17%;
+    --card-foreground: 147 25% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 145 28% 17%;
+    --popover-foreground: 147 25% 25%;
 
-    /* Dark Green - Primary brand color */
-    --primary: 145 28% 17%;
+    /* Dark Forest Green - Primary text color */
+    --primary: 147 25% 25%;
     --primary-foreground: 0 0% 100%;
 
     /* Light gray for secondary elements */
     --secondary: 100 10% 96%;
-    --secondary-foreground: 145 28% 17%;
+    --secondary-foreground: 147 25% 25%;
 
     --muted: 100 10% 96%;
-    --muted-foreground: 145 10% 40%;
+    --muted-foreground: 147 15% 35%;
 
-    /* Lime Green - Accent/CTA color */
-    --accent: 72 90% 41%;
+    /* Lime Green - Accent/CTA color #8BC34A */
+    --accent: 88 56% 53%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -43,19 +43,19 @@
 
     --border: 100 10% 90%;
     --input: 100 10% 90%;
-    --ring: 145 28% 17%;
+    --ring: 88 56% 53%;
 
     --radius: 0.75rem;
 
     /* Custom brand colors */
-    --lime: 72 90% 41%;
+    --lime: 88 56% 53%;
     --lime-foreground: 0 0% 100%;
-    --dark-green: 145 28% 17%;
-    --brand-green: 120 33% 27%;
-    --light-green: 100 20% 95%;
+    --dark-green: 147 25% 25%;
+    --brand-green: 147 25% 25%;
+    --light-green: 100 20% 97%;
     --gray-light: 100 10% 97%;
-    --gray-medium: 145 10% 40%;
-    --gray-dark: 145 28% 17%;
+    --gray-medium: 147 15% 35%;
+    --gray-dark: 147 25% 25%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -68,42 +68,42 @@
   }
 
   .dark {
-    --background: 145 28% 8%;
+    --background: 147 25% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 145 28% 12%;
+    --card: 147 25% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 145 28% 12%;
+    --popover: 147 25% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 72 90% 41%;
+    --primary: 88 56% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 145 20% 18%;
+    --secondary: 147 20% 18%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 145 20% 18%;
+    --muted: 147 20% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 72 90% 41%;
+    --accent: 88 56% 53%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 145 20% 20%;
-    --input: 145 20% 20%;
-    --ring: 72 90% 41%;
+    --border: 147 20% 20%;
+    --input: 147 20% 20%;
+    --ring: 88 56% 53%;
 
-    --sidebar-background: 145 28% 10%;
+    --sidebar-background: 147 25% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 72 90% 41%;
+    --sidebar-primary: 88 56% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 145 20% 15%;
+    --sidebar-accent: 147 20% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 145 20% 15%;
-    --sidebar-ring: 72 90% 41%;
+    --sidebar-border: 147 20% 15%;
+    --sidebar-ring: 88 56% 53%;
   }
 }
 
@@ -114,12 +114,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: hsl(var(--dark-green));
   }
 }
@@ -157,20 +157,20 @@
 }
 
 @layer components {
-  /* Primary CTA button - solid lime */
+  /* Primary CTA button - solid lime with 12px radius */
   .btn-primary {
-    @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-full;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-xl shadow-sm;
+    font-family: 'Inter', sans-serif;
   }
 
   .btn-primary:hover {
     @apply opacity-90;
   }
 
-  /* Secondary button - white with border */
+  /* Secondary button - white with border and 12px radius */
   .btn-secondary {
-    @apply bg-white text-foreground font-semibold px-6 py-3 rounded-full border border-border;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-white text-foreground font-semibold px-6 py-3 rounded-xl border border-border shadow-sm;
+    font-family: 'Inter', sans-serif;
   }
 
   .btn-secondary:hover {
