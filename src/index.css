@@ -1,43 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Hipervínculo Design System
-   Primary: Dark Green (#304D30) - for dark sections and some headings
-   Accent: Lime Green (#9DC209) - for CTAs, highlights, lime sections
-   Navy: Dark navy (#1a2d3d) - for main headings
+   Primary: Dark Green (#203B2C) - for dark sections and headings
+   Brand Green: (#3C5C2E) - for highlighted text like "eCommerce"
+   Accent: Lime Green (#9DC209) - for CTAs, highlights
    Background: White/Light Gray (#f7f9f7)
-   Text: Dark gray for body
    
+   Typography: Plus Jakarta Sans (similar to Gilroy)
    NO GRADIENTS - Only solid colors
 */
 
 @layer base {
   :root {
     --background: 100 10% 98%;
-    --foreground: 210 20% 16%;
+    --foreground: 145 28% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 20% 16%;
+    --card-foreground: 145 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 16%;
+    --popover-foreground: 145 28% 17%;
 
-    /* Dark Green - Primary brand color for dark sections */
-    --primary: 120 24% 24%;
+    /* Dark Green - Primary brand color */
+    --primary: 145 28% 17%;
     --primary-foreground: 0 0% 100%;
 
     /* Light gray for secondary elements */
     --secondary: 100 10% 96%;
-    --secondary-foreground: 120 24% 24%;
+    --secondary-foreground: 145 28% 17%;
 
     --muted: 100 10% 96%;
-    --muted-foreground: 210 10% 45%;
+    --muted-foreground: 145 10% 40%;
 
     /* Lime Green - Accent/CTA color */
-    --accent: 72 80% 45%;
+    --accent: 72 90% 41%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -45,19 +43,19 @@
 
     --border: 100 10% 90%;
     --input: 100 10% 90%;
-    --ring: 120 24% 24%;
+    --ring: 145 28% 17%;
 
     --radius: 0.75rem;
 
     /* Custom brand colors */
-    --lime: 72 80% 45%;
+    --lime: 72 90% 41%;
     --lime-foreground: 0 0% 100%;
-    --dark-green: 120 24% 24%;
-    --navy: 210 40% 16%;
+    --dark-green: 145 28% 17%;
+    --brand-green: 120 33% 27%;
     --light-green: 100 20% 95%;
     --gray-light: 100 10% 97%;
-    --gray-medium: 210 10% 45%;
-    --gray-dark: 210 20% 16%;
+    --gray-medium: 145 10% 40%;
+    --gray-dark: 145 28% 17%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -70,42 +68,42 @@
   }
 
   .dark {
-    --background: 120 24% 8%;
+    --background: 145 28% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 120 24% 12%;
+    --card: 145 28% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 120 24% 12%;
+    --popover: 145 28% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 72 80% 45%;
+    --primary: 72 90% 41%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 20% 18%;
+    --secondary: 145 20% 18%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 120 20% 18%;
+    --muted: 145 20% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 72 80% 45%;
+    --accent: 72 90% 41%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 120 20% 20%;
-    --input: 120 20% 20%;
-    --ring: 72 80% 45%;
+    --border: 145 20% 20%;
+    --input: 145 20% 20%;
+    --ring: 72 90% 41%;
 
-    --sidebar-background: 120 24% 10%;
+    --sidebar-background: 145 28% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 72 80% 45%;
+    --sidebar-primary: 72 90% 41%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 120 20% 15%;
+    --sidebar-accent: 145 20% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 120 20% 15%;
-    --sidebar-ring: 72 80% 45%;
+    --sidebar-border: 145 20% 15%;
+    --sidebar-ring: 72 90% 41%;
   }
 }
 
@@ -116,13 +114,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
-    font-family: 'Lora', serif;
-    color: hsl(var(--navy));
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: hsl(var(--dark-green));
   }
 }
 
@@ -145,8 +143,8 @@
   }
 
   /* Text colors */
-  .text-navy {
-    color: hsl(var(--navy));
+  .text-brand-green {
+    color: hsl(var(--brand-green));
   }
 
   .text-lime {
@@ -162,7 +160,7 @@
   /* Primary CTA button - solid lime */
   .btn-primary {
     @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-full;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   .btn-primary:hover {
@@ -172,7 +170,7 @@
   /* Secondary button - white with border */
   .btn-secondary {
     @apply bg-white text-foreground font-semibold px-6 py-3 rounded-full border border-border;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   .btn-secondary:hover {
