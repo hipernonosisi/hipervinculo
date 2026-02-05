@@ -1,24 +1,24 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Star } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Layout } from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { AnimatedSection, AnimatedCounter } from '@/components/ui/motion';
+import { AnimatedSection } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
 
 const rotatingHeadlines = [
+  "Google Ads That Drive Calls and Qualified Leads",
   "Inbound Websites Built to Capture Demand",
   "eCommerce Growth Partner Strategies That Scale Revenue",
   "High-Converting Lead Generation Systems",
-  "Conversion Infrastructure, Not Just Campaigns",
 ];
 
 export default function Index() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -30,37 +30,47 @@ export default function Index() {
 
   const services = [
     { 
-      title: "Paid Media Management", 
-      description: "Expert management of Google Ads, Meta Ads, Amazon PPC, and TikTok campaigns to maximize your ROAS and drive qualified traffic." 
+      icon: Phone,
+      title: "Lead Generation Systems", 
+      description: "Conversion-focused websites, landing pages, call and form optimization, WhatsApp intake, Google Ads for high-intent searches, and tracking infrastructure." 
     },
     { 
-      title: "Creative Services", 
-      description: "High-converting ad creatives, banners, and video content designed to capture attention and communicate your value proposition effectively." 
+      icon: Target,
+      title: "Conversion Website Development", 
+      description: "High-converting sites with optimized UX, built for capturing leads and driving action — not just looking good." 
     },
     { 
-      title: "Conversion Rate Optimization", 
-      description: "Systematic optimization of landing pages, checkout flows, and user experience to convert more visitors into customers." 
+      icon: BarChart3,
+      title: "Google Ads for Inbound", 
+      description: "Search campaigns built for ROI. We focus on bottom-funnel intent and qualified traffic, not vanity metrics." 
     },
     { 
-      title: "Analytics & Attribution", 
-      description: "Advanced tracking implementation and attribution modeling to measure true campaign performance and optimize spend allocation." 
+      icon: Settings,
+      title: "Tracking & Attribution Setup", 
+      description: "Server-side tracking, GA4 implementation, call tracking, CRM integrations. Know exactly where your leads come from." 
     },
     { 
-      title: "Amazon Services", 
-      description: "Complete Amazon optimization including listing optimization, PPC management, brand protection, and marketplace strategy." 
+      icon: ShoppingCart,
+      title: "eCommerce Growth Partners", 
+      description: "Full-funnel paid media for Shopify brands. Meta, Google, Amazon, TikTok — optimized for Net ROAS, not vanity metrics." 
     },
     { 
-      title: "Strategy & Consulting", 
-      description: "Comprehensive growth audits, media planning, and performance forecasting to create data-driven growth roadmaps." 
+      icon: Users,
+      title: "Backup & Consulting", 
+      description: "Strategic guidance, growth audits, and media planning for teams that need expert support without a full retainer." 
     },
   ];
 
-  const provenResults = [
-    "Over $92 million in tracked sales generated for clients across Meta, Google, Amazon, and TikTok.",
-    "10+ years managing campaigns for high-growth Shopify brands.",
-    "Campaigns optimized with ROAS ranging from 3.5 to 8.2 depending on category.",
-    "Amazon TACOS reductions of up to 40% within 90 days for qualified partners.",
-    "Performance-based pricing for accounts with historical sales and consistent logistics.",
+  const leadGenResults = [
+    "Built inbound pipelines for service businesses generating consistent calls and form inquiries",
+    "Long-term retention: many partners stay 5–8 years",
+    "Conversion-focused websites designed to capture demand",
+  ];
+
+  const ecomResults = [
+    "Over $92M in tracked sales across Meta, Google, Amazon, TikTok",
+    "10+ years managing high-growth Shopify campaigns",
+    "Performance optimization across multiple categories",
   ];
 
   const partners = [
@@ -74,71 +84,77 @@ export default function Index() {
     { name: 'Shopify', subtitle: 'Partner' },
   ];
 
+  const industries = [
+    "LOCAL SERVICES",
+    "LAW & MEDICAL",
+    "HOME SERVICES",
+    "ECOMMERCE",
+    "B2B SAAS",
+  ];
+
   const faqs = [
     {
-      q: "What is net ROAS?",
-      a: "Net ROAS (Return on Ad Spend) is your revenue after all costs (product cost, shipping, returns) divided by your ad spend. It gives you a clearer picture of actual profitability compared to gross ROAS."
+      q: "What is the difference from other agencies?",
+      a: "We focus on systems, not just campaigns. Our approach integrates website development, tracking infrastructure, and paid media into a cohesive growth machine."
     },
     {
-      q: "What if we don't reach the ROAS target?",
-      a: "If we don't meet the minimum agreed-upon performance target (typically 2.5 Net ROAS) for qualified accounts, you don't pay our management fee. We only succeed when you succeed."
+      q: "Who is this for?",
+      a: "Established businesses ready to invest in growth. We work best with companies that have validated products/services and are ready to scale."
     },
     {
-      q: "What's included in your service?",
-      a: "Our service includes campaign strategy, ad creation, audience targeting, bid management, A/B testing, analytics, and regular reporting. We handle everything from creative to optimization."
+      q: "What's the difference between a Lead Gen System and an eCommerce Partner?",
+      a: "Lead Gen Systems focus on service businesses that need calls, form submissions, and qualified leads. eCommerce Partners focus on Shopify brands that need to scale sales profitably."
     },
     {
-      q: "Do you build stores or run email marketing?",
-      a: "We focus exclusively on paid acquisition and conversion optimization. We partner with specialized agencies for store development and email marketing when needed."
+      q: "What do you mean by 'Conversion Infrastructure'?",
+      a: "It's the complete system that turns visitors into customers: optimized websites, tracking setup, landing pages, and paid acquisition working together."
     },
     {
-      q: "Do you work with new businesses?",
-      a: "We primarily work with established brands that have validated products and consistent logistics. New businesses may qualify for our consulting services to build a foundation first."
+      q: "Why is there a 'get a free audit first' process for everyone?",
+      a: "We want to ensure we're the right fit before starting. The audit helps us understand your business, identify opportunities, and recommend the best approach."
     },
     {
-      q: "What makes you different from other agencies?",
-      a: "Our performance-based pricing model means we only get paid when you get results. Combined with radical transparency through real-time dashboards, we're true partners in your growth."
+      q: "Is this for e-commerce or lead generation?",
+      a: "Both! We have dedicated teams for each. Lead Gen for service businesses, eCommerce Growth Partners for Shopify brands."
     },
   ];
 
   return (
     <Layout>
-      {/* Hero Section - Matching hipervinculo.net exactly */}
-      <section className="relative overflow-hidden bg-[#f8f9f5] py-16 md:py-24">
-        {/* Subtle line pattern background */}
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[#f7f8f4] py-16 md:py-20">
+        {/* Subtle diagonal line pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage: `repeating-linear-gradient(
-              -45deg,
+              -55deg,
               transparent,
-              transparent 40px,
-              hsl(var(--border)) 40px,
-              hsl(var(--border)) 41px
+              transparent 50px,
+              #c4c4c4 50px,
+              #c4c4c4 51px
             )`
           }}
         />
         
         <div className="container relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="max-w-xl">
-              {/* Tagline */}
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-foreground text-base mb-6"
+                className="text-foreground/80 text-sm mb-4"
               >
                 Hipervinculo builds performance-driven growth systems for businesses ready to scale.
               </motion.p>
               
-              {/* Headline with rotating headlines */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-6 min-h-[140px] md:min-h-[180px]"
+                className="mb-5 min-h-[120px] md:min-h-[140px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.h1
@@ -147,7 +163,7 @@ export default function Index() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] text-dark-green"
+                    className="text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.15] text-dark-green"
                     style={{ fontWeight: 800 }}
                   >
                     {rotatingHeadlines[wordIndex]}
@@ -159,45 +175,43 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-base text-muted-foreground leading-relaxed mb-8"
+                className="text-sm text-muted-foreground leading-relaxed mb-6"
               >
                 Websites, inbound architecture, and paid acquisition designed to turn traffic into real opportunities — whether you're generating local leads or scaling an established brand.
               </motion.p>
               
-              {/* CTA Buttons */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 mb-8"
+                className="flex flex-col sm:flex-row gap-3 mb-6"
               >
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-6 font-semibold">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-5 font-semibold text-sm">
                   <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-xl px-6 bg-white border-border font-medium">
+                <Button asChild variant="outline" size="lg" className="rounded-xl px-5 bg-white border-border font-medium text-sm">
                   <Link to="/services">Explore Our Services</Link>
                 </Button>
               </motion.div>
 
-              {/* Trust badges - checkmark style like original */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="space-y-2"
+                className="space-y-1.5"
               >
-                <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" />
+                <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <Check className="h-3.5 w-3.5 text-accent" />
                     20+ years in digital growth
                   </span>
-                  <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" />
+                  <span className="flex items-center gap-1.5">
+                    <Check className="h-3.5 w-3.5 text-accent" />
                     Long-term client retention
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="h-4 w-4 text-accent" />
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Check className="h-3.5 w-3.5 text-accent" />
                   Built for serious businesses only
                 </div>
               </motion.div>
@@ -211,52 +225,77 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Proven Results */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* Proven Results Section - Dark Green */}
+      <section className="py-16 bg-primary text-primary-foreground">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">Proven Results Across eCom Channels</h2>
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+              Proven Results Across Growth Channels and<br />Inbound Lead Systems
+            </h2>
           </AnimatedSection>
-          <AnimatedSection delay={0.1}>
-            <ul className="max-w-3xl mx-auto space-y-4">
-              {provenResults.map((result, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-primary-foreground/90">{result}</span>
-                </li>
-              ))}
-            </ul>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2} className="text-center mt-8">
-            <p className="text-accent font-semibold mb-6">REQUEST A CASE-FREE WALKTHROUGH IN YOUR AUDIT SESSION.</p>
-            <Button asChild variant="outline" size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full border-0">
-              <Link to="/audit">Book a Consultation</Link>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-10">
+            <AnimatedSection delay={0.1}>
+              <div>
+                <h3 className="text-accent font-semibold text-sm mb-4">Lead Generation Systems</h3>
+                <ul className="space-y-3">
+                  {leadGenResults.map((result, index) => (
+                    <li key={index} className="flex items-start gap-2 text-sm text-primary-foreground/90">
+                      <Check className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>{result}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <div>
+                <h3 className="text-accent font-semibold text-sm mb-4">eCommerce Growth Partners</h3>
+                <ul className="space-y-3">
+                  {ecomResults.map((result, index) => (
+                    <li key={index} className="flex items-start gap-2 text-sm text-primary-foreground/90">
+                      <Check className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>{result}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+          </div>
+          
+          <AnimatedSection delay={0.3} className="text-center">
+            <p className="text-xs text-primary-foreground/70 mb-4">
+              Request a conversion and lead system walkthrough — tailored to your business.
+            </p>
+            <Button asChild size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-6 font-semibold text-sm">
+              <Link to="/audit">Get a Free Audit</Link>
             </Button>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Our Services */}
-      <section className="py-20 bg-white">
+      {/* Two Core Pillars of Growth */}
+      <section className="py-16 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium">Our Services</p>
+          <AnimatedSection className="text-center mb-3">
+            <p className="text-accent font-medium text-xs">Our Services</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">A 360° approach to your growth</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We focus exclusively on performance marketing and optimization services that directly impact your bottom line.
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-3">Two Core Pillars of Growth</h2>
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+              We build complete conversion systems — not just campaigns. From foundation to scale.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {services.map((service, index) => (
-              <AnimatedSection key={index} delay={index * 0.1}>
-                <Card className="h-full border bg-white hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+              <AnimatedSection key={index} delay={index * 0.08}>
+                <Card className="h-full border bg-white hover:shadow-md transition-shadow rounded-xl">
+                  <CardHeader className="pb-2">
+                    <service.icon className="h-6 w-6 text-accent mb-2" />
+                    <CardTitle className="text-base font-bold">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-base">{service.description}</CardDescription>
+                    <CardDescription className="text-xs leading-relaxed">{service.description}</CardDescription>
                   </CardContent>
                 </Card>
               </AnimatedSection>
@@ -265,79 +304,90 @@ export default function Index() {
         </div>
       </section>
 
-      {/* What Makes Us Different */}
-      <section className="py-20 bg-accent">
+      {/* What Makes Us Different - Lime Green */}
+      <section className="py-16 bg-accent">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Makes Us Different?</h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+              What Makes <span className="underline decoration-2 underline-offset-4">Us</span> Different?
+            </h2>
+            <p className="text-sm text-white/90 max-w-lg mx-auto">
               We're not just another agency. We are a true growth partner, deeply invested in your success.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
             <AnimatedSection direction="left" delay={0.1}>
-              <Card className="bg-white/20 border-0 h-full backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-white">Performance-Obsessed Experts</CardTitle>
+              <Card className="bg-white border-0 h-full rounded-xl">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
+                    <Target className="h-5 w-5 text-accent" />
+                  </div>
+                  <CardTitle className="text-lg font-bold text-foreground">Performance-Obsessed Experts</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-lg text-white/80">
-                    Deep experience in full-funnel marketing for Shopify & Amazon. We leverage advanced attribution tools to go beyond surface-level metrics and drive real growth.
+                  <CardDescription className="text-sm text-muted-foreground">
+                    Deep experience in full-funnel marketing for Shopify & Amazon. We leverage advanced attribution tools to go beyond surface-level metrics.
                   </CardDescription>
                 </CardContent>
               </Card>
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.2}>
-              <Card className="bg-white/20 border-0 h-full backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-white">Radical Transparency</CardTitle>
+              <Card className="bg-white border-0 h-full rounded-xl">
+                <CardHeader className="pb-2">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
+                    <BarChart3 className="h-5 w-5 text-accent" />
+                  </div>
+                  <CardTitle className="text-lg font-bold text-foreground">Radical Transparency</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-lg text-white/80">
+                  <CardDescription className="text-sm text-muted-foreground">
                     You get real-time dashboards, not filtered reports. We believe in complete visibility, showing you every metric that matters.
                   </CardDescription>
                 </CardContent>
               </Card>
             </AnimatedSection>
           </div>
-          <AnimatedSection delay={0.3} className="text-center mt-12">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full">
-              <Link to="/contact">Book a Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <AnimatedSection delay={0.3} className="text-center">
+            <Button asChild size="default" className="bg-white text-foreground hover:bg-white/90 rounded-xl font-semibold text-sm">
+              <Link to="/contact">Book a Free Consultation</Link>
             </Button>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Playbook Download */}
-      <section className="py-20 bg-secondary">
+      <section className="py-16 bg-[#f7f8f4]">
         <div className="container">
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-              <div className="space-y-6">
-                <p className="text-accent font-medium">Exclusive Playbook</p>
-                <h2 className="text-3xl md:text-4xl font-bold">Download the Advantage+ Growth Playbook</h2>
-                <p className="text-lg text-muted-foreground">
-                  Get the exact strategies we use to scale Shopify stores past $1M/month with Advantage+ campaigns. A must-have resource for serious marketing teams.
+            <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
+              <div className="space-y-4">
+                <p className="text-accent font-medium text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 bg-accent rounded-full"></span>
+                  Exclusive Playbook
+                </p>
+                <h2 className="text-2xl md:text-3xl font-extrabold">
+                  Download the<br />Advantage+ Growth<br />Playbook
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Get the exact strategies we use to scale Shopify stores past $1M/month with Advantage+ campaigns.
                 </p>
                 <Button 
                   asChild 
-                  size="lg" 
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full"
+                  size="default" 
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl font-semibold text-sm"
                 >
                   <a href="/downloads/advantage-plus-growth-playbook.pdf" download>
                     Download Playbook <Download className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               </div>
-              <div className="relative">
-                <Card className="bg-primary shadow-2xl border-0">
-                  <CardContent className="p-8">
-                    <div className="text-center text-white">
-                      <p className="text-accent text-sm font-medium mb-2">HIPERVINCULO</p>
-                      <p className="text-4xl font-bold mb-2">Advantage+</p>
-                      <p className="text-xl font-semibold mb-4">Growth Playbook</p>
-                      <p className="text-sm text-white/70">Proven Strategies</p>
-                    </div>
+              <div className="flex justify-center">
+                <Card className="bg-white shadow-lg border rounded-xl w-56">
+                  <CardContent className="p-6 text-center">
+                    <p className="text-accent text-xs font-bold mb-1">HIPERVINCULO</p>
+                    <p className="text-xs text-muted-foreground mb-3">Advantage+</p>
+                    <p className="text-lg font-bold text-foreground mb-1">Growth</p>
+                    <p className="text-lg font-bold text-foreground">Playbook</p>
                   </CardContent>
                 </Card>
               </div>
@@ -346,30 +396,86 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Performance Guarantee */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* Why Clients Stay */}
+      <section className="py-16 bg-white">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-4">Why Clients Stay</h2>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto italic">
+              "Ads are just the fuel. The system is the engine."<br />
+              — Hipervínculo's Growth Philosophy
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            <div className="flex justify-center gap-12 md:gap-20 max-w-2xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-extrabold text-accent mb-1">20+</div>
+                <p className="text-xs text-muted-foreground">Years in Digital</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-extrabold text-accent mb-1">$100M+</div>
+                <p className="text-xs text-muted-foreground">Managed Spend</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-extrabold text-accent mb-1">5-8</div>
+                <p className="text-xs text-muted-foreground">Year Avg. Retention</p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Proven Systems Across Industries */}
+      <section className="py-12 bg-white border-t border-border/30">
+        <div className="container">
+          <AnimatedSection className="text-center mb-6">
+            <h3 className="text-lg font-bold mb-2">Proven Systems Across Industries</h3>
+            <p className="text-xs text-muted-foreground">
+              Our methodology is tailored to fit the specific needs of your industry.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-3">
+              {industries.map((industry, index) => (
+                <span 
+                  key={index}
+                  className="px-4 py-2 bg-secondary text-foreground text-xs font-medium rounded-full"
+                >
+                  {industry}
+                </span>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Performance Guarantee - Dark Green */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
             <AnimatedSection direction="left">
-              <div className="space-y-6">
-                <p className="text-accent font-medium">Our Promise</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Our Performance Guarantee</h2>
-                <p className="text-lg text-primary-foreground/80">
-                  We believe in our ability to deliver results. If you qualify for our performance-based model and we don't meet the minimum agreed-upon performance target (typically 2.5 Net ROAS), you don't pay our management fee. It's that simple.
+              <div className="space-y-4">
+                <p className="text-accent font-medium text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 bg-accent rounded-full"></span>
+                  Our Promise
                 </p>
-                <p className="font-semibold text-white">We succeed only when you succeed.</p>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+                  Our Performance<br />Guarantee
+                </h2>
+                <p className="text-sm text-primary-foreground/80">
+                  We believe in our ability to deliver results. If you qualify for our performance-based model and we don't meet the minimum agreed-upon performance target (typically 2.5 Net ROAS), you don't pay our management fee.
+                </p>
+                <p className="font-semibold text-white text-sm">We succeed only when you succeed.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.2}>
-              <Card className="bg-white border-0 shadow-2xl">
+              <Card className="bg-white border-0 shadow-xl rounded-xl">
                 <CardContent className="p-8 text-center">
-                  <div className="mb-4">
-                    <ShieldCheck className="h-16 w-16 mx-auto text-accent" />
+                  <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <ShieldCheck className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="text-3xl font-bold text-primary mb-2">No Results, No Fee.</h3>
-                  <p className="text-muted-foreground mb-4">That's our commitment.</p>
-                  <div className="text-4xl font-bold text-accent">2.5x</div>
-                  <p className="text-sm text-muted-foreground">MIN. ROAS</p>
+                  <h3 className="text-xl font-extrabold text-foreground mb-1">No Results, No Fee.</h3>
+                  <p className="text-xs text-muted-foreground">That's our commitment.</p>
                 </CardContent>
               </Card>
             </AnimatedSection>
@@ -378,107 +484,76 @@ export default function Index() {
       </section>
 
       {/* Transparent Pricing */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transparent Pricing</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our pricing is designed to align with your success. No hidden fees, just a partnership focused on growth.
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-2">Transparent Pricing</h2>
+            <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+              Tailored for businesses at ⟹ | with real numbers. No hidden fees — this is a growth relationship, not a vendor contract.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <AnimatedSection delay={0.1}>
-              <Card className="h-full border-2 border-accent">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">Performance Retainer</CardTitle>
-                  <CardDescription>Ideal for brands needing foundational growth.</CardDescription>
+          <AnimatedSection delay={0.1}>
+            <div className="max-w-md mx-auto">
+              <Card className="border-2 border-accent rounded-xl">
+                <CardHeader className="text-center pb-2">
+                  <CardTitle className="text-lg font-bold">Three Growth Models. One Goal: Your Business.</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2">2.5x</div>
-                  <p className="text-muted-foreground mb-6">Min. Net ROAS</p>
-                  <p className="text-sm text-muted-foreground mb-6">
-                    You only pay if we hit our targets. No results, no fee.*
+                  <p className="text-xs text-muted-foreground mb-4">
+                    Whether you're building a lead gen system, scaling an eCommerce brand, or both — we have a pricing model designed for your growth stage.
                   </p>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full">
-                    <Link to="/audit">See If You Qualify</Link>
+                  <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl font-semibold text-sm">
+                    <Link to="/pricing">Explore Pricing Options <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </CardContent>
               </Card>
-            </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <Card className="h-full border-2 border-accent">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">Growth Partnership</CardTitle>
-                  <CardDescription>For established brands ready to scale aggressively.</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2">5%</div>
-                  <p className="text-muted-foreground mb-6">of Net Shopify Sales</p>
-                  <p className="text-sm text-muted-foreground mb-6">
-                    A true partnership model where our compensation is directly tied to your growth.
-                  </p>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full">
-                    <Link to="/audit">Request an Audit</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </AnimatedSection>
-          </div>
-          <AnimatedSection delay={0.3} className="text-center mt-8">
-            <Link to="/pricing" className="text-accent hover:text-accent/80 font-medium inline-flex items-center gap-1">
-              View Detailed Pricing <ArrowRight className="h-4 w-4" />
-            </Link>
+            </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Tools We Manage */}
-      <section className="py-20 bg-secondary">
+      {/* Tools and Media Platforms */}
+      <section className="py-16 bg-secondary">
         <div className="container">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium">Trusted Partnerships</p>
+          <AnimatedSection className="text-center mb-3">
+            <p className="text-accent font-medium text-xs">Trusted Partnerships</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Tools We Manage</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-2">Tools and Media Platforms we work with</h2>
+            <p className="text-sm text-muted-foreground">
               We're certified partners with the industry's leading platforms
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {partners.map((partner, index) => (
               <AnimatedSection key={partner.name} delay={index * 0.05}>
-                <Card className="text-center bg-white border hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <h3 className="font-bold text-lg mb-1">{partner.name}</h3>
-                    <p className="text-sm text-muted-foreground">{partner.subtitle}</p>
+                <Card className="text-center bg-white border rounded-xl hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <h3 className="font-bold text-sm mb-0.5">{partner.name}</h3>
+                    <p className="text-xs text-muted-foreground">{partner.subtitle}</p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
             ))}
           </div>
-          <AnimatedSection delay={0.4} className="text-center mt-8">
-            <p className="text-muted-foreground">
-              These partnerships ensure we have access to the latest tools and insights to drive your growth.
-            </p>
-          </AnimatedSection>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-white">
-        <div className="container max-w-3xl">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium">Frequently Asked Questions</p>
+      <section className="py-16 bg-white">
+        <div className="container max-w-2xl">
+          <AnimatedSection className="text-center mb-3">
+            <p className="text-accent font-medium text-xs">Frequently Asked Questions</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Got Questions? We've Got Answers.</h2>
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold">Got Questions? We've Got Answers.</h2>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.q}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">{faq.a}</AccordionContent>
+                <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50">
+                  <AccordionTrigger className="text-left text-sm font-medium py-4">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground pb-4">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -486,16 +561,16 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-accent">
+      {/* Final CTA - Lime Green */}
+      <section className="py-16 bg-accent">
         <div className="container text-center">
-          <AnimatedSection className="max-w-2xl mx-auto space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to scale your brand?</h2>
-            <p className="text-lg text-white/90">
+          <AnimatedSection className="max-w-xl mx-auto space-y-6">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white">Ready to scale your brand?</h2>
+            <p className="text-sm text-white/90">
               Request your free growth audit and discover how we can help you achieve your most ambitious goals.
             </p>
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full">
-              <Link to="/audit">Get My Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/90 rounded-xl font-semibold">
+              <Link to="/audit">Get My Free Audit</Link>
             </Button>
           </AnimatedSection>
         </div>
