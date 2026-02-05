@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -8,22 +8,23 @@ import { Layout } from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection, AnimatedCounter } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
+import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
 
-const heroHeadlines = [
-  "High-Converting Lead Generation Systems",
-  "eCommerce Growth Partner Strategies That Scale Revenue",
-  "Inbound Websites Built to Capture Demand",
-  "Conversion Infrastructure, Not Just Campaigns",
+const rotatingWords = [
+  "eCommerce",
+  "DTC Brands",
+  "Shopify Stores",
+  "Amazon Sellers",
 ];
 
 export default function Index() {
   const { t, language } = useLanguage();
-  const [headlineIndex, setHeadlineIndex] = useState(0);
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHeadlineIndex((prev) => (prev + 1) % heroHeadlines.length);
-    }, 4000);
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -103,56 +104,99 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary py-20 md:py-32">
+      <section className="relative overflow-hidden bg-secondary py-20 md:py-28">
         <div className="container relative">
-          <div className="max-w-4xl">
-            <p className="text-lg md:text-xl text-muted-foreground mb-6">
-              Hipervinculo builds performance-driven growth systems for businesses ready to scale.
-            </p>
-            
-            {/* Rotating Headlines */}
-            <div className="min-h-[200px] md:min-h-[280px] mb-8">
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={headlineIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary"
-                >
-                  {heroHeadlines[headlineIndex]}
-                </motion.h1>
-              </AnimatePresence>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              {/* Badge */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm mb-8"
+              >
+                <Star className="h-4 w-4 text-accent fill-accent" />
+                <span className="text-sm font-medium text-foreground">Digital Growth Agency</span>
+              </motion.div>
+              
+              {/* Headline with rotating word */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-6"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                  Your growth<br />
+                  partner for<br />
+                  ambitious{' '}
+                  <span className="relative inline-block">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={wordIndex}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.4 }}
+                        className="text-brand-green"
+                      >
+                        {rotatingWords[wordIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                    <span className="text-brand-green">.</span>
+                  </span>
+                </h1>
+              </motion.div>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg text-muted-foreground max-w-lg mb-8"
+              >
+                We help ambitious brands scale profitably through comprehensive, data-driven marketing strategies that deliver measurable results.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 mb-8"
+              >
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8 font-semibold">
+                  <Link to="/audit">Request Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full px-8 bg-white border-border font-semibold">
+                  <Link to="/services">View Our Services</Link>
+                </Button>
+              </motion.div>
+              
+              {/* Trust Badges */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex flex-wrap gap-x-6 gap-y-3 text-muted-foreground text-sm"
+              >
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 text-accent" />
+                  <span>20+ years experience</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 text-accent" />
+                  <span>$92M+ in tracked sales</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 text-accent" />
+                  <span>Performance-based pricing</span>
+                </div>
+              </motion.div>
             </div>
             
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
-              Websites, inbound architecture, and paid acquisition designed to turn traffic into real opportunities — whether you're generating local leads or scaling an established brand.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">
-                <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8 bg-white border-border">
-                <Link to="/services">Explore Our Services</Link>
-              </Button>
-            </div>
-            
-            {/* Trust Badges */}
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-accent" />
-                <span>20+ years in digital growth</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-accent" />
-                <span>Long-term client retention</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-accent" />
-                <span>Built for serious businesses only</span>
-              </div>
+            {/* Right Content - Growth Metrics Card */}
+            <div className="hidden lg:flex justify-center lg:justify-end">
+              <GrowthMetricsCard />
             </div>
           </div>
         </div>
