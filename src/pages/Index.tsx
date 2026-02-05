@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, TrendingUp, Shield, CheckCircle, Users, BarChart3, Target, Zap, LineChart, ShoppingCart } from 'lucide-react';
+import { ArrowRight, TrendingUp, Shield, CheckCircle, Users, BarChart3, Target, Zap, LineChart, ShoppingCart, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -164,8 +164,14 @@ export default function Index() {
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold">{t.playbook.title}</h2>
                 <p className="text-lg text-muted-foreground">{t.playbook.description}</p>
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                  {t.playbook.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground"
+                >
+                  <a href="/downloads/advantage-plus-growth-playbook.pdf" download>
+                    {t.playbook.cta} <Download className="ml-2 h-4 w-4" />
+                  </a>
                 </Button>
               </div>
               <div className="relative">
