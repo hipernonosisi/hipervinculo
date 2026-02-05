@@ -103,18 +103,32 @@ export default function Index() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary py-20 md:py-28">
+      {/* Hero Section - Matching hipervinculo.net exactly */}
+      <section className="relative overflow-hidden bg-[#f8f9f5] py-16 md:py-24">
+        {/* Subtle line pattern background */}
+        <div 
+          className="absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 40px,
+              hsl(var(--border)) 40px,
+              hsl(var(--border)) 41px
+            )`
+          }}
+        />
+        
         <div className="container relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div>
+            <div className="max-w-xl">
               {/* Tagline */}
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-foreground mb-8"
+                className="text-foreground text-base mb-6"
               >
                 Hipervinculo builds performance-driven growth systems for businesses ready to scale.
               </motion.p>
@@ -124,7 +138,7 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-6 min-h-[180px] md:min-h-[220px]"
+                className="mb-6 min-h-[140px] md:min-h-[180px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.h1
@@ -133,7 +147,8 @@ export default function Index() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-dark-green"
+                    className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] text-dark-green"
+                    style={{ fontWeight: 800 }}
                   >
                     {rotatingHeadlines[wordIndex]}
                   </motion.h1>
@@ -144,33 +159,34 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-muted-foreground max-w-lg mb-8"
+                className="text-base text-muted-foreground leading-relaxed mb-8"
               >
                 Websites, inbound architecture, and paid acquisition designed to turn traffic into real opportunities — whether you're generating local leads or scaling an established brand.
               </motion.p>
               
+              {/* CTA Buttons */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 mb-8"
+                className="flex flex-col sm:flex-row gap-3 mb-8"
               >
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-6 font-semibold shadow-sm">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-6 font-semibold">
                   <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-xl px-6 bg-white border-border font-semibold shadow-sm">
+                <Button asChild variant="outline" size="lg" className="rounded-xl px-6 bg-white border-border font-medium">
                   <Link to="/services">Explore Our Services</Link>
                 </Button>
               </motion.div>
 
-              {/* Trust badges */}
+              {/* Trust badges - checkmark style like original */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="space-y-3"
+                className="space-y-2"
               >
-                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" />
                     20+ years in digital growth

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
@@ -25,14 +25,14 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-border/30">
+      <div className="container flex h-20 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img 
             src={logoFull} 
             alt="Hipervínculo" 
-            className="h-10 hidden sm:block" 
+            className="h-12 hidden sm:block" 
           />
           <img 
             src={logoSymbol} 
@@ -42,32 +42,35 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
-                location.pathname === link.href ? "text-accent" : "text-foreground/80"
+        <nav className="hidden lg:flex items-center">
+          {navLinks.map((link, index) => (
+            <div key={link.href} className="flex items-center">
+              <Link
+                to={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-accent px-4 py-2",
+                  location.pathname === link.href ? "text-accent" : "text-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+              {index < navLinks.length - 1 && (
+                <span className="text-border">|</span>
               )}
-            >
-              {link.label}
-            </Link>
+            </div>
           ))}
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors border border-border rounded-full px-3 py-1.5"
           >
-            <span className={cn("transition-opacity", language === 'en' ? "opacity-100" : "opacity-50")}>EN</span>
-            <span className="text-muted-foreground">/</span>
-            <span className={cn("transition-opacity", language === 'es' ? "opacity-100" : "opacity-50")}>ES</span>
+            <Globe className="h-4 w-4" />
+            <span>{language.toUpperCase()}</span>
           </button>
-          <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+          <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-5 font-semibold">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
           </Button>
         </div>
@@ -84,7 +87,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-border">
+        <div className="lg:hidden border-t border-border bg-white">
           <nav className="container py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
@@ -93,7 +96,7 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-accent py-2",
-                  location.pathname === link.href ? "text-accent" : "text-foreground/80"
+                  location.pathname === link.href ? "text-accent" : "text-foreground"
                 )}
               >
                 {link.label}
@@ -102,13 +105,12 @@ export function Header() {
             <div className="flex items-center justify-between pt-4 border-t border-border">
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-1 text-sm font-medium"
+                className="flex items-center gap-1.5 text-sm font-medium border border-border rounded-full px-3 py-1.5"
               >
-                <span className={cn("transition-opacity", language === 'en' ? "opacity-100" : "opacity-50")}>EN</span>
-                <span className="text-muted-foreground">/</span>
-                <span className={cn("transition-opacity", language === 'es' ? "opacity-100" : "opacity-50")}>ES</span>
+                <Globe className="h-4 w-4" />
+                <span>{language.toUpperCase()}</span>
               </button>
-              <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+              <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
                 <Link to="/audit" onClick={() => setIsMenuOpen(false)}>{t.nav.getFreeAudit}</Link>
               </Button>
             </div>
