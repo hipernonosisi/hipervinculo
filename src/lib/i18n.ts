@@ -394,6 +394,72 @@ export const translations = {
           cta: {
             title: 'Fix Your Tracking',
             description: 'Book a call to audit your current tracking setup and find the gaps.',
+          button: 'Get in Touch',
+          },
+        },
+        customApps: {
+          slug: 'custom-enterprise-applications',
+          heroTitle: 'Custom Enterprise Applications',
+          heroSubtitle: 'Tailored web applications built to solve your specific business challenges.',
+          coreProblem: {
+            title: 'The Challenge',
+            intro: 'Generic software rarely fits your exact needs.',
+            points: [
+              'Off-the-shelf solutions require workarounds',
+              'Data lives in disconnected spreadsheets and systems',
+              'Manual processes eat up hours of productive time',
+              'No visibility into real-time operations',
+              'Scaling means more complexity, not more efficiency',
+            ],
+            solution: 'We build custom solutions that fit your business.',
+            explanation: 'Every business has unique workflows. Instead of forcing your team to adapt to rigid software, we create applications tailored to how you actually work — streamlining operations and unlocking growth.',
+          },
+          whatWeBuild: {
+            title: 'What We Build',
+            intro: 'Custom web applications designed for enterprise needs:',
+            items: [
+              'Inventory management systems',
+              'Production control dashboards',
+              'Custom CRM and sales tools',
+              'Workflow automation platforms',
+              'Real-time reporting dashboards',
+              'Internal operations portals',
+            ],
+          },
+          approach: {
+            title: 'Our Approach',
+            items: [
+              { title: 'Discovery & Requirements', description: 'We map your current processes and identify exactly where technology can create efficiency gains.' },
+              { title: 'Custom Architecture', description: 'We design scalable systems that grow with your business — no unnecessary complexity.' },
+              { title: 'Iterative Development', description: 'You see progress weekly. We build in sprints so you can provide feedback and adjust direction.' },
+              { title: 'Training & Support', description: 'We don\'t just deliver and disappear. Your team gets trained, and we provide ongoing support.' },
+            ],
+          },
+          features: {
+            title: 'Key Capabilities',
+            items: ['Real-time data sync', 'Role-based access control', 'Mobile-responsive design', 'Third-party integrations', 'Automated reporting', 'Secure cloud hosting'],
+          },
+          useCases: {
+            title: 'Use Cases',
+            items: [
+              { title: 'Inventory Control', description: 'Track stock levels, automate reorders, and get real-time visibility across locations.' },
+              { title: 'Production Management', description: 'Monitor production lines, track KPIs, and optimize workflows in real-time.' },
+              { title: 'Operations Dashboards', description: 'Consolidate data from multiple sources into actionable business intelligence.' },
+            ],
+          },
+          whoFor: {
+            title: 'Who This Is For',
+            intro: 'This is built for businesses that:',
+            items: [
+              'Have outgrown spreadsheets and basic tools',
+              'Need software tailored to their specific workflow',
+              'Want to automate manual processes',
+              'Require real-time visibility into operations',
+            ],
+          },
+          cta: {
+            title: 'Let\'s Build Your Solution',
+            description: 'Book a call to discuss your business challenges and explore how a custom application can solve them.',
             button: 'Get in Touch',
           },
         },
@@ -825,6 +891,11 @@ export const translations = {
         title: 'eCommerce Growth Partners',
         description: 'For Shopify brands serious about scale. Full-funnel management with a focus on profitability.',
         features: ['Meta & TikTok advertising', 'Creative strategy', 'Landing page optimization', 'Growth roadmapping'],
+      },
+      customApps: {
+        title: 'Custom Enterprise Applications',
+        description: 'Tailored web applications built for your specific business needs. From inventory control to production management systems.',
+        features: ['Custom web applications', 'Business process automation', 'Real-time dashboards', 'System integrations'],
       },
     },
     // Pricing Page
@@ -1273,6 +1344,72 @@ export const translations = {
             button: 'Contáctanos',
           },
         },
+        customApps: {
+          slug: 'aplicaciones-empresariales-personalizadas',
+          heroTitle: 'Aplicaciones Empresariales',
+          heroSubtitle: 'Aplicaciones web a medida construidas para resolver los desafíos específicos de tu negocio.',
+          coreProblem: {
+            title: 'El Desafío',
+            intro: 'El software genérico rara vez se ajusta a tus necesidades exactas.',
+            points: [
+              'Las soluciones estándar requieren soluciones alternativas',
+              'Los datos viven en hojas de cálculo y sistemas desconectados',
+              'Los procesos manuales consumen horas de tiempo productivo',
+              'Sin visibilidad en tiempo real de las operaciones',
+              'Escalar significa más complejidad, no más eficiencia',
+            ],
+            solution: 'Construimos soluciones a medida para tu negocio.',
+            explanation: 'Cada negocio tiene flujos de trabajo únicos. En lugar de forzar a tu equipo a adaptarse a software rígido, creamos aplicaciones adaptadas a cómo realmente trabajas — optimizando operaciones y desbloqueando crecimiento.',
+          },
+          whatWeBuild: {
+            title: 'Lo Que Construimos',
+            intro: 'Aplicaciones web personalizadas diseñadas para necesidades empresariales:',
+            items: [
+              'Sistemas de gestión de inventario',
+              'Dashboards de control de producción',
+              'CRM y herramientas de ventas personalizadas',
+              'Plataformas de automatización de flujos',
+              'Dashboards de reportes en tiempo real',
+              'Portales de operaciones internas',
+            ],
+          },
+          approach: {
+            title: 'Nuestro Enfoque',
+            items: [
+              { title: 'Descubrimiento y Requisitos', description: 'Mapeamos tus procesos actuales e identificamos exactamente dónde la tecnología puede crear eficiencias.' },
+              { title: 'Arquitectura Personalizada', description: 'Diseñamos sistemas escalables que crecen con tu negocio — sin complejidad innecesaria.' },
+              { title: 'Desarrollo Iterativo', description: 'Ves progreso semanal. Construimos en sprints para que puedas dar feedback y ajustar dirección.' },
+              { title: 'Capacitación y Soporte', description: 'No solo entregamos y desaparecemos. Tu equipo recibe capacitación, y proporcionamos soporte continuo.' },
+            ],
+          },
+          features: {
+            title: 'Capacidades Clave',
+            items: ['Sincronización de datos en tiempo real', 'Control de acceso por roles', 'Diseño responsive móvil', 'Integraciones con terceros', 'Reportes automatizados', 'Hosting seguro en la nube'],
+          },
+          useCases: {
+            title: 'Casos de Uso',
+            items: [
+              { title: 'Control de Inventario', description: 'Rastrea niveles de stock, automatiza reordenes y obtén visibilidad en tiempo real entre ubicaciones.' },
+              { title: 'Gestión de Producción', description: 'Monitorea líneas de producción, rastrea KPIs y optimiza flujos de trabajo en tiempo real.' },
+              { title: 'Dashboards de Operaciones', description: 'Consolida datos de múltiples fuentes en inteligencia de negocio accionable.' },
+            ],
+          },
+          whoFor: {
+            title: 'Para Quién Es Esto',
+            intro: 'Esto está construido para negocios que:',
+            items: [
+              'Han superado las hojas de cálculo y herramientas básicas',
+              'Necesitan software adaptado a su flujo de trabajo específico',
+              'Quieren automatizar procesos manuales',
+              'Requieren visibilidad en tiempo real de las operaciones',
+            ],
+          },
+          cta: {
+            title: 'Construyamos Tu Solución',
+            description: 'Agenda una llamada para discutir los desafíos de tu negocio y explorar cómo una aplicación a medida puede resolverlos.',
+            button: 'Contáctanos',
+          },
+        },
       },
       differentTitle: '¿Qué Nos Hace Diferentes?',
       differentSubtitle: 'No somos solo otra agencia. Somos un verdadero socio de crecimiento, profundamente invertido en tu éxito.',
@@ -1701,6 +1838,11 @@ export const translations = {
         title: 'Socios de Crecimiento eCommerce',
         description: 'Para marcas Shopify serias sobre escalar. Gestión de embudo completo con enfoque en rentabilidad.',
         features: ['Publicidad en Meta y TikTok', 'Estrategia creativa', 'Optimización de landing pages', 'Hoja de ruta de crecimiento'],
+      },
+      customApps: {
+        title: 'Aplicaciones Empresariales',
+        description: 'Aplicaciones web a medida construidas para las necesidades específicas de tu negocio. Desde control de inventario hasta sistemas de gestión de producción.',
+        features: ['Aplicaciones web a medida', 'Automatización de procesos', 'Dashboards en tiempo real', 'Integraciones de sistemas'],
       },
     },
     // Pricing Page
