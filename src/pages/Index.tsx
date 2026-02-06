@@ -524,7 +524,7 @@ export default function Index() {
       </section>
 
       {/* Proven Systems Across Industries */}
-      <section className="py-20 md:py-24 bg-white border-t border-border/40">
+      <section className="py-20 md:py-24 bg-[#f5f5f5]">
         <div className="container">
           <AnimatedSection className="text-center mb-12">
             <h3 className="text-[28px] md:text-[32px] font-bold mb-4" style={{ color: '#2d4a2d' }}>Proven Systems Across Industries</h3>
