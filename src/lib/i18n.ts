@@ -206,6 +206,68 @@ export const translations = {
             button: 'Get in Touch',
           },
         },
+        amazon: {
+          slug: 'amazon-seller-services',
+          heroTitle: 'Amazon Seller Services',
+          heroSubtitle: 'Full-service Amazon account management. From advertising to sales optimization — without the logistics headache.',
+          coreProblem: {
+            title: 'The Challenge',
+            intro: 'Amazon is a battlefield. Most sellers are fighting blind.',
+            points: [
+              'Rising advertising costs with declining organic visibility',
+              'Complex algorithm changes affecting rankings daily',
+              'Poor listing optimization leaving money on the table',
+              'Lack of clear strategy beyond "run more ads"',
+              'Agencies that don\'t understand Amazon\'s ecosystem',
+            ],
+            solution: 'We take a different approach.',
+            explanation: 'We manage your Amazon presence holistically — advertising, listing optimization, pricing strategy, and sales performance. No logistics, no fulfillment — just revenue growth.',
+          },
+          whatWeBuild: {
+            title: 'What We Manage',
+            intro: 'Complete Amazon account management for sustainable growth:',
+            items: [
+              'Sponsored Products campaigns',
+              'Sponsored Brands & Sponsored Display',
+              'Listing optimization (titles, bullets, A+ content)',
+              'Keyword research & indexing strategy',
+              'Pricing & competitive analysis',
+              'Performance reporting & TACOS optimization',
+            ],
+          },
+          approach: {
+            title: 'Our Approach',
+            items: [
+              { title: 'TACOS Focus', description: 'We optimize for Total Advertising Cost of Sale — the real measure of Amazon profitability.' },
+              { title: 'Organic + Paid Synergy', description: 'Advertising should boost organic rank, not replace it. We build both.' },
+              { title: 'Listing-First Strategy', description: 'Great ads can\'t save a bad listing. We optimize your product pages before scaling spend.' },
+              { title: 'Transparent Reporting', description: 'Real numbers. Clear insights. No hiding behind Amazon\'s complexity.' },
+            ],
+          },
+          services: {
+            title: 'Service Options',
+            options: [
+              { title: 'Advertising Only', description: 'PPC campaign management with weekly optimization and reporting.' },
+              { title: 'Full Account Management', description: 'Complete sales management including advertising, listings, and strategy.' },
+            ],
+            note: 'Both options exclude logistics, fulfillment, and inventory management.',
+          },
+          whoFor: {
+            title: 'Who This Is For',
+            intro: 'This is built for Amazon sellers that:',
+            items: [
+              'Are already selling on Amazon with established products',
+              'Want to scale sales without hiring an in-house team',
+              'Have their own logistics and fulfillment handled',
+              'Need expert advertising or full account management',
+            ],
+          },
+          cta: {
+            title: 'Let\'s Talk Amazon',
+            description: 'Book a call to discuss how we can help you dominate the marketplace.',
+            button: 'Get in Touch',
+          },
+        },
       },
       differentTitle: 'What Makes Us Different?',
       differentSubtitle: 'We\'re not just another agency. We are a true growth partner, deeply invested in your success.',
@@ -620,6 +682,11 @@ export const translations = {
         description: 'Search, Shopping, Performance Max — we manage it all. Focused on ROAS and profitability, not just clicks.',
         features: ['Search & Shopping campaigns', 'Performance Max optimization', 'Conversion tracking setup', 'Weekly optimization'],
       },
+      amazon: {
+        title: 'Amazon Seller Services',
+        description: 'Full-service Amazon account management. From advertising to sales optimization — we help you dominate the marketplace.',
+        features: ['Amazon PPC management', 'Listing optimization', 'Sales strategy & pricing', 'Performance reporting'],
+      },
       tracking: {
         title: 'Tracking & Attribution',
         description: 'Know exactly where your sales come from. We set up proper tracking so you can make data-driven decisions.',
@@ -884,6 +951,68 @@ export const translations = {
           cta: {
             title: 'Hablemos de Crecimiento',
             description: 'Agenda una llamada para ver si somos el fit correcto para tu marca.',
+            button: 'Contáctanos',
+          },
+        },
+        amazon: {
+          slug: 'servicios-vendedores-amazon',
+          heroTitle: 'Servicios para Vendedores de Amazon',
+          heroSubtitle: 'Gestión completa de cuentas de Amazon. Desde publicidad hasta optimización de ventas — sin el dolor de cabeza logístico.',
+          coreProblem: {
+            title: 'El Desafío',
+            intro: 'Amazon es un campo de batalla. La mayoría de vendedores pelean a ciegas.',
+            points: [
+              'Costos de publicidad en aumento con visibilidad orgánica en declive',
+              'Cambios complejos de algoritmo afectando rankings diariamente',
+              'Mala optimización de listados dejando dinero en la mesa',
+              'Falta de estrategia clara más allá de "correr más anuncios"',
+              'Agencias que no entienden el ecosistema de Amazon',
+            ],
+            solution: 'Nosotros tomamos un enfoque diferente.',
+            explanation: 'Gestionamos tu presencia en Amazon de forma integral — publicidad, optimización de listados, estrategia de precios y rendimiento de ventas. Sin logística, sin fulfillment — solo crecimiento de ingresos.',
+          },
+          whatWeBuild: {
+            title: 'Lo Que Gestionamos',
+            intro: 'Gestión completa de cuenta Amazon para crecimiento sostenible:',
+            items: [
+              'Campañas de Sponsored Products',
+              'Sponsored Brands y Sponsored Display',
+              'Optimización de listados (títulos, bullets, contenido A+)',
+              'Investigación de keywords y estrategia de indexación',
+              'Análisis de precios y competencia',
+              'Reportes de rendimiento y optimización de TACOS',
+            ],
+          },
+          approach: {
+            title: 'Nuestro Enfoque',
+            items: [
+              { title: 'Enfoque en TACOS', description: 'Optimizamos para Total Advertising Cost of Sale — la medida real de rentabilidad en Amazon.' },
+              { title: 'Sinergia Orgánico + Pagado', description: 'La publicidad debe impulsar el ranking orgánico, no reemplazarlo. Construimos ambos.' },
+              { title: 'Estrategia Listing-First', description: 'Buenos anuncios no salvan un mal listado. Optimizamos tus páginas de producto antes de escalar gasto.' },
+              { title: 'Reportes Transparentes', description: 'Números reales. Insights claros. Sin esconderse detrás de la complejidad de Amazon.' },
+            ],
+          },
+          services: {
+            title: 'Opciones de Servicio',
+            options: [
+              { title: 'Solo Publicidad', description: 'Gestión de campañas PPC con optimización y reportes semanales.' },
+              { title: 'Gestión Completa de Cuenta', description: 'Gestión completa de ventas incluyendo publicidad, listados y estrategia.' },
+            ],
+            note: 'Ambas opciones excluyen logística, fulfillment y gestión de inventario.',
+          },
+          whoFor: {
+            title: 'Para Quién Es Esto',
+            intro: 'Esto está construido para vendedores de Amazon que:',
+            items: [
+              'Ya están vendiendo en Amazon con productos establecidos',
+              'Quieren escalar ventas sin contratar un equipo interno',
+              'Tienen su logística y fulfillment resueltos',
+              'Necesitan publicidad experta o gestión completa de cuenta',
+            ],
+          },
+          cta: {
+            title: 'Hablemos de Amazon',
+            description: 'Agenda una llamada para discutir cómo podemos ayudarte a dominar el marketplace.',
             button: 'Contáctanos',
           },
         },
@@ -1300,6 +1429,11 @@ export const translations = {
         title: 'Google Ads',
         description: 'Search, Shopping, Performance Max — lo gestionamos todo. Enfocados en ROAS y rentabilidad, no solo clics.',
         features: ['Campañas de Search y Shopping', 'Optimización de Performance Max', 'Configuración de seguimiento de conversiones', 'Optimización semanal'],
+      },
+      amazon: {
+        title: 'Servicios para Vendedores de Amazon',
+        description: 'Gestión completa de cuentas de Amazon. Desde publicidad hasta optimización de ventas — te ayudamos a dominar el marketplace.',
+        features: ['Gestión de Amazon PPC', 'Optimización de listados', 'Estrategia de ventas y precios', 'Reportes de rendimiento'],
       },
       tracking: {
         title: 'Seguimiento y Atribución',
