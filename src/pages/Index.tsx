@@ -484,9 +484,8 @@ export default function Index() {
             </p>
           </AnimatedSection>
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[22px] md:text-[28px] lg:text-[32px] text-foreground leading-[1.4] max-w-4xl mx-auto font-medium">
-              We focus on stability, consistency, and long-term inbound systems —<br />
-              not short-term experiments.
+            <p className="text-[18px] md:text-[22px] lg:text-[26px] text-foreground leading-[1.5] max-w-3xl mx-auto font-medium">
+              We focus on stability, consistency, and long-term inbound systems — not short-term experiments.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
