@@ -516,6 +516,9 @@ export default function Index() {
                 <p className="text-[17px] md:text-[18px] text-primary-foreground/80 leading-[1.7] max-w-lg">
                   {t.guarantee.description}
                 </p>
+                <p className="text-[13px] md:text-[14px] text-primary-foreground/60 leading-[1.6] max-w-lg">
+                  {t.guarantee.disclaimer}
+                </p>
               </div>
             </AnimatedSection>
             
