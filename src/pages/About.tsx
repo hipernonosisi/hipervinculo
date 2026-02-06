@@ -268,28 +268,134 @@ export default function About() {
           </AnimatedSection>
           
           <AnimatedSection delay={0.2}>
-            <div className="flex justify-center gap-16 md:gap-24 lg:gap-32 max-w-4xl mx-auto">
-              {stats.map((stat, index) => (
-                <motion.div 
-                  key={index} 
-                  className="text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* $100M+ - Bar Chart */}
+              <motion.div 
+                className="text-center bg-white/10 backdrop-blur rounded-2xl p-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+              >
+                {/* Mini bar chart */}
+                <div className="flex items-end justify-center gap-2 h-20 mb-6">
+                  {[35, 50, 45, 65, 55, 80, 70, 95].map((height, i) => (
+                    <motion.div
+                      key={i}
+                      className="w-3 rounded-t-sm bg-white"
+                      style={{ opacity: i < 4 ? 0.4 : i < 6 ? 0.7 : 1 }}
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${height}%` }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + i * 0.08, duration: 0.5 }}
+                    />
+                  ))}
+                </div>
+                <motion.p 
+                  className="text-[40px] md:text-[52px] lg:text-[60px] font-extrabold text-white mb-2 leading-none"
+                  initial={{ scale: 0.5 }}
+                  whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.15, type: "spring", stiffness: 100 }}
+                  transition={{ delay: 0.4, type: "spring", stiffness: 150 }}
                 >
-                  <motion.p 
-                    className="text-[48px] md:text-[64px] lg:text-[72px] font-extrabold text-white mb-2 leading-none"
-                    initial={{ scale: 0.5 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + index * 0.15, type: "spring", stiffness: 150 }}
-                  >
-                    {stat.value}
-                  </motion.p>
-                  <p className="text-[14px] md:text-[16px] text-white/80">{stat.label}</p>
-                </motion.div>
-              ))}
+                  $100M+
+                </motion.p>
+                <p className="text-[14px] md:text-[16px] text-white/80">Managed Ad Spend</p>
+              </motion.div>
+
+              {/* 20+ - Circular progress */}
+              <motion.div 
+                className="text-center bg-white/10 backdrop-blur rounded-2xl p-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.45, type: "spring", stiffness: 100 }}
+              >
+                {/* Circular indicator */}
+                <div className="flex justify-center mb-6">
+                  <svg className="w-20 h-20" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.2)"
+                      strokeWidth="8"
+                    />
+                    <motion.circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeDasharray="251.2"
+                      initial={{ strokeDashoffset: 251.2 }}
+                      whileInView={{ strokeDashoffset: 50 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.6, duration: 1.2, ease: "easeOut" }}
+                      style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
+                    />
+                  </svg>
+                </div>
+                <motion.p 
+                  className="text-[40px] md:text-[52px] lg:text-[60px] font-extrabold text-white mb-2 leading-none"
+                  initial={{ scale: 0.5 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.55, type: "spring", stiffness: 150 }}
+                >
+                  20+
+                </motion.p>
+                <p className="text-[14px] md:text-[16px] text-white/80">Years of Experience</p>
+              </motion.div>
+
+              {/* 5-8 - Line chart */}
+              <motion.div 
+                className="text-center bg-white/10 backdrop-blur rounded-2xl p-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
+              >
+                {/* Mini line chart */}
+                <div className="flex justify-center mb-6">
+                  <svg className="w-full h-20" viewBox="0 0 120 60" preserveAspectRatio="none">
+                    <motion.path
+                      d="M 0 50 Q 20 45, 30 40 T 50 35 T 70 25 T 90 20 T 110 10 L 120 8"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.7, duration: 1.2, ease: "easeOut" }}
+                    />
+                    <motion.circle
+                      cx="120"
+                      cy="8"
+                      r="5"
+                      fill="white"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 1.9 }}
+                    />
+                  </svg>
+                </div>
+                <motion.p 
+                  className="text-[40px] md:text-[52px] lg:text-[60px] font-extrabold text-white mb-2 leading-none"
+                  initial={{ scale: 0.5 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7, type: "spring", stiffness: 150 }}
+                >
+                  5-8
+                </motion.p>
+                <p className="text-[14px] md:text-[16px] text-white/80">Years Avg. Retention</p>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>
