@@ -524,24 +524,29 @@ export default function Index() {
       </section>
 
       {/* Tools and Media Platforms */}
-      <section className="py-20 bg-secondary">
+      <section className="py-24 md:py-32 bg-secondary">
         <div className="container">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium text-[13px]">Trusted Partnerships</p>
+          <AnimatedSection className="text-center mb-6">
+            <p className="text-accent font-semibold text-[15px]">Trusted Partnerships</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold mb-3 tracking-[-0.02em]">Tools and Media Platforms we work with</h2>
-            <p className="text-[16px] text-muted-foreground">
+          <AnimatedSection className="text-center mb-16">
+            <h2 
+              className="text-[40px] md:text-[52px] lg:text-[60px] mb-5 leading-[1.1] tracking-[-0.03em]"
+              style={{ fontWeight: 800, color: '#2d4a2d' }}
+            >
+              Tools and Media Platforms we work with
+            </h2>
+            <p className="text-[18px] md:text-[20px] text-muted-foreground">
               We're certified partners with the industry's leading platforms
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {partners.map((partner, index) => (
               <AnimatedSection key={partner.name} delay={index * 0.05}>
-                <Card className="text-center bg-white border rounded-xl hover:shadow-md transition-shadow">
-                  <CardContent className="p-5">
-                    <h3 className="font-bold text-[15px] mb-1">{partner.name}</h3>
-                    <p className="text-[12px] text-muted-foreground">{partner.subtitle}</p>
+                <Card className="text-center bg-white border-0 rounded-2xl hover:shadow-lg transition-shadow shadow-sm">
+                  <CardContent className="p-8">
+                    <h3 className="font-bold text-[18px] md:text-[20px] mb-2 text-foreground">{partner.name}</h3>
+                    <p className="text-[14px] md:text-[15px] text-muted-foreground">{partner.subtitle}</p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
