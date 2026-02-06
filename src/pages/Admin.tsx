@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
+import { useToast } from '@/hooks/use-toast';
+import { User } from '@supabase/supabase-js';
 
 interface ContactSubmission {
   id: string;
@@ -32,9 +34,36 @@ interface AuditRequest {
 }
 
 export default function Admin() {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [auditRequests, setAuditRequests] = useState<AuditRequest[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Check authentication
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+      
+      if (!session) {
+        navigate('/auth');
+      }
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+      
+      if (!session) {
+        navigate('/auth');
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -54,8 +83,19 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast({
+      title: 'Logged out',
+      description: 'You have been signed out successfully.',
+    });
+    navigate('/auth');
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -66,6 +106,20 @@ export default function Admin() {
       minute: '2-digit'
     });
   };
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-[#f8f9f5] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[#f8f9f5]">
@@ -78,19 +132,30 @@ export default function Admin() {
             </Link>
             <div>
               <h1 className="text-xl font-bold" style={{ color: '#2d4a2d' }}>Admin Dashboard</h1>
-              <p className="text-sm text-muted-foreground">Form submissions overview</p>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
           </div>
-          <Button 
-            onClick={fetchData} 
-            variant="outline" 
-            size="sm"
-            className="gap-2"
-            disabled={loading}
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              onClick={fetchData} 
+              variant="outline" 
+              size="sm"
+              className="gap-2"
+              disabled={loading}
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+            <Button 
+              onClick={handleLogout} 
+              variant="ghost" 
+              size="sm"
+              className="gap-2 text-muted-foreground hover:text-foreground"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
+          </div>
         </div>
       </header>
 
