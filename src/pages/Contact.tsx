@@ -43,6 +43,7 @@ export default function Contact() {
       supabase.functions.invoke('send-notification', {
         body: {
           type: 'contact',
+          language,
           full_name: formData.fullName,
           email: formData.email,
           company_name: formData.companyName,
