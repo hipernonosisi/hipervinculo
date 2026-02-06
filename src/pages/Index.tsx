@@ -511,12 +511,12 @@ export default function Index() {
                 
                 <h2 
                   className="text-[44px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
-                  style={{ fontWeight: 800, fontStyle: 'italic' }}
+                  style={{ fontWeight: 800 }}
                 >
                   Our Performance<br />Guarantee
                 </h2>
                 
-                <p className="text-accent text-[18px] md:text-[20px] italic font-medium">
+                <p className="text-accent text-[18px] md:text-[20px] font-medium">
                   For eCommerce Growth Partners
                 </p>
                 
@@ -541,7 +541,7 @@ export default function Index() {
                     </div>
                     <h3 
                       className="text-[28px] md:text-[36px] text-foreground mb-3 leading-[1.15] tracking-[-0.02em]"
-                      style={{ fontWeight: 800, fontStyle: 'italic' }}
+                      style={{ fontWeight: 800 }}
                     >
                       No Results, No Fee.
                     </h3>
@@ -560,7 +560,7 @@ export default function Index() {
           <AnimatedSection className="text-center mb-16">
             <h2 
               className="text-[48px] md:text-[60px] lg:text-[72px] mb-6 leading-[1.05] tracking-[-0.03em]"
-              style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+              style={{ fontWeight: 800, color: '#1a1a2e' }}
             >
               Transparent Pricing
             </h2>
@@ -574,7 +574,7 @@ export default function Index() {
                 <CardContent className="text-center py-14 px-8 md:px-16">
                   <h3 
                     className="text-[28px] md:text-[36px] lg:text-[42px] mb-6 leading-[1.15] tracking-[-0.02em]"
-                    style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+                    style={{ fontWeight: 800, color: '#1a1a2e' }}
                   >
                     Three Growth Models. One Goal: Your Success.
                   </h3>
@@ -656,7 +656,7 @@ export default function Index() {
           <AnimatedSection className="max-w-3xl mx-auto space-y-8">
             <h2 
               className="text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
-              style={{ fontWeight: 800, fontStyle: 'italic' }}
+              style={{ fontWeight: 800 }}
             >
               Ready to scale your brand?
             </h2>

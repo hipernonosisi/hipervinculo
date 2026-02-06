@@ -46,7 +46,7 @@ export default function Pricing() {
                     <p className="text-2xl font-bold text-primary">$1,000 / month</p>
                     <p className="text-muted-foreground">Lead Generation Management</p>
                   </div>
-                  <p className="text-sm text-muted-foreground italic">
+                  <p className="text-sm text-muted-foreground">
                     (No contracts — clients stay because the system works)
                   </p>
                   <div className="flex-grow">
@@ -119,7 +119,7 @@ export default function Pricing() {
                       </li>
                     </ul>
                   </div>
-                  <p className="text-sm text-muted-foreground italic">
+                  <p className="text-sm text-muted-foreground">
                     (This model suits brands with established conversion systems already in place.)
                   </p>
                   <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-auto rounded-xl">

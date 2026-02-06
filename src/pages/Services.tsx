@@ -114,7 +114,7 @@ export default function Services() {
                       ))}
                     </ul>
                     {service.note && (
-                      <p className="text-sm text-muted-foreground mt-4 ml-16 italic">
+                      <p className="text-sm text-muted-foreground mt-4 ml-16">
                         {service.note}
                       </p>
                     )}
