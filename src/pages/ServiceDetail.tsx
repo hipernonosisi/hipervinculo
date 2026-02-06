@@ -573,7 +573,12 @@ export default function ServiceDetail() {
   if (type === 'amazon') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}
