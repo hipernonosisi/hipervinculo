@@ -20,6 +20,13 @@ export default function Services() {
       detailSlug: 'lead-generation-systems',
     },
     {
+      icon: ShoppingCart,
+      title: t.servicesPage.ecommerce.title,
+      description: t.servicesPage.ecommerce.description,
+      features: t.servicesPage.ecommerce.features,
+      detailSlug: 'ecommerce-growth-partners',
+    },
+    {
       icon: Globe,
       title: t.servicesPage.website.title,
       description: t.servicesPage.website.description,
@@ -37,12 +44,6 @@ export default function Services() {
       title: t.servicesPage.tracking.title,
       description: t.servicesPage.tracking.description,
       features: t.servicesPage.tracking.features,
-    },
-    {
-      icon: ShoppingCart,
-      title: t.servicesPage.ecommerce.title,
-      description: t.servicesPage.ecommerce.description,
-      features: t.servicesPage.ecommerce.features,
     },
   ];
 
