@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -12,7 +13,14 @@ export default function Pricing() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={language === 'en' ? 'Pricing' : 'Precios'}
+        description={language === 'en' 
+          ? "Transparent pricing for growth-focused eCommerce brands. Custom packages tailored to your business goals and ad spend."
+          : "Precios transparentes para marcas eCommerce enfocadas en crecimiento. Paquetes personalizados adaptados a tus objetivos y presupuesto."
+        }
+        url="https://hipervinculo.net/pricing"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}

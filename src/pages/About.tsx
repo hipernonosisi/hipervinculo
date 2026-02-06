@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const values = [
     { icon: Target, title: t.about.values.consistency, description: t.about.values.consistencyDesc },
