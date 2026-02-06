@@ -85,23 +85,12 @@ export function LeadGenPresentation() {
         // Wait for render
         await new Promise((resolve) => setTimeout(resolve, 250));
         
-        // Get actual container dimensions
-        const containerRect = slideContainer.getBoundingClientRect();
-        
-        // Capture with exact positioning - no scroll offset
+        // Capture at high resolution (scale 2 for quality)
         const canvas = await html2canvas(slideContainer, {
           scale: 2,
           useCORS: true,
           logging: false,
-          backgroundColor: '#f8f9f5',
-          width: containerRect.width,
-          height: containerRect.height,
-          x: 0,
-          y: 0,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: containerRect.width,
-          windowHeight: containerRect.height,
+          backgroundColor: null,
         });
         
         const imgData = canvas.toDataURL('image/png', 1.0);
