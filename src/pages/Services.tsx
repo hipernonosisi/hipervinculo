@@ -45,12 +45,14 @@ export default function Services() {
       title: t.servicesPage.googleAds.title,
       description: t.servicesPage.googleAds.description,
       features: t.servicesPage.googleAds.features,
+      detailSlug: 'google-ads-management',
     },
     {
       icon: LineChart,
       title: t.servicesPage.tracking.title,
       description: t.servicesPage.tracking.description,
       features: t.servicesPage.tracking.features,
+      detailSlug: 'tracking-attribution',
     },
   ];
 

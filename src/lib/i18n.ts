@@ -1,3 +1,4 @@
+// Language translations for Hipervinculo
 export type Language = 'en' | 'es';
 
 export const translations = {
@@ -277,6 +278,122 @@ export const translations = {
           cta: {
             title: 'Let\'s Talk Amazon',
             description: 'Book a call to discuss how we can help you dominate the marketplace.',
+            button: 'Get in Touch',
+          },
+        },
+        googleAds: {
+          slug: 'google-ads-management',
+          heroTitle: 'Google Ads Management',
+          heroSubtitle: 'Search, Shopping, Performance Max — managed for profitability, not just traffic.',
+          coreProblem: {
+            title: 'The Challenge',
+            intro: 'Most Google Ads accounts are burning money.',
+            points: [
+              'Campaigns optimizing for clicks instead of revenue',
+              'Poor conversion tracking leading to bad decisions',
+              'Wasted spend on irrelevant search terms',
+              'Performance Max black boxes with no transparency',
+              'Agencies focused on spend, not profit margins',
+            ],
+            solution: 'We take a profit-first approach.',
+            explanation: 'Every campaign is built around your unit economics. We track real conversions, optimize for profitable revenue, and give you complete visibility into where every dollar goes.',
+          },
+          whatWeBuild: {
+            title: 'What We Manage',
+            intro: 'Complete Google Ads ecosystem for sustainable growth:',
+            items: [
+              'Search campaigns with intent-based targeting',
+              'Shopping campaigns for eCommerce',
+              'Performance Max with structured asset groups',
+              'Display & YouTube remarketing',
+              'Conversion tracking & attribution setup',
+              'Negative keyword management & optimization',
+            ],
+          },
+          approach: {
+            title: 'Our Approach',
+            items: [
+              { title: 'Profit-First Bidding', description: 'We optimize for margin, not volume. Every bid is calculated against your target profitability.' },
+              { title: 'Intent Segmentation', description: 'Different search intent = different bid strategy. We structure campaigns to capture high-value queries.' },
+              { title: 'Conversion Accuracy', description: 'Your decisions are only as good as your data. We ensure every conversion is tracked correctly.' },
+              { title: 'Transparent Reporting', description: 'Real numbers. Clear insights. You always know exactly where your budget goes.' },
+            ],
+          },
+          platforms: {
+            title: 'Platforms We Manage',
+            items: ['Google Search', 'Google Shopping', 'Performance Max', 'YouTube Ads', 'Display Network', 'Discovery Ads'],
+          },
+          whoFor: {
+            title: 'Who This Is For',
+            intro: 'This is built for businesses that:',
+            items: [
+              'Have a proven product or service with clear margins',
+              'Want to scale paid search profitably',
+              'Are frustrated with agencies that don\'t understand unit economics',
+              'Need expert management, not just account monitoring',
+            ],
+          },
+          cta: {
+            title: 'Let\'s Talk Google Ads',
+            description: 'Book a call to audit your current campaigns and find growth opportunities.',
+            button: 'Get in Touch',
+          },
+        },
+        tracking: {
+          slug: 'tracking-attribution',
+          heroTitle: 'Tracking & Attribution',
+          heroSubtitle: 'Know exactly where your sales come from. Make decisions based on data, not guesses.',
+          coreProblem: {
+            title: 'The Challenge',
+            intro: 'Most businesses are making decisions on broken data.',
+            points: [
+              'iOS updates breaking Facebook attribution',
+              'Google Analytics missing 30-50% of conversions',
+              'No visibility into true customer journey',
+              'Multiple platforms claiming credit for the same sale',
+              'No way to know which campaigns actually drive profit',
+            ],
+            solution: 'We build tracking systems that work.',
+            explanation: 'Server-side tracking, first-party data collection, and custom attribution models that give you real visibility into what\'s working and what\'s not.',
+          },
+          whatWeBuild: {
+            title: 'What We Build',
+            intro: 'Complete tracking infrastructure for confident decision-making:',
+            items: [
+              'Server-side tracking (GTM Server)',
+              'First-party data collection',
+              'Conversion API implementations (CAPI)',
+              'Custom attribution dashboards',
+              'Multi-touch attribution models',
+              'Cross-platform reporting',
+            ],
+          },
+          approach: {
+            title: 'Our Approach',
+            items: [
+              { title: 'Server-Side First', description: 'Browser-based tracking is dying. We build server-side systems that capture data accurately.' },
+              { title: 'First-Party Focus', description: 'Own your data. We implement systems that don\'t rely on third-party cookies.' },
+              { title: 'Platform Integration', description: 'Your tracking feeds directly into ad platforms for better optimization signals.' },
+              { title: 'Actionable Insights', description: 'Data is useless without clarity. We build dashboards that drive decisions.' },
+            ],
+          },
+          tools: {
+            title: 'Tools We Use',
+            items: ['Google Tag Manager (Server)', 'Meta Conversion API', 'Google Analytics 4', 'Triple Whale', 'Northbeam', 'Custom Solutions'],
+          },
+          whoFor: {
+            title: 'Who This Is For',
+            intro: 'This is essential for businesses that:',
+            items: [
+              'Spend $10K+/month on paid media',
+              'Have experienced tracking degradation post-iOS14',
+              'Want accurate data for scaling decisions',
+              'Need to understand true customer acquisition cost',
+            ],
+          },
+          cta: {
+            title: 'Fix Your Tracking',
+            description: 'Book a call to audit your current tracking setup and find the gaps.',
             button: 'Get in Touch',
           },
         },
@@ -1037,6 +1154,122 @@ export const translations = {
           cta: {
             title: 'Hablemos de Amazon',
             description: 'Agenda una llamada para discutir cómo podemos ayudarte a dominar el marketplace.',
+            button: 'Contáctanos',
+          },
+        },
+        googleAds: {
+          slug: 'gestion-google-ads',
+          heroTitle: 'Gestión de Google Ads',
+          heroSubtitle: 'Search, Shopping, Performance Max — gestionado para rentabilidad, no solo tráfico.',
+          coreProblem: {
+            title: 'El Desafío',
+            intro: 'La mayoría de cuentas de Google Ads están quemando dinero.',
+            points: [
+              'Campañas optimizando para clics en vez de ingresos',
+              'Mal seguimiento de conversiones llevando a malas decisiones',
+              'Gasto desperdiciado en términos de búsqueda irrelevantes',
+              'Performance Max como cajas negras sin transparencia',
+              'Agencias enfocadas en gasto, no en márgenes de ganancia',
+            ],
+            solution: 'Tomamos un enfoque profit-first.',
+            explanation: 'Cada campaña se construye alrededor de tu unit economics. Rastreamos conversiones reales, optimizamos para ingresos rentables, y te damos visibilidad completa de a dónde va cada dólar.',
+          },
+          whatWeBuild: {
+            title: 'Lo Que Gestionamos',
+            intro: 'Ecosistema completo de Google Ads para crecimiento sostenible:',
+            items: [
+              'Campañas de Search con targeting basado en intención',
+              'Campañas de Shopping para eCommerce',
+              'Performance Max con asset groups estructurados',
+              'Remarketing de Display y YouTube',
+              'Setup de conversion tracking y atribución',
+              'Gestión y optimización de palabras clave negativas',
+            ],
+          },
+          approach: {
+            title: 'Nuestro Enfoque',
+            items: [
+              { title: 'Pujas Profit-First', description: 'Optimizamos para margen, no volumen. Cada puja se calcula contra tu rentabilidad objetivo.' },
+              { title: 'Segmentación por Intención', description: 'Diferente intención = diferente estrategia de pujas. Estructuramos campañas para capturar queries de alto valor.' },
+              { title: 'Precisión en Conversiones', description: 'Tus decisiones son tan buenas como tus datos. Aseguramos que cada conversión se rastree correctamente.' },
+              { title: 'Reportes Transparentes', description: 'Números reales. Insights claros. Siempre sabes exactamente a dónde va tu presupuesto.' },
+            ],
+          },
+          platforms: {
+            title: 'Plataformas Que Gestionamos',
+            items: ['Google Search', 'Google Shopping', 'Performance Max', 'YouTube Ads', 'Display Network', 'Discovery Ads'],
+          },
+          whoFor: {
+            title: 'Para Quién Es Esto',
+            intro: 'Esto está construido para negocios que:',
+            items: [
+              'Tienen un producto o servicio probado con márgenes claros',
+              'Quieren escalar paid search de manera rentable',
+              'Están frustrados con agencias que no entienden unit economics',
+              'Necesitan gestión experta, no solo monitoreo de cuentas',
+            ],
+          },
+          cta: {
+            title: 'Hablemos de Google Ads',
+            description: 'Agenda una llamada para auditar tus campañas actuales y encontrar oportunidades de crecimiento.',
+            button: 'Contáctanos',
+          },
+        },
+        tracking: {
+          slug: 'seguimiento-atribucion',
+          heroTitle: 'Seguimiento y Atribución',
+          heroSubtitle: 'Sabe exactamente de dónde vienen tus ventas. Toma decisiones basadas en datos, no en suposiciones.',
+          coreProblem: {
+            title: 'El Desafío',
+            intro: 'La mayoría de negocios toman decisiones con datos rotos.',
+            points: [
+              'Actualizaciones de iOS rompiendo la atribución de Facebook',
+              'Google Analytics perdiendo 30-50% de conversiones',
+              'Sin visibilidad del verdadero journey del cliente',
+              'Múltiples plataformas reclamando crédito por la misma venta',
+              'Sin forma de saber qué campañas realmente generan ganancia',
+            ],
+            solution: 'Construimos sistemas de tracking que funcionan.',
+            explanation: 'Server-side tracking, recolección de datos first-party, y modelos de atribución personalizados que te dan visibilidad real de qué funciona y qué no.',
+          },
+          whatWeBuild: {
+            title: 'Lo Que Construimos',
+            intro: 'Infraestructura completa de tracking para toma de decisiones con confianza:',
+            items: [
+              'Server-side tracking (GTM Server)',
+              'Recolección de datos first-party',
+              'Implementaciones de Conversion API (CAPI)',
+              'Dashboards de atribución personalizados',
+              'Modelos de atribución multi-touch',
+              'Reportes multiplataforma',
+            ],
+          },
+          approach: {
+            title: 'Nuestro Enfoque',
+            items: [
+              { title: 'Server-Side First', description: 'El tracking basado en navegador está muriendo. Construimos sistemas server-side que capturan datos con precisión.' },
+              { title: 'Enfoque First-Party', description: 'Sé dueño de tus datos. Implementamos sistemas que no dependen de cookies de terceros.' },
+              { title: 'Integración de Plataformas', description: 'Tu tracking alimenta directamente las plataformas de ads para mejores señales de optimización.' },
+              { title: 'Insights Accionables', description: 'Los datos son inútiles sin claridad. Construimos dashboards que impulsan decisiones.' },
+            ],
+          },
+          tools: {
+            title: 'Herramientas Que Usamos',
+            items: ['Google Tag Manager (Server)', 'Meta Conversion API', 'Google Analytics 4', 'Triple Whale', 'Northbeam', 'Soluciones Personalizadas'],
+          },
+          whoFor: {
+            title: 'Para Quién Es Esto',
+            intro: 'Esto es esencial para negocios que:',
+            items: [
+              'Gastan $10K+/mes en paid media',
+              'Han experimentado degradación de tracking post-iOS14',
+              'Quieren datos precisos para decisiones de escala',
+              'Necesitan entender el verdadero costo de adquisición de clientes',
+            ],
+          },
+          cta: {
+            title: 'Arregla Tu Tracking',
+            description: 'Agenda una llamada para auditar tu setup de tracking actual y encontrar las brechas.',
             button: 'Contáctanos',
           },
         },
