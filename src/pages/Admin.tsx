@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, X } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
+import { cn } from '@/lib/utils';
 
 interface ContactSubmission {
   id: string;
@@ -34,6 +36,23 @@ interface AuditRequest {
   created_at: string;
 }
 
+interface ChatConversation {
+  id: string;
+  session_id: string;
+  visitor_language: string | null;
+  created_at: string;
+  updated_at: string;
+  message_count?: number;
+}
+
+interface ChatMessage {
+  id: string;
+  conversation_id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  created_at: string;
+}
+
 export default function Admin() {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -41,9 +60,13 @@ export default function Admin() {
   const [authLoading, setAuthLoading] = useState(true);
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [auditRequests, setAuditRequests] = useState<AuditRequest[]>([]);
+  const [chatConversations, setChatConversations] = useState<ChatConversation[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedContact, setSelectedContact] = useState<ContactSubmission | null>(null);
   const [selectedAudit, setSelectedAudit] = useState<AuditRequest | null>(null);
+  const [selectedChat, setSelectedChat] = useState<ChatConversation | null>(null);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [loadingMessages, setLoadingMessages] = useState(false);
 
   // Check authentication
   useEffect(() => {
@@ -71,17 +94,49 @@ export default function Admin() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [contactRes, auditRes] = await Promise.all([
+      const [contactRes, auditRes, chatRes] = await Promise.all([
         supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
-        supabase.from('audit_requests').select('*').order('created_at', { ascending: false })
+        supabase.from('audit_requests').select('*').order('created_at', { ascending: false }),
+        supabase.from('chat_conversations').select('*').order('updated_at', { ascending: false })
       ]);
 
       if (contactRes.data) setContactSubmissions(contactRes.data);
       if (auditRes.data) setAuditRequests(auditRes.data);
+      if (chatRes.data) {
+        // Get message counts for each conversation
+        const conversationsWithCounts = await Promise.all(
+          chatRes.data.map(async (conv) => {
+            const { count } = await supabase
+              .from('chat_messages')
+              .select('*', { count: 'exact', head: true })
+              .eq('conversation_id', conv.id);
+            return { ...conv, message_count: count || 0 };
+          })
+        );
+        setChatConversations(conversationsWithCounts);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchChatMessages = async (conversationId: string) => {
+    setLoadingMessages(true);
+    try {
+      const { data, error } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .eq('conversation_id', conversationId)
+        .order('created_at', { ascending: true });
+      
+      if (error) throw error;
+      setChatMessages((data || []) as ChatMessage[]);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    } finally {
+      setLoadingMessages(false);
     }
   };
 
@@ -90,6 +145,14 @@ export default function Admin() {
       fetchData();
     }
   }, [user]);
+
+  useEffect(() => {
+    if (selectedChat) {
+      fetchChatMessages(selectedChat.id);
+    } else {
+      setChatMessages([]);
+    }
+  }, [selectedChat]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -164,7 +227,7 @@ export default function Admin() {
 
       <div className="container py-8">
         {/* Stats Cards */}
-        <AnimatedSection className="grid md:grid-cols-2 gap-6 mb-8">
+        <AnimatedSection className="grid md:grid-cols-3 gap-6 mb-8">
           <Card className="border-0 shadow-lg rounded-2xl">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
@@ -194,6 +257,21 @@ export default function Admin() {
               <p className="text-sm text-muted-foreground">Free audit requests</p>
             </CardContent>
           </Card>
+
+          <Card className="border-0 shadow-lg rounded-2xl">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold">Chat Conversations</CardTitle>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
+                  <MessageCircle className="h-5 w-5 text-white" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{chatConversations.length}</p>
+              <p className="text-sm text-muted-foreground">AI chatbot conversations</p>
+            </CardContent>
+          </Card>
         </AnimatedSection>
 
         {/* Tabs */}
@@ -201,10 +279,13 @@ export default function Admin() {
           <Tabs defaultValue="contact" className="w-full">
             <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1">
               <TabsTrigger value="contact" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
-                Contact Form ({contactSubmissions.length})
+                Contact ({contactSubmissions.length})
               </TabsTrigger>
               <TabsTrigger value="audit" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
-                Audit Requests ({auditRequests.length})
+                Audits ({auditRequests.length})
+              </TabsTrigger>
+              <TabsTrigger value="chat" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
+                Chats ({chatConversations.length})
               </TabsTrigger>
             </TabsList>
             
@@ -380,6 +461,71 @@ export default function Admin() {
                 </CardContent>
               </Card>
             </TabsContent>
+
+            {/* Chat Conversations Tab */}
+            <TabsContent value="chat">
+              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                <CardHeader>
+                  <CardTitle>AI Chatbot Conversations</CardTitle>
+                  <CardDescription>All conversations from the website chatbot</CardDescription>
+                </CardHeader>
+                <CardContent className="p-0">
+                  {chatConversations.length === 0 ? (
+                    <div className="p-12 text-center">
+                      <MessageCircle className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
+                      <p className="text-muted-foreground">No chat conversations yet</p>
+                    </div>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="bg-gray-50">
+                            <TableHead>Date</TableHead>
+                            <TableHead>Session ID</TableHead>
+                            <TableHead>Language</TableHead>
+                            <TableHead>Messages</TableHead>
+                            <TableHead>Last Activity</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {chatConversations.map((conversation) => (
+                            <TableRow 
+                              key={conversation.id}
+                              className="cursor-pointer hover:bg-accent/5"
+                              onClick={() => setSelectedChat(conversation)}
+                            >
+                              <TableCell className="whitespace-nowrap">
+                                <div className="flex items-center gap-2 text-sm">
+                                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                                  {formatDate(conversation.created_at)}
+                                </div>
+                              </TableCell>
+                              <TableCell className="font-mono text-xs">
+                                {conversation.session_id.substring(0, 8)}...
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="secondary" className="rounded-full uppercase">
+                                  {conversation.visitor_language || 'en'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex items-center gap-2">
+                                  <MessageCircle className="h-4 w-4 text-muted-foreground" />
+                                  {conversation.message_count || 0}
+                                </div>
+                              </TableCell>
+                              <TableCell className="whitespace-nowrap text-sm text-muted-foreground">
+                                {formatDate(conversation.updated_at)}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
           </Tabs>
         </AnimatedSection>
       </div>
@@ -534,6 +680,81 @@ export default function Admin() {
                   </Button>
                 )}
               </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Chat Conversation Detail Dialog */}
+      <Dialog open={!!selectedChat} onOpenChange={() => setSelectedChat(null)}>
+        <DialogContent className="max-w-2xl rounded-2xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold" style={{ color: '#2d4a2d' }}>
+              Chat Conversation
+            </DialogTitle>
+          </DialogHeader>
+          {selectedChat && (
+            <div className="flex flex-col flex-1 min-h-0 pt-4">
+              <div className="grid grid-cols-3 gap-4 mb-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Session ID</p>
+                  <p className="font-mono text-xs">{selectedChat.session_id.substring(0, 16)}...</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Language</p>
+                  <Badge variant="secondary" className="rounded-full uppercase">
+                    {selectedChat.visitor_language || 'en'}
+                  </Badge>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Started</p>
+                  <p className="text-sm">{formatDate(selectedChat.created_at)}</p>
+                </div>
+              </div>
+              
+              <ScrollArea className="flex-1 border rounded-xl p-4 bg-gray-50">
+                {loadingMessages ? (
+                  <div className="flex items-center justify-center py-8">
+                    <RefreshCw className="h-6 w-6 animate-spin text-muted-foreground" />
+                  </div>
+                ) : chatMessages.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No messages in this conversation</p>
+                ) : (
+                  <div className="space-y-4">
+                    {chatMessages.map((message) => (
+                      <div
+                        key={message.id}
+                        className={cn(
+                          "flex gap-3",
+                          message.role === 'user' && "justify-end"
+                        )}
+                      >
+                        {message.role === 'assistant' && (
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <MessageCircle className="w-4 h-4 text-primary" />
+                          </div>
+                        )}
+                        <div
+                          className={cn(
+                            "rounded-2xl p-3 max-w-[80%] text-sm",
+                            message.role === 'user'
+                              ? "bg-primary text-primary-foreground rounded-tr-sm"
+                              : "bg-white rounded-tl-sm shadow-sm"
+                          )}
+                        >
+                          <p className="whitespace-pre-wrap">{message.content}</p>
+                          <p className={cn(
+                            "text-xs mt-1 opacity-60",
+                            message.role === 'user' ? "text-right" : ""
+                          )}>
+                            {new Date(message.created_at).toLocaleTimeString()}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </ScrollArea>
             </div>
           )}
         </DialogContent>
