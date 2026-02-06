@@ -65,15 +65,22 @@ export default function FAQs() {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 bg-secondary/50">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#8BC34A' }}>
         <div className="container text-center">
-          <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl font-bold">{t.faqsPage.stillQuestions.title}</h2>
-            <p className="text-lg text-muted-foreground">{t.faqsPage.stillQuestions.subtitle}</p>
-            <Button asChild size="lg">
-              <Link to="/contact">{t.faqsPage.stillQuestions.cta} <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <AnimatedSection className="max-w-3xl mx-auto space-y-8">
+            <h2 
+              className="text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
+              style={{ fontWeight: 800 }}
+            >
+              {t.faqsPage.stillQuestions.title}
+            </h2>
+            <p className="text-[18px] md:text-[20px] text-white/80 leading-relaxed max-w-2xl mx-auto">
+              {t.faqsPage.stillQuestions.subtitle}
+            </p>
+            <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/95 rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg mt-4">
+              <Link to="/contact">{t.faqsPage.stillQuestions.cta} <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
     </Layout>
