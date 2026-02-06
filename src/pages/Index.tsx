@@ -427,7 +427,7 @@ export default function Index() {
             </h2>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="flex justify-center gap-16 md:gap-24 lg:gap-32 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 lg:gap-24 max-w-4xl mx-auto">
               <div className="text-center">
                 <div 
                   className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
