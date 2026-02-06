@@ -231,7 +231,7 @@ export default function Index() {
       <section className="py-24 lg:py-32" style={{ backgroundColor: '#3d5a3d' }}>
         <div className="container">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-[44px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-[-0.02em]" style={{ color: '#e0f0b5' }}>
+            <h2 className="text-[44px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-[-0.02em]" style={{ color: '#d9ebb3' }}>
               Proven Results Across Growth Channels<br className="hidden md:block" /> and Inbound Lead Systems
             </h2>
           </AnimatedSection>
