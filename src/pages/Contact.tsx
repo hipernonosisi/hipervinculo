@@ -84,16 +84,45 @@ export default function Contact() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-16 md:py-24 bg-[#f8f9f5]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-extrabold tracking-tight leading-[1.1]">
-              {t.contact.title}
-            </h1>
-            <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto">
-              {t.contact.subtitle}
-            </p>
+      {/* Hero Section */}
+      <section 
+        className="relative py-28 md:py-36 overflow-hidden"
+        style={{ backgroundColor: '#f8f9f5' }}
+      >
+        {/* Diagonal pattern background */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              #2d4a2d 0px,
+              #2d4a2d 1px,
+              transparent 1px,
+              transparent 12px
+            )`
+          }}
+        />
+        
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-accent font-semibold text-[15px] mb-4">
+                {language === 'en' ? 'Contact' : 'Contacto'}
+              </p>
+              <h1 
+                className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
+                style={{ fontWeight: 800, color: '#2d4a2d' }}
+              >
+                {t.contact.title}
+              </h1>
+              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto">
+                {t.contact.subtitle}
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
