@@ -425,7 +425,7 @@ export default function Index() {
           <AnimatedSection className="text-center mb-6">
             <h2 
               className="text-[48px] md:text-[60px] lg:text-[72px] mb-4 leading-[1.05] tracking-[-0.02em]"
-              style={{ fontWeight: 800, color: '#1a1a2e', fontFamily: 'Georgia, serif' }}
+              style={{ fontWeight: 800, color: '#1a1a2e' }}
             >
               Why Clients Stay
             </h2>
