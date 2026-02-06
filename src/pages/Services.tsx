@@ -96,7 +96,7 @@ export default function Services() {
               >
                 Services
               </h1>
-              <p className="text-[18px] md:text-[20px] text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
+              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-4">
                 Hipervinculo builds inbound growth systems that combine conversion infrastructure, lead generation strategy, and paid acquisition.
               </p>
               <p className="text-[16px] text-muted-foreground">
