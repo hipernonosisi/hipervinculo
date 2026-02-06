@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Users, TrendingUp, Award, Shield, BarChart3 } from 'lucide-react';
+import { ArrowRight, Target, Users, TrendingUp, Award, Shield, BarChart3, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -440,68 +440,93 @@ export default function About() {
       </section>
 
       {/* Who We Work With Section */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#f8f9f5' }}>
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#2d4a2d' }}>
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <AnimatedSection direction="left">
+          <div className="max-w-6xl mx-auto">
+            <AnimatedSection className="text-center mb-16">
               <h2 
-                className="text-[40px] md:text-[52px] lg:text-[56px] leading-[1.1] tracking-[-0.02em] mb-8"
-                style={{ fontWeight: 800, color: '#2d4a2d' }}
+                className="text-[40px] md:text-[52px] lg:text-[60px] text-white leading-[1.1] tracking-[-0.02em] mb-6"
+                style={{ fontWeight: 800 }}
               >
-                Who We<br />Work With
+                Who We Work With
               </h2>
-              <p className="text-[18px] text-muted-foreground leading-relaxed mb-6">
-                Hipervinculo is built for serious businesses. Companies that already have demand, but want to capture it more effectively.
+              <p className="text-[18px] text-white/70 max-w-2xl mx-auto leading-relaxed">
+                Built for serious businesses that understand growth is not a campaign — it is a system.
               </p>
-              <p className="text-[18px] text-muted-foreground leading-relaxed mb-8">
-                Businesses that understand that growth is not a campaign — it is a system.
-              </p>
-              <div 
-                className="p-6 rounded-2xl"
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Card 1 */}
+              <AnimatedSection delay={0.1}>
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-2xl p-8 h-full"
+                >
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                    <Target className="h-7 w-7 text-white" />
+                  </div>
+                  <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
+                    Service-Based Companies
+                  </h3>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    Looking for predictable inbound leads and a system that delivers consistent results.
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+
+              {/* Card 2 */}
+              <AnimatedSection delay={0.2}>
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-2xl p-8 h-full"
+                >
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                    <TrendingUp className="h-7 w-7 text-white" />
+                  </div>
+                  <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
+                    Established Brands
+                  </h3>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    Seeking scalable performance and infrastructure that compounds over time.
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+
+              {/* Card 3 */}
+              <AnimatedSection delay={0.3}>
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-2xl p-8 h-full"
+                >
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                    <ShoppingCart className="h-7 w-7 text-white" />
+                  </div>
+                  <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
+                    eCommerce Stores
+                  </h3>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    Ready to scale past $1M/month with full-funnel growth systems.
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+            </div>
+
+            <AnimatedSection delay={0.4} className="mt-12 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="inline-block px-8 py-4 rounded-full"
                 style={{ backgroundColor: '#8BC34A' }}
               >
-                <p className="text-[20px] font-bold text-white">
+                <p className="text-[18px] font-bold text-white">
                   Building a growth engine that lasts.
                 </p>
-              </div>
-            </AnimatedSection>
-            
-            <AnimatedSection direction="right" delay={0.2}>
-              <div className="space-y-4">
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="p-6 bg-white rounded-2xl shadow-lg"
-                >
-                  <p className="text-[17px] text-foreground">
-                    Service-based companies looking for predictable inbound leads
-                  </p>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="p-6 bg-white rounded-2xl shadow-lg"
-                >
-                  <p className="text-[17px] text-foreground">
-                    Established brands looking for scalable performance
-                  </p>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="p-6 bg-white rounded-2xl shadow-lg"
-                >
-                  <p className="text-[17px] text-foreground">
-                    eCommerce stores ready to scale past $1M/month
-                  </p>
-                </motion.div>
-              </div>
+              </motion.div>
             </AnimatedSection>
           </div>
         </div>
