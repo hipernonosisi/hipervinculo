@@ -40,7 +40,7 @@ export default function Index() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO url="https://hipervinculo.net/" />
       <section className="relative overflow-hidden bg-[#f8f9f5] py-16 lg:py-20">
         <div 
           className="absolute inset-0 opacity-[0.04]"

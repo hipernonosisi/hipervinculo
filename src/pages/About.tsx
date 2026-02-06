@@ -19,7 +19,14 @@ export default function About() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.about.title}
+        description={language === 'en' 
+          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $100M+ in managed ad spend."
+          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $100M+ en inversión publicitaria gestionada."
+        }
+        url="https://hipervinculo.net/about"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}
