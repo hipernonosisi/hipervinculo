@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, MessageCircle, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection } from '@/components/ui/motion';
+import { motion } from 'framer-motion';
 
 export default function Pricing() {
   return (
@@ -178,19 +179,57 @@ export default function Pricing() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container text-center">
-          <div className="max-w-2xl mx-auto space-y-8">
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Not Sure Which Model Fits You?
-              </h2>
-              <p className="text-lg text-primary-foreground/80">
-                Message us for a free strategic review of your website and lead systems.
-              </p>
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-                <Link to="/contact">Book a Consultation <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="rounded-3xl p-10 md:p-16 relative overflow-hidden"
+                style={{ backgroundColor: '#2d4a2d' }}
+              >
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-6">
+                      <MessageCircle className="w-4 h-4 text-white" />
+                      <span className="text-white/90 text-[13px] font-medium">Free Consultation</span>
+                    </div>
+                    <h2 
+                      className="text-[32px] md:text-[40px] lg:text-[48px] text-white leading-[1.1] tracking-[-0.02em] mb-4"
+                      style={{ fontWeight: 800 }}
+                    >
+                      Not Sure Which Model Fits You?
+                    </h2>
+                    <p className="text-[16px] md:text-[18px] text-white/70 leading-relaxed">
+                      Message us for a free strategic review of your website and lead systems.
+                    </p>
+                  </div>
+                  <div className="flex md:justify-end">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        asChild 
+                        size="lg" 
+                        className="bg-white text-foreground hover:bg-white/90 rounded-full px-8 py-6 text-[16px] font-semibold h-auto"
+                      >
+                        <Link to="/contact">
+                          Book a Consultation 
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </div>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(30%, -30%)' }} />
+                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(-30%, 30%)' }} />
+              </motion.div>
             </AnimatedSection>
           </div>
         </div>
