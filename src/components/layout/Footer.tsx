@@ -20,9 +20,9 @@ export function Footer() {
       {/* Main Footer - White */}
       <div className="bg-white border-t border-border">
         <div className="container py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {/* Brand */}
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+            {/* Brand - Takes 5 columns */}
+            <div className="md:col-span-5">
               <Link to="/" className="inline-block mb-4">
                 <img 
                   src={logoFull} 
@@ -49,8 +49,8 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
+            {/* Quick Links - Takes 3 columns, starts at column 7 */}
+            <div className="md:col-span-3 md:col-start-7">
               <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Quick Links</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
@@ -66,8 +66,8 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Contact */}
-            <div>
+            {/* Contact - Takes 4 columns */}
+            <div className="md:col-span-4">
               <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Contact Us</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">
