@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Users, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Layout } from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -56,13 +55,6 @@ export default function Contact() {
     }
   };
 
-  const contactInfo = [
-    { icon: Mail, label: t.contact.info.email, href: `mailto:${t.contact.info.email}` },
-    { icon: Phone, label: t.contact.info.phone, href: `tel:${t.contact.info.phone.replace(/\s/g, '')}` },
-    { icon: MapPin, label: t.contact.info.address },
-    { icon: Clock, label: t.contact.info.hours },
-  ];
-
   if (isSubmitted) {
     return (
       <Layout>
@@ -72,7 +64,7 @@ export default function Contact() {
               <div className="p-4 rounded-full bg-accent/10 w-fit mx-auto">
                 <CheckCircle className="h-12 w-12 text-accent" />
               </div>
-              <h1 className="text-3xl font-bold">Thank you!</h1>
+              <h1 className="text-3xl font-extrabold">Thank you!</h1>
               <p className="text-lg text-muted-foreground">
                 We've received your message and will get back to you within 24 hours.
               </p>
@@ -89,131 +81,166 @@ export default function Contact() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-background via-light-green to-background">
+      <section className="py-16 md:py-24 bg-[#f8f9f5]">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">{t.contact.title}</h1>
-            <p className="text-xl text-muted-foreground">{t.contact.subtitle}</p>
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-extrabold tracking-tight leading-[1.1]">
+              {t.contact.title}
+            </h1>
+            <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto">
+              {t.contact.subtitle}
+            </p>
           </div>
         </div>
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">{t.contact.form.submit.replace('Send', 'Send us a')} message</CardTitle>
-                <CardDescription>Fill out the form below and we'll respond within 24 hours.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="fullName">{t.contact.form.fullName}</Label>
-                      <Input
-                        id="fullName"
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="companyName">{t.contact.form.companyName}</Label>
-                      <Input
-                        id="companyName"
-                        value={formData.companyName}
-                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      />
-                    </div>
-                  </div>
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Form Card */}
+            <div className="bg-[#f8f9fa] rounded-2xl p-8 md:p-10">
+              <h2 className="text-[24px] md:text-[28px] font-extrabold mb-8">Send us a Message</h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Input
+                    placeholder={t.contact.form.fullName}
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    required
+                    className="bg-white border-border/50 rounded-xl h-12 px-4"
+                  />
+                  <Input
+                    placeholder={t.contact.form.companyName}
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="bg-white border-border/50 rounded-xl h-12 px-4"
+                  />
+                </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">{t.contact.form.email}</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                    />
-                  </div>
+                <Input
+                  placeholder={t.contact.form.email}
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="bg-white border-border/50 rounded-xl h-12 px-4"
+                />
 
-                  <div className="space-y-2">
-                    <Label htmlFor="howCanWeHelp">{t.contact.form.howCanWeHelp}</Label>
-                    <Select
-                      value={formData.howCanWeHelp}
-                      onValueChange={(value) => setFormData({ ...formData, howCanWeHelp: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select an option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {t.contact.form.options.map((option, index) => (
-                          <SelectItem key={index} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                <Select
+                  value={formData.howCanWeHelp}
+                  onValueChange={(value) => setFormData({ ...formData, howCanWeHelp: value })}
+                >
+                  <SelectTrigger className="bg-white border-border/50 rounded-xl h-12 px-4">
+                    <SelectValue placeholder={t.contact.form.howCanWeHelp} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {t.contact.form.options.map((option, index) => (
+                      <SelectItem key={index} value={option}>
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">{t.contact.form.message}</Label>
-                    <Textarea
-                      id="message"
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      required
-                    />
-                  </div>
+                <Textarea
+                  placeholder={t.contact.form.message}
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                  className="bg-white border-border/50 rounded-xl px-4 py-3 resize-none"
+                />
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : t.contact.form.submit}
-                    <Send className="ml-2 h-4 w-4" />
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                <Button
+                  type="submit"
+                  className="w-full bg-accent hover:bg-accent/90 text-white rounded-xl h-12 font-semibold text-[15px]"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : t.contact.form.submit}
+                </Button>
+              </form>
+            </div>
 
             {/* Contact Info */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-start gap-4">
-                      <div className="p-2 rounded-lg bg-accent/10">
-                        <info.icon className="h-5 w-5 text-accent" />
-                      </div>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="text-foreground hover:text-accent transition-colors"
-                        >
-                          {info.label}
-                        </a>
-                      ) : (
-                        <span className="text-muted-foreground">{info.label}</span>
-                      )}
+                <h2 className="text-[24px] md:text-[28px] font-extrabold mb-4">Contact Information</h2>
+                <p className="text-[15px] text-muted-foreground mb-8">
+                  We're here to help you grow your business. Get in touch with us through any of the channels below.
+                </p>
+                
+                <div className="space-y-6">
+                  {/* Email */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-5 w-5 text-accent" />
                     </div>
-                  ))}
+                    <div>
+                      <h3 className="font-semibold text-foreground">Email</h3>
+                      <a 
+                        href="mailto:info@hipervinculo.net" 
+                        className="text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        info@hipervinculo.net
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">Phone</h3>
+                      <a 
+                        href="tel:+17865290679" 
+                        className="text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        +1 (786) 529-0679
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Office */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">Our Office</h3>
+                      <p className="text-muted-foreground">
+                        2645 Executive Park Dr, Suite 146<br />
+                        Weston, FL 33331
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="aspect-video bg-secondary rounded-lg flex items-center justify-center">
-                <p className="text-muted-foreground">Remote-first agency</p>
+              {/* Business Hours */}
+              <div className="pt-6 border-t border-border">
+                <h3 className="text-[20px] font-extrabold mb-4">Business Hours</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Clock className="h-5 w-5 text-accent" />
+                    <span className="text-muted-foreground">Monday - Friday: 9:30 AM - 5:30 PM EST</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Users className="h-5 w-5 text-accent" />
+                    <span className="text-muted-foreground">We typically respond within 24 hours</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </Layout>
