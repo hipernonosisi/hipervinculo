@@ -17,6 +17,7 @@ export default function Services() {
       description: t.servicesPage.leadGen.description,
       features: t.servicesPage.leadGen.features,
       note: language === 'en' ? 'Best for: businesses that want predictable lead flow.' : 'Ideal para: negocios que quieren flujo predecible de leads.',
+      detailSlug: 'lead-generation-systems',
     },
     {
       icon: Globe,
@@ -137,6 +138,21 @@ export default function Services() {
                             <p className="text-[14px] text-muted-foreground mt-5 pt-5 border-t border-border/50">
                               {service.note}
                             </p>
+                          )}
+                          {service.detailSlug && (
+                            <div className="mt-6">
+                              <Button 
+                                asChild 
+                                variant="outline"
+                                className="rounded-full px-6 border-2 hover:bg-accent/10"
+                                style={{ borderColor: '#8BC34A', color: '#2d4a2d' }}
+                              >
+                                <Link to={`/services/${service.detailSlug}`}>
+                                  {t.homepage.serviceDetail.viewDetails}
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
+                              </Button>
+                            </div>
                           )}
                         </div>
                       </div>
