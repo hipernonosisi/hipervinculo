@@ -192,41 +192,43 @@ export default function Admin() {
     <div className="min-h-screen bg-[#f8f9f5]">
       {/* Header */}
       <header className="bg-white border-b sticky top-0 z-50">
-        <div className="container py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
-            <div>
-              <h1 className="text-xl font-bold" style={{ color: '#2d4a2d' }}>Admin Dashboard</h1>
-              <p className="text-sm text-muted-foreground">{user.email}</p>
+        <div className="container px-4 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <Link to="/" className="p-2 hover:bg-gray-100 rounded-lg transition-colors shrink-0">
+                <ArrowLeft className="h-5 w-5" />
+              </Link>
+              <div className="min-w-0">
+                <h1 className="text-lg sm:text-xl font-bold truncate" style={{ color: '#2d4a2d' }}>Admin Dashboard</h1>
+                <p className="text-xs sm:text-sm text-muted-foreground truncate">{user.email}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button 
-              onClick={fetchData} 
-              variant="outline" 
-              size="sm"
-              className="gap-2"
-              disabled={loading}
-            >
-              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
-            </Button>
-            <Button 
-              onClick={handleLogout} 
-              variant="ghost" 
-              size="sm"
-              className="gap-2 text-muted-foreground hover:text-foreground"
-            >
-              <LogOut className="h-4 w-4" />
-              Logout
-            </Button>
+            <div className="flex items-center gap-2 shrink-0">
+              <Button 
+                onClick={fetchData} 
+                variant="outline" 
+                size="sm"
+                className="gap-2"
+                disabled={loading}
+              >
+                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+              <Button 
+                onClick={handleLogout} 
+                variant="ghost" 
+                size="sm"
+                className="gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="container py-8">
+      <div className="container px-4 py-6 sm:py-8">
         {/* Stats Cards */}
         <AnimatedSection className="grid md:grid-cols-3 gap-6 mb-8">
           <Card className="border-0 shadow-lg rounded-2xl">
@@ -278,18 +280,18 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1">
-              <TabsTrigger value="contact" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex-wrap h-auto gap-1">
+              <TabsTrigger value="contact" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Contact ({contactSubmissions.length})
               </TabsTrigger>
-              <TabsTrigger value="audit" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
+              <TabsTrigger value="audit" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Audits ({auditRequests.length})
               </TabsTrigger>
-              <TabsTrigger value="chat" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
+              <TabsTrigger value="chat" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Chats ({chatConversations.length})
               </TabsTrigger>
-              <TabsTrigger value="presentations" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white gap-2">
-                <Presentation className="w-4 h-4" />
+              <TabsTrigger value="presentations" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1 sm:gap-2">
+                <Presentation className="w-3 h-3 sm:w-4 sm:h-4" />
                 Presentations
               </TabsTrigger>
             </TabsList>
