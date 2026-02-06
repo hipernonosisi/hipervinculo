@@ -61,6 +61,20 @@ export default function Audit() {
 
         if (error) throw error;
 
+        // Send email notification (don't block on failure)
+        supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'audit',
+            company_name: answers[0],
+            email: answers[6],
+            website_url: answers[1],
+            business_type: answers[2],
+            monthly_revenue: answers[3],
+            monthly_ad_spend: answers[4],
+            growth_goals: answers[5],
+          }
+        }).catch(err => console.error('Failed to send email notification:', err));
+
         setIsSubmitted(true);
         toast({
           title: "Success!",

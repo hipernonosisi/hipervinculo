@@ -39,6 +39,18 @@ export default function Contact() {
 
       if (error) throw error;
 
+      // Send email notification (don't block on failure)
+      supabase.functions.invoke('send-notification', {
+        body: {
+          type: 'contact',
+          full_name: formData.fullName,
+          email: formData.email,
+          company_name: formData.companyName,
+          inquiry_type: formData.howCanWeHelp,
+          message: formData.message,
+        }
+      }).catch(err => console.error('Failed to send email notification:', err));
+
       setIsSubmitted(true);
       toast({
         title: language === 'en' ? "Message sent!" : "¡Mensaje enviado!",
