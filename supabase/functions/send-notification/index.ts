@@ -9,6 +9,9 @@ const corsHeaders = {
 
 const LOGO_URL = "https://fshfuwinreztcqlumjzp.supabase.co/storage/v1/object/public/email-assets/logo.png?v=1";
 
+// Helper function to add delay between API calls (to avoid rate limits)
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 interface ContactNotification {
   type: "contact";
   language: "en" | "es";
@@ -33,11 +36,11 @@ interface AuditNotification {
 
 type NotificationRequest = ContactNotification | AuditNotification;
 
-// Translations for email content
+// Translations for email content (NO EMOJIS)
 const emailTranslations = {
   en: {
     contact: {
-      adminHeader: "📬 New Contact Message",
+      adminHeader: "New Contact Message",
       clientHeader: "Thank you for contacting us!",
       clientSubtitle: "We have received your message and will get back to you shortly.",
       name: "Name:",
@@ -50,7 +53,7 @@ const emailTranslations = {
       signature: "Best regards,<br>The Hipervínculo Team",
     },
     audit: {
-      adminHeader: "🎯 New Free Audit Request",
+      adminHeader: "New Free Audit Request",
       clientHeader: "Your Free Audit Request Received!",
       clientSubtitle: "Thank you for requesting a free audit of your eCommerce performance.",
       company: "Company:",
@@ -74,7 +77,7 @@ const emailTranslations = {
   },
   es: {
     contact: {
-      adminHeader: "📬 Nuevo Mensaje de Contacto",
+      adminHeader: "Nuevo Mensaje de Contacto",
       clientHeader: "¡Gracias por contactarnos!",
       clientSubtitle: "Hemos recibido tu mensaje y te responderemos pronto.",
       name: "Nombre:",
@@ -87,7 +90,7 @@ const emailTranslations = {
       signature: "Saludos cordiales,<br>El Equipo de Hipervínculo",
     },
     audit: {
-      adminHeader: "🎯 Nueva Solicitud de Auditoría Gratuita",
+      adminHeader: "Nueva Solicitud de Auditoría Gratuita",
       clientHeader: "¡Hemos recibido tu solicitud de Auditoría!",
       clientSubtitle: "Gracias por solicitar una auditoría gratuita del rendimiento de tu eCommerce.",
       company: "Empresa:",
@@ -111,7 +114,7 @@ const emailTranslations = {
   }
 };
 
-// Base email styles
+// Base email styles - Logo on WHITE background, no emojis
 const getEmailStyles = () => `
   body { 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
@@ -133,9 +136,10 @@ const getEmailStyles = () => `
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .logo-header {
-    background: #2d4a2d;
+    background: #ffffff;
     padding: 24px;
     text-align: center;
+    border-bottom: 1px solid #eee;
   }
   .logo {
     max-width: 180px;
@@ -405,8 +409,8 @@ const handler = async (req: Request): Promise<Response> => {
                 <div class="field">
                   <div class="label">${t.audit.metrics}</div>
                   <div class="value">
-                    ${monthlyRevenue ? `<span class="metric">💰 ${t.audit.revenue} ${monthlyRevenue}</span>` : ''}
-                    ${monthlyAdSpend ? `<span class="metric">📊 ${t.audit.adSpend} ${monthlyAdSpend}</span>` : ''}
+                    ${monthlyRevenue ? `<span class="metric">${t.audit.revenue} ${monthlyRevenue}</span>` : ''}
+                    ${monthlyAdSpend ? `<span class="metric">${t.audit.adSpend} ${monthlyAdSpend}</span>` : ''}
                   </div>
                 </div>
                 ${growthGoals ? `
@@ -467,8 +471,8 @@ const handler = async (req: Request): Promise<Response> => {
                 <div class="field">
                   <div class="label">${t.audit.metrics}</div>
                   <div class="value">
-                    ${monthlyRevenue ? `<span class="metric">💰 ${t.audit.revenue} ${monthlyRevenue}</span>` : ''}
-                    ${monthlyAdSpend ? `<span class="metric">📊 ${t.audit.adSpend} ${monthlyAdSpend}</span>` : ''}
+                    ${monthlyRevenue ? `<span class="metric">${t.audit.revenue} ${monthlyRevenue}</span>` : ''}
+                    ${monthlyAdSpend ? `<span class="metric">${t.audit.adSpend} ${monthlyAdSpend}</span>` : ''}
                   </div>
                 </div>
                 ${growthGoals ? `
@@ -491,7 +495,7 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Invalid notification type");
     }
 
-    // Send email to admin
+    // Send email to admin first
     console.log("Sending admin email to info@hipervinculo.net");
     const adminEmailResponse = await resend.emails.send({
       from: "Hipervínculo <notificaciones@hipervinculo.net>",
@@ -500,6 +504,9 @@ const handler = async (req: Request): Promise<Response> => {
       html: adminHtml,
     });
     console.log("Admin email sent:", adminEmailResponse);
+
+    // Wait 1 second to avoid rate limiting (Resend allows 2 requests/second)
+    await delay(1000);
 
     // Send confirmation email to client
     console.log("Sending confirmation email to client:", clientEmail);
