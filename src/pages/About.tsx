@@ -50,7 +50,7 @@ export default function About() {
               >
                 About Hipervinculo
               </h1>
-              <p className="text-[18px] md:text-[20px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-none mx-auto whitespace-nowrap">
                 We build performance-driven growth systems for businesses ready to scale.
               </p>
             </AnimatedSection>
