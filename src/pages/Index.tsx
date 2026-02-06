@@ -277,7 +277,7 @@ export default function Index() {
           </div>
           
           <AnimatedSection delay={0.3} className="text-center">
-            <p className="text-[16px] mb-10 font-medium" style={{ color: '#ffffff' }}>
+            <p className="text-[18px] md:text-[20px] mb-10 font-medium" style={{ color: '#ffffff' }}>
               Request a conversion and lead system walkthrough — tailored to your business.
             </p>
             <Button asChild className="rounded-full px-12 h-14 text-[16px] font-semibold border-0 hover:opacity-90 transition-opacity" style={{ backgroundColor: '#f5f5dc', color: '#3d5a3d' }}>
@@ -288,27 +288,32 @@ export default function Index() {
       </section>
 
       {/* Two Core Pillars of Growth */}
-      <section className="py-20 bg-white">
+      <section className="py-24 md:py-32 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium text-[13px]">Our Services</p>
+          <AnimatedSection className="text-center mb-6">
+            <p className="text-accent font-semibold text-[15px]">Our Services</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-14">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold mb-4 tracking-[-0.02em]">Two Core Pillars of Growth</h2>
-            <p className="text-[16px] text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          <AnimatedSection className="text-center mb-16">
+            <h2 
+              className="text-[40px] md:text-[52px] lg:text-[60px] mb-6 leading-[1.1] tracking-[-0.03em]"
+              style={{ fontWeight: 800, color: '#2d4a2d' }}
+            >
+              Two Core Pillars of Growth
+            </h2>
+            <p className="text-[18px] md:text-[20px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               We build complete conversion systems — not just campaigns. From foundation to scale.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {services.map((service, index) => (
               <AnimatedSection key={index} delay={index * 0.08}>
-                <Card className="h-full border bg-white hover:shadow-lg transition-shadow rounded-xl">
-                  <CardHeader className="pb-3">
-                    <service.icon className="h-7 w-7 text-accent mb-3" />
-                    <CardTitle className="text-[18px] font-bold">{service.title}</CardTitle>
+                <Card className="h-full border bg-white hover:shadow-lg transition-shadow rounded-2xl">
+                  <CardHeader className="pb-4">
+                    <service.icon className="h-8 w-8 text-accent mb-4" />
+                    <CardTitle className="text-[20px] md:text-[22px] font-bold">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-[14px] leading-[1.6]">{service.description}</CardDescription>
+                    <CardDescription className="text-[16px] md:text-[17px] leading-[1.7]">{service.description}</CardDescription>
                   </CardContent>
                 </Card>
               </AnimatedSection>
@@ -318,42 +323,45 @@ export default function Index() {
       </section>
 
       {/* What Makes Us Different - Lime Green */}
-      <section className="py-20 bg-accent">
+      <section className="py-24 md:py-32 bg-accent">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold text-white mb-3 tracking-[-0.02em]">
-              What Makes <span className="underline decoration-2 underline-offset-4">Us</span> Different?
+          <AnimatedSection className="text-center mb-16">
+            <h2 
+              className="text-[40px] md:text-[52px] lg:text-[60px] text-white mb-6 leading-[1.1] tracking-[-0.03em]"
+              style={{ fontWeight: 800 }}
+            >
+              What Makes <span className="underline decoration-2 underline-offset-8">Us</span> Different?
             </h2>
-            <p className="text-[16px] text-white/90 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[18px] md:text-[20px] text-white/90 max-w-2xl mx-auto leading-relaxed">
               We're not just another agency. We are a true growth partner, deeply invested in your success.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-14">
             <AnimatedSection direction="left" delay={0.1}>
-              <Card className="bg-white border-0 h-full rounded-xl shadow-lg">
-                <CardHeader className="pb-3">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
-                    <Target className="h-6 w-6 text-accent" />
+              <Card className="bg-white border-0 h-full rounded-2xl shadow-xl">
+                <CardHeader className="pb-4">
+                  <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                    <Target className="h-7 w-7 text-accent" />
                   </div>
-                  <CardTitle className="text-[20px] font-bold text-foreground">Performance-Obsessed Experts</CardTitle>
+                  <CardTitle className="text-[22px] md:text-[24px] font-bold text-foreground">Performance-Obsessed Experts</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-[15px] text-muted-foreground leading-relaxed">
+                  <CardDescription className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.7]">
                     Deep experience in full-funnel marketing for Shopify & Amazon. We leverage advanced attribution tools to go beyond surface-level metrics.
                   </CardDescription>
                 </CardContent>
               </Card>
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.2}>
-              <Card className="bg-white border-0 h-full rounded-xl shadow-lg">
-                <CardHeader className="pb-3">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
-                    <BarChart3 className="h-6 w-6 text-accent" />
+              <Card className="bg-white border-0 h-full rounded-2xl shadow-xl">
+                <CardHeader className="pb-4">
+                  <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
+                    <BarChart3 className="h-7 w-7 text-accent" />
                   </div>
-                  <CardTitle className="text-[20px] font-bold text-foreground">Radical Transparency</CardTitle>
+                  <CardTitle className="text-[22px] md:text-[24px] font-bold text-foreground">Radical Transparency</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-[15px] text-muted-foreground leading-relaxed">
+                  <CardDescription className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.7]">
                     You get real-time dashboards, not filtered reports. We believe in complete visibility, showing you every metric that matters.
                   </CardDescription>
                 </CardContent>
@@ -361,7 +369,7 @@ export default function Index() {
             </AnimatedSection>
           </div>
           <AnimatedSection delay={0.3} className="text-center">
-            <Button asChild className="bg-white text-foreground hover:bg-white/90 rounded-xl h-11 px-8 text-[14px] font-semibold">
+            <Button asChild className="bg-white text-foreground hover:bg-white/95 rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg">
               <Link to="/contact">Book a Free Consultation</Link>
             </Button>
           </AnimatedSection>
@@ -369,36 +377,40 @@ export default function Index() {
       </section>
 
       {/* Playbook Download */}
-      <section className="py-20 bg-[#f8f9f5]">
+      <section className="py-24 md:py-32 bg-[#f8f9f5]">
         <div className="container">
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 gap-12 items-center max-w-4xl mx-auto">
-              <div className="space-y-6">
-                <p className="text-accent font-medium text-[13px] flex items-center gap-2">
+            <div className="grid md:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
+              <div className="space-y-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10">
                   <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Exclusive Playbook
-                </p>
-                <h2 className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em]">
+                  <span className="text-accent text-[14px] font-semibold">Exclusive Playbook</span>
+                </div>
+                <h2 
+                  className="text-[40px] md:text-[52px] lg:text-[56px] leading-[1.08] tracking-[-0.03em]"
+                  style={{ fontWeight: 800, color: '#2d4a2d' }}
+                >
                   Download the<br />Advantage+ Growth<br />Playbook
                 </h2>
-                <p className="text-[16px] text-muted-foreground leading-relaxed">
+                <p className="text-[18px] md:text-[20px] text-muted-foreground leading-[1.7]">
                   Get the exact strategies we use to scale Shopify stores past $1M/month with Advantage+ campaigns.
                 </p>
                 <Button 
                   asChild 
-                  className="bg-accent hover:bg-accent/90 text-white rounded-xl h-11 px-8 text-[14px] font-semibold"
+                  className="rounded-full h-14 px-10 text-[16px] font-semibold shadow-md"
+                  style={{ backgroundColor: '#8BC34A', color: 'white' }}
                 >
                   <a href="/downloads/advantage-plus-growth-playbook.pdf" download>
-                    Download Playbook <Download className="ml-2 h-4 w-4" />
+                    Download Playbook <Download className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
               </div>
               <div className="flex justify-center">
-                <Card className="bg-white shadow-xl border rounded-xl w-64">
-                  <CardContent className="p-8 text-center">
-                    <p className="text-accent text-[12px] font-bold mb-2 tracking-wide">HIPERVINCULO</p>
-                    <p className="text-[13px] text-muted-foreground mb-4">Advantage+</p>
-                    <p className="text-[22px] font-extrabold text-foreground leading-tight">Growth<br />Playbook</p>
+                <Card className="bg-white shadow-2xl border-0 rounded-2xl w-72">
+                  <CardContent className="p-10 text-center">
+                    <p className="text-accent text-[13px] font-bold mb-3 tracking-wide">HIPERVINCULO</p>
+                    <p className="text-[15px] text-muted-foreground mb-5">Advantage+</p>
+                    <p className="text-[26px] font-extrabold text-foreground leading-tight">Growth<br />Playbook</p>
                   </CardContent>
                 </Card>
               </div>
@@ -462,20 +474,20 @@ export default function Index() {
       </section>
 
       {/* Proven Systems Across Industries */}
-      <section className="py-14 bg-white border-t border-border/40">
+      <section className="py-20 md:py-24 bg-white border-t border-border/40">
         <div className="container">
-          <AnimatedSection className="text-center mb-8">
-            <h3 className="text-[22px] font-bold mb-3">Proven Systems Across Industries</h3>
-            <p className="text-[14px] text-muted-foreground">
+          <AnimatedSection className="text-center mb-12">
+            <h3 className="text-[28px] md:text-[32px] font-bold mb-4" style={{ color: '#2d4a2d' }}>Proven Systems Across Industries</h3>
+            <p className="text-[17px] md:text-[18px] text-muted-foreground">
               Our methodology is tailored to fit the specific needs of your industry.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-4">
               {industries.map((industry, index) => (
                 <span 
                   key={index}
-                  className="px-5 py-2.5 bg-secondary text-foreground text-[12px] font-medium rounded-full tracking-wide"
+                  className="px-6 py-3 bg-secondary text-foreground text-[14px] md:text-[15px] font-medium rounded-full tracking-wide"
                 >
                   {industry}
                 </span>
