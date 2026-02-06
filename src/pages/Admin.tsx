@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
+import { LeadGenPresentation } from '@/components/presentations/LeadGenPresentation';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
@@ -287,6 +288,10 @@ export default function Admin() {
               <TabsTrigger value="chat" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white">
                 Chats ({chatConversations.length})
               </TabsTrigger>
+              <TabsTrigger value="presentations" className="rounded-lg px-6 data-[state=active]:bg-accent data-[state=active]:text-white gap-2">
+                <Presentation className="w-4 h-4" />
+                Presentations
+              </TabsTrigger>
             </TabsList>
             
             {/* Contact Submissions Tab */}
@@ -523,6 +528,15 @@ export default function Admin() {
                       </Table>
                     </div>
                   )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            {/* Presentations Tab */}
+            <TabsContent value="presentations" className="mt-0">
+              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 380px)', minHeight: '600px' }}>
+                  <LeadGenPresentation />
                 </CardContent>
               </Card>
             </TabsContent>
