@@ -73,7 +73,7 @@ export function Header() {
           <Link to="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <LayoutGrid className="h-5 w-5 text-foreground" />
           </Link>
-          <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-6 py-2 h-11 font-semibold text-[15px]">
+          <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-5 py-1.5 h-10 font-semibold text-[14px]">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
           </Button>
         </div>
