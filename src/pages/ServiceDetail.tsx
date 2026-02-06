@@ -47,11 +47,15 @@ export default function ServiceDetail() {
 
   const { service, type } = serviceInfo;
 
-  // Render Lead Gen layout
   if (type === 'leadGen') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}

@@ -21,7 +21,7 @@ interface Question {
 }
 
 export default function Audit() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
