@@ -422,10 +422,10 @@ export default function Index() {
       {/* Why Clients Stay */}
       <section className="py-24 md:py-32 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-8">
+          <AnimatedSection className="text-center mb-6">
             <h2 
-              className="text-[48px] md:text-[60px] lg:text-[72px] mb-6 leading-[1.05] tracking-[-0.03em]"
-              style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+              className="text-[48px] md:text-[60px] lg:text-[72px] mb-4 leading-[1.05] tracking-[-0.02em]"
+              style={{ fontWeight: 800, color: '#1a1a2e', fontFamily: 'Georgia, serif' }}
             >
               Why Clients Stay
             </h2>
@@ -434,17 +434,17 @@ export default function Index() {
             </p>
           </AnimatedSection>
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[22px] md:text-[28px] lg:text-[32px] text-foreground leading-[1.4] max-w-3xl mx-auto">
+            <p className="text-[22px] md:text-[28px] lg:text-[32px] text-foreground leading-[1.4] max-w-3xl mx-auto font-medium">
               We focus on stability, consistency, and long-term inbound systems —<br className="hidden md:block" />
               not short-term experiments.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="flex justify-center gap-20 md:gap-32 lg:gap-40 max-w-4xl mx-auto">
+            <div className="flex justify-center gap-16 md:gap-24 lg:gap-32 max-w-4xl mx-auto">
               <div className="text-center">
                 <div 
-                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
-                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
                 >
                   20+
                 </div>
@@ -452,8 +452,8 @@ export default function Index() {
               </div>
               <div className="text-center">
                 <div 
-                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
-                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
                 >
                   $100M+
                 </div>
@@ -461,8 +461,8 @@ export default function Index() {
               </div>
               <div className="text-center">
                 <div 
-                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
-                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
                 >
                   5-8
                 </div>
