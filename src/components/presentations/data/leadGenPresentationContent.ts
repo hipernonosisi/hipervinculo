@@ -206,7 +206,7 @@ export const leadGenPresentationContent = {
         { name: 'Customer Acquisition Cost', description: 'Total cost to acquire one new customer' },
       ],
       deliverables: [
-        'Real-time dashboard access',
+        'Monthly video call to present results and campaign adjustments',
         'Weekly performance summaries',
         'Monthly detailed reports',
         'Quarterly strategy presentations',
@@ -516,7 +516,7 @@ export const leadGenPresentationContent = {
         { name: 'Costo de Adquisición de Cliente', description: 'Costo total para adquirir un nuevo cliente' },
       ],
       deliverables: [
-        'Acceso a dashboard en tiempo real',
+        'Video llamada mensual para presentar resultados y ajustes de campaña',
         'Resúmenes de rendimiento semanales',
         'Reportes detallados mensuales',
         'Presentaciones estratégicas trimestrales',
