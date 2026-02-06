@@ -150,7 +150,7 @@ export default function Index() {
       <section className="py-24 lg:py-32" style={{ backgroundColor: '#3d5a3d' }}>
         <div className="container">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-[44px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-[-0.02em] whitespace-pre-line" style={{ color: '#d9ebb3' }}>
+            <h2 className="text-[32px] md:text-[40px] lg:text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em]" style={{ color: '#d9ebb3' }}>
               {t.homepage.provenResultsTitle}
             </h2>
           </AnimatedSection>
