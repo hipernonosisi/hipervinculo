@@ -64,39 +64,77 @@ export function LeadGenPresentation() {
       const html2canvas = (await import('html2canvas')).default;
       const { jsPDF } = await import('jspdf');
       
+      // Fixed PDF dimensions (16:9 aspect ratio)
+      const pdfWidth = 1920;
+      const pdfHeight = 1080;
+      
       const pdf = new jsPDF({
         orientation: 'landscape',
         unit: 'px',
-        format: [1920, 1080],
+        format: [pdfWidth, pdfHeight],
       });
-      
-      const slideContainer = containerRef.current;
-      if (!slideContainer) return;
       
       const originalSlide = currentSlide;
       
+      // Create a hidden container for rendering at exact size
+      const hiddenContainer = document.createElement('div');
+      hiddenContainer.style.cssText = `
+        position: fixed;
+        left: -9999px;
+        top: 0;
+        width: ${pdfWidth}px;
+        height: ${pdfHeight}px;
+        overflow: hidden;
+        background: #f8f9f5;
+      `;
+      document.body.appendChild(hiddenContainer);
+      
       for (let i = 0; i < slides.length; i++) {
+        // Update slide for preview
         setCurrentSlide(i);
         
-        // Wait for render
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        // Clone the slide container and render at fixed size
+        const slideContainer = containerRef.current;
+        if (!slideContainer) continue;
         
-        const canvas = await html2canvas(slideContainer, {
-          scale: 2,
+        // Clone the slide content
+        const clone = slideContainer.cloneNode(true) as HTMLElement;
+        clone.style.cssText = `
+          width: ${pdfWidth}px;
+          height: ${pdfHeight}px;
+          transform: none;
+          border-radius: 0;
+          box-shadow: none;
+        `;
+        
+        hiddenContainer.innerHTML = '';
+        hiddenContainer.appendChild(clone);
+        
+        // Wait for render and fonts
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        
+        const canvas = await html2canvas(hiddenContainer, {
+          scale: 1,
           useCORS: true,
           logging: false,
           backgroundColor: '#f8f9f5',
+          width: pdfWidth,
+          height: pdfHeight,
+          windowWidth: pdfWidth,
+          windowHeight: pdfHeight,
         });
         
         const imgData = canvas.toDataURL('image/jpeg', 0.95);
         
         if (i > 0) {
-          pdf.addPage([1920, 1080], 'landscape');
+          pdf.addPage([pdfWidth, pdfHeight], 'landscape');
         }
         
-        pdf.addImage(imgData, 'JPEG', 0, 0, 1920, 1080);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
       }
       
+      // Cleanup
+      document.body.removeChild(hiddenContainer);
       setCurrentSlide(originalSlide);
       
       const fileName = `hipervinculo-lead-generation-${language}.pdf`;
