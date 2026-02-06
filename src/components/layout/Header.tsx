@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, LayoutGrid } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
@@ -70,9 +70,6 @@ export function Header() {
             <Globe className="h-4 w-4" />
             <span>{language === 'en' ? 'ES' : 'EN'}</span>
           </button>
-          <Link to="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <LayoutGrid className="h-5 w-5 text-foreground" />
-          </Link>
           <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-5 py-1.5 h-10 font-semibold text-[14px]">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
           </Button>
