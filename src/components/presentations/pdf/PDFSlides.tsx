@@ -722,16 +722,8 @@ const SlideHeader = ({ logoBase64 }: { logoBase64: string }) => (
   </View>
 );
 
-// Corner decoration
-const CornerDecor = () => (
-  <View style={styles.cornerDecor}>
-    <Svg width="160" height="160" viewBox="0 0 160 160">
-      <Path d="M160 160 L0 160 L160 0 Z" fill="rgba(139, 195, 74, 0.1)" />
-    </Svg>
-  </View>
-);
-
-// SLIDES
+// Corner decoration - removed SVG due to PDF rendering issues
+const CornerDecor = () => null;
 
 // Cover Slide
 export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent['cover']; logoBase64: string }) => (
@@ -744,14 +736,6 @@ export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent
       <View style={styles.coverLine} />
       <Text style={styles.coverTagline}>{content.tagline}</Text>
     </View>
-    
-    {/* Corner decorations - simple solid triangles */}
-    <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120 }}>
-      <Svg width="120" height="120" viewBox="0 0 120 120">
-        <Path d="M0 0 L120 0 L0 120 Z" fill="rgba(139, 195, 74, 0.1)" />
-      </Svg>
-    </View>
-    <CornerDecor />
   </Page>
 );
 
@@ -1044,13 +1028,6 @@ export const OtherServicesSlidePDF = ({ content, logoBase64 }: { content: LeadGe
 export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent['contact']; logoBase64: string }) => (
   <Page size={[1920, 1080]} style={styles.contactPage}>
     <View style={styles.contactLeft}>
-      {/* Corner decoration */}
-      <View style={{ position: 'absolute', top: 0, left: 0, width: 160, height: 160 }}>
-        <Svg width="160" height="160" viewBox="0 0 160 160">
-          <Path d="M0 0 L160 0 L0 160 Z" fill="rgba(139, 195, 74, 0.1)" />
-        </Svg>
-      </View>
-      
       <Text style={styles.contactTitle}>{content.title}</Text>
       <Text style={styles.contactHeadline}>{content.headline}</Text>
       <Text style={styles.contactDesc}>{content.description}</Text>
