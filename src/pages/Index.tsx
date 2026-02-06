@@ -495,26 +495,34 @@ export default function Index() {
       </section>
 
       {/* Transparent Pricing */}
-      <section className="py-20 bg-white">
+      <section className="py-24 md:py-32 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold mb-3 tracking-[-0.02em]">Transparent Pricing</h2>
-            <p className="text-[16px] text-muted-foreground max-w-lg mx-auto leading-relaxed">
-              Tailored for businesses at ⟹ | with real numbers. No hidden fees — this is a growth relationship, not a vendor contract.
+          <AnimatedSection className="text-center mb-16">
+            <h2 
+              className="text-[48px] md:text-[60px] lg:text-[72px] mb-6 leading-[1.05] tracking-[-0.03em]"
+              style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+            >
+              Transparent Pricing
+            </h2>
+            <p className="text-[18px] md:text-[20px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Our pricing is designed to align with your success. No hidden fees, just a partnership focused on growth.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div className="max-w-md mx-auto">
-              <Card className="border-2 border-accent rounded-xl">
-                <CardHeader className="text-center pb-3">
-                  <CardTitle className="text-[20px] font-bold">Three Growth Models. One Goal: Your Business.</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-[14px] text-muted-foreground mb-6 leading-relaxed">
-                    Whether you're building a lead gen system, scaling an eCommerce brand, or both — we have a pricing model designed for your growth stage.
+            <div className="max-w-3xl mx-auto">
+              <Card className="border-2 rounded-3xl shadow-sm" style={{ borderColor: '#8BC34A' }}>
+                <CardContent className="text-center py-14 px-8 md:px-16">
+                  <h3 
+                    className="text-[28px] md:text-[36px] lg:text-[42px] mb-6 leading-[1.15] tracking-[-0.02em]"
+                    style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+                  >
+                    Three Growth Models. One Goal: Your Success.
+                  </h3>
+                  <p className="text-[16px] md:text-[18px] text-muted-foreground mb-10 leading-relaxed max-w-xl mx-auto">
+                    Whether you need lead generation infrastructure, performance-based eCommerce growth, or strategic partnership — we have a model built for your stage and goals.
                   </p>
-                  <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-xl h-11 px-8 text-[14px] font-semibold">
-                    <Link to="/pricing">Explore Pricing Options <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  <Button asChild size="lg" className="rounded-full h-14 px-10 text-[16px] font-semibold shadow-md" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
+                    <Link to="/pricing">Explore Pricing Options <ArrowRight className="ml-2 h-5 w-5" /></Link>
                   </Button>
                 </CardContent>
               </Card>
