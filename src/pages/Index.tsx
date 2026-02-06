@@ -573,8 +573,8 @@ export default function Index() {
                   <p className="text-[16px] md:text-[18px] text-muted-foreground mb-10 leading-relaxed max-w-xl mx-auto">
                     {t.pricingPage.subtitle}
                   </p>
-                  <Button asChild size="lg" className="rounded-full h-14 px-10 text-[16px] font-semibold shadow-md" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
-                    <Link to="/pricing">{t.pricing.viewAll} <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                  <Button asChild size="lg" className="rounded-full h-12 md:h-14 px-6 md:px-10 text-[14px] md:text-[16px] font-semibold shadow-md w-full sm:w-auto" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
+                    <Link to="/pricing">{t.pricing.viewAll} <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" /></Link>
                   </Button>
                 </CardContent>
               </Card>
