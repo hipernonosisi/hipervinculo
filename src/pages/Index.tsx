@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -228,22 +228,22 @@ export default function Index() {
       </section>
 
       {/* Proven Results Section - Dark Green */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 lg:py-24" style={{ backgroundColor: '#2F4F2F' }}>
         <div className="container">
-          <AnimatedSection className="text-center mb-14">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold text-white leading-[1.15] tracking-[-0.02em]">
-              Proven Results Across Growth Channels and<br className="hidden md:block" /> Inbound Lead Systems
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-[36px] md:text-[48px] lg:text-[52px] font-extrabold leading-[1.1] tracking-[-0.02em]" style={{ color: '#d4e5a2' }}>
+              Proven Results Across Growth Channels<br className="hidden md:block" /> and Inbound Lead Systems
             </h2>
           </AnimatedSection>
           
-          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto mb-16">
             <AnimatedSection delay={0.1}>
               <div>
-                <h3 className="text-accent font-semibold text-[14px] mb-6 tracking-wide">Lead Generation Systems</h3>
-                <ul className="space-y-4">
+                <h3 className="font-bold text-[18px] md:text-[20px] mb-8" style={{ color: '#d4e5a2' }}>Lead Generation Systems</h3>
+                <ul className="space-y-5">
                   {leadGenResults.map((result, index) => (
-                    <li key={index} className="flex items-start gap-3 text-[15px] text-primary-foreground/90 leading-relaxed">
-                      <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <li key={index} className="flex items-start gap-4 text-[16px] leading-[1.6]" style={{ color: '#e8f0d8' }}>
+                      <Zap className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#d4e5a2' }} />
                       <span>{result}</span>
                     </li>
                   ))}
@@ -252,11 +252,11 @@ export default function Index() {
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
               <div>
-                <h3 className="text-accent font-semibold text-[14px] mb-6 tracking-wide">eCommerce Growth Partners</h3>
-                <ul className="space-y-4">
+                <h3 className="font-bold text-[18px] md:text-[20px] mb-8" style={{ color: '#d4e5a2' }}>eCommerce Growth Partners</h3>
+                <ul className="space-y-5">
                   {ecomResults.map((result, index) => (
-                    <li key={index} className="flex items-start gap-3 text-[15px] text-primary-foreground/90 leading-relaxed">
-                      <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <li key={index} className="flex items-start gap-4 text-[16px] leading-[1.6]" style={{ color: '#e8f0d8' }}>
+                      <Zap className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#d4e5a2' }} />
                       <span>{result}</span>
                     </li>
                   ))}
@@ -265,11 +265,16 @@ export default function Index() {
             </AnimatedSection>
           </div>
           
+          {/* Horizontal line separator */}
+          <div className="max-w-5xl mx-auto mb-16">
+            <div className="w-full h-px" style={{ backgroundColor: 'rgba(212, 229, 162, 0.3)' }}></div>
+          </div>
+          
           <AnimatedSection delay={0.3} className="text-center">
-            <p className="text-[13px] text-primary-foreground/60 mb-6">
+            <p className="text-[15px] mb-8" style={{ color: '#e8f0d8' }}>
               Request a conversion and lead system walkthrough — tailored to your business.
             </p>
-            <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-xl px-8 h-11 text-[14px] font-semibold">
+            <Button asChild className="rounded-full px-10 h-12 text-[15px] font-semibold border-0" style={{ backgroundColor: '#f5f5dc', color: '#2F4F2F' }}>
               <Link to="/audit">Get a Free Audit</Link>
             </Button>
           </AnimatedSection>
