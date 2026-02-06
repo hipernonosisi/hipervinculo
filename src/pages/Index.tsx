@@ -405,14 +405,64 @@ export default function Index() {
                   </a>
                 </Button>
               </div>
-              <div className="flex justify-center">
-                <Card className="bg-white shadow-2xl border-0 rounded-2xl w-72">
-                  <CardContent className="p-10 text-center">
-                    <p className="text-accent text-[13px] font-bold mb-3 tracking-wide">HIPERVINCULO</p>
-                    <p className="text-[15px] text-muted-foreground mb-5">Advantage+</p>
-                    <p className="text-[26px] font-extrabold text-foreground leading-tight">Growth<br />Playbook</p>
-                  </CardContent>
-                </Card>
+              <div className="flex justify-center items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 40, rotateX: -15 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateY: 5,
+                    boxShadow: "0 30px 60px -15px rgba(0,0,0,0.25)"
+                  }}
+                  className="relative"
+                  style={{ perspective: 1000 }}
+                >
+                  {/* Glow effect behind card */}
+                  <motion.div 
+                    className="absolute inset-0 rounded-3xl opacity-40 blur-2xl"
+                    style={{ backgroundColor: '#8BC34A' }}
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  <Card className="relative bg-white shadow-2xl border-0 rounded-3xl w-80 md:w-96">
+                    <CardContent className="p-12 md:p-16 text-center">
+                      <motion.p 
+                        className="text-accent text-[14px] md:text-[16px] font-bold mb-4 tracking-widest"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        HIPERVINCULO
+                      </motion.p>
+                      <motion.p 
+                        className="text-[18px] md:text-[20px] text-muted-foreground mb-6"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        Advantage+
+                      </motion.p>
+                      <motion.p 
+                        className="text-[32px] md:text-[40px] font-extrabold text-foreground leading-tight"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+                      >
+                        Growth<br />Playbook
+                      </motion.p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </div>
             </div>
           </AnimatedSection>
