@@ -162,20 +162,19 @@ export default function About() {
               </AnimatedSection>
             </div>
             
-            <AnimatedSection delay={0.3} className="text-center">
+            <AnimatedSection delay={0.3}>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="inline-block"
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="bg-white border-0 rounded-2xl shadow-2xl">
-                  <CardContent className="p-8 md:p-12 text-center">
-                    <p className="text-[24px] md:text-[28px] font-bold mb-2" style={{ color: '#2d4a2d' }}>
+                <Card className="bg-white border-0 rounded-3xl shadow-2xl max-w-3xl mx-auto">
+                  <CardContent className="py-16 md:py-20 px-10 md:px-16 text-center space-y-4">
+                    <p className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-tight" style={{ color: '#2d4a2d' }}>
                       Ads are fuel.
                     </p>
-                    <p className="text-[24px] md:text-[28px] font-bold" style={{ color: '#8BC34A' }}>
+                    <p className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-tight" style={{ color: '#8BC34A' }}>
                       The system is the engine.
                     </p>
                   </CardContent>
