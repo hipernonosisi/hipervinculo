@@ -50,26 +50,108 @@ You are the AI assistant for Hipervínculo, a digital marketing agency based in 
 - IMPORTANT: Detect the language of the user's message and respond in the same language (English or Spanish)
 `;
 
+// Input validation constants
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_MESSAGES = 50;
+const RATE_LIMIT_MAX_REQUESTS = 10;
+const RATE_LIMIT_WINDOW_SECONDS = 60;
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Get client IP for rate limiting
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Rate limiting check
+    const rateLimitKey = `chat:${clientIp}`;
+    const { data: isAllowed, error: rateLimitError } = await supabase.rpc("check_rate_limit", {
+      p_key: rateLimitKey,
+      p_max_requests: RATE_LIMIT_MAX_REQUESTS,
+      p_window_seconds: RATE_LIMIT_WINDOW_SECONDS,
+    });
+
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+      // Continue on error - don't block legitimate requests
+    } else if (!isAllowed) {
+      console.log(`Rate limit exceeded for ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please wait a moment before trying again." }),
+        {
+          status: 429,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const { messages, conversationId, sessionId, language } = await req.json();
     
+    // Input validation
+    if (!sessionId || typeof sessionId !== "string" || sessionId.length > 100) {
+      return new Response(
+        JSON.stringify({ error: "Invalid session ID" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!Array.isArray(messages) || messages.length === 0 || messages.length > MAX_MESSAGES) {
+      return new Response(
+        JSON.stringify({ error: "Invalid messages format" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate message content
+    const lastUserMessage = messages[messages.length - 1];
+    if (!lastUserMessage || lastUserMessage.role !== "user" || 
+        typeof lastUserMessage.content !== "string" || 
+        lastUserMessage.content.length > MAX_MESSAGE_LENGTH) {
+      return new Response(
+        JSON.stringify({ error: "Invalid message content" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-    // Create or get conversation
+    // Session validation: if conversationId is provided, verify it belongs to this session
     let currentConversationId = conversationId;
-    if (!currentConversationId) {
+    if (currentConversationId) {
+      const { data: existingConv, error: convCheckError } = await supabase
+        .from("chat_conversations")
+        .select("session_id")
+        .eq("id", currentConversationId)
+        .single();
+
+      if (convCheckError || !existingConv) {
+        console.error("Conversation not found:", currentConversationId);
+        return new Response(
+          JSON.stringify({ error: "Invalid conversation" }),
+          { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      if (existingConv.session_id !== sessionId) {
+        console.error(`Session mismatch: expected ${existingConv.session_id}, got ${sessionId}`);
+        return new Response(
+          JSON.stringify({ error: "Session mismatch" }),
+          { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else {
+      // Create new conversation
       const { data: newConversation, error: convError } = await supabase
         .from("chat_conversations")
         .insert({ session_id: sessionId, visitor_language: language })
@@ -84,14 +166,11 @@ serve(async (req) => {
     }
 
     // Save user message
-    const lastUserMessage = messages[messages.length - 1];
-    if (lastUserMessage && lastUserMessage.role === "user") {
-      await supabase.from("chat_messages").insert({
-        conversation_id: currentConversationId,
-        role: "user",
-        content: lastUserMessage.content,
-      });
-    }
+    await supabase.from("chat_messages").insert({
+      conversation_id: currentConversationId,
+      role: "user",
+      content: lastUserMessage.content.substring(0, MAX_MESSAGE_LENGTH),
+    });
 
     // Update conversation timestamp
     await supabase
@@ -116,7 +195,10 @@ serve(async (req) => {
             role: "system", 
             content: `${COMPANY_KNOWLEDGE}\n\n${languageInstruction}` 
           },
-          ...messages,
+          ...messages.slice(-10).map((m: { role: string; content: string }) => ({
+            role: m.role,
+            content: typeof m.content === "string" ? m.content.substring(0, MAX_MESSAGE_LENGTH) : "",
+          })),
         ],
         stream: true,
       }),
