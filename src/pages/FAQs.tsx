@@ -22,7 +22,7 @@ export default function FAQs() {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": t.faqs.items.map((faq: { question: string; answer: string }) => ({
+          "mainEntity": t.faq.items.map((faq: { question: string; answer: string }) => ({
             "@type": "Question",
             "name": faq.question,
             "acceptedAnswer": {

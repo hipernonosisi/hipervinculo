@@ -85,7 +85,14 @@ export default function Contact() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.contact.title}
+        description={language === 'en' 
+          ? "Get in touch with Hipervínculo. Let's discuss how we can help grow your eCommerce business with data-driven marketing strategies."
+          : "Contacta con Hipervínculo. Hablemos de cómo podemos ayudar a crecer tu negocio eCommerce con estrategias de marketing basadas en datos."
+        }
+        url="https://hipervinculo.net/contact"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}
