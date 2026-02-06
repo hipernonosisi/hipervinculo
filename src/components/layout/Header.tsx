@@ -70,9 +70,9 @@ export function Header() {
             <Globe className="h-4 w-4" />
             <span>{language.toUpperCase()}</span>
           </button>
-          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <Link to="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <LayoutGrid className="h-5 w-5 text-foreground" />
-          </button>
+          </Link>
           <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-6 py-2 h-11 font-semibold text-[15px]">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
           </Button>
