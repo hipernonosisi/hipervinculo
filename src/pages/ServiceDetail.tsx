@@ -447,10 +447,10 @@ export default function ServiceDetail() {
         {/* Pricing Section */}
         <section className="py-20 md:py-28 bg-white">
           <div className="container">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <AnimatedSection>
                 <h2 
-                  className="text-[36px] md:text-[48px] lg:text-[56px] mb-10 leading-[1.1] tracking-[-0.02em]"
+                  className="text-[36px] md:text-[48px] lg:text-[56px] mb-10 leading-[1.1] tracking-[-0.02em] text-center"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
                 >
                   {service.pricing.title}
@@ -458,18 +458,29 @@ export default function ServiceDetail() {
               </AnimatedSection>
 
               <AnimatedSection delay={0.1}>
-                <Card className="border-2 rounded-3xl shadow-sm mb-6" style={{ borderColor: '#8BC34A' }}>
-                  <CardContent className="p-8 md:p-10">
-                    <div className="space-y-4">
-                      <p className="text-[18px] md:text-[20px] text-foreground">
-                        {service.pricing.retainer}
-                      </p>
-                      <p className="text-[18px] md:text-[20px] text-foreground">
-                        {service.pricing.adSpend}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  {service.pricing.models.map((model: { title: string; highlight: string; highlightLabel: string; description: string }, index: number) => (
+                    <Card key={index} className={`border-2 rounded-3xl shadow-sm ${index === 0 ? 'border-accent' : ''}`} style={index === 0 ? { borderColor: '#8BC34A' } : {}}>
+                      <CardContent className="p-8 md:p-10">
+                        <h3 
+                          className="text-[20px] md:text-[22px] mb-4"
+                          style={{ fontWeight: 800, color: '#2d4a2d' }}
+                        >
+                          {model.title}
+                        </h3>
+                        <p className={`text-[40px] md:text-[48px] font-bold mb-1 ${index === 0 ? 'text-accent' : 'text-primary'}`}>
+                          {model.highlight}
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          {model.highlightLabel}
+                        </p>
+                        <p className="text-[15px] md:text-[16px] text-muted-foreground leading-relaxed">
+                          {model.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
                 <p className="text-[16px] text-muted-foreground text-center">
                   {service.pricing.note}
                 </p>
