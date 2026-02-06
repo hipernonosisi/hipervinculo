@@ -105,6 +105,13 @@ export default function Audit() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [canProceed, isSubmitting, handleNext]);
 
+  // Scroll to top when form is submitted
+  useEffect(() => {
+    if (isSubmitted) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [isSubmitted]);
+
   if (isSubmitted) {
     return (
       <Layout>
