@@ -26,18 +26,18 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <div className="container flex h-24 items-center justify-between">
+      <div className="container flex h-36 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img 
             src={logoFull} 
             alt="Hipervínculo" 
-            className="h-14 hidden sm:block" 
+            className="h-20 hidden sm:block" 
           />
           <img 
             src={logoSymbol} 
             alt="Hipervínculo" 
-            className="h-12 sm:hidden" 
+            className="h-16 sm:hidden" 
           />
         </Link>
 
