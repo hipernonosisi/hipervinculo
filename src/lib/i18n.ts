@@ -472,7 +472,7 @@ export const translations = {
         'Estrategias de Growth Partner para eCommerce que Escalan Ingresos',
         'Sistemas de Generación de Leads de Alta Conversión',
       ],
-      provenResultsTitle: 'Resultados Comprobados en Canales de Crecimiento\ny Sistemas de Leads Inbound',
+      provenResultsTitle: 'Resultados Comprobados en Canales de Crecimiento\ny Sistemas de Generación de Leads Inbound',
       provenResultsCta: 'Solicita un recorrido de tu sistema de conversión y leads — adaptado a tu negocio.',
       leadGenTitle: 'Sistemas de Generación de Leads',
       leadGenResults: [
