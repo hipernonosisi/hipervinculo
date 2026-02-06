@@ -1,4 +1,4 @@
-// Language translations for Hipervinculo
+// Language translations for Hipervinculo - i18n configuration
 export type Language = 'en' | 'es';
 
 export const translations = {
