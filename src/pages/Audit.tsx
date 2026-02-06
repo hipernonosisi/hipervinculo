@@ -65,6 +65,7 @@ export default function Audit() {
         supabase.functions.invoke('send-notification', {
           body: {
             type: 'audit',
+            language,
             company_name: answers[0],
             email: answers[6],
             website_url: answers[1],

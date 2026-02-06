@@ -9,6 +9,7 @@ const corsHeaders = {
 
 interface ContactNotification {
   type: "contact";
+  language: "en" | "es";
   full_name: string;
   email: string;
   company_name?: string;
@@ -18,6 +19,7 @@ interface ContactNotification {
 
 interface AuditNotification {
   type: "audit";
+  language: "en" | "es";
   company_name: string;
   email: string;
   website_url?: string;
@@ -28,6 +30,60 @@ interface AuditNotification {
 }
 
 type NotificationRequest = ContactNotification | AuditNotification;
+
+// Translations for email content
+const emailTranslations = {
+  en: {
+    contact: {
+      header: "📬 New Contact Message",
+      name: "Name:",
+      email: "Email:",
+      company: "Company:",
+      inquiryType: "Inquiry type:",
+      message: "Message:",
+    },
+    audit: {
+      header: "🎯 New Free Audit Request",
+      company: "Company:",
+      email: "Email:",
+      website: "Website:",
+      businessType: "Business type:",
+      metrics: "Metrics:",
+      revenue: "Revenue:",
+      adSpend: "Ad spend:",
+      goals: "Growth goals:",
+    },
+    subject: {
+      contact: "[Hipervínculo] New contact:",
+      audit: "[Hipervínculo] New audit request:",
+    }
+  },
+  es: {
+    contact: {
+      header: "📬 Nuevo Mensaje de Contacto",
+      name: "Nombre:",
+      email: "Email:",
+      company: "Empresa:",
+      inquiryType: "Tipo de consulta:",
+      message: "Mensaje:",
+    },
+    audit: {
+      header: "🎯 Nueva Solicitud de Auditoría Gratuita",
+      company: "Empresa:",
+      email: "Email:",
+      website: "Sitio web:",
+      businessType: "Tipo de negocio:",
+      metrics: "Métricas:",
+      revenue: "Ingresos:",
+      adSpend: "Inversión publicitaria:",
+      goals: "Objetivos de crecimiento:",
+    },
+    subject: {
+      contact: "[Hipervínculo] Nuevo contacto:",
+      audit: "[Hipervínculo] Nueva solicitud de auditoría:",
+    }
+  }
+};
 
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
@@ -44,8 +100,10 @@ const handler = async (req: Request): Promise<Response> => {
 
     const resend = new Resend(RESEND_API_KEY);
     const payload: NotificationRequest = await req.json();
+    const lang = payload.language || "es";
+    const t = emailTranslations[lang];
 
-    console.log("Received notification request:", payload.type);
+    console.log("Received notification request:", payload.type, "language:", lang);
 
     let subject: string;
     let htmlContent: string;
@@ -53,7 +111,7 @@ const handler = async (req: Request): Promise<Response> => {
     if (payload.type === "contact") {
       const { full_name, email, company_name, inquiry_type, message } = payload;
       
-      subject = `[Hipervínculo] Nuevo contacto: ${full_name}`;
+      subject = `${t.subject.contact} ${full_name}`;
       htmlContent = `
         <!DOCTYPE html>
         <html>
@@ -72,31 +130,31 @@ const handler = async (req: Request): Promise<Response> => {
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0; font-size: 24px;">📬 Nuevo Mensaje de Contacto</h1>
+              <h1 style="margin: 0; font-size: 24px;">${t.contact.header}</h1>
             </div>
             <div class="content">
               <div class="field">
-                <div class="label">Nombre:</div>
+                <div class="label">${t.contact.name}</div>
                 <div class="value">${full_name}</div>
               </div>
               <div class="field">
-                <div class="label">Email:</div>
+                <div class="label">${t.contact.email}</div>
                 <div class="value"><a href="mailto:${email}">${email}</a></div>
               </div>
               ${company_name ? `
               <div class="field">
-                <div class="label">Empresa:</div>
+                <div class="label">${t.contact.company}</div>
                 <div class="value">${company_name}</div>
               </div>
               ` : ''}
               ${inquiry_type ? `
               <div class="field">
-                <div class="label">Tipo de consulta:</div>
+                <div class="label">${t.contact.inquiryType}</div>
                 <div class="value">${inquiry_type}</div>
               </div>
               ` : ''}
               <div class="field">
-                <div class="label">Mensaje:</div>
+                <div class="label">${t.contact.message}</div>
                 <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
               </div>
             </div>
@@ -107,7 +165,7 @@ const handler = async (req: Request): Promise<Response> => {
     } else if (payload.type === "audit") {
       const { company_name, email, website_url, monthly_revenue, monthly_ad_spend, business_type, growth_goals } = payload;
       
-      subject = `[Hipervínculo] Nueva solicitud de auditoría: ${company_name}`;
+      subject = `${t.subject.audit} ${company_name}`;
       htmlContent = `
         <!DOCTYPE html>
         <html>
@@ -127,39 +185,39 @@ const handler = async (req: Request): Promise<Response> => {
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0; font-size: 24px;">🎯 Nueva Solicitud de Auditoría Gratuita</h1>
+              <h1 style="margin: 0; font-size: 24px;">${t.audit.header}</h1>
             </div>
             <div class="content">
               <div class="field">
-                <div class="label">Empresa:</div>
+                <div class="label">${t.audit.company}</div>
                 <div class="value">${company_name}</div>
               </div>
               <div class="field">
-                <div class="label">Email:</div>
+                <div class="label">${t.audit.email}</div>
                 <div class="value"><a href="mailto:${email}">${email}</a></div>
               </div>
               ${website_url ? `
               <div class="field">
-                <div class="label">Sitio web:</div>
+                <div class="label">${t.audit.website}</div>
                 <div class="value"><a href="${website_url}" target="_blank">${website_url}</a></div>
               </div>
               ` : ''}
               ${business_type ? `
               <div class="field">
-                <div class="label">Tipo de negocio:</div>
+                <div class="label">${t.audit.businessType}</div>
                 <div class="value">${business_type}</div>
               </div>
               ` : ''}
               <div class="field">
-                <div class="label">Métricas:</div>
+                <div class="label">${t.audit.metrics}</div>
                 <div class="value">
-                  ${monthly_revenue ? `<span class="metric">💰 Ingresos: ${monthly_revenue}</span>` : ''}
-                  ${monthly_ad_spend ? `<span class="metric">📊 Inversión publicitaria: ${monthly_ad_spend}</span>` : ''}
+                  ${monthly_revenue ? `<span class="metric">💰 ${t.audit.revenue} ${monthly_revenue}</span>` : ''}
+                  ${monthly_ad_spend ? `<span class="metric">📊 ${t.audit.adSpend} ${monthly_ad_spend}</span>` : ''}
                 </div>
               </div>
               ${growth_goals ? `
               <div class="field">
-                <div class="label">Objetivos de crecimiento:</div>
+                <div class="label">${t.audit.goals}</div>
                 <div class="goals-box">${growth_goals.replace(/\n/g, '<br>')}</div>
               </div>
               ` : ''}
