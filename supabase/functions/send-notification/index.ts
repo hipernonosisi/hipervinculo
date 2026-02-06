@@ -233,7 +233,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email to admin
     const emailResponse = await resend.emails.send({
       from: "Hipervínculo <notificaciones@hipervinculo.net>",
-      to: ["hola@hipervinculo.net"],
+      to: ["info@hipervinculo.net"],
       subject,
       html: htmlContent,
     });
