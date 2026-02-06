@@ -5,18 +5,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
-  const stats = [
-    { value: '$100M+', label: 'Managed Ad Spend' },
-    { value: '20+', label: 'Years of Experience' },
-    { value: '5-8', label: 'Years Avg. Retention' },
-  ];
+  const { t } = useLanguage();
 
   const values = [
-    { icon: Target, title: 'Consistency', description: 'Systems that deliver predictable results month after month.' },
-    { icon: Shield, title: 'Clarity', description: 'Transparent reporting and real metrics that matter.' },
-    { icon: TrendingUp, title: 'Longevity', description: 'Infrastructure that compounds over time, not quick wins.' },
+    { icon: Target, title: t.about.values.consistency, description: t.about.values.consistencyDesc },
+    { icon: Shield, title: t.about.values.clarity, description: t.about.values.clarityDesc },
+    { icon: TrendingUp, title: t.about.values.longevity, description: t.about.values.longevityDesc },
   ];
 
   return (
@@ -43,15 +40,15 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <AnimatedSection>
-              <p className="text-accent font-semibold text-[15px] mb-4">About Us</p>
+              <p className="text-accent font-semibold text-[15px] mb-4">{t.about.title}</p>
               <h1 
                 className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                 style={{ fontWeight: 800, color: '#2d4a2d' }}
               >
-                About Hipervinculo
+                {t.about.heroTitle}
               </h1>
               <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-none mx-auto whitespace-nowrap">
-                We build performance-driven growth systems for businesses ready to scale.
+                {t.about.heroSubtitle}
               </p>
             </AnimatedSection>
           </div>
@@ -68,14 +65,14 @@ export default function About() {
                   className="text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em]"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
                 >
-                  Built around a simple realization
+                  {t.about.section1.title}
                 </h2>
                 <p className="text-[18px] md:text-[20px] text-muted-foreground leading-relaxed">
-                  Most businesses don't fail because they lack marketing. They fail because they lack a system.
+                  {t.about.section1.subtitle}
                 </p>
                 <div className="space-y-4">
                   <p className="text-[17px] text-muted-foreground leading-relaxed">
-                    Over the last two decades, we've seen the same pattern repeat across industries — service companies, local brands, and eCommerce businesses alike.
+                    {t.about.section1.content}
                   </p>
                 </div>
               </div>
@@ -90,12 +87,12 @@ export default function About() {
               >
                 <Card className="bg-white shadow-2xl border-0 rounded-3xl overflow-hidden">
                   <CardContent className="p-10 md:p-14 space-y-6">
-                    <p className="text-[18px] font-semibold text-foreground">Traffic is not the problem.</p>
-                    <p className="text-[18px] font-semibold text-foreground">Clicks are not the problem.</p>
-                    <p className="text-[18px] font-semibold text-foreground">Even advertising is rarely the real problem.</p>
+                    <p className="text-[18px] font-semibold text-foreground">{t.about.section1.problem1}</p>
+                    <p className="text-[18px] font-semibold text-foreground">{t.about.section1.problem2}</p>
+                    <p className="text-[18px] font-semibold text-foreground">{t.about.section1.problem3}</p>
                     <div className="pt-4 border-t">
                       <p className="text-[20px] font-bold" style={{ color: '#8BC34A' }}>
-                        The problem is what happens after someone arrives.
+                        {t.about.section1.conclusion}
                       </p>
                     </div>
                   </CardContent>
@@ -115,10 +112,10 @@ export default function About() {
                 className="text-[40px] md:text-[52px] lg:text-[60px] text-white leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ fontWeight: 800 }}
               >
-                We Don't Run Campaigns<br />in Isolation
+                {t.about.section2.title}
               </h2>
               <p className="text-[18px] md:text-[20px] text-white/80 max-w-3xl mx-auto leading-relaxed">
-                Hipervinculo is not an ads-only agency. We build performance-driven growth systems — the kind of infrastructure that turns attention into opportunity.
+                {t.about.section2.subtitle}
               </p>
             </AnimatedSection>
             
@@ -133,9 +130,9 @@ export default function About() {
                       <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
                         <BarChart3 className="h-7 w-7 text-white" />
                       </div>
-                      <h3 className="text-[22px] font-bold text-white mb-4">Conversion-Focused Design</h3>
+                      <h3 className="text-[22px] font-bold text-white mb-4">{t.about.section2.card1Title}</h3>
                       <p className="text-[16px] text-white/70 leading-relaxed">
-                        Sometimes that means designing a conversion-focused website from the ground up.
+                        {t.about.section2.card1Description}
                       </p>
                     </CardContent>
                   </Card>
@@ -152,9 +149,9 @@ export default function About() {
                       <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
                         <Users className="h-7 w-7 text-white" />
                       </div>
-                      <h3 className="text-[22px] font-bold text-white mb-4">Lead Intake Systems</h3>
+                      <h3 className="text-[22px] font-bold text-white mb-4">{t.about.section2.card2Title}</h3>
                       <p className="text-[16px] text-white/70 leading-relaxed">
-                        Engineering lead intake systems that make it easy for prospects to call, inquire, or start a conversation.
+                        {t.about.section2.card2Description}
                       </p>
                     </CardContent>
                   </Card>
@@ -175,10 +172,10 @@ export default function About() {
                       {/* Text side */}
                       <div className="p-8 md:p-10 flex flex-col justify-center">
                         <p className="text-[20px] md:text-[24px] font-extrabold leading-tight mb-2" style={{ color: '#2d4a2d' }}>
-                          Ads are fuel.
+                          {t.about.section2.fuelTitle}
                         </p>
                         <p className="text-[20px] md:text-[24px] font-extrabold leading-tight" style={{ color: '#8BC34A' }}>
-                          The system is the engine.
+                          {t.about.section2.engineTitle}
                         </p>
                       </div>
                       {/* Visual side */}
@@ -218,10 +215,10 @@ export default function About() {
               className="text-[40px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] mb-6"
               style={{ fontWeight: 800, color: '#2d4a2d' }}
             >
-              Built for Businesses<br />That Want Stability
+              {t.about.section3.title}
             </h2>
             <p className="text-[18px] md:text-[20px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Many of our clients are not looking for experiments. They are looking for something rare in digital marketing.
+              {t.about.section3.subtitle}
             </p>
           </AnimatedSection>
           
@@ -260,10 +257,10 @@ export default function About() {
               className="text-[40px] md:text-[52px] lg:text-[60px] text-white leading-[1.1] tracking-[-0.02em] mb-4"
               style={{ fontWeight: 800 }}
             >
-              Experience That Goes<br />Beyond Theory
+              {t.about.stats.title}
             </h2>
             <p className="text-[16px] text-white/80 mb-16">
-              Hipervinculo has managed over $100M in advertising spend across platforms.
+              {t.about.stats.subtitle}
             </p>
           </AnimatedSection>
           
@@ -298,9 +295,9 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4, type: "spring", stiffness: 150 }}
                 >
-                  $100M+
+                  {t.about.stats.adSpend}
                 </motion.p>
-                <p className="text-[14px] md:text-[16px] text-white/80">Managed Ad Spend</p>
+                <p className="text-[14px] md:text-[16px] text-white/80">{t.about.stats.adSpendLabel}</p>
               </motion.div>
 
               {/* 20+ - Circular progress */}
@@ -346,9 +343,9 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.55, type: "spring", stiffness: 150 }}
                 >
-                  20+
+                  {t.about.stats.years}
                 </motion.p>
-                <p className="text-[14px] md:text-[16px] text-white/80">Years of Experience</p>
+                <p className="text-[14px] md:text-[16px] text-white/80">{t.about.stats.yearsLabel}</p>
               </motion.div>
 
               {/* 5-8 - Line chart */}
@@ -392,9 +389,9 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.7, type: "spring", stiffness: 150 }}
                 >
-                  5-8
+                  {t.about.stats.retention}
                 </motion.p>
-                <p className="text-[14px] md:text-[16px] text-white/80">Years Avg. Retention</p>
+                <p className="text-[14px] md:text-[16px] text-white/80">{t.about.stats.retentionLabel}</p>
               </motion.div>
             </div>
           </AnimatedSection>
@@ -410,13 +407,13 @@ export default function About() {
                 className="text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] tracking-[-0.02em] mb-12"
                 style={{ fontWeight: 800, color: '#2d4a2d' }}
               >
-                The best marketing is not louder
+                {t.about.marketing.title}
               </h2>
             </AnimatedSection>
             
             <AnimatedSection delay={0.1}>
               <div className="grid md:grid-cols-4 gap-6 mb-12">
-                {['Cleaner', 'Structured', 'Measurable', 'Built on architecture'].map((item, index) => (
+                {t.about.marketing.items.map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -432,7 +429,7 @@ export default function About() {
                 ))}
               </div>
               <p className="text-[18px] text-muted-foreground leading-relaxed">
-                We approach growth with the mindset of engineers, not hype.
+                {t.about.marketing.conclusion}
               </p>
             </AnimatedSection>
           </div>
@@ -448,10 +445,10 @@ export default function About() {
                 className="text-[40px] md:text-[52px] lg:text-[60px] text-white leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ fontWeight: 800 }}
               >
-                Who We Work With
+                {t.about.whoWeWorkWith.title}
               </h2>
               <p className="text-[18px] text-white/70 max-w-2xl mx-auto leading-relaxed">
-                Built for serious businesses that understand growth is not a campaign — it is a system.
+                {t.about.whoWeWorkWith.subtitle}
               </p>
             </AnimatedSection>
 
@@ -467,10 +464,10 @@ export default function About() {
                     <Target className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
-                    Service-Based Companies
+                    {t.about.whoWeWorkWith.card1Title}
                   </h3>
                   <p className="text-[15px] text-muted-foreground leading-relaxed">
-                    Looking for predictable inbound leads and a system that delivers consistent results.
+                    {t.about.whoWeWorkWith.card1Description}
                   </p>
                 </motion.div>
               </AnimatedSection>
@@ -486,10 +483,10 @@ export default function About() {
                     <TrendingUp className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
-                    Established Brands
+                    {t.about.whoWeWorkWith.card2Title}
                   </h3>
                   <p className="text-[15px] text-muted-foreground leading-relaxed">
-                    Seeking scalable performance and infrastructure that compounds over time.
+                    {t.about.whoWeWorkWith.card2Description}
                   </p>
                 </motion.div>
               </AnimatedSection>
@@ -505,10 +502,10 @@ export default function About() {
                     <ShoppingCart className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-[20px] font-bold mb-3" style={{ color: '#2d4a2d' }}>
-                    eCommerce Stores
+                    {t.about.whoWeWorkWith.card3Title}
                   </h3>
                   <p className="text-[15px] text-muted-foreground leading-relaxed">
-                    Ready to scale past $1M/month with full-funnel growth systems.
+                    {t.about.whoWeWorkWith.card3Description}
                   </p>
                 </motion.div>
               </AnimatedSection>
@@ -524,7 +521,7 @@ export default function About() {
                 style={{ backgroundColor: '#8BC34A' }}
               >
                 <p className="text-[18px] font-bold text-white">
-                  Building a growth engine that lasts.
+                  {t.about.whoWeWorkWith.badge}
                 </p>
               </motion.div>
             </AnimatedSection>
@@ -539,22 +536,22 @@ export default function About() {
             <AnimatedSection>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 mb-8">
                 <Award className="w-5 h-5 text-accent" />
-                <span className="text-accent text-[14px] font-semibold">Our Standard</span>
+                <span className="text-accent text-[14px] font-semibold">{t.about.standard.badge}</span>
               </div>
               <h2 
                 className="text-[40px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] mb-8"
                 style={{ fontWeight: 800, color: '#2d4a2d' }}
               >
-                The Hipervinculo Standard
+                {t.about.standard.title}
               </h2>
               <p className="text-[18px] md:text-[20px] text-muted-foreground leading-relaxed mb-12 max-w-2xl mx-auto">
-                We believe in long-term partnerships, clear execution, and systems that speak for themselves.
+                {t.about.standard.subtitle}
               </p>
             </AnimatedSection>
             
             <AnimatedSection delay={0.2}>
               <div className="flex justify-center gap-8 md:gap-12 flex-wrap">
-                {['No noise', 'No gimmicks', 'No vanity metrics'].map((item, index) => (
+                {t.about.standard.items.map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -581,13 +578,13 @@ export default function About() {
               className="text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
               style={{ fontWeight: 800 }}
             >
-              Ready to see if your website is built to convert?
+              {t.about.cta.title}
             </h2>
             <p className="text-[18px] md:text-[20px] text-white/80 leading-relaxed max-w-2xl mx-auto">
-              Start a conversation with us. We'll tell you the truth about what's working, what isn't, and what it would take to build a system that generates real opportunities.
+              {t.about.cta.subtitle}
             </p>
             <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/95 rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg mt-4">
-              <Link to="/contact">Message Hipervinculo <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Link to="/contact">{t.about.cta.button} <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </AnimatedSection>
         </div>
