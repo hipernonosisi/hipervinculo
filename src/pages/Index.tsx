@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, LineChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -10,7 +10,7 @@ import { AnimatedSection } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
 
-const serviceIcons = [Phone, Target, BarChart3, Settings, ShoppingCart, Users];
+const serviceIcons = [Phone, Target, Search, ShoppingCart, Package, LineChart, Code];
 const industryIcons = [Phone, ShieldCheck, Settings, ShoppingCart, Zap];
 
 export default function Index() {
