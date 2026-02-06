@@ -54,10 +54,11 @@ export const translations = {
       services: [
         { title: 'Lead Generation Systems', description: 'Conversion-focused websites, landing pages, call and form optimization, WhatsApp intake, Google Ads for high-intent searches, and tracking infrastructure.' },
         { title: 'Conversion Website Development', description: 'High-converting sites with optimized UX, built for capturing leads and driving action — not just looking good.' },
-        { title: 'Google Ads for Inbound', description: 'Search campaigns built for ROI. We focus on bottom-funnel intent and qualified traffic, not vanity metrics.' },
-        { title: 'Tracking & Attribution Setup', description: 'Server-side tracking, GA4 implementation, call tracking, CRM integrations. Know exactly where your leads come from.' },
+        { title: 'Google Ads', description: 'Search, Shopping, Performance Max — managed for profitability, not just traffic. Profit-first bidding strategies.' },
         { title: 'eCommerce Growth Partners', description: 'Full-funnel paid media for Shopify brands. Meta, Google, Amazon, TikTok — optimized for Net ROAS, not vanity metrics.' },
-        { title: 'Backup & Consulting', description: 'Strategic guidance, growth audits, and media planning for teams that need expert support without a full retainer.' },
+        { title: 'Amazon Seller Services', description: 'Amazon account and advertising management. PPC optimization, listing enhancement, and sales strategy — logistics not included.' },
+        { title: 'Tracking & Attribution', description: 'Server-side tracking, GA4 implementation, Conversion APIs, and custom dashboards. Know exactly where your sales come from.' },
+        { title: 'Custom Enterprise Apps', description: 'Tailored web applications for your business: inventory control, production management, and operations dashboards.' },
       ],
       // Service Detail Pages
       serviceDetail: {
@@ -1001,10 +1002,11 @@ export const translations = {
       services: [
         { title: 'Sistemas de Generación de Leads', description: 'Sitios web enfocados en conversión, landing pages, optimización de llamadas y formularios, WhatsApp, Google Ads para búsquedas de alta intención e infraestructura de tracking.' },
         { title: 'Desarrollo Web de Conversión', description: 'Sitios de alta conversión con UX optimizado, construidos para capturar leads e impulsar acción — no solo verse bien.' },
-        { title: 'Google Ads para Inbound', description: 'Campañas de búsqueda construidas para ROI. Nos enfocamos en intención de fondo de embudo y tráfico calificado, no métricas de vanidad.' },
-        { title: 'Configuración de Tracking y Atribución', description: 'Tracking server-side, implementación de GA4, seguimiento de llamadas, integraciones CRM. Sabe exactamente de dónde vienen tus leads.' },
-        { title: 'Socios de Crecimiento eCommerce', description: 'Medios pagados de embudo completo para marcas Shopify. Meta, Google, Amazon, TikTok — optimizado para ROAS Neto, no métricas de vanidad.' },
-        { title: 'Respaldo y Consultoría', description: 'Guía estratégica, auditorías de crecimiento y planificación de medios para equipos que necesitan soporte experto sin un retainer completo.' },
+        { title: 'Google Ads', description: 'Search, Shopping, Performance Max — gestionado para rentabilidad, no solo tráfico. Estrategias de pujas profit-first.' },
+        { title: 'Socios de Crecimiento eCommerce', description: 'Medios pagados de embudo completo para marcas Shopify. Meta, Google, Amazon, TikTok — optimizado para ROAS Neto.' },
+        { title: 'Servicios para Vendedores Amazon', description: 'Gestión de cuentas y publicidad de Amazon. Optimización de PPC, mejora de listados y estrategia de ventas — logística no incluida.' },
+        { title: 'Seguimiento y Atribución', description: 'Tracking server-side, implementación de GA4, Conversion APIs y dashboards personalizados. Sabe exactamente de dónde vienen tus ventas.' },
+        { title: 'Aplicaciones Empresariales', description: 'Aplicaciones web a medida para tu negocio: control de inventario, gestión de producción y dashboards de operaciones.' },
       ],
       // Service Detail Pages
       serviceDetail: {
