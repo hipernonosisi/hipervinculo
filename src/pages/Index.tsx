@@ -573,15 +573,20 @@ export default function Index() {
       </section>
 
       {/* Final CTA - Lime Green */}
-      <section className="py-20 bg-accent">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#8BC34A' }}>
         <div className="container text-center">
-          <AnimatedSection className="max-w-xl mx-auto space-y-8">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold text-white tracking-[-0.02em]">Ready to scale your brand?</h2>
-            <p className="text-[16px] text-white/90 leading-relaxed">
+          <AnimatedSection className="max-w-3xl mx-auto space-y-8">
+            <h2 
+              className="text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
+              style={{ fontWeight: 800, fontStyle: 'italic' }}
+            >
+              Ready to scale your brand?
+            </h2>
+            <p className="text-[18px] md:text-[20px] text-white/80 leading-relaxed max-w-2xl mx-auto">
               Request your free growth audit and discover how we can help you achieve your most ambitious goals.
             </p>
-            <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/90 rounded-xl h-12 px-10 text-[14px] font-semibold">
-              <Link to="/audit">Get My Free Audit</Link>
+            <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/95 rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg mt-4">
+              <Link to="/audit">Get My Free Audit <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </AnimatedSection>
         </div>
