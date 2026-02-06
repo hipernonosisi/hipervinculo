@@ -1109,6 +1109,12 @@ export default function ServiceDetail() {
   if (type === 'tracking') {
     return (
       <Layout>
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         {/* Hero Section */}
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
