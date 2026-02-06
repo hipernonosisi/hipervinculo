@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart } from 'lucide-react';
+import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -32,6 +32,13 @@ export default function Services() {
       description: t.servicesPage.website.description,
       features: t.servicesPage.website.features,
       detailSlug: 'conversion-website-development',
+    },
+    {
+      icon: Package,
+      title: t.servicesPage.amazon.title,
+      description: t.servicesPage.amazon.description,
+      features: t.servicesPage.amazon.features,
+      detailSlug: 'amazon-seller-services',
     },
     {
       icon: Search,
