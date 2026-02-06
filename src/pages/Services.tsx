@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package } from 'lucide-react';
+import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -53,6 +53,13 @@ export default function Services() {
       description: t.servicesPage.tracking.description,
       features: t.servicesPage.tracking.features,
       detailSlug: 'tracking-attribution',
+    },
+    {
+      icon: Code,
+      title: t.servicesPage.customApps.title,
+      description: t.servicesPage.customApps.description,
+      features: t.servicesPage.customApps.features,
+      detailSlug: 'custom-enterprise-applications',
     },
   ];
 
