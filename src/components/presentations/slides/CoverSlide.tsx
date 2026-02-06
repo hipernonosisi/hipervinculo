@@ -10,7 +10,7 @@ interface CoverSlideProps {
 
 export function CoverSlide({ content }: CoverSlideProps) {
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center p-12 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-8 overflow-hidden">
       {/* Diagonal pattern background */}
       <div 
         className="absolute inset-0"
@@ -32,15 +32,15 @@ export function CoverSlide({ content }: CoverSlideProps) {
         <img 
           src={logoHipervinculo} 
           alt="Hipervinculo" 
-          className="h-20 md:h-24 mb-12"
+          className="h-16 md:h-20 mb-8"
         />
         
         {/* Decorative line */}
-        <div className="w-24 h-1 mb-8" style={{ backgroundColor: '#8BC34A' }} />
+        <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#8BC34A' }} />
         
         {/* Title */}
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 tracking-tight"
           style={{ color: '#2d4a2d' }}
         >
           {content.title}
@@ -48,18 +48,18 @@ export function CoverSlide({ content }: CoverSlideProps) {
         
         {/* Subtitle */}
         <p 
-          className="text-xl md:text-2xl mb-8 font-medium"
+          className="text-lg md:text-xl mb-6 font-medium"
           style={{ color: '#2d4a2d', opacity: 0.8 }}
         >
           {content.subtitle}
         </p>
         
         {/* Decorative line */}
-        <div className="w-24 h-1 mb-8" style={{ backgroundColor: '#8BC34A' }} />
+        <div className="w-20 h-1 mb-6" style={{ backgroundColor: '#8BC34A' }} />
         
         {/* Tagline */}
         <p 
-          className="text-lg md:text-xl font-medium tracking-wide uppercase"
+          className="text-base md:text-lg font-medium tracking-wide uppercase"
           style={{ color: '#8BC34A' }}
         >
           {content.tagline}
@@ -68,13 +68,13 @@ export function CoverSlide({ content }: CoverSlideProps) {
       
       {/* Corner decorations */}
       <div 
-        className="absolute top-0 left-0 w-32 h-32"
+        className="absolute top-0 left-0 w-24 h-24"
         style={{
           background: 'linear-gradient(135deg, rgba(139, 195, 74, 0.15) 0%, transparent 100%)'
         }}
       />
       <div 
-        className="absolute bottom-0 right-0 w-32 h-32"
+        className="absolute bottom-0 right-0 w-24 h-24"
         style={{
           background: 'linear-gradient(315deg, rgba(139, 195, 74, 0.15) 0%, transparent 100%)'
         }}
