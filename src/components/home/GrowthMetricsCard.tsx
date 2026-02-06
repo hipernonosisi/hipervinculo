@@ -8,37 +8,37 @@ export const GrowthMetricsCard = () => {
       initial={{ opacity: 0, scale: 0.9, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="relative"
+      className="relative flex items-center justify-center"
     >
-      <Card className="bg-white shadow-xl border-0 w-full min-w-[400px] rounded-2xl overflow-hidden">
-        <CardHeader className="pb-4 pt-8 px-8">
+      <Card className="bg-white shadow-2xl border-0 w-full min-w-[500px] max-w-[560px] rounded-3xl overflow-hidden">
+        <CardHeader className="pb-6 pt-10 px-12">
           <motion.div 
             className="flex items-center justify-between"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <span className="text-lg font-semibold text-foreground">Growth Metrics</span>
+            <span className="text-xl font-bold text-foreground">Growth Metrics</span>
             <motion.div
               initial={{ opacity: 0, rotate: -45 }}
               animate={{ opacity: 1, rotate: 0 }}
               transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
             >
-              <TrendingUp className="h-6 w-6" style={{ color: '#8BC34A' }} />
+              <TrendingUp className="h-7 w-7" style={{ color: '#8BC34A' }} />
             </motion.div>
           </motion.div>
         </CardHeader>
         
-        <CardContent className="space-y-5 pt-2 pb-10 px-8">
+        <CardContent className="space-y-8 pt-2 pb-12 px-12">
           <motion.div 
-            className="space-y-1"
+            className="space-y-2"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <span className="text-base text-muted-foreground">Revenue Growth</span>
+            <span className="text-lg text-muted-foreground">Revenue Growth</span>
             <motion.div 
-              className="text-[44px] font-extrabold leading-tight"
+              className="text-[56px] md:text-[64px] font-extrabold leading-none"
               style={{ color: '#8BC34A' }}
               initial={{ opacity: 0, scale: 0.5, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -49,14 +49,14 @@ export const GrowthMetricsCard = () => {
           </motion.div>
           
           <motion.div 
-            className="space-y-1"
+            className="space-y-2"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.75, duration: 0.5 }}
           >
-            <span className="text-base text-muted-foreground">ROAS Improvement</span>
+            <span className="text-lg text-muted-foreground">ROAS Improvement</span>
             <motion.div 
-              className="text-[44px] font-extrabold leading-tight"
+              className="text-[56px] md:text-[64px] font-extrabold leading-none"
               style={{ color: '#8BC34A' }}
               initial={{ opacity: 0, scale: 0.5, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -67,14 +67,14 @@ export const GrowthMetricsCard = () => {
           </motion.div>
 
           <motion.div 
-            className="space-y-1"
+            className="space-y-2"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.9, duration: 0.5 }}
           >
-            <span className="text-base text-muted-foreground">Qualified Leads</span>
+            <span className="text-lg text-muted-foreground">Qualified Leads</span>
             <motion.div 
-              className="text-[44px] font-extrabold leading-tight"
+              className="text-[56px] md:text-[64px] font-extrabold leading-none"
               style={{ color: '#8BC34A' }}
               initial={{ opacity: 0, scale: 0.5, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
