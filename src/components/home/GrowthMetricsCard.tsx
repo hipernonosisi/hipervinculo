@@ -29,7 +29,7 @@ export const GrowthMetricsCard = () => {
           </motion.div>
         </CardHeader>
         
-        <CardContent className="space-y-6 pt-2 pb-10 px-8">
+        <CardContent className="space-y-5 pt-2 pb-10 px-8">
           <motion.div 
             className="space-y-1"
             initial={{ opacity: 0, x: -30 }}
@@ -38,7 +38,7 @@ export const GrowthMetricsCard = () => {
           >
             <span className="text-base text-muted-foreground">Revenue Growth</span>
             <motion.div 
-              className="text-[52px] font-extrabold leading-tight"
+              className="text-[44px] font-extrabold leading-tight"
               style={{ color: '#8BC34A' }}
               initial={{ opacity: 0, scale: 0.5, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -56,13 +56,31 @@ export const GrowthMetricsCard = () => {
           >
             <span className="text-base text-muted-foreground">ROAS Improvement</span>
             <motion.div 
-              className="text-[52px] font-extrabold leading-tight"
+              className="text-[44px] font-extrabold leading-tight"
               style={{ color: '#8BC34A' }}
               initial={{ opacity: 0, scale: 0.5, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1, type: "spring", stiffness: 150, damping: 12 }}
             >
               +180%
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className="space-y-1"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
+            <span className="text-base text-muted-foreground">Qualified Leads</span>
+            <motion.div 
+              className="text-[44px] font-extrabold leading-tight"
+              style={{ color: '#8BC34A' }}
+              initial={{ opacity: 0, scale: 0.5, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 1.2, type: "spring", stiffness: 150, damping: 12 }}
+            >
+              +320%
             </motion.div>
           </motion.div>
         </CardContent>
