@@ -3,6 +3,7 @@ import { ArrowRight, X, Check, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
 

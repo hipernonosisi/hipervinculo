@@ -142,6 +142,7 @@ export default function Audit() {
         }
         url="https://hipervinculo.net/audit"
       />
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-2xl mx-auto">
             {/* Header */}
