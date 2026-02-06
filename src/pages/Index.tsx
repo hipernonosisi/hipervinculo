@@ -85,11 +85,11 @@ export default function Index() {
   ];
 
   const industries = [
-    "LOCAL SERVICES",
-    "LAW & MEDICAL",
-    "HOME SERVICES",
-    "ECOMMERCE",
-    "B2B SAAS",
+    { name: "LOCAL SERVICES", icon: Phone, description: "Plumbers, electricians, contractors" },
+    { name: "LAW & MEDICAL", icon: ShieldCheck, description: "Law firms, clinics, specialists" },
+    { name: "HOME SERVICES", icon: Settings, description: "HVAC, roofing, landscaping" },
+    { name: "ECOMMERCE", icon: ShoppingCart, description: "Shopify, DTC brands, retail" },
+    { name: "B2B SAAS", icon: Zap, description: "Software, tech, enterprise" },
   ];
 
   const faqs = [
@@ -533,14 +533,22 @@ export default function Index() {
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
               {industries.map((industry, index) => (
-                <span 
+                <div 
                   key={index}
-                  className="px-6 py-3 bg-secondary text-foreground text-[14px] md:text-[15px] font-medium rounded-full tracking-wide"
+                  className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
                 >
-                  {industry}
-                </span>
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                    <industry.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <h4 className="text-[14px] md:text-[15px] font-bold text-foreground mb-1 tracking-wide">
+                    {industry.name}
+                  </h4>
+                  <p className="text-[12px] md:text-[13px] text-muted-foreground">
+                    {industry.description}
+                  </p>
+                </div>
               ))}
             </div>
           </AnimatedSection>
