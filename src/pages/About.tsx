@@ -3,6 +3,7 @@ import { ArrowRight, Target, Users, TrendingUp, Award, Shield, BarChart3, Shoppi
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
