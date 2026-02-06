@@ -1,13 +1,22 @@
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { AnimatedSection } from '@/components/ui/motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Privacy() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.privacy.title}
+        description={language === 'en' 
+          ? "Privacy Policy for Hipervínculo. Learn how we collect, use, and protect your personal information."
+          : "Política de privacidad de Hipervínculo. Conoce cómo recopilamos, usamos y protegemos tu información personal."
+        }
+        url="https://hipervinculo.net/privacy"
+        noIndex={false}
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}

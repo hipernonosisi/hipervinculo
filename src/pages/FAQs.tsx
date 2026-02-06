@@ -22,12 +22,12 @@ export default function FAQs() {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": t.faq.items.map((faq: { question: string; answer: string }) => ({
+          "mainEntity": t.faq.questions.map((faq: { q: string; a: string }) => ({
             "@type": "Question",
-            "name": faq.question,
+            "name": faq.q,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": faq.answer
+              "text": faq.a
             }
           }))
         }}

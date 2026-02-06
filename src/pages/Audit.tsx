@@ -134,7 +134,14 @@ export default function Audit() {
 
   return (
     <Layout>
-      <section className="py-20 md:py-28">
+      <SEO
+        title={t.audit.title}
+        description={language === 'en' 
+          ? "Get a free performance audit for your eCommerce business. Discover opportunities to improve your ROAS and scale profitably."
+          : "Obtén una auditoría de rendimiento gratuita para tu negocio eCommerce. Descubre oportunidades para mejorar tu ROAS y escalar rentablemente."
+        }
+        url="https://hipervinculo.net/audit"
+      />
         <div className="container">
           <div className="max-w-2xl mx-auto">
             {/* Header */}
