@@ -186,9 +186,21 @@ export const translations = {
           },
           pricing: {
             title: 'Engagement Model',
-            retainer: 'Monthly retainer starting at $3,000',
-            adSpend: 'Recommended minimum ad spend: $15,000/month',
-            note: 'We work with brands ready to scale — not just test the waters.',
+            models: [
+              {
+                title: 'Performance Retainer',
+                highlight: '2.5x',
+                highlightLabel: 'Min. Net ROAS',
+                description: 'Our fee is conditional: if our diagnostic confirms viability, you only pay if we hit the targets. No results — no payment.',
+              },
+              {
+                title: 'Growth Partnership',
+                highlight: '5%',
+                highlightLabel: 'of Net Shopify Sales',
+                description: 'A true partnership model where we grow with you. Available for qualified brands with strong historical data.',
+              },
+            ],
+            note: 'Both models suit brands with established conversion systems already in place.',
           },
           whoFor: {
             title: 'Who This Is For',
@@ -934,9 +946,21 @@ export const translations = {
           },
           pricing: {
             title: 'Modelo de Compromiso',
-            retainer: 'Retainer mensual desde $3,000',
-            adSpend: 'Inversión mínima recomendada en ads: $15,000/mes',
-            note: 'Trabajamos con marcas listas para escalar — no solo probar las aguas.',
+            models: [
+              {
+                title: 'Retainer de Rendimiento',
+                highlight: '2.5x',
+                highlightLabel: 'ROAS Neto Mín.',
+                description: 'Nuestra tarifa es condicional: si nuestro diagnóstico confirma viabilidad, solo pagas si alcanzamos los objetivos. Sin resultados — sin pago.',
+              },
+              {
+                title: 'Growth Partnership',
+                highlight: '5%',
+                highlightLabel: 'de Ventas Netas Shopify',
+                description: 'Un modelo de asociación real donde crecemos contigo. Disponible para marcas calificadas con datos históricos sólidos.',
+              },
+            ],
+            note: 'Ambos modelos son ideales para marcas con sistemas de conversión establecidos.',
           },
           whoFor: {
             title: 'Para Quién Es Esto',
