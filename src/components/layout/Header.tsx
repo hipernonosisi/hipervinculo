@@ -68,7 +68,7 @@ export function Header() {
             className="flex items-center gap-2 text-[14px] font-medium text-foreground hover:text-accent transition-colors border border-gray-300 rounded-full px-4 py-2"
           >
             <Globe className="h-4 w-4" />
-            <span>{language.toUpperCase()}</span>
+            <span>{language === 'en' ? 'ES' : 'EN'}</span>
           </button>
           <Link to="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <LayoutGrid className="h-5 w-5 text-foreground" />
@@ -114,7 +114,7 @@ export function Header() {
                 className="flex items-center gap-2 text-[14px] font-medium border border-gray-300 rounded-full px-4 py-2"
               >
                 <Globe className="h-4 w-4" />
-                <span>{language.toUpperCase()}</span>
+                <span>{language === 'en' ? 'ES' : 'EN'}</span>
               </button>
               <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-6">
                 <Link to="/audit" onClick={() => setIsMenuOpen(false)}>{t.nav.getFreeAudit}</Link>
