@@ -501,6 +501,36 @@ export const translations = {
         cta: 'Contact Us',
       },
     },
+    // Privacy Policy Page
+    privacy: {
+      title: 'Privacy Policy',
+      lastUpdated: 'Last updated: February 5, 2026',
+      intro: 'At HIPERVINCULO, we take your privacy and the protection of your personal information seriously. This privacy policy outlines the types of information we collect, how we use that information, and how we keep it secure.',
+      sections: {
+        collect: {
+          title: 'Information We Collect',
+          content1: 'When you visit our website, we may collect certain information from you, including your name, email address, phone number, and other personal information. We use this information to provide you with the services you request, such as scheduling a consultation or providing a quote.',
+          content2: 'In addition, we may collect certain non-personal information from you, such as your IP address, the type of browser you use, and other information related to your use of our website. We use this information to improve our website and to provide a better user experience for our visitors.',
+        },
+        use: {
+          title: 'How We Use Your Information',
+          content1: 'We use your personal information to provide you with the services you request, such as scheduling a consultation or providing a quote. We may also use your information to contact you about special offers or promotions, but only if you have given us permission to do so.',
+          content2: 'We do not share your personal information with third parties, except as necessary to provide you with the services you request, such as sharing your information with our internal personnel.',
+        },
+        security: {
+          title: 'How We Keep Your Information Secure',
+          content: 'We take the security of your personal information seriously and take steps to keep your information secure. We use industry-standard encryption and security measures to protect your information from unauthorized access, disclosure, or use.',
+        },
+        changes: {
+          title: 'Changes to Our Privacy Policy',
+          content: 'We may update our privacy policy from time to time, and any changes will be posted on this page. By continuing to use our website after any changes have been made, you agree to the updated privacy policy.',
+        },
+        contact: {
+          title: 'Contact Us',
+          content: 'If you have any questions or concerns about our privacy policy or how we use your personal information, please don\'t hesitate to contact us.',
+        },
+      },
+    },
   },
   es: {
     // Navigation
@@ -1000,6 +1030,36 @@ export const translations = {
         title: '¿Aún Tienes Preguntas?',
         subtitle: 'Estamos aquí para ayudar. Contáctanos y te responderemos en 24 horas.',
         cta: 'Contáctanos',
+      },
+    },
+    // Privacy Policy Page
+    privacy: {
+      title: 'Política de Privacidad',
+      lastUpdated: 'Última actualización: 5 de febrero de 2026',
+      intro: 'En HIPERVINCULO, nos tomamos muy en serio tu privacidad y la protección de tu información personal. Esta política de privacidad describe los tipos de información que recopilamos, cómo usamos esa información y cómo la mantenemos segura.',
+      sections: {
+        collect: {
+          title: 'Información que Recopilamos',
+          content1: 'Cuando visitas nuestro sitio web, podemos recopilar cierta información tuya, incluyendo tu nombre, dirección de correo electrónico, número de teléfono y otra información personal. Usamos esta información para proporcionarte los servicios que solicitas, como programar una consulta o proporcionar un presupuesto.',
+          content2: 'Además, podemos recopilar cierta información no personal tuya, como tu dirección IP, el tipo de navegador que usas y otra información relacionada con tu uso de nuestro sitio web. Usamos esta información para mejorar nuestro sitio web y proporcionar una mejor experiencia de usuario a nuestros visitantes.',
+        },
+        use: {
+          title: 'Cómo Usamos Tu Información',
+          content1: 'Usamos tu información personal para proporcionarte los servicios que solicitas, como programar una consulta o proporcionar un presupuesto. También podemos usar tu información para contactarte sobre ofertas especiales o promociones, pero solo si nos has dado permiso para hacerlo.',
+          content2: 'No compartimos tu información personal con terceros, excepto cuando sea necesario para proporcionarte los servicios que solicitas, como compartir tu información con nuestro personal interno.',
+        },
+        security: {
+          title: 'Cómo Mantenemos Tu Información Segura',
+          content: 'Nos tomamos muy en serio la seguridad de tu información personal y tomamos medidas para mantenerla segura. Usamos encriptación estándar de la industria y medidas de seguridad para proteger tu información contra acceso no autorizado, divulgación o uso.',
+        },
+        changes: {
+          title: 'Cambios en Nuestra Política de Privacidad',
+          content: 'Podemos actualizar nuestra política de privacidad de vez en cuando, y cualquier cambio será publicado en esta página. Al continuar usando nuestro sitio web después de que se hayan realizado cambios, aceptas la política de privacidad actualizada.',
+        },
+        contact: {
+          title: 'Contáctanos',
+          content: 'Si tienes alguna pregunta o inquietud sobre nuestra política de privacidad o cómo usamos tu información personal, no dudes en contactarnos.',
+        },
       },
     },
   },
