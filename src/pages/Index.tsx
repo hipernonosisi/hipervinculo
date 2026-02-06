@@ -122,10 +122,10 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero Section - Exact match to hipervinculo.net */}
-      <section className="relative overflow-hidden bg-[#f8f9f5] py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-[#f8f9f5] py-16 lg:py-20">
         {/* Subtle diagonal line pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage: `repeating-linear-gradient(
               -55deg,
@@ -138,14 +138,14 @@ export default function Index() {
         />
         
         <div className="container relative">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className="max-w-[540px]">
+            <div className="max-w-[620px]">
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-[15px] text-muted-foreground mb-8 leading-relaxed"
+                className="text-[17px] text-muted-foreground mb-6 leading-[1.6]"
               >
                 Hipervinculo builds performance-driven growth systems for businesses ready to scale.
               </motion.p>
@@ -154,7 +154,7 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-8 min-h-[180px] md:min-h-[200px]"
+                className="mb-10 min-h-[220px] md:min-h-[260px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.h1
@@ -163,8 +163,8 @@ export default function Index() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="text-[42px] md:text-[52px] lg:text-[56px] leading-[1.08] tracking-[-0.02em]"
-                    style={{ fontWeight: 800 }}
+                    className="text-[52px] md:text-[64px] lg:text-[72px] leading-[1.02] tracking-[-0.03em]"
+                    style={{ fontWeight: 800, color: '#2d4a2d' }}
                   >
                     {rotatingHeadlines[wordIndex]}
                   </motion.h1>
@@ -175,7 +175,7 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-[15px] text-muted-foreground leading-[1.7] mb-10"
+                className="text-[18px] text-muted-foreground leading-[1.7] mb-10 max-w-[540px]"
               >
                 Websites, inbound architecture, and paid acquisition designed to turn traffic into real opportunities — whether you're generating local leads or scaling an established brand.
               </motion.p>
@@ -185,35 +185,41 @@ export default function Index() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 mb-10"
+                className="flex flex-col sm:flex-row gap-4 mb-12"
               >
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white rounded-xl px-6 h-12 text-[14px] font-semibold">
-                  <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Button asChild size="lg" className="rounded-full px-8 h-14 text-[16px] font-semibold shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
+                  <Link to="/audit">Get Free Audit <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-xl px-6 h-12 bg-white border-gray-200 text-[14px] font-medium text-foreground">
+                <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 bg-white border-gray-300 text-[16px] font-semibold text-foreground hover:bg-gray-50">
                   <Link to="/services">Explore Our Services</Link>
                 </Button>
               </motion.div>
 
-              {/* Trust badges */}
+              {/* Trust badges with circular checkmarks */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="space-y-3"
+                className="space-y-4"
               >
-                <div className="flex flex-wrap gap-x-8 gap-y-2">
-                  <span className="flex items-center gap-2 text-[13px] text-muted-foreground">
-                    <Check className="h-4 w-4 text-accent" />
+                <div className="flex flex-wrap gap-x-10 gap-y-3">
+                  <span className="flex items-center gap-3 text-[15px] text-muted-foreground">
+                    <span className="flex items-center justify-center w-5 h-5 rounded-full border-2" style={{ borderColor: '#8BC34A' }}>
+                      <Check className="h-3 w-3" style={{ color: '#8BC34A' }} />
+                    </span>
                     20+ years in digital growth
                   </span>
-                  <span className="flex items-center gap-2 text-[13px] text-muted-foreground">
-                    <Check className="h-4 w-4 text-accent" />
+                  <span className="flex items-center gap-3 text-[15px] text-muted-foreground">
+                    <span className="flex items-center justify-center w-5 h-5 rounded-full border-2" style={{ borderColor: '#8BC34A' }}>
+                      <Check className="h-3 w-3" style={{ color: '#8BC34A' }} />
+                    </span>
                     Long-term client retention
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-[13px] text-muted-foreground">
-                  <Check className="h-4 w-4 text-accent" />
+                <div className="flex items-center gap-3 text-[15px] text-muted-foreground">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full border-2" style={{ borderColor: '#8BC34A' }}>
+                    <Check className="h-3 w-3" style={{ color: '#8BC34A' }} />
+                  </span>
                   Built for serious businesses only
                 </div>
               </motion.div>
