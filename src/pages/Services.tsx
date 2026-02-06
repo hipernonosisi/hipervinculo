@@ -24,6 +24,7 @@ export default function Services() {
       title: t.servicesPage.website.title,
       description: t.servicesPage.website.description,
       features: t.servicesPage.website.features,
+      detailSlug: 'conversion-website-development',
     },
     {
       icon: Search,
