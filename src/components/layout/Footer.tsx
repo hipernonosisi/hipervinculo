@@ -49,8 +49,8 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Quick Links - Takes 3 columns, starts at column 6 */}
-            <div className="lg:col-span-3 lg:col-start-6">
+            {/* Quick Links - Takes 2 columns, starts at column 7 */}
+            <div className="lg:col-span-2 lg:col-start-7">
               <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Quick Links</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
@@ -66,8 +66,8 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Contact - Takes 4 columns, starts at column 10 with extra left margin */}
-            <div className="lg:col-span-3 lg:col-start-10 lg:pl-12">
+            {/* Contact - Takes 3 columns, starts at column 9 */}
+            <div className="lg:col-span-3 lg:col-start-9">
               <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Contact Us</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">
