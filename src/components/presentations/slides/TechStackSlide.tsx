@@ -14,16 +14,16 @@ interface TechStackSlideProps {
 
 export function TechStackSlide({ content }: TechStackSlideProps) {
   return (
-    <div className="relative w-full h-full flex flex-col p-12 overflow-hidden" style={{ backgroundColor: '#f8f9f5' }}>
+    <div className="relative w-full h-full flex flex-col p-8 overflow-hidden" style={{ backgroundColor: '#f8f9f5' }}>
       {/* Header with logo */}
-      <div className="flex items-center justify-between mb-6">
-        <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
-        <div className="w-16 h-1" style={{ backgroundColor: '#8BC34A' }} />
+      <div className="flex items-center justify-between mb-4">
+        <img src={logoHipervinculo} alt="Hipervinculo" className="h-8" />
+        <div className="w-12 h-1" style={{ backgroundColor: '#8BC34A' }} />
       </div>
       
       {/* Title */}
       <h2 
-        className="text-4xl md:text-5xl font-extrabold mb-2"
+        className="text-2xl md:text-3xl font-extrabold mb-1"
         style={{ color: '#2d4a2d' }}
       >
         {content.title}
@@ -31,36 +31,36 @@ export function TechStackSlide({ content }: TechStackSlideProps) {
       
       {/* Headline */}
       <p 
-        className="text-xl md:text-2xl font-medium mb-8"
+        className="text-lg font-medium mb-4"
         style={{ color: '#8BC34A' }}
       >
         {content.headline}
       </p>
       
-      {/* Tech categories */}
-      <div className="grid grid-cols-2 gap-4 flex-1">
+      {/* Tech categories - 3 columns for better fit */}
+      <div className="grid grid-cols-3 gap-3 flex-1">
         {content.categories.map((category, index) => (
           <div 
             key={index}
-            className="p-5 rounded-xl bg-white"
-            style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
+            className="p-3 rounded-lg bg-white"
+            style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <div 
-                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                className="w-7 h-7 rounded flex items-center justify-center"
                 style={{ backgroundColor: 'rgba(139, 195, 74, 0.15)' }}
               >
-                <Server className="w-5 h-5" style={{ color: '#8BC34A' }} />
+                <Server className="w-3.5 h-3.5" style={{ color: '#8BC34A' }} />
               </div>
-              <h3 className="font-bold text-lg" style={{ color: '#2d4a2d' }}>
+              <h3 className="font-bold text-xs" style={{ color: '#2d4a2d' }}>
                 {category.name}
               </h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1">
               {category.tools.map((tool, toolIndex) => (
                 <span 
                   key={toolIndex}
-                  className="px-3 py-1.5 rounded-full text-sm font-medium"
+                  className="px-2 py-0.5 rounded-full text-xs"
                   style={{ 
                     backgroundColor: 'rgba(45, 74, 45, 0.08)',
                     color: '#2d4a2d'
