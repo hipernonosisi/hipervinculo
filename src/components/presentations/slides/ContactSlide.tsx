@@ -93,9 +93,11 @@ export function ContactSlide({ content }: ContactSlideProps) {
         </button>
       </div>
       
-      {/* Footer with logo */}
+      {/* Footer with logo on white background */}
       <div className="flex items-center justify-center">
-        <img src={logoHipervinculo} alt="Hipervinculo" className="h-12 brightness-0 invert" />
+        <div className="bg-white px-8 py-4 rounded-xl">
+          <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
+        </div>
       </div>
       
       {/* Corner decorations */}
