@@ -33,7 +33,7 @@ export const translations = {
         'eCommerce Growth Partner Strategies That Scale Revenue',
         'High-Converting Lead Generation Systems',
       ],
-      provenResultsTitle: 'Proven Results Across Growth Channels\nand Inbound Lead Systems',
+      provenResultsTitle: 'Proven Results Across Growth Channels and Inbound Lead Systems',
       provenResultsCta: 'Request a conversion and lead system walkthrough — tailored to your business.',
       leadGenTitle: 'Lead Generation Systems',
       leadGenResults: [
@@ -472,7 +472,7 @@ export const translations = {
         'Estrategias de Growth Partner para eCommerce que Escalan Ingresos',
         'Sistemas de Generación de Leads de Alta Conversión',
       ],
-      provenResultsTitle: 'Resultados Comprobados en Canales de Crecimiento\ny Sistemas de Generación de Leads Inbound',
+      provenResultsTitle: 'Resultados Comprobados en Canales de Crecimiento y Sistemas de Generación de Leads Inbound',
       provenResultsCta: 'Solicita un recorrido de tu sistema de conversión y leads — adaptado a tu negocio.',
       leadGenTitle: 'Sistemas de Generación de Leads',
       leadGenResults: [
