@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Download, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { pdf } from '@react-pdf/renderer';
 import { leadGenPresentationContent, PresentationLanguage } from './data/leadGenPresentationContent';
 import { CoverSlide } from './slides/CoverSlide';
 import { AboutSlide } from './slides/AboutSlide';
@@ -13,7 +14,22 @@ import { PricingSlide } from './slides/PricingSlide';
 import { AddonsSlide } from './slides/AddonsSlide';
 import { OtherServicesSlide } from './slides/OtherServicesSlide';
 import { ContactSlide } from './slides/ContactSlide';
+import { LeadGenPDFDocument } from './pdf/PDFSlides';
 import { useToast } from '@/hooks/use-toast';
+import logoHipervinculo from '@/assets/logo-hipervinculo.png';
+import symbolHipervinculo from '@/assets/symbol-hipervinculo.png';
+
+// Helper function to convert image URL to base64
+const imageToBase64 = async (url: string): Promise<string> => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
 
 export function LeadGenPresentation() {
   const [language, setLanguage] = useState<PresentationLanguage>('en');
@@ -57,60 +73,36 @@ export function LeadGenPresentation() {
     setIsExporting(true);
     toast({
       title: language === 'en' ? 'Generating PDF...' : 'Generando PDF...',
-      description: language === 'en' ? 'This may take a few seconds' : 'Esto puede tomar unos segundos',
+      description: language === 'en' ? 'Creating vector PDF with text' : 'Creando PDF vectorial con texto',
     });
     
     try {
-      const html2canvas = (await import('html2canvas')).default;
-      const { jsPDF } = await import('jspdf');
+      // Convert images to base64 for PDF embedding
+      const logoBase64 = await imageToBase64(logoHipervinculo);
+      const symbolBase64 = await imageToBase64(symbolHipervinculo);
       
-      // PDF dimensions (16:9 aspect ratio)
-      const pdfWidth = 1920;
-      const pdfHeight = 1080;
+      // Generate PDF using @react-pdf/renderer (vector text)
+      const blob = await pdf(
+        <LeadGenPDFDocument 
+          content={content} 
+          logoBase64={logoBase64}
+          symbolBase64={symbolBase64}
+        />
+      ).toBlob();
       
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [pdfWidth, pdfHeight],
-      });
-      
-      const slideContainer = containerRef.current;
-      if (!slideContainer) return;
-      
-      const originalSlide = currentSlide;
-      
-      for (let i = 0; i < slides.length; i++) {
-        setCurrentSlide(i);
-        
-        // Wait for render
-        await new Promise((resolve) => setTimeout(resolve, 250));
-        
-        // Capture at high resolution (scale 2 for quality)
-        const canvas = await html2canvas(slideContainer, {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          backgroundColor: null,
-        });
-        
-        const imgData = canvas.toDataURL('image/png', 1.0);
-        
-        if (i > 0) {
-          pdf.addPage([pdfWidth, pdfHeight], 'landscape');
-        }
-        
-        // Add image scaled to fit PDF page exactly
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      }
-      
-      setCurrentSlide(originalSlide);
-      
-      const fileName = `hipervinculo-lead-generation-${language}.pdf`;
-      pdf.save(fileName);
+      // Download the PDF
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `hipervinculo-lead-generation-${language}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
       
       toast({
         title: language === 'en' ? 'PDF Downloaded!' : '¡PDF Descargado!',
-        description: fileName,
+        description: `hipervinculo-lead-generation-${language}.pdf`,
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -122,7 +114,7 @@ export function LeadGenPresentation() {
     } finally {
       setIsExporting(false);
     }
-  }, [language, slides.length, currentSlide, toast]);
+  }, [language, content, toast]);
   
   // Keyboard navigation
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
