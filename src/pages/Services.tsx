@@ -5,63 +5,42 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Services() {
+  const { t, language } = useLanguage();
+
   const services = [
     {
       icon: Target,
-      title: 'Lead Generation Systems',
-      description: 'Complete inbound systems for service-based businesses:',
-      features: [
-        'Conversion-focused websites',
-        'Lead capture architecture',
-        'Google Ads for inbound calls and inquiries',
-        'Tracking + reporting infrastructure',
-      ],
-      note: 'Best for: businesses that want predictable lead flow.',
+      title: t.servicesPage.leadGen.title,
+      description: t.servicesPage.leadGen.description,
+      features: t.servicesPage.leadGen.features,
+      note: language === 'en' ? 'Best for: businesses that want predictable lead flow.' : 'Ideal para: negocios que quieren flujo predecible de leads.',
     },
     {
       icon: Globe,
-      title: 'Conversion Website Development',
-      description: 'Your website is not a brochure. It is a performance asset designed to convert traffic into opportunities. Website builds start at $2,500, depending on scope and conversion requirements.',
-      features: [
-        'Strategic page structure',
-        'Lead-focused UX',
-        'Forms, calls, WhatsApp integration',
-        'Analytics-ready build',
-      ],
+      title: t.servicesPage.website.title,
+      description: t.servicesPage.website.description,
+      features: t.servicesPage.website.features,
     },
     {
       icon: Search,
-      title: 'Google Ads for High-Intent Demand',
-      description: 'Campaigns designed around:',
-      features: [
-        'Search intent',
-        'Qualified inbound leads',
-        'Call-driven industries',
-        'Measurable conversion outcomes',
-      ],
+      title: t.servicesPage.googleAds.title,
+      description: t.servicesPage.googleAds.description,
+      features: t.servicesPage.googleAds.features,
     },
     {
       icon: LineChart,
-      title: 'Tracking & Attribution',
-      description: 'We implement measurement systems that allow you to understand:',
-      features: [
-        'Where leads come from',
-        'Which pages convert',
-        'What traffic is worth scaling',
-      ],
+      title: t.servicesPage.tracking.title,
+      description: t.servicesPage.tracking.description,
+      features: t.servicesPage.tracking.features,
     },
     {
       icon: ShoppingCart,
-      title: 'eCommerce Growth Partners',
-      description: 'For established brands looking to scale revenue:',
-      features: [
-        'Meta + Google performance strategy',
-        'Performance Max',
-        'Amazon PPC',
-        'Full-funnel growth systems',
-      ],
+      title: t.servicesPage.ecommerce.title,
+      description: t.servicesPage.ecommerce.description,
+      features: t.servicesPage.ecommerce.features,
     },
   ];
 
@@ -89,21 +68,27 @@ export default function Services() {
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <AnimatedSection>
-              <p className="text-accent font-semibold text-[15px] mb-4">What We Do</p>
+              <p className="text-accent font-semibold text-[15px] mb-4">
+                {language === 'en' ? 'What We Do' : 'Lo Que Hacemos'}
+              </p>
               <h1 
                 className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                 style={{ fontWeight: 800, color: '#2d4a2d' }}
               >
-                Services
+                {t.servicesPage.title}
               </h1>
               <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-4">
-                Hipervinculo builds inbound growth systems that combine conversion infrastructure, lead generation strategy, and paid acquisition.
+                {language === 'en' 
+                  ? 'Hipervinculo builds inbound growth systems that combine conversion infrastructure, lead generation strategy, and paid acquisition.'
+                  : 'Hipervínculo construye sistemas de crecimiento inbound que combinan infraestructura de conversión, estrategia de generación de leads y adquisición pagada.'}
               </p>
               <p className="text-[16px] text-muted-foreground">
-                We are not an "ads-only" agency.
+                {language === 'en' ? 'We are not an "ads-only" agency.' : 'No somos una agencia de "solo anuncios".'}
               </p>
               <p className="text-[17px] font-semibold mt-2" style={{ color: '#8BC34A' }}>
-                We build the foundation first — then scale what works.
+                {language === 'en' 
+                  ? 'We build the foundation first — then scale what works.'
+                  : 'Construimos los cimientos primero — luego escalamos lo que funciona.'}
               </p>
             </AnimatedSection>
           </div>
@@ -173,10 +158,12 @@ export default function Services() {
                 className="text-[40px] md:text-[52px] lg:text-[60px] text-white leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ fontWeight: 800 }}
               >
-                Ready to Scale<br />Your Business?
+                {language === 'en' ? 'Ready to Scale' : '¿Listo para Escalar'}<br />{language === 'en' ? 'Your Business?' : 'Tu Negocio?'}
               </h2>
               <p className="text-[18px] md:text-[20px] text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
-                Get a free performance audit and discover exactly how we can help you achieve your growth goals.
+                {language === 'en' 
+                  ? 'Get a free performance audit and discover exactly how we can help you achieve your growth goals.'
+                  : 'Obtén una auditoría de rendimiento gratuita y descubre exactamente cómo podemos ayudarte a alcanzar tus objetivos de crecimiento.'}
               </p>
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -188,7 +175,7 @@ export default function Services() {
                   className="bg-white text-foreground hover:bg-white/90 rounded-full px-8 py-6 text-[16px] font-semibold h-auto"
                 >
                   <Link to="/audit">
-                    Schedule Your Free Audit 
+                    {language === 'en' ? 'Schedule Your Free Audit' : 'Programa Tu Auditoría Gratis'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

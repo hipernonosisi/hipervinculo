@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,14 +40,14 @@ export default function Contact() {
 
       setIsSubmitted(true);
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours.",
+        title: language === 'en' ? "Message sent!" : "¡Mensaje enviado!",
+        description: language === 'en' ? "We'll get back to you within 24 hours." : "Te responderemos en 24 horas.",
       });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: language === 'en' ? "Error" : "Error",
+        description: language === 'en' ? "Failed to send message. Please try again." : "Error al enviar el mensaje. Por favor intenta de nuevo.",
         variant: "destructive",
       });
     } finally {
@@ -64,12 +64,16 @@ export default function Contact() {
               <div className="p-4 rounded-full bg-accent/10 w-fit mx-auto">
                 <CheckCircle className="h-12 w-12 text-accent" />
               </div>
-              <h1 className="text-3xl font-extrabold">Thank you!</h1>
+              <h1 className="text-3xl font-extrabold">
+                {language === 'en' ? 'Thank you!' : '¡Gracias!'}
+              </h1>
               <p className="text-lg text-muted-foreground">
-                We've received your message and will get back to you within 24 hours.
+                {language === 'en' 
+                  ? "We've received your message and will get back to you within 24 hours."
+                  : "Hemos recibido tu mensaje y te responderemos en 24 horas."}
               </p>
               <Button onClick={() => setIsSubmitted(false)} variant="outline">
-                Send another message
+                {language === 'en' ? 'Send another message' : 'Enviar otro mensaje'}
               </Button>
             </div>
           </div>
@@ -105,7 +109,9 @@ export default function Contact() {
           >
             {/* Form Card */}
             <div className="bg-[#f8f9fa] rounded-2xl p-8 md:p-10">
-              <h2 className="text-[24px] md:text-[28px] font-extrabold mb-8">Send us a Message</h2>
+              <h2 className="text-[24px] md:text-[28px] font-extrabold mb-8">
+                {language === 'en' ? 'Send us a Message' : 'Envíanos un Mensaje'}
+              </h2>
               
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -163,7 +169,9 @@ export default function Contact() {
                   className="w-full bg-accent hover:bg-accent/90 text-white rounded-xl h-12 font-semibold text-[15px]"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending...' : t.contact.form.submit}
+                  {isSubmitting 
+                    ? (language === 'en' ? 'Sending...' : 'Enviando...') 
+                    : t.contact.form.submit}
                 </Button>
               </form>
             </div>
@@ -171,9 +179,13 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="space-y-10">
               <div>
-                <h2 className="text-[24px] md:text-[28px] font-extrabold mb-4">Contact Information</h2>
+                <h2 className="text-[24px] md:text-[28px] font-extrabold mb-4">
+                  {language === 'en' ? 'Contact Information' : 'Información de Contacto'}
+                </h2>
                 <p className="text-[15px] text-muted-foreground mb-8">
-                  We're here to help you grow your business. Get in touch with us through any of the channels below.
+                  {language === 'en' 
+                    ? "We're here to help you grow your business. Get in touch with us through any of the channels below."
+                    : "Estamos aquí para ayudarte a hacer crecer tu negocio. Contáctanos a través de cualquiera de los canales a continuación."}
                 </p>
                 
                 <div className="space-y-6">
@@ -199,7 +211,7 @@ export default function Contact() {
                       <Phone className="h-5 w-5 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">Phone</h3>
+                      <h3 className="font-semibold text-foreground">{language === 'en' ? 'Phone' : 'Teléfono'}</h3>
                       <a 
                         href="tel:+17865290679" 
                         className="text-muted-foreground hover:text-accent transition-colors"
@@ -215,7 +227,7 @@ export default function Contact() {
                       <MapPin className="h-5 w-5 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">Our Office</h3>
+                      <h3 className="font-semibold text-foreground">{language === 'en' ? 'Our Office' : 'Nuestra Oficina'}</h3>
                       <p className="text-muted-foreground">
                         2645 Executive Park Dr, Suite 146<br />
                         Weston, FL 33331
@@ -227,15 +239,21 @@ export default function Contact() {
 
               {/* Business Hours */}
               <div className="pt-6 border-t border-border">
-                <h3 className="text-[20px] font-extrabold mb-4">Business Hours</h3>
+                <h3 className="text-[20px] font-extrabold mb-4">
+                  {language === 'en' ? 'Business Hours' : 'Horario de Atención'}
+                </h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-accent" />
-                    <span className="text-muted-foreground">Monday - Friday: 9:30 AM - 5:30 PM EST</span>
+                    <span className="text-muted-foreground">
+                      {language === 'en' ? 'Monday - Friday: 9:30 AM - 5:30 PM EST' : 'Lunes - Viernes: 9:30 AM - 5:30 PM EST'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Users className="h-5 w-5 text-accent" />
-                    <span className="text-muted-foreground">We typically respond within 24 hours</span>
+                    <span className="text-muted-foreground">
+                      {language === 'en' ? 'We typically respond within 24 hours' : 'Normalmente respondemos en 24 horas'}
+                    </span>
                   </div>
                 </div>
               </div>
