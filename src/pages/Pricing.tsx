@@ -16,7 +16,7 @@ export default function Pricing() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                 Transparent Pricing for Growth & Lead Systems
               </h1>
-              <p className="text-xl text-muted-foreground mt-6">
+              <p className="text-[15px] md:text-[16px] text-muted-foreground mt-6 max-w-2xl mx-auto">
                 Choose the model that best fits your business stage and goals. No hidden fees — just clear structures and performance-driven partnerships.
               </p>
             </AnimatedSection>
