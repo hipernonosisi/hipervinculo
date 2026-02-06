@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -65,7 +66,14 @@ export default function Services() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.servicesPage.title}
+        description={language === 'en' 
+          ? "Explore our full-service digital marketing solutions: Meta Ads, Google Ads, SEO, Email Marketing, eCommerce Growth, and Lead Generation."
+          : "Explora nuestras soluciones de marketing digital: Meta Ads, Google Ads, SEO, Email Marketing, Crecimiento eCommerce y Generación de Leads."
+        }
+        url="https://hipervinculo.net/services"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}

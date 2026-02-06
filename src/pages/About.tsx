@@ -3,12 +3,13 @@ import { ArrowRight, Target, Users, TrendingUp, Award, Shield, BarChart3, Shoppi
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { AnimatedSection } from '@/components/ui/motion';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const values = [
     { icon: Target, title: t.about.values.consistency, description: t.about.values.consistencyDesc },
@@ -18,7 +19,14 @@ export default function About() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.about.title}
+        description={language === 'en' 
+          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $100M+ in managed ad spend."
+          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $100M+ en inversión publicitaria gestionada."
+        }
+        url="https://hipervinculo.net/about"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}

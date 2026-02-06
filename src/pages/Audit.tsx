@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -20,7 +21,7 @@ interface Question {
 }
 
 export default function Audit() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
@@ -133,6 +134,14 @@ export default function Audit() {
 
   return (
     <Layout>
+      <SEO
+        title={t.audit.title}
+        description={language === 'en' 
+          ? "Get a free performance audit for your eCommerce business. Discover opportunities to improve your ROAS and scale profitably."
+          : "Obtén una auditoría de rendimiento gratuita para tu negocio eCommerce. Descubre oportunidades para mejorar tu ROAS y escalar rentablemente."
+        }
+        url="https://hipervinculo.net/audit"
+      />
       <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-2xl mx-auto">

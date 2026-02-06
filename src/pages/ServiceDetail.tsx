@@ -3,6 +3,7 @@ import { ArrowRight, X, Check, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
 
@@ -10,7 +11,7 @@ type ServiceType = 'leadGen' | 'conversionWeb' | 'ecommerce' | 'amazon' | 'googl
 
 export default function ServiceDetail() {
   const { slug } = useParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Map slug to service content and type
   const getServiceInfo = (): { service: any; type: ServiceType } | null => {
@@ -46,11 +47,15 @@ export default function ServiceDetail() {
 
   const { service, type } = serviceInfo;
 
-  // Render Lead Gen layout
   if (type === 'leadGen') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}
@@ -290,7 +295,12 @@ export default function ServiceDetail() {
   if (type === 'ecommerce') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}
@@ -563,7 +573,12 @@ export default function ServiceDetail() {
   if (type === 'amazon') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}
@@ -830,6 +845,12 @@ export default function ServiceDetail() {
   if (type === 'googleAds') {
     return (
       <Layout>
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         {/* Hero Section */}
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -1088,6 +1109,12 @@ export default function ServiceDetail() {
   if (type === 'tracking') {
     return (
       <Layout>
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         {/* Hero Section */}
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -1346,7 +1373,12 @@ export default function ServiceDetail() {
   if (type === 'customApps') {
     return (
       <Layout>
-        {/* Hero Section */}
+        <SEO
+          title={service.title}
+          description={service.heroSubtitle}
+          url={`https://hipervinculo.net/services/${slug}`}
+          type="service"
+        />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
           style={{ backgroundColor: '#f8f9f5' }}

@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
 
@@ -11,7 +12,26 @@ export default function FAQs() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title="FAQs"
+        description={language === 'en' 
+          ? "Find answers to frequently asked questions about our digital marketing services, pricing, and processes."
+          : "Encuentra respuestas a preguntas frecuentes sobre nuestros servicios de marketing digital, precios y procesos."
+        }
+        url="https://hipervinculo.net/faqs"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": t.faq.questions.map((faq: { q: string; a: string }) => ({
+            "@type": "Question",
+            "name": faq.q,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.a
+            }
+          }))
+        }}
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}

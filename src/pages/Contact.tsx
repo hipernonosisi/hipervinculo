@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -84,7 +85,14 @@ export default function Contact() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      <SEO
+        title={t.contact.title}
+        description={language === 'en' 
+          ? "Get in touch with Hipervínculo. Let's discuss how we can help grow your eCommerce business with data-driven marketing strategies."
+          : "Contacta con Hipervínculo. Hablemos de cómo podemos ayudar a crecer tu negocio eCommerce con estrategias de marketing basadas en datos."
+        }
+        url="https://hipervinculo.net/contact"
+      />
       <section 
         className="relative py-28 md:py-36 overflow-hidden"
         style={{ backgroundColor: '#f8f9f5' }}
