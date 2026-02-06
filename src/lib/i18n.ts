@@ -165,6 +165,54 @@ export const translations = {
           q: 'Do you build stores or run email marketing?',
           a: 'We focus exclusively on paid media and conversion optimization. We partner with best-in-class agencies for Shopify development and email marketing.',
         },
+        {
+          q: 'How long does it take to see results?',
+          a: 'Most clients see initial improvements within 2-4 weeks. Significant scaling typically happens within 60-90 days as we optimize campaigns and test creative.',
+        },
+        {
+          q: 'Do you require long-term contracts?',
+          a: 'No. We have a 3-month initial commitment, but after that it\'s month-to-month. Our clients stay because we deliver results, not because they\'re locked in.',
+        },
+        {
+          q: 'What platforms do you advertise on?',
+          a: 'We specialize in Meta (Facebook/Instagram), Google Ads (Search, Shopping, Performance Max, YouTube), TikTok, and Amazon PPC.',
+        },
+        {
+          q: 'How do you report on performance?',
+          a: 'You get access to a real-time dashboard plus weekly written reports. We also have bi-weekly strategy calls to discuss results and next steps.',
+        },
+        {
+          q: 'What industries do you work with?',
+          a: 'We work primarily with DTC eCommerce brands, Amazon sellers, and service-based businesses looking for predictable lead generation.',
+        },
+        {
+          q: 'What\'s your creative process?',
+          a: 'We analyze your best-performing content, research competitors, and develop creative briefs. We can work with your in-house team or produce assets through our network.',
+        },
+        {
+          q: 'Do you offer a free audit?',
+          a: 'Yes! We offer a free performance audit where we analyze your current marketing and identify specific opportunities for improvement.',
+        },
+        {
+          q: 'How is your pricing structured?',
+          a: 'We offer three models: Performance Retainer (flat fee + performance bonus), Growth Partnership (% of revenue), and Lead Generation (setup + monthly management).',
+        },
+        {
+          q: 'What\'s your minimum ad spend requirement?',
+          a: 'For paid media management, we typically work with brands spending at least $10,000/month on advertising. For lead generation, there\'s no minimum.',
+        },
+        {
+          q: 'Can you help with Amazon advertising?',
+          a: 'Absolutely. We manage Sponsored Products, Sponsored Brands, and Sponsored Display campaigns with a focus on TACOS and profitability.',
+        },
+        {
+          q: 'What tracking tools do you use?',
+          a: 'We implement server-side tracking via the Conversions API, use Google Analytics 4, and set up proper attribution models to ensure accurate data.',
+        },
+        {
+          q: 'How do I get started?',
+          a: 'Simply fill out our free audit form or contact us directly. We\'ll schedule a discovery call to learn about your business and goals.',
+        },
       ],
     },
     // CTA
@@ -483,6 +531,54 @@ export const translations = {
         {
           q: '¿Construyen tiendas o hacen email marketing?',
           a: 'Nos enfocamos exclusivamente en medios pagados y optimización de conversión. Nos asociamos con agencias de primer nivel para desarrollo Shopify y email marketing.',
+        },
+        {
+          q: '¿Cuánto tiempo toma ver resultados?',
+          a: 'La mayoría de los clientes ven mejoras iniciales dentro de 2-4 semanas. El escalamiento significativo típicamente ocurre dentro de 60-90 días mientras optimizamos campañas y probamos creativos.',
+        },
+        {
+          q: '¿Requieren contratos a largo plazo?',
+          a: 'No. Tenemos un compromiso inicial de 3 meses, pero después es mes a mes. Nuestros clientes se quedan porque entregamos resultados, no porque estén atrapados.',
+        },
+        {
+          q: '¿En qué plataformas anuncian?',
+          a: 'Nos especializamos en Meta (Facebook/Instagram), Google Ads (Búsqueda, Shopping, Performance Max, YouTube), TikTok y Amazon PPC.',
+        },
+        {
+          q: '¿Cómo reportan el rendimiento?',
+          a: 'Tienes acceso a un dashboard en tiempo real más reportes escritos semanales. También tenemos llamadas de estrategia quincenales para discutir resultados y próximos pasos.',
+        },
+        {
+          q: '¿Con qué industrias trabajan?',
+          a: 'Trabajamos principalmente con marcas eCommerce DTC, vendedores de Amazon y negocios de servicios que buscan generación de leads predecible.',
+        },
+        {
+          q: '¿Cuál es su proceso creativo?',
+          a: 'Analizamos tu contenido con mejor rendimiento, investigamos competidores y desarrollamos briefs creativos. Podemos trabajar con tu equipo interno o producir activos a través de nuestra red.',
+        },
+        {
+          q: '¿Ofrecen una auditoría gratuita?',
+          a: '¡Sí! Ofrecemos una auditoría de rendimiento gratuita donde analizamos tu marketing actual e identificamos oportunidades específicas de mejora.',
+        },
+        {
+          q: '¿Cómo está estructurado su pricing?',
+          a: 'Ofrecemos tres modelos: Performance Retainer (tarifa fija + bono por rendimiento), Growth Partnership (% de ingresos), y Lead Generation (setup + gestión mensual).',
+        },
+        {
+          q: '¿Cuál es su requisito mínimo de gasto en anuncios?',
+          a: 'Para gestión de medios pagados, típicamente trabajamos con marcas que gastan al menos $10,000/mes en publicidad. Para generación de leads, no hay mínimo.',
+        },
+        {
+          q: '¿Pueden ayudar con publicidad en Amazon?',
+          a: 'Absolutamente. Gestionamos campañas de Sponsored Products, Sponsored Brands y Sponsored Display con enfoque en TACOS y rentabilidad.',
+        },
+        {
+          q: '¿Qué herramientas de tracking usan?',
+          a: 'Implementamos tracking del lado del servidor via Conversions API, usamos Google Analytics 4 y configuramos modelos de atribución adecuados para asegurar datos precisos.',
+        },
+        {
+          q: '¿Cómo empiezo?',
+          a: 'Simplemente llena nuestro formulario de auditoría gratuita o contáctanos directamente. Programaremos una llamada de descubrimiento para conocer tu negocio y objetivos.',
         },
       ],
     },
