@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
 import { useToast } from '@/hooks/use-toast';
@@ -41,6 +42,8 @@ export default function Admin() {
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [auditRequests, setAuditRequests] = useState<AuditRequest[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedContact, setSelectedContact] = useState<ContactSubmission | null>(null);
+  const [selectedAudit, setSelectedAudit] = useState<AuditRequest | null>(null);
 
   // Check authentication
   useEffect(() => {
@@ -233,7 +236,11 @@ export default function Admin() {
                         </TableHeader>
                         <TableBody>
                           {contactSubmissions.map((submission) => (
-                            <TableRow key={submission.id}>
+                            <TableRow 
+                              key={submission.id} 
+                              className="cursor-pointer hover:bg-accent/5"
+                              onClick={() => setSelectedContact(submission)}
+                            >
                               <TableCell className="whitespace-nowrap">
                                 <div className="flex items-center gap-2 text-sm">
                                   <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -242,9 +249,9 @@ export default function Admin() {
                               </TableCell>
                               <TableCell className="font-medium">{submission.full_name}</TableCell>
                               <TableCell>
-                                <a href={`mailto:${submission.email}`} className="text-accent hover:underline">
+                                <span className="text-accent">
                                   {submission.email}
-                                </a>
+                                </span>
                               </TableCell>
                               <TableCell>
                                 {submission.company_name ? (
@@ -306,7 +313,11 @@ export default function Admin() {
                         </TableHeader>
                         <TableBody>
                           {auditRequests.map((request) => (
-                            <TableRow key={request.id}>
+                            <TableRow 
+                              key={request.id}
+                              className="cursor-pointer hover:bg-accent/5"
+                              onClick={() => setSelectedAudit(request)}
+                            >
                               <TableCell className="whitespace-nowrap">
                                 <div className="flex items-center gap-2 text-sm">
                                   <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -320,21 +331,16 @@ export default function Admin() {
                                 </div>
                               </TableCell>
                               <TableCell>
-                                <a href={`mailto:${request.email}`} className="text-accent hover:underline">
+                                <span className="text-accent">
                                   {request.email}
-                                </a>
+                                </span>
                               </TableCell>
                               <TableCell>
                                 {request.website_url ? (
-                                  <a 
-                                    href={request.website_url.startsWith('http') ? request.website_url : `https://${request.website_url}`} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-accent hover:underline"
-                                  >
+                                  <div className="flex items-center gap-2 text-accent">
                                     <Globe className="h-4 w-4" />
-                                    {request.website_url.replace(/^https?:\/\//, '').substring(0, 25)}...
-                                  </a>
+                                    {request.website_url.replace(/^https?:\/\//, '').substring(0, 20)}...
+                                  </div>
                                 ) : '-'}
                               </TableCell>
                               <TableCell>
@@ -377,6 +383,161 @@ export default function Admin() {
           </Tabs>
         </AnimatedSection>
       </div>
+
+      {/* Contact Submission Detail Dialog */}
+      <Dialog open={!!selectedContact} onOpenChange={() => setSelectedContact(null)}>
+        <DialogContent className="max-w-2xl rounded-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold" style={{ color: '#2d4a2d' }}>
+              Contact Submission Details
+            </DialogTitle>
+          </DialogHeader>
+          {selectedContact && (
+            <div className="space-y-6 pt-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Full Name</p>
+                  <p className="font-medium">{selectedContact.full_name}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Email</p>
+                  <a href={`mailto:${selectedContact.email}`} className="font-medium text-accent hover:underline">
+                    {selectedContact.email}
+                  </a>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Company</p>
+                  <p className="font-medium">{selectedContact.company_name || '-'}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Inquiry Type</p>
+                  {selectedContact.inquiry_type ? (
+                    <Badge variant="secondary" className="rounded-full">
+                      {selectedContact.inquiry_type}
+                    </Badge>
+                  ) : '-'}
+                </div>
+                <div className="col-span-2">
+                  <p className="text-sm text-muted-foreground mb-1">Date</p>
+                  <p className="font-medium">{formatDate(selectedContact.created_at)}</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-2">Message</p>
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <p className="text-sm whitespace-pre-wrap">{selectedContact.message}</p>
+                </div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button 
+                  className="rounded-full"
+                  style={{ backgroundColor: '#8BC34A' }}
+                  onClick={() => window.open(`mailto:${selectedContact.email}`, '_blank')}
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                  Reply via Email
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Audit Request Detail Dialog */}
+      <Dialog open={!!selectedAudit} onOpenChange={() => setSelectedAudit(null)}>
+        <DialogContent className="max-w-2xl rounded-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold" style={{ color: '#2d4a2d' }}>
+              Audit Request Details
+            </DialogTitle>
+          </DialogHeader>
+          {selectedAudit && (
+            <div className="space-y-6 pt-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Company Name</p>
+                  <p className="font-medium">{selectedAudit.company_name}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Email</p>
+                  <a href={`mailto:${selectedAudit.email}`} className="font-medium text-accent hover:underline">
+                    {selectedAudit.email}
+                  </a>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Website</p>
+                  {selectedAudit.website_url ? (
+                    <a 
+                      href={selectedAudit.website_url.startsWith('http') ? selectedAudit.website_url : `https://${selectedAudit.website_url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-accent hover:underline flex items-center gap-1"
+                    >
+                      <Globe className="h-4 w-4" />
+                      {selectedAudit.website_url}
+                    </a>
+                  ) : '-'}
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Business Type</p>
+                  {selectedAudit.business_type ? (
+                    <Badge variant="secondary" className="rounded-full">
+                      {selectedAudit.business_type}
+                    </Badge>
+                  ) : '-'}
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Monthly Revenue</p>
+                  <p className="font-medium flex items-center gap-1">
+                    <DollarSign className="h-4 w-4 text-muted-foreground" />
+                    {selectedAudit.monthly_revenue || '-'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Monthly Ad Spend</p>
+                  <p className="font-medium flex items-center gap-1">
+                    <Target className="h-4 w-4 text-muted-foreground" />
+                    {selectedAudit.monthly_ad_spend || '-'}
+                  </p>
+                </div>
+                <div className="col-span-2">
+                  <p className="text-sm text-muted-foreground mb-1">Date</p>
+                  <p className="font-medium">{formatDate(selectedAudit.created_at)}</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-2">Growth Goals</p>
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <p className="text-sm whitespace-pre-wrap">{selectedAudit.growth_goals || 'No goals specified'}</p>
+                </div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button 
+                  className="rounded-full"
+                  style={{ backgroundColor: '#8BC34A' }}
+                  onClick={() => window.open(`mailto:${selectedAudit.email}`, '_blank')}
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                  Reply via Email
+                </Button>
+                {selectedAudit.website_url && (
+                  <Button 
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => window.open(
+                      selectedAudit.website_url?.startsWith('http') ? selectedAudit.website_url : `https://${selectedAudit.website_url}`,
+                      '_blank'
+                    )}
+                  >
+                    <Globe className="h-4 w-4 mr-2" />
+                    Visit Website
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
