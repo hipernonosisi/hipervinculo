@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -461,34 +461,57 @@ export default function Index() {
       </section>
 
       {/* Performance Guarantee - Dark Green */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-24 md:py-32 bg-primary text-primary-foreground overflow-hidden">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
             <AnimatedSection direction="left">
-              <div className="space-y-6">
-                <p className="text-accent font-medium text-[13px] flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Our Promise
-                </p>
-                <h2 className="text-[32px] md:text-[40px] font-extrabold text-white leading-[1.1] tracking-[-0.02em]">
+              <div className="space-y-8">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
+                  <Award className="h-4 w-4 text-accent" />
+                  <span className="text-white text-[14px] font-medium">Our Promise</span>
+                </div>
+                
+                <h2 
+                  className="text-[44px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
+                  style={{ fontWeight: 800, fontStyle: 'italic' }}
+                >
                   Our Performance<br />Guarantee
                 </h2>
-                <p className="text-[16px] text-primary-foreground/80 leading-relaxed">
-                  We believe in our ability to deliver results. If you qualify for our performance-based model and we don't meet the minimum agreed-upon performance target (typically 2.5 Net ROAS), you don't pay our management fee.
+                
+                <p className="text-accent text-[18px] md:text-[20px] italic font-medium">
+                  For eCommerce Growth Partners
                 </p>
-                <p className="font-semibold text-white text-[16px]">We succeed only when you succeed.</p>
+                
+                <p className="text-[17px] md:text-[18px] text-primary-foreground/80 leading-[1.7] max-w-lg">
+                  We believe in our ability to deliver results. If you qualify for our performance-based model and we don't meet the minimum agreed-upon performance target (typically 2.5 Net ROAS), you don't pay our management fee. It's that simple.
+                </p>
+                
+                <p className="font-bold text-white text-[18px] md:text-[20px]">We succeed only when you succeed.</p>
               </div>
             </AnimatedSection>
+            
             <AnimatedSection direction="right" delay={0.2}>
-              <Card className="bg-white border-0 shadow-2xl rounded-xl">
-                <CardContent className="p-10 text-center">
-                  <div className="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                    <ShieldCheck className="h-9 w-9 text-accent" />
-                  </div>
-                  <h3 className="text-[24px] font-extrabold text-foreground mb-2">No Results, No Fee.</h3>
-                  <p className="text-[14px] text-muted-foreground">That's our commitment.</p>
-                </CardContent>
-              </Card>
+              <div className="relative">
+                {/* Background decorative card */}
+                <div className="absolute top-8 -right-4 w-full h-full bg-white/10 rounded-3xl transform rotate-3"></div>
+                
+                {/* Main card */}
+                <Card className="relative bg-white border-0 shadow-2xl rounded-3xl">
+                  <CardContent className="p-12 md:p-16 text-center">
+                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8 border-2" style={{ borderColor: '#8BC34A' }}>
+                      <ShieldCheck className="h-10 w-10" style={{ color: '#8BC34A' }} />
+                    </div>
+                    <h3 
+                      className="text-[28px] md:text-[36px] text-foreground mb-3 leading-[1.15] tracking-[-0.02em]"
+                      style={{ fontWeight: 800, fontStyle: 'italic' }}
+                    >
+                      No Results, No Fee.
+                    </h3>
+                    <p className="text-[16px] md:text-[18px] text-muted-foreground">That's our commitment.</p>
+                  </CardContent>
+                </Card>
+              </div>
             </AnimatedSection>
           </div>
         </div>
