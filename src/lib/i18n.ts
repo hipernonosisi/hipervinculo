@@ -884,7 +884,7 @@ export const translations = {
       aboutUs: 'Nosotros',
       services: 'Servicios',
       pricing: 'Precios',
-      faqs: 'Preguntas Frecuentes',
+      faqs: 'Preguntas',
       getInTouch: 'Contacto',
       getFreeAudit: 'Auditoría Gratis',
     },
