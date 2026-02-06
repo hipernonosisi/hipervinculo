@@ -11,7 +11,7 @@ type ServiceType = 'leadGen' | 'conversionWeb' | 'ecommerce' | 'amazon' | 'googl
 
 export default function ServiceDetail() {
   const { slug } = useParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Map slug to service content and type
   const getServiceInfo = (): { service: any; type: ServiceType } | null => {
