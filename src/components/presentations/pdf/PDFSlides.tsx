@@ -736,21 +736,6 @@ const CornerDecor = () => (
 // Cover Slide
 export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent['cover']; logoBase64: string }) => (
   <Page size={[1920, 1080]} style={styles.page}>
-    {/* Diagonal pattern - simplified for PDF */}
-    <Svg style={styles.diagonalPattern} width="1920" height="1080" viewBox="0 0 1920 1080">
-      {[...Array(30)].map((_, i) => (
-        <Line 
-          key={i} 
-          x1={i * 100 - 500} 
-          y1={0} 
-          x2={i * 100 + 580} 
-          y2={1080} 
-          stroke="rgba(139, 195, 74, 0.05)" 
-          strokeWidth="40" 
-        />
-      ))}
-    </Svg>
-    
     <View style={styles.coverContainer}>
       <Image src={logoBase64} style={styles.coverLogo} />
       <View style={styles.coverLine} />
@@ -760,7 +745,7 @@ export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent
       <Text style={styles.coverTagline}>{content.tagline}</Text>
     </View>
     
-    {/* Corner decorations */}
+    {/* Corner decorations - simple solid triangles */}
     <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120 }}>
       <Svg width="120" height="120" viewBox="0 0 120 120">
         <Path d="M0 0 L120 0 L0 120 Z" fill="rgba(139, 195, 74, 0.1)" />
@@ -1121,23 +1106,6 @@ export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
       <Text style={styles.rightTagline}>
         Performance-driven growth systems for businesses ready to scale.
       </Text>
-      
-      {/* Decorative pattern */}
-      <View style={{ position: 'absolute', bottom: 0, right: 0, width: 200, height: 200, opacity: 0.1 }}>
-        <Svg width="200" height="200" viewBox="0 0 200 200">
-          {[...Array(10)].map((_, i) => (
-            <Line 
-              key={i} 
-              x1={i * 30 - 50} 
-              y1={0} 
-              x2={i * 30 + 100} 
-              y2={200} 
-              stroke={colors.limeGreen} 
-              strokeWidth="15" 
-            />
-          ))}
-        </Svg>
-      </View>
     </View>
   </Page>
 );
