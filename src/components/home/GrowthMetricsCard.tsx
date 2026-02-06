@@ -59,7 +59,7 @@ export const GrowthMetricsCard = () => {
         />
       </div>
 
-      <Card className="relative bg-white/95 backdrop-blur-sm shadow-2xl border border-border/20 w-full max-w-md rounded-3xl overflow-hidden">
+      <Card className="relative bg-white/95 backdrop-blur-sm shadow-2xl border border-border/20 w-full min-w-[420px] rounded-3xl overflow-hidden">
         {/* Gradient border effect */}
         <div className="absolute inset-0 rounded-3xl p-[2px] -z-10">
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/30 via-transparent to-primary/20" />
