@@ -228,22 +228,22 @@ export default function Index() {
       </section>
 
       {/* Proven Results Section - Dark Green */}
-      <section className="py-20 lg:py-24" style={{ backgroundColor: '#2F4F2F' }}>
+      <section className="py-24 lg:py-32" style={{ backgroundColor: '#3d5a3d' }}>
         <div className="container">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-[36px] md:text-[48px] lg:text-[52px] font-extrabold leading-[1.1] tracking-[-0.02em]" style={{ color: '#d4e5a2' }}>
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-[44px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-[-0.02em]" style={{ color: '#e0f0b5' }}>
               Proven Results Across Growth Channels<br className="hidden md:block" /> and Inbound Lead Systems
             </h2>
           </AnimatedSection>
           
-          <div className="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 gap-20 max-w-5xl mx-auto mb-20">
             <AnimatedSection delay={0.1}>
               <div>
-                <h3 className="font-bold text-[18px] md:text-[20px] mb-8" style={{ color: '#d4e5a2' }}>Lead Generation Systems</h3>
-                <ul className="space-y-5">
+                <h3 className="font-extrabold text-[22px] md:text-[26px] mb-10 tracking-[-0.01em]" style={{ color: '#e0f0b5' }}>Lead Generation Systems</h3>
+                <ul className="space-y-6">
                   {leadGenResults.map((result, index) => (
-                    <li key={index} className="flex items-start gap-4 text-[16px] leading-[1.6]" style={{ color: '#e8f0d8' }}>
-                      <Zap className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#d4e5a2' }} />
+                    <li key={index} className="flex items-start gap-4 text-[17px] leading-[1.6] font-normal" style={{ color: '#ffffff' }}>
+                      <Zap className="h-5 w-5 flex-shrink-0 mt-1" style={{ color: '#e0f0b5' }} />
                       <span>{result}</span>
                     </li>
                   ))}
@@ -252,11 +252,11 @@ export default function Index() {
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
               <div>
-                <h3 className="font-bold text-[18px] md:text-[20px] mb-8" style={{ color: '#d4e5a2' }}>eCommerce Growth Partners</h3>
-                <ul className="space-y-5">
+                <h3 className="font-extrabold text-[22px] md:text-[26px] mb-10 tracking-[-0.01em]" style={{ color: '#e0f0b5' }}>eCommerce Growth Partners</h3>
+                <ul className="space-y-6">
                   {ecomResults.map((result, index) => (
-                    <li key={index} className="flex items-start gap-4 text-[16px] leading-[1.6]" style={{ color: '#e8f0d8' }}>
-                      <Zap className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#d4e5a2' }} />
+                    <li key={index} className="flex items-start gap-4 text-[17px] leading-[1.6] font-normal" style={{ color: '#ffffff' }}>
+                      <Zap className="h-5 w-5 flex-shrink-0 mt-1" style={{ color: '#e0f0b5' }} />
                       <span>{result}</span>
                     </li>
                   ))}
@@ -266,15 +266,15 @@ export default function Index() {
           </div>
           
           {/* Horizontal line separator */}
-          <div className="max-w-5xl mx-auto mb-16">
-            <div className="w-full h-px" style={{ backgroundColor: 'rgba(212, 229, 162, 0.3)' }}></div>
+          <div className="max-w-5xl mx-auto mb-20">
+            <div className="w-full h-px" style={{ backgroundColor: 'rgba(224, 240, 181, 0.25)' }}></div>
           </div>
           
           <AnimatedSection delay={0.3} className="text-center">
-            <p className="text-[15px] mb-8" style={{ color: '#e8f0d8' }}>
+            <p className="text-[16px] mb-10 font-medium" style={{ color: '#ffffff' }}>
               Request a conversion and lead system walkthrough — tailored to your business.
             </p>
-            <Button asChild className="rounded-full px-10 h-12 text-[15px] font-semibold border-0" style={{ backgroundColor: '#f5f5dc', color: '#2F4F2F' }}>
+            <Button asChild className="rounded-full px-12 h-14 text-[16px] font-semibold border-0 hover:opacity-90 transition-opacity" style={{ backgroundColor: '#f5f5dc', color: '#3d5a3d' }}>
               <Link to="/audit">Get a Free Audit</Link>
             </Button>
           </AnimatedSection>
