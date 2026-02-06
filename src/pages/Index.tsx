@@ -220,7 +220,7 @@ export default function Index() {
             </div>
             
             {/* Right Content - Growth Metrics Card */}
-            <div className="hidden lg:flex justify-center lg:justify-end">
+            <div className="hidden lg:flex items-center justify-center">
               <GrowthMetricsCard />
             </div>
           </div>
