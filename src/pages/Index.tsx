@@ -408,28 +408,53 @@ export default function Index() {
       </section>
 
       {/* Why Clients Stay */}
-      <section className="py-20 bg-white">
+      <section className="py-24 md:py-32 bg-white">
         <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold mb-6 tracking-[-0.02em]">Why Clients Stay</h2>
-            <p className="text-[16px] text-muted-foreground max-w-2xl mx-auto italic leading-relaxed">
-              "Ads are just the fuel. The system is the engine."<br />
-              — Hipervínculo's Growth Philosophy
+          <AnimatedSection className="text-center mb-8">
+            <h2 
+              className="text-[48px] md:text-[60px] lg:text-[72px] mb-6 leading-[1.05] tracking-[-0.03em]"
+              style={{ fontWeight: 800, fontStyle: 'italic', color: '#1a1a2e' }}
+            >
+              Why Clients Stay
+            </h2>
+            <p className="text-[15px] md:text-[16px] text-muted-foreground">
+              Most of our lead generation clients have stayed with us for 5–8 years.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[22px] md:text-[28px] lg:text-[32px] text-foreground leading-[1.4] max-w-3xl mx-auto">
+              We focus on stability, consistency, and long-term inbound systems —<br className="hidden md:block" />
+              not short-term experiments.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="flex justify-center gap-16 md:gap-24 max-w-2xl mx-auto">
+            <div className="flex justify-center gap-20 md:gap-32 lg:gap-40 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-[40px] md:text-[48px] font-extrabold text-accent mb-2">20+</div>
-                <p className="text-[13px] text-muted-foreground">Years in Digital</p>
+                <div 
+                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
+                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                >
+                  20+
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">Years in Digital Growth</p>
               </div>
               <div className="text-center">
-                <div className="text-[40px] md:text-[48px] font-extrabold text-accent mb-2">$100M+</div>
-                <p className="text-[13px] text-muted-foreground">Managed Spend</p>
+                <div 
+                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
+                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                >
+                  $100M+
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">Managed Spend</p>
               </div>
               <div className="text-center">
-                <div className="text-[40px] md:text-[48px] font-extrabold text-accent mb-2">5-8</div>
-                <p className="text-[13px] text-muted-foreground">Year Avg. Retention</p>
+                <div 
+                  className="text-[56px] md:text-[72px] lg:text-[80px] mb-3 leading-none"
+                  style={{ fontWeight: 800, fontStyle: 'italic', color: '#8BC34A' }}
+                >
+                  5-8
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">Years (Avg. Retention)</p>
               </div>
             </div>
           </AnimatedSection>
