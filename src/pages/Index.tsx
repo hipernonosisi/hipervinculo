@@ -551,20 +551,25 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-white">
-        <div className="container max-w-2xl">
-          <AnimatedSection className="text-center mb-4">
-            <p className="text-accent font-medium text-[13px]">Frequently Asked Questions</p>
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container max-w-3xl">
+          <AnimatedSection className="text-center mb-6">
+            <p className="text-accent font-medium text-[15px]">Frequently Asked Questions</p>
           </AnimatedSection>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-[32px] md:text-[40px] font-extrabold tracking-[-0.02em]">Got Questions? We've Got Answers.</h2>
+          <AnimatedSection className="text-center mb-16">
+            <h2 
+              className="text-[40px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-[-0.03em]"
+              style={{ fontWeight: 800, color: '#2d4a2d' }}
+            >
+              Got Questions? We've Got Answers.
+            </h2>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50">
-                  <AccordionTrigger className="text-left text-[15px] font-medium py-5">{faq.q}</AccordionTrigger>
-                  <AccordionContent className="text-[15px] text-muted-foreground pb-5 leading-relaxed">{faq.a}</AccordionContent>
+                  <AccordionTrigger className="text-left text-[18px] md:text-[20px] font-medium py-6 text-foreground">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-[16px] md:text-[17px] text-muted-foreground pb-6 leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
