@@ -169,14 +169,39 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="bg-white border-0 rounded-3xl shadow-2xl max-w-3xl mx-auto">
-                  <CardContent className="py-16 md:py-20 px-10 md:px-16 text-center space-y-4">
-                    <p className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-tight" style={{ color: '#2d4a2d' }}>
-                      Ads are fuel.
-                    </p>
-                    <p className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-tight" style={{ color: '#8BC34A' }}>
-                      The system is the engine.
-                    </p>
+                <Card className="bg-white border-0 rounded-2xl shadow-2xl max-w-4xl mx-auto overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="grid md:grid-cols-2">
+                      {/* Text side */}
+                      <div className="p-8 md:p-10 flex flex-col justify-center">
+                        <p className="text-[20px] md:text-[24px] font-extrabold leading-tight mb-2" style={{ color: '#2d4a2d' }}>
+                          Ads are fuel.
+                        </p>
+                        <p className="text-[20px] md:text-[24px] font-extrabold leading-tight" style={{ color: '#8BC34A' }}>
+                          The system is the engine.
+                        </p>
+                      </div>
+                      {/* Visual side */}
+                      <div className="p-6 md:p-8 flex items-center justify-center" style={{ backgroundColor: '#f8f9f5' }}>
+                        <div className="flex items-end gap-3 h-24">
+                          {[40, 55, 45, 70, 60, 85, 75, 95].map((height, i) => (
+                            <motion.div
+                              key={i}
+                              className="w-4 md:w-5 rounded-t-sm"
+                              style={{ 
+                                height: `${height}%`,
+                                backgroundColor: i >= 6 ? '#8BC34A' : '#2d4a2d',
+                                opacity: i < 4 ? 0.4 : i < 6 ? 0.7 : 1
+                              }}
+                              initial={{ scaleY: 0 }}
+                              whileInView={{ scaleY: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
