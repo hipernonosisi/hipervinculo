@@ -333,13 +333,18 @@ export function ProposalPDFDocument({ data, logoUrl }: ProposalPDFDocumentProps)
                 </View>
                 <View style={styles.colType}>
                   <Text style={styles.typeText}>
-                    {service.type === 'monthly' ? 'Monthly' : 'One-time'}
+                    {service.type === 'percentage' 
+                      ? `${service.percentageValue || 0}% profit share`
+                      : service.type === 'monthly' 
+                        ? 'Monthly' 
+                        : 'One-time'}
                   </Text>
                 </View>
                 <View style={styles.colPrice}>
                   <Text style={styles.priceText}>
-                    {formatCurrency(service.price, data.currency)}
-                    {service.type === 'monthly' && '/mo'}
+                    {service.type === 'percentage'
+                      ? 'Performance-based'
+                      : `${formatCurrency(service.price, data.currency)}${service.type === 'monthly' ? '/mo' : ''}`}
                   </Text>
                 </View>
               </View>
@@ -404,8 +409,8 @@ export function ProposalPDFDocument({ data, logoUrl }: ProposalPDFDocumentProps)
 }
 
 export async function generateProposalPDF(data: ProposalPDFData): Promise<Blob> {
-  // Use the company logo from assets
-  const logoUrl = `${window.location.origin}/og-image.png`;
+  // Use the company logo from Supabase storage
+  const logoUrl = 'https://fshfuwinreztcqlumjzp.supabase.co/storage/v1/object/public/email-assets/logo-hipervinculo.png';
   
   const doc = <ProposalPDFDocument data={data} logoUrl={logoUrl} />;
   const blob = await pdf(doc).toBlob();
