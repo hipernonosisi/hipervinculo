@@ -12,6 +12,10 @@ export interface AgreementTerms {
     en: string[];
     es: string[];
   };
+  exitClause?: {
+    en: string;
+    es: string;
+  };
 }
 
 export interface ServiceItem {
@@ -416,6 +420,10 @@ export const predefinedServices: ServiceItem[] = [
           'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
         ],
       },
+      exitClause: {
+        en: 'Either party may terminate this agreement if monthly sales do not reach the agreed minimum target of ${MINIMUM_SALES_TARGET} USD for two consecutive months while the client maintains sufficient inventory levels.',
+        es: 'Cualquiera de las partes puede terminar este acuerdo si las ventas mensuales no alcanzan el objetivo mínimo acordado de ${MINIMUM_SALES_TARGET} USD durante dos meses consecutivos mientras el cliente mantenga niveles de inventario suficientes.',
+      },
     },
     requiredApps: [
       {
@@ -475,6 +483,10 @@ export const predefinedServices: ServiceItem[] = [
           'Se entregarán reportes de rendimiento mensuales con métricas detalladas de ganancia y publicidad.',
           'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
         ],
+      },
+      exitClause: {
+        en: 'Either party may terminate this agreement if monthly sales do not reach the agreed minimum target of ${MINIMUM_SALES_TARGET} USD for two consecutive months while the client maintains sufficient inventory levels.',
+        es: 'Cualquiera de las partes puede terminar este acuerdo si las ventas mensuales no alcanzan el objetivo mínimo acordado de ${MINIMUM_SALES_TARGET} USD durante dos meses consecutivos mientras el cliente mantenga niveles de inventario suficientes.',
       },
     },
     requiredApps: [
@@ -536,6 +548,10 @@ export const predefinedServices: ServiceItem[] = [
           'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
         ],
       },
+      exitClause: {
+        en: 'Either party may terminate this agreement if monthly sales do not reach the agreed minimum target of ${MINIMUM_SALES_TARGET} USD for two consecutive months while the client maintains sufficient inventory levels.',
+        es: 'Cualquiera de las partes puede terminar este acuerdo si las ventas mensuales no alcanzan el objetivo mínimo acordado de ${MINIMUM_SALES_TARGET} USD durante dos meses consecutivos mientras el cliente mantenga niveles de inventario suficientes.',
+      },
     },
     requiredApps: [
       {
@@ -595,6 +611,10 @@ export const predefinedServices: ServiceItem[] = [
           'Se entregarán reportes de rendimiento mensuales con métricas detalladas de ganancia y publicidad.',
           'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
         ],
+      },
+      exitClause: {
+        en: 'Either party may terminate this agreement if monthly sales do not reach the agreed minimum target of ${MINIMUM_SALES_TARGET} USD for two consecutive months while the client maintains sufficient inventory levels.',
+        es: 'Cualquiera de las partes puede terminar este acuerdo si las ventas mensuales no alcanzan el objetivo mínimo acordado de ${MINIMUM_SALES_TARGET} USD durante dos meses consecutivos mientras el cliente mantenga niveles de inventario suficientes.',
       },
     },
     requiredApps: [

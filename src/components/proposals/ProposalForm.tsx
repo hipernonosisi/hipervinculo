@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent, Sparkles, ExternalLink, Loader2, AlertCircle, Save } from 'lucide-react';
+import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent, Sparkles, ExternalLink, Loader2, AlertCircle, Save, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,6 +11,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { predefinedServices, serviceCategories, defaultPaymentTerms, type ServiceItem } from './data/proposalServices';
@@ -40,6 +41,13 @@ export interface ProposalService {
     url: string;
     description: string;
   }>;
+  minimumSalesTarget?: number; // For profit-share exit clause
+  agreementTerms?: {
+    duration: string;
+    paymentTerms: string;
+    termsAndConditions: string[];
+    exitClause?: string;
+  };
 }
 
 export interface ProposalFormData {
@@ -116,6 +124,8 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
   const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
   const [savedCustomServices, setSavedCustomServices] = useState<CustomServiceDB[]>([]);
   const [isSavingService, setIsSavingService] = useState(false);
+  const [pendingProfitShareService, setPendingProfitShareService] = useState<ServiceItem | null>(null);
+  const [minimumSalesInput, setMinimumSalesInput] = useState<string>('');
 
   // Load saved custom services
   useEffect(() => {
@@ -150,7 +160,7 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const addPredefinedService = (service: ServiceItem) => {
+  const addPredefinedService = (service: ServiceItem, minimumSalesTarget?: number) => {
     const newService: ProposalService = {
       id: `${service.id}-${Date.now()}`,
       name: service.name.en,
@@ -165,11 +175,37 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
         url: app.url,
         description: app.description.en,
       })),
+      minimumSalesTarget: service.agreementTerms?.exitClause ? minimumSalesTarget : undefined,
+      agreementTerms: service.agreementTerms ? {
+        duration: service.agreementTerms.duration.en,
+        paymentTerms: service.agreementTerms.paymentTerms.en,
+        termsAndConditions: service.agreementTerms.termsAndConditions.en,
+        exitClause: service.agreementTerms.exitClause?.en,
+      } : undefined,
     };
     setFormData(prev => ({
       ...prev,
       services: [...prev.services, newService],
     }));
+  };
+
+  const handleServiceClick = (service: ServiceItem) => {
+    // If it's a profit share service with exit clause, show input for minimum sales
+    if (service.type === 'percentage' && service.agreementTerms?.exitClause) {
+      setPendingProfitShareService(service);
+      setMinimumSalesInput('');
+    } else {
+      addPredefinedService(service);
+    }
+  };
+
+  const confirmProfitShareService = () => {
+    if (pendingProfitShareService) {
+      const minSales = parseFloat(minimumSalesInput) || 0;
+      addPredefinedService(pendingProfitShareService, minSales > 0 ? minSales : undefined);
+      setPendingProfitShareService(null);
+      setMinimumSalesInput('');
+    }
   };
 
   const addCustomService = () => {
@@ -332,6 +368,7 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Client Information */}
       <Card className="border-0 shadow-sm">
@@ -532,7 +569,7 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
                             type="button" 
                             size="icon" 
                             variant="ghost"
-                            onClick={() => addPredefinedService(service)}
+                            onClick={() => handleServiceClick(service)}
                           >
                             <Plus className="w-4 h-4" />
                           </Button>
@@ -870,5 +907,66 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
         </Button>
       </div>
     </form>
+
+      {/* Minimum Sales Target Dialog for Profit Share Services */}
+      <Dialog open={!!pendingProfitShareService} onOpenChange={(open) => !open && setPendingProfitShareService(null)}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Target className="w-5 h-5 text-primary" />
+              Minimum Sales Target
+            </DialogTitle>
+            <DialogDescription>
+              Set the minimum monthly sales target for the exit clause. Either party can terminate if this target is not met for 2 consecutive months while inventory is available.
+            </DialogDescription>
+          </DialogHeader>
+          
+          {pendingProfitShareService && (
+            <div className="space-y-4">
+              <div className="p-3 bg-muted rounded-lg">
+                <p className="font-medium">{pendingProfitShareService.name.en}</p>
+                <p className="text-sm text-muted-foreground">
+                  {pendingProfitShareService.percentageValue}% profit share
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="minSales">Minimum Monthly Sales (USD)</Label>
+                <div className="relative">
+                  <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    id="minSales"
+                    type="number"
+                    placeholder="e.g., 50000"
+                    value={minimumSalesInput}
+                    onChange={(e) => setMinimumSalesInput(e.target.value)}
+                    className="pl-9"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Leave empty if no minimum sales target applies
+                </p>
+              </div>
+            </div>
+          )}
+          
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setPendingProfitShareService(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={confirmProfitShareService}
+            >
+              Add Service
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
