@@ -69,11 +69,11 @@ export function MethodologySlide({ title, phase, items, phaseNumber = 1 }: Metho
       </div>
       
       {/* Progress indicator */}
-      <div className="flex items-center justify-center gap-2 mt-4">
+      <div className="flex items-center justify-center gap-2 mt-6 mb-2">
         {[1, 2, 3, 4].map((num) => (
           <div 
             key={num}
-            className="w-2.5 h-2.5 rounded-full transition-colors"
+            className="w-3 h-3 rounded-full transition-colors"
             style={{ 
               backgroundColor: num === phaseNumber ? '#8BC34A' : 'rgba(139, 195, 74, 0.2)'
             }}
