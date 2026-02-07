@@ -33,20 +33,20 @@ export function AboutSlide({ content }: AboutSlideProps) {
       </p>
       
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-6 mb-8">
         {content.stats.map((stat, index) => (
           <div 
             key={index}
-            className="p-4 rounded-xl text-center"
+            className="p-6 rounded-xl text-center"
             style={{ backgroundColor: 'white', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
           >
             <div 
-              className="text-3xl md:text-4xl font-extrabold mb-1"
+              className="text-4xl md:text-5xl font-extrabold mb-2"
               style={{ color: '#8BC34A' }}
             >
               {stat.value}
             </div>
-            <div className="text-xs font-medium text-gray-600">
+            <div className="text-sm md:text-base font-medium text-gray-600">
               {stat.label}
             </div>
           </div>
@@ -54,11 +54,11 @@ export function AboutSlide({ content }: AboutSlideProps) {
       </div>
       
       {/* Credentials */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {content.credentials.map((credential, index) => (
-          <div key={index} className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: '#8BC34A' }} />
-            <span className="text-gray-700 text-sm font-medium">{credential}</span>
+          <div key={index} className="flex items-center gap-3">
+            <CheckCircle className="w-6 h-6 flex-shrink-0" style={{ color: '#8BC34A' }} />
+            <span className="text-gray-700 text-base md:text-lg font-medium">{credential}</span>
           </div>
         ))}
       </div>
