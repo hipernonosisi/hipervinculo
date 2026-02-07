@@ -164,10 +164,10 @@ export function LeadGenPresentation() {
       </div>
       
       {/* Slide viewer - Optimized for mobile */}
-      <div className="flex-1 overflow-hidden p-2 sm:p-4 md:p-8 bg-gray-100 flex items-center justify-center">
+      <div className="flex-1 overflow-y-auto sm:overflow-hidden p-2 sm:p-4 md:p-8 bg-gray-100 flex items-start sm:items-center justify-center">
         <div 
           ref={containerRef}
-          className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full max-h-full sm:max-h-none"
+          className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full shrink-0"
           style={{ 
             maxWidth: '1200px',
             aspectRatio: '16/9',
