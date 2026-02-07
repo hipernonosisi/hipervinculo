@@ -38,24 +38,24 @@ export function OtherServicesSlide({ content }: OtherServicesSlideProps) {
       </p>
       
       {/* Services grid - 3 columns */}
-      <div className="grid grid-cols-3 gap-3 flex-1">
+      <div className="grid grid-cols-3 gap-4 flex-1">
         {content.services.map((service, index) => (
           <div 
             key={index}
-            className="p-3 rounded-lg bg-white flex items-start gap-3"
+            className="p-4 rounded-xl bg-white flex items-start gap-3"
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
             <div 
-              className="w-7 h-7 rounded flex items-center justify-center flex-shrink-0"
+              className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: 'rgba(139, 195, 74, 0.15)' }}
             >
-              <ArrowRight className="w-3.5 h-3.5" style={{ color: '#8BC34A' }} />
+              <ArrowRight className="w-5 h-5" style={{ color: '#8BC34A' }} />
             </div>
             <div>
-              <h3 className="font-bold text-sm mb-0.5" style={{ color: '#2d4a2d' }}>
+              <h3 className="font-bold text-base md:text-lg mb-1" style={{ color: '#2d4a2d' }}>
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-xs leading-snug">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 {service.description}
               </p>
             </div>
