@@ -14,7 +14,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import { predefinedServices, serviceCategories, defaultPaymentTerms, type ServiceItem } from './data/proposalServices';
+import { predefinedServices, serviceCategories, defaultPaymentTerms, getPaymentTermsForServices, type ServiceItem } from './data/proposalServices';
 
 interface CustomServiceDB {
   id: string;
@@ -155,6 +155,29 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
       total,
     }));
   }, [formData.services, formData.discount_percentage]);
+
+  // Auto-update payment terms based on service types
+  useEffect(() => {
+    if (formData.services.length === 0) return;
+    
+    const appropriateTerms = getPaymentTermsForServices(formData.services);
+    
+    // Only update if current terms are still default or match a template
+    const isUsingDefaultTerms = 
+      formData.payment_terms === defaultPaymentTerms.en ||
+      formData.payment_terms === defaultPaymentTerms.es ||
+      formData.payment_terms.includes('50% deposit') ||
+      formData.payment_terms.includes('50% de depósito') ||
+      formData.payment_terms.includes('Agreement Duration') ||
+      formData.payment_terms.includes('Duración del Acuerdo');
+    
+    if (isUsingDefaultTerms && formData.payment_terms !== appropriateTerms.en) {
+      setFormData(prev => ({
+        ...prev,
+        payment_terms: appropriateTerms.en,
+      }));
+    }
+  }, [formData.services]);
 
   const handleInputChange = (field: keyof ProposalFormData, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
