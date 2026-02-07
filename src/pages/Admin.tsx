@@ -280,19 +280,29 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex-wrap h-auto gap-1">
-              <TabsTrigger value="contact" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                Contact ({contactSubmissions.length})
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-2 sm:grid-cols-4 h-auto gap-1">
+              <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
+                <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
+                <span className="hidden sm:inline">Contact</span>
+                <span className="sm:hidden">Contact</span>
+                <span className="ml-1">({contactSubmissions.length})</span>
               </TabsTrigger>
-              <TabsTrigger value="audit" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                Audits ({auditRequests.length})
+              <TabsTrigger value="audit" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
+                <FileText className="w-3.5 h-3.5 sm:hidden mr-1" />
+                <span className="hidden sm:inline">Audits</span>
+                <span className="sm:hidden">Audits</span>
+                <span className="ml-1">({auditRequests.length})</span>
               </TabsTrigger>
-              <TabsTrigger value="chat" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                Chats ({chatConversations.length})
+              <TabsTrigger value="chat" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
+                <MessageCircle className="w-3.5 h-3.5 sm:hidden mr-1" />
+                <span className="hidden sm:inline">Chats</span>
+                <span className="sm:hidden">Chats</span>
+                <span className="ml-1">({chatConversations.length})</span>
               </TabsTrigger>
-              <TabsTrigger value="presentations" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1 sm:gap-2">
-                <Presentation className="w-3 h-3 sm:w-4 sm:h-4" />
-                Presentations
+              <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <Presentation className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Presentations</span>
+                <span className="sm:hidden">Present.</span>
               </TabsTrigger>
             </TabsList>
             
