@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent, Sparkles, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
+import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent, Sparkles, ExternalLink, Loader2, AlertCircle, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,7 +12,19 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 import { predefinedServices, serviceCategories, defaultPaymentTerms, type ServiceItem } from './data/proposalServices';
+
+interface CustomServiceDB {
+  id: string;
+  name: string;
+  description: string | null;
+  base_price: number;
+  currency: string;
+  type: string;
+  percentage_value: number | null;
+  category: string;
+}
 
 export interface ProposalService {
   id: string;
@@ -102,6 +114,23 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
   });
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
+  const [savedCustomServices, setSavedCustomServices] = useState<CustomServiceDB[]>([]);
+  const [isSavingService, setIsSavingService] = useState(false);
+
+  // Load saved custom services
+  useEffect(() => {
+    const loadCustomServices = async () => {
+      const { data, error } = await supabase
+        .from('custom_services')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (!error && data) {
+        setSavedCustomServices(data);
+      }
+    };
+    loadCustomServices();
+  }, []);
 
   // Recalculate totals when services or discount changes
   useEffect(() => {
@@ -164,6 +193,79 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
     }));
     
     setCustomService({ name: '', description: '', price: 0, type: 'one-time', percentageValue: 10 });
+  };
+
+  const saveCustomServiceToDB = async () => {
+    if (!customService.name) {
+      toast.error('Please enter a service name');
+      return;
+    }
+    if (customService.type !== 'percentage' && customService.price <= 0) {
+      toast.error('Please enter a valid price');
+      return;
+    }
+
+    setIsSavingService(true);
+    try {
+      const { data, error } = await supabase
+        .from('custom_services')
+        .insert({
+          name: customService.name,
+          description: customService.description || null,
+          base_price: customService.price,
+          currency: formData.currency,
+          type: customService.type,
+          percentage_value: customService.type === 'percentage' ? customService.percentageValue : null,
+          category: 'Custom',
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setSavedCustomServices(prev => [data, ...prev]);
+      toast.success('Service saved for future use!');
+      setCustomService({ name: '', description: '', price: 0, type: 'one-time', percentageValue: 10 });
+    } catch (error) {
+      console.error('Error saving service:', error);
+      toast.error('Failed to save service');
+    } finally {
+      setIsSavingService(false);
+    }
+  };
+
+  const addSavedCustomService = (service: CustomServiceDB) => {
+    const newService: ProposalService = {
+      id: `saved-${service.id}-${Date.now()}`,
+      name: service.name,
+      description: service.description || '',
+      price: service.base_price,
+      currency: service.currency,
+      type: service.type as 'one-time' | 'monthly' | 'percentage',
+      isCustom: true,
+      percentageValue: service.percentage_value || undefined,
+    };
+    setFormData(prev => ({
+      ...prev,
+      services: [...prev.services, newService],
+    }));
+  };
+
+  const deleteSavedService = async (serviceId: string) => {
+    try {
+      const { error } = await supabase
+        .from('custom_services')
+        .delete()
+        .eq('id', serviceId);
+
+      if (error) throw error;
+
+      setSavedCustomServices(prev => prev.filter(s => s.id !== serviceId));
+      toast.success('Service deleted');
+    } catch (error) {
+      console.error('Error deleting service:', error);
+      toast.error('Failed to delete service');
+    }
   };
 
   const generateDescription = async () => {
@@ -442,6 +544,75 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
 
                 <Separator />
 
+                {/* Saved Custom Services */}
+                {savedCustomServices.length > 0 && (
+                  <>
+                    <Separator />
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <Save className="w-4 h-4" />
+                        Your saved services:
+                      </p>
+                      <div className="space-y-2">
+                        {savedCustomServices.map(service => (
+                          <div 
+                            key={service.id}
+                            className="flex items-center justify-between p-2 bg-white rounded-lg border hover:border-accent transition-colors"
+                          >
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <p className="font-medium text-sm">{service.name}</p>
+                                <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-300">
+                                  Saved
+                                </Badge>
+                                {service.type === 'percentage' && (
+                                  <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
+                                    {service.percentage_value}% profit
+                                  </Badge>
+                                )}
+                              </div>
+                              <p className="text-xs text-muted-foreground truncate max-w-xs">{service.description}</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="text-right">
+                                {service.type === 'percentage' ? (
+                                  <p className="font-semibold text-sm">{service.percentage_value}%</p>
+                                ) : (
+                                  <p className="font-semibold text-sm">${service.base_price}</p>
+                                )}
+                                <Badge variant="secondary" className="text-xs">
+                                  {service.type === 'monthly' ? '/mo' : service.type === 'percentage' ? 'profit' : 'one-time'}
+                                </Badge>
+                              </div>
+                              <Button 
+                                type="button" 
+                                size="icon" 
+                                variant="ghost"
+                                onClick={() => addSavedCustomService(service)}
+                                title="Add to proposal"
+                              >
+                                <Plus className="w-4 h-4" />
+                              </Button>
+                              <Button 
+                                type="button" 
+                                size="icon" 
+                                variant="ghost"
+                                onClick={() => deleteSavedService(service.id)}
+                                className="text-destructive hover:text-destructive"
+                                title="Delete saved service"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <Separator />
+
                 {/* Custom Service */}
                 <div className="space-y-3">
                   <p className="text-sm font-medium">Or add a custom service:</p>
@@ -506,10 +677,25 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
                         <SelectItem value="percentage">% Profit</SelectItem>
                       </SelectContent>
                     </Select>
-                    <Button type="button" onClick={addCustomService} className="w-full md:w-auto">
-                      <Plus className="w-4 h-4 mr-1" />
-                      Add
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button type="button" onClick={addCustomService} className="flex-1">
+                        <Plus className="w-4 h-4 mr-1" />
+                        Add
+                      </Button>
+                      <Button 
+                        type="button" 
+                        variant="outline" 
+                        onClick={saveCustomServiceToDB}
+                        disabled={isSavingService || !customService.name.trim()}
+                        title="Save for future use"
+                      >
+                        {isSavingService ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Save className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>

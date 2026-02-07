@@ -136,6 +136,48 @@ export type Database = {
         }
         Relationships: []
       }
+      custom_services: {
+        Row: {
+          base_price: number
+          category: string
+          created_at: string
+          created_by: string | null
+          currency: string
+          description: string | null
+          id: string
+          name: string
+          percentage_value: number | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          base_price?: number
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string | null
+          id?: string
+          name: string
+          percentage_value?: number | null
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          base_price?: number
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string | null
+          id?: string
+          name?: string
+          percentage_value?: number | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       rate_limits: {
         Row: {
           count: number
