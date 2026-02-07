@@ -38,29 +38,29 @@ export function TechStackSlide({ content }: TechStackSlideProps) {
       </p>
       
       {/* Tech categories - 3 columns for better fit */}
-      <div className="grid grid-cols-3 gap-3 flex-1">
+      <div className="grid grid-cols-3 gap-4 flex-1">
         {content.categories.map((category, index) => (
           <div 
             key={index}
-            className="p-3 rounded-lg bg-white"
+            className="p-5 rounded-xl bg-white"
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-3 mb-4">
               <div 
-                className="w-7 h-7 rounded flex items-center justify-center"
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: 'rgba(139, 195, 74, 0.15)' }}
               >
-                <Server className="w-3.5 h-3.5" style={{ color: '#8BC34A' }} />
+                <Server className="w-5 h-5" style={{ color: '#8BC34A' }} />
               </div>
-              <h3 className="font-bold text-xs" style={{ color: '#2d4a2d' }}>
+              <h3 className="font-bold text-lg md:text-xl" style={{ color: '#2d4a2d' }}>
                 {category.name}
               </h3>
             </div>
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-2">
               {category.tools.map((tool, toolIndex) => (
                 <span 
                   key={toolIndex}
-                  className="px-2 py-0.5 rounded-full text-xs"
+                  className="px-4 py-2 rounded-full text-base"
                   style={{ 
                     backgroundColor: 'rgba(45, 74, 45, 0.08)',
                     color: '#2d4a2d'
