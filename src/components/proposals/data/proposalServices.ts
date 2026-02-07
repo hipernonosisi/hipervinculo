@@ -1,4 +1,19 @@
 // Predefined services for proposals - bilingual
+export interface AgreementTerms {
+  duration: {
+    en: string;
+    es: string;
+  };
+  paymentTerms: {
+    en: string;
+    es: string;
+  };
+  termsAndConditions: {
+    en: string[];
+    es: string[];
+  };
+}
+
 export interface ServiceItem {
   id: string;
   name: {
@@ -15,6 +30,7 @@ export interface ServiceItem {
   category: string;
   percentageValue?: number; // For percentage-based services
   requiredApps?: RequiredApp[]; // Mandatory apps/tools
+  agreementTerms?: AgreementTerms; // Contract terms for profit-share agreements
 }
 
 export interface RequiredApp {
@@ -361,10 +377,10 @@ export const predefinedServices: ServiceItem[] = [
     category: 'Amazon',
   },
   {
-    id: 'amazon-growth-partner',
+    id: 'amazon-growth-partner-10',
     name: {
-      en: 'Amazon Growth Partner',
-      es: 'Amazon Growth Partner',
+      en: 'Amazon Growth Partner (10%)',
+      es: 'Amazon Growth Partner (10%)',
     },
     description: {
       en: 'Full-service Amazon growth management with profit-sharing model. Includes PPC optimization, listing management, inventory planning, and strategic guidance.',
@@ -375,6 +391,152 @@ export const predefinedServices: ServiceItem[] = [
     type: 'percentage',
     category: 'Amazon',
     percentageValue: 10,
+    agreementTerms: {
+      duration: {
+        en: '1 year, renewable for an additional year',
+        es: '1 año, renovable por un año adicional',
+      },
+      paymentTerms: {
+        en: 'NET 15 - Payment due within 15 days after the end of each calendar month based on verified profit calculations from Sellerise.',
+        es: 'NET 15 - Pago debido dentro de 15 días después del final de cada mes calendario basado en cálculos de ganancia verificados de Sellerise.',
+      },
+      termsAndConditions: {
+        en: [
+          'The profit share percentage applies to net profit after advertising costs, Amazon fees, and cost of goods sold.',
+          'Either party may terminate with 30 days written notice after the initial 6-month period.',
+          'Client must maintain active Sellerise and Profasee subscriptions throughout the agreement term.',
+          'Performance reports will be delivered monthly with detailed profit and advertising metrics.',
+          'Minimum commitment period of 6 months before termination rights apply.',
+        ],
+        es: [
+          'El porcentaje de participación en ganancias aplica sobre la ganancia neta después de costos de publicidad, tarifas de Amazon y costo de productos vendidos.',
+          'Cualquiera de las partes puede terminar con 30 días de aviso por escrito después del período inicial de 6 meses.',
+          'El cliente debe mantener suscripciones activas de Sellerise y Profasee durante todo el plazo del acuerdo.',
+          'Se entregarán reportes de rendimiento mensuales con métricas detalladas de ganancia y publicidad.',
+          'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
+        ],
+      },
+    },
+    requiredApps: [
+      {
+        name: 'Sellerise',
+        url: 'https://sellerise.com/',
+        description: {
+          en: 'Advanced Amazon analytics and profit tracking platform - Required for accurate profit calculation and performance monitoring.',
+          es: 'Plataforma avanzada de analítica y seguimiento de ganancias en Amazon - Requerida para cálculo preciso de ganancias y monitoreo de rendimiento.',
+        },
+      },
+      {
+        name: 'Profasee',
+        url: 'https://profasee.com/',
+        description: {
+          en: 'AI-powered dynamic repricing tool - Required for optimal pricing strategy and margin protection.',
+          es: 'Herramienta de repricing dinámico con IA - Requerida para estrategia de precios óptima y protección de márgenes.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'amazon-growth-partner-20',
+    name: {
+      en: 'Amazon Growth Partner (20%)',
+      es: 'Amazon Growth Partner (20%)',
+    },
+    description: {
+      en: 'Full-service Amazon growth management with profit-sharing model. Includes PPC optimization, listing management, inventory planning, and strategic guidance.',
+      es: 'Gestión integral de crecimiento en Amazon con modelo de participación en ganancias. Incluye optimización de PPC, gestión de listings, planificación de inventario y guía estratégica.',
+    },
+    basePrice: 0,
+    currency: 'USD',
+    type: 'percentage',
+    category: 'Amazon',
+    percentageValue: 20,
+    agreementTerms: {
+      duration: {
+        en: '1 year, renewable for an additional year',
+        es: '1 año, renovable por un año adicional',
+      },
+      paymentTerms: {
+        en: 'NET 15 - Payment due within 15 days after the end of each calendar month based on verified profit calculations from Sellerise.',
+        es: 'NET 15 - Pago debido dentro de 15 días después del final de cada mes calendario basado en cálculos de ganancia verificados de Sellerise.',
+      },
+      termsAndConditions: {
+        en: [
+          'The profit share percentage applies to net profit after advertising costs, Amazon fees, and cost of goods sold.',
+          'Either party may terminate with 30 days written notice after the initial 6-month period.',
+          'Client must maintain active Sellerise and Profasee subscriptions throughout the agreement term.',
+          'Performance reports will be delivered monthly with detailed profit and advertising metrics.',
+          'Minimum commitment period of 6 months before termination rights apply.',
+        ],
+        es: [
+          'El porcentaje de participación en ganancias aplica sobre la ganancia neta después de costos de publicidad, tarifas de Amazon y costo de productos vendidos.',
+          'Cualquiera de las partes puede terminar con 30 días de aviso por escrito después del período inicial de 6 meses.',
+          'El cliente debe mantener suscripciones activas de Sellerise y Profasee durante todo el plazo del acuerdo.',
+          'Se entregarán reportes de rendimiento mensuales con métricas detalladas de ganancia y publicidad.',
+          'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
+        ],
+      },
+    },
+    requiredApps: [
+      {
+        name: 'Sellerise',
+        url: 'https://sellerise.com/',
+        description: {
+          en: 'Advanced Amazon analytics and profit tracking platform - Required for accurate profit calculation and performance monitoring.',
+          es: 'Plataforma avanzada de analítica y seguimiento de ganancias en Amazon - Requerida para cálculo preciso de ganancias y monitoreo de rendimiento.',
+        },
+      },
+      {
+        name: 'Profasee',
+        url: 'https://profasee.com/',
+        description: {
+          en: 'AI-powered dynamic repricing tool - Required for optimal pricing strategy and margin protection.',
+          es: 'Herramienta de repricing dinámico con IA - Requerida para estrategia de precios óptima y protección de márgenes.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'amazon-growth-partner-25',
+    name: {
+      en: 'Amazon Growth Partner (25%)',
+      es: 'Amazon Growth Partner (25%)',
+    },
+    description: {
+      en: 'Full-service Amazon growth management with profit-sharing model. Includes PPC optimization, listing management, inventory planning, and strategic guidance.',
+      es: 'Gestión integral de crecimiento en Amazon con modelo de participación en ganancias. Incluye optimización de PPC, gestión de listings, planificación de inventario y guía estratégica.',
+    },
+    basePrice: 0,
+    currency: 'USD',
+    type: 'percentage',
+    category: 'Amazon',
+    percentageValue: 25,
+    agreementTerms: {
+      duration: {
+        en: '1 year, renewable for an additional year',
+        es: '1 año, renovable por un año adicional',
+      },
+      paymentTerms: {
+        en: 'NET 15 - Payment due within 15 days after the end of each calendar month based on verified profit calculations from Sellerise.',
+        es: 'NET 15 - Pago debido dentro de 15 días después del final de cada mes calendario basado en cálculos de ganancia verificados de Sellerise.',
+      },
+      termsAndConditions: {
+        en: [
+          'The profit share percentage applies to net profit after advertising costs, Amazon fees, and cost of goods sold.',
+          'Either party may terminate with 30 days written notice after the initial 6-month period.',
+          'Client must maintain active Sellerise and Profasee subscriptions throughout the agreement term.',
+          'Performance reports will be delivered monthly with detailed profit and advertising metrics.',
+          'Minimum commitment period of 6 months before termination rights apply.',
+        ],
+        es: [
+          'El porcentaje de participación en ganancias aplica sobre la ganancia neta después de costos de publicidad, tarifas de Amazon y costo de productos vendidos.',
+          'Cualquiera de las partes puede terminar con 30 días de aviso por escrito después del período inicial de 6 meses.',
+          'El cliente debe mantener suscripciones activas de Sellerise y Profasee durante todo el plazo del acuerdo.',
+          'Se entregarán reportes de rendimiento mensuales con métricas detalladas de ganancia y publicidad.',
+          'Período mínimo de compromiso de 6 meses antes de que apliquen los derechos de terminación.',
+        ],
+      },
+    },
     requiredApps: [
       {
         name: 'Sellerise',
