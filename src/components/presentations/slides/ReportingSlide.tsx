@@ -36,20 +36,20 @@ export function ReportingSlide({ content }: ReportingSlideProps) {
       </p>
       
       {/* Metrics grid */}
-      <div className="grid grid-cols-3 gap-4 mb-6 flex-1">
+      <div className="grid grid-cols-3 gap-3 mb-4 flex-1">
         {content.metrics.map((metric, index) => (
           <div 
             key={index}
-            className="p-5 rounded-xl bg-white"
+            className="p-4 rounded-lg bg-white"
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
-            <div className="flex items-center gap-3 mb-2">
-              <BarChart3 className="w-6 h-6" style={{ color: '#8BC34A' }} />
-              <h4 className="font-bold text-lg md:text-xl" style={{ color: '#2d4a2d' }}>
+            <div className="flex items-center gap-2 mb-1">
+              <BarChart3 className="w-5 h-5" style={{ color: '#8BC34A' }} />
+              <h4 className="font-bold text-base md:text-lg" style={{ color: '#2d4a2d' }}>
                 {metric.name}
               </h4>
             </div>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
               {metric.description}
             </p>
           </div>
@@ -58,15 +58,15 @@ export function ReportingSlide({ content }: ReportingSlideProps) {
       
       {/* Deliverables */}
       <div 
-        className="p-6 rounded-xl"
+        className="p-5 rounded-xl"
         style={{ backgroundColor: '#2d4a2d' }}
       >
-        <h3 className="text-2xl font-bold text-white mb-4">Deliverables</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <h3 className="text-xl font-bold text-white mb-3">Deliverables</h3>
+        <div className="grid grid-cols-2 gap-3">
           {content.deliverables.map((item, index) => (
-            <div key={index} className="flex items-center gap-3">
-              <CheckCircle className="w-6 h-6 flex-shrink-0" style={{ color: '#8BC34A' }} />
-              <span className="text-white/90 text-lg">{item}</span>
+            <div key={index} className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 flex-shrink-0" style={{ color: '#8BC34A' }} />
+              <span className="text-white/90 text-base">{item}</span>
             </div>
           ))}
         </div>
