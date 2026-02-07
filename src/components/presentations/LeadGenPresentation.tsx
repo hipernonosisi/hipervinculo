@@ -166,7 +166,7 @@ export function LeadGenPresentation() {
         </div>
       </div>
       
-      {/* Slide viewer - Desktop: original 16:9 centered, Mobile: scrollable */}
+      {/* Slide viewer - Responsive padding and sizing */}
       <div className="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-8 bg-gray-100 overflow-auto">
         <div 
           ref={containerRef}

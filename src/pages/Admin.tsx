@@ -280,20 +280,19 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1.5 w-full grid grid-cols-2 sm:grid-cols-4 gap-1.5 h-auto">
-              <TabsTrigger value="contact" className="rounded-lg px-2 py-2.5 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white whitespace-nowrap">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex-wrap h-auto gap-1">
+              <TabsTrigger value="contact" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Contact ({contactSubmissions.length})
               </TabsTrigger>
-              <TabsTrigger value="audit" className="rounded-lg px-2 py-2.5 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white whitespace-nowrap">
+              <TabsTrigger value="audit" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Audits ({auditRequests.length})
               </TabsTrigger>
-              <TabsTrigger value="chat" className="rounded-lg px-2 py-2.5 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white whitespace-nowrap">
+              <TabsTrigger value="chat" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 Chats ({chatConversations.length})
               </TabsTrigger>
-              <TabsTrigger value="presentations" className="rounded-lg px-2 py-2.5 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white flex items-center justify-center gap-1.5">
-                <Presentation className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span className="hidden xs:inline">Presentations</span>
-                <span className="xs:hidden">Present.</span>
+              <TabsTrigger value="presentations" className="rounded-lg px-3 sm:px-6 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1 sm:gap-2">
+                <Presentation className="w-3 h-3 sm:w-4 sm:h-4" />
+                Presentations
               </TabsTrigger>
             </TabsList>
             
