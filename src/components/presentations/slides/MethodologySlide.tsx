@@ -43,24 +43,24 @@ export function MethodologySlide({ title, phase, items, phaseNumber = 1 }: Metho
       </div>
       
       {/* Methodology items */}
-      <div className="grid grid-cols-1 gap-3 flex-1">
+      <div className="grid grid-cols-1 gap-2 flex-1 overflow-hidden">
         {items.map((item, index) => (
           <div 
             key={index}
-            className="p-4 rounded-xl bg-white flex gap-4 items-start"
+            className="p-3 rounded-lg bg-white flex gap-3 items-start"
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
             <div 
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0"
               style={{ backgroundColor: 'rgba(45, 74, 45, 0.1)', color: '#2d4a2d' }}
             >
               {String.fromCharCode(65 + index)}
             </div>
-            <div>
-              <h4 className="font-bold text-lg md:text-xl mb-1" style={{ color: '#2d4a2d' }}>
+            <div className="min-w-0">
+              <h4 className="font-bold text-base md:text-lg mb-0.5" style={{ color: '#2d4a2d' }}>
                 {item.title}
               </h4>
-              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+              <p className="text-gray-600 text-sm leading-snug">
                 {item.description}
               </p>
             </div>
