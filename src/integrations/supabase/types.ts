@@ -160,6 +160,75 @@ export type Database = {
         }
         Relationships: []
       }
+      service_proposals: {
+        Row: {
+          client_company: string
+          client_email: string | null
+          client_name: string
+          client_phone: string | null
+          created_at: string
+          created_by: string | null
+          currency: string
+          discount_amount: number | null
+          discount_percentage: number | null
+          id: string
+          notes: string | null
+          payment_terms: string | null
+          proposal_date: string
+          proposal_number: string
+          services: Json
+          status: string
+          subtotal: number
+          total: number
+          updated_at: string
+          valid_until: string | null
+        }
+        Insert: {
+          client_company: string
+          client_email?: string | null
+          client_name: string
+          client_phone?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          discount_amount?: number | null
+          discount_percentage?: number | null
+          id?: string
+          notes?: string | null
+          payment_terms?: string | null
+          proposal_date?: string
+          proposal_number: string
+          services?: Json
+          status?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Update: {
+          client_company?: string
+          client_email?: string | null
+          client_name?: string
+          client_phone?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          discount_amount?: number | null
+          discount_percentage?: number | null
+          id?: string
+          notes?: string | null
+          payment_terms?: string | null
+          proposal_date?: string
+          proposal_number?: string
+          services?: Json
+          status?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
