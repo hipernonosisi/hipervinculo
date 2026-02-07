@@ -537,13 +537,7 @@ export default function Admin() {
             {/* Presentations Tab */}
             <TabsContent value="presentations" className="mt-0">
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent 
-                  className="p-0" 
-                  style={{ 
-                    height: 'calc(100svh - 280px)', 
-                    minHeight: '350px' 
-                  }}
-                >
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 380px)', minHeight: '600px' }}>
                   <LeadGenPresentation />
                 </CardContent>
               </Card>

@@ -128,25 +128,25 @@ export function LeadGenPresentation() {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* Toolbar - Responsive layout */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 sm:p-4 bg-white border-b">
-        <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-4">
-          <h2 className="text-sm sm:text-lg font-bold" style={{ color: '#2d4a2d' }}>
+      {/* Toolbar */}
+      <div className="flex items-center justify-between p-4 bg-white border-b">
+        <div className="flex items-center gap-4">
+          <h2 className="text-lg font-bold" style={{ color: '#2d4a2d' }}>
             Lead Generation Systems
           </h2>
-          <span className="text-xs sm:text-sm text-muted-foreground">
+          <span className="text-sm text-muted-foreground">
             {currentSlide + 1} / {slides.length}
           </span>
         </div>
         
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={toggleLanguage}
-            className="gap-1 sm:gap-2 h-8 px-2 sm:px-3 text-xs sm:text-sm"
+            className="gap-2"
           >
-            <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
+            <Globe className="w-4 h-4" />
             {language === 'en' ? 'ES' : 'EN'}
           </Button>
           
@@ -154,24 +154,25 @@ export function LeadGenPresentation() {
             size="sm"
             onClick={exportToPDF}
             disabled={isExporting}
-            className="gap-1 sm:gap-2 h-8 px-2 sm:px-3 text-xs sm:text-sm"
+            className="gap-2"
             style={{ backgroundColor: '#8BC34A', color: 'white' }}
           >
-            <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+            <Download className="w-4 h-4" />
             {isExporting 
-              ? (language === 'en' ? '...' : '...') 
+              ? (language === 'en' ? 'Exporting...' : 'Exportando...') 
               : 'PDF'
             }
           </Button>
         </div>
       </div>
       
-      {/* Slide viewer - Responsive padding and sizing */}
-      <div className="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-8 bg-gray-100 overflow-auto">
+      {/* Slide viewer */}
+      <div className="flex-1 flex items-center justify-center p-8 bg-gray-100 overflow-hidden">
         <div 
           ref={containerRef}
-          className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full"
+          className="relative bg-white rounded-lg shadow-2xl overflow-hidden"
           style={{ 
+            width: '100%',
             maxWidth: '1200px',
             aspectRatio: '16/9',
           }}
@@ -180,27 +181,26 @@ export function LeadGenPresentation() {
         </div>
       </div>
       
-      {/* Navigation - Compact on mobile */}
-      <div className="flex items-center justify-center gap-2 sm:gap-4 p-2 sm:p-4 bg-white border-t">
+      {/* Navigation */}
+      <div className="flex items-center justify-center gap-4 p-4 bg-white border-t">
         <Button
           variant="outline"
           size="icon"
           onClick={goToPrevSlide}
           disabled={currentSlide === 0}
-          className="h-8 w-8 sm:h-10 sm:w-10"
         >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <ChevronLeft className="w-5 h-5" />
         </Button>
         
-        {/* Slide dots - Smaller on mobile */}
-        <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center max-w-[200px] sm:max-w-none">
+        {/* Slide dots */}
+        <div className="flex items-center gap-1.5">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all ${
+              className={`w-2.5 h-2.5 rounded-full transition-all ${
                 index === currentSlide 
-                  ? 'w-4 sm:w-6' 
+                  ? 'w-6' 
                   : 'hover:opacity-80'
               }`}
               style={{ 
@@ -215,9 +215,8 @@ export function LeadGenPresentation() {
           size="icon"
           onClick={goToNextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="h-8 w-8 sm:h-10 sm:w-10"
         >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          <ChevronRight className="w-5 h-5" />
         </Button>
       </div>
     </div>
