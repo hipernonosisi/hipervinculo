@@ -45,26 +45,26 @@ export function PricingSlide({ content }: PricingSlideProps) {
       </p>
       
       {/* Pricing cards */}
-      <div className="grid grid-cols-2 gap-6 flex-1">
+      <div className="grid grid-cols-2 gap-4 flex-1">
         {/* Setup pricing */}
         <div 
-          className="p-8 rounded-xl bg-white flex flex-col"
+          className="p-5 rounded-xl bg-white flex flex-col"
           style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
         >
-          <h3 className="text-2xl font-bold mb-2" style={{ color: '#2d4a2d' }}>
+          <h3 className="text-xl font-bold mb-1" style={{ color: '#2d4a2d' }}>
             {content.setup.title}
           </h3>
           <div 
-            className="text-4xl font-extrabold mb-6"
+            className="text-3xl font-extrabold mb-4"
             style={{ color: '#8BC34A' }}
           >
             {content.setup.price}
           </div>
-          <div className="space-y-4 flex-1">
+          <div className="space-y-2 flex-1">
             {content.setup.includes.map((item, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
-                <span className="text-gray-700 text-lg">{item}</span>
+              <div key={index} className="flex items-start gap-2">
+                <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
+                <span className="text-gray-700 text-base">{item}</span>
               </div>
             ))}
           </div>
@@ -72,23 +72,23 @@ export function PricingSlide({ content }: PricingSlideProps) {
         
         {/* Monthly pricing */}
         <div 
-          className="p-8 rounded-xl flex flex-col"
+          className="p-5 rounded-xl flex flex-col"
           style={{ backgroundColor: '#2d4a2d' }}
         >
-          <h3 className="text-2xl font-bold mb-2 text-white">
+          <h3 className="text-xl font-bold mb-1 text-white">
             {content.monthly.title}
           </h3>
           <div 
-            className="text-4xl font-extrabold mb-6"
+            className="text-3xl font-extrabold mb-4"
             style={{ color: '#8BC34A' }}
           >
             {content.monthly.price}
           </div>
-          <div className="space-y-4 flex-1">
+          <div className="space-y-2 flex-1">
             {content.monthly.includes.map((item, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
-                <span className="text-white/90 text-lg">{item}</span>
+              <div key={index} className="flex items-start gap-2">
+                <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
+                <span className="text-white/90 text-base">{item}</span>
               </div>
             ))}
           </div>
@@ -97,10 +97,10 @@ export function PricingSlide({ content }: PricingSlideProps) {
       
       {/* Note */}
       <div 
-        className="mt-6 p-5 rounded-xl text-center"
+        className="mt-4 p-4 rounded-xl text-center"
         style={{ backgroundColor: 'rgba(139, 195, 74, 0.1)' }}
       >
-        <p className="text-xl font-medium" style={{ color: '#2d4a2d' }}>
+        <p className="text-lg font-medium" style={{ color: '#2d4a2d' }}>
           {content.note}
         </p>
       </div>
