@@ -890,15 +890,72 @@ export const serviceCategories = [
   'Consulting',
 ];
 
-export const defaultPaymentTerms = {
-  en: `Payment Terms:
+// Payment terms templates by service type
+export const paymentTermsTemplates = {
+  standard: {
+    en: `Payment Terms:
 • 50% deposit required to begin work
 • Remaining 50% due upon completion
 • Monthly services billed on the 1st of each month
 • Net 15 payment terms`,
-  es: `Términos de Pago:
+    es: `Términos de Pago:
 • 50% de depósito requerido para iniciar
 • 50% restante al completar
 • Servicios mensuales facturados el 1ro de cada mes
 • Términos de pago: 15 días netos`,
+  },
+  amazonProfitShare: {
+    en: `Agreement Terms:
+• Agreement Duration: 1 year, renewable for an additional year
+• Payment: NET 15 - Due within 15 days after the end of each calendar month
+• Profit Calculation: Based on verified data from Sellerise platform
+• Minimum Commitment: 6 months before termination rights apply
+• Termination: 30 days written notice required after initial period`,
+    es: `Términos del Acuerdo:
+• Duración del Acuerdo: 1 año, renovable por un año adicional
+• Pago: NET 15 - Debido dentro de 15 días después del final de cada mes calendario
+• Cálculo de Ganancias: Basado en datos verificados de la plataforma Sellerise
+• Compromiso Mínimo: 6 meses antes de que apliquen derechos de terminación
+• Terminación: Se requiere aviso por escrito de 30 días después del período inicial`,
+  },
+  ecommerceProfitShare: {
+    en: `Agreement Terms:
+• Agreement Duration: 6 months minimum, renewable
+• Performance Fee: Based on net Shopify sales or verified ROAS
+• Payment: NET 15 - Due within 15 days after the end of each calendar month
+• Reporting: Weekly performance reports with full transparency
+• Termination: 30 days written notice required`,
+    es: `Términos del Acuerdo:
+• Duración del Acuerdo: 6 meses mínimo, renovable
+• Comisión por Rendimiento: Basada en ventas netas de Shopify o ROAS verificado
+• Pago: NET 15 - Debido dentro de 15 días después del final de cada mes calendario
+• Reportes: Informes de rendimiento semanales con total transparencia
+• Terminación: Se requiere aviso por escrito de 30 días`,
+  },
+};
+
+export const defaultPaymentTerms = paymentTermsTemplates.standard;
+
+// Helper to determine payment terms based on services
+export const getPaymentTermsForServices = (services: Array<{ id?: string; type?: string; name?: string }>): { en: string; es: string } => {
+  const hasAmazonProfitShare = services.some(s => 
+    s.id?.includes('amazon-growth-partner') || 
+    (s.type === 'percentage' && s.name?.toLowerCase().includes('amazon'))
+  );
+  
+  const hasEcommerceProfitShare = services.some(s => 
+    s.type === 'percentage' && 
+    !s.id?.includes('amazon') && 
+    !s.name?.toLowerCase().includes('amazon')
+  );
+  
+  if (hasAmazonProfitShare) {
+    return paymentTermsTemplates.amazonProfitShare;
+  }
+  
+  if (hasEcommerceProfitShare) {
+    return paymentTermsTemplates.ecommerceProfitShare;
+  }
+  
+  return paymentTermsTemplates.standard;
 };
