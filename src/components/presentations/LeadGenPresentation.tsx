@@ -163,8 +163,8 @@ export function LeadGenPresentation() {
         </div>
       </div>
       
-      {/* Slide viewer - Optimized for mobile */}
-      <div className="flex-1 overflow-y-auto sm:overflow-hidden p-2 sm:p-4 md:p-8 bg-gray-100 flex items-start sm:items-center justify-center">
+      {/* Slide viewer - With vertical scroll */}
+      <div className="flex-1 overflow-y-auto p-2 sm:p-4 md:p-8 bg-gray-100 flex items-start justify-center">
         <div 
           ref={containerRef}
           className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full shrink-0"
