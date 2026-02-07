@@ -41,24 +41,24 @@ export function SolutionSlide({ content }: SolutionSlideProps) {
       </p>
       
       {/* Solution items - use 3 columns for 5 items */}
-      <div className="grid grid-cols-3 gap-3 flex-1">
+      <div className="grid grid-cols-3 gap-4 flex-1">
         {content.items.map((item, index) => (
           <div 
             key={index}
-            className="p-3 rounded-lg bg-white flex gap-3"
+            className="p-4 rounded-xl bg-white flex gap-4"
             style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
           >
             <div 
-              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: 'rgba(139, 195, 74, 0.15)' }}
             >
-              <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
+              <CheckCircle className="w-6 h-6" style={{ color: '#8BC34A' }} />
             </div>
             <div>
-              <h3 className="font-bold text-sm mb-0.5" style={{ color: '#2d4a2d' }}>
+              <h3 className="font-bold text-lg md:text-xl mb-1" style={{ color: '#2d4a2d' }}>
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-xs leading-snug">
+              <p className="text-gray-600 text-base leading-relaxed">
                 {item.description}
               </p>
             </div>
