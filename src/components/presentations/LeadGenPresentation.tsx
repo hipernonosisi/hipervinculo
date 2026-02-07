@@ -166,17 +166,20 @@ export function LeadGenPresentation() {
         </div>
       </div>
       
-      {/* Slide viewer - Responsive padding and sizing */}
-      <div className="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-8 bg-gray-100 overflow-auto">
-        <div 
-          ref={containerRef}
-          className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full"
-          style={{ 
-            maxWidth: '1200px',
-            aspectRatio: '16/9',
-          }}
-        >
-          {slides[currentSlide].component}
+      {/* Slide viewer - Mobile: scrollable container with fixed slide size */}
+      <div className="flex-1 min-h-0 overflow-auto bg-gray-100">
+        <div className="flex items-start sm:items-center justify-center p-2 sm:p-4 md:p-8 min-h-full">
+          <div 
+            ref={containerRef}
+            className="relative bg-white rounded-lg shadow-2xl overflow-hidden flex-shrink-0"
+            style={{ 
+              width: 'min(100%, 1200px)',
+              aspectRatio: '16/9',
+              minWidth: '320px',
+            }}
+          >
+            {slides[currentSlide].component}
+          </div>
         </div>
       </div>
       
