@@ -17,12 +17,12 @@ const colors = {
 
 // Create styles
 const styles = StyleSheet.create({
-  // Common page styles - larger padding and flex to fill space
+  // Common page styles
   page: {
     width: 1920,
     height: 1080,
     backgroundColor: colors.background,
-    padding: 100,
+    padding: 80,
     fontFamily: 'Helvetica',
     position: 'relative',
     display: 'flex',
@@ -33,42 +33,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 50,
+    marginBottom: 40,
   },
   logo: {
-    height: 80,
+    height: 64,
     objectFit: 'contain',
   },
   accentBar: {
-    width: 120,
-    height: 10,
+    width: 96,
+    height: 8,
     backgroundColor: colors.limeGreen,
-    borderRadius: 5,
+    borderRadius: 4,
   },
-  // Typography - much larger for 1920x1080 to match web proportions
+  // Typography - balanced for 1920x1080
   title: {
-    fontSize: 96,
+    fontSize: 72,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   headline: {
-    fontSize: 52,
+    fontSize: 40,
     fontWeight: 'bold',
     color: colors.limeGreen,
-    marginBottom: 40,
+    marginBottom: 32,
   },
   description: {
-    fontSize: 42,
+    fontSize: 32,
     color: colors.gray,
     lineHeight: 1.5,
-    marginBottom: 48,
+    marginBottom: 32,
   },
-  // Cards - larger padding and text
+  // Cards
   card: {
     backgroundColor: colors.white,
-    borderRadius: 24,
-    padding: 40,
+    borderRadius: 16,
+    padding: 28,
     marginBottom: 0,
     shadowColor: '#000',
     shadowOpacity: 0.04,
@@ -76,64 +76,64 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
   },
   cardTitle: {
-    fontSize: 36,
+    fontSize: 28,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginBottom: 14,
+    marginBottom: 10,
   },
   cardDescription: {
-    fontSize: 28,
+    fontSize: 22,
     color: colors.gray,
     lineHeight: 1.4,
   },
-  // Grid layouts - more gap
+  // Grid layouts
   grid3: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 36,
+    gap: 24,
   },
   grid2: {
     flexDirection: 'row',
-    gap: 48,
+    gap: 32,
   },
   gridItem3: {
-    width: '31%',
+    width: '31.5%',
   },
   gridItem2: {
     width: '48%',
   },
-  // Icon boxes - larger
+  // Icon boxes
   iconBox: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     backgroundColor: colors.limeGreenLight,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   iconBoxSmall: {
-    width: 56,
-    height: 56,
-    borderRadius: 14,
+    width: 44,
+    height: 44,
+    borderRadius: 10,
     backgroundColor: colors.limeGreenLight,
     alignItems: 'center',
     justifyContent: 'center',
   },
   iconBoxRect: {
-    width: 64,
-    height: 64,
-    borderRadius: 14,
+    width: 48,
+    height: 48,
+    borderRadius: 10,
     backgroundColor: colors.limeGreenLight,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 24,
+    marginRight: 16,
   },
-  // Stats - much larger
+  // Stats
   statCard: {
     backgroundColor: colors.white,
-    borderRadius: 28,
-    padding: 56,
+    borderRadius: 20,
+    padding: 40,
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
@@ -143,65 +143,65 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
   },
   statValue: {
-    fontSize: 100,
+    fontSize: 72,
     fontWeight: 'bold',
     color: colors.limeGreen,
   },
   statLabel: {
-    fontSize: 32,
+    fontSize: 24,
     color: colors.darkGreen,
     textAlign: 'center',
-    marginTop: 16,
+    marginTop: 12,
   },
-  // Check items - larger
+  // Check items
   checkRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   checkText: {
-    fontSize: 34,
+    fontSize: 28,
     color: colors.gray,
-    marginLeft: 18,
+    marginLeft: 14,
   },
-  // Cover specific - larger
+  // Cover specific
   coverContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   coverLogo: {
-    height: 160,
-    marginBottom: 64,
+    height: 120,
+    marginBottom: 48,
     objectFit: 'contain',
   },
   coverLine: {
-    width: 160,
-    height: 10,
+    width: 120,
+    height: 8,
     backgroundColor: colors.limeGreen,
-    marginBottom: 48,
-    borderRadius: 5,
+    marginBottom: 32,
+    borderRadius: 4,
   },
   coverTitle: {
-    fontSize: 130,
+    fontSize: 96,
     fontWeight: 'bold',
     color: colors.darkGreen,
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 24,
   },
   coverSubtitle: {
-    fontSize: 56,
+    fontSize: 40,
     color: colors.darkGreen,
     opacity: 0.8,
     textAlign: 'center',
-    marginBottom: 48,
+    marginBottom: 32,
   },
   coverTagline: {
-    fontSize: 38,
+    fontSize: 28,
     color: colors.limeGreen,
     fontWeight: 'bold',
     textAlign: 'center',
-    letterSpacing: 3,
+    letterSpacing: 2,
     textTransform: 'uppercase',
   },
   // Diagonal pattern overlay
@@ -217,53 +217,53 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    width: 200,
-    height: 200,
+    width: 160,
+    height: 160,
   },
-  // Methodology - larger
+  // Methodology
   phaseBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 32,
   },
   phaseNumber: {
-    width: 80,
-    height: 80,
-    borderRadius: 18,
+    width: 56,
+    height: 56,
+    borderRadius: 12,
     backgroundColor: colors.limeGreen,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 28,
+    marginRight: 20,
   },
   phaseNumberText: {
-    fontSize: 44,
+    fontSize: 32,
     fontWeight: 'bold',
     color: colors.white,
   },
   phaseTitle: {
-    fontSize: 56,
+    fontSize: 40,
     fontWeight: 'bold',
     color: colors.darkGreen,
   },
   letterBox: {
-    width: 56,
-    height: 56,
-    borderRadius: 14,
+    width: 40,
+    height: 40,
+    borderRadius: 10,
     backgroundColor: 'rgba(45, 74, 45, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 22,
+    marginRight: 16,
   },
   letterText: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: 'bold',
     color: colors.darkGreen,
   },
-  // Problem slide - larger
+  // Problem slide
   problemCard: {
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 36,
+    borderRadius: 16,
+    padding: 24,
     flexDirection: 'row',
     alignItems: 'flex-start',
     shadowColor: '#000',
@@ -273,32 +273,32 @@ const styles = StyleSheet.create({
   },
   insightBox: {
     backgroundColor: colors.redLight,
-    borderRadius: 20,
-    padding: 40,
+    borderRadius: 16,
+    padding: 28,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 24,
   },
   principleBox: {
     backgroundColor: colors.darkGreen,
-    borderRadius: 20,
-    padding: 48,
+    borderRadius: 16,
+    padding: 32,
   },
   principleText: {
-    fontSize: 48,
+    fontSize: 36,
     fontWeight: 'bold',
     color: colors.white,
-    marginBottom: 16,
+    marginBottom: 12,
   },
   principleNote: {
-    fontSize: 34,
+    fontSize: 26,
     color: 'rgba(255,255,255,0.8)',
   },
-  // Tech stack - larger
+  // Tech stack
   techCategory: {
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 36,
+    borderRadius: 16,
+    padding: 28,
     shadowColor: '#000',
     shadowOpacity: 0.04,
     shadowOffset: { width: 0, height: 2 },
@@ -307,33 +307,33 @@ const styles = StyleSheet.create({
   techHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   techName: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.darkGreen,
   },
   techTools: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 14,
+    gap: 10,
   },
   techTool: {
     backgroundColor: 'rgba(45, 74, 45, 0.08)',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
   },
   techToolText: {
-    fontSize: 26,
+    fontSize: 20,
     color: colors.darkGreen,
   },
-  // Reporting - larger
+  // Reporting
   metricCard: {
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 36,
+    borderRadius: 16,
+    padding: 28,
     shadowColor: '#000',
     shadowOpacity: 0.04,
     shadowOffset: { width: 0, height: 2 },
@@ -342,30 +342,30 @@ const styles = StyleSheet.create({
   metricHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   metricName: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginLeft: 16,
+    marginLeft: 12,
   },
   metricDesc: {
-    fontSize: 26,
+    fontSize: 22,
     color: colors.gray,
     lineHeight: 1.4,
   },
   deliverables: {
     backgroundColor: colors.darkGreen,
-    borderRadius: 24,
-    padding: 48,
-    marginTop: 40,
+    borderRadius: 20,
+    padding: 36,
+    marginTop: 28,
   },
   deliverableTitle: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: 'bold',
     color: colors.white,
-    marginBottom: 28,
+    marginBottom: 20,
   },
   deliverableGrid: {
     flexDirection: 'row',
@@ -375,18 +375,18 @@ const styles = StyleSheet.create({
     width: '50%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 14,
   },
   deliverableText: {
-    fontSize: 30,
+    fontSize: 24,
     color: 'rgba(255,255,255,0.9)',
-    marginLeft: 18,
+    marginLeft: 14,
   },
-  // Pricing - larger
+  // Pricing
   pricingCard: {
     backgroundColor: colors.white,
-    borderRadius: 28,
-    padding: 56,
+    borderRadius: 20,
+    padding: 36,
     flex: 1,
     shadowColor: '#000',
     shadowOpacity: 0.04,
@@ -395,63 +395,63 @@ const styles = StyleSheet.create({
   },
   pricingCardDark: {
     backgroundColor: colors.darkGreen,
-    borderRadius: 28,
-    padding: 56,
+    borderRadius: 20,
+    padding: 36,
     flex: 1,
   },
   priceTitle: {
-    fontSize: 44,
+    fontSize: 32,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginBottom: 18,
+    marginBottom: 12,
   },
   priceTitleLight: {
-    fontSize: 44,
+    fontSize: 32,
     fontWeight: 'bold',
     color: colors.white,
-    marginBottom: 18,
+    marginBottom: 12,
   },
   priceValue: {
-    fontSize: 64,
+    fontSize: 48,
     fontWeight: 'bold',
     color: colors.limeGreen,
-    marginBottom: 40,
+    marginBottom: 28,
   },
   priceItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 20,
+    marginBottom: 14,
   },
   priceItemText: {
-    fontSize: 30,
+    fontSize: 24,
     color: colors.gray,
-    marginLeft: 18,
+    marginLeft: 14,
     flex: 1,
   },
   priceItemTextLight: {
-    fontSize: 30,
+    fontSize: 24,
     color: 'rgba(255,255,255,0.9)',
-    marginLeft: 18,
+    marginLeft: 14,
     flex: 1,
   },
   noteBox: {
     backgroundColor: colors.limeGreenLight,
-    borderRadius: 20,
-    padding: 36,
-    marginTop: 48,
+    borderRadius: 16,
+    padding: 28,
+    marginTop: 32,
     alignItems: 'center',
   },
   noteText: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: 'medium',
     color: colors.darkGreen,
     textAlign: 'center',
   },
-  // Addons - larger
+  // Addons
   addonCard: {
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 36,
+    borderRadius: 16,
+    padding: 24,
     shadowColor: '#000',
     shadowOpacity: 0.04,
     shadowOffset: { width: 0, height: 2 },
@@ -460,38 +460,38 @@ const styles = StyleSheet.create({
   addonHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 14,
   },
   addonIconBox: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: colors.limeGreenLight,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 20,
+    marginRight: 14,
   },
   addonPrice: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.limeGreen,
   },
   addonTitle: {
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginBottom: 14,
+    marginBottom: 10,
   },
   addonDesc: {
-    fontSize: 26,
+    fontSize: 20,
     color: colors.gray,
     lineHeight: 1.4,
   },
-  // Services - larger
+  // Services
   serviceCard: {
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 36,
+    borderRadius: 16,
+    padding: 28,
     flexDirection: 'row',
     alignItems: 'flex-start',
     shadowColor: '#000',
@@ -503,17 +503,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   serviceTitle: {
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    marginBottom: 14,
+    marginBottom: 10,
   },
   serviceDesc: {
-    fontSize: 26,
+    fontSize: 22,
     color: colors.gray,
     lineHeight: 1.4,
   },
-  // Contact - larger
+  // Contact
   contactPage: {
     width: 1920,
     height: 1080,
@@ -523,115 +523,115 @@ const styles = StyleSheet.create({
   contactLeft: {
     width: '60%',
     backgroundColor: colors.darkGreen,
-    padding: 100,
+    padding: 80,
     justifyContent: 'center',
     position: 'relative',
   },
   contactRight: {
     width: '40%',
     backgroundColor: colors.white,
-    padding: 100,
+    padding: 80,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
   },
   contactTitle: {
-    fontSize: 96,
+    fontSize: 72,
     fontWeight: 'bold',
     color: colors.white,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   contactHeadline: {
-    fontSize: 48,
+    fontSize: 36,
     fontWeight: 'bold',
     color: colors.limeGreen,
-    marginBottom: 36,
+    marginBottom: 28,
   },
   contactDesc: {
-    fontSize: 36,
+    fontSize: 28,
     color: 'rgba(255,255,255,0.8)',
-    marginBottom: 56,
+    marginBottom: 40,
     lineHeight: 1.5,
-    maxWidth: 700,
+    maxWidth: 600,
   },
   contactInfoItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 36,
+    marginBottom: 28,
   },
   contactIconBox: {
-    width: 80,
-    height: 80,
-    borderRadius: 18,
+    width: 56,
+    height: 56,
+    borderRadius: 12,
     backgroundColor: 'rgba(139, 195, 74, 0.2)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 28,
+    marginRight: 20,
   },
   contactLabel: {
-    fontSize: 26,
+    fontSize: 20,
     color: 'rgba(255,255,255,0.6)',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   contactValue: {
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: 'medium',
     color: colors.white,
   },
   ctaButton: {
     backgroundColor: colors.limeGreen,
-    paddingHorizontal: 72,
-    paddingVertical: 32,
-    borderRadius: 50,
-    marginTop: 48,
+    paddingHorizontal: 48,
+    paddingVertical: 24,
+    borderRadius: 40,
+    marginTop: 32,
   },
   ctaText: {
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: 'bold',
     color: colors.darkGreen,
   },
   rightLogo: {
-    height: 140,
-    marginBottom: 48,
+    height: 100,
+    marginBottom: 32,
     objectFit: 'contain',
   },
   rightLine: {
-    width: 140,
-    height: 8,
+    width: 100,
+    height: 6,
     backgroundColor: colors.limeGreen,
-    marginBottom: 48,
-    borderRadius: 4,
+    marginBottom: 32,
+    borderRadius: 3,
   },
   rightTagline: {
-    fontSize: 32,
+    fontSize: 24,
     color: colors.darkGreen,
     textAlign: 'center',
-    maxWidth: 450,
+    maxWidth: 360,
   },
-  // Progress dots - larger
+  // Progress dots
   progressDots: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 48,
-    gap: 18,
+    marginTop: 32,
+    gap: 12,
   },
   progressDot: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
   },
   // Credentials grid
   credentialsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 48,
+    marginTop: 32,
   },
   credentialItem: {
     width: '50%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 16,
   },
   contentArea: {
     flex: 1,
@@ -760,8 +760,8 @@ export const AboutSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent
     <View style={styles.credentialsGrid}>
       {content.credentials.map((cred, idx) => (
         <View key={idx} style={styles.credentialItem}>
-          <CheckIcon size={36} />
-          <Text style={[styles.checkText, { marginLeft: 16 }]}>{cred}</Text>
+          <CheckIcon size={28} />
+          <Text style={[styles.checkText, { marginLeft: 12 }]}>{cred}</Text>
         </View>
       ))}
     </View>
@@ -775,24 +775,24 @@ export const ProblemSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
   <Page size={[1920, 1080]} style={styles.page}>
     <SlideHeader logoBase64={logoBase64} />
     <Text style={styles.title}>{content.title}</Text>
-    <Text style={[styles.description, { marginBottom: 32 }]}>{content.headline}</Text>
+    <Text style={[styles.description, { marginBottom: 24 }]}>{content.headline}</Text>
     
-    <View style={[styles.grid2, { marginBottom: 36, flexWrap: 'wrap', gap: 28 }]}>
+    <View style={[styles.grid2, { marginBottom: 24, flexWrap: 'wrap', gap: 20 }]}>
       {content.points.map((point, idx) => (
         <View key={idx} style={[styles.problemCard, { width: '48%' }]}>
-          <View style={{ marginRight: 20 }}>
-            <XIcon size={36} />
+          <View style={{ marginRight: 14 }}>
+            <XIcon size={28} />
           </View>
-          <Text style={{ fontSize: 34, color: colors.gray, flex: 1 }}>{point}</Text>
+          <Text style={{ fontSize: 26, color: colors.gray, flex: 1 }}>{point}</Text>
         </View>
       ))}
     </View>
     
     <View style={styles.insightBox}>
-      <View style={{ marginRight: 24 }}>
-        <AlertIcon size={52} />
+      <View style={{ marginRight: 16 }}>
+        <AlertIcon size={40} />
       </View>
-      <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#b91c1c', flex: 1 }}>{content.insight}</Text>
+      <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#b91c1c', flex: 1 }}>{content.insight}</Text>
     </View>
     
     <View style={styles.principleBox}>
@@ -808,13 +808,13 @@ export const SolutionSlidePDF = ({ content, logoBase64 }: { content: LeadGenCont
     <SlideHeader logoBase64={logoBase64} />
     <Text style={styles.title}>{content.title}</Text>
     <Text style={styles.headline}>{content.headline}</Text>
-    <Text style={[styles.description, { fontSize: 36, marginBottom: 36 }]}>{content.intro}</Text>
+    <Text style={[styles.description, { fontSize: 28, marginBottom: 28 }]}>{content.intro}</Text>
     
-    <View style={[styles.grid3, { gap: 32 }]}>
+    <View style={[styles.grid3, { gap: 24 }]}>
       {content.items.map((item, idx) => (
         <View key={idx} style={[styles.card, { width: '31%', flexDirection: 'row' }]}>
           <View style={styles.iconBoxRect}>
-            <CheckIcon size={32} />
+            <CheckIcon size={24} />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.cardTitle}>{item.title}</Text>
@@ -853,15 +853,15 @@ export const MethodologySlidePDF = ({
       <Text style={styles.phaseTitle}>{phase}</Text>
     </View>
     
-    <View style={{ gap: 24, flex: 1 }}>
+    <View style={{ gap: 16, flex: 1 }}>
       {items.map((item, idx) => (
-        <View key={idx} style={[styles.card, { flexDirection: 'row', padding: 32 }]}>
+        <View key={idx} style={[styles.card, { flexDirection: 'row', padding: 24 }]}>
           <View style={styles.letterBox}>
             <Text style={styles.letterText}>{String.fromCharCode(65 + idx)}</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={[styles.cardTitle, { fontSize: 34 }]}>{item.title}</Text>
-            <Text style={[styles.cardDescription, { fontSize: 28 }]}>{item.description}</Text>
+            <Text style={[styles.cardTitle, { fontSize: 26 }]}>{item.title}</Text>
+            <Text style={[styles.cardDescription, { fontSize: 22 }]}>{item.description}</Text>
           </View>
         </View>
       ))}
@@ -888,14 +888,14 @@ export const TechStackSlidePDF = ({ content, logoBase64 }: { content: LeadGenCon
     <Text style={styles.title}>{content.title}</Text>
     <Text style={styles.headline}>{content.headline}</Text>
     
-    <View style={[styles.grid3, { gap: 32, flex: 1 }]}>
+    <View style={[styles.grid3, { gap: 24, flex: 1 }]}>
       {content.categories.map((cat, idx) => (
         <View key={idx} style={[styles.techCategory, { width: '31%' }]}>
           <View style={styles.techHeader}>
             <View style={styles.iconBoxSmall}>
-              <ServerIcon size={32} />
+              <ServerIcon size={24} />
             </View>
-            <Text style={[styles.techName, { marginLeft: 18 }]}>{cat.name}</Text>
+            <Text style={[styles.techName, { marginLeft: 14 }]}>{cat.name}</Text>
           </View>
           <View style={styles.techTools}>
             {cat.tools.map((tool, tidx) => (
@@ -917,11 +917,11 @@ export const ReportingSlidePDF = ({ content, logoBase64 }: { content: LeadGenCon
     <Text style={styles.title}>{content.title}</Text>
     <Text style={styles.headline}>{content.headline}</Text>
     
-    <View style={[styles.grid3, { gap: 28, marginBottom: 36 }]}>
+    <View style={[styles.grid3, { gap: 20, marginBottom: 24, flex: 1 }]}>
       {content.metrics.map((metric, idx) => (
         <View key={idx} style={[styles.metricCard, { width: '31%' }]}>
           <View style={styles.metricHeader}>
-            <BarChartIcon size={36} />
+            <BarChartIcon size={28} />
             <Text style={styles.metricName}>{metric.name}</Text>
           </View>
           <Text style={styles.metricDesc}>{metric.description}</Text>
@@ -934,7 +934,7 @@ export const ReportingSlidePDF = ({ content, logoBase64 }: { content: LeadGenCon
       <View style={styles.deliverableGrid}>
         {content.deliverables.map((item, idx) => (
           <View key={idx} style={styles.deliverableItem}>
-            <CheckIcon size={34} color={colors.limeGreen} />
+            <CheckIcon size={24} color={colors.limeGreen} />
             <Text style={styles.deliverableText}>{item}</Text>
           </View>
         ))}
@@ -950,13 +950,13 @@ export const PricingSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
     <Text style={styles.title}>{content.title}</Text>
     <Text style={styles.headline}>{content.headline}</Text>
     
-    <View style={[styles.grid2, { gap: 64, flex: 1 }]}>
+    <View style={[styles.grid2, { gap: 40, flex: 1 }]}>
       <View style={styles.pricingCard}>
         <Text style={styles.priceTitle}>{content.setup.title}</Text>
         <Text style={styles.priceValue}>{content.setup.price}</Text>
         {content.setup.includes.map((item, idx) => (
           <View key={idx} style={styles.priceItem}>
-            <CheckIcon size={34} />
+            <CheckIcon size={24} />
             <Text style={styles.priceItemText}>{item}</Text>
           </View>
         ))}
@@ -967,7 +967,7 @@ export const PricingSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
         <Text style={styles.priceValue}>{content.monthly.price}</Text>
         {content.monthly.includes.map((item, idx) => (
           <View key={idx} style={styles.priceItem}>
-            <CheckIcon size={34} />
+            <CheckIcon size={24} />
             <Text style={styles.priceItemTextLight}>{item}</Text>
           </View>
         ))}
@@ -986,12 +986,12 @@ export const AddonsSlidePDF = ({ content, logoBase64 }: { content: LeadGenConten
     <SlideHeader logoBase64={logoBase64} />
     <Text style={styles.title}>{content.title}</Text>
     
-    <View style={[styles.grid3, { gap: 32, marginTop: 36, flex: 1 }]}>
+    <View style={[styles.grid3, { gap: 24, marginTop: 28, flex: 1 }]}>
       {content.items.map((item, idx) => (
         <View key={idx} style={[styles.addonCard, { width: '31%' }]}>
           <View style={styles.addonHeader}>
             <View style={styles.addonIconBox}>
-              <PlusIcon size={34} />
+              <PlusIcon size={24} />
             </View>
             <Text style={styles.addonPrice}>{item.price}</Text>
           </View>
@@ -1010,11 +1010,11 @@ export const OtherServicesSlidePDF = ({ content, logoBase64 }: { content: LeadGe
     <Text style={styles.title}>{content.title}</Text>
     <Text style={styles.headline}>{content.headline}</Text>
     
-    <View style={[styles.grid3, { gap: 32, flex: 1 }]}>
+    <View style={[styles.grid3, { gap: 24, flex: 1 }]}>
       {content.services.map((service, idx) => (
         <View key={idx} style={[styles.serviceCard, { width: '31%' }]}>
           <View style={styles.iconBoxRect}>
-            <ArrowIcon size={34} />
+            <ArrowIcon size={24} />
           </View>
           <View style={styles.serviceContent}>
             <Text style={styles.serviceTitle}>{service.title}</Text>
@@ -1036,7 +1036,7 @@ export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
       
       <View style={styles.contactInfoItem}>
         <View style={styles.contactIconBox}>
-          <MailIcon size={44} />
+          <MailIcon size={32} />
         </View>
         <View>
           <Text style={styles.contactLabel}>Email</Text>
@@ -1046,7 +1046,7 @@ export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
       
       <View style={styles.contactInfoItem}>
         <View style={styles.contactIconBox}>
-          <PhoneIcon size={44} />
+          <PhoneIcon size={32} />
         </View>
         <View>
           <Text style={styles.contactLabel}>Phone</Text>
@@ -1056,7 +1056,7 @@ export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
       
       <View style={styles.contactInfoItem}>
         <View style={styles.contactIconBox}>
-          <MapPinIcon size={44} />
+          <MapPinIcon size={32} />
         </View>
         <View>
           <Text style={styles.contactLabel}>Address</Text>
@@ -1066,7 +1066,7 @@ export const ContactSlidePDF = ({ content, logoBase64 }: { content: LeadGenConte
       
       <View style={styles.contactInfoItem}>
         <View style={styles.contactIconBox}>
-          <GlobeIcon size={44} />
+          <GlobeIcon size={32} />
         </View>
         <View>
           <Text style={styles.contactLabel}>Website</Text>
