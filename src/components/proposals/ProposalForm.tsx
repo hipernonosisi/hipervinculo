@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent } from 'lucide-react';
+import { X, Plus, Trash2, Building, Mail, Phone, Calendar, DollarSign, Percent, Sparkles, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,6 +10,8 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { toast } from 'sonner';
 import { predefinedServices, serviceCategories, defaultPaymentTerms, type ServiceItem } from './data/proposalServices';
 
 export interface ProposalService {
@@ -18,8 +20,14 @@ export interface ProposalService {
   description: string;
   price: number;
   currency: string;
-  type: 'one-time' | 'monthly';
+  type: 'one-time' | 'monthly' | 'percentage';
   isCustom: boolean;
+  percentageValue?: number;
+  requiredApps?: Array<{
+    name: string;
+    url: string;
+    description: string;
+  }>;
 }
 
 export interface ProposalFormData {
@@ -89,9 +97,11 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
     name: '',
     description: '',
     price: 0,
-    type: 'one-time' as 'one-time' | 'monthly',
+    type: 'one-time' as 'one-time' | 'monthly' | 'percentage',
+    percentageValue: 10,
   });
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
 
   // Recalculate totals when services or discount changes
   useEffect(() => {
@@ -120,6 +130,12 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
       currency: service.currency,
       type: service.type,
       isCustom: false,
+      percentageValue: service.percentageValue,
+      requiredApps: service.requiredApps?.map(app => ({
+        name: app.name,
+        url: app.url,
+        description: app.description.en,
+      })),
     };
     setFormData(prev => ({
       ...prev,
@@ -128,7 +144,8 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
   };
 
   const addCustomService = () => {
-    if (!customService.name || customService.price <= 0) return;
+    if (!customService.name) return;
+    if (customService.type !== 'percentage' && customService.price <= 0) return;
     
     const newService: ProposalService = {
       id: `custom-${Date.now()}`,
@@ -138,6 +155,7 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
       currency: formData.currency,
       type: customService.type,
       isCustom: true,
+      percentageValue: customService.type === 'percentage' ? customService.percentageValue : undefined,
     };
     
     setFormData(prev => ({
@@ -145,7 +163,45 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
       services: [...prev.services, newService],
     }));
     
-    setCustomService({ name: '', description: '', price: 0, type: 'one-time' });
+    setCustomService({ name: '', description: '', price: 0, type: 'one-time', percentageValue: 10 });
+  };
+
+  const generateDescription = async () => {
+    if (!customService.name.trim()) {
+      toast.error('Please enter a service name first');
+      return;
+    }
+    
+    setIsGeneratingDescription(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-service-description`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          serviceName: customService.name,
+          serviceType: customService.type,
+          language: 'en',
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to generate description');
+      }
+      
+      const data = await response.json();
+      if (data.description) {
+        setCustomService(prev => ({ ...prev, description: data.description }));
+        toast.success('Description generated!');
+      }
+    } catch (error) {
+      console.error('Error generating description:', error);
+      toast.error('Failed to generate description');
+    } finally {
+      setIsGeneratingDescription(false);
+    }
   };
 
   const removeService = (serviceId: string) => {
@@ -344,14 +400,30 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
                         className="flex items-center justify-between p-3 bg-white rounded-lg border hover:border-accent transition-colors"
                       >
                         <div className="flex-1">
-                          <p className="font-medium text-sm">{service.name.en}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-sm">{service.name.en}</p>
+                            {service.type === 'percentage' && (
+                              <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
+                                {service.percentageValue}% profit
+                              </Badge>
+                            )}
+                            {service.requiredApps && service.requiredApps.length > 0 && (
+                              <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-300">
+                                {service.requiredApps.length} required apps
+                              </Badge>
+                            )}
+                          </div>
                           <p className="text-xs text-muted-foreground">{service.description.en}</p>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right">
-                            <p className="font-semibold text-sm">${service.basePrice}</p>
+                            {service.type === 'percentage' ? (
+                              <p className="font-semibold text-sm">{service.percentageValue}%</p>
+                            ) : (
+                              <p className="font-semibold text-sm">${service.basePrice}</p>
+                            )}
                             <Badge variant="secondary" className="text-xs">
-                              {service.type === 'monthly' ? '/mo' : 'one-time'}
+                              {service.type === 'monthly' ? '/mo' : service.type === 'percentage' ? 'profit share' : 'one-time'}
                             </Badge>
                           </div>
                           <Button 
@@ -373,40 +445,71 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
                 {/* Custom Service */}
                 <div className="space-y-3">
                   <p className="text-sm font-medium">Or add a custom service:</p>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                     <Input
                       placeholder="Service name"
                       value={customService.name}
                       onChange={e => setCustomService(prev => ({ ...prev, name: e.target.value }))}
                     />
-                    <Input
-                      placeholder="Description"
-                      value={customService.description}
-                      onChange={e => setCustomService(prev => ({ ...prev, description: e.target.value }))}
-                    />
-                    <Input
-                      type="number"
-                      placeholder="Price"
-                      value={customService.price || ''}
-                      onChange={e => setCustomService(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
-                    />
-                    <div className="flex gap-2">
-                      <Select 
-                        value={customService.type} 
-                        onValueChange={(v: 'one-time' | 'monthly') => setCustomService(prev => ({ ...prev, type: v }))}
+                    <div className="relative">
+                      <Input
+                        placeholder="Description"
+                        value={customService.description}
+                        onChange={e => setCustomService(prev => ({ ...prev, description: e.target.value }))}
+                        className="pr-10"
+                      />
+                      <Button
+                        type="button"
+                        size="icon"
+                        variant="ghost"
+                        className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                        onClick={generateDescription}
+                        disabled={isGeneratingDescription || !customService.name.trim()}
+                        title="Generate description with AI"
                       >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="one-time">One-time</SelectItem>
-                          <SelectItem value="monthly">Monthly</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Button type="button" onClick={addCustomService} size="icon">
-                        <Plus className="w-4 h-4" />
+                        {isGeneratingDescription ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Sparkles className="w-4 h-4 text-amber-500" />
+                        )}
                       </Button>
                     </div>
+                    {customService.type === 'percentage' ? (
+                      <div className="flex items-center gap-2">
+                        <Input
+                          type="number"
+                          placeholder="%"
+                          value={customService.percentageValue || ''}
+                          onChange={e => setCustomService(prev => ({ ...prev, percentageValue: parseFloat(e.target.value) || 0 }))}
+                          className="w-20"
+                        />
+                        <span className="text-sm text-muted-foreground">% of profit</span>
+                      </div>
+                    ) : (
+                      <Input
+                        type="number"
+                        placeholder="Price"
+                        value={customService.price || ''}
+                        onChange={e => setCustomService(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
+                      />
+                    )}
+                    <Select 
+                      value={customService.type} 
+                      onValueChange={(v: 'one-time' | 'monthly' | 'percentage') => setCustomService(prev => ({ ...prev, type: v }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="one-time">One-time</SelectItem>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                        <SelectItem value="percentage">% Profit</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Button type="button" onClick={addCustomService} className="w-full md:w-auto">
+                      <Plus className="w-4 h-4 mr-1" />
+                      Add
+                    </Button>
                   </div>
                 </div>
               </CardContent>
@@ -421,41 +524,76 @@ export function ProposalForm({ initialData, onSubmit, onCancel, isLoading }: Pro
               <p className="text-sm">Click "Add Service" to get started</p>
             </div>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {formData.services.map(service => (
                 <div 
                   key={service.id}
-                  className="flex items-center justify-between p-3 bg-white rounded-lg border"
+                  className="p-3 bg-white rounded-lg border space-y-2"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="font-medium text-sm">{service.name}</p>
-                      {service.isCustom && (
-                        <Badge variant="outline" className="text-xs">Custom</Badge>
-                      )}
-                      <Badge variant="secondary" className="text-xs">
-                        {service.type === 'monthly' ? '/mo' : 'one-time'}
-                      </Badge>
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <p className="font-medium text-sm">{service.name}</p>
+                        {service.isCustom && (
+                          <Badge variant="outline" className="text-xs">Custom</Badge>
+                        )}
+                        {service.type === 'percentage' && (
+                          <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-300">
+                            {service.percentageValue}% profit share
+                          </Badge>
+                        )}
+                        <Badge variant="secondary" className="text-xs">
+                          {service.type === 'monthly' ? '/mo' : service.type === 'percentage' ? 'performance' : 'one-time'}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{service.description}</p>
                     </div>
-                    <p className="text-xs text-muted-foreground">{service.description}</p>
+                    <div className="flex items-center gap-3">
+                      {service.type !== 'percentage' && (
+                        <Input
+                          type="number"
+                          value={service.price}
+                          onChange={e => updateServicePrice(service.id, parseFloat(e.target.value) || 0)}
+                          className="w-28 text-right"
+                        />
+                      )}
+                      <Button 
+                        type="button" 
+                        size="icon" 
+                        variant="ghost"
+                        onClick={() => removeService(service.id)}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Input
-                      type="number"
-                      value={service.price}
-                      onChange={e => updateServicePrice(service.id, parseFloat(e.target.value) || 0)}
-                      className="w-28 text-right"
-                    />
-                    <Button 
-                      type="button" 
-                      size="icon" 
-                      variant="ghost"
-                      onClick={() => removeService(service.id)}
-                      className="text-destructive hover:text-destructive"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  
+                  {/* Required Apps Alert */}
+                  {service.requiredApps && service.requiredApps.length > 0 && (
+                    <Alert className="bg-blue-50 border-blue-200">
+                      <AlertCircle className="h-4 w-4 text-blue-600" />
+                      <AlertDescription className="text-sm">
+                        <span className="font-medium text-blue-800">Required applications:</span>
+                        <div className="mt-2 space-y-1">
+                          {service.requiredApps.map((app, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <a 
+                                href={app.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline font-medium flex items-center gap-1"
+                              >
+                                {app.name}
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                              <span className="text-blue-700">- {app.description}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </AlertDescription>
+                    </Alert>
+                  )}
                 </div>
               ))}
             </div>

@@ -1,1 +1,4 @@
 project_id = "fshfuwinreztcqlumjzp"
+
+[functions.generate-service-description]
+verify_jwt = false

@@ -11,8 +11,19 @@ export interface ServiceItem {
   };
   basePrice: number;
   currency: 'USD' | 'EUR';
-  type: 'one-time' | 'monthly';
+  type: 'one-time' | 'monthly' | 'percentage';
   category: string;
+  percentageValue?: number; // For percentage-based services
+  requiredApps?: RequiredApp[]; // Mandatory apps/tools
+}
+
+export interface RequiredApp {
+  name: string;
+  url: string;
+  description: {
+    en: string;
+    es: string;
+  };
 }
 
 export const predefinedServices: ServiceItem[] = [
@@ -153,6 +164,40 @@ export const predefinedServices: ServiceItem[] = [
     currency: 'USD',
     type: 'one-time',
     category: 'Amazon',
+  },
+  {
+    id: 'amazon-growth-partner',
+    name: {
+      en: 'Amazon Growth Partner',
+      es: 'Amazon Growth Partner',
+    },
+    description: {
+      en: 'Full-service Amazon growth management with profit-sharing model. Includes PPC optimization, listing management, inventory planning, and strategic guidance.',
+      es: 'Gestión integral de crecimiento en Amazon con modelo de participación en ganancias. Incluye optimización de PPC, gestión de listings, planificación de inventario y guía estratégica.',
+    },
+    basePrice: 0,
+    currency: 'USD',
+    type: 'percentage',
+    category: 'Amazon',
+    percentageValue: 10,
+    requiredApps: [
+      {
+        name: 'Sellerise',
+        url: 'https://sellerise.com/',
+        description: {
+          en: 'Advanced Amazon analytics and profit tracking platform - Required for accurate profit calculation and performance monitoring.',
+          es: 'Plataforma avanzada de analítica y seguimiento de ganancias en Amazon - Requerida para cálculo preciso de ganancias y monitoreo de rendimiento.',
+        },
+      },
+      {
+        name: 'Profasee',
+        url: 'https://profasee.com/',
+        description: {
+          en: 'AI-powered dynamic repricing tool - Required for optimal pricing strategy and margin protection.',
+          es: 'Herramienta de repricing dinámico con IA - Requerida para estrategia de precios óptima y protección de márgenes.',
+        },
+      },
+    ],
   },
   // Add-ons
   {
