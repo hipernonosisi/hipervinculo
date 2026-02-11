@@ -20,6 +20,7 @@ export default function Contact() {
     fullName: '',
     companyName: '',
     email: '',
+    phone: '',
     howCanWeHelp: '',
     message: '',
   });
@@ -47,6 +48,7 @@ export default function Contact() {
           fullName: formData.fullName,
           email: formData.email,
           companyName: formData.companyName,
+          phone: formData.phone,
           inquiryType: formData.howCanWeHelp,
           message: formData.message,
         }
@@ -180,6 +182,7 @@ export default function Contact() {
                   />
                 </div>
 
+              <div className="grid sm:grid-cols-2 gap-4">
                 <Input
                   placeholder={t.contact.form.email}
                   type="email"
@@ -188,8 +191,16 @@ export default function Contact() {
                   required
                   className="bg-white border-border/50 rounded-xl h-12 px-4"
                 />
+                <Input
+                  placeholder={t.contact.form.phone}
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="bg-white border-border/50 rounded-xl h-12 px-4"
+                />
+              </div>
 
-                <Select
+              <Select
                   value={formData.howCanWeHelp}
                   onValueChange={(value) => setFormData({ ...formData, howCanWeHelp: value })}
                 >
