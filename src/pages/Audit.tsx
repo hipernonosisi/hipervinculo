@@ -66,13 +66,13 @@ export default function Audit() {
           body: {
             type: 'audit',
             language,
-            company_name: answers[0],
+            companyName: answers[0],
             email: answers[6],
-            website_url: answers[1],
-            business_type: answers[2],
-            monthly_revenue: answers[3],
-            monthly_ad_spend: answers[4],
-            growth_goals: answers[5],
+            websiteUrl: answers[1],
+            businessType: answers[2],
+            monthlyRevenue: answers[3],
+            monthlyAdSpend: answers[4],
+            growthGoals: answers[5],
           }
         }).catch(err => console.error('Failed to send email notification:', err));
 
