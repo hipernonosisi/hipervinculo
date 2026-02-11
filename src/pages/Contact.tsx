@@ -44,10 +44,10 @@ export default function Contact() {
         body: {
           type: 'contact',
           language,
-          full_name: formData.fullName,
+          fullName: formData.fullName,
           email: formData.email,
-          company_name: formData.companyName,
-          inquiry_type: formData.howCanWeHelp,
+          companyName: formData.companyName,
+          inquiryType: formData.howCanWeHelp,
           message: formData.message,
         }
       }).catch(err => console.error('Failed to send email notification:', err));
