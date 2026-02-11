@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Users, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Users, CheckCircle, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,6 +10,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
+
+function generateCaptcha() {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { a, b, answer: a + b };
+}
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -25,8 +31,24 @@ export default function Contact() {
     message: '',
   });
 
+  // Simple math captcha
+  const [captcha, setCaptcha] = useState(() => generateCaptcha());
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (parseInt(captchaAnswer) !== captcha.answer) {
+      toast({
+        title: language === 'en' ? "Verification failed" : "Verificación fallida",
+        description: language === 'en' ? "Please solve the math problem correctly." : "Por favor resuelve el problema matemático correctamente.",
+        variant: "destructive",
+      });
+      setCaptcha(generateCaptcha());
+      setCaptchaAnswer('');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -196,6 +218,7 @@ export default function Contact() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  required
                   className="bg-white border-border/50 rounded-xl h-12 px-4"
                 />
               </div>
@@ -224,6 +247,25 @@ export default function Contact() {
                   required
                   className="bg-white border-border/50 rounded-xl px-4 py-3 resize-none"
                 />
+
+                {/* Human verification captcha */}
+                <div className="flex items-center gap-3 p-4 bg-white border border-border/50 rounded-xl">
+                  <ShieldCheck className="h-5 w-5 text-accent flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {captcha.a} + {captcha.b} =
+                  </span>
+                  <Input
+                    type="number"
+                    value={captchaAnswer}
+                    onChange={(e) => setCaptchaAnswer(e.target.value)}
+                    required
+                    className="bg-white border-border/50 rounded-lg h-9 w-20 px-3 text-center"
+                    placeholder="?"
+                  />
+                  <span className="text-xs text-muted-foreground">
+                    {language === 'en' ? 'Verify you\'re human' : 'Verifica que eres humano'}
+                  </span>
+                </div>
 
                 <Button
                   type="submit"
