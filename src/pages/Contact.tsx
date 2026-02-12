@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Users, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Users, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,11 +11,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 
-function generateCaptcha() {
-  const a = Math.floor(Math.random() * 10) + 1;
-  const b = Math.floor(Math.random() * 10) + 1;
-  return { a, b, answer: a + b };
-}
+// Anti-bot: record form load time
+const MINIMUM_SUBMIT_TIME_MS = 3000;
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -31,21 +28,27 @@ export default function Contact() {
     message: '',
   });
 
-  // Simple math captcha
-  const [captcha, setCaptcha] = useState(() => generateCaptcha());
-  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  // Anti-bot: honeypot field + timing
+  const [honeypot, setHoneypot] = useState('');
+  const [formLoadTime] = useState(() => Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (parseInt(captchaAnswer) !== captcha.answer) {
+    // Honeypot check: if filled, it's a bot
+    if (honeypot) {
+      // Silently "succeed" to not alert the bot
+      setIsSubmitted(true);
+      return;
+    }
+
+    // Timing check: if submitted too fast, likely a bot
+    if (Date.now() - formLoadTime < MINIMUM_SUBMIT_TIME_MS) {
       toast({
-        title: language === 'en' ? "Verification failed" : "Verificación fallida",
-        description: language === 'en' ? "Please solve the math problem correctly." : "Por favor resuelve el problema matemático correctamente.",
+        title: language === 'en' ? "Please wait" : "Por favor espera",
+        description: language === 'en' ? "Please take a moment to fill out the form." : "Por favor tómate un momento para llenar el formulario.",
         variant: "destructive",
       });
-      setCaptcha(generateCaptcha());
-      setCaptchaAnswer('');
       return;
     }
 
@@ -248,23 +251,16 @@ export default function Contact() {
                   className="bg-white border-border/50 rounded-xl px-4 py-3 resize-none"
                 />
 
-                {/* Human verification captcha */}
-                <div className="flex items-center gap-3 p-4 bg-white border border-border/50 rounded-xl">
-                  <ShieldCheck className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {captcha.a} + {captcha.b} =
-                  </span>
+                {/* Honeypot field - hidden from real users */}
+                <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
                   <Input
-                    type="number"
-                    value={captchaAnswer}
-                    onChange={(e) => setCaptchaAnswer(e.target.value)}
-                    required
-                    className="bg-white border-border/50 rounded-lg h-9 w-20 px-3 text-center"
-                    placeholder="?"
+                    type="text"
+                    name="website_url"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
-                  <span className="text-xs text-muted-foreground">
-                    {language === 'en' ? 'Verify you\'re human' : 'Verifica que eres humano'}
-                  </span>
                 </div>
 
                 <Button
