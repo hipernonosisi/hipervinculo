@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package, Code } from 'lucide-react';
+import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package, Code, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -61,6 +61,13 @@ export default function Services() {
       description: t.servicesPage.customApps.description,
       features: t.servicesPage.customApps.features,
       detailSlug: 'custom-enterprise-applications',
+    },
+    {
+      icon: Palette,
+      title: t.servicesPage.brandIdentity.title,
+      description: t.servicesPage.brandIdentity.description,
+      features: t.servicesPage.brandIdentity.features,
+      detailSlug: 'brand-identity-manual',
     },
   ];
 
