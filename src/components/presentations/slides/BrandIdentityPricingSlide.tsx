@@ -18,16 +18,16 @@ interface BrandIdentityPricingSlideProps {
 
 export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlideProps) {
   return (
-    <div className="relative w-full h-full flex flex-col p-3 sm:p-6 md:p-8 overflow-hidden" style={{ backgroundColor: '#f8f9f5' }}>
+    <div className="relative w-full h-full flex flex-col p-3 sm:p-5 md:p-6 overflow-hidden" style={{ backgroundColor: '#f8f9f5' }}>
       {/* Header with logo */}
-      <div className="flex items-center justify-between mb-1 sm:mb-2">
-        <img src={logoHipervinculo} alt="Hipervinculo" className="h-4 sm:h-6 md:h-8" />
+      <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+        <img src={logoHipervinculo} alt="Hipervinculo" className="h-4 sm:h-5 md:h-7" />
         <div className="w-8 sm:w-12 h-0.5 sm:h-1" style={{ backgroundColor: '#8BC34A' }} />
       </div>
       
       {/* Title */}
       <h2 
-        className="text-sm sm:text-xl md:text-3xl font-extrabold mb-0.5"
+        className="text-sm sm:text-lg md:text-2xl font-extrabold mb-0.5"
         style={{ color: '#2d4a2d' }}
       >
         {content.title}
@@ -35,7 +35,7 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
       
       {/* Headline */}
       <p 
-        className="text-[7px] sm:text-sm md:text-lg font-medium mb-1.5 sm:mb-3"
+        className="text-[7px] sm:text-xs md:text-base font-medium mb-1 sm:mb-2"
         style={{ color: '#8BC34A' }}
       >
         {content.headline}
@@ -57,22 +57,22 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
             {/* Package header */}
             <div className="p-1 sm:p-2 md:p-3">
               <div className="flex items-center gap-0.5 mb-0.5">
-                {pkg.highlight && <Star className="w-2 h-2 sm:w-3 sm:h-3 fill-current" style={{ color: '#8BC34A' }} />}
+                {pkg.highlight && <Star className="w-2 h-2 sm:w-3.5 sm:h-3.5 fill-current" style={{ color: '#8BC34A' }} />}
                 <h3 
-                  className="text-[7px] sm:text-xs md:text-base font-extrabold"
+                  className="text-[8px] sm:text-sm md:text-base font-extrabold"
                   style={{ color: pkg.highlight ? '#ffffff' : '#2d4a2d' }}
                 >
                   {pkg.name}
                 </h3>
               </div>
               <div 
-                className="text-xs sm:text-xl md:text-2xl font-extrabold mb-0.5"
+                className="text-sm sm:text-xl md:text-2xl font-extrabold mb-0.5"
                 style={{ color: '#8BC34A' }}
               >
                 {pkg.price}
               </div>
               <p 
-                className="text-[5px] sm:text-[10px] md:text-xs font-medium"
+                className="text-[5.5px] sm:text-[10px] md:text-xs font-medium"
                 style={{ color: pkg.highlight ? 'rgba(255,255,255,0.7)' : '#6b7280' }}
               >
                 {pkg.revisions}
@@ -87,15 +87,15 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
             
             {/* Includes */}
             <div className="p-1 sm:p-2 md:p-3 flex-1 overflow-hidden">
-              <div className="space-y-0.5 sm:space-y-0.5 md:space-y-1">
+              <div className="space-y-0.5 md:space-y-1">
                 {pkg.includes.map((item, i) => (
                   <div key={i} className="flex items-start gap-0.5 sm:gap-1">
                     <CheckCircle 
-                      className="w-1.5 h-1.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 mt-0.5 flex-shrink-0" 
+                      className="w-2 h-2 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 mt-0.5 flex-shrink-0" 
                       style={{ color: '#8BC34A' }} 
                     />
                     <span 
-                      className="text-[4.5px] sm:text-[9px] md:text-xs leading-tight"
+                      className="text-[5px] sm:text-[10px] md:text-sm leading-tight"
                       style={{ color: pkg.highlight ? 'rgba(255,255,255,0.9)' : '#374151' }}
                     >
                       {item}
@@ -110,10 +110,10 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
       
       {/* Note */}
       <div 
-        className="mt-1 sm:mt-2 md:mt-3 p-1 sm:p-2 md:p-3 rounded-md sm:rounded-xl text-center"
+        className="mt-1 sm:mt-1.5 md:mt-2 p-1 sm:p-1.5 md:p-2 rounded-md sm:rounded-xl text-center"
         style={{ backgroundColor: 'rgba(139, 195, 74, 0.1)' }}
       >
-        <p className="text-[6px] sm:text-xs md:text-base font-medium" style={{ color: '#2d4a2d' }}>
+        <p className="text-[5.5px] sm:text-xs md:text-sm font-medium" style={{ color: '#2d4a2d' }}>
           {content.note}
         </p>
       </div>
