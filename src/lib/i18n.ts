@@ -774,7 +774,7 @@ export const translations = {
     // Footer
     footer: {
       company: 'Hipervínculo',
-      tagline: 'Your growth partner for ambitious eCommerce',
+      tagline: 'Where strategy meets scalable growth.',
       quickLinks: 'Quick Links',
       contact: 'Contact',
       rights: 'All rights reserved.',
@@ -1798,7 +1798,7 @@ export const translations = {
     // Footer
     footer: {
       company: 'Hipervínculo',
-      tagline: 'Tu socio de crecimiento para eCommerce ambicioso',
+      tagline: 'Donde la estrategia impulsa el crecimiento escalable.',
       quickLinks: 'Enlaces Rápidos',
       contact: 'Contacto',
       rights: 'Todos los derechos reservados.',
