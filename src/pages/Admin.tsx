@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -12,6 +12,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
 import { LeadGenPresentation } from '@/components/presentations/LeadGenPresentation';
 import { BrandIdentityPresentation } from '@/components/presentations/BrandIdentityPresentation';
+import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { ProposalGenerator } from '@/components/proposals/ProposalGenerator';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
@@ -70,7 +71,7 @@ export default function Admin() {
   const [selectedChat, setSelectedChat] = useState<ChatConversation | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
-  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity'>('leadgen');
+  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev'>('leadgen');
 
   // Check authentication
   useEffect(() => {
@@ -559,7 +560,7 @@ export default function Admin() {
             
             {/* Presentations Tab */}
             <TabsContent value="presentations" className="mt-0 space-y-4">
-              <div className="flex gap-2 px-1">
+              <div className="flex gap-2 px-1 flex-wrap">
                 <Button
                   variant="outline"
                   size="sm"
@@ -578,10 +579,21 @@ export default function Admin() {
                   <Palette className="w-4 h-4" />
                   Brand Identity
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActivePresentation('shopifydev')}
+                  className={`gap-2 ${activePresentation === 'shopifydev' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Shopify Dev
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
-                  {activePresentation === 'leadgen' ? <LeadGenPresentation /> : <BrandIdentityPresentation />}
+                  {activePresentation === 'leadgen' && <LeadGenPresentation />}
+                  {activePresentation === 'brandidentity' && <BrandIdentityPresentation />}
+                  {activePresentation === 'shopifydev' && <ShopifyDevPresentation />}
                 </CardContent>
               </Card>
             </TabsContent>
