@@ -59,6 +59,7 @@ export const translations = {
         { title: 'Amazon Seller Services', description: 'Amazon account and advertising management. PPC optimization, listing enhancement, and sales strategy — logistics not included.' },
         { title: 'Tracking & Attribution', description: 'Server-side tracking, GA4 implementation, Conversion APIs, and custom dashboards. Know exactly where your sales come from.' },
         { title: 'Custom Enterprise Apps', description: 'Tailored web applications for your business: inventory control, production management, and operations dashboards.' },
+        { title: 'Brand Identity Manual Design', description: 'Professional brand identity systems with logo design, color palettes, typography, and usage guidelines for consistent brand presentation.' },
       ],
       // Service Detail Pages
       serviceDetail: {
@@ -461,6 +462,75 @@ export const translations = {
           cta: {
             title: 'Let\'s Build Your Solution',
             description: 'Book a call to discuss your business challenges and explore how a custom application can solve them.',
+            button: 'Get in Touch',
+          },
+        },
+        brandIdentity: {
+          slug: 'brand-identity-manual',
+          heroTitle: 'Brand Identity Manual Design',
+          heroSubtitle: 'A professional brand identity system that ensures consistency, recognition, and trust across every touchpoint.',
+          coreProblem: {
+            title: 'The Problem',
+            intro: 'Most businesses operate without a defined brand identity.',
+            points: [
+              'Inconsistent use of logos, colors, and fonts across materials',
+              'No clear guidelines for how the brand should look and feel',
+              'Every new piece of content requires guesswork',
+              'Your brand looks different on your website, social media, and print',
+              'Lack of professionalism erodes trust with potential clients',
+            ],
+            solution: 'Your brand deserves a system, not improvisation.',
+            explanation: 'A brand identity manual is the foundation of how your business is perceived. It defines the visual and verbal rules that make your brand recognizable, consistent, and professional — from your website to your business cards.',
+          },
+          whatWeDeliver: {
+            title: 'What We Deliver',
+            intro: 'A comprehensive brand identity manual that covers every visual aspect of your brand:',
+            items: [
+              'Logo design (primary, secondary, icon variations)',
+              'Complete color palette with codes (HEX, RGB, CMYK, Pantone)',
+              'Typography system (primary and secondary fonts, hierarchy)',
+              'Logo usage rules (clear space, minimum sizes, incorrect uses)',
+              'Brand patterns and graphic elements',
+              'Business card and stationery design',
+              'Social media templates and guidelines',
+              'Brand voice and tone guidelines',
+            ],
+          },
+          process: {
+            title: 'Our Process',
+            items: [
+              { title: 'Discovery & Research', description: 'We study your business, competitors, audience, and goals to define the strategic direction of your brand.' },
+              { title: 'Concept Development', description: 'We create multiple visual concepts and directions, refining based on your feedback until we nail the identity.' },
+              { title: 'System Design', description: 'We build out the complete visual system — logo variations, colors, typography, patterns, and all supporting elements.' },
+              { title: 'Manual & Delivery', description: 'We compile everything into a professional brand manual (PDF) with clear guidelines your team can follow.' },
+            ],
+          },
+          includes: {
+            title: 'What\'s Included',
+            items: [
+              'Brand strategy session',
+              'Logo design with multiple variations',
+              'Color palette definition',
+              'Typography selection and hierarchy',
+              'Usage guidelines and restrictions',
+              'Digital and print-ready files',
+              'Brand identity manual (PDF)',
+              'Source files (AI, PSD, Figma)',
+            ],
+          },
+          whoFor: {
+            title: 'Who This Is For',
+            intro: 'This is ideal for businesses that:',
+            items: [
+              'Are launching a new brand or product',
+              'Need to professionalize their existing visual identity',
+              'Want consistency across all marketing materials',
+              'Are scaling and need brand guidelines for their team',
+            ],
+          },
+          cta: {
+            title: 'Let\'s Build Your Brand',
+            description: 'Schedule a consultation to discuss your brand vision and how we can bring it to life.',
             button: 'Get in Touch',
           },
         },
@@ -899,6 +969,11 @@ export const translations = {
         description: 'Tailored web applications built for your specific business needs. From inventory control to production management systems.',
         features: ['Custom web applications', 'Business process automation', 'Real-time dashboards', 'System integrations'],
       },
+      brandIdentity: {
+        title: 'Brand Identity Manual Design',
+        description: 'Professional brand identity systems that ensure visual consistency and recognition across every touchpoint of your business.',
+        features: ['Logo design & variations', 'Color palette & typography', 'Usage guidelines', 'Digital & print files'],
+      },
     },
     // Pricing Page
     pricingPage: {
@@ -1008,6 +1083,7 @@ export const translations = {
         { title: 'Servicios para Vendedores Amazon', description: 'Gestión de cuentas y publicidad de Amazon. Optimización de PPC, mejora de listados y estrategia de ventas — logística no incluida.' },
         { title: 'Seguimiento y Atribución', description: 'Tracking server-side, implementación de GA4, Conversion APIs y dashboards personalizados. Sabe exactamente de dónde vienen tus ventas.' },
         { title: 'Aplicaciones Empresariales', description: 'Aplicaciones web a medida para tu negocio: control de inventario, gestión de producción y dashboards de operaciones.' },
+        { title: 'Diseño de Manual de Imagen de Marca', description: 'Sistemas profesionales de identidad de marca con diseño de logo, paletas de colores, tipografía y guías de uso para una presentación de marca consistente.' },
       ],
       // Service Detail Pages
       serviceDetail: {
@@ -1410,6 +1486,75 @@ export const translations = {
           cta: {
             title: 'Construyamos Tu Solución',
             description: 'Agenda una llamada para discutir los desafíos de tu negocio y explorar cómo una aplicación a medida puede resolverlos.',
+            button: 'Contáctanos',
+          },
+        },
+        brandIdentity: {
+          slug: 'manual-imagen-de-marca',
+          heroTitle: 'Diseño de Manual de Imagen de Marca',
+          heroSubtitle: 'Un sistema profesional de identidad de marca que asegura consistencia, reconocimiento y confianza en cada punto de contacto.',
+          coreProblem: {
+            title: 'El Problema',
+            intro: 'La mayoría de los negocios operan sin una identidad de marca definida.',
+            points: [
+              'Uso inconsistente de logos, colores y tipografías en los materiales',
+              'Sin guías claras de cómo debe verse y sentirse la marca',
+              'Cada nueva pieza de contenido requiere improvisar',
+              'Tu marca se ve diferente en tu sitio web, redes sociales e impresos',
+              'La falta de profesionalismo erosiona la confianza con clientes potenciales',
+            ],
+            solution: 'Tu marca merece un sistema, no improvisación.',
+            explanation: 'Un manual de identidad de marca es la base de cómo se percibe tu negocio. Define las reglas visuales y verbales que hacen tu marca reconocible, consistente y profesional — desde tu sitio web hasta tus tarjetas de presentación.',
+          },
+          whatWeDeliver: {
+            title: 'Lo Que Entregamos',
+            intro: 'Un manual de identidad de marca completo que cubre cada aspecto visual de tu marca:',
+            items: [
+              'Diseño de logo (primario, secundario, variaciones de icono)',
+              'Paleta de colores completa con códigos (HEX, RGB, CMYK, Pantone)',
+              'Sistema tipográfico (fuentes primarias y secundarias, jerarquía)',
+              'Reglas de uso del logo (espacio libre, tamaños mínimos, usos incorrectos)',
+              'Patrones de marca y elementos gráficos',
+              'Diseño de tarjetas de presentación y papelería',
+              'Plantillas y guías para redes sociales',
+              'Guías de voz y tono de marca',
+            ],
+          },
+          process: {
+            title: 'Nuestro Proceso',
+            items: [
+              { title: 'Descubrimiento e Investigación', description: 'Estudiamos tu negocio, competidores, audiencia y objetivos para definir la dirección estratégica de tu marca.' },
+              { title: 'Desarrollo de Conceptos', description: 'Creamos múltiples conceptos y direcciones visuales, refinando con tu feedback hasta dar con la identidad perfecta.' },
+              { title: 'Diseño del Sistema', description: 'Construimos el sistema visual completo — variaciones de logo, colores, tipografía, patrones y todos los elementos de soporte.' },
+              { title: 'Manual y Entrega', description: 'Compilamos todo en un manual de marca profesional (PDF) con guías claras que tu equipo puede seguir.' },
+            ],
+          },
+          includes: {
+            title: 'Qué Incluye',
+            items: [
+              'Sesión de estrategia de marca',
+              'Diseño de logo con múltiples variaciones',
+              'Definición de paleta de colores',
+              'Selección de tipografía y jerarquía',
+              'Guías de uso y restricciones',
+              'Archivos listos para digital e impresión',
+              'Manual de identidad de marca (PDF)',
+              'Archivos fuente (AI, PSD, Figma)',
+            ],
+          },
+          whoFor: {
+            title: 'Para Quién Es Esto',
+            intro: 'Esto es ideal para negocios que:',
+            items: [
+              'Están lanzando una nueva marca o producto',
+              'Necesitan profesionalizar su identidad visual existente',
+              'Quieren consistencia en todos sus materiales de marketing',
+              'Están escalando y necesitan guías de marca para su equipo',
+            ],
+          },
+          cta: {
+            title: 'Construyamos Tu Marca',
+            description: 'Agenda una consulta para discutir tu visión de marca y cómo podemos darle vida.',
             button: 'Contáctanos',
           },
         },
@@ -1847,6 +1992,11 @@ export const translations = {
         title: 'Aplicaciones Empresariales',
         description: 'Aplicaciones web a medida construidas para las necesidades específicas de tu negocio. Desde control de inventario hasta sistemas de gestión de producción.',
         features: ['Aplicaciones web a medida', 'Automatización de procesos', 'Dashboards en tiempo real', 'Integraciones de sistemas'],
+      },
+      brandIdentity: {
+        title: 'Diseño de Manual de Imagen de Marca',
+        description: 'Sistemas profesionales de identidad de marca que aseguran consistencia visual y reconocimiento en cada punto de contacto de tu negocio.',
+        features: ['Diseño de logo y variaciones', 'Paleta de colores y tipografía', 'Guías de uso', 'Archivos digitales e impresos'],
       },
     },
     // Pricing Page
