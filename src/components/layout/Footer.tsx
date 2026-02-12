@@ -31,7 +31,7 @@ export function Footer() {
                 />
               </Link>
               <p className="text-muted-foreground mb-6">
-                Your growth partner for ambitious eCommerce brands.
+                {t.footer.tagline}
               </p>
               <div className="flex items-center gap-4">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
