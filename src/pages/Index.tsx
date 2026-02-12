@@ -11,7 +11,7 @@ import { AnimatedSection } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
 
-const serviceIcons = [Phone, Target, Search, ShoppingCart, Package, LineChart, Code];
+const serviceIcons = [Phone, Target, Search, ShoppingCart, Package, LineChart, Code, Award];
 const industryIcons = [Phone, ShieldCheck, Settings, ShoppingCart, Zap];
 
 export default function Index() {
