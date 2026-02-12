@@ -515,7 +515,7 @@ export const translations = {
               'Usage guidelines and restrictions',
               'Digital and print-ready files',
               'Brand identity manual (PDF)',
-              'Source files (AI, PSD, Figma)',
+              'Brand application mockups (signage, packaging, merch)',
             ],
           },
           whoFor: {
@@ -1539,7 +1539,7 @@ export const translations = {
               'Guías de uso y restricciones',
               'Archivos listos para digital e impresión',
               'Manual de identidad de marca (PDF)',
-              'Archivos fuente (AI, PSD, Figma)',
+              'Mockups de aplicación de marca (señalización, empaque, merch)',
             ],
           },
           whoFor: {
