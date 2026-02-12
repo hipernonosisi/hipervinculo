@@ -42,7 +42,7 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
       </p>
       
       {/* 3-column pricing */}
-      <div className="grid grid-cols-3 gap-1 sm:gap-2 md:gap-4 flex-1 min-h-0">
+      <div className="grid grid-cols-3 gap-1 sm:gap-2 md:gap-3 flex-1 min-h-0">
         {content.packages.map((pkg, index) => (
           <div 
             key={index}
@@ -55,24 +55,24 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
             }}
           >
             {/* Package header */}
-            <div className="p-1.5 sm:p-3 md:p-4">
-              <div className="flex items-center gap-1 mb-0.5 sm:mb-1">
-                {pkg.highlight && <Star className="w-2.5 h-2.5 sm:w-4 sm:h-4 fill-current" style={{ color: '#8BC34A' }} />}
+            <div className="p-1 sm:p-2 md:p-3">
+              <div className="flex items-center gap-0.5 mb-0.5">
+                {pkg.highlight && <Star className="w-2 h-2 sm:w-3 sm:h-3 fill-current" style={{ color: '#8BC34A' }} />}
                 <h3 
-                  className="text-[8px] sm:text-sm md:text-lg font-extrabold"
+                  className="text-[7px] sm:text-xs md:text-base font-extrabold"
                   style={{ color: pkg.highlight ? '#ffffff' : '#2d4a2d' }}
                 >
                   {pkg.name}
                 </h3>
               </div>
               <div 
-                className="text-sm sm:text-2xl md:text-3xl font-extrabold mb-0.5 sm:mb-1"
+                className="text-xs sm:text-xl md:text-2xl font-extrabold mb-0.5"
                 style={{ color: '#8BC34A' }}
               >
                 {pkg.price}
               </div>
               <p 
-                className="text-[6px] sm:text-xs md:text-sm font-medium"
+                className="text-[5px] sm:text-[10px] md:text-xs font-medium"
                 style={{ color: pkg.highlight ? 'rgba(255,255,255,0.7)' : '#6b7280' }}
               >
                 {pkg.revisions}
@@ -81,21 +81,21 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
             
             {/* Divider */}
             <div 
-              className="h-px mx-1.5 sm:mx-3"
+              className="h-px mx-1 sm:mx-2"
               style={{ backgroundColor: pkg.highlight ? 'rgba(139, 195, 74, 0.3)' : 'rgba(0,0,0,0.06)' }}
             />
             
             {/* Includes */}
-            <div className="p-1.5 sm:p-3 md:p-4 flex-1 overflow-hidden">
-              <div className="space-y-0.5 sm:space-y-1 md:space-y-1.5">
+            <div className="p-1 sm:p-2 md:p-3 flex-1 overflow-hidden">
+              <div className="space-y-0.5 sm:space-y-0.5 md:space-y-1">
                 {pkg.includes.map((item, i) => (
-                  <div key={i} className="flex items-start gap-0.5 sm:gap-1.5">
+                  <div key={i} className="flex items-start gap-0.5 sm:gap-1">
                     <CheckCircle 
-                      className="w-2 h-2 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 mt-0.5 flex-shrink-0" 
+                      className="w-1.5 h-1.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 mt-0.5 flex-shrink-0" 
                       style={{ color: '#8BC34A' }} 
                     />
                     <span 
-                      className="text-[5px] sm:text-[10px] md:text-sm leading-tight"
+                      className="text-[4.5px] sm:text-[9px] md:text-xs leading-tight"
                       style={{ color: pkg.highlight ? 'rgba(255,255,255,0.9)' : '#374151' }}
                     >
                       {item}
