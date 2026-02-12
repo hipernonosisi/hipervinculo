@@ -7,7 +7,7 @@ interface ShopifyScopeSlideProps {
     headline: string;
     included: Array<{ title: string; description: string }>;
     notIncluded: Array<{ title: string; description: string }>;
-    addons?: Array<{ title: string; description: string }>;
+    addons?: Array<{ title: string; description: string; price: string }>;
   };
 }
 
@@ -123,13 +123,21 @@ export function ShopifyScopeSlide({ content }: ShopifyScopeSlideProps) {
             </div>
             <div className="space-y-1 sm:space-y-2">
               {content.addons.map((item, i) => (
-                <div key={i}>
-                  <h4 
-                    className="text-[6px] sm:text-xs md:text-sm font-bold leading-tight"
-                    style={{ color: '#2d4a2d' }}
-                  >
-                    {item.title}
-                  </h4>
+                <div key={i} className="p-1 sm:p-1.5 rounded-md" style={{ backgroundColor: 'rgba(139, 195, 74, 0.08)' }}>
+                  <div className="flex items-start justify-between gap-0.5">
+                    <h4 
+                      className="text-[6px] sm:text-xs md:text-sm font-bold leading-tight"
+                      style={{ color: '#2d4a2d' }}
+                    >
+                      {item.title}
+                    </h4>
+                    <span 
+                      className="text-[7px] sm:text-xs md:text-sm font-extrabold whitespace-nowrap"
+                      style={{ color: '#8BC34A' }}
+                    >
+                      {item.price}
+                    </span>
+                  </div>
                   <p 
                     className="text-[5px] sm:text-[10px] md:text-xs leading-tight mt-0.5"
                     style={{ color: '#6b7280' }}

@@ -32,7 +32,7 @@ export interface ShopifyDevContent {
     headline: string;
     included: Array<{ title: string; description: string }>;
     notIncluded: Array<{ title: string; description: string }>;
-    addons?: Array<{ title: string; description: string }>;
+    addons?: Array<{ title: string; description: string; price: string }>;
   };
   process: {
     title: string;
@@ -163,11 +163,13 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
       addons: [
         {
           title: 'Copywriting & product descriptions',
-          description: 'Professional product descriptions, collection copy, and store content — available as an add-on.',
+          description: 'Professional product descriptions, collection copy, and store content.',
+          price: '$500',
         },
         {
           title: 'Ongoing store management',
-          description: 'Post-launch maintenance, product updates, and content management — available as a monthly retainer.',
+          description: 'Post-launch maintenance, product updates, and content management.',
+          price: '$500/mo',
         },
       ],
     },
@@ -382,11 +384,13 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
       addons: [
         {
           title: 'Copywriting y descripciones de producto',
-          description: 'Descripciones profesionales, textos de colecciones y contenido de la tienda — disponible como add-on.',
+          description: 'Descripciones profesionales, textos de colecciones y contenido de la tienda.',
+          price: '$500',
         },
         {
           title: 'Administración continua de la tienda',
-          description: 'Mantenimiento, actualizaciones de productos y gestión de contenido — disponible como retainer mensual.',
+          description: 'Mantenimiento, actualizaciones de productos y gestión de contenido.',
+          price: '$500/mes',
         },
       ],
     },
