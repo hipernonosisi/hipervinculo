@@ -32,6 +32,7 @@ export interface ShopifyDevContent {
     headline: string;
     included: Array<{ title: string; description: string }>;
     notIncluded: Array<{ title: string; description: string }>;
+    addons?: Array<{ title: string; description: string }>;
   };
   process: {
     title: string;
@@ -155,12 +156,18 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
           description: "You provide your own Shopify account. We don't open or manage Shopify subscriptions.",
         },
         {
-          title: 'Product photography or copywriting',
-          description: 'You provide product images and descriptions. We can recommend partners if needed.',
+          title: 'Product photography',
+          description: 'You provide product images. We can recommend photography partners if needed.',
+        },
+      ],
+      addons: [
+        {
+          title: 'Copywriting & product descriptions',
+          description: 'Professional product descriptions, collection copy, and store content — available as an add-on.',
         },
         {
           title: 'Ongoing store management',
-          description: 'Post-launch maintenance and product updates are separate engagements.',
+          description: 'Post-launch maintenance, product updates, and content management — available as a monthly retainer.',
         },
       ],
     },
@@ -368,12 +375,18 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
           description: 'Tú provees tu propia cuenta Shopify. No abrimos ni administramos suscripciones.',
         },
         {
-          title: 'Fotografía de producto o copywriting',
-          description: 'Tú provees imágenes y descripciones de productos. Podemos recomendar socios si lo necesitas.',
+          title: 'Fotografía de producto',
+          description: 'Tú provees imágenes de productos. Podemos recomendar socios de fotografía si lo necesitas.',
+        },
+      ],
+      addons: [
+        {
+          title: 'Copywriting y descripciones de producto',
+          description: 'Descripciones profesionales, textos de colecciones y contenido de la tienda — disponible como add-on.',
         },
         {
           title: 'Administración continua de la tienda',
-          description: 'El mantenimiento y actualizaciones post-lanzamiento son compromisos separados.',
+          description: 'Mantenimiento, actualizaciones de productos y gestión de contenido — disponible como retainer mensual.',
         },
       ],
     },
