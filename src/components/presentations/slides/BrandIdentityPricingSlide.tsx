@@ -86,7 +86,7 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
             />
             
             {/* Includes */}
-            <div className="p-1.5 sm:p-3 md:p-4 flex-1 overflow-y-auto">
+            <div className="p-1.5 sm:p-3 md:p-4 flex-1 overflow-hidden">
               <div className="space-y-0.5 sm:space-y-1 md:space-y-1.5">
                 {pkg.includes.map((item, i) => (
                   <div key={i} className="flex items-start gap-0.5 sm:gap-1.5">
