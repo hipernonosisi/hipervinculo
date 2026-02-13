@@ -394,7 +394,7 @@ export function LalenasFoodReport({ isPublic = false }: LalenasFoodReportProps) 
             Reporte generado por Hipervinculo &middot; {report.generatedDate}
           </p>
           <p className="text-xs text-muted-foreground">
-            hipervinculo.com &middot; hola@hipervinculo.com
+            hipervinculo.net &middot; info@hipervinculo.net
           </p>
         </div>
       </div>
