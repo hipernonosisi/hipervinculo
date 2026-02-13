@@ -1,4 +1,4 @@
-import { Document, Page, View, Text, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Circle } from '@react-pdf/renderer';
 import type { LalenasFoodReport } from '../data/lalenasFoodReportData';
 
 const green = '#2d4a2d';
@@ -43,6 +43,34 @@ function RoasBadge({ value }: { value: number }) {
   const style = value >= 3 ? s.roasBadgeGreen : value >= 2 ? s.roasBadgeYellow : s.roasBadgeRed;
   return <Text style={style}>{value.toFixed(2)}x</Text>;
 }
+
+// SVG Icons for contact slide (matching presentation PDFs)
+const MailIcon = ({ size = 24 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke={lime} strokeWidth="2" />
+    <Path d="M22 6l-10 7L2 6" fill="none" stroke={lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+const PhoneIcon = ({ size = 24 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" fill="none" stroke={lime} strokeWidth="2" />
+  </Svg>
+);
+
+const GlobeIcon = ({ size = 24 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Circle cx="12" cy="12" r="10" fill="none" stroke={lime} strokeWidth="2" />
+    <Path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" fill="none" stroke={lime} strokeWidth="2" />
+  </Svg>
+);
+
+const MapPinIcon = ({ size = 24 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="none" stroke={lime} strokeWidth="2" />
+    <Circle cx="12" cy="10" r="3" fill="none" stroke={lime} strokeWidth="2" />
+  </Svg>
+);
 
 interface Props {
   report: LalenasFoodReport;
@@ -231,71 +259,69 @@ export function LalenasFoodPDFDocument({ report, logoBase64 }: Props) {
         <Text style={s.footer}>Reporte generado por Hipervínculo · hipervinculo.net · info@hipervinculo.net</Text>
       </Page>
 
-      {/* Page 5: Contact - split layout like presentations */}
-      <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
-        <View style={{ flexDirection: 'row', flex: 1 }}>
-          {/* Left side - Dark green */}
-          <View style={{ width: '60%', backgroundColor: green, paddingHorizontal: 40, paddingVertical: 50, justifyContent: 'center' }}>
-            <Text style={{ fontSize: 26, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>
-              ¿Listo para escalar?
-            </Text>
-            <Text style={{ fontSize: 12, fontWeight: 'bold', color: lime, marginBottom: 14 }}>
-              Hablemos sobre tu estrategia de crecimiento
-            </Text>
-            <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.8)', marginBottom: 28, lineHeight: 1.5 }}>
-              Nuestro equipo está listo para ayudarte a llevar tus resultados al siguiente nivel con estrategias personalizadas y basadas en datos.
-            </Text>
+      {/* Page 5: Contact - 1920x1080 like presentation slides */}
+      <Page size={[1920, 1080]} style={{ fontFamily: 'Helvetica', flexDirection: 'row' }}>
+        {/* Left side - Dark green */}
+        <View style={{ width: '60%', backgroundColor: green, padding: 80, justifyContent: 'center', position: 'relative' }}>
+          <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'white', marginBottom: 16 }}>
+            ¿Listo para escalar?
+          </Text>
+          <Text style={{ fontSize: 36, fontWeight: 'bold', color: lime, marginBottom: 28 }}>
+            Hablemos sobre tu estrategia de crecimiento
+          </Text>
+          <Text style={{ fontSize: 28, color: 'rgba(255,255,255,0.8)', marginBottom: 40, lineHeight: 1.5, maxWidth: 600 }}>
+            Nuestro equipo está listo para ayudarte a llevar tus resultados al siguiente nivel con estrategias personalizadas y basadas en datos.
+          </Text>
 
-            {/* Contact items */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
-                <Text style={{ fontSize: 12 }}>✉</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Email</Text>
-                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>info@hipervinculo.net</Text>
-              </View>
+          {/* Contact items */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
+            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
+              <MailIcon size={32} />
             </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
-                <Text style={{ fontSize: 12 }}>📞</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Phone</Text>
-                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>+1 (786) 808-2868</Text>
-              </View>
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
-                <Text style={{ fontSize: 12 }}>🌐</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Website</Text>
-                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>hipervinculo.net</Text>
-              </View>
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
-                <Text style={{ fontSize: 12 }}>📍</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Address</Text>
-                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>Miami, FL</Text>
-              </View>
+            <View>
+              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Email</Text>
+              <Text style={{ fontSize: 26, color: 'white' }}>info@hipervinculo.net</Text>
             </View>
           </View>
 
-          {/* Right side - White with logo */}
-          <View style={{ width: '40%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', padding: 30 }}>
-            <Image src={logoBase64} style={{ height: 36, marginBottom: 16 }} />
-            <View style={{ width: 40, height: 3, backgroundColor: lime, marginBottom: 16 }} />
-            <Text style={{ fontSize: 9, color: green, textAlign: 'center', fontWeight: 'bold' }}>
-              Where strategy meets{'\n'}scalable growth
-            </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
+            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
+              <PhoneIcon size={32} />
+            </View>
+            <View>
+              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Phone</Text>
+              <Text style={{ fontSize: 26, color: 'white' }}>+1 (786) 808-2868</Text>
+            </View>
           </View>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
+            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
+              <GlobeIcon size={32} />
+            </View>
+            <View>
+              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Website</Text>
+              <Text style={{ fontSize: 26, color: 'white' }}>hipervinculo.net</Text>
+            </View>
+          </View>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
+              <MapPinIcon size={32} />
+            </View>
+            <View>
+              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Address</Text>
+              <Text style={{ fontSize: 26, color: 'white' }}>Miami, FL</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Right side - White with logo */}
+        <View style={{ width: '40%', backgroundColor: 'white', padding: 80, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+          <Image src={logoBase64} style={{ height: 100, marginBottom: 32, objectFit: 'contain' }} />
+          <View style={{ width: 100, height: 6, backgroundColor: lime, marginBottom: 32, borderRadius: 3 }} />
+          <Text style={{ fontSize: 24, color: green, textAlign: 'center', maxWidth: 360 }}>
+            Where strategy meets{'\n'}scalable growth
+          </Text>
         </View>
       </Page>
     </Document>
