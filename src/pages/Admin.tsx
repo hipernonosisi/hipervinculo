@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag, MousePointerClick } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag, MousePointerClick, Megaphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -14,6 +14,7 @@ import { LeadGenPresentation } from '@/components/presentations/LeadGenPresentat
 import { BrandIdentityPresentation } from '@/components/presentations/BrandIdentityPresentation';
 import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
+import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
 import { ProposalGenerator } from '@/components/proposals/ProposalGenerator';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
@@ -72,7 +73,7 @@ export default function Admin() {
   const [selectedChat, setSelectedChat] = useState<ChatConversation | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
-  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage'>('leadgen');
+  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads'>('leadgen');
 
   // Check authentication
   useEffect(() => {
@@ -598,6 +599,15 @@ export default function Admin() {
                   <MousePointerClick className="w-4 h-4" />
                   Landing Page
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActivePresentation('metaads')}
+                  className={`gap-2 ${activePresentation === 'metaads' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Megaphone className="w-4 h-4" />
+                  Meta Ads
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
@@ -605,6 +615,7 @@ export default function Admin() {
                   {activePresentation === 'brandidentity' && <BrandIdentityPresentation />}
                   {activePresentation === 'shopifydev' && <ShopifyDevPresentation />}
                   {activePresentation === 'landingpage' && <LandingPagePresentation />}
+                  {activePresentation === 'metaads' && <MetaAdsPresentation />}
                 </CardContent>
               </Card>
             </TabsContent>

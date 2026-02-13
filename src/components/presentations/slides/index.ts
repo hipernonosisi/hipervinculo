@@ -10,3 +10,4 @@ export { PricingSlide } from './PricingSlide';
 export { AddonsSlide } from './AddonsSlide';
 export { OtherServicesSlide } from './OtherServicesSlide';
 export { ContactSlide } from './ContactSlide';
+export { CreativeScopeSlide } from './CreativeScopeSlide';
