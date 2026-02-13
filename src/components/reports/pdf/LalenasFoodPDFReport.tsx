@@ -13,9 +13,9 @@ const s = StyleSheet.create({
   title: { fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 },
   subtitle: { fontSize: 11, color: '#666' },
   kpiRow: { flexDirection: 'row', gap: 12, marginBottom: 20 },
-  kpiCard: { flex: 1, backgroundColor: 'white', borderRadius: 10, padding: 14, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' },
+  kpiCard: { flex: 1, backgroundColor: 'white', borderRadius: 10, padding: 14 },
   kpiLabel: { fontSize: 8, color: '#888', marginBottom: 4 },
-  kpiValue: { fontSize: 18, fontWeight: 'bold', color: green },
+  kpiValue: { fontSize: 14, fontWeight: 'bold', color: green },
   sectionTitle: { fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 10 },
   tableHeader: { flexDirection: 'row', backgroundColor: '#e8e8e8', borderRadius: 4, padding: 6, marginBottom: 2 },
   tableRow: { flexDirection: 'row', padding: 6, borderBottomWidth: 0.5, borderBottomColor: '#e0e0e0' },
@@ -176,125 +176,122 @@ export function LalenasFoodPDFDocument({ report, logoBase64 }: Props) {
           <View style={s.accent} />
         </View>
 
-        <Text style={s.sectionTitle}>Estado de Integraciones</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 16 }}>Estado de Integraciones</Text>
 
-        <View style={{ flexDirection: 'row', gap: 12, marginBottom: 24 }}>
-          <View style={s.statusCard}>
-            <Text style={s.statusTitle}>Meta Pixel</Text>
-            <Text style={s.statusActive}>Activo</Text>
-            <Text style={s.statusNote}>{report.pixelStatus.note}</Text>
-          </View>
-          <View style={s.statusCard}>
-            <Text style={s.statusTitle}>Shopify + Meta</Text>
-            <Text style={s.statusActive}>Conectado</Text>
-            <Text style={s.statusNote}>{report.shopifyConnection.note}</Text>
-          </View>
-          <View style={s.statusCard}>
-            <Text style={s.statusTitle}>Conversion API (CAPI)</Text>
-            <Text style={s.statusInactive}>No activo</Text>
-            <Text style={s.statusNote}>{report.capiStatus.note}</Text>
-          </View>
+        {/* Stacked vertically, much larger */}
+        <View style={{ backgroundColor: 'white', borderRadius: 12, padding: 20, marginBottom: 14 }}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 6 }}>Meta Pixel</Text>
+          <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#2e7d32', backgroundColor: '#e8f5e9', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10, alignSelf: 'flex-start', marginBottom: 8 }}>Activo</Text>
+          <Text style={{ fontSize: 9, color: '#666', lineHeight: 1.5 }}>{report.pixelStatus.note}</Text>
+        </View>
+
+        <View style={{ backgroundColor: 'white', borderRadius: 12, padding: 20, marginBottom: 14 }}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 6 }}>Shopify + Meta</Text>
+          <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#2e7d32', backgroundColor: '#e8f5e9', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10, alignSelf: 'flex-start', marginBottom: 8 }}>Conectado</Text>
+          <Text style={{ fontSize: 9, color: '#666', lineHeight: 1.5 }}>{report.shopifyConnection.note}</Text>
+        </View>
+
+        <View style={{ backgroundColor: 'white', borderRadius: 12, padding: 20, marginBottom: 14 }}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 6 }}>Conversion API (CAPI)</Text>
+          <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#f57f17', backgroundColor: '#fff8e1', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10, alignSelf: 'flex-start', marginBottom: 8 }}>No activo</Text>
+          <Text style={{ fontSize: 9, color: '#666', lineHeight: 1.5 }}>{report.capiStatus.note}</Text>
         </View>
 
         <Text style={s.footer}>Reporte generado por Hipervínculo · hipervinculo.net · info@hipervinculo.net</Text>
       </Page>
 
-      {/* Page 4: Our Services */}
+      {/* Page 4: Our Services - stacked vertically */}
       <Page size="A4" style={s.page}>
         <View style={s.header}>
           <Image src={logoBase64} style={s.logo} />
           <View style={s.accent} />
         </View>
 
-        <Text style={[s.title, { marginBottom: 4 }]}>Nuestros Servicios</Text>
-        <Text style={[s.subtitle, { marginBottom: 20 }]}>Soluciones integrales de marketing digital para escalar tu negocio</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 4 }}>Nuestros Servicios</Text>
+        <Text style={{ fontSize: 10, color: '#666', marginBottom: 16 }}>Soluciones integrales de marketing digital para escalar tu negocio</Text>
 
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-          {[
-            { name: 'Meta Ads Management', desc: 'Gestión profesional de campañas en Facebook e Instagram para maximizar tu ROAS.', url: 'hipervinculo.net/services/meta-ads-management' },
-            { name: 'Lead Generation', desc: 'Sistemas de generación de leads calificados para alimentar tu pipeline de ventas.', url: 'hipervinculo.net/services/lead-generation' },
-            { name: 'Shopify Development', desc: 'Desarrollo y optimización de tiendas Shopify para maximizar conversiones.', url: 'hipervinculo.net/services/shopify-development' },
-            { name: 'Landing Page Development', desc: 'Páginas de aterrizaje optimizadas para conversión con tracking completo.', url: 'hipervinculo.net/services/landing-page-development' },
-            { name: 'Brand Identity Design', desc: 'Diseño de manuales de imagen de marca profesionales y completos.', url: 'hipervinculo.net/services/brand-identity-design' },
-            { name: 'Google Ads Management', desc: 'Campañas de búsqueda y shopping para capturar demanda existente.', url: 'hipervinculo.net/services/google-ads-management' },
-          ].map((service, i) => (
-            <View key={i} style={{ width: '48%', backgroundColor: 'white', borderRadius: 10, padding: 14, marginBottom: 2 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: lime, marginRight: 8 }} />
-                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{service.name}</Text>
-              </View>
-              <Text style={{ fontSize: 7, color: '#666', lineHeight: 1.4, marginBottom: 6 }}>{service.desc}</Text>
-              <Text style={{ fontSize: 6, color: lime, textDecoration: 'underline' }}>{service.url}</Text>
+        {[
+          { name: 'Meta Ads Management', desc: 'Gestión profesional de campañas en Facebook e Instagram para maximizar tu ROAS.', url: 'hipervinculo.net/services/meta-ads-management' },
+          { name: 'Lead Generation', desc: 'Sistemas de generación de leads calificados para alimentar tu pipeline de ventas.', url: 'hipervinculo.net/services/lead-generation' },
+          { name: 'Shopify Development', desc: 'Desarrollo y optimización de tiendas Shopify para maximizar conversiones.', url: 'hipervinculo.net/services/shopify-development' },
+          { name: 'Landing Page Development', desc: 'Páginas de aterrizaje optimizadas para conversión con tracking completo.', url: 'hipervinculo.net/services/landing-page-development' },
+          { name: 'Brand Identity Design', desc: 'Diseño de manuales de imagen de marca profesionales y completos.', url: 'hipervinculo.net/services/brand-identity-design' },
+          { name: 'Google Ads Management', desc: 'Campañas de búsqueda y shopping para capturar demanda existente.', url: 'hipervinculo.net/services/google-ads-management' },
+        ].map((service, i) => (
+          <View key={i} style={{ backgroundColor: 'white', borderRadius: 10, padding: 14, marginBottom: 8, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: lime, marginRight: 12, flexShrink: 0 }} />
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 2 }}>{service.name}</Text>
+              <Text style={{ fontSize: 8, color: '#666', marginBottom: 2 }}>{service.desc}</Text>
+              <Text style={{ fontSize: 7, color: lime }}>{service.url}</Text>
             </View>
-          ))}
-        </View>
+          </View>
+        ))}
 
         <Text style={s.footer}>Reporte generado por Hipervínculo · hipervinculo.net · info@hipervinculo.net</Text>
       </Page>
 
-      {/* Page 5: Contact - styled like presentation final slide */}
+      {/* Page 5: Contact - split layout like presentations */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
-        <View style={{ flexDirection: 'row', height: '100%' }}>
+        <View style={{ flexDirection: 'row', flex: 1 }}>
           {/* Left side - Dark green */}
-          <View style={{ flex: 1, backgroundColor: green, padding: 40, justifyContent: 'center' }}>
-            <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'white', marginBottom: 8 }}>
+          <View style={{ width: '60%', backgroundColor: green, paddingHorizontal: 40, paddingVertical: 50, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 26, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>
               ¿Listo para escalar?
             </Text>
-            <Text style={{ fontSize: 14, fontWeight: 'bold', color: lime, marginBottom: 16 }}>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: lime, marginBottom: 14 }}>
               Hablemos sobre tu estrategia de crecimiento
             </Text>
-            <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.8)', marginBottom: 30, lineHeight: 1.5 }}>
+            <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.8)', marginBottom: 28, lineHeight: 1.5 }}>
               Nuestro equipo está listo para ayudarte a llevar tus resultados al siguiente nivel con estrategias personalizadas y basadas en datos.
             </Text>
 
             {/* Contact items */}
-            <View style={{ marginBottom: 10 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
-                <View style={{ width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                  <Text style={{ fontSize: 14 }}>✉</Text>
-                </View>
-                <View>
-                  <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)' }}>Email</Text>
-                  <Text style={{ fontSize: 11, color: 'white', fontWeight: 'bold' }}>info@hipervinculo.net</Text>
-                </View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
+                <Text style={{ fontSize: 12 }}>✉</Text>
               </View>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
-                <View style={{ width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                  <Text style={{ fontSize: 14 }}>📞</Text>
-                </View>
-                <View>
-                  <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)' }}>Phone</Text>
-                  <Text style={{ fontSize: 11, color: 'white', fontWeight: 'bold' }}>+1 (786) 808-2868</Text>
-                </View>
+              <View>
+                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Email</Text>
+                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>info@hipervinculo.net</Text>
               </View>
+            </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
-                <View style={{ width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                  <Text style={{ fontSize: 14 }}>🌐</Text>
-                </View>
-                <View>
-                  <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)' }}>Website</Text>
-                  <Text style={{ fontSize: 11, color: 'white', fontWeight: 'bold' }}>hipervinculo.net</Text>
-                </View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
+                <Text style={{ fontSize: 12 }}>📞</Text>
               </View>
+              <View>
+                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Phone</Text>
+                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>+1 (786) 808-2868</Text>
+              </View>
+            </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={{ width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                  <Text style={{ fontSize: 14 }}>📍</Text>
-                </View>
-                <View>
-                  <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)' }}>Address</Text>
-                  <Text style={{ fontSize: 11, color: 'white', fontWeight: 'bold' }}>Miami, FL</Text>
-                </View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
+                <Text style={{ fontSize: 12 }}>🌐</Text>
+              </View>
+              <View>
+                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Website</Text>
+                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>hipervinculo.net</Text>
+              </View>
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 10 }}>
+                <Text style={{ fontSize: 12 }}>📍</Text>
+              </View>
+              <View>
+                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>Address</Text>
+                <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>Miami, FL</Text>
               </View>
             </View>
           </View>
 
           {/* Right side - White with logo */}
-          <View style={{ width: '40%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', padding: 40 }}>
-            <Image src={logoBase64} style={{ height: 40, marginBottom: 20 }} />
-            <View style={{ width: 50, height: 3, backgroundColor: lime, marginBottom: 20 }} />
+          <View style={{ width: '40%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', padding: 30 }}>
+            <Image src={logoBase64} style={{ height: 36, marginBottom: 16 }} />
+            <View style={{ width: 40, height: 3, backgroundColor: lime, marginBottom: 16 }} />
             <Text style={{ fontSize: 9, color: green, textAlign: 'center', fontWeight: 'bold' }}>
               Where strategy meets{'\n'}scalable growth
             </Text>
