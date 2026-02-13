@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag, MousePointerClick, Megaphone } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -16,6 +16,7 @@ import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPre
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
 import { ProposalGenerator } from '@/components/proposals/ProposalGenerator';
+import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
@@ -286,7 +287,7 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-3 sm:grid-cols-5 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-3 sm:grid-cols-6 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
@@ -314,6 +315,11 @@ export default function Admin() {
                 <Presentation className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Presentations</span>
                 <span className="sm:hidden">Present.</span>
+              </TabsTrigger>
+              <TabsTrigger value="reports" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Reports</span>
+                <span className="sm:hidden">Reports</span>
               </TabsTrigger>
             </TabsList>
             
@@ -616,6 +622,15 @@ export default function Admin() {
                   {activePresentation === 'shopifydev' && <ShopifyDevPresentation />}
                   {activePresentation === 'landingpage' && <LandingPagePresentation />}
                   {activePresentation === 'metaads' && <MetaAdsPresentation />}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Reports Tab */}
+            <TabsContent value="reports">
+              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px', overflow: 'auto' }}>
+                  <LalenasFoodReport />
                 </CardContent>
               </Card>
             </TabsContent>
