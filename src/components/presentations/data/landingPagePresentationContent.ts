@@ -143,7 +143,6 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
       notIncluded: [
         'This is NOT a multi-page website',
         'Does not include blog, about page, or site navigation',
-        'Hosting and domain are provided by the client',
       ],
     },
     process: {
@@ -223,7 +222,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
           ],
         },
       ],
-      note: 'All packages include tracking code installation. Hosting and domain are provided by the client. Custom scopes available upon request.',
+      note: 'All packages include tracking code installation and hosting. Custom scopes available upon request.',
     },
     otherServices: {
       title: 'Other Services We Offer',
@@ -337,7 +336,6 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
       notIncluded: [
         'Esto NO es un sitio web de múltiples páginas',
         'No incluye blog, página de about ni navegación del sitio',
-        'El hosting y dominio los provee el cliente',
       ],
     },
     process: {
@@ -417,7 +415,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
           ],
         },
       ],
-      note: 'Todos los paquetes incluyen instalación de códigos de seguimiento. El hosting y dominio los provee el cliente. Alcances personalizados disponibles bajo solicitud.',
+      note: 'Todos los paquetes incluyen instalación de códigos de seguimiento y hosting. Alcances personalizados disponibles bajo solicitud.',
     },
     otherServices: {
       title: 'Otros Servicios que Ofrecemos',
