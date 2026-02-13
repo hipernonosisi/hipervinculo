@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Receipt, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3 } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -15,7 +15,7 @@ import { BrandIdentityPresentation } from '@/components/presentations/BrandIdent
 import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
-import { ProposalGenerator } from '@/components/proposals/ProposalGenerator';
+
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
@@ -306,11 +306,6 @@ export default function Admin() {
                 <span className="sm:hidden">Chats</span>
                 <span className="ml-1">({chatConversations.length})</span>
               </TabsTrigger>
-              <TabsTrigger value="proposals" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Receipt className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Proposals</span>
-                <span className="sm:hidden">Props.</span>
-              </TabsTrigger>
               <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
                 <Presentation className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Presentations</span>
@@ -561,10 +556,6 @@ export default function Admin() {
               </Card>
             </TabsContent>
             
-            {/* Proposals Tab */}
-            <TabsContent value="proposals" className="mt-0">
-              <ProposalGenerator />
-            </TabsContent>
             
             {/* Presentations Tab */}
             <TabsContent value="presentations" className="mt-0 space-y-4">
