@@ -259,67 +259,67 @@ export function LalenasFoodPDFDocument({ report, logoBase64 }: Props) {
         <Text style={s.footer}>Reporte generado por Hipervínculo · hipervinculo.net · info@hipervinculo.net</Text>
       </Page>
 
-      {/* Page 5: Contact - 1920x1080 like presentation slides */}
-      <Page size={[1920, 1080]} style={{ fontFamily: 'Helvetica', flexDirection: 'row' }}>
-        {/* Left side - Dark green */}
-        <View style={{ width: '60%', backgroundColor: green, padding: 80, justifyContent: 'center', position: 'relative' }}>
-          <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'white', marginBottom: 16 }}>
+      {/* Page 5: Contact - A4 vertical with split layout */}
+      <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
+        {/* Top section - Dark green */}
+        <View style={{ backgroundColor: green, padding: 40, flex: 1, justifyContent: 'center' }}>
+          <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>
             ¿Listo para escalar?
           </Text>
-          <Text style={{ fontSize: 36, fontWeight: 'bold', color: lime, marginBottom: 28 }}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: lime, marginBottom: 12 }}>
             Hablemos sobre tu estrategia de crecimiento
           </Text>
-          <Text style={{ fontSize: 28, color: 'rgba(255,255,255,0.8)', marginBottom: 40, lineHeight: 1.5, maxWidth: 600 }}>
+          <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.8)', marginBottom: 28, lineHeight: 1.5 }}>
             Nuestro equipo está listo para ayudarte a llevar tus resultados al siguiente nivel con estrategias personalizadas y basadas en datos.
           </Text>
 
           {/* Contact items */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
-            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-              <MailIcon size={32} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 18 }}>
+            <View style={{ width: 36, height: 36, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <MailIcon size={20} />
             </View>
             <View>
-              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Email</Text>
-              <Text style={{ fontSize: 26, color: 'white' }}>info@hipervinculo.net</Text>
+              <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)' }}>Email</Text>
+              <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold' }}>info@hipervinculo.net</Text>
             </View>
           </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
-            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-              <PhoneIcon size={32} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 18 }}>
+            <View style={{ width: 36, height: 36, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <PhoneIcon size={20} />
             </View>
             <View>
-              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Phone</Text>
-              <Text style={{ fontSize: 26, color: 'white' }}>+1 (786) 808-2868</Text>
+              <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)' }}>Phone</Text>
+              <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold' }}>+1 (786) 808-2868</Text>
             </View>
           </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 28 }}>
-            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-              <GlobeIcon size={32} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 18 }}>
+            <View style={{ width: 36, height: 36, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <GlobeIcon size={20} />
             </View>
             <View>
-              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Website</Text>
-              <Text style={{ fontSize: 26, color: 'white' }}>hipervinculo.net</Text>
+              <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)' }}>Website</Text>
+              <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold' }}>hipervinculo.net</Text>
             </View>
           </View>
 
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <View style={{ width: 56, height: 56, borderRadius: 12, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-              <MapPinIcon size={32} />
+            <View style={{ width: 36, height: 36, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <MapPinIcon size={20} />
             </View>
             <View>
-              <Text style={{ fontSize: 20, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Address</Text>
-              <Text style={{ fontSize: 26, color: 'white' }}>Miami, FL</Text>
+              <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)' }}>Address</Text>
+              <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold' }}>Miami, FL</Text>
             </View>
           </View>
         </View>
 
-        {/* Right side - White with logo */}
-        <View style={{ width: '40%', backgroundColor: 'white', padding: 80, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-          <Image src={logoBase64} style={{ height: 100, marginBottom: 32, objectFit: 'contain' }} />
-          <View style={{ width: 100, height: 6, backgroundColor: lime, marginBottom: 32, borderRadius: 3 }} />
-          <Text style={{ fontSize: 24, color: green, textAlign: 'center', maxWidth: 360 }}>
+        {/* Bottom section - White with logo */}
+        <View style={{ backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', padding: 40, flex: 1 }}>
+          <Image src={logoBase64} style={{ height: 40, marginBottom: 16, objectFit: 'contain' }} />
+          <View style={{ width: 50, height: 3, backgroundColor: lime, marginBottom: 16, borderRadius: 2 }} />
+          <Text style={{ fontSize: 10, color: green, textAlign: 'center', fontWeight: 'bold' }}>
             Where strategy meets{'\n'}scalable growth
           </Text>
         </View>
