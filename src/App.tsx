@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import Privacy from "./pages/Privacy";
 import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
+import ReportLalenasFood from "./pages/ReportLalenasFood";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/report/lalenas-food" element={<ReportLalenasFood />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
