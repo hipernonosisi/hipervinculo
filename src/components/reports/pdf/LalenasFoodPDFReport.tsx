@@ -15,7 +15,7 @@ const s = StyleSheet.create({
   kpiRow: { flexDirection: 'row', gap: 12, marginBottom: 20 },
   kpiCard: { flex: 1, backgroundColor: 'white', borderRadius: 10, padding: 14 },
   kpiLabel: { fontSize: 8, color: '#888', marginBottom: 4 },
-  kpiValue: { fontSize: 14, fontWeight: 'bold', color: green },
+  kpiValue: { fontSize: 10, fontWeight: 'bold', color: green },
   sectionTitle: { fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 10 },
   tableHeader: { flexDirection: 'row', backgroundColor: '#e8e8e8', borderRadius: 4, padding: 6, marginBottom: 2 },
   tableRow: { flexDirection: 'row', padding: 6, borderBottomWidth: 0.5, borderBottomColor: '#e0e0e0' },
