@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Globe } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { pdf } from '@react-pdf/renderer';
 import { landingPagePresentationContent, LandingPageLanguage } from './data/landingPagePresentationContent';
 import { CoverSlide } from './slides/CoverSlide';
 import { AboutSlide } from './slides/AboutSlide';
@@ -11,11 +12,28 @@ import { BrandIdentityProcessSlide } from './slides/BrandIdentityProcessSlide';
 import { BrandIdentityPricingSlide } from './slides/BrandIdentityPricingSlide';
 import { OtherServicesSlide } from './slides/OtherServicesSlide';
 import { ContactSlide } from './slides/ContactSlide';
+import { LandingPagePDFDocument } from './pdf/LandingPagePDFSlides';
+import { useToast } from '@/hooks/use-toast';
+import logoHipervinculo from '@/assets/logo-hipervinculo.png';
+import symbolHipervinculo from '@/assets/symbol-hipervinculo.png';
+
+const imageToBase64 = async (url: string): Promise<string> => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
 
 export function LandingPagePresentation() {
   const [language, setLanguage] = useState<LandingPageLanguage>('en');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isExporting, setIsExporting] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
   
   const content = landingPagePresentationContent[language];
   
@@ -42,6 +60,48 @@ export function LandingPagePresentation() {
   const toggleLanguage = useCallback(() => {
     setLanguage((prev) => (prev === 'en' ? 'es' : 'en'));
   }, []);
+
+  const exportToPDF = useCallback(async () => {
+    setIsExporting(true);
+    toast({
+      title: language === 'en' ? 'Generating PDF...' : 'Generando PDF...',
+      description: language === 'en' ? 'Creating vector PDF with text' : 'Creando PDF vectorial con texto',
+    });
+    
+    try {
+      const logoBase64 = await imageToBase64(logoHipervinculo);
+      
+      const blob = await pdf(
+        <LandingPagePDFDocument 
+          content={content} 
+          logoBase64={logoBase64}
+        />
+      ).toBlob();
+      
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `hipervinculo-landing-page-${language}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      toast({
+        title: language === 'en' ? 'PDF Downloaded!' : '¡PDF Descargado!',
+        description: `hipervinculo-landing-page-${language}.pdf`,
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast({
+        title: 'Error',
+        description: language === 'en' ? 'Failed to generate PDF' : 'Error al generar el PDF',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsExporting(false);
+    }
+  }, [language, content, toast]);
   
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') goToPrevSlide();
@@ -66,6 +126,17 @@ export function LandingPagePresentation() {
         </div>
         
         <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={exportToPDF}
+            disabled={isExporting}
+            className="gap-1 sm:gap-2 h-8 px-2 sm:px-3 text-xs sm:text-sm"
+            style={{ borderColor: '#8BC34A', color: '#2d4a2d' }}
+          >
+            <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            PDF
+          </Button>
           <Button
             variant="outline"
             size="sm"
