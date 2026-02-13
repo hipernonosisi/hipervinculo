@@ -258,15 +258,7 @@ export const metaAdsPresentationContent: Record<MetaAdsLanguage, MetaAdsContent>
         },
         {
           name: 'eCommerce',
-          tools: ['Shopify', 'Shopify Analytics', 'Triple Whale', 'Northbeam'],
-        },
-        {
-          name: 'Creative Tools',
-          tools: ['Figma', 'Adobe Photoshop', 'CapCut', 'Canva Pro'],
-        },
-        {
-          name: 'Reporting',
-          tools: ['Custom Dashboards', 'Google Sheets', 'Looker Studio'],
+          tools: ['Shopify', 'Shopify Analytics', 'WeTracked.io'],
         },
       ],
     },
@@ -537,15 +529,7 @@ export const metaAdsPresentationContent: Record<MetaAdsLanguage, MetaAdsContent>
         },
         {
           name: 'eCommerce',
-          tools: ['Shopify', 'Shopify Analytics', 'Triple Whale', 'Northbeam'],
-        },
-        {
-          name: 'Herramientas Creativas',
-          tools: ['Figma', 'Adobe Photoshop', 'CapCut', 'Canva Pro'],
-        },
-        {
-          name: 'Reportes',
-          tools: ['Dashboards Personalizados', 'Google Sheets', 'Looker Studio'],
+          tools: ['Shopify', 'Shopify Analytics', 'WeTracked.io'],
         },
       ],
     },
