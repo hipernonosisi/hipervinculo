@@ -3,7 +3,6 @@ import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSig
 import { Button } from '@/components/ui/button';
 import { skyscraperProposalContent } from './data/skyscraperProposalContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
-import symbolHipervinculo from '@/assets/symbol-hipervinculo.png';
 import { useToast } from '@/hooks/use-toast';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -33,8 +32,8 @@ export function SkyscraperProposal() {
         backgroundColor: '#ffffff',
       });
 
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
+      const imgWidth = 210;
+      const pageHeight = 297;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       const pdf = new jsPDF('p', 'mm', 'a4');
 
@@ -74,19 +73,24 @@ export function SkyscraperProposal() {
       {/* Scrollable Document */}
       <div className="flex-1 overflow-y-auto bg-gray-200 py-8">
         <div ref={documentRef} className="mx-auto bg-white shadow-xl" style={{ maxWidth: '800px', width: '100%' }}>
+
           {/* Cover */}
-          <section className="relative p-12 pb-16" style={{ backgroundColor: '#2d4a2d', minHeight: '400px' }}>
-            <img src={logoHipervinculo} alt="Hipervinculo" className="h-10 mb-12" style={{ filter: 'brightness(10)' }} />
-            <div className="mt-auto">
-              <p className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: '#8BC34A' }}>
+          <section className="relative" style={{ minHeight: '500px' }}>
+            {/* White logo bar */}
+            <div className="bg-white px-12 pt-10 pb-6">
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
+            </div>
+            {/* Dark green content */}
+            <div className="px-12 pt-12 pb-16" style={{ backgroundColor: '#2d4a2d' }}>
+              <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: '#8BC34A' }}>
                 {content.cover.title}
               </p>
               <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
                 {content.cover.subtitle}
               </h1>
-              <p className="text-lg text-white/70">{content.cover.tagline}</p>
+              <p className="text-lg text-white/70 mb-8">{content.cover.tagline}</p>
+              <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
             </div>
-            <div className="absolute bottom-0 right-0 w-48 h-48" style={{ background: 'linear-gradient(315deg, rgba(139,195,74,0.15) 0%, transparent 100%)' }} />
           </section>
 
           {/* About */}
@@ -181,7 +185,6 @@ export function SkyscraperProposal() {
             <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              {/* Setup */}
               <div className="bg-white rounded-xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                 <h3 className="font-bold text-lg mb-1" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
                 <div className="text-2xl font-extrabold mb-4" style={{ color: '#8BC34A' }}>{content.investment.setup.price}</div>
@@ -194,7 +197,6 @@ export function SkyscraperProposal() {
                   ))}
                 </ul>
               </div>
-              {/* Monthly */}
               <div className="bg-white rounded-xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                 <h3 className="font-bold text-lg mb-1" style={{ color: '#2d4a2d' }}>{content.investment.monthly.title}</h3>
                 <div className="text-2xl font-extrabold mb-4" style={{ color: '#8BC34A' }}>{content.investment.monthly.price}</div>
@@ -234,37 +236,40 @@ export function SkyscraperProposal() {
             </div>
           </section>
 
-          {/* Contact */}
-          <section className="relative" style={{ backgroundColor: '#2d4a2d' }}>
+          {/* Contact — logo on white, info on dark */}
+          <section className="relative">
             <div className="grid sm:grid-cols-2">
-              <div className="p-8 sm:p-12">
+              {/* Left: Contact info on dark green */}
+              <div className="p-8 sm:p-12" style={{ backgroundColor: '#2d4a2d' }}>
                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#8BC34A' }}>Contact Us</p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{content.contact.title}</h2>
                 <p className="text-white/70 mb-8">{content.contact.description}</p>
                 <div className="space-y-4 text-white/80 text-sm">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Email</p>
+                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Email</p>
                     <p>{content.contact.email}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Phone</p>
+                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Phone</p>
                     <p>{content.contact.phone}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Location</p>
+                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Location</p>
                     <p className="whitespace-pre-line">{content.contact.address}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Website</p>
+                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Website</p>
                     <p>{content.contact.website}</p>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center p-8 bg-white/5">
-                <img src={symbolHipervinculo} alt="Hipervinculo" className="w-32 opacity-40" />
+              {/* Right: Logo on white background */}
+              <div className="flex items-center justify-center p-8 bg-white">
+                <img src={logoHipervinculo} alt="Hipervinculo" className="w-48" />
               </div>
             </div>
           </section>
+
         </div>
       </div>
     </div>
