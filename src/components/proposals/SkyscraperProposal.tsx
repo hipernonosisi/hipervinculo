@@ -259,38 +259,42 @@ export function SkyscraperProposal() {
             </div>
           </section>
 
-          {/* Contact — logo on white, info on dark */}
-          <section className="relative">
-            <div className="grid sm:grid-cols-2">
-              {/* Left: Contact info on dark green */}
-              <div className="p-8 sm:p-12" style={{ backgroundColor: '#2d4a2d' }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#8BC34A' }}>Contact Us</p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{content.contact.title}</h2>
-                <p className="text-white/70 mb-8">{content.contact.description}</p>
-                <div className="space-y-4 text-white/80 text-sm">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Email</p>
-                    <p>{content.contact.email}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Phone</p>
-                    <p>{content.contact.phone}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Location</p>
-                    <p className="whitespace-pre-line">{content.contact.address}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Website</p>
-                    <p>{content.contact.website}</p>
-                  </div>
+          {/* Contact info */}
+          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#2d4a2d' }}>
+            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#8BC34A' }}>Contact Us</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{content.contact.title}</h2>
+            <p className="text-white/70 mb-8">{content.contact.description}</p>
+            <div className="grid sm:grid-cols-2 gap-6 text-white/80 text-sm">
+              <div className="space-y-4">
+                <div>
+                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Email</p>
+                  <p>{content.contact.email}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Phone</p>
+                  <p>{content.contact.phone}</p>
                 </div>
               </div>
-              {/* Right: Logo on white background */}
-              <div className="flex items-center justify-center p-8 bg-white">
-                <img src={logoHipervinculo} alt="Hipervinculo" className="w-48" />
+              <div className="space-y-4">
+                <div>
+                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Location</p>
+                  <p className="whitespace-pre-line">{content.contact.address}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Website</p>
+                  <p>{content.contact.website}</p>
+                </div>
               </div>
             </div>
+          </section>
+
+          {/* Closing — logo centered on white */}
+          <section className="bg-white flex flex-col items-center justify-center py-20 px-8">
+            <img src={logoHipervinculo} alt="Hipervinculo" className="h-14 mb-6" />
+            <div className="w-12 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+            <p className="text-center text-gray-500 text-sm max-w-md">
+              Performance-driven growth systems for businesses ready to scale.
+            </p>
           </section>
 
         </div>
