@@ -266,11 +266,11 @@ export function SkyscraperProposal() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Terms</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
               <p className="font-medium mb-8" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {content.terms.sections.map((section, i) => {
                   const Icon = iconMap[section.icon] || FileText;
                   return (
-                    <div key={i} className="flex gap-4 p-5 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div key={i} className="flex gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
                         <Icon className="w-5 h-5" style={{ color: '#8BC34A' }} />
                       </div>
