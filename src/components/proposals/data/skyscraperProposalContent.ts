@@ -210,9 +210,9 @@ export const skyscraperProposalContent = {
     headline: 'Ready to Generate More Leads?',
     description:
       'Contact us to get started on your growth journey. We are here to help Skyscraper Construction reach its full potential.',
-    email: 'hello@hipervinculo.net',
-    phone: '+1 (786) 762-3741',
-    address: 'Miami, FL\nUnited States',
+    email: 'info@hipervinculo.net',
+    phone: '+1 (786) 529-0679',
+    address: '2645 Executive Park Dr, Suite 146\nWeston, FL 33331',
     website: 'hipervinculo.net',
     cta: 'Get Started Now',
   },
