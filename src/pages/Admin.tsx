@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3 } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -15,6 +15,7 @@ import { BrandIdentityPresentation } from '@/components/presentations/BrandIdent
 import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
+import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { useToast } from '@/hooks/use-toast';
@@ -75,6 +76,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads'>('leadgen');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper'>('skyscraper');
 
   // Check authentication
   useEffect(() => {
@@ -287,7 +289,7 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-3 sm:grid-cols-6 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-3 sm:grid-cols-7 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
@@ -315,6 +317,11 @@ export default function Admin() {
                 <BarChart3 className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Reports</span>
                 <span className="sm:hidden">Reports</span>
+              </TabsTrigger>
+              <TabsTrigger value="proposals" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <ScrollText className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Proposals</span>
+                <span className="sm:hidden">Proposals</span>
               </TabsTrigger>
             </TabsList>
             
@@ -622,6 +629,26 @@ export default function Admin() {
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px', overflow: 'auto' }}>
                   <LalenasFoodReport />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Proposals Tab */}
+            <TabsContent value="proposals" className="mt-0 space-y-4">
+              <div className="flex gap-2 px-1 flex-wrap">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('skyscraper')}
+                  className={`gap-2 ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Building className="w-4 h-4" />
+                  Skyscraper Construction
+                </Button>
+              </div>
+              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
+                  {activeProposal === 'skyscraper' && <SkyscraperProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
