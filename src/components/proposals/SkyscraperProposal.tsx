@@ -236,6 +236,29 @@ export function SkyscraperProposal() {
             </div>
           </section>
 
+          {/* Legal Terms */}
+          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#f8f9f5' }}>
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-8" style={{ color: '#2d4a2d' }}>
+              {content.legalTerms.title}
+            </h2>
+            <div className="space-y-8">
+              {content.legalTerms.sections.map((section, i) => (
+                <div key={i}>
+                  <h3 className="font-extrabold text-base mb-3" style={{ color: '#2d4a2d' }}>
+                    {section.heading}
+                  </h3>
+                  <ol className="space-y-2 pl-5 list-decimal">
+                    {section.items.map((item, j) => (
+                      <li key={j} className="text-sm text-gray-600 leading-relaxed pl-1">
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Contact — logo on white, info on dark */}
           <section className="relative">
             <div className="grid sm:grid-cols-2">

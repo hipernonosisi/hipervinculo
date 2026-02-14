@@ -163,6 +163,48 @@ export const skyscraperProposalContent = {
       },
     ],
   },
+  legalTerms: {
+    title: 'TERMS',
+    sections: [
+      {
+        heading: 'Payment Method and Services',
+        items: [
+          'All payments to Hipervinculo LLC must be made within 10 days of receipt of the invoice.',
+          'The one-time website development fee of $2,500 is due upon agreement acceptance before work begins.',
+          'The monthly Lead Generation retainer of $1,000 is billed at the beginning of each service month.',
+          'Media spend ($50/day recommended) is paid directly to Google by the client and is separate from the retainer fee.',
+          'Tax payments and other accounting items are the responsibility of the client.',
+        ],
+      },
+      {
+        heading: 'Agency Independence',
+        items: [
+          'The agency will act at all times during the term of this contract as an independent contractor.',
+          'Nothing contained in this contract shall be construed to create the relationship of principal and agent, or employer and employee, between client and agency.',
+        ],
+      },
+      {
+        heading: 'Agency Duties',
+        items: [
+          'The duties of the agency are those set out in this proposal. Once accepted by the client, the services described herein will dictate "the functions" of the service agreement, and additional functions will only be established with the agreement of both parties, requiring or not an adjustment in the monthly rate or fee.',
+        ],
+      },
+      {
+        heading: 'Confidentiality',
+        items: [
+          'Both parties agree to maintain the confidentiality of any proprietary information, business strategies, campaign data, and trade secrets shared during the course of this engagement.',
+          'This obligation shall survive the termination of this agreement.',
+        ],
+      },
+      {
+        heading: 'Termination',
+        items: [
+          'Either party may terminate the Lead Generation service with 30 days written notice.',
+          'Upon termination, all website files will be delivered to the client and any outstanding invoices must be settled within 10 days.',
+        ],
+      },
+    ],
+  },
   contact: {
     title: "Let's Build Together",
     headline: 'Ready to Generate More Leads?',
