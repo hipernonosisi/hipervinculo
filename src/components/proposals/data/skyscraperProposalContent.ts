@@ -16,8 +16,6 @@ export const skyscraperProposalContent = {
     ],
     credentials: [
       'Google Ads Certified Partner',
-      'Meta Business Partner',
-      'Shopify Partner',
     ],
   },
   webService: {
