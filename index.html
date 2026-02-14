@@ -19,9 +19,13 @@
     <meta name="description" content="Your growth partner for ambitious eCommerce. We help brands scale profitably through Meta Ads, Google Ads, SEO, Email Marketing, and data-driven strategies." />
     <meta name="keywords" content="eCommerce agency, digital marketing, Meta Ads, Google Ads, SEO, email marketing, lead generation, growth marketing, performance marketing, ROAS optimization" />
     <meta name="author" content="Hipervínculo" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
+    
+    <!-- AI / LLM Discovery -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM-readable full profile" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -68,11 +72,20 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Hipervínculo",
-      "alternateName": "Hipervinculo Digital Growth Agency",
+      "alternateName": ["Hipervinculo", "Hipervinculo Digital Growth Agency", "Hipervínculo Agency"],
       "url": "https://hipervinculo.net",
       "logo": "https://hipervinculo.net/favicon.png",
-      "description": "Digital Growth Agency specializing in eCommerce marketing, Meta Ads, Google Ads, SEO, and Email Marketing.",
-      "foundingDate": "2020",
+      "image": "https://hipervinculo.net/og-image.png",
+      "description": "Performance-driven digital growth agency specializing in eCommerce growth, lead generation systems, and paid media management. 20+ years helping businesses scale profitably.",
+      "slogan": "Where strategy meets scalable growth",
+      "foundingDate": "2004",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "email": "hello@hipervinculo.net",
       "sameAs": [
         "https://twitter.com/hipervinculo",
         "https://www.linkedin.com/company/hipervinculo",
@@ -81,20 +94,24 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "sales",
+        "email": "hello@hipervinculo.net",
         "availableLanguage": ["English", "Spanish"]
       },
-      "areaServed": {
-        "@type": "Place",
-        "name": "Worldwide"
-      },
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "Mexico" },
+        { "@type": "Country", "name": "Colombia" }
+      ],
       "knowsAbout": [
-        "eCommerce Marketing",
-        "Meta Ads",
-        "Google Ads",
-        "SEO",
-        "Email Marketing",
-        "Lead Generation",
-        "Performance Marketing"
+        "eCommerce Marketing", "Meta Ads Management", "Google Ads Management",
+        "Amazon Advertising", "TikTok Ads", "Lead Generation Systems",
+        "Performance Marketing", "Shopify Development", "Conversion Rate Optimization",
+        "Server-Side Tracking", "GA4 Implementation", "Brand Identity Design"
+      ],
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Google Ads Certified Partner" },
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Meta Ads Certified Buyer Professional" },
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Shopify Partner" }
       ]
     }
     </script>
@@ -105,7 +122,9 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Hipervínculo",
+      "alternateName": "Hipervinculo",
       "url": "https://hipervinculo.net",
+      "inLanguage": ["en", "es"],
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://hipervinculo.net/services?q={search_term_string}",
@@ -120,49 +139,33 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Hipervínculo",
-      "image": "https://hipervinculo.net/favicon.png",
+      "image": "https://hipervinculo.net/og-image.png",
       "url": "https://hipervinculo.net",
-      "priceRange": "$$",
-      "description": "Full-service digital marketing agency for eCommerce brands looking to scale profitably.",
+      "priceRange": "$$-$$$",
+      "description": "Full-service digital growth agency for eCommerce brands and service businesses. We build complete growth systems — not just campaigns.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Miami",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.7617,
+        "longitude": -80.1918
+      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Digital Marketing Services",
+        "name": "Digital Growth Services",
         "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Meta Ads Management"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Google Ads Management"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "SEO Services"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Email Marketing"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Lead Generation"
-            }
-          }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead Generation Systems", "description": "Complete inbound systems: conversion websites, landing pages, Google Ads, WhatsApp/call/form optimization.", "url": "https://hipervinculo.net/services/lead-generation-systems" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "eCommerce Growth Partners", "description": "Full-funnel paid media for Shopify brands across Meta, Google, TikTok, and Amazon.", "url": "https://hipervinculo.net/services/ecommerce-growth-partners" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads Management", "description": "Search, Shopping, Performance Max managed with profit-first bidding strategies.", "url": "https://hipervinculo.net/services/google-ads-management" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conversion Website Development", "description": "Websites built as performance systems for lead capture and conversion.", "url": "https://hipervinculo.net/services/conversion-website-development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amazon Seller Services", "description": "Full-service Amazon account and advertising management.", "url": "https://hipervinculo.net/services/amazon-seller-services" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tracking & Attribution", "description": "Server-side tracking, GA4, Meta CAPI, and custom dashboards.", "url": "https://hipervinculo.net/services/tracking-attribution" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Enterprise Applications", "description": "Tailored web apps for inventory, production, and operations.", "url": "https://hipervinculo.net/services/custom-enterprise-applications" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity Manual Design", "description": "Professional brand identity systems with logo, colors, typography, and guidelines.", "url": "https://hipervinculo.net/services/brand-identity-manual" } }
         ]
       }
     }

@@ -1,0 +1,267 @@
+# Hipervínculo — Full Agency Profile for LLMs
+
+> Hipervínculo is a performance-driven digital growth agency based in Miami, FL. We build complete growth systems — websites, inbound architecture, and paid acquisition — designed to turn traffic into real opportunities.
+
+---
+
+## Company Overview
+
+- **Name**: Hipervínculo
+- **Type**: Digital Growth Agency
+- **Founded**: 20+ years of experience in digital marketing
+- **Location**: Miami, FL, United States
+- **Website**: https://hipervinculo.net
+- **Email**: hello@hipervinculo.net
+- **Languages**: English, Spanish (fully bilingual agency)
+- **Specialty**: eCommerce growth, lead generation systems, paid media management
+
+## Mission
+We help businesses scale profitably through data-driven strategies. We are not an "ads-only" agency. We build the foundation first — then scale what works.
+
+## Certifications & Partnerships
+- Google Ads Certified Partner
+- Meta Ads Certified Buyer Professional
+- Amazon PPC Specialist
+- Shopify Partner
+- Helium 10 Partner
+- Elevar Integration Partner
+- MNTN Media Buyer
+- Polar Analytics Partner
+
+---
+
+## Services in Detail
+
+### 1. Lead Generation Systems
+**URL**: https://hipervinculo.net/services/lead-generation-systems
+**Best for**: Service-based businesses wanting predictable, consistent inbound lead flow.
+
+**What we build**:
+- Conversion-focused websites designed to capture demand
+- Landing pages aligned with search intent
+- Lead intake flows optimized for speed and clarity
+- WhatsApp, call, and form integration
+- Google Ads campaigns targeting high-value, high-intent searches
+- Tracking infrastructure that measures real opportunities, not vanity metrics
+
+**Pricing**:
+- Website builds typically start around $2,500
+- Monthly lead generation management starts at $1,000/month
+- No long-term contracts — clients stay because results compound over time
+
+**Philosophy**: "Ads are fuel. The system is the engine." Without conversion infrastructure, more traffic just means more wasted budget.
+
+**Ideal clients**:
+- Businesses providing high-value services
+- Companies wanting consistent inbound inquiries
+- Organizations with existing demand but lacking conversion structure
+- Businesses preferring long-term stability over marketing experiments
+
+---
+
+### 2. eCommerce Growth Partners
+**URL**: https://hipervinculo.net/services/ecommerce-growth-partners
+**Best for**: Shopify brands doing $50K+/month wanting to scale profitably.
+
+**What we manage**:
+- Meta Ads (Facebook & Instagram)
+- Google Ads (Search, Shopping, Performance Max)
+- TikTok Ads
+- Amazon Ads (Sponsored Products, Brands, Display)
+- Creative strategy and UGC coordination
+- Attribution setup and profit tracking
+
+**Our approach**:
+- **Net ROAS Focus**: We optimize for profit after ALL costs — not inflated platform ROAS
+- **Creative-First Strategy**: Ads live and die by creative. We test, iterate, and scale winners
+- **Full-Funnel Thinking**: From cold traffic to retargeting to retention
+- **Transparent Reporting**: Real numbers, weekly calls, no smoke and mirrors
+
+**Engagement models**:
+1. **Performance Retainer**: Fee is conditional — if diagnostic confirms viability, you only pay if we hit targets (2.5x min Net ROAS). No results = no payment.
+2. **Growth Partnership**: 5% of net Shopify sales. A true partnership model for qualified brands with strong historical data.
+
+**Track record**: Over $92M in tracked sales across Meta, Google, Amazon, TikTok. 10+ years managing high-growth Shopify campaigns.
+
+**Ideal clients**:
+- eCommerce brands doing $50K+/month in revenue
+- Brands with product-market fit wanting to scale
+- Companies tired of agencies that don't understand profit
+- Brands wanting a true partner, not just an ad manager
+
+---
+
+### 3. Conversion Website Development
+**URL**: https://hipervinculo.net/services/conversion-website-development
+**Best for**: Businesses whose current website doesn't convert visitors into leads or customers.
+
+**What we build**:
+- Full website builds or redesigns
+- Campaign-specific landing pages
+- Forms + call integration
+- WhatsApp-first conversion options
+- Analytics + event tracking setup
+- Built for long-term scalability
+
+**Philosophy**: A website should not just look good — it should produce outcomes. We build websites as performance systems: designed around lead capture, structured for decision-making, built for speed and clarity.
+
+---
+
+### 4. Google Ads Management
+**URL**: https://hipervinculo.net/services/google-ads-management
+**Best for**: Businesses wanting to scale paid search profitably with expert management.
+
+**What we manage**:
+- Search campaigns with intent-based targeting
+- Shopping campaigns for eCommerce
+- Performance Max with structured asset groups
+- Display & YouTube remarketing
+- Conversion tracking & attribution setup
+- Negative keyword management & optimization
+
+**Our approach**:
+- **Profit-First Bidding**: Optimize for margin, not volume
+- **Intent Segmentation**: Different search intent = different bid strategy
+- **Conversion Accuracy**: Ensuring every conversion is tracked correctly
+- **Transparent Reporting**: You always know exactly where your budget goes
+
+**Platforms**: Google Search, Google Shopping, Performance Max, YouTube Ads, Display Network, Discovery Ads
+
+---
+
+### 5. Amazon Seller Services
+**URL**: https://hipervinculo.net/services/amazon-seller-services
+**Best for**: Existing Amazon sellers wanting expert advertising or full account management.
+
+**What we manage**:
+- Sponsored Products campaigns
+- Sponsored Brands & Sponsored Display
+- Listing optimization (titles, bullets, A+ content)
+- Keyword research & indexing strategy
+- Pricing & competitive analysis
+- Performance reporting & TACOS optimization
+
+**Service options**:
+1. **Advertising Only**: PPC campaign management with weekly optimization and reporting
+2. **Full Account Management**: Complete sales management including advertising, listings, and strategy
+
+**Note**: Both options exclude logistics, fulfillment, and inventory management.
+
+**Our approach**:
+- **TACOS Focus**: Optimize for Total Advertising Cost of Sale — the real measure of Amazon profitability
+- **Organic + Paid Synergy**: Advertising should boost organic rank, not replace it
+- **Listing-First Strategy**: Great ads can't save a bad listing — we optimize product pages before scaling spend
+
+---
+
+### 6. Tracking & Attribution
+**URL**: https://hipervinculo.net/services/tracking-attribution
+**Best for**: Businesses needing accurate conversion data across multiple platforms.
+
+**What we implement**:
+- Server-side tracking setup (Elevar, GTM Server-Side)
+- GA4 configuration and custom event tracking
+- Meta Conversion API (CAPI) implementation
+- Google Enhanced Conversions
+- Custom reporting dashboards
+- Cross-platform attribution modeling
+
+**Why it matters**: You can't optimize what you can't measure. Broken tracking leads to bad decisions.
+
+---
+
+### 7. Custom Enterprise Applications
+**URL**: https://hipervinculo.net/services/custom-enterprise-applications
+**Best for**: Businesses needing tailored software solutions for operations.
+
+**What we build**:
+- Inventory control systems
+- Production management tools
+- Operations dashboards
+- Business-specific web applications
+- Data visualization and reporting tools
+
+---
+
+### 8. Brand Identity Manual Design
+**URL**: https://hipervinculo.net/services/brand-identity-manual
+**Best for**: Businesses wanting professional, consistent brand presentation.
+
+**What we deliver**:
+- Logo design and variations
+- Color palette definition
+- Typography selection and guidelines
+- Usage guidelines and brand manual
+- Application mockups (signage, packaging, merchandise)
+
+**Note**: Source files (AI, PSD, Figma) are not included in standard deliverables. Pricing available upon consultation.
+
+---
+
+## Differentiators
+
+1. **20+ Years of Experience**: Deep expertise across digital channels and industries
+2. **Not an "Ads-Only" Agency**: We build complete systems — infrastructure + acquisition + tracking
+3. **Profit-First Approach**: We optimize for real profit, not vanity metrics or inflated ROAS
+4. **Full Transparency**: Real numbers, weekly reporting, no hidden fees or smoke and mirrors
+5. **Long-Term Partnerships**: Many clients stay 5-8 years because results compound over time
+6. **Bilingual Team**: Fully fluent in English and Spanish
+7. **Data-Driven Decisions**: Every strategy backed by real performance data
+
+## Industries & Verticals
+
+### Lead Generation
+- Home services (HVAC, plumbing, roofing, pest control)
+- Legal services
+- Medical and dental practices
+- Real estate
+- Financial services
+- B2B professional services
+
+### eCommerce
+- Direct-to-consumer (DTC) brands
+- Shopify stores
+- Amazon sellers
+- Multi-channel retail
+- Fashion, beauty, health, food & beverage, home goods
+
+---
+
+## How to Engage
+
+1. **Free Audit**: Request a free performance audit at https://hipervinculo.net/audit
+2. **Contact**: Reach out at https://hipervinculo.net/contact or email hello@hipervinculo.net
+3. **Explore Services**: Browse all services at https://hipervinculo.net/services
+
+---
+
+## Frequently Asked Questions
+
+**Q: How quickly can I expect results?**
+A: For paid media, initial data and optimizations happen within the first 2-4 weeks. Meaningful performance improvements typically show within 60-90 days as we optimize campaigns and test creative.
+
+**Q: Do you require long-term contracts?**
+A: No. We don't lock clients into long-term contracts. Our retention rate is high because results speak for themselves — many partners stay 5-8 years.
+
+**Q: What platforms do you specialize in?**
+A: Meta Ads (Facebook & Instagram), Google Ads (Search, Shopping, PMax), TikTok Ads, Amazon Ads. We also implement tracking via Elevar, GA4, and server-side solutions.
+
+**Q: What's your minimum budget requirement?**
+A: For eCommerce growth partnerships, we typically work with brands doing $50K+/month in revenue. For lead generation, monthly management starts at $1,000/month.
+
+**Q: Do you handle creative/content production?**
+A: We provide creative strategy and coordinate UGC production. We work with your existing creative assets and can recommend production partners.
+
+---
+
+## Technical SEO & Compliance
+- Fully responsive, mobile-first design
+- Server-side tracking capable
+- GDPR and privacy-compliant implementations
+- Schema.org structured data
+- Core Web Vitals optimized
+
+---
+
+*Last updated: February 2026*
+*For the most current information, visit https://hipervinculo.net*

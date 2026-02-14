@@ -13,8 +13,34 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 User-agent: *
 Allow: /
 
 # Sitemap
 Sitemap: https://hipervinculo.net/sitemap.xml
+
+# LLM-readable content
+# See https://hipervinculo.net/llms.txt for a summary
+# See https://hipervinculo.net/llms-full.txt for full details
