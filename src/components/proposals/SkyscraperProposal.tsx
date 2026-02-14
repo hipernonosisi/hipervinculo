@@ -141,30 +141,32 @@ export function SkyscraperProposal() {
           </Page>
 
           {/* PAGE 3: Web Service */}
-          <Page bg="#f8f9f5">
-            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+          <Page bg="#ffffff">
+            <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
-              <div className="flex items-start justify-between mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
+              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
+
+              {/* Price banner */}
+              <div className="rounded-2xl px-8 py-5 mb-8 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
-                  <h2 className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
-                  <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Investment</div>
                 </div>
-                <div className="text-right flex-shrink-0 ml-6">
-                  <div className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.webService.price}</div>
-                  <div className="text-sm text-gray-500 font-medium">{content.webService.priceLabel}</div>
+                <div className="text-right">
+                  <span className="text-4xl font-extrabold text-white">{content.webService.price}</span>
+                  <span className="text-white/50 text-sm ml-2">{content.webService.priceLabel}</span>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed mb-8 text-[15px]">{content.webService.description}</p>
-              <div className="space-y-3">
+
+              <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.webService.description}</p>
+              <div className="space-y-2.5 flex-1">
                 {content.webService.includes.map((item, i) => (
-                  <div key={i} className="flex gap-4 bg-white p-5 rounded-2xl" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
-                      <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
-                    </div>
+                  <div key={i} className="flex gap-3 p-4 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                     <div>
-                      <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                      <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -174,33 +176,38 @@ export function SkyscraperProposal() {
 
           {/* PAGE 4: Lead Gen Service */}
           <Page>
-            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+            <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
-                  <h2 className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
-                  <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
-                </div>
-                <div className="text-right flex-shrink-0 ml-6">
-                  <div className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.retainer}</div>
-                  <div className="text-sm text-gray-500 font-medium">{content.leadGenService.retainerLabel}</div>
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <div className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.mediaSpend}</div>
-                    <div className="text-sm text-gray-500 font-medium">{content.leadGenService.mediaSpendLabel}</div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
+              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
+
+              {/* Price banner */}
+              <div className="rounded-2xl px-8 py-5 mb-8" style={{ backgroundColor: '#2d4a2d' }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Monthly Retainer</div>
+                    <div className="text-white/40 text-xs mt-1">Month-to-Month</div>
                   </div>
+                  <span className="text-4xl font-extrabold text-white">{content.leadGenService.retainer}</span>
+                </div>
+                <div className="border-t border-white/10 mt-4 pt-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Recommended Media Spend</div>
+                    <div className="text-white/40 text-xs mt-1">Paid directly to Google</div>
+                  </div>
+                  <span className="text-2xl font-extrabold text-white">{content.leadGenService.mediaSpend}</span>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed mb-8 text-[15px]">{content.leadGenService.description}</p>
-              <div className="space-y-3">
+
+              <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.leadGenService.description}</p>
+              <div className="space-y-2.5 flex-1">
                 {content.leadGenService.includes.map((item, i) => (
-                  <div key={i} className="flex gap-4 p-5 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
-                      <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
-                    </div>
+                  <div key={i} className="flex gap-3 p-4 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                     <div>
-                      <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                      <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
