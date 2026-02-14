@@ -18,7 +18,6 @@ import Privacy from "./pages/Privacy";
 import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import ReportLalenasFood from "./pages/ReportLalenasFood";
-import ProposalSkyscraper from "./pages/ProposalSkyscraper";
 
 const queryClient = new QueryClient();
 
@@ -43,7 +42,6 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/report/lalenas-food" element={<ReportLalenasFood />} />
-            <Route path="/proposal/skyscraper-construction" element={<ProposalSkyscraper />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

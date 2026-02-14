@@ -58,11 +58,11 @@ export const skyscraperProposalContent = {
     title: 'Lead Generation via Google Ads',
     headline: 'Consistent Flow of Qualified Construction Leads',
     retainer: '$1,000',
-    retainerLabel: 'Monthly Retainer',
+    retainerLabel: 'Monthly Retainer (Month-to-Month)',
     mediaSpend: '$50/day',
     mediaSpendLabel: 'Recommended Media Spend',
     description:
-      'We will create, manage, and optimize Google Ads campaigns designed to generate qualified leads for Skyscraper Construction. Our team handles everything from keyword research to ad creation, landing page optimization, and ongoing campaign management.',
+      'We will create, manage, and optimize Google Ads campaigns designed to generate qualified leads for Skyscraper Construction. Our team handles everything from keyword research to ad creation, landing page optimization, and ongoing campaign management. This is a month-to-month service with no long-term contracts — you can cancel at any time.',
     includes: [
       {
         title: 'Campaign Strategy & Setup',
@@ -81,8 +81,12 @@ export const skyscraperProposalContent = {
         description: 'Daily monitoring and adjustment of bids, budgets, and targeting to ensure maximum ROI from your advertising investment.',
       },
       {
-        title: 'Conversion Tracking & Reporting',
-        description: 'Full conversion tracking setup with monthly video call to present results, campaign performance, and strategic adjustments.',
+        title: 'Monthly Performance Reports',
+        description: 'Detailed monthly reports covering campaign metrics, lead volume, cost per lead, conversion rates, and strategic recommendations for improvement.',
+      },
+      {
+        title: '2 Monthly Strategy Meetings',
+        description: 'Up to 2 meetings per month to review campaign results, discuss performance, align on goals, and plan next steps for continuous growth.',
       },
       {
         title: 'Negative Keyword Management',
@@ -106,18 +110,19 @@ export const skyscraperProposalContent = {
       ],
     },
     monthly: {
-      title: 'Google Ads Lead Gen',
+      title: 'Google Ads Lead Gen (Month-to-Month)',
       price: '$1,000/mo',
       includes: [
         'Full campaign strategy & setup',
         'Professional ad creation & copywriting',
         'Landing page optimization',
         'Daily bid management & optimization',
-        'Monthly video call with results',
+        'Detailed monthly performance reports',
+        '2 strategy meetings per month',
         '+ $50/day recommended media spend',
       ],
     },
-    note: 'Website development is a one-time investment. Lead generation is a monthly retainer. Media spend is paid directly to Google.',
+    note: 'Website development is a one-time investment. Lead generation is a month-to-month retainer with no long-term contracts. Media spend is paid directly to Google.',
   },
   terms: {
     title: 'Terms & Conditions',
@@ -129,18 +134,23 @@ export const skyscraperProposalContent = {
         icon: 'files',
       },
       {
+        title: 'Month-to-Month Service',
+        description: 'The Lead Generation service operates on a month-to-month basis. There are no long-term contracts — you can cancel at any time with 30 days written notice.',
+        icon: 'calendar',
+      },
+      {
         title: 'Free Web Changes with Lead Gen',
         description: 'While working with us on Lead Generation services, all necessary changes and updates to the website will be made at no additional cost.',
         icon: 'refresh',
       },
       {
-        title: 'Free Hosting with Lead Gen',
-        description: 'While actively engaged in our Lead Generation service, your website can be hosted on our servers at absolutely no cost.',
+        title: '100% Free Hosting with Lead Gen',
+        description: 'While actively working with us on the Lead Generation service, your website will be hosted on our servers at absolutely no cost — hosting is 100% free.',
         icon: 'server',
       },
       {
         title: 'If Lead Gen Service Ends',
-        description: 'You will have the option to continue hosting with us for 1 year at no charge, or migrate to any server of your preference at any time.',
+        description: 'You will have the option to continue hosting with us for 1 year at no charge, or migrate your website to any server of your preference at any time. We will provide all files needed for the transition.',
         icon: 'calendar',
       },
       {
@@ -149,8 +159,8 @@ export const skyscraperProposalContent = {
         icon: 'dollar',
       },
       {
-        title: 'Hourly Support for Changes',
-        description: 'Without an active Lead Gen service, website changes are available at $150/hour. Most changes are completed in less than 1 hour.',
+        title: 'Hourly Support for Changes (Post Lead Gen)',
+        description: 'Only if you are no longer working with us on the Lead Generation service, website changes will be available at $150/hour. Most changes are completed in less than 1 hour.',
         icon: 'clock',
       },
     ],
