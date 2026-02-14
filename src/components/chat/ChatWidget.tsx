@@ -176,6 +176,139 @@ export function ChatWidget() {
     ? '¡Hola! 👋 Soy el asistente virtual de Hipervínculo. ¿En qué puedo ayudarte hoy?'
     : "Hi there! 👋 I'm Hipervínculo's virtual assistant. How can I help you today?";
 
+  const quickQuestions = language === 'es' 
+    ? [
+        '¿Qué servicios ofrecen?',
+        '¿Cuánto cuesta una web?',
+        '¿Manejan Google Ads?',
+        '¿Cómo funciona la generación de leads?',
+        '¿Trabajan con Shopify?',
+        '¿Ofrecen auditoría gratis?',
+      ]
+    : [
+        'What services do you offer?',
+        'How much does a website cost?',
+        'Do you manage Google Ads?',
+        'How does lead generation work?',
+        'Do you work with Shopify?',
+        'Do you offer a free audit?',
+      ];
+
+  const handleQuickQuestion = (question: string) => {
+    setInput(question);
+    // Auto-send after a tick so state updates
+    setTimeout(() => {
+      const userMessage: Message = { role: 'user', content: question };
+      setMessages(prev => [...prev, userMessage]);
+      setInput('');
+      setIsLoading(true);
+
+      let assistantContent = '';
+      const allMessages = [userMessage];
+
+      fetch(CHAT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          messages: allMessages,
+          conversationId,
+          sessionId,
+          language,
+        }),
+      })
+        .then(async (response) => {
+          if (!response.ok) throw new Error('Failed to send message');
+
+          const newConversationId = response.headers.get('X-Conversation-Id');
+          if (newConversationId && !conversationId) {
+            setConversationId(newConversationId);
+          }
+
+          if (!response.body) throw new Error('No response body');
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let textBuffer = '';
+
+          const updateAssistant = (content: string) => {
+            assistantContent = content;
+            setMessages(prev => {
+              const last = prev[prev.length - 1];
+              if (last?.role === 'assistant') {
+                return prev.map((m, i) => 
+                  i === prev.length - 1 ? { ...m, content } : m
+                );
+              }
+              return [...prev, { role: 'assistant', content }];
+            });
+          };
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            textBuffer += decoder.decode(value, { stream: true });
+
+            let newlineIndex: number;
+            while ((newlineIndex = textBuffer.indexOf('\n')) !== -1) {
+              let line = textBuffer.slice(0, newlineIndex);
+              textBuffer = textBuffer.slice(newlineIndex + 1);
+
+              if (line.endsWith('\r')) line = line.slice(0, -1);
+              if (line.startsWith(':') || line.trim() === '') continue;
+              if (!line.startsWith('data: ')) continue;
+
+              const jsonStr = line.slice(6).trim();
+              if (jsonStr === '[DONE]') break;
+
+              try {
+                const parsed = JSON.parse(jsonStr);
+                const delta = parsed.choices?.[0]?.delta?.content;
+                if (delta) {
+                  updateAssistant(assistantContent + delta);
+                }
+              } catch {
+                textBuffer = line + '\n' + textBuffer;
+                break;
+              }
+            }
+          }
+
+          if (assistantContent && (newConversationId || conversationId)) {
+            await fetch(SAVE_MESSAGE_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+              },
+              body: JSON.stringify({
+                conversationId: newConversationId || conversationId,
+                content: assistantContent,
+              }),
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Chat error:', error);
+          setMessages(prev => [
+            ...prev,
+            {
+              role: 'assistant',
+              content: language === 'es'
+                ? 'Lo siento, hubo un error. Por favor intenta de nuevo.'
+                : 'Sorry, there was an error. Please try again.',
+            },
+          ]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 0);
+  };
+
   return (
     <>
       {/* Floating Button */}
@@ -290,18 +423,39 @@ export function ChatWidget() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {/* Welcome message */}
               {messages.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex gap-3"
-                >
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="bg-muted rounded-2xl rounded-tl-sm p-3 max-w-[80%]">
-                    <p className="text-sm">{greeting}</p>
-                  </div>
-                </motion.div>
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <MessageCircle className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="bg-muted rounded-2xl rounded-tl-sm p-3 max-w-[80%]">
+                      <p className="text-sm">{greeting}</p>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-wrap gap-2 pl-11"
+                  >
+                    {quickQuestions.map((q, i) => (
+                      <motion.button
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + i * 0.08 }}
+                        onClick={() => handleQuickQuestion(q)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors text-left"
+                      >
+                        {q}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                </>
               )}
 
               {messages.map((message, index) => (
