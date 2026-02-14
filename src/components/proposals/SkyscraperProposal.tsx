@@ -3,6 +3,7 @@ import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSig
 import { Button } from '@/components/ui/button';
 import { skyscraperProposalContent } from './data/skyscraperProposalContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
+import symbolHipervinculo from '@/assets/symbol-hipervinculo.png';
 import { useToast } from '@/hooks/use-toast';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -113,7 +114,7 @@ export function SkyscraperProposal() {
           {/* PAGE 2: About */}
           <Page>
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>About Us</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.about.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.about.headline}</p>
@@ -143,7 +144,7 @@ export function SkyscraperProposal() {
           {/* PAGE 3: Web Service */}
           <Page bg="#ffffff">
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
@@ -177,7 +178,7 @@ export function SkyscraperProposal() {
           {/* PAGE 4: Lead Gen Service */}
           <Page>
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
@@ -218,7 +219,7 @@ export function SkyscraperProposal() {
           {/* PAGE 5: Investment Summary */}
           <Page bg="#f8f9f5">
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-10" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
@@ -261,7 +262,7 @@ export function SkyscraperProposal() {
           {/* PAGE 6: Terms & Conditions */}
           <Page>
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Terms</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
               <p className="font-medium mb-8" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
@@ -287,7 +288,7 @@ export function SkyscraperProposal() {
           {/* PAGE 7: Legal Terms */}
           <Page bg="#f8f9f5">
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <img src={symbolHipervinculo} alt="Hipervinculo" className="h-5 mb-10 opacity-25" />
               <h2 className="text-3xl font-extrabold mb-10" style={{ color: '#2d4a2d' }}>
                 {content.legalTerms.title}
               </h2>
