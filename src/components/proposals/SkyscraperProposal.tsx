@@ -7,6 +7,9 @@ import { useToast } from '@/hooks/use-toast';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+const PAGE_WIDTH = 794; // A4 at 96dpi
+const PAGE_HEIGHT = 1123; // A4 at 96dpi
+
 const iconMap: Record<string, React.ElementType> = {
   files: FileText,
   refresh: RefreshCw,
@@ -15,6 +18,22 @@ const iconMap: Record<string, React.ElementType> = {
   dollar: DollarSign,
   clock: Clock,
 };
+
+function Page({ children, bg = '#ffffff' }: { children: React.ReactNode; bg?: string }) {
+  return (
+    <div
+      className="relative mx-auto mb-8 shadow-xl overflow-hidden"
+      style={{
+        width: `${PAGE_WIDTH}px`,
+        minHeight: `${PAGE_HEIGHT}px`,
+        backgroundColor: bg,
+        pageBreakAfter: 'always',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export function SkyscraperProposal() {
   const documentRef = useRef<HTMLDivElement>(null);
@@ -26,28 +45,19 @@ export function SkyscraperProposal() {
     toast({ title: 'Generating PDF...', description: 'Please wait while we prepare your document.' });
 
     try {
-      const canvas = await html2canvas(documentRef.current, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-      });
-
-      const imgWidth = 210;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const pages = documentRef.current.querySelectorAll('[data-page]');
       const pdf = new jsPDF('p', 'mm', 'a4');
 
-      let heightLeft = imgHeight;
-      let position = 0;
+      for (let i = 0; i < pages.length; i++) {
+        const canvas = await html2canvas(pages[i] as HTMLElement, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: null,
+        });
 
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0) {
-        position = -(imgHeight - heightLeft);
-        pdf.addPage();
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        if (i > 0) pdf.addPage();
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
       }
 
       pdf.save('Proposal-Skyscraper-Construction.pdf');
@@ -70,232 +80,271 @@ export function SkyscraperProposal() {
         </Button>
       </div>
 
-      {/* Scrollable Document */}
-      <div className="flex-1 overflow-y-auto bg-gray-200 py-8">
-        <div ref={documentRef} className="mx-auto bg-white shadow-xl" style={{ maxWidth: '800px', width: '100%' }}>
+      {/* Scrollable Pages */}
+      <div className="flex-1 overflow-y-auto bg-gray-300 py-8 px-4">
+        <div ref={documentRef}>
 
-          {/* Cover */}
-          <section className="relative" style={{ minHeight: '500px' }}>
-            {/* White logo bar */}
-            <div className="bg-white px-12 pt-10 pb-6">
-              <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
-            </div>
-            {/* Dark green content */}
-            <div className="px-12 pt-12 pb-16" style={{ backgroundColor: '#2d4a2d' }}>
-              <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: '#8BC34A' }}>
-                {content.cover.title}
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
-                {content.cover.subtitle}
-              </h1>
-              <p className="text-lg text-white/70 mb-8">{content.cover.tagline}</p>
-              <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
-            </div>
-          </section>
-
-          {/* About */}
-          <section className="p-8 sm:p-12 border-b">
-            <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>About Us</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.about.title}</h2>
-            <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.about.headline}</p>
-            <p className="text-gray-600 leading-relaxed mb-6">{content.about.description}</p>
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              {content.about.stats.map((stat, i) => (
-                <div key={i} className="text-center p-4 rounded-xl" style={{ backgroundColor: 'rgba(139,195,74,0.08)' }}>
-                  <div className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>{stat.value}</div>
-                  <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {content.about.credentials.map((cred, i) => (
-                <span key={i} className="text-xs font-medium px-3 py-1.5 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.1)', color: '#2d4a2d' }}>
-                  {cred}
-                </span>
-              ))}
-            </div>
-          </section>
-
-          {/* Web Service */}
-          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#f8f9f5' }}>
-            <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>Service 1</p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
-                <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
+          {/* PAGE 1: Cover */}
+          <Page data-page>
+            <div data-page className="flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              {/* White header with logo */}
+              <div className="px-16 pt-14 pb-8">
+                <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.webService.price}</div>
-                <div className="text-xs text-gray-500">{content.webService.priceLabel}</div>
+              {/* Dark green hero */}
+              <div className="flex-1 flex flex-col justify-center px-16" style={{ backgroundColor: '#2d4a2d' }}>
+                <p className="text-sm font-bold tracking-[0.2em] uppercase mb-6" style={{ color: '#8BC34A' }}>
+                  {content.cover.title}
+                </p>
+                <h1 className="text-5xl font-extrabold text-white mb-5 leading-[1.1]">
+                  {content.cover.subtitle}
+                </h1>
+                <p className="text-xl text-white/60 mb-10">{content.cover.tagline}</p>
+                <div className="w-20 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
+              </div>
+              {/* Bottom white strip */}
+              <div className="px-16 py-6 flex items-center justify-between bg-white">
+                <p className="text-xs text-gray-400 tracking-wider uppercase">Confidential</p>
+                <p className="text-xs text-gray-400">hipervinculo.net</p>
               </div>
             </div>
-            <p className="text-gray-600 leading-relaxed mb-6">{content.webService.description}</p>
-            <div className="space-y-3">
-              {content.webService.includes.map((item, i) => (
-                <div key={i} className="flex gap-3 bg-white p-4 rounded-xl" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
-                    <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
+          </Page>
+
+          {/* PAGE 2: About */}
+          <Page>
+            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>About Us</p>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.about.title}</h2>
+              <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.about.headline}</p>
+              <p className="text-gray-600 leading-relaxed mb-10 text-[15px]">{content.about.description}</p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 mb-10">
+                {content.about.stats.map((stat, i) => (
+                  <div key={i} className="text-center py-6 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="text-4xl font-extrabold mb-1" style={{ color: '#8BC34A' }}>{stat.value}</div>
+                    <div className="text-xs text-gray-500 font-medium">{stat.label}</div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-sm" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                    <p className="text-sm text-gray-600 mt-0.5">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Lead Gen Service */}
-          <section className="p-8 sm:p-12 border-b">
-            <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>Service 2</p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
-                <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
+                ))}
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.retainer}</div>
-                <div className="text-xs text-gray-500">{content.leadGenService.retainerLabel}</div>
-                <div className="mt-2 pt-2 border-t">
-                  <div className="text-xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.mediaSpend}</div>
-                  <div className="text-xs text-gray-500">{content.leadGenService.mediaSpendLabel}</div>
+
+              {/* Credentials */}
+              <div className="flex flex-wrap gap-3">
+                {content.about.credentials.map((cred, i) => (
+                  <span key={i} className="text-sm font-medium px-5 py-2.5 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.1)', color: '#2d4a2d' }}>
+                    {cred}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+          {/* PAGE 3: Web Service */}
+          <Page bg="#f8f9f5">
+            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
+                  <h2 className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
+                  <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
+                </div>
+                <div className="text-right flex-shrink-0 ml-6">
+                  <div className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.webService.price}</div>
+                  <div className="text-sm text-gray-500 font-medium">{content.webService.priceLabel}</div>
                 </div>
               </div>
-            </div>
-            <p className="text-gray-600 leading-relaxed mb-6">{content.leadGenService.description}</p>
-            <div className="space-y-3">
-              {content.leadGenService.includes.map((item, i) => (
-                <div key={i} className="flex gap-3 bg-white p-4 rounded-xl" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
-                    <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-sm" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                    <p className="text-sm text-gray-600 mt-0.5">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Investment Summary */}
-          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#f8f9f5' }}>
-            <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>Investment</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
-            <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-white rounded-xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                <h3 className="font-bold text-lg mb-1" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
-                <div className="text-2xl font-extrabold mb-4" style={{ color: '#8BC34A' }}>{content.investment.setup.price}</div>
-                <ul className="space-y-2">
-                  {content.investment.setup.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                      <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-white rounded-xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                <h3 className="font-bold text-lg mb-1" style={{ color: '#2d4a2d' }}>{content.investment.monthly.title}</h3>
-                <div className="text-2xl font-extrabold mb-4" style={{ color: '#8BC34A' }}>{content.investment.monthly.price}</div>
-                <ul className="space-y-2">
-                  {content.investment.monthly.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                      <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 text-center">{content.investment.note}</p>
-          </section>
-
-          {/* Terms & Conditions */}
-          <section className="p-8 sm:p-12 border-b">
-            <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>Terms</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
-            <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
-            <div className="space-y-3">
-              {content.terms.sections.map((section, i) => {
-                const Icon = iconMap[section.icon] || FileText;
-                return (
-                  <div key={i} className="flex gap-3 bg-white p-4 rounded-xl" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
-                      <Icon className="w-4 h-4" style={{ color: '#8BC34A' }} />
+              <p className="text-gray-600 leading-relaxed mb-8 text-[15px]">{content.webService.description}</p>
+              <div className="space-y-3">
+                {content.webService.includes.map((item, i) => (
+                  <div key={i} className="flex gap-4 bg-white p-5 rounded-2xl" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                      <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm" style={{ color: '#2d4a2d' }}>{section.title}</h3>
-                      <p className="text-sm text-gray-600 mt-0.5">{section.description}</p>
+                      <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </section>
+          </Page>
 
-          {/* Legal Terms */}
-          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#f8f9f5' }}>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-8" style={{ color: '#2d4a2d' }}>
-              {content.legalTerms.title}
-            </h2>
-            <div className="space-y-8">
-              {content.legalTerms.sections.map((section, i) => (
-                <div key={i}>
-                  <h3 className="font-extrabold text-base mb-3" style={{ color: '#2d4a2d' }}>
-                    {section.heading}
-                  </h3>
-                  <ol className="space-y-2 pl-5 list-decimal">
-                    {section.items.map((item, j) => (
-                      <li key={j} className="text-sm text-gray-600 leading-relaxed pl-1">
+          {/* PAGE 4: Lead Gen Service */}
+          <Page>
+            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
+                  <h2 className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
+                  <p className="font-medium mt-1" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
+                </div>
+                <div className="text-right flex-shrink-0 ml-6">
+                  <div className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.retainer}</div>
+                  <div className="text-sm text-gray-500 font-medium">{content.leadGenService.retainerLabel}</div>
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <div className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>{content.leadGenService.mediaSpend}</div>
+                    <div className="text-sm text-gray-500 font-medium">{content.leadGenService.mediaSpendLabel}</div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed mb-8 text-[15px]">{content.leadGenService.description}</p>
+              <div className="space-y-3">
+                {content.leadGenService.includes.map((item, i) => (
+                  <div key={i} className="flex gap-4 p-5 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                      <CheckCircle className="w-4 h-4" style={{ color: '#8BC34A' }} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+          {/* PAGE 5: Investment Summary */}
+          <Page bg="#f8f9f5">
+            <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
+              <p className="font-medium mb-10" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+
+              <div className="grid grid-cols-2 gap-6 mb-10">
+                {/* Setup */}
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
+                  <div className="text-4xl font-extrabold mb-6" style={{ color: '#8BC34A' }}>{content.investment.setup.price}</div>
+                  <ul className="space-y-3">
+                    {content.investment.setup.includes.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
                         {item}
                       </li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Contact info */}
-          <section className="p-8 sm:p-12 border-b" style={{ backgroundColor: '#2d4a2d' }}>
-            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#8BC34A' }}>Contact Us</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{content.contact.title}</h2>
-            <p className="text-white/70 mb-8">{content.contact.description}</p>
-            <div className="grid sm:grid-cols-2 gap-6 text-white/80 text-sm">
-              <div className="space-y-4">
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Email</p>
-                  <p>{content.contact.email}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Phone</p>
-                  <p>{content.contact.phone}</p>
+                {/* Monthly */}
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: '#2d4a2d' }}>{content.investment.monthly.title}</h3>
+                  <div className="text-4xl font-extrabold mb-6" style={{ color: '#8BC34A' }}>{content.investment.monthly.price}</div>
+                  <ul className="space-y-3">
+                    {content.investment.monthly.includes.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#8BC34A' }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Location</p>
-                  <p className="whitespace-pre-line">{content.contact.address}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-1" style={{ color: 'rgba(139,195,74,0.6)' }}>Website</p>
-                  <p>{content.contact.website}</p>
-                </div>
+
+              <div className="mt-auto">
+                <p className="text-xs text-gray-400 text-center">{content.investment.note}</p>
               </div>
             </div>
-          </section>
+          </Page>
 
-          {/* Closing — logo centered on white */}
-          <section className="bg-white flex flex-col items-center justify-center py-20 px-8">
-            <img src={logoHipervinculo} alt="Hipervinculo" className="h-14 mb-6" />
-            <div className="w-12 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
-            <p className="text-center text-gray-500 text-sm max-w-md">
-              Performance-driven growth systems for businesses ready to scale.
-            </p>
-          </section>
+          {/* PAGE 6: Terms & Conditions */}
+          <Page>
+            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Terms</p>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
+              <p className="font-medium mb-8" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
+              <div className="space-y-4">
+                {content.terms.sections.map((section, i) => {
+                  const Icon = iconMap[section.icon] || FileText;
+                  return (
+                    <div key={i} className="flex gap-4 p-5 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                        <Icon className="w-5 h-5" style={{ color: '#8BC34A' }} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{section.title}</h3>
+                        <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{section.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Page>
+
+          {/* PAGE 7: Legal Terms */}
+          <Page bg="#f8f9f5">
+            <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <img src={logoHipervinculo} alt="Hipervinculo" className="h-6 mb-10 opacity-40" />
+              <h2 className="text-3xl font-extrabold mb-10" style={{ color: '#2d4a2d' }}>
+                {content.legalTerms.title}
+              </h2>
+              <div className="space-y-8">
+                {content.legalTerms.sections.map((section, i) => (
+                  <div key={i}>
+                    <h3 className="font-extrabold text-[15px] mb-3" style={{ color: '#2d4a2d' }}>
+                      {section.heading}
+                    </h3>
+                    <ol className="space-y-2.5 pl-6 list-decimal">
+                      {section.items.map((item, j) => (
+                        <li key={j} className="text-sm text-gray-600 leading-relaxed pl-1">
+                          {item}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+          {/* PAGE 8: Contact + Closing */}
+          <Page>
+            <div data-page className="flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              {/* Contact on dark green */}
+              <div className="px-16 py-14 flex-1" style={{ backgroundColor: '#2d4a2d' }}>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: '#8BC34A' }}>Contact Us</p>
+                <h2 className="text-3xl font-extrabold text-white mb-3">{content.contact.title}</h2>
+                <p className="text-white/60 mb-10 text-[15px]">{content.contact.description}</p>
+                <div className="grid grid-cols-2 gap-8 text-white/80">
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Email</p>
+                      <p className="text-lg font-medium">{content.contact.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Phone</p>
+                      <p className="text-lg font-medium">{content.contact.phone}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Location</p>
+                      <p className="text-lg font-medium whitespace-pre-line">{content.contact.address}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Website</p>
+                      <p className="text-lg font-medium">{content.contact.website}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Logo closing on white */}
+              <div className="flex flex-col items-center justify-center py-16 bg-white">
+                <img src={logoHipervinculo} alt="Hipervinculo" className="h-12 mb-5" />
+                <div className="w-12 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
+                <p className="text-center text-gray-400 text-sm max-w-sm">
+                  Performance-driven growth systems for businesses ready to scale.
+                </p>
+              </div>
+            </div>
+          </Page>
 
         </div>
       </div>
