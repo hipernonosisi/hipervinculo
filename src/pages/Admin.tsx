@@ -77,29 +77,49 @@ export default function Admin() {
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads'>('leadgen');
   const [activeProposal, setActiveProposal] = useState<'skyscraper'>('skyscraper');
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
-  // Check authentication
+  // Check authentication and admin role
   useEffect(() => {
+    const checkAdminRole = async (userId: string) => {
+      const { data: hasAdminRole } = await supabase.rpc('has_role', {
+        _user_id: userId,
+        _role: 'admin',
+      });
+      if (!hasAdminRole) {
+        toast({
+          title: 'Access Denied',
+          description: 'You do not have admin privileges.',
+          variant: 'destructive',
+        });
+        navigate('/');
+        return;
+      }
+      setIsAdmin(true);
+    };
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
-      setAuthLoading(false);
-      
       if (!session) {
+        setAuthLoading(false);
         navigate('/auth');
+      } else {
+        checkAdminRole(session.user.id).finally(() => setAuthLoading(false));
       }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
-      setAuthLoading(false);
-      
       if (!session) {
+        setAuthLoading(false);
         navigate('/auth');
+      } else {
+        checkAdminRole(session.user.id).finally(() => setAuthLoading(false));
       }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, toast]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -192,8 +212,8 @@ export default function Admin() {
     );
   }
 
-  // Don't render if not authenticated
-  if (!user) {
+  // Don't render if not authenticated or not admin
+  if (!user || !isAdmin) {
     return null;
   }
 
