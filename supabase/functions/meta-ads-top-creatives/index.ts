@@ -20,7 +20,6 @@ async function fetchAllPages(url: string) {
       allData = allData.concat(json.data);
     }
     nextUrl = json.paging?.next || null;
-    // Safety: max 10 pages
     if (allData.length > 5000) break;
   }
   return allData;
@@ -54,70 +53,7 @@ serve(async (req) => {
     
     const insightsData = await fetchAllPages(insightsUrl);
 
-    // 2. Get ads with creative info (request image_hash for full-size lookup)
-    const adsUrl = `${META_BASE_URL}/act_${adAccountId}/ads?fields=id,name,status,effective_status,creative{id,name,title,body,image_url,image_hash,thumbnail_url,object_story_spec,asset_feed_spec}&access_token=${metaToken}&limit=500`;
-    const adsData = await fetchAllPages(adsUrl);
-
-    // 3. Collect image hashes to fetch full-size URLs
-    const imageHashes = new Set<string>();
-    for (const ad of adsData) {
-      const hash = ad.creative?.image_hash;
-      if (hash) imageHashes.add(hash);
-    }
-
-    // Batch fetch full-size image URLs from ad images endpoint
-    const fullSizeMap: Record<string, string> = {};
-    if (imageHashes.size > 0) {
-      try {
-        const hashArray = Array.from(imageHashes);
-        // Fetch in batches of 50
-        for (let i = 0; i < hashArray.length; i += 50) {
-          const batch = hashArray.slice(i, i + 50);
-          const hashFilter = JSON.stringify(batch);
-          const imgUrl = `${META_BASE_URL}/act_${adAccountId}/adimages?hashes=${hashFilter}&fields=hash,url,url_128,url_256&access_token=${metaToken}`;
-          const imgResp = await fetch(imgUrl);
-          const imgJson = await imgResp.json();
-          if (imgJson.data) {
-            for (const img of imgJson.data) {
-              // url is the full-size original image
-              fullSizeMap[img.hash] = img.url || img.url_256 || img.url_128 || "";
-            }
-          }
-        }
-      } catch (e) {
-        console.error("Error fetching full-size images:", e);
-      }
-    }
-
-    // Build a map of ad_id -> creative info
-    const adCreativeMap: Record<string, any> = {};
-    for (const ad of adsData) {
-      const hash = ad.creative?.image_hash;
-      const fullSizeUrl = hash ? fullSizeMap[hash] : "";
-      // For videos, get the best available image from video_data
-      const videoImage = ad.creative?.object_story_spec?.video_data?.image_url || "";
-      // For carousels, try to get first child image
-      const carouselImage = ad.creative?.asset_feed_spec?.images?.[0]?.url || "";
-      
-      // Priority: full-size from hash > creative image_url > video thumbnail > carousel > thumbnail
-      const bestImageUrl = fullSizeUrl 
-        || ad.creative?.image_url 
-        || videoImage 
-        || carouselImage 
-        || "";
-
-      adCreativeMap[ad.id] = {
-        adName: ad.name,
-        status: ad.effective_status || ad.status,
-        creativeTitle: ad.creative?.title || ad.creative?.name || ad.name,
-        creativeBody: ad.creative?.body || "",
-        thumbnailUrl: ad.creative?.thumbnail_url || "",
-        imageUrl: bestImageUrl,
-        isVideo: !!ad.creative?.object_story_spec?.video_data,
-      };
-    }
-
-    // 3. Process insights: extract purchases, spend, CPA for each ad
+    // 2. Process insights first to find ads with purchases
     interface AdPerformance {
       adId: string;
       adName: string;
@@ -153,7 +89,7 @@ serve(async (req) => {
       );
       const purchaseCount = purchases ? parseFloat(purchases.value) : 0;
       
-      if (purchaseCount === 0) continue; // Skip ads with no purchases
+      if (purchaseCount === 0) continue;
       
       const revenue = insight.action_values?.find((a: any) => 
         a.action_type === "purchase" || a.action_type === "omni_purchase"
@@ -171,7 +107,6 @@ serve(async (req) => {
       const cpc = parseFloat(insight.cpc || "0");
       const cpm = parseFloat(insight.cpm || "0");
 
-      // Funnel metrics
       const atcAction = insight.actions?.find((a: any) => a.action_type === "add_to_cart" || a.action_type === "omni_add_to_cart");
       const addToCart = atcAction ? parseFloat(atcAction.value) : 0;
       const icAction = insight.actions?.find((a: any) => a.action_type === "initiate_checkout" || a.action_type === "omni_initiated_checkout");
@@ -180,52 +115,27 @@ serve(async (req) => {
       const costPerATC = addToCart > 0 ? spend / addToCart : 0;
       const costPerIC = initiateCheckout > 0 ? spend / initiateCheckout : 0;
 
-      const creative = adCreativeMap[insight.ad_id] || {
-        adName: insight.ad_name,
-        creativeTitle: insight.ad_name,
-        creativeBody: "",
-        thumbnailUrl: "",
-        imageUrl: "",
-        isVideo: false,
-      };
-
       adPerformances.push({
         adId: insight.ad_id,
         adName: insight.ad_name,
         campaignName: insight.campaign_name,
         adsetName: insight.adset_name,
-        adStatus: creative.status || "UNKNOWN",
-        spend,
-        purchases: purchaseCount,
-        revenue: revenueValue,
-        cpa,
-        roas,
-        impressions,
-        reach,
-        frequency,
-        clicks,
-        ctr,
-        cpc,
-        cpm,
-        addToCart,
-        initiateCheckout,
-        conversionRate,
-        costPerATC,
-        costPerIC,
-        creative,
+        adStatus: "UNKNOWN",
+        spend, purchases: purchaseCount, revenue: revenueValue, cpa, roas,
+        impressions, reach, frequency, clicks, ctr, cpc, cpm,
+        addToCart, initiateCheckout, conversionRate, costPerATC, costPerIC,
+        creative: { creativeTitle: insight.ad_name, creativeBody: "", thumbnailUrl: "", imageUrl: "", isVideo: false },
         dateRange: `${since} - ${until}`,
       });
     }
 
-    // 4. Multi-metric weighted scoring (CPA-first model)
-    // Weights: 35% CPA efficiency, 25% Purchases, 20% ROAS, 10% CTR, 10% Spend scale
-    // CPA is the most sensitive metric for operations — penalize high CPA ads
     if (adPerformances.length === 0) {
-      return new Response(JSON.stringify({ topAds: [], totalAds: 0 }), {
+      return new Response(JSON.stringify({ topAds: [], totalAdsAnalyzed: 0 }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    // 3. Score and rank FIRST, then only fetch creatives for top N
     const maxPurchases = Math.max(...adPerformances.map(a => a.purchases));
     const minCpa = Math.min(...adPerformances.map(a => a.cpa));
     const maxCpa = Math.max(...adPerformances.map(a => a.cpa));
@@ -233,48 +143,119 @@ serve(async (req) => {
     const maxRoas = Math.max(...adPerformances.map(a => a.roas));
     const maxCtr = Math.max(...adPerformances.map(a => a.ctr));
     const maxSpend = Math.max(...adPerformances.map(a => a.spend));
-
-    // Calculate median CPA for penalty threshold
     const sortedCpas = adPerformances.map(a => a.cpa).sort((a, b) => a - b);
     const medianCpa = sortedCpas[Math.floor(sortedCpas.length / 2)];
 
     for (const ad of adPerformances) {
       const purchaseScore = maxPurchases > 0 ? ad.purchases / maxPurchases : 0;
-      // CPA: inverted — lower CPA = higher score
       const cpaScore = 1 - ((ad.cpa - minCpa) / cpaRange);
       const roasScore = maxRoas > 0 ? ad.roas / maxRoas : 0;
       const ctrScore = maxCtr > 0 ? ad.ctr / maxCtr : 0;
       const spendScore = maxSpend > 0 ? ad.spend / maxSpend : 0;
 
-      // Penalty: if CPA is more than 1.5x the median, apply diminishing multiplier
       let cpaPenalty = 1.0;
       if (ad.cpa > medianCpa * 1.5) {
-        cpaPenalty = Math.max(0.3, medianCpa / ad.cpa); // floors at 0.3x
+        cpaPenalty = Math.max(0.3, medianCpa / ad.cpa);
       }
 
-      const rawScore = 
-        (cpaScore * 0.35) + 
-        (purchaseScore * 0.25) + 
-        (roasScore * 0.20) + 
-        (ctrScore * 0.10) + 
-        (spendScore * 0.10);
-
-      const weightedScore = rawScore * cpaPenalty;
-
-      (ad as any).weightedScore = weightedScore;
+      const rawScore = (cpaScore * 0.35) + (purchaseScore * 0.25) + (roasScore * 0.20) + (ctrScore * 0.10) + (spendScore * 0.10);
+      (ad as any).weightedScore = rawScore * cpaPenalty;
       (ad as any).cpaPenalty = cpaPenalty;
       (ad as any).scores = { cpaScore, purchaseScore, roasScore, ctrScore, spendScore };
     }
 
-    // Sort by weighted score descending
     adPerformances.sort((a: any, b: any) => b.weightedScore - a.weightedScore);
-
     const topAds = adPerformances.slice(0, topN);
+
+    // 4. Fetch creative details ONLY for top N ads (parallel batch)
+    const adIds = topAds.map(a => a.adId);
+    console.log(`Fetching creative details for ${adIds.length} top ads...`);
+    
+    // Batch fetch: get ad details with creative info for top ads only
+    const adDetailPromises = adIds.map(async (adId) => {
+      try {
+        const url = `${META_BASE_URL}/${adId}?fields=id,effective_status,creative{id,thumbnail_url,image_url,image_hash,object_story_spec}&access_token=${metaToken}`;
+        const resp = await fetch(url);
+        const json = await resp.json();
+        return { adId, data: json };
+      } catch (e) {
+        console.error(`Error fetching ad ${adId}:`, e);
+        return { adId, data: null };
+      }
+    });
+
+    const adDetails = await Promise.all(adDetailPromises);
+
+    // Collect image hashes for full-size lookup
+    const imageHashes = new Set<string>();
+    for (const detail of adDetails) {
+      const hash = detail.data?.creative?.image_hash;
+      if (hash) imageHashes.add(hash);
+    }
+
+    // Fetch full-size images from hashes
+    const fullSizeMap: Record<string, string> = {};
+    if (imageHashes.size > 0) {
+      try {
+        const hashArray = Array.from(imageHashes);
+        const hashFilter = JSON.stringify(hashArray);
+        const imgUrl = `${META_BASE_URL}/act_${adAccountId}/adimages?hashes=${hashFilter}&fields=hash,url,url_128,url_256&access_token=${metaToken}`;
+        const imgResp = await fetch(imgUrl);
+        const imgJson = await imgResp.json();
+        if (imgJson.data) {
+          for (const img of imgJson.data) {
+            fullSizeMap[img.hash] = img.url || img.url_256 || img.url_128 || "";
+          }
+        }
+      } catch (e) {
+        console.error("Error fetching full-size images:", e);
+      }
+    }
+
+    // Map creative info back to top ads
+    for (const ad of topAds) {
+      const detail = adDetails.find(d => d.adId === ad.adId);
+      if (!detail?.data) continue;
+
+      const creative = detail.data.creative;
+      const status = detail.data.effective_status;
+      if (status) ad.adStatus = status;
+
+      if (!creative) continue;
+
+      const hash = creative.image_hash;
+      const fullSizeUrl = hash ? fullSizeMap[hash] : "";
+      const videoImage = creative.object_story_spec?.video_data?.image_url || "";
+      const videoThumb = creative.object_story_spec?.video_data?.call_to_action?.value?.link || "";
+
+      // For link ads, get the picture from the link_data
+      const linkImage = creative.object_story_spec?.link_data?.picture || 
+                        creative.object_story_spec?.link_data?.image_hash || "";
+      // For link_data child_attachments (carousel)
+      const carouselImage = creative.object_story_spec?.link_data?.child_attachments?.[0]?.picture || "";
+
+      const bestImageUrl = fullSizeUrl 
+        || creative.image_url 
+        || videoImage
+        || linkImage
+        || carouselImage
+        || creative.thumbnail_url
+        || "";
+
+      ad.creative = {
+        adName: ad.adName,
+        creativeTitle: ad.adName,
+        creativeBody: creative.object_story_spec?.link_data?.message || "",
+        thumbnailUrl: creative.thumbnail_url || "",
+        imageUrl: bestImageUrl,
+        isVideo: !!(creative.object_story_spec?.video_data),
+        status,
+      };
+    }
 
     return new Response(JSON.stringify({
       topAds,
       totalAdsAnalyzed: adPerformances.length,
-      totalAdsInAccount: adsData.length,
       medianCPA: medianCpa,
       scoringMethod: "35% CPA efficiency + 25% purchases + 20% ROAS + 10% CTR + 10% spend | CPA penalty if >1.5x median",
       period: `${since} to ${until}`,
