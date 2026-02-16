@@ -217,8 +217,9 @@ serve(async (req) => {
       });
     }
 
-    // 4. Multi-metric weighted scoring (expert model)
-    // Weights: 25% Purchases, 25% CPA efficiency, 20% ROAS, 15% CTR, 15% Spend efficiency
+    // 4. Multi-metric weighted scoring (CPA-first model)
+    // Weights: 35% CPA efficiency, 25% Purchases, 20% ROAS, 10% CTR, 10% Spend scale
+    // CPA is the most sensitive metric for operations — penalize high CPA ads
     if (adPerformances.length === 0) {
       return new Response(JSON.stringify({ topAds: [], totalAds: 0 }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -233,23 +234,36 @@ serve(async (req) => {
     const maxCtr = Math.max(...adPerformances.map(a => a.ctr));
     const maxSpend = Math.max(...adPerformances.map(a => a.spend));
 
+    // Calculate median CPA for penalty threshold
+    const sortedCpas = adPerformances.map(a => a.cpa).sort((a, b) => a - b);
+    const medianCpa = sortedCpas[Math.floor(sortedCpas.length / 2)];
+
     for (const ad of adPerformances) {
       const purchaseScore = maxPurchases > 0 ? ad.purchases / maxPurchases : 0;
+      // CPA: inverted — lower CPA = higher score
       const cpaScore = 1 - ((ad.cpa - minCpa) / cpaRange);
       const roasScore = maxRoas > 0 ? ad.roas / maxRoas : 0;
       const ctrScore = maxCtr > 0 ? ad.ctr / maxCtr : 0;
-      // Spend as validated scale — higher spend with good metrics = battle-tested
       const spendScore = maxSpend > 0 ? ad.spend / maxSpend : 0;
 
-      const weightedScore = 
+      // Penalty: if CPA is more than 1.5x the median, apply diminishing multiplier
+      let cpaPenalty = 1.0;
+      if (ad.cpa > medianCpa * 1.5) {
+        cpaPenalty = Math.max(0.3, medianCpa / ad.cpa); // floors at 0.3x
+      }
+
+      const rawScore = 
+        (cpaScore * 0.35) + 
         (purchaseScore * 0.25) + 
-        (cpaScore * 0.25) + 
         (roasScore * 0.20) + 
-        (ctrScore * 0.15) + 
-        (spendScore * 0.15);
+        (ctrScore * 0.10) + 
+        (spendScore * 0.10);
+
+      const weightedScore = rawScore * cpaPenalty;
 
       (ad as any).weightedScore = weightedScore;
-      (ad as any).scores = { purchaseScore, cpaScore, roasScore, ctrScore, spendScore };
+      (ad as any).cpaPenalty = cpaPenalty;
+      (ad as any).scores = { cpaScore, purchaseScore, roasScore, ctrScore, spendScore };
     }
 
     // Sort by weighted score descending
@@ -261,7 +275,8 @@ serve(async (req) => {
       topAds,
       totalAdsAnalyzed: adPerformances.length,
       totalAdsInAccount: adsData.length,
-      scoringMethod: "25% purchases + 25% CPA efficiency + 20% ROAS + 15% CTR + 15% spend (validated scale)",
+      medianCPA: medianCpa,
+      scoringMethod: "35% CPA efficiency + 25% purchases + 20% ROAS + 10% CTR + 10% spend | CPA penalty if >1.5x median",
       period: `${since} to ${until}`,
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
