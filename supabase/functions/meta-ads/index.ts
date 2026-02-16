@@ -155,15 +155,65 @@ serve(async (req) => {
         break;
       }
 
+      case "adsets": {
+        if (!adAccountId) {
+          return new Response(JSON.stringify({ error: "adAccountId is required" }), {
+            status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+        const asFields = fields || "name,status,campaign_id,targeting,daily_budget,lifetime_budget,optimization_goal,bid_strategy,start_time,end_time";
+        url = `${META_BASE_URL}/act_${adAccountId}/adsets?fields=${asFields}&access_token=${metaToken}&limit=100`;
+        const asResp = await fetch(url);
+        result = await asResp.json();
+        break;
+      }
+
+      case "ads": {
+        if (!adAccountId) {
+          return new Response(JSON.stringify({ error: "adAccountId is required" }), {
+            status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+        const adFields = fields || "name,status,adset_id,campaign_id,creative{id,name,title,body,image_url,thumbnail_url,object_story_spec,asset_feed_spec,effective_object_story_id}";
+        url = `${META_BASE_URL}/act_${adAccountId}/ads?fields=${adFields}&access_token=${metaToken}&limit=100`;
+        const adResp = await fetch(url);
+        result = await adResp.json();
+        break;
+      }
+
+      case "ad_creatives": {
+        if (!adAccountId) {
+          return new Response(JSON.stringify({ error: "adAccountId is required" }), {
+            status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+        const crFields = fields || "id,name,title,body,image_url,thumbnail_url,object_story_spec,asset_feed_spec,url_tags,effective_object_story_id,status";
+        url = `${META_BASE_URL}/act_${adAccountId}/adcreatives?fields=${crFields}&access_token=${metaToken}&limit=100`;
+        const crResp = await fetch(url);
+        result = await crResp.json();
+        break;
+      }
+
+      case "ad_image": {
+        const adId = since;
+        if (!adId) {
+          return new Response(JSON.stringify({ error: "ad_id required (pass as 'since')" }), {
+            status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+        url = `${META_BASE_URL}/${adId}?fields=id,name,creative{id,image_url,thumbnail_url,title,body,object_story_spec}&access_token=${metaToken}`;
+        const imgResp = await fetch(url);
+        result = await imgResp.json();
+        break;
+      }
+
       default:
         return new Response(
           JSON.stringify({
             error: "Invalid action",
             validActions: [
-              "list_accounts",
-              "account_insights",
-              "campaigns",
-              "campaign_insights",
+              "list_accounts", "account_insights", "campaigns",
+              "campaign_insights", "adsets", "ads", "ad_creatives", "ad_image",
             ],
           }),
           {
