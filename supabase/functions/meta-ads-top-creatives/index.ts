@@ -48,7 +48,7 @@ serve(async (req) => {
     }
 
     // 1. Get ad-level insights for the full period
-    const insightFields = "ad_id,ad_name,campaign_name,adset_name,spend,impressions,clicks,ctr,cpc,cpm,actions,action_values,cost_per_action_type";
+    const insightFields = "ad_id,ad_name,campaign_name,adset_name,spend,impressions,reach,frequency,clicks,ctr,cpc,cpm,actions,action_values,cost_per_action_type";
     const timeRange = `&time_range={"since":"${since}","until":"${until}"}`;
     const insightsUrl = `${META_BASE_URL}/act_${adAccountId}/insights?fields=${insightFields}${timeRange}&level=ad&access_token=${metaToken}&limit=500`;
     
@@ -78,14 +78,24 @@ serve(async (req) => {
       adName: string;
       campaignName: string;
       adsetName: string;
+      adStatus: string;
       spend: number;
       purchases: number;
       revenue: number;
       cpa: number;
       roas: number;
       impressions: number;
+      reach: number;
+      frequency: number;
       clicks: number;
       ctr: number;
+      cpc: number;
+      cpm: number;
+      addToCart: number;
+      initiateCheckout: number;
+      conversionRate: number;
+      costPerATC: number;
+      costPerIC: number;
       creative: any;
       dateRange: string;
     }
@@ -108,6 +118,22 @@ serve(async (req) => {
       const spend = parseFloat(insight.spend || "0");
       const cpa = purchaseCount > 0 ? spend / purchaseCount : 999999;
       const roas = spend > 0 ? revenueValue / spend : 0;
+      const clicks = parseInt(insight.clicks || "0");
+      const impressions = parseInt(insight.impressions || "0");
+      const reach = parseInt(insight.reach || "0");
+      const frequency = parseFloat(insight.frequency || "0");
+      const ctr = parseFloat(insight.ctr || "0");
+      const cpc = parseFloat(insight.cpc || "0");
+      const cpm = parseFloat(insight.cpm || "0");
+
+      // Funnel metrics
+      const atcAction = insight.actions?.find((a: any) => a.action_type === "add_to_cart" || a.action_type === "omni_add_to_cart");
+      const addToCart = atcAction ? parseFloat(atcAction.value) : 0;
+      const icAction = insight.actions?.find((a: any) => a.action_type === "initiate_checkout" || a.action_type === "omni_initiated_checkout");
+      const initiateCheckout = icAction ? parseFloat(icAction.value) : 0;
+      const conversionRate = clicks > 0 ? (purchaseCount / clicks) * 100 : 0;
+      const costPerATC = addToCart > 0 ? spend / addToCart : 0;
+      const costPerIC = initiateCheckout > 0 ? spend / initiateCheckout : 0;
 
       const creative = adCreativeMap[insight.ad_id] || {
         adName: insight.ad_name,
@@ -129,9 +155,18 @@ serve(async (req) => {
         revenue: revenueValue,
         cpa,
         roas,
-        impressions: parseInt(insight.impressions || "0"),
-        clicks: parseInt(insight.clicks || "0"),
-        ctr: parseFloat(insight.ctr || "0"),
+        impressions,
+        reach,
+        frequency,
+        clicks,
+        ctr,
+        cpc,
+        cpm,
+        addToCart,
+        initiateCheckout,
+        conversionRate,
+        costPerATC,
+        costPerIC,
         creative,
         dateRange: `${since} - ${until}`,
       });
