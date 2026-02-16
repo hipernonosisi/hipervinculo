@@ -55,7 +55,7 @@ serve(async (req) => {
     const insightsData = await fetchAllPages(insightsUrl);
 
     // 2. Get ads with creative info
-    const adsUrl = `${META_BASE_URL}/act_${adAccountId}/ads?fields=id,name,status,creative{id,name,title,body,image_url,thumbnail_url,object_story_spec}&access_token=${metaToken}&limit=500`;
+    const adsUrl = `${META_BASE_URL}/act_${adAccountId}/ads?fields=id,name,status,effective_status,creative{id,name,title,body,image_url,thumbnail_url,object_story_spec}&access_token=${metaToken}&limit=500`;
     const adsData = await fetchAllPages(adsUrl);
 
     // Build a map of ad_id -> creative info
@@ -63,7 +63,7 @@ serve(async (req) => {
     for (const ad of adsData) {
       adCreativeMap[ad.id] = {
         adName: ad.name,
-        status: ad.status,
+        status: ad.effective_status || ad.status,
         creativeTitle: ad.creative?.title || ad.creative?.name || ad.name,
         creativeBody: ad.creative?.body || "",
         thumbnailUrl: ad.creative?.thumbnail_url || "",
@@ -123,6 +123,7 @@ serve(async (req) => {
         adName: insight.ad_name,
         campaignName: insight.campaign_name,
         adsetName: insight.adset_name,
+        adStatus: creative.status || "UNKNOWN",
         spend,
         purchases: purchaseCount,
         revenue: revenueValue,

@@ -23,6 +23,7 @@ interface TopAd {
   adName: string;
   campaignName: string;
   adsetName: string;
+  adStatus: string;
   spend: number;
   purchases: number;
   revenue: number;
@@ -200,7 +201,12 @@ export function TopCreativesDashboard() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             {topAds.map((ad, index) => {
               const imageUrl = ad.creative.imageUrl || ad.creative.thumbnailUrl;
+              const hiResUrl = imageUrl && imageUrl.includes('fbcdn')
+                ? `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}width=600`
+                : imageUrl;
               const isSelected = selectedAd?.adId === ad.adId;
+              const statusColor = ad.adStatus === 'ACTIVE' ? '#8BC34A' : ad.adStatus === 'PAUSED' ? '#FFC107' : '#9E9E9E';
+              const statusLabel = ad.adStatus === 'ACTIVE' ? 'Activo' : ad.adStatus === 'PAUSED' ? 'Pausado' : ad.adStatus || '—';
               return (
                 <Card
                   key={ad.adId}
@@ -216,34 +222,49 @@ export function TopCreativesDashboard() {
                         #{index + 1}
                       </Badge>
                     </div>
-                    {ad.creative.isVideo && (
-                      <div className="absolute top-2 right-2 z-10">
+                    <div className="absolute top-2 right-2 z-10 flex gap-1">
+                      {ad.creative.isVideo && (
                         <Badge className="rounded-full bg-black/60 text-white border-0">
                           <Play className="w-3 h-3 mr-1" /> Video
                         </Badge>
-                      </div>
-                    )}
+                      )}
+                      <Badge
+                        className="rounded-full text-white border-0 text-[10px]"
+                        style={{ backgroundColor: statusColor }}
+                      >
+                        {statusLabel}
+                      </Badge>
+                    </div>
                     <div className="aspect-square bg-gray-100 overflow-hidden">
-                      {imageUrl ? (
+                      {hiResUrl ? (
                         <img
-                          src={imageUrl}
+                          src={hiResUrl}
                           alt={ad.adName}
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                            (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                            const img = e.target as HTMLImageElement;
+                            if (img.src !== imageUrl && imageUrl) {
+                              img.src = imageUrl;
+                            } else {
+                              img.style.display = 'none';
+                              img.nextElementSibling?.classList.remove('hidden');
+                            }
                           }}
                         />
                       ) : null}
-                      <div className={`${imageUrl ? 'hidden' : ''} w-full h-full flex items-center justify-center bg-gray-100`}>
+                      <div className={`${hiResUrl ? 'hidden' : ''} w-full h-full flex items-center justify-center bg-gray-100`}>
                         <ImageIcon className="w-12 h-12 text-gray-300" />
                       </div>
                     </div>
                   </div>
 
                   <CardContent className="p-3">
-                    <p className="text-xs font-semibold truncate mb-2" style={{ color: '#2d4a2d' }} title={ad.adName}>
+                    <p className="text-xs font-semibold truncate mb-0.5" style={{ color: '#2d4a2d' }} title={ad.adName}>
                       {ad.adName}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground truncate mb-2" title={ad.campaignName}>
+                      📁 {ad.campaignName}
                     </p>
                     <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
                       <div className="flex items-center gap-1">
