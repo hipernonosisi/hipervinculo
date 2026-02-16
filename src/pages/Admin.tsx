@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -20,6 +20,7 @@ import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
 import { useToast } from '@/hooks/use-toast';
+import { TopCreativesDashboard } from '@/components/admin/TopCreativesDashboard';
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
 
@@ -311,7 +312,7 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-3 sm:grid-cols-7 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-4 sm:grid-cols-8 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
@@ -329,6 +330,11 @@ export default function Admin() {
                 <span className="hidden sm:inline">Chats</span>
                 <span className="sm:hidden">Chats</span>
                 <span className="ml-1">({chatConversations.length})</span>
+              </TabsTrigger>
+              <TabsTrigger value="creatives" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Creatives</span>
+                <span className="sm:hidden">Creatives</span>
               </TabsTrigger>
               <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
                 <Presentation className="w-3.5 h-3.5" />
@@ -585,6 +591,11 @@ export default function Admin() {
               </Card>
             </TabsContent>
             
+
+            {/* Creatives Dashboard Tab */}
+            <TabsContent value="creatives" className="mt-0">
+              <TopCreativesDashboard />
+            </TabsContent>
             
             {/* Presentations Tab */}
             <TabsContent value="presentations" className="mt-0 space-y-4">
