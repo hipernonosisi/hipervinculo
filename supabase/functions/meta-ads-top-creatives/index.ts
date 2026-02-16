@@ -137,7 +137,8 @@ serve(async (req) => {
       });
     }
 
-    // 4. Weighted scoring: 50% purchases (normalized), 50% CPA (inverted, normalized)
+    // 4. Multi-metric weighted scoring (expert model)
+    // Weights: 25% Purchases, 25% CPA efficiency, 20% ROAS, 15% CTR, 15% Spend efficiency
     if (adPerformances.length === 0) {
       return new Response(JSON.stringify({ topAds: [], totalAds: 0 }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -148,13 +149,27 @@ serve(async (req) => {
     const minCpa = Math.min(...adPerformances.map(a => a.cpa));
     const maxCpa = Math.max(...adPerformances.map(a => a.cpa));
     const cpaRange = maxCpa - minCpa || 1;
+    const maxRoas = Math.max(...adPerformances.map(a => a.roas));
+    const maxCtr = Math.max(...adPerformances.map(a => a.ctr));
+    const maxSpend = Math.max(...adPerformances.map(a => a.spend));
 
     for (const ad of adPerformances) {
-      const purchaseScore = ad.purchases / maxPurchases; // 0-1, higher is better
-      const cpaScore = 1 - ((ad.cpa - minCpa) / cpaRange); // 0-1, lower CPA = higher score
-      (ad as any).weightedScore = (purchaseScore * 0.5) + (cpaScore * 0.5);
-      (ad as any).purchaseScore = purchaseScore;
-      (ad as any).cpaScore = cpaScore;
+      const purchaseScore = maxPurchases > 0 ? ad.purchases / maxPurchases : 0;
+      const cpaScore = 1 - ((ad.cpa - minCpa) / cpaRange);
+      const roasScore = maxRoas > 0 ? ad.roas / maxRoas : 0;
+      const ctrScore = maxCtr > 0 ? ad.ctr / maxCtr : 0;
+      // Spend as validated scale — higher spend with good metrics = battle-tested
+      const spendScore = maxSpend > 0 ? ad.spend / maxSpend : 0;
+
+      const weightedScore = 
+        (purchaseScore * 0.25) + 
+        (cpaScore * 0.25) + 
+        (roasScore * 0.20) + 
+        (ctrScore * 0.15) + 
+        (spendScore * 0.15);
+
+      (ad as any).weightedScore = weightedScore;
+      (ad as any).scores = { purchaseScore, cpaScore, roasScore, ctrScore, spendScore };
     }
 
     // Sort by weighted score descending
@@ -166,7 +181,7 @@ serve(async (req) => {
       topAds,
       totalAdsAnalyzed: adPerformances.length,
       totalAdsInAccount: adsData.length,
-      scoringMethod: "50% purchase volume (normalized) + 50% CPA efficiency (inverted normalized)",
+      scoringMethod: "25% purchases + 25% CPA efficiency + 20% ROAS + 15% CTR + 15% spend (validated scale)",
       period: `${since} to ${until}`,
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
