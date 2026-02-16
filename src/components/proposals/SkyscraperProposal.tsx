@@ -50,15 +50,20 @@ export function SkyscraperProposal() {
       const pdf = new jsPDF('p', 'mm', 'a4');
 
       for (let i = 0; i < pages.length; i++) {
-        const canvas = await html2canvas(pages[i] as HTMLElement, {
-          scale: 2,
+        const pageEl = pages[i] as HTMLElement;
+        const canvas = await html2canvas(pageEl, {
+          scale: 1.5,
           useCORS: true,
-          backgroundColor: null,
+          backgroundColor: '#ffffff',
+          width: pageEl.offsetWidth,
+          height: pageEl.offsetHeight,
+          windowWidth: pageEl.offsetWidth,
+          windowHeight: pageEl.offsetHeight,
         });
 
         if (i > 0) pdf.addPage();
-        const imgData = canvas.toDataURL('image/png');
-        pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+        const imgData = canvas.toDataURL('image/jpeg', 0.85);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
       }
 
       pdf.save('Proposal-Skyscraper-Construction.pdf');
