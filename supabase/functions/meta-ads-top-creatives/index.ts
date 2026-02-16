@@ -54,20 +54,65 @@ serve(async (req) => {
     
     const insightsData = await fetchAllPages(insightsUrl);
 
-    // 2. Get ads with creative info
-    const adsUrl = `${META_BASE_URL}/act_${adAccountId}/ads?fields=id,name,status,effective_status,creative{id,name,title,body,image_url,thumbnail_url,object_story_spec}&access_token=${metaToken}&limit=500`;
+    // 2. Get ads with creative info (request image_hash for full-size lookup)
+    const adsUrl = `${META_BASE_URL}/act_${adAccountId}/ads?fields=id,name,status,effective_status,creative{id,name,title,body,image_url,image_hash,thumbnail_url,object_story_spec,asset_feed_spec}&access_token=${metaToken}&limit=500`;
     const adsData = await fetchAllPages(adsUrl);
+
+    // 3. Collect image hashes to fetch full-size URLs
+    const imageHashes = new Set<string>();
+    for (const ad of adsData) {
+      const hash = ad.creative?.image_hash;
+      if (hash) imageHashes.add(hash);
+    }
+
+    // Batch fetch full-size image URLs from ad images endpoint
+    const fullSizeMap: Record<string, string> = {};
+    if (imageHashes.size > 0) {
+      try {
+        const hashArray = Array.from(imageHashes);
+        // Fetch in batches of 50
+        for (let i = 0; i < hashArray.length; i += 50) {
+          const batch = hashArray.slice(i, i + 50);
+          const hashFilter = JSON.stringify(batch);
+          const imgUrl = `${META_BASE_URL}/act_${adAccountId}/adimages?hashes=${hashFilter}&fields=hash,url,url_128,url_256&access_token=${metaToken}`;
+          const imgResp = await fetch(imgUrl);
+          const imgJson = await imgResp.json();
+          if (imgJson.data) {
+            for (const img of imgJson.data) {
+              // url is the full-size original image
+              fullSizeMap[img.hash] = img.url || img.url_256 || img.url_128 || "";
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Error fetching full-size images:", e);
+      }
+    }
 
     // Build a map of ad_id -> creative info
     const adCreativeMap: Record<string, any> = {};
     for (const ad of adsData) {
+      const hash = ad.creative?.image_hash;
+      const fullSizeUrl = hash ? fullSizeMap[hash] : "";
+      // For videos, get the best available image from video_data
+      const videoImage = ad.creative?.object_story_spec?.video_data?.image_url || "";
+      // For carousels, try to get first child image
+      const carouselImage = ad.creative?.asset_feed_spec?.images?.[0]?.url || "";
+      
+      // Priority: full-size from hash > creative image_url > video thumbnail > carousel > thumbnail
+      const bestImageUrl = fullSizeUrl 
+        || ad.creative?.image_url 
+        || videoImage 
+        || carouselImage 
+        || "";
+
       adCreativeMap[ad.id] = {
         adName: ad.name,
         status: ad.effective_status || ad.status,
         creativeTitle: ad.creative?.title || ad.creative?.name || ad.name,
         creativeBody: ad.creative?.body || "",
         thumbnailUrl: ad.creative?.thumbnail_url || "",
-        imageUrl: ad.creative?.image_url || ad.creative?.object_story_spec?.video_data?.image_url || "",
+        imageUrl: bestImageUrl,
         isVideo: !!ad.creative?.object_story_spec?.video_data,
       };
     }
