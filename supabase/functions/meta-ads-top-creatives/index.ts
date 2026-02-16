@@ -90,13 +90,17 @@ serve(async (req) => {
       const purchaseCount = purchases ? parseFloat(purchases.value) : 0;
       
       if (purchaseCount === 0) continue;
+
+      const spend = parseFloat(insight.spend || "0");
+      // Exclude ads with less than $100 spend
+      if (spend < 100) continue;
       
       const revenue = insight.action_values?.find((a: any) => 
         a.action_type === "purchase" || a.action_type === "omni_purchase"
       );
       const revenueValue = revenue ? parseFloat(revenue.value) : 0;
       
-      const spend = parseFloat(insight.spend || "0");
+      // spend already computed above
       const cpa = purchaseCount > 0 ? spend / purchaseCount : 999999;
       const roas = spend > 0 ? revenueValue / spend : 0;
       const clicks = parseInt(insight.clicks || "0");
