@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.meta-ads]
 verify_jwt = false
+
+[functions.meta-ads-top-creatives]
+verify_jwt = false

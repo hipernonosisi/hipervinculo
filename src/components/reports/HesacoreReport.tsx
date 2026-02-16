@@ -10,6 +10,7 @@ import { hesacoreReport } from './data/hesacoreReportData';
 import { HesacorePDFDocument } from './pdf/HesacorePDFReport';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
+import { TopCreativesSection } from './TopCreativesSection';
 
 function imageToBase64(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -252,6 +253,14 @@ export function HesacoreReport({ isPublic = false }: HesacoreReportProps) {
             </CardContent>
           </Card>
         </div>
+
+        {/* Top Creatives */}
+        <TopCreativesSection
+          adAccountId="10152719926306666"
+          since="2025-01-01"
+          until="2025-12-31"
+          topN={10}
+        />
 
         {/* Monthly Detail Table */}
         <Card className="border-0 shadow-md rounded-2xl mb-8 overflow-hidden">
