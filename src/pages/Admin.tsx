@@ -18,6 +18,7 @@ import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentat
 import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
+import { HesacoreReport } from '@/components/reports/HesacoreReport';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
@@ -78,6 +79,7 @@ export default function Admin() {
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads'>('leadgen');
   const [activeProposal, setActiveProposal] = useState<'skyscraper'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
 
   // Check authentication and admin role
   useEffect(() => {
@@ -645,10 +647,28 @@ export default function Admin() {
             </TabsContent>
 
             {/* Reports Tab */}
-            <TabsContent value="reports">
+            <TabsContent value="reports" className="space-y-4">
+              <div className="flex gap-2 px-1 flex-wrap">
+                <Button
+                  variant={activeReport === 'lalenas' ? 'default' : 'outline'}
+                  size="sm"
+                  className="rounded-full"
+                  onClick={() => setActiveReport('lalenas')}
+                >
+                  Lalenas Food
+                </Button>
+                <Button
+                  variant={activeReport === 'hesacore' ? 'default' : 'outline'}
+                  size="sm"
+                  className="rounded-full"
+                  onClick={() => setActiveReport('hesacore')}
+                >
+                  Hesacore USA
+                </Button>
+              </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px', overflow: 'auto' }}>
-                  <LalenasFoodReport />
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 480px)', minHeight: '600px', overflow: 'auto' }}>
+                  {activeReport === 'lalenas' ? <LalenasFoodReport /> : <HesacoreReport />}
                 </CardContent>
               </Card>
             </TabsContent>
