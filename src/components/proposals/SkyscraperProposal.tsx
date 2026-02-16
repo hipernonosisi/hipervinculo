@@ -59,27 +59,6 @@ export function SkyscraperProposal() {
           height: pageEl.offsetHeight,
           windowWidth: pageEl.offsetWidth,
           windowHeight: pageEl.offsetHeight,
-          onclone: (_doc, clonedEl) => {
-            // Fix html2canvas flex vertical centering issues
-            // Force all text to have tighter line-height
-            const allText = clonedEl.querySelectorAll('h1, h2, h3, p, span, div, li');
-            allText.forEach((el) => {
-              const htmlEl = el as HTMLElement;
-              const computed = window.getComputedStyle(el);
-              const fontSize = parseFloat(computed.fontSize);
-              // Large text gets line-height: 1 to prevent downward shift
-              if (fontSize >= 24) {
-                htmlEl.style.lineHeight = '1.1';
-              }
-            });
-            // Replace items-center with explicit padding on flex containers
-            const flexContainers = clonedEl.querySelectorAll('.flex.items-center');
-            flexContainers.forEach((el) => {
-              const htmlEl = el as HTMLElement;
-              htmlEl.style.alignItems = 'flex-start';
-              htmlEl.style.paddingTop = htmlEl.style.paddingTop || '0px';
-            });
-          },
         });
 
         if (i > 0) pdf.addPage();
@@ -119,20 +98,20 @@ export function SkyscraperProposal() {
                 <img src={logoHipervinculo} alt="Hipervinculo" className="h-10" />
               </div>
               {/* Dark green hero */}
-              <div className="flex-1 flex flex-col justify-center px-16" style={{ backgroundColor: '#2d4a2d' }}>
+              <div className="flex-1 flex flex-col px-16" style={{ backgroundColor: '#2d4a2d', paddingTop: '160px' }}>
                 <p className="text-sm font-bold tracking-[0.2em] uppercase mb-6" style={{ color: '#8BC34A' }}>
                   {content.cover.title}
                 </p>
-                <h1 className="text-5xl font-extrabold text-white mb-5 leading-[1.1]">
+                <h1 className="text-5xl font-extrabold text-white mb-5" style={{ lineHeight: 1.1 }}>
                   {content.cover.subtitle}
                 </h1>
-                <p className="text-xl text-white/60 mb-10">{content.cover.tagline}</p>
+                <p className="text-xl text-white/60 mb-10" style={{ lineHeight: 1.4 }}>{content.cover.tagline}</p>
                 <div className="w-20 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
               </div>
               {/* Bottom white strip */}
-              <div className="px-16 py-6 flex items-center justify-between bg-white">
-                <p className="text-xs text-gray-400 tracking-wider uppercase">Confidential</p>
-                <p className="text-xs text-gray-400">hipervinculo.net</p>
+              <div className="px-16 py-6 flex justify-between bg-white">
+                <p className="text-xs text-gray-400 tracking-wider uppercase" style={{ lineHeight: 1 }}>Confidential</p>
+                <p className="text-xs text-gray-400" style={{ lineHeight: 1 }}>hipervinculo.net</p>
               </div>
             </div>
           </Page>
@@ -142,16 +121,16 @@ export function SkyscraperProposal() {
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>About Us</p>
-              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.about.title}</h2>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>{content.about.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.about.headline}</p>
               <p className="text-gray-600 leading-relaxed mb-10 text-[15px]">{content.about.description}</p>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mb-10">
                 {content.about.stats.map((stat, i) => (
-                  <div key={i} className="text-center py-6 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
-                    <div className="text-4xl font-extrabold mb-1" style={{ color: '#8BC34A' }}>{stat.value}</div>
-                    <div className="text-xs text-gray-500 font-medium">{stat.label}</div>
+                  <div key={i} className="text-center rounded-2xl" style={{ backgroundColor: '#f8f9f5', paddingTop: '24px', paddingBottom: '24px' }}>
+                    <div className="font-extrabold mb-1" style={{ color: '#8BC34A', fontSize: '36px', lineHeight: 1 }}>{stat.value}</div>
+                    <div className="text-xs text-gray-500 font-medium" style={{ lineHeight: 1.2 }}>{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -172,17 +151,17 @@ export function SkyscraperProposal() {
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
-              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>{content.webService.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
 
               {/* Price banner */}
-              <div className="rounded-2xl px-8 py-5 mb-8 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
-                <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Investment</div>
+              <div className="rounded-2xl px-8 mb-8 flex justify-between" style={{ backgroundColor: '#2d4a2d', paddingTop: '20px', paddingBottom: '20px' }}>
+                <div style={{ paddingTop: '8px' }}>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest" style={{ lineHeight: 1.2 }}>Investment</div>
                 </div>
                 <div className="text-right">
-                  <span className="text-4xl font-extrabold text-white">{content.webService.price}</span>
-                  <span className="text-white/50 text-sm ml-2">{content.webService.priceLabel}</span>
+                  <span className="font-extrabold text-white" style={{ fontSize: '36px', lineHeight: 1 }}>{content.webService.price}</span>
+                  <span className="text-white/50 text-sm ml-2" style={{ lineHeight: 1 }}>{content.webService.priceLabel}</span>
                 </div>
               </div>
 
@@ -206,24 +185,24 @@ export function SkyscraperProposal() {
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
-              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.leadGenService.title}</h2>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>{content.leadGenService.title}</h2>
               <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.leadGenService.headline}</p>
 
               {/* Price banner */}
-              <div className="rounded-2xl px-8 py-4 mb-5" style={{ backgroundColor: '#2d4a2d' }}>
-                <div className="flex items-center justify-between">
+              <div className="rounded-2xl px-8 mb-5" style={{ backgroundColor: '#2d4a2d', paddingTop: '16px', paddingBottom: '16px' }}>
+                <div className="flex justify-between">
                   <div>
-                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Monthly Retainer</div>
-                    <div className="text-white/40 text-xs mt-1">Month-to-Month</div>
+                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest" style={{ lineHeight: 1.2 }}>Monthly Retainer</div>
+                    <div className="text-white/40 text-xs mt-1" style={{ lineHeight: 1.2 }}>Month-to-Month</div>
                   </div>
-                  <span className="text-4xl font-extrabold text-white">{content.leadGenService.retainer}</span>
+                  <span className="font-extrabold text-white" style={{ fontSize: '36px', lineHeight: 1, paddingTop: '4px' }}>{content.leadGenService.retainer}</span>
                 </div>
-                <div className="border-t border-white/10 mt-3 pt-3 flex items-center justify-between">
+                <div className="border-t border-white/10 mt-3 pt-3 flex justify-between">
                   <div>
-                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Recommended Media Spend</div>
-                    <div className="text-white/40 text-xs mt-1">Paid directly to Google</div>
+                    <div className="text-white/50 text-xs font-bold uppercase tracking-widest" style={{ lineHeight: 1.2 }}>Recommended Media Spend</div>
+                    <div className="text-white/40 text-xs mt-1" style={{ lineHeight: 1.2 }}>Paid directly to Google</div>
                   </div>
-                  <span className="text-2xl font-extrabold text-white">{content.leadGenService.mediaSpend}</span>
+                  <span className="font-extrabold text-white" style={{ fontSize: '24px', lineHeight: 1, paddingTop: '4px' }}>{content.leadGenService.mediaSpend}</span>
                 </div>
               </div>
 
@@ -247,14 +226,14 @@ export function SkyscraperProposal() {
             <div data-page className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
-              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>{content.investment.title}</h2>
               <p className="font-medium mb-10" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
               <div className="grid grid-cols-2 gap-6 mb-10">
                 {/* Setup */}
                 <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                   <h3 className="font-bold text-lg mb-2" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
-                  <div className="text-4xl font-extrabold mb-6" style={{ color: '#8BC34A' }}>{content.investment.setup.price}</div>
+                  <div className="font-extrabold mb-6" style={{ color: '#8BC34A', fontSize: '36px', lineHeight: 1 }}>{content.investment.setup.price}</div>
                   <ul className="space-y-3">
                     {content.investment.setup.includes.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
@@ -267,7 +246,7 @@ export function SkyscraperProposal() {
                 {/* Monthly */}
                 <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                   <h3 className="font-bold text-lg mb-2" style={{ color: '#2d4a2d' }}>{content.investment.monthly.title}</h3>
-                  <div className="text-4xl font-extrabold mb-6" style={{ color: '#8BC34A' }}>{content.investment.monthly.price}</div>
+                  <div className="font-extrabold mb-6" style={{ color: '#8BC34A', fontSize: '36px', lineHeight: 1 }}>{content.investment.monthly.price}</div>
                   <ul className="space-y-3">
                     {content.investment.monthly.includes.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
@@ -290,14 +269,14 @@ export function SkyscraperProposal() {
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Terms</p>
-              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
+              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>{content.terms.title}</h2>
               <p className="font-medium mb-8" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
               <div className="space-y-3">
                 {content.terms.sections.map((section, i) => {
                   const Icon = iconMap[section.icon] || FileText;
                   return (
                     <div key={i} className="flex gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#f8f9f5' }}>
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                      <div className="w-10 h-10 rounded-xl flex justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)', paddingTop: '8px' }}>
                         <Icon className="w-5 h-5" style={{ color: '#8BC34A' }} />
                       </div>
                       <div>
@@ -315,7 +294,7 @@ export function SkyscraperProposal() {
           <Page bg="#f8f9f5">
             <div data-page className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <h2 className="text-3xl font-extrabold mb-10" style={{ color: '#2d4a2d' }}>
+              <h2 className="text-3xl font-extrabold mb-10" style={{ color: '#2d4a2d', lineHeight: 1.1 }}>
                 {content.legalTerms.title}
               </h2>
               <div className="space-y-8">
@@ -343,7 +322,7 @@ export function SkyscraperProposal() {
               {/* Contact on dark green */}
               <div className="px-16 py-14 flex-1" style={{ backgroundColor: '#2d4a2d' }}>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: '#8BC34A' }}>Contact Us</p>
-                <h2 className="text-3xl font-extrabold text-white mb-3">{content.contact.title}</h2>
+                <h2 className="text-3xl font-extrabold text-white mb-3" style={{ lineHeight: 1.1 }}>{content.contact.title}</h2>
                 <p className="text-white/60 mb-10 text-[15px]">{content.contact.description}</p>
                 <div className="grid grid-cols-2 gap-8 text-white/80">
                   <div className="space-y-6">
@@ -370,7 +349,7 @@ export function SkyscraperProposal() {
               </div>
 
               {/* Logo closing on white */}
-              <div className="flex flex-col items-center justify-center py-16 bg-white">
+              <div className="flex flex-col items-center py-16 bg-white" style={{ paddingTop: '64px' }}>
                 <img src={logoHipervinculo} alt="Hipervinculo" className="h-12 mb-5" />
                 <div className="w-12 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
                 <p className="text-center text-gray-400 text-sm max-w-sm">
