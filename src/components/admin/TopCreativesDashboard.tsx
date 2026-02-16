@@ -30,8 +30,17 @@ interface TopAd {
   cpa: number;
   roas: number;
   impressions: number;
+  reach: number;
+  frequency: number;
   clicks: number;
   ctr: number;
+  cpc: number;
+  cpm: number;
+  addToCart: number;
+  initiateCheckout: number;
+  conversionRate: number;
+  costPerATC: number;
+  costPerIC: number;
   creative: {
     creativeTitle: string;
     creativeBody: string;
@@ -40,8 +49,7 @@ interface TopAd {
     isVideo: boolean;
   };
   weightedScore?: number;
-  purchaseScore?: number;
-  cpaScore?: number;
+  scores?: { purchaseScore: number; cpaScore: number; roasScore: number; ctrScore: number; spendScore: number };
 }
 
 export function TopCreativesDashboard() {
@@ -294,6 +302,12 @@ export function TopCreativesDashboard() {
                         <DollarSign className="w-3 h-3 text-muted-foreground" />
                         <span className="text-[10px] text-muted-foreground">${fmt(ad.spend)}</span>
                       </div>
+                      <div className="flex items-center gap-1 col-span-2">
+                        <MousePointerClick className="w-3 h-3 text-muted-foreground" />
+                        <span className="text-[10px] text-muted-foreground">
+                          {ad.clicks.toLocaleString()} clicks · {ad.ctr.toFixed(2)}% CTR
+                        </span>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -344,7 +358,7 @@ export function TopCreativesDashboard() {
                       </div>
                     )}
 
-                    {/* KPIs Grid */}
+                    {/* Primary KPIs */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       <div className="bg-gray-50 p-3 rounded-lg text-center">
                         <ShoppingCart className="w-4 h-4 mx-auto mb-1" style={{ color: '#8BC34A' }} />
@@ -368,24 +382,108 @@ export function TopCreativesDashboard() {
                       </div>
                     </div>
 
-                    {/* Secondary KPIs */}
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Eye className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">Impresiones:</span>
-                        <span className="font-medium">{fmtInt(selectedAd.impressions)}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <MousePointerClick className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">Clicks:</span>
-                        <span className="font-medium">{fmtInt(selectedAd.clicks)}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <DollarSign className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">Inversión:</span>
-                        <span className="font-medium">${fmt(selectedAd.spend)}</span>
+                    {/* Traffic & Delivery */}
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground mb-2">📡 Tráfico & Entrega</p>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Impresiones</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{fmtInt(selectedAd.impressions)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Alcance</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{fmtInt(selectedAd.reach || 0)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Frecuencia</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{(selectedAd.frequency || 0).toFixed(2)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Clicks</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{fmtInt(selectedAd.clicks)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">CTR</p>
+                          <p className="text-sm font-bold" style={{ color: selectedAd.ctr >= 2 ? '#2e7d32' : selectedAd.ctr >= 1 ? '#f57f17' : '#c62828' }}>
+                            {selectedAd.ctr.toFixed(2)}%
+                          </p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">CPM</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>${fmt(selectedAd.cpm || 0)}</p>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Funnel Metrics */}
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground mb-2">🔄 Funnel de Conversión</p>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Add to Cart</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{fmtInt(selectedAd.addToCart || 0)}</p>
+                          {(selectedAd.costPerATC || 0) > 0 && (
+                            <p className="text-[10px] text-muted-foreground">${fmt(selectedAd.costPerATC)} / ATC</p>
+                          )}
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Initiate Checkout</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>{fmtInt(selectedAd.initiateCheckout || 0)}</p>
+                          {(selectedAd.costPerIC || 0) > 0 && (
+                            <p className="text-[10px] text-muted-foreground">${fmt(selectedAd.costPerIC)} / IC</p>
+                          )}
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Conv. Rate</p>
+                          <p className="text-sm font-bold" style={{ color: (selectedAd.conversionRate || 0) >= 3 ? '#2e7d32' : (selectedAd.conversionRate || 0) >= 1 ? '#f57f17' : '#c62828' }}>
+                            {(selectedAd.conversionRate || 0).toFixed(2)}%
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Cost Efficiency */}
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground mb-2">💰 Costos</p>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">Inversión Total</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>${fmt(selectedAd.spend)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">CPC</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>${fmt(selectedAd.cpc || 0)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-2.5 rounded-lg">
+                          <p className="text-[10px] text-muted-foreground">CPA</p>
+                          <p className="text-sm font-bold" style={{ color: '#2d4a2d' }}>${fmt(selectedAd.cpa)}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Score breakdown */}
+                    {selectedAd.scores && (
+                      <div>
+                        <p className="text-xs font-semibold text-muted-foreground mb-2">📊 Score ({((selectedAd.weightedScore || 0) * 100).toFixed(0)}/100)</p>
+                        <div className="grid grid-cols-5 gap-2">
+                          {[
+                            { label: 'Pedidos', value: selectedAd.scores.purchaseScore, weight: '25%' },
+                            { label: 'CPA', value: selectedAd.scores.cpaScore, weight: '25%' },
+                            { label: 'ROAS', value: selectedAd.scores.roasScore, weight: '20%' },
+                            { label: 'CTR', value: selectedAd.scores.ctrScore, weight: '15%' },
+                            { label: 'Escala', value: selectedAd.scores.spendScore, weight: '15%' },
+                          ].map((s) => (
+                            <div key={s.label} className="text-center">
+                              <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden mb-1">
+                                <div className="h-full rounded-full" style={{ width: `${s.value * 100}%`, backgroundColor: '#8BC34A' }} />
+                              </div>
+                              <p className="text-[9px] text-muted-foreground">{s.label} ({s.weight})</p>
+                              <p className="text-[10px] font-semibold">{(s.value * 100).toFixed(0)}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>
