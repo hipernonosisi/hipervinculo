@@ -18,6 +18,7 @@ import Privacy from "./pages/Privacy";
 import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import ReportLalenasFood from "./pages/ReportLalenasFood";
+import ReportHesacore from "./pages/ReportHesacore";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/report/lalenas-food" element={<ReportLalenasFood />} />
+            <Route path="/report/hesacore" element={<ReportHesacore />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

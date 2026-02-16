@@ -68,7 +68,7 @@ serve(async (req) => {
       );
     }
 
-    const { action, adAccountId, since, until, fields, level } = await req.json();
+    const { action, adAccountId, since, until, fields, level, time_increment } = await req.json();
 
     let url: string;
     let result: unknown;
@@ -101,8 +101,9 @@ serve(async (req) => {
             ? `&time_range={"since":"${since}","until":"${until}"}`
             : "&date_preset=last_30d";
         const breakdown = level === "campaign" ? "&level=campaign" : level === "adset" ? "&level=adset" : level === "ad" ? "&level=ad" : "";
+        const timeInc = time_increment ? `&time_increment=${time_increment}` : "";
 
-        url = `${META_BASE_URL}/act_${adAccountId}/insights?fields=${insightFields}${timeRange}${breakdown}&access_token=${metaToken}&limit=500`;
+        url = `${META_BASE_URL}/act_${adAccountId}/insights?fields=${insightFields}${timeRange}${breakdown}${timeInc}&access_token=${metaToken}&limit=500`;
         const resp = await fetch(url);
         result = await resp.json();
         break;
@@ -146,8 +147,9 @@ serve(async (req) => {
           since && until
             ? `&time_range={"since":"${since}","until":"${until}"}`
             : "&date_preset=last_30d";
+        const cTimeInc = time_increment ? `&time_increment=${time_increment}` : "";
 
-        url = `${META_BASE_URL}/act_${adAccountId}/insights?fields=${cInsightFields}${cTimeRange}&level=campaign&access_token=${metaToken}&limit=500`;
+        url = `${META_BASE_URL}/act_${adAccountId}/insights?fields=${cInsightFields}${cTimeRange}&level=campaign${cTimeInc}&access_token=${metaToken}&limit=500`;
         const resp = await fetch(url);
         result = await resp.json();
         break;
