@@ -49,7 +49,8 @@ interface TopAd {
     isVideo: boolean;
   };
   weightedScore?: number;
-  scores?: { purchaseScore: number; cpaScore: number; roasScore: number; ctrScore: number; spendScore: number };
+  cpaPenalty?: number;
+  scores?: { cpaScore: number; purchaseScore: number; roasScore: number; ctrScore: number; spendScore: number };
 }
 
 export function TopCreativesDashboard() {
@@ -464,18 +465,23 @@ export function TopCreativesDashboard() {
                     {/* Score breakdown */}
                     {selectedAd.scores && (
                       <div>
-                        <p className="text-xs font-semibold text-muted-foreground mb-2">📊 Score ({((selectedAd.weightedScore || 0) * 100).toFixed(0)}/100)</p>
+                        <p className="text-xs font-semibold text-muted-foreground mb-2">
+                          📊 Score ({((selectedAd.weightedScore || 0) * 100).toFixed(0)}/100)
+                          {selectedAd.cpaPenalty !== undefined && selectedAd.cpaPenalty < 1 && (
+                            <span className="ml-2 text-red-500 text-[10px]">⚠️ CPA penalty ({(selectedAd.cpaPenalty * 100).toFixed(0)}%)</span>
+                          )}
+                        </p>
                         <div className="grid grid-cols-5 gap-2">
                           {[
+                            { label: 'CPA', value: selectedAd.scores.cpaScore, weight: '35%' },
                             { label: 'Pedidos', value: selectedAd.scores.purchaseScore, weight: '25%' },
-                            { label: 'CPA', value: selectedAd.scores.cpaScore, weight: '25%' },
                             { label: 'ROAS', value: selectedAd.scores.roasScore, weight: '20%' },
-                            { label: 'CTR', value: selectedAd.scores.ctrScore, weight: '15%' },
-                            { label: 'Escala', value: selectedAd.scores.spendScore, weight: '15%' },
+                            { label: 'CTR', value: selectedAd.scores.ctrScore, weight: '10%' },
+                            { label: 'Escala', value: selectedAd.scores.spendScore, weight: '10%' },
                           ].map((s) => (
                             <div key={s.label} className="text-center">
                               <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden mb-1">
-                                <div className="h-full rounded-full" style={{ width: `${s.value * 100}%`, backgroundColor: '#8BC34A' }} />
+                                <div className="h-full rounded-full" style={{ width: `${s.value * 100}%`, backgroundColor: s.label === 'CPA' ? '#FF9800' : '#8BC34A' }} />
                               </div>
                               <p className="text-[9px] text-muted-foreground">{s.label} ({s.weight})</p>
                               <p className="text-[10px] font-semibold">{(s.value * 100).toFixed(0)}</p>
