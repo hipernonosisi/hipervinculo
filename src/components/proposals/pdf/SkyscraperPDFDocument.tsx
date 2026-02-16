@@ -11,7 +11,7 @@ const s = StyleSheet.create({
   page: { padding: 40, backgroundColor: '#ffffff', fontFamily: 'Helvetica' },
   pageBg: { padding: 40, backgroundColor: bg, fontFamily: 'Helvetica' },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
-  logo: { height: 28 },
+  logo: { height: 28, width: 120, objectFit: 'contain' as any },
   accent: { width: 40, height: 3, backgroundColor: lime, marginBottom: 16 },
   footer: { position: 'absolute', bottom: 30, left: 40, right: 40, textAlign: 'center', fontSize: 7, color: '#999' },
 });
