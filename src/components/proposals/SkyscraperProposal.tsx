@@ -59,6 +59,27 @@ export function SkyscraperProposal() {
           height: pageEl.offsetHeight,
           windowWidth: pageEl.offsetWidth,
           windowHeight: pageEl.offsetHeight,
+          onclone: (_doc, clonedEl) => {
+            // Fix html2canvas flex vertical centering issues
+            // Force all text to have tighter line-height
+            const allText = clonedEl.querySelectorAll('h1, h2, h3, p, span, div, li');
+            allText.forEach((el) => {
+              const htmlEl = el as HTMLElement;
+              const computed = window.getComputedStyle(el);
+              const fontSize = parseFloat(computed.fontSize);
+              // Large text gets line-height: 1 to prevent downward shift
+              if (fontSize >= 24) {
+                htmlEl.style.lineHeight = '1.1';
+              }
+            });
+            // Replace items-center with explicit padding on flex containers
+            const flexContainers = clonedEl.querySelectorAll('.flex.items-center');
+            flexContainers.forEach((el) => {
+              const htmlEl = el as HTMLElement;
+              htmlEl.style.alignItems = 'flex-start';
+              htmlEl.style.paddingTop = htmlEl.style.paddingTop || '0px';
+            });
+          },
         });
 
         if (i > 0) pdf.addPage();
