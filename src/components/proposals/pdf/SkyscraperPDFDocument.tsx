@@ -112,10 +112,8 @@ export function SkyscraperPDFDocument({ logoBase64 }: Props) {
     <Document>
       {/* PAGE 1: Cover */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
-        <View style={{ padding: 40, paddingBottom: 20 }}>
-          <View style={{ width: 130 }}>
-            <Image src={logoBase64} />
-          </View>
+        <View style={{ padding: 40, paddingBottom: 20, flexDirection: 'row' }}>
+          <Image src={logoBase64} style={{ height: 30, objectFit: 'contain', objectPositionX: 'left' }} />
         </View>
         <View style={{ flex: 1, backgroundColor: green, padding: 40, justifyContent: 'center' }}>
           <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 14 }}>
@@ -354,8 +352,8 @@ export function SkyscraperPDFDocument({ logoBase64 }: Props) {
         </View>
 
         <View style={{ backgroundColor: 'white', paddingVertical: 30, alignItems: 'center' }}>
-          <View style={{ width: 150, marginBottom: 10 }}>
-            <Image src={logoBase64} />
+          <View style={{ width: 150, height: 32, marginBottom: 10 }}>
+            <Image src={logoBase64} style={{ objectFit: 'contain' }} />
           </View>
           <View style={{ width: 30, height: 2, backgroundColor: lime, marginBottom: 10 }} />
           <Text style={{ fontSize: 9, color: grayLight, textAlign: 'center' }}>
