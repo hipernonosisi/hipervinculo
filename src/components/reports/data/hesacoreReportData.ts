@@ -139,7 +139,7 @@ export const hesacoreReport: HesacoreReport = {
     note: 'Shopify se encuentra correctamente conectado a Meta Business Suite para el seguimiento de conversiones y catálogo de productos.',
   },
   capiStatus: {
-    active: false,
-    note: 'Actualmente no se utiliza Conversion API (CAPI). La implementación requiere herramientas adicionales con costos a partir de $150 USD/mes.',
+    active: true,
+    note: 'Conversion API (CAPI) se encuentra activa mediante Elevar, asegurando un seguimiento de conversiones server-side preciso y confiable.',
   },
 };
