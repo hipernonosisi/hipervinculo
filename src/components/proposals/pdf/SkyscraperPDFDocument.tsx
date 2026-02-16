@@ -113,7 +113,9 @@ export function SkyscraperPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 1: Cover */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
         <View style={{ padding: 40, paddingBottom: 20 }}>
-          <Image src={logoBase64} style={{ width: 130, height: 28 }} />
+          <View style={{ width: 130 }}>
+            <Image src={logoBase64} />
+          </View>
         </View>
         <View style={{ flex: 1, backgroundColor: green, padding: 40, justifyContent: 'center' }}>
           <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 14 }}>
@@ -352,7 +354,9 @@ export function SkyscraperPDFDocument({ logoBase64 }: Props) {
         </View>
 
         <View style={{ backgroundColor: 'white', paddingVertical: 30, alignItems: 'center' }}>
-          <Image src={logoBase64} style={{ width: 150, height: 32, marginBottom: 10 }} />
+          <View style={{ width: 150, marginBottom: 10 }}>
+            <Image src={logoBase64} />
+          </View>
           <View style={{ width: 30, height: 2, backgroundColor: lime, marginBottom: 10 }} />
           <Text style={{ fontSize: 9, color: grayLight, textAlign: 'center' }}>
             Performance-driven growth systems for businesses ready to scale.
