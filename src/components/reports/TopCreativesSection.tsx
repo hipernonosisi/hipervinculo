@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { supabase } from '@/integrations/supabase/client';
-import { ImageIcon, Play, ShoppingCart, DollarSign, TrendingUp, Award } from 'lucide-react';
+import { ImageIcon, Play, ShoppingCart, DollarSign, TrendingUp, Award, MousePointerClick } from 'lucide-react';
 
 interface TopAd {
   adId: string;
@@ -17,6 +17,7 @@ interface TopAd {
   roas: number;
   impressions: number;
   clicks: number;
+  ctr: number;
   creative: {
     creativeTitle: string;
     creativeBody: string;
@@ -215,6 +216,12 @@ export function TopCreativesSection({ adAccountId, since, until, topN = 10 }: To
                     <DollarSign className="w-3 h-3 text-muted-foreground" />
                     <span className="text-[10px] text-muted-foreground">
                       ${fmt(ad.spend)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 col-span-2">
+                    <MousePointerClick className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-[10px] text-muted-foreground">
+                      {ad.clicks.toLocaleString()} clicks · {ad.ctr.toFixed(2)}% CTR
                     </span>
                   </div>
                 </div>
