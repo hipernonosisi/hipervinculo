@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
@@ -17,6 +18,38 @@ export function Footer() {
 
   return (
     <footer>
+      {/* CTA Banner */}
+      <div className="py-12 md:py-16" style={{ backgroundColor: '#8BCB43' }}>
+        <div className="container text-center space-y-5">
+          <p className="text-sm font-semibold uppercase tracking-widest text-white/80">
+            {language === 'en' ? '20+ Years Building Growth Systems' : '20+ Años Construyendo Sistemas de Crecimiento'}
+          </p>
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white max-w-2xl mx-auto leading-tight">
+            {language === 'en'
+              ? 'Ready to Turn Your Website Into a Lead Machine?'
+              : '¿Listo Para Convertir Tu Web en una Máquina de Leads?'}
+          </h2>
+          <p className="text-white/90 max-w-lg mx-auto">
+            {language === 'en'
+              ? "Let's build a system that brings you real customers — not just clicks."
+              : 'Construyamos un sistema que te traiga clientes reales — no solo clics.'}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Link to="/website-score">
+              <Button className="bg-white hover:bg-white/90 text-foreground font-semibold rounded-full px-8 py-6 text-base">
+                {language === 'en' ? 'Get Your Free Score' : 'Obtén Tu Score Gratis'}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-base">
+                {language === 'en' ? 'Talk to Us' : 'Habla con Nosotros'}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Main Footer - White */}
       <div className="bg-white border-t border-border">
         <div className="container py-12 md:py-16">
