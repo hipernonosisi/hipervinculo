@@ -21,6 +21,8 @@ import ReportLalenasFood from "./pages/ReportLalenasFood";
 import ReportHesacore from "./pages/ReportHesacore";
 import ThankYouContact from "./pages/ThankYouContact";
 import ThankYouAudit from "./pages/ThankYouAudit";
+import WebsiteScore from "./pages/WebsiteScore";
+import ThankYouWebsiteScore from "./pages/ThankYouWebsiteScore";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,8 @@ const App = () => (
             <Route path="/report/hesacore" element={<ReportHesacore />} />
             <Route path="/thank-you/contact" element={<ThankYouContact />} />
             <Route path="/thank-you/audit" element={<ThankYouAudit />} />
+            <Route path="/website-score" element={<WebsiteScore />} />
+            <Route path="/thank-you/website-score" element={<ThankYouWebsiteScore />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
