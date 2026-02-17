@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, DollarSign, Zap, Search, Eye, Shield, Loader2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, DollarSign, Zap, Search, Eye, Shield, Loader2, Clock, SearchX, Accessibility, UserX, Share2, Mail, Link2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Layout } from '@/components/layout/Layout';
@@ -133,6 +133,9 @@ export default function WebsiteScore() {
   const [recordId, setRecordId] = useState<string | null>(null);
   const [scoreData, setScoreData] = useState<ScoreData | null>(null);
   const [analysisStep, setAnalysisStep] = useState(0);
+  const [shareToken, setShareToken] = useState<string | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
+  const [expandedIssue, setExpandedIssue] = useState<number | null>(null);
 
   // Final form
   const [finalName, setFinalName] = useState('');
@@ -202,7 +205,11 @@ export default function WebsiteScore() {
       const leadsLost = scores.overall <= 50 ? industry.potentialLeadsLost.high : industry.potentialLeadsLost.low;
       const revenueLost = leadsLost * industry.avgCustomerValue;
 
-      // Update record with scores
+      // Generate share token
+      const token = crypto.randomUUID().replace(/-/g, '').slice(0, 12);
+      setShareToken(token);
+
+      // Update record with scores and share token
       await supabase.from('website_audit_leads').update({
         overall_score: scores.overall,
         performance_score: scores.performance,
@@ -212,6 +219,7 @@ export default function WebsiteScore() {
         page_speed_data: (scores.rawData || {}) as unknown as import('@/integrations/supabase/types').Json,
         estimated_leads_lost: leadsLost,
         estimated_revenue_lost: revenueLost,
+        share_token: token,
       }).eq('id', data.id);
 
       // Send notification
@@ -448,7 +456,46 @@ export default function WebsiteScore() {
                   {t.results.industryAvg.replace('{businessType}', answers[2])}
                 </p>
                 {scoreData.isEstimated && (
-                  <p className="text-sm text-muted-foreground italic">{t.results.estimated.replace('{businessType}', answers[2])}</p>
+                  <p className="text-sm text-muted-foreground">{t.results.estimated.replace('{businessType}', answers[2])}</p>
+                )}
+                {/* Share Buttons */}
+                {shareToken && (
+                  <div className="flex items-center justify-center gap-3 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full gap-2"
+                      onClick={() => {
+                        const url = `${window.location.origin}/results/${shareToken}`;
+                        navigator.clipboard.writeText(url);
+                        setLinkCopied(true);
+                        setTimeout(() => setLinkCopied(false), 2000);
+                      }}
+                    >
+                      {linkCopied ? <Check className="h-4 w-4 text-accent" /> : <Link2 className="h-4 w-4" />}
+                      {linkCopied 
+                        ? (language === 'en' ? 'Link Copied!' : 'Link Copiado!') 
+                        : (language === 'en' ? 'Copy Link' : 'Copiar Link')}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full gap-2"
+                      onClick={() => {
+                        const url = `${window.location.origin}/results/${shareToken}`;
+                        const subject = language === 'en' 
+                          ? `Website Score Results - ${answers[1]}` 
+                          : `Resultados de Score Web - ${answers[1]}`;
+                        const body = language === 'en'
+                          ? `Check out the website performance score for ${answers[1]}: ${url}`
+                          : `Mira el score de rendimiento web de ${answers[1]}: ${url}`;
+                        window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+                      }}
+                    >
+                      <Mail className="h-4 w-4" />
+                      {language === 'en' ? 'Share via Email' : 'Compartir por Email'}
+                    </Button>
+                  </div>
                 )}
               </motion.div>
 
@@ -473,32 +520,93 @@ export default function WebsiteScore() {
                 ))}
               </motion.div>
 
-              {/* Issues */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-4">
+              {/* Issues — Interactive Cards */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-5">
                 <h2 className="text-xl md:text-2xl font-bold">{t.results.issuesTitle}</h2>
-                <div className="space-y-3">
-                  {scoreData.performance < 60 && (
-                    <div className="flex items-start gap-3 p-4 rounded-lg bg-red-50 border border-red-200">
-                      <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5 shrink-0" />
-                      <p className="text-sm">{t.results.slowSite}</p>
-                    </div>
-                  )}
-                  {scoreData.seo < 70 && (
-                    <div className="flex items-start gap-3 p-4 rounded-lg bg-orange-50 border border-orange-200">
-                      <AlertTriangle className="h-5 w-5 text-orange-500 mt-0.5 shrink-0" />
-                      <p className="text-sm">{t.results.poorSeo}</p>
-                    </div>
-                  )}
-                  {scoreData.accessibility < 70 && (
-                    <div className="flex items-start gap-3 p-4 rounded-lg bg-yellow-50 border border-yellow-200">
-                      <AlertTriangle className="h-5 w-5 text-yellow-500 mt-0.5 shrink-0" />
-                      <p className="text-sm">{t.results.poorAccessibility}</p>
-                    </div>
-                  )}
-                  <div className="flex items-start gap-3 p-4 rounded-lg bg-red-50 border border-red-200">
-                    <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5 shrink-0" />
-                    <p className="text-sm">{t.results.noLeadCapture}</p>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {(() => {
+                    const issues: { icon: typeof Clock; title: string; desc: string; severity: 'high' | 'medium' | 'low'; show: boolean }[] = [
+                      {
+                        icon: Clock,
+                        title: language === 'en' ? 'Slow Load Speed' : 'Velocidad de Carga Lenta',
+                        desc: t.results.slowSite,
+                        severity: 'high',
+                        show: scoreData.performance < 60,
+                      },
+                      {
+                        icon: SearchX,
+                        title: language === 'en' ? 'SEO Gaps' : 'Problemas de SEO',
+                        desc: t.results.poorSeo,
+                        severity: 'medium',
+                        show: scoreData.seo < 70,
+                      },
+                      {
+                        icon: Accessibility,
+                        title: language === 'en' ? 'Accessibility Issues' : 'Problemas de Accesibilidad',
+                        desc: t.results.poorAccessibility,
+                        severity: 'low',
+                        show: scoreData.accessibility < 70,
+                      },
+                      {
+                        icon: UserX,
+                        title: language === 'en' ? 'No Lead Capture' : 'Sin Captación de Leads',
+                        desc: t.results.noLeadCapture,
+                        severity: 'high',
+                        show: true,
+                      },
+                    ];
+                    const visibleIssues = issues.filter(i => i.show);
+                    const severityConfig = {
+                      high: { bg: 'bg-red-50', border: 'border-red-200', badge: 'bg-red-100 text-red-700', iconColor: 'text-red-500', label: language === 'en' ? 'High' : 'Alto' },
+                      medium: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', iconColor: 'text-orange-500', label: language === 'en' ? 'Medium' : 'Medio' },
+                      low: { bg: 'bg-yellow-50', border: 'border-yellow-200', badge: 'bg-yellow-100 text-yellow-700', iconColor: 'text-yellow-600', label: language === 'en' ? 'Low' : 'Bajo' },
+                    };
+                    return visibleIssues.map((issue, i) => {
+                      const config = severityConfig[issue.severity];
+                      const isExpanded = expandedIssue === i;
+                      return (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5 + i * 0.1 }}
+                          onClick={() => setExpandedIssue(isExpanded ? null : i)}
+                          className={cn(
+                            'rounded-xl border p-5 cursor-pointer transition-all duration-200 hover:shadow-md',
+                            config.bg, config.border,
+                          )}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={cn('rounded-lg p-2', config.bg)}>
+                              <issue.icon className={cn('h-5 w-5', config.iconColor)} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3 className="font-semibold text-sm">{issue.title}</h3>
+                                <span className={cn('text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider', config.badge)}>
+                                  {config.label}
+                                </span>
+                              </div>
+                              <AnimatePresence>
+                                {isExpanded ? (
+                                  <motion.p
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                                  >
+                                    {issue.desc}
+                                  </motion.p>
+                                ) : (
+                                  <p className="text-sm text-muted-foreground truncate">{issue.desc}</p>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    });
+                  })()}
                 </div>
               </motion.div>
 
