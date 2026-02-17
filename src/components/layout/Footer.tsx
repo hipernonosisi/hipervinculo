@@ -8,7 +8,7 @@ export function Footer() {
   const { t, language } = useLanguage();
   const location = useLocation();
   const currentYear = new Date().getFullYear();
-  const isOnWebsiteScore = location.pathname === '/website-score';
+  const isOnPreview = location.pathname === '/preview';
 
   const quickLinks = [
     { href: '/about', label: t.nav.aboutUs },
@@ -43,10 +43,10 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            {!isOnWebsiteScore && (
-              <Link to="/website-score">
+            {!isOnPreview && (
+              <Link to="/preview">
                 <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
-                  {language === 'en' ? 'Get Your Free Score' : 'Obtén Tu Score Gratis'}
+                  {language === 'en' ? 'Get Your Free Preview' : 'Obtén Tu Vista Previa Gratis'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>

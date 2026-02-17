@@ -56,22 +56,23 @@ interface WebsiteAuditNotification {
   estimatedRevenueLost: number;
 }
 
-interface WebsiteAuditQualifiedNotification {
-  type: "website-audit-qualified";
+interface PreviewLeadNotification {
+  type: "preview-lead";
   language: "en" | "es";
   businessName: string;
-  email: string;
-  websiteUrl: string;
   businessType: string;
+  websiteUrl: string;
+  serviceArea: string;
+  employeeCount: string;
+  currentAdvertising: string;
   contactName: string;
   phone: string;
-  budget?: string;
-  timeline?: string;
-  wantsMvp?: boolean;
-  overallScore?: number;
+  email: string;
+  monthlyBudget: string;
+  leadScore: string;
 }
 
-type NotificationRequest = ContactNotification | AuditNotification | WebsiteAuditNotification | WebsiteAuditQualifiedNotification;
+type NotificationRequest = ContactNotification | AuditNotification | WebsiteAuditNotification | PreviewLeadNotification;
 
 // Translations for email content (NO EMOJIS)
 const emailTranslations = {
@@ -834,33 +835,63 @@ const handler = async (req: Request): Promise<Response> => {
           <div class="footer"><div class="signature">${lang === 'es' ? 'El Equipo de Hipervinculo' : 'The Hipervinculo Team'}</div></div>
         </div></div></body></html>`;
 
-    } else if (payload.type === "website-audit-qualified") {
-      const { businessName, email, websiteUrl, businessType, contactName, phone, budget, timeline, wantsMvp, overallScore } = payload;
+    } else if (payload.type === "preview-lead") {
+      const { businessName, businessType, websiteUrl, serviceArea, employeeCount, currentAdvertising, contactName, phone, email, monthlyBudget, leadScore } = payload;
       clientEmail = email;
 
-      adminSubject = `[Hipervinculo] QUALIFIED Lead - Website Score: ${businessName} (${contactName})${wantsMvp ? ' - WANTS PREVIEW' : ''}`;
+      const scoreEmoji = leadScore === 'hot' ? '🔥 HOT' : leadScore === 'warm' ? '⚡ Warm' : '📋 New';
+      adminSubject = `${scoreEmoji} Lead — ${businessName} wants a website preview`;
       adminHtml = `
         <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
           <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
-          <div class="header" style="background:#8BC34A;"><h1>${wantsMvp ? 'QUALIFIED Lead - Wants Website Preview!' : 'Lead Update'}</h1></div>
+          <div class="header" style="background:${leadScore === 'hot' ? '#ef4444' : leadScore === 'warm' ? '#f97316' : '#2d4a2d'};"><h1>${scoreEmoji} Lead — Website Preview Request</h1></div>
           <div class="content">
-            <div class="field"><div class="label">Contact Name:</div><div class="value">${contactName}</div></div>
+            <div style="text-align:center;padding:16px;margin-bottom:16px;background:${leadScore === 'hot' ? '#fef2f2' : leadScore === 'warm' ? '#fff7ed' : '#f8f9f5'};border-radius:8px;">
+              <div style="font-size:32px;font-weight:bold;color:${leadScore === 'hot' ? '#ef4444' : leadScore === 'warm' ? '#f97316' : '#666'};">${leadScore.toUpperCase()}</div>
+              <div style="font-size:13px;color:#888;">Lead Score</div>
+            </div>
+            <div class="field"><div class="label">Contact:</div><div class="value">${contactName}</div></div>
             <div class="field"><div class="label">Phone:</div><div class="value"><a href="tel:${phone}">${phone}</a></div></div>
             <div class="field"><div class="label">Email:</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>
             <div class="field"><div class="label">Business:</div><div class="value">${businessName}</div></div>
-            <div class="field"><div class="label">Website:</div><div class="value"><a href="${websiteUrl}" target="_blank">${websiteUrl}</a></div></div>
-            <div class="field"><div class="label">Business Type:</div><div class="value">${businessType}</div></div>
-            <div class="field"><div class="label">Score:</div><div class="value">${overallScore || 'N/A'}/100</div></div>
-            <div class="field"><div class="label">Budget:</div><div class="value">${budget || 'N/A'}</div></div>
-            <div class="field"><div class="label">Timeline:</div><div class="value">${timeline || 'N/A'}</div></div>
-            <div class="field"><div class="label">Wants Preview:</div><div class="value" style="font-weight:bold;color:${wantsMvp ? '#8BC34A' : '#888'}">${wantsMvp ? 'YES' : 'No'}</div></div>
+            <div class="field"><div class="label">Website:</div><div class="value">${websiteUrl === 'no-website' ? 'No website yet' : `<a href="${websiteUrl}" target="_blank">${websiteUrl}</a>`}</div></div>
+            <div class="field"><div class="label">Service Type:</div><div class="value">${businessType}</div></div>
+            <div class="field"><div class="label">Service Area:</div><div class="value">${serviceArea}</div></div>
+            <div class="field"><div class="label">Employees:</div><div class="value">${employeeCount}</div></div>
+            <div class="field"><div class="label">Current Advertising:</div><div class="value">${currentAdvertising}</div></div>
+            <div class="field"><div class="label">Monthly Budget:</div><div class="value" style="font-weight:bold;">${monthlyBudget}</div></div>
           </div>
         </div></div></body></html>`;
 
-      // No client email for qualified leads (they already got one from the initial submission)
-      clientSubject = "";
-      clientHtml = "";
+      // Client confirmation
+      clientSubject = lang === 'es' ? '¡Tu Vista Previa está en Camino! - Hipervinculo' : "Your Website Preview is On Its Way! - Hipervinculo";
+      clientHtml = `
+        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getClientEmailStyles()}</style></head><body>
+        <div class="wrapper"><div class="container">
+          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="header"><h1>${lang === 'es' ? '¡Tu Vista Previa está en Camino!' : "Your Website Preview is On Its Way!"}</h1>
+            <p>${lang === 'es' ? 'Estamos diseñando algo especial para tu negocio' : "We're designing something special for your business"}</p></div>
+          <div class="content">
+            <div class="section">
+              <div class="section-title">${lang === 'es' ? '¿Qué sigue?' : 'What happens next?'}</div>
+              <div class="next-steps">
+                <div class="step"><div class="step-number">1</div><div class="step-text">${lang === 'es' ? 'Nuestro equipo revisará tu información' : "Our team will review your information"}</div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-text">${lang === 'es' ? 'Diseñaremos una vista previa personalizada de tu nuevo sitio web' : "We'll design a custom preview of your new website"}</div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-text">${lang === 'es' ? 'La recibirás por email en 3-5 días hábiles' : "You'll receive it via email within 3-5 business days"}</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-section">
+            <div class="contact-title">${lang === 'es' ? '¿Necesitas ayuda inmediata?' : 'Need immediate assistance?'}</div>
+            <div class="contact-info">
+              <div class="contact-item"><a href="mailto:${CONTACT_INFO.email}">${CONTACT_INFO.email}</a></div>
+              <div class="contact-item"><a href="tel:${CONTACT_INFO.phone.replace(/\\s/g, '')}">${CONTACT_INFO.phone}</a></div>
+            </div>
+            <a href="${WEBSITE_URL}" class="cta-button">${lang === 'es' ? 'Visita nuestro sitio web' : 'Visit our website'}</a>
+          </div>
+          <div class="footer"><div class="signature">${lang === 'es' ? 'El Equipo de Hipervinculo' : 'The Hipervinculo Team'}</div></div>
+        </div></div></body></html>`;
     } else {
       throw new Error("Invalid notification type");
     }

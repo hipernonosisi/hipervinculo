@@ -178,6 +178,69 @@ export type Database = {
         }
         Relationships: []
       }
+      preview_leads: {
+        Row: {
+          business_name: string
+          business_type: string
+          contact_name: string
+          converted_to_client: boolean | null
+          created_at: string | null
+          current_advertising: string | null
+          email: string
+          employee_count: string | null
+          id: string
+          language: string | null
+          lead_score: string | null
+          monthly_budget: string | null
+          notes: string | null
+          phone: string
+          preview_sent: boolean | null
+          service_area: string | null
+          updated_at: string | null
+          website_url: string | null
+        }
+        Insert: {
+          business_name: string
+          business_type: string
+          contact_name: string
+          converted_to_client?: boolean | null
+          created_at?: string | null
+          current_advertising?: string | null
+          email: string
+          employee_count?: string | null
+          id?: string
+          language?: string | null
+          lead_score?: string | null
+          monthly_budget?: string | null
+          notes?: string | null
+          phone: string
+          preview_sent?: boolean | null
+          service_area?: string | null
+          updated_at?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          business_name?: string
+          business_type?: string
+          contact_name?: string
+          converted_to_client?: boolean | null
+          created_at?: string | null
+          current_advertising?: string | null
+          email?: string
+          employee_count?: string | null
+          id?: string
+          language?: string | null
+          lead_score?: string | null
+          monthly_budget?: string | null
+          notes?: string | null
+          phone?: string
+          preview_sent?: boolean | null
+          service_area?: string | null
+          updated_at?: string | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       rate_limits: {
         Row: {
           count: number
@@ -289,87 +352,6 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
-        }
-        Relationships: []
-      }
-      website_audit_leads: {
-        Row: {
-          accessibility_score: number | null
-          best_practices_score: number | null
-          business_name: string
-          business_type: string
-          contact_name: string | null
-          converted_to_mvp: boolean | null
-          created_at: string
-          current_advertising: string | null
-          desired_customers: string | null
-          email: string
-          employee_count: string | null
-          estimated_leads_lost: number | null
-          estimated_revenue_lost: number | null
-          id: string
-          language: string | null
-          monthly_budget: string | null
-          overall_score: number | null
-          page_speed_data: Json | null
-          performance_score: number | null
-          phone: string | null
-          seo_score: number | null
-          share_token: string | null
-          timeline: string | null
-          website_url: string
-        }
-        Insert: {
-          accessibility_score?: number | null
-          best_practices_score?: number | null
-          business_name: string
-          business_type: string
-          contact_name?: string | null
-          converted_to_mvp?: boolean | null
-          created_at?: string
-          current_advertising?: string | null
-          desired_customers?: string | null
-          email: string
-          employee_count?: string | null
-          estimated_leads_lost?: number | null
-          estimated_revenue_lost?: number | null
-          id?: string
-          language?: string | null
-          monthly_budget?: string | null
-          overall_score?: number | null
-          page_speed_data?: Json | null
-          performance_score?: number | null
-          phone?: string | null
-          seo_score?: number | null
-          share_token?: string | null
-          timeline?: string | null
-          website_url: string
-        }
-        Update: {
-          accessibility_score?: number | null
-          best_practices_score?: number | null
-          business_name?: string
-          business_type?: string
-          contact_name?: string | null
-          converted_to_mvp?: boolean | null
-          created_at?: string
-          current_advertising?: string | null
-          desired_customers?: string | null
-          email?: string
-          employee_count?: string | null
-          estimated_leads_lost?: number | null
-          estimated_revenue_lost?: number | null
-          id?: string
-          language?: string | null
-          monthly_budget?: string | null
-          overall_score?: number | null
-          page_speed_data?: Json | null
-          performance_score?: number | null
-          phone?: string | null
-          seo_score?: number | null
-          share_token?: string | null
-          timeline?: string | null
-          website_url?: string
         }
         Relationships: []
       }

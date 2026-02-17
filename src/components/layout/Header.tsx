@@ -71,7 +71,7 @@ export function Header() {
             <span>{language === 'en' ? 'ES' : 'EN'}</span>
           </button>
           <Button asChild variant="outline" className="rounded-full px-4 py-1 h-9 font-semibold text-[13px] border-accent text-accent hover:bg-accent/10 hover:text-accent">
-            <Link to="/website-score">{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
+            <Link to="/preview">{language === 'en' ? 'Free Preview' : 'Vista Previa Gratis'}</Link>
           </Button>
           <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-4 py-1 h-9 font-semibold text-[13px]">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
@@ -111,7 +111,7 @@ export function Header() {
             <div className="flex flex-col gap-3 pt-4 border-t border-border">
               <div className="flex gap-3">
                 <Button asChild variant="outline" className="rounded-full flex-1 border-accent text-accent hover:bg-accent/10 hover:text-accent text-[14px]">
-                  <Link to="/website-score" onClick={() => setIsMenuOpen(false)}>{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
+                  <Link to="/preview" onClick={() => setIsMenuOpen(false)}>{language === 'en' ? 'Free Preview' : 'Vista Previa Gratis'}</Link>
                 </Button>
                 <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full flex-1">
                   <Link to="/audit" onClick={() => setIsMenuOpen(false)}>{t.nav.getFreeAudit}</Link>

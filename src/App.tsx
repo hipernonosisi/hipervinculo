@@ -21,9 +21,8 @@ import ReportLalenasFood from "./pages/ReportLalenasFood";
 import ReportHesacore from "./pages/ReportHesacore";
 import ThankYouContact from "./pages/ThankYouContact";
 import ThankYouAudit from "./pages/ThankYouAudit";
-import WebsiteScore from "./pages/WebsiteScore";
-import ThankYouWebsiteScore from "./pages/ThankYouWebsiteScore";
-import SharedResults from "./pages/SharedResults";
+import Preview from "./pages/Preview";
+import ThankYouPreview from "./pages/ThankYouPreview";
 
 const queryClient = new QueryClient();
 
@@ -51,9 +50,8 @@ const App = () => (
             <Route path="/report/hesacore" element={<ReportHesacore />} />
             <Route path="/thank-you/contact" element={<ThankYouContact />} />
             <Route path="/thank-you/audit" element={<ThankYouAudit />} />
-            <Route path="/website-score" element={<WebsiteScore />} />
-            <Route path="/thank-you/website-score" element={<ThankYouWebsiteScore />} />
-            <Route path="/results/:token" element={<SharedResults />} />
+            <Route path="/preview" element={<Preview />} />
+            <Route path="/thank-you/preview" element={<ThankYouPreview />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
