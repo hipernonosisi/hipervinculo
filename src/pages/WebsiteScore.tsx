@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, DollarSign, Zap, Search, Eye, Shield, Loader2, Clock, SearchX, Accessibility, UserX, Share2, Mail, Link2, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, DollarSign, Zap, Search, Eye, Shield, Loader2, Clock, SearchX, Accessibility, UserX, Share2, Mail, Link2, Check, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Layout } from '@/components/layout/Layout';
@@ -11,6 +11,38 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const COUNTRY_CODES = [
+  { code: '+1', country: 'US', flag: '🇺🇸', label: 'USA (+1)' },
+  { code: '+1', country: 'CA', flag: '🇨🇦', label: 'Canada (+1)' },
+  { code: '+52', country: 'MX', flag: '🇲🇽', label: 'México (+52)' },
+  { code: '+57', country: 'CO', flag: '🇨🇴', label: 'Colombia (+57)' },
+  { code: '+34', country: 'ES', flag: '🇪🇸', label: 'España (+34)' },
+  { code: '+44', country: 'GB', flag: '🇬🇧', label: 'UK (+44)' },
+  { code: '+55', country: 'BR', flag: '🇧🇷', label: 'Brasil (+55)' },
+  { code: '+54', country: 'AR', flag: '🇦🇷', label: 'Argentina (+54)' },
+  { code: '+56', country: 'CL', flag: '🇨🇱', label: 'Chile (+56)' },
+  { code: '+51', country: 'PE', flag: '🇵🇪', label: 'Perú (+51)' },
+  { code: '+58', country: 'VE', flag: '🇻🇪', label: 'Venezuela (+58)' },
+  { code: '+507', country: 'PA', flag: '🇵🇦', label: 'Panamá (+507)' },
+  { code: '+506', country: 'CR', flag: '🇨🇷', label: 'Costa Rica (+506)' },
+  { code: '+502', country: 'GT', flag: '🇬🇹', label: 'Guatemala (+502)' },
+  { code: '+593', country: 'EC', flag: '🇪🇨', label: 'Ecuador (+593)' },
+];
+
+function formatPhoneUS(raw: string): string {
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length === 0) return '';
+  if (digits.length <= 3) return `(${digits}`;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+}
+
+function isValidPhone(phone: string, countryCode: string): boolean {
+  const digits = phone.replace(/\D/g, '');
+  if (countryCode === '+1') return digits.length === 10;
+  return digits.length >= 7 && digits.length <= 15;
+}
 
 type Phase = 'form' | 'analysis' | 'results';
 
@@ -141,10 +173,12 @@ export default function WebsiteScore() {
   // Final form — pre-fill from Phase 1 answers
   const [finalName, setFinalName] = useState('');
   const [finalPhone, setFinalPhone] = useState('');
-  const [finalBudget, setFinalBudget] = useState('');
-  const [finalTimeline, setFinalTimeline] = useState('');
+  const [finalMvp, setFinalMvp] = useState('');
   const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
   const [finalFormInitialized, setFinalFormInitialized] = useState(false);
+  const [countryCode, setCountryCode] = useState(COUNTRY_CODES[0]); // US +1
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
 
   const questions = t.questions;
   const currentQuestion = questions[currentStep];
@@ -190,7 +224,7 @@ export default function WebsiteScore() {
         current_advertising: answers[4],
         desired_customers: answers[5],
         contact_name: answers[6],
-        phone: answers[7],
+        phone: `${countryCode.code} ${answers[7]}`,
         email: answers[8],
         language,
       }).select('id').single();
@@ -310,14 +344,14 @@ export default function WebsiteScore() {
 
 
   const handleSubmitFinal = async () => {
-    if (!finalName || !finalPhone || !finalBudget || !finalTimeline || !recordId) return;
+    if (!finalName || !finalPhone || !finalMvp || !recordId) return;
     setIsSubmittingFinal(true);
     try {
+      const wantsMvp = finalMvp === 'yes';
       await supabase.from('website_audit_leads').update({
         contact_name: finalName,
-        phone: finalPhone,
-        monthly_budget: finalBudget,
-        timeline: finalTimeline,
+        phone: `${countryCode.code} ${finalPhone}`,
+        converted_to_mvp: wantsMvp,
       }).eq('id', recordId);
 
       // Send qualified lead notification
@@ -330,9 +364,8 @@ export default function WebsiteScore() {
           websiteUrl: answers[0],
           businessType: answers[2],
           contactName: finalName,
-          phone: finalPhone,
-          monthlyBudget: finalBudget,
-          timeline: finalTimeline,
+          phone: `${countryCode.code} ${finalPhone}`,
+          wantsMvp,
           overallScore: scoreData?.overall,
         }
       }).catch(err => console.error('Notification error:', err));
@@ -395,7 +428,56 @@ export default function WebsiteScore() {
                     <Input value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
                   )}
                   {'placeholder' in currentQuestion && currentStep === 7 && (
-                    <Input type="tel" value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
+                    <div className="space-y-3">
+                      <div className="flex gap-2">
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                            className="flex items-center gap-1 h-[52px] px-3 rounded-md border border-input bg-background text-sm whitespace-nowrap"
+                          >
+                            <span>{countryCode.flag}</span>
+                            <span>{countryCode.code}</span>
+                            <ChevronDown className="h-3 w-3 text-muted-foreground" />
+                          </button>
+                          {showCountryDropdown && (
+                            <div className="absolute z-50 top-full left-0 mt-1 w-56 max-h-60 overflow-y-auto rounded-lg border bg-background shadow-lg">
+                              {COUNTRY_CODES.map((cc, i) => (
+                                <button
+                                  key={`${cc.country}-${i}`}
+                                  type="button"
+                                  onClick={() => { setCountryCode(cc); setShowCountryDropdown(false); }}
+                                  className={cn("w-full text-left px-3 py-2 text-sm hover:bg-accent/10 flex items-center gap-2", countryCode.country === cc.country && countryCode.code === cc.code ? 'bg-accent/5' : '')}
+                                >
+                                  <span>{cc.flag}</span>
+                                  <span>{cc.label}</span>
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <Input
+                          type="tel"
+                          value={answers[currentStep]}
+                          onChange={e => { handleAnswer(e.target.value); setPhoneError(''); }}
+                          onBlur={() => {
+                            const val = answers[currentStep];
+                            if (val && countryCode.code === '+1') {
+                              handleAnswer(formatPhoneUS(val));
+                            }
+                            if (val && !isValidPhone(val, countryCode.code)) {
+                              setPhoneError(language === 'en' ? 'Please enter a valid phone number' : 'Ingresa un número de teléfono válido');
+                            } else {
+                              setPhoneError('');
+                            }
+                          }}
+                          placeholder={currentQuestion.placeholder}
+                          className="text-lg py-6 flex-1"
+                          autoFocus
+                        />
+                      </div>
+                      {phoneError && <p className="text-sm text-destructive">{phoneError}</p>}
+                    </div>
                   )}
                   {'placeholder' in currentQuestion && currentStep === 8 && (
                     <Input type="email" value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
@@ -435,7 +517,7 @@ export default function WebsiteScore() {
                   )}
 
                   {/* Privacy disclaimer before phone/name questions */}
-                  {(currentStep === 6 || currentStep === 7) && (
+                  {(currentStep === 6 || currentStep === 7 || currentStep === 8) && (
                     <p className="text-sm text-muted-foreground bg-secondary/50 rounded-lg p-4 border border-border">
                       {t.privacyDisclaimer}
                     </p>
@@ -778,36 +860,66 @@ export default function WebsiteScore() {
 
                 <div className="max-w-md mx-auto space-y-4">
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formName} <span className="text-red-500">*</span></label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formName} <span className="text-destructive">*</span></label>
                     <Input value={finalName} onChange={e => setFinalName(e.target.value)} className="py-5" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formPhone} <span className="text-red-500">*</span></label>
-                    <Input type="tel" value={finalPhone} onChange={e => setFinalPhone(e.target.value)} className="py-5" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formBudget} <span className="text-red-500">*</span></label>
-                    <div className="grid gap-2">
-                      {t.results.budgetOptions.map(opt => (
-                        <button key={opt} onClick={() => setFinalBudget(opt)}
-                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalBudget === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
-                          {opt}
+                    <label className="text-sm font-medium mb-1 block">{t.results.formPhone} <span className="text-destructive">*</span></label>
+                    <div className="flex gap-2">
+                      <div className="relative">
+                        <button
+                          type="button"
+                          onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                          className="flex items-center gap-1 h-[46px] px-3 rounded-md border border-input bg-background text-sm whitespace-nowrap"
+                        >
+                          <span>{countryCode.flag}</span>
+                          <span>{countryCode.code}</span>
+                          <ChevronDown className="h-3 w-3 text-muted-foreground" />
                         </button>
-                      ))}
+                        {showCountryDropdown && (
+                          <div className="absolute z-50 bottom-full left-0 mb-1 w-56 max-h-60 overflow-y-auto rounded-lg border bg-background shadow-lg">
+                            {COUNTRY_CODES.map((cc, i) => (
+                              <button
+                                key={`${cc.country}-${i}`}
+                                type="button"
+                                onClick={() => { setCountryCode(cc); setShowCountryDropdown(false); }}
+                                className={cn("w-full text-left px-3 py-2 text-sm hover:bg-accent/10 flex items-center gap-2", countryCode.country === cc.country && countryCode.code === cc.code ? 'bg-accent/5' : '')}
+                              >
+                                <span>{cc.flag}</span>
+                                <span>{cc.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <Input
+                        type="tel"
+                        value={finalPhone}
+                        onChange={e => setFinalPhone(e.target.value)}
+                        onBlur={() => {
+                          if (finalPhone && countryCode.code === '+1') {
+                            setFinalPhone(formatPhoneUS(finalPhone));
+                          }
+                        }}
+                        className="py-5 flex-1"
+                      />
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formTimeline} <span className="text-red-500">*</span></label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formMvp} <span className="text-destructive">*</span></label>
+                    <p className="text-sm text-muted-foreground mb-3">{t.results.mvpExplanation}</p>
                     <div className="grid gap-2">
-                      {t.results.timelineOptions.map(opt => (
-                        <button key={opt} onClick={() => setFinalTimeline(opt)}
-                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalTimeline === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
-                          {opt}
-                        </button>
-                      ))}
+                      <button onClick={() => setFinalMvp('yes')}
+                        className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all font-medium", finalMvp === 'yes' ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                        ✅ {t.results.mvpYes}
+                      </button>
+                      <button onClick={() => setFinalMvp('no')}
+                        className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalMvp === 'no' ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                        {t.results.mvpNo}
+                      </button>
                     </div>
                   </div>
-                  <Button onClick={handleSubmitFinal} disabled={!finalName || !finalPhone || !finalBudget || !finalTimeline || isSubmittingFinal}
+                  <Button onClick={handleSubmitFinal} disabled={!finalName || !finalPhone || !finalMvp || isSubmittingFinal}
                     className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-base">
                     {isSubmittingFinal ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                     {t.results.submitFinal}
