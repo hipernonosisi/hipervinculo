@@ -62,18 +62,18 @@ export function Header() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-2">
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-2 text-[14px] font-medium text-foreground hover:text-accent transition-colors border border-gray-300 rounded-full px-4 py-2"
+            className="flex items-center gap-2 text-[13px] font-medium text-foreground hover:text-accent transition-colors border border-gray-300 rounded-full px-3 py-1.5"
           >
-            <Globe className="h-4 w-4" />
+            <Globe className="h-3.5 w-3.5" />
             <span>{language === 'en' ? 'ES' : 'EN'}</span>
           </button>
-          <Button asChild variant="outline" className="rounded-full px-5 py-1.5 h-10 font-semibold text-[14px] border-accent text-accent hover:bg-accent/10 hover:text-accent">
+          <Button asChild variant="outline" className="rounded-full px-4 py-1 h-9 font-semibold text-[13px] border-accent text-accent hover:bg-accent/10 hover:text-accent">
             <Link to="/website-score">{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
           </Button>
-          <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-5 py-1.5 h-10 font-semibold text-[14px]">
+          <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-4 py-1 h-9 font-semibold text-[13px]">
             <Link to="/audit">{t.nav.getFreeAudit}</Link>
           </Button>
         </div>
