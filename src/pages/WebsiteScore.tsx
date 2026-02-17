@@ -128,7 +128,7 @@ export default function WebsiteScore() {
 
   const [phase, setPhase] = useState<Phase>('form');
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<string[]>(['', '', '', '', '', '', '']);
+  const [answers, setAnswers] = useState<string[]>(['', '', '', '', '', '', '', '', '']);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recordId, setRecordId] = useState<string | null>(null);
   const [scoreData, setScoreData] = useState<ScoreData | null>(null);
@@ -137,12 +137,13 @@ export default function WebsiteScore() {
   const [linkCopied, setLinkCopied] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<number | null>(null);
 
-  // Final form
+  // Final form — pre-fill from Phase 1 answers
   const [finalName, setFinalName] = useState('');
   const [finalPhone, setFinalPhone] = useState('');
   const [finalBudget, setFinalBudget] = useState('');
   const [finalTimeline, setFinalTimeline] = useState('');
   const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
+  const [finalFormInitialized, setFinalFormInitialized] = useState(false);
 
   const questions = t.questions;
   const currentQuestion = questions[currentStep];
@@ -187,7 +188,9 @@ export default function WebsiteScore() {
         employee_count: answers[3],
         current_advertising: answers[4],
         desired_customers: answers[5],
-        email: answers[6],
+        contact_name: answers[6],
+        phone: answers[7],
+        email: answers[8],
         language,
       }).select('id').single();
 
@@ -228,9 +231,11 @@ export default function WebsiteScore() {
           type: 'website-audit',
           language,
           businessName: answers[1],
-          email: answers[6],
+          email: answers[8],
           websiteUrl: answers[0],
           businessType: answers[2],
+          contactName: answers[6],
+          phone: answers[7],
           overallScore: scores.overall,
           estimatedLeadsLost: leadsLost,
           estimatedRevenueLost: revenueLost,
@@ -293,6 +298,16 @@ export default function WebsiteScore() {
     return () => clearInterval(interval);
   }, [phase, t.analysis.steps.length]);
 
+  // Pre-fill final form with Phase 1 answers
+  useEffect(() => {
+    if (phase === 'results' && !finalFormInitialized) {
+      if (answers[6]) setFinalName(answers[6]);
+      if (answers[7]) setFinalPhone(answers[7]);
+      setFinalFormInitialized(true);
+    }
+  }, [phase, finalFormInitialized, answers]);
+
+
   const handleSubmitFinal = async () => {
     if (!finalName || !finalPhone || !finalBudget || !finalTimeline || !recordId) return;
     setIsSubmittingFinal(true);
@@ -310,7 +325,7 @@ export default function WebsiteScore() {
           type: 'website-audit-qualified',
           language,
           businessName: answers[1],
-          email: answers[6],
+          email: answers[8],
           websiteUrl: answers[0],
           businessType: answers[2],
           contactName: finalName,
@@ -335,7 +350,7 @@ export default function WebsiteScore() {
   const industry = industryData[key] || industryData['Other'];
   const leadsLost = scoreData ? (scoreData.overall <= 50 ? industry.potentialLeadsLost.high : industry.potentialLeadsLost.low) : 0;
   const revenueLost = leadsLost * industry.avgCustomerValue;
-  const roiMultiplier = revenueLost > 0 ? Math.round(revenueLost / 1000) : 5;
+  const roiMultiplier = revenueLost > 0 ? Math.max(2, Math.round(revenueLost / 2200)) : 5;
 
   return (
     <Layout>
@@ -376,6 +391,12 @@ export default function WebsiteScore() {
                     <Input value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
                   )}
                   {'placeholder' in currentQuestion && currentStep === 6 && (
+                    <Input value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
+                  )}
+                  {'placeholder' in currentQuestion && currentStep === 7 && (
+                    <Input type="tel" value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
+                  )}
+                  {'placeholder' in currentQuestion && currentStep === 8 && (
                     <Input type="email" value={answers[currentStep]} onChange={e => handleAnswer(e.target.value)} placeholder={currentQuestion.placeholder} className="text-lg py-6" autoFocus />
                   )}
                   {'options' in currentQuestion && currentQuestion.options && (
@@ -649,7 +670,8 @@ export default function WebsiteScore() {
                     <p className="text-sm text-muted-foreground mt-1">{t.results.monthlyLabel}</p>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground text-center italic">{t.results.noContracts}</p>
+                <p className="text-sm text-muted-foreground text-center">{t.results.noContracts}</p>
+                <p className="text-xs text-muted-foreground text-center mt-1">{t.results.adBudgetNote}</p>
 
                 <div className="rounded-xl bg-secondary p-6 text-center">
                   <p className="font-semibold">
@@ -671,15 +693,15 @@ export default function WebsiteScore() {
 
                 <div className="max-w-md mx-auto space-y-4">
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formName}</label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formName} <span className="text-red-500">*</span></label>
                     <Input value={finalName} onChange={e => setFinalName(e.target.value)} className="py-5" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formPhone}</label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formPhone} <span className="text-red-500">*</span></label>
                     <Input type="tel" value={finalPhone} onChange={e => setFinalPhone(e.target.value)} className="py-5" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formBudget}</label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formBudget} <span className="text-red-500">*</span></label>
                     <div className="grid gap-2">
                       {t.results.budgetOptions.map(opt => (
                         <button key={opt} onClick={() => setFinalBudget(opt)}
@@ -690,7 +712,7 @@ export default function WebsiteScore() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formTimeline}</label>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formTimeline} <span className="text-red-500">*</span></label>
                     <div className="grid gap-2">
                       {t.results.timelineOptions.map(opt => (
                         <button key={opt} onClick={() => setFinalTimeline(opt)}
