@@ -173,8 +173,6 @@ export default function WebsiteScore() {
   // Final form — pre-fill from Phase 1 answers
   const [finalName, setFinalName] = useState('');
   const [finalPhone, setFinalPhone] = useState('');
-  const [finalBudget, setFinalBudget] = useState('');
-  const [finalTimeline, setFinalTimeline] = useState('');
   const [finalMvp, setFinalMvp] = useState('');
   const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
   const [finalFormInitialized, setFinalFormInitialized] = useState(false);
@@ -346,15 +344,13 @@ export default function WebsiteScore() {
 
 
   const handleSubmitFinal = async () => {
-    if (!finalName || !finalPhone || !finalBudget || !finalTimeline || !finalMvp || !recordId) return;
+    if (!finalName || !finalPhone || !finalMvp || !recordId) return;
     setIsSubmittingFinal(true);
     try {
       const wantsMvp = finalMvp === 'yes';
       await supabase.from('website_audit_leads').update({
         contact_name: finalName,
         phone: `${countryCode.code} ${finalPhone}`,
-        monthly_budget: finalBudget,
-        timeline: finalTimeline,
         converted_to_mvp: wantsMvp,
       }).eq('id', recordId);
 
@@ -369,8 +365,6 @@ export default function WebsiteScore() {
           businessType: answers[2],
           contactName: finalName,
           phone: `${countryCode.code} ${finalPhone}`,
-          budget: finalBudget,
-          timeline: finalTimeline,
           wantsMvp,
           overallScore: scoreData?.overall,
         }
@@ -918,44 +912,31 @@ export default function WebsiteScore() {
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formBudget} <span className="text-destructive">*</span></label>
-                    <div className="grid gap-2">
-                      {(t.results.budgetOptions as unknown as string[]).map((opt: string) => (
-                        <button key={opt} onClick={() => setFinalBudget(opt)}
-                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalBudget === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
-                          {opt}
-                        </button>
+                  {/* MVP Preview Section — Visual */}
+                  <div className="rounded-xl border-2 border-accent/30 bg-accent/5 p-5 space-y-4">
+                    <h3 className="text-base font-bold text-center">{t.results.formMvp}</h3>
+                    <div className="grid grid-cols-3 gap-3 text-center">
+                      {(t.results.mvpSteps as unknown as { icon: string; text: string }[]).map((step, i) => (
+                        <div key={i} className="flex flex-col items-center gap-2">
+                          <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-lg">{step.icon}</div>
+                          <p className="text-xs text-muted-foreground leading-tight">{step.text}</p>
+                        </div>
                       ))}
                     </div>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formTimeline} <span className="text-destructive">*</span></label>
-                    <div className="grid gap-2">
-                      {(t.results.timelineOptions as unknown as string[]).map((opt: string) => (
-                        <button key={opt} onClick={() => setFinalTimeline(opt)}
-                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalTimeline === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">{t.results.formMvp} <span className="text-destructive">*</span></label>
-                    <p className="text-sm text-muted-foreground mb-3">{t.results.mvpExplanation}</p>
+                    <p className="text-sm text-muted-foreground text-center">{t.results.mvpExplanation}</p>
                     <div className="grid gap-2">
                       <button onClick={() => setFinalMvp('yes')}
-                        className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all font-medium", finalMvp === 'yes' ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                        className={cn("p-3 rounded-lg border-2 text-sm transition-all font-semibold text-center", finalMvp === 'yes' ? "border-accent bg-accent/10" : "border-border hover:border-accent/50")}>
                         ✅ {t.results.mvpYes}
                       </button>
                       <button onClick={() => setFinalMvp('no')}
-                        className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalMvp === 'no' ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                        className={cn("p-3 rounded-lg border-2 text-sm transition-all text-center text-muted-foreground", finalMvp === 'no' ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
                         {t.results.mvpNo}
                       </button>
                     </div>
                   </div>
-                  <Button onClick={handleSubmitFinal} disabled={!finalName.trim() || !finalPhone.trim() || !finalBudget || !finalTimeline || !finalMvp || isSubmittingFinal}
-                    className={cn("w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-base", (!finalName.trim() || !finalPhone.trim() || !finalBudget || !finalTimeline || !finalMvp) && "opacity-50 cursor-not-allowed")}>
+                  <Button onClick={handleSubmitFinal} disabled={!finalName.trim() || !finalPhone.trim() || !finalMvp || isSubmittingFinal}
+                    className={cn("w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-base", (!finalName.trim() || !finalPhone.trim() || !finalMvp) && "opacity-50 cursor-not-allowed")}>
                     {isSubmittingFinal ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                     {t.results.submitFinal}
                     <ArrowRight className="ml-2 h-4 w-4" />
