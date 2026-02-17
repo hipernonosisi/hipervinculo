@@ -169,13 +169,12 @@ export default function WebsiteScore() {
   const [shareToken, setShareToken] = useState<string | null>(null);
   const [linkCopied, setLinkCopied] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<number | null>(null);
-  const [leadSiteLoaded, setLeadSiteLoaded] = useState(false);
-  const [leadSiteError, setLeadSiteError] = useState(false);
-  const [optimizedSiteLoaded, setOptimizedSiteLoaded] = useState(false);
 
   // Final form — pre-fill from Phase 1 answers
   const [finalName, setFinalName] = useState('');
   const [finalPhone, setFinalPhone] = useState('');
+  const [finalBudget, setFinalBudget] = useState('');
+  const [finalTimeline, setFinalTimeline] = useState('');
   const [finalMvp, setFinalMvp] = useState('');
   const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
   const [finalFormInitialized, setFinalFormInitialized] = useState(false);
@@ -347,13 +346,15 @@ export default function WebsiteScore() {
 
 
   const handleSubmitFinal = async () => {
-    if (!finalName || !finalPhone || !finalMvp || !recordId) return;
+    if (!finalName || !finalPhone || !finalBudget || !finalTimeline || !finalMvp || !recordId) return;
     setIsSubmittingFinal(true);
     try {
       const wantsMvp = finalMvp === 'yes';
       await supabase.from('website_audit_leads').update({
         contact_name: finalName,
         phone: `${countryCode.code} ${finalPhone}`,
+        monthly_budget: finalBudget,
+        timeline: finalTimeline,
         converted_to_mvp: wantsMvp,
       }).eq('id', recordId);
 
@@ -368,6 +369,8 @@ export default function WebsiteScore() {
           businessType: answers[2],
           contactName: finalName,
           phone: `${countryCode.code} ${finalPhone}`,
+          budget: finalBudget,
+          timeline: finalTimeline,
           wantsMvp,
           overallScore: scoreData?.overall,
         }
@@ -634,56 +637,6 @@ export default function WebsiteScore() {
                     </Button>
                   </div>
                 )}
-              </motion.div>
-
-              {/* Screenshot Comparison */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-                className={cn("space-y-6", scoreData.isEstimated && "ring-2 ring-accent rounded-2xl p-6")}>
-                <h2 className="text-xl md:text-2xl font-bold text-center">{t.results.comparisonTitle}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Lead's current site */}
-                  <div className="space-y-3">
-                    <div className="rounded-xl overflow-hidden shadow-lg border-2 border-destructive/40 relative aspect-[3/4]">
-                      {!leadSiteLoaded && !leadSiteError && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
-                          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                        </div>
-                      )}
-                      {leadSiteError ? (
-                        <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                          <p className="text-sm text-muted-foreground">{t.results.previewNotAvailable}</p>
-                        </div>
-                      ) : (
-                        <img
-                          src={`https://image.thum.io/get/width/600/crop/800/${answers[0]}`}
-                          alt={language === 'en' ? 'Your current website' : 'Tu sitio web actual'}
-                          className={cn("w-full h-full object-cover object-top", !leadSiteLoaded && "opacity-0")}
-                          onLoad={() => setLeadSiteLoaded(true)}
-                          onError={() => { setLeadSiteError(true); setLeadSiteLoaded(true); }}
-                        />
-                      )}
-                    </div>
-                    <p className="text-center text-sm font-semibold text-destructive">{t.results.yourSite}</p>
-                  </div>
-                  {/* Optimized site example */}
-                  <div className="space-y-3">
-                    <div className="rounded-xl overflow-hidden shadow-lg border-2 border-accent/60 relative aspect-[3/4]">
-                      {!optimizedSiteLoaded && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
-                          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                        </div>
-                      )}
-                      <img
-                        src="https://image.thum.io/get/width/600/crop/800/https://hipervinculo.net/"
-                        alt={language === 'en' ? 'Conversion-optimized website example' : 'Ejemplo de sitio optimizado para conversión'}
-                        className={cn("w-full h-full object-cover object-top", !optimizedSiteLoaded && "opacity-0")}
-                        onLoad={() => setOptimizedSiteLoaded(true)}
-                      />
-                    </div>
-                    <p className="text-center text-sm font-semibold text-accent">{t.results.optimizedSite}</p>
-                  </div>
-                </div>
-                <p className="text-center text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">{t.results.comparisonText}</p>
               </motion.div>
 
               {/* Score Breakdown */}
@@ -966,6 +919,28 @@ export default function WebsiteScore() {
                     </div>
                   </div>
                   <div>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formBudget} <span className="text-destructive">*</span></label>
+                    <div className="grid gap-2">
+                      {(t.results.budgetOptions as unknown as string[]).map((opt: string) => (
+                        <button key={opt} onClick={() => setFinalBudget(opt)}
+                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalBudget === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">{t.results.formTimeline} <span className="text-destructive">*</span></label>
+                    <div className="grid gap-2">
+                      {(t.results.timelineOptions as unknown as string[]).map((opt: string) => (
+                        <button key={opt} onClick={() => setFinalTimeline(opt)}
+                          className={cn("text-left p-3 rounded-lg border-2 text-sm transition-all", finalTimeline === opt ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
                     <label className="text-sm font-medium mb-1 block">{t.results.formMvp} <span className="text-destructive">*</span></label>
                     <p className="text-sm text-muted-foreground mb-3">{t.results.mvpExplanation}</p>
                     <div className="grid gap-2">
@@ -979,8 +954,8 @@ export default function WebsiteScore() {
                       </button>
                     </div>
                   </div>
-                  <Button onClick={handleSubmitFinal} disabled={!finalName || !finalPhone || !finalMvp || isSubmittingFinal}
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-base">
+                  <Button onClick={handleSubmitFinal} disabled={!finalName.trim() || !finalPhone.trim() || !finalBudget || !finalTimeline || !finalMvp || isSubmittingFinal}
+                    className={cn("w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-base", (!finalName.trim() || !finalPhone.trim() || !finalBudget || !finalTimeline || !finalMvp) && "opacity-50 cursor-not-allowed")}>
                     {isSubmittingFinal ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                     {t.results.submitFinal}
                     <ArrowRight className="ml-2 h-4 w-4" />
