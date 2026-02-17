@@ -65,6 +65,8 @@ interface WebsiteAuditQualifiedNotification {
   businessType: string;
   contactName: string;
   phone: string;
+  budget?: string;
+  timeline?: string;
   wantsMvp?: boolean;
   overallScore?: number;
 }
@@ -833,15 +835,15 @@ const handler = async (req: Request): Promise<Response> => {
         </div></div></body></html>`;
 
     } else if (payload.type === "website-audit-qualified") {
-      const { businessName, email, websiteUrl, businessType, contactName, phone, wantsMvp, overallScore } = payload;
+      const { businessName, email, websiteUrl, businessType, contactName, phone, budget, timeline, wantsMvp, overallScore } = payload;
       clientEmail = email;
 
-      adminSubject = `[Hipervinculo] QUALIFIED Lead - Website Score: ${businessName} (${contactName})${wantsMvp ? ' - WANTS MVP' : ''}`;
+      adminSubject = `[Hipervinculo] QUALIFIED Lead - Website Score: ${businessName} (${contactName})${wantsMvp ? ' - WANTS PREVIEW' : ''}`;
       adminHtml = `
         <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
           <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
-          <div class="header" style="background:#8BC34A;"><h1>${wantsMvp ? 'QUALIFIED Lead - Wants Free MVP!' : 'Lead Update'}</h1></div>
+          <div class="header" style="background:#8BC34A;"><h1>${wantsMvp ? 'QUALIFIED Lead - Wants Website Preview!' : 'Lead Update'}</h1></div>
           <div class="content">
             <div class="field"><div class="label">Contact Name:</div><div class="value">${contactName}</div></div>
             <div class="field"><div class="label">Phone:</div><div class="value"><a href="tel:${phone}">${phone}</a></div></div>
@@ -850,7 +852,9 @@ const handler = async (req: Request): Promise<Response> => {
             <div class="field"><div class="label">Website:</div><div class="value"><a href="${websiteUrl}" target="_blank">${websiteUrl}</a></div></div>
             <div class="field"><div class="label">Business Type:</div><div class="value">${businessType}</div></div>
             <div class="field"><div class="label">Score:</div><div class="value">${overallScore || 'N/A'}/100</div></div>
-            <div class="field"><div class="label">Wants MVP:</div><div class="value" style="font-weight:bold;color:${wantsMvp ? '#8BC34A' : '#888'}">${wantsMvp ? 'YES' : 'No'}</div></div>
+            <div class="field"><div class="label">Budget:</div><div class="value">${budget || 'N/A'}</div></div>
+            <div class="field"><div class="label">Timeline:</div><div class="value">${timeline || 'N/A'}</div></div>
+            <div class="field"><div class="label">Wants Preview:</div><div class="value" style="font-weight:bold;color:${wantsMvp ? '#8BC34A' : '#888'}">${wantsMvp ? 'YES' : 'No'}</div></div>
           </div>
         </div></div></body></html>`;
 
