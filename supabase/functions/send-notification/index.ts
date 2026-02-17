@@ -42,7 +42,33 @@ interface AuditNotification {
   growthGoals?: string;
 }
 
-type NotificationRequest = ContactNotification | AuditNotification;
+interface WebsiteAuditNotification {
+  type: "website-audit";
+  language: "en" | "es";
+  businessName: string;
+  email: string;
+  websiteUrl: string;
+  businessType: string;
+  overallScore: number;
+  estimatedLeadsLost: number;
+  estimatedRevenueLost: number;
+}
+
+interface WebsiteAuditQualifiedNotification {
+  type: "website-audit-qualified";
+  language: "en" | "es";
+  businessName: string;
+  email: string;
+  websiteUrl: string;
+  businessType: string;
+  contactName: string;
+  phone: string;
+  monthlyBudget: string;
+  timeline: string;
+  overallScore?: number;
+}
+
+type NotificationRequest = ContactNotification | AuditNotification | WebsiteAuditNotification | WebsiteAuditQualifiedNotification;
 
 // Translations for email content (NO EMOJIS)
 const emailTranslations = {
@@ -749,6 +775,86 @@ const handler = async (req: Request): Promise<Response> => {
       // Client confirmation email (beautiful)
       clientSubject = t.subject.auditClient;
       clientHtml = generateClientAuditEmail(t.audit, { companyName, email, websiteUrl, businessType, monthlyRevenue, monthlyAdSpend, growthGoals });
+    } else if (payload.type === "website-audit") {
+      const { businessName, email, websiteUrl, businessType, overallScore, estimatedLeadsLost, estimatedRevenueLost } = payload;
+      clientEmail = email;
+
+      adminSubject = `[Hipervinculo] New Website Score Lead: ${businessName} (Score: ${overallScore}/100)`;
+      adminHtml = `
+        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
+        <div class="wrapper"><div class="container">
+          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="header"><h1>New Website Score Lead</h1></div>
+          <div class="content">
+            <div class="field"><div class="label">Business:</div><div class="value">${businessName}</div></div>
+            <div class="field"><div class="label">Email:</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>
+            <div class="field"><div class="label">Website:</div><div class="value"><a href="${websiteUrl}" target="_blank">${websiteUrl}</a></div></div>
+            <div class="field"><div class="label">Business Type:</div><div class="value">${businessType}</div></div>
+            <div class="field"><div class="label">Score:</div><div class="value" style="font-size:24px;font-weight:bold;color:${overallScore < 50 ? '#ef4444' : overallScore < 70 ? '#f97316' : '#eab308'}">${overallScore}/100</div></div>
+            <div class="field"><div class="label">Est. Leads Lost:</div><div class="value">${estimatedLeadsLost}/month</div></div>
+            <div class="field"><div class="label">Est. Revenue Lost:</div><div class="value">$${estimatedRevenueLost.toLocaleString()}/month</div></div>
+          </div>
+        </div></div></body></html>`;
+
+      clientSubject = lang === 'es' ? 'Tu Score de Rendimiento Web - Hipervinculo' : 'Your Website Performance Score - Hipervinculo';
+      clientHtml = `
+        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getClientEmailStyles()}</style></head><body>
+        <div class="wrapper"><div class="container">
+          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="header"><h1>${lang === 'es' ? 'Tu Score de Rendimiento Web' : 'Your Website Performance Score'}</h1>
+            <p>${lang === 'es' ? 'Aquí están los resultados de tu análisis' : 'Here are your analysis results'}</p></div>
+          <div class="content">
+            <div class="section">
+              <div class="section-title">${lang === 'es' ? 'Resultados' : 'Results'}</div>
+              <div class="field"><div class="label">${lang === 'es' ? 'Sitio web:' : 'Website:'}</div><div class="value">${websiteUrl}</div></div>
+              <div class="field"><div class="label">Score:</div><div class="value" style="font-size:24px;font-weight:bold;color:${overallScore < 50 ? '#ef4444' : overallScore < 70 ? '#f97316' : '#eab308'}">${overallScore}/100</div></div>
+            </div>
+            <div class="section">
+              <div class="section-title">${lang === 'es' ? '¿Qué sigue?' : 'What happens next?'}</div>
+              <div class="next-steps">
+                <div class="step"><div class="step-number">1</div><div class="step-text">${lang === 'es' ? 'Nuestro equipo revisará tu score en detalle' : 'Our team will review your score in detail'}</div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-text">${lang === 'es' ? 'Te contactaremos con recomendaciones personalizadas' : 'We\'ll reach out with personalized recommendations'}</div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-text">${lang === 'es' ? 'Si calificas, construiremos un prototipo gratis de tu nuevo sitio' : 'If you qualify, we\'ll build a free prototype of your new site'}</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-section">
+            <div class="contact-title">${lang === 'es' ? '¿Necesitas ayuda inmediata?' : 'Need immediate assistance?'}</div>
+            <div class="contact-info">
+              <div class="contact-item"><a href="mailto:${CONTACT_INFO.email}">${CONTACT_INFO.email}</a></div>
+              <div class="contact-item"><a href="tel:${CONTACT_INFO.phone.replace(/\\s/g, '')}">${CONTACT_INFO.phone}</a></div>
+            </div>
+            <a href="${WEBSITE_URL}" class="cta-button">${lang === 'es' ? 'Visita nuestro sitio web' : 'Visit our website'}</a>
+          </div>
+          <div class="footer"><div class="signature">${lang === 'es' ? 'El Equipo de Hipervinculo' : 'The Hipervinculo Team'}</div></div>
+        </div></div></body></html>`;
+
+    } else if (payload.type === "website-audit-qualified") {
+      const { businessName, email, websiteUrl, businessType, contactName, phone, monthlyBudget, timeline, overallScore } = payload;
+      clientEmail = email;
+
+      adminSubject = `[Hipervinculo] QUALIFIED Lead - Website Score: ${businessName} (${contactName})`;
+      adminHtml = `
+        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
+        <div class="wrapper"><div class="container">
+          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="header" style="background:#8BC34A;"><h1>QUALIFIED Lead - Ready for MVP</h1></div>
+          <div class="content">
+            <div class="field"><div class="label">Contact Name:</div><div class="value">${contactName}</div></div>
+            <div class="field"><div class="label">Phone:</div><div class="value"><a href="tel:${phone}">${phone}</a></div></div>
+            <div class="field"><div class="label">Email:</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>
+            <div class="field"><div class="label">Business:</div><div class="value">${businessName}</div></div>
+            <div class="field"><div class="label">Website:</div><div class="value"><a href="${websiteUrl}" target="_blank">${websiteUrl}</a></div></div>
+            <div class="field"><div class="label">Business Type:</div><div class="value">${businessType}</div></div>
+            <div class="field"><div class="label">Score:</div><div class="value">${overallScore || 'N/A'}/100</div></div>
+            <div class="field"><div class="label">Monthly Budget:</div><div class="value">${monthlyBudget}</div></div>
+            <div class="field"><div class="label">Timeline:</div><div class="value">${timeline}</div></div>
+          </div>
+        </div></div></body></html>`;
+
+      // No client email for qualified leads (they already got one from the initial submission)
+      clientSubject = "";
+      clientHtml = "";
     } else {
       throw new Error("Invalid notification type");
     }
@@ -763,23 +869,28 @@ const handler = async (req: Request): Promise<Response> => {
     });
     console.log("Admin email sent:", adminEmailResponse);
 
-    // Wait 1 second to avoid rate limiting (Resend allows 2 requests/second)
-    await delay(1000);
+    let clientEmailId = null;
+    // Only send client email if there's content
+    if (clientSubject && clientHtml) {
+      // Wait 1 second to avoid rate limiting (Resend allows 2 requests/second)
+      await delay(1000);
 
-    // Send confirmation email to client
-    console.log("Sending confirmation email to client:", clientEmail);
-    const clientEmailResponse = await resend.emails.send({
-      from: "Hipervinculo <notificaciones@hipervinculo.net>",
-      to: [clientEmail],
-      subject: clientSubject,
-      html: clientHtml,
-    });
-    console.log("Client confirmation email sent:", clientEmailResponse);
+      // Send confirmation email to client
+      console.log("Sending confirmation email to client:", clientEmail);
+      const clientEmailResponse = await resend.emails.send({
+        from: "Hipervinculo <notificaciones@hipervinculo.net>",
+        to: [clientEmail],
+        subject: clientSubject,
+        html: clientHtml,
+      });
+      console.log("Client confirmation email sent:", clientEmailResponse);
+      clientEmailId = clientEmailResponse.id;
+    }
 
     return new Response(JSON.stringify({ 
       success: true, 
       adminEmailId: adminEmailResponse.id,
-      clientEmailId: clientEmailResponse.id 
+      clientEmailId,
     }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
