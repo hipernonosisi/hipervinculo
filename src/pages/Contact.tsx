@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Users, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, Phone, MapPin, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,8 +18,8 @@ const MINIMUM_SUBMIT_TIME_MS = 3000;
 export default function Contact() {
   const { t, language } = useLanguage();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -37,8 +38,7 @@ export default function Contact() {
     
     // Honeypot check: if filled, it's a bot
     if (honeypot) {
-      // Silently "succeed" to not alert the bot
-      setIsSubmitted(true);
+      navigate('/thank-you/contact');
       return;
     }
 
@@ -79,11 +79,7 @@ export default function Contact() {
         }
       }).catch(err => console.error('Failed to send email notification:', err));
 
-      setIsSubmitted(true);
-      toast({
-        title: language === 'en' ? "Message sent!" : "¡Mensaje enviado!",
-        description: language === 'en' ? "We'll get back to you within 24 hours." : "Te responderemos en 24 horas.",
-      });
+      navigate('/thank-you/contact');
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -95,33 +91,6 @@ export default function Contact() {
       setIsSubmitting(false);
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <Layout>
-        <section className="py-20 md:py-32">
-          <div className="container">
-            <div className="max-w-lg mx-auto text-center space-y-6">
-              <div className="p-4 rounded-full bg-accent/10 w-fit mx-auto">
-                <CheckCircle className="h-12 w-12 text-accent" />
-              </div>
-              <h1 className="text-3xl font-extrabold">
-                {language === 'en' ? 'Thank you!' : '¡Gracias!'}
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                {language === 'en' 
-                  ? "We've received your message and will get back to you within 24 hours."
-                  : "Hemos recibido tu mensaje y te responderemos en 24 horas."}
-              </p>
-              <Button onClick={() => setIsSubmitted(false)} variant="outline">
-                {language === 'en' ? 'Send another message' : 'Enviar otro mensaje'}
-              </Button>
-            </div>
-          </div>
-        </section>
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
