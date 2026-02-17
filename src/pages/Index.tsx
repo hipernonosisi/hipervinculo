@@ -15,7 +15,7 @@ const serviceIcons = [Phone, Target, Search, ShoppingCart, Package, LineChart, C
 const industryIcons = [Phone, ShieldCheck, Settings, ShoppingCart, Zap];
 
 export default function Index() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [wordIndex, setWordIndex] = useState(0);
 
   const rotatingHeadlines = t.homepage.rotatingHeadlines;
@@ -104,10 +104,10 @@ export default function Index() {
                 className="flex flex-col sm:flex-row gap-4 mb-12"
               >
                 <Button asChild size="lg" className="rounded-full px-8 h-14 text-[16px] font-semibold shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
-                  <Link to="/audit">{t.homepage.ctaGetAudit} <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                  <Link to="/website-score">{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'} <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 bg-white border-gray-300 text-[16px] font-semibold text-foreground hover:bg-gray-50">
-                  <Link to="/services">{t.homepage.ctaExploreServices}</Link>
+                  <Link to="/audit">{t.homepage.ctaGetAudit}</Link>
                 </Button>
               </motion.div>
 
