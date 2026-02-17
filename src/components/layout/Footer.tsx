@@ -48,7 +48,10 @@ export function Footer() {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-base font-semibold">
+              <Button variant="outline" className="border-2 border-white rounded-full px-8 py-6 text-base font-semibold transition-colors" style={{ color: '#203B2C', backgroundColor: 'white' }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.color = '#203B2C'; }}
+              >
                 {language === 'en' ? 'Talk to Us' : 'Habla con Nosotros'}
               </Button>
             </Link>
