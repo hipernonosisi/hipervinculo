@@ -70,7 +70,7 @@ export function Header() {
             <Globe className="h-4 w-4" />
             <span>{language === 'en' ? 'ES' : 'EN'}</span>
           </button>
-          <Button asChild variant="outline" className="rounded-full px-5 py-1.5 h-10 font-semibold text-[14px] border-accent text-accent hover:bg-accent/10">
+          <Button asChild variant="outline" className="rounded-full px-5 py-1.5 h-10 font-semibold text-[14px] border-accent text-accent hover:bg-accent/10 hover:text-accent">
             <Link to="/website-score">{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
           </Button>
           <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-5 py-1.5 h-10 font-semibold text-[14px]">
