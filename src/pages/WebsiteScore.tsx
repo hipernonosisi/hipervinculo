@@ -169,6 +169,9 @@ export default function WebsiteScore() {
   const [shareToken, setShareToken] = useState<string | null>(null);
   const [linkCopied, setLinkCopied] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<number | null>(null);
+  const [leadSiteLoaded, setLeadSiteLoaded] = useState(false);
+  const [leadSiteError, setLeadSiteError] = useState(false);
+  const [optimizedSiteLoaded, setOptimizedSiteLoaded] = useState(false);
 
   // Final form — pre-fill from Phase 1 answers
   const [finalName, setFinalName] = useState('');
@@ -270,7 +273,7 @@ export default function WebsiteScore() {
           websiteUrl: answers[0],
           businessType: answers[2],
           contactName: answers[6],
-          phone: answers[7],
+          phone: `${countryCode.code} ${answers[7]}`,
           overallScore: scores.overall,
           estimatedLeadsLost: leadsLost,
           estimatedRevenueLost: revenueLost,
@@ -633,6 +636,56 @@ export default function WebsiteScore() {
                 )}
               </motion.div>
 
+              {/* Screenshot Comparison */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+                className={cn("space-y-6", scoreData.isEstimated && "ring-2 ring-accent rounded-2xl p-6")}>
+                <h2 className="text-xl md:text-2xl font-bold text-center">{t.results.comparisonTitle}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Lead's current site */}
+                  <div className="space-y-3">
+                    <div className="rounded-xl overflow-hidden shadow-lg border-2 border-destructive/40 relative aspect-[3/4]">
+                      {!leadSiteLoaded && !leadSiteError && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
+                          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                        </div>
+                      )}
+                      {leadSiteError ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                          <p className="text-sm text-muted-foreground">{t.results.previewNotAvailable}</p>
+                        </div>
+                      ) : (
+                        <img
+                          src={`https://image.thum.io/get/width/600/crop/800/${answers[0]}`}
+                          alt={language === 'en' ? 'Your current website' : 'Tu sitio web actual'}
+                          className={cn("w-full h-full object-cover object-top", !leadSiteLoaded && "opacity-0")}
+                          onLoad={() => setLeadSiteLoaded(true)}
+                          onError={() => { setLeadSiteError(true); setLeadSiteLoaded(true); }}
+                        />
+                      )}
+                    </div>
+                    <p className="text-center text-sm font-semibold text-destructive">{t.results.yourSite}</p>
+                  </div>
+                  {/* Optimized site example */}
+                  <div className="space-y-3">
+                    <div className="rounded-xl overflow-hidden shadow-lg border-2 border-accent/60 relative aspect-[3/4]">
+                      {!optimizedSiteLoaded && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
+                          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                        </div>
+                      )}
+                      <img
+                        src="https://image.thum.io/get/width/600/crop/800/https://hipervinculo.net/"
+                        alt={language === 'en' ? 'Conversion-optimized website example' : 'Ejemplo de sitio optimizado para conversión'}
+                        className={cn("w-full h-full object-cover object-top", !optimizedSiteLoaded && "opacity-0")}
+                        onLoad={() => setOptimizedSiteLoaded(true)}
+                      />
+                    </div>
+                    <p className="text-center text-sm font-semibold text-accent">{t.results.optimizedSite}</p>
+                  </div>
+                </div>
+                <p className="text-center text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">{t.results.comparisonText}</p>
+              </motion.div>
+
               {/* Score Breakdown */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -660,6 +713,13 @@ export default function WebsiteScore() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {(() => {
                     const issues: { icon: typeof Clock; title: string; desc: string; severity: 'high' | 'medium' | 'low'; show: boolean }[] = [
+                      {
+                        icon: AlertTriangle,
+                        title: t.results.technicalIssuesTitle,
+                        desc: t.results.technicalIssuesDesc,
+                        severity: 'high',
+                        show: scoreData.isEstimated,
+                      },
                       {
                         icon: Clock,
                         title: language === 'en' ? 'Slow Load Speed' : 'Velocidad de Carga Lenta',
