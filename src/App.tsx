@@ -19,6 +19,8 @@ import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import ReportLalenasFood from "./pages/ReportLalenasFood";
 import ReportHesacore from "./pages/ReportHesacore";
+import ThankYouContact from "./pages/ThankYouContact";
+import ThankYouAudit from "./pages/ThankYouAudit";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,8 @@ const App = () => (
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/report/lalenas-food" element={<ReportLalenasFood />} />
             <Route path="/report/hesacore" element={<ReportHesacore />} />
+            <Route path="/thank-you/contact" element={<ThankYouContact />} />
+            <Route path="/thank-you/audit" element={<ThankYouAudit />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

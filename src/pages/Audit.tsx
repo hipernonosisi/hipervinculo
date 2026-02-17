@@ -26,7 +26,6 @@ export default function Audit() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [answers, setAnswers] = useState<string[]>(['', '', '', '', '', '', '']);
 
   const questions: Question[] = [
@@ -76,11 +75,7 @@ export default function Audit() {
           }
         }).catch(err => console.error('Failed to send email notification:', err));
 
-        setIsSubmitted(true);
-        toast({
-          title: "Success!",
-          description: "Your audit request has been submitted.",
-        });
+        navigate('/thank-you/audit');
       } catch (error) {
         console.error('Error submitting audit:', error);
         toast({
@@ -121,31 +116,6 @@ export default function Audit() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [canProceed, isSubmitting, handleNext]);
 
-  // Scroll to top when form is submitted
-  useEffect(() => {
-    if (isSubmitted) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
-  }, [isSubmitted]);
-
-  if (isSubmitted) {
-    return (
-      <Layout>
-        <section className="py-20 md:py-32">
-          <div className="container">
-            <div className="max-w-lg mx-auto text-center space-y-6">
-              <div className="p-4 rounded-full bg-accent/10 w-fit mx-auto">
-                <CheckCircle className="h-12 w-12 text-accent" />
-              </div>
-              <h1 className="text-3xl font-bold">Thank you!</h1>
-              <p className="text-lg text-muted-foreground">{t.audit.success}</p>
-              <Button onClick={() => navigate('/')}>Back to Home</Button>
-            </div>
-          </div>
-        </section>
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
