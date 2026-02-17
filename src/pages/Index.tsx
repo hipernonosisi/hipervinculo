@@ -106,7 +106,7 @@ export default function Index() {
                 <Button asChild size="lg" className="rounded-full px-8 h-14 text-[16px] font-semibold shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#8BC34A', color: 'white' }}>
                   <Link to="/website-score">{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'} <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 bg-white border-gray-300 text-[16px] font-semibold text-foreground hover:bg-gray-50">
+                <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 bg-white border-gray-300 text-[16px] font-semibold text-foreground hover:bg-gray-50 hover:text-foreground">
                   <Link to="/audit">{t.homepage.ctaGetAudit}</Link>
                 </Button>
               </motion.div>
