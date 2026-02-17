@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
@@ -19,30 +19,36 @@ export function Footer() {
   return (
     <footer>
       {/* CTA Banner */}
-      <div className="py-12 md:py-16" style={{ backgroundColor: '#8BCB43' }}>
-        <div className="container text-center space-y-5">
-          <p className="text-sm font-semibold uppercase tracking-widest text-white/80">
-            {language === 'en' ? '20+ Years Building Growth Systems' : '20+ Años Construyendo Sistemas de Crecimiento'}
-          </p>
-          <h2 className="text-2xl md:text-4xl font-extrabold text-white max-w-2xl mx-auto leading-tight">
+      <div className="py-16 md:py-24" style={{ backgroundColor: '#8BCB43' }}>
+        <div className="container text-center space-y-8">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
             {language === 'en'
-              ? 'Ready to Turn Your Website Into a Lead Machine?'
-              : '¿Listo Para Convertir Tu Web en una Máquina de Leads?'}
+              ? 'Your Growth System Starts Here'
+              : 'Tu Sistema de Crecimiento Empieza Aquí'}
           </h2>
-          <p className="text-white/90 max-w-lg mx-auto">
-            {language === 'en'
-              ? "Let's build a system that brings you real customers — not just clicks."
-              : 'Construyamos un sistema que te traiga clientes reales — no solo clics.'}
-          </p>
+
+          {/* Perks */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+            {(language === 'en'
+              ? ['No contracts required', 'Results in 30 days', 'Dedicated growth partner']
+              : ['Sin contratos', 'Resultados en 30 días', 'Socio de crecimiento dedicado']
+            ).map((perk, i) => (
+              <div key={i} className="flex items-center gap-2 text-white/90">
+                <CheckCircle className="h-5 w-5 text-white" />
+                <span className="text-sm md:text-base font-semibold">{perk}</span>
+              </div>
+            ))}
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Link to="/website-score">
-              <Button className="bg-white hover:bg-white/90 text-foreground font-semibold rounded-full px-8 py-6 text-base">
+              <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
                 {language === 'en' ? 'Get Your Free Score' : 'Obtén Tu Score Gratis'}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-base">
+              <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-base font-semibold">
                 {language === 'en' ? 'Talk to Us' : 'Habla con Nosotros'}
               </Button>
             </Link>
