@@ -704,13 +704,67 @@ export default function WebsiteScore() {
                 <p className="text-sm text-muted-foreground text-center">{t.results.noContracts}</p>
                 <p className="text-xs text-muted-foreground text-center mt-1">{t.results.adBudgetNote}</p>
 
-                <div className="rounded-xl bg-secondary p-6 text-center">
-                  <p className="font-semibold">
-                    {t.results.roiText
-                      .replace('${revenue}', String(revenueLost.toLocaleString()))
-                      .replace('{multiplier}', String(roiMultiplier))
-                    }
-                  </p>
+                <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: '#203B2C' }}>
+                  <div className="p-6 md:p-8 space-y-6">
+                    {/* Header */}
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-full p-2" style={{ backgroundColor: 'rgba(157, 194, 9, 0.15)' }}>
+                        <AlertTriangle className="h-5 w-5" style={{ color: '#9DC209' }} />
+                      </div>
+                      <h3 className="text-lg font-extrabold text-white">
+                        {language === 'en' ? 'Your ROI Opportunity' : 'Tu Oportunidad de ROI'}
+                      </h3>
+                    </div>
+
+                    {/* Metrics Row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+                        <p className="text-2xl md:text-3xl font-extrabold" style={{ color: '#ef4444' }}>
+                          ${revenueLost.toLocaleString()}
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                          {language === 'en' ? 'Lost per month' : 'Perdidos por mes'}
+                        </p>
+                      </div>
+                      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+                        <p className="text-2xl md:text-3xl font-extrabold text-white">$2,200</p>
+                        <p className="text-xs text-white/60 mt-1">
+                          {language === 'en' ? 'Total investment/mo' : 'Inversión total/mes'}
+                        </p>
+                      </div>
+                      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: 'rgba(157, 194, 9, 0.15)' }}>
+                        <p className="text-2xl md:text-3xl font-extrabold" style={{ color: '#9DC209' }}>
+                          {roiMultiplier}x
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                          {language === 'en' ? 'Typical return' : 'Retorno típico'}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Breakdown */}
+                    <div className="rounded-xl p-4 space-y-2" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/70">{language === 'en' ? 'Management fee' : 'Gestión'}</span>
+                        <span className="text-white font-semibold">$1,000/{language === 'en' ? 'mo' : 'mes'}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/70">{language === 'en' ? 'Min. ad budget' : 'Presupuesto mín. ads'}</span>
+                        <span className="text-white font-semibold">$1,200/{language === 'en' ? 'mo' : 'mes'}</span>
+                      </div>
+                      <div className="border-t border-white/10 pt-2 flex items-center justify-between text-sm">
+                        <span className="text-white/70 font-semibold">{language === 'en' ? 'Total' : 'Total'}</span>
+                        <span className="font-extrabold" style={{ color: '#9DC209' }}>$2,200/{language === 'en' ? 'mo' : 'mes'}</span>
+                      </div>
+                    </div>
+
+                    {/* Bottom text */}
+                    <p className="text-sm text-white/70 text-center leading-relaxed">
+                      {language === 'en'
+                        ? "That's real leads calling your business. Ad budget is paid directly to Google, not to us."
+                        : 'Son leads reales llamando a tu negocio. El presupuesto de ads se paga directamente a Google, no a nosotros.'}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
