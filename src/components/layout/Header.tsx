@@ -42,7 +42,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center">
+        <nav className="hidden lg:flex items-center ml-auto mr-6">
           {navLinks.map((link, index) => (
             <div key={link.href} className="flex items-center">
               <Link
