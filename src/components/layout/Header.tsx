@@ -108,20 +108,22 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="flex items-center justify-between pt-4 border-t border-border">
+            <div className="flex flex-col gap-3 pt-4 border-t border-border">
+              <div className="flex gap-3">
+                <Button asChild variant="outline" className="rounded-full flex-1 border-accent text-accent hover:bg-accent/10 hover:text-accent text-[14px]">
+                  <Link to="/website-score" onClick={() => setIsMenuOpen(false)}>{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
+                </Button>
+                <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full flex-1">
+                  <Link to="/audit" onClick={() => setIsMenuOpen(false)}>{t.nav.getFreeAudit}</Link>
+                </Button>
+              </div>
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-2 text-[14px] font-medium border border-gray-300 rounded-full px-4 py-2"
+                className="flex items-center justify-center gap-2 text-[14px] font-medium border border-gray-300 rounded-full px-4 py-2 w-full"
               >
                 <Globe className="h-4 w-4" />
-                <span>{language === 'en' ? 'ES' : 'EN'}</span>
+                <span>{language === 'en' ? 'Cambiar a Español' : 'Switch to English'}</span>
               </button>
-              <Button asChild variant="outline" className="rounded-full px-4 border-accent text-accent hover:bg-accent/10 text-[14px]">
-                <Link to="/website-score" onClick={() => setIsMenuOpen(false)}>{language === 'en' ? 'Free Website Score' : 'Score Web Gratis'}</Link>
-              </Button>
-              <Button asChild className="bg-accent hover:bg-accent/90 text-white rounded-full px-6">
-                <Link to="/audit" onClick={() => setIsMenuOpen(false)}>{t.nav.getFreeAudit}</Link>
-              </Button>
             </div>
           </nav>
         </div>
