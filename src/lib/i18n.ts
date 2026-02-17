@@ -2060,7 +2060,7 @@ export const websiteScoreTranslations = {
     questions: [
       { label: "What's your website URL?", placeholder: 'https://yourwebsite.com' },
       { label: "What's your business name?", placeholder: 'Enter your business name' },
-      { label: 'What type of service do you provide?', options: ['Plumbing & HVAC', 'Legal Services', 'Medical & Dental', 'Construction & Contracting', 'Home Services', 'Landscaping', 'Auto Services', 'Other'] },
+      { label: 'What type of service do you provide?', options: ['Plumbing & HVAC', 'Legal Services', 'Medical & Dental', 'Construction & Contracting', 'Home Services', 'Landscaping', 'Auto Services', 'Other'], hasOtherInput: true, otherPlaceholder: 'Please specify your business type' },
       { label: 'How many employees does your business have?', options: ['Just me', '2-5', '6-15', '16-50', '50+'] },
       { label: 'Are you currently investing in any digital advertising?', options: ['Yes, Google Ads', 'Yes, Social Media Ads', 'Yes, both', 'No, not yet'] },
       { label: 'How many new customers would you like to get per month?', options: ['5-10', '10-25', '25-50', '50+'] },
@@ -2068,6 +2068,7 @@ export const websiteScoreTranslations = {
       { label: "What's your phone number?", placeholder: '(555) 123-4567' },
       { label: "What's the best email to send your results?", placeholder: 'your@email.com' },
     ],
+    privacyDisclaimer: "🔒 We will never contact you without your permission, and we will never share your information with third parties under any circumstances.",
     next: 'Next',
     back: 'Back',
     submit: 'Analyze My Website',
@@ -2105,6 +2106,7 @@ export const websiteScoreTranslations = {
       noLeadCapture: 'No lead capture system detected. Visitors have no clear path to contact you or request a quote.',
       impactTitle: 'The Financial Impact',
       impactText: 'Based on your score and industry data, your website may be losing you {leads} potential leads per month. If your average customer is worth ${value}, that\'s ${revenue}/month in lost revenue.',
+      avgCustomerValue: '$3,000',
       solutionTitle: 'We Can Fix This — Here\'s How',
       solutionText: 'We build conversion-focused websites specifically designed to turn visitors into leads for service businesses like yours. Our system includes:',
       solutionFeatures: [
@@ -2143,7 +2145,7 @@ export const websiteScoreTranslations = {
     questions: [
       { label: '¿Cuál es la URL de tu sitio web?', placeholder: 'https://tusitio.com' },
       { label: '¿Cuál es el nombre de tu negocio?', placeholder: 'Ingresa el nombre de tu negocio' },
-      { label: '¿Qué tipo de servicio provees?', options: ['Plomería y HVAC', 'Servicios Legales', 'Médico y Dental', 'Construcción y Contratistas', 'Servicios del Hogar', 'Jardinería', 'Servicios Automotrices', 'Otro'] },
+      { label: '¿Qué tipo de servicio provees?', options: ['Plomería y HVAC', 'Servicios Legales', 'Médico y Dental', 'Construcción y Contratistas', 'Servicios del Hogar', 'Jardinería', 'Servicios Automotrices', 'Otro'], hasOtherInput: true, otherPlaceholder: 'Especifica tu tipo de negocio' },
       { label: '¿Cuántos empleados tiene tu negocio?', options: ['Solo yo', '2-5', '6-15', '16-50', '50+'] },
       { label: '¿Actualmente inviertes en publicidad digital?', options: ['Sí, Google Ads', 'Sí, Redes Sociales', 'Sí, ambos', 'No, aún no'] },
       { label: '¿Cuántos clientes nuevos te gustaría obtener por mes?', options: ['5-10', '10-25', '25-50', '50+'] },
@@ -2151,6 +2153,7 @@ export const websiteScoreTranslations = {
       { label: '¿Cuál es tu número de teléfono?', placeholder: '(555) 123-4567' },
       { label: '¿Cuál es el mejor email para enviar tus resultados?', placeholder: 'tu@email.com' },
     ],
+    privacyDisclaimer: "🔒 Nunca te contactaremos sin tu permiso, y nunca compartiremos tu información con terceros bajo ninguna circunstancia.",
     next: 'Siguiente',
     back: 'Atrás',
     submit: 'Analizar Mi Sitio Web',
@@ -2188,6 +2191,7 @@ export const websiteScoreTranslations = {
       noLeadCapture: 'No se detectó un sistema de captación de leads. Los visitantes no tienen una ruta clara para contactarte o pedir un presupuesto.',
       impactTitle: 'El Impacto Financiero',
       impactText: 'Basado en tu score y datos de la industria, tu sitio web podría estar perdiéndote {leads} leads potenciales por mes. Si tu cliente promedio vale ${value}, eso son ${revenue}/mes en ingresos perdidos.',
+      avgCustomerValue: '$3,000',
       solutionTitle: 'Podemos Solucionar Esto — Así Es Como',
       solutionText: 'Construimos sitios web enfocados en conversión diseñados específicamente para convertir visitantes en leads para negocios de servicio como el tuyo. Nuestro sistema incluye:',
       solutionFeatures: [

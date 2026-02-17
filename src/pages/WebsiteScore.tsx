@@ -24,16 +24,17 @@ interface ScoreData {
   rawData?: Record<string, unknown>;
 }
 
-const industryData: Record<string, { avgCustomerValue: number; potentialLeadsLost: { low: number; high: number } }> = {
-  'Plumbing & HVAC': { avgCustomerValue: 500, potentialLeadsLost: { low: 10, high: 25 } },
-  'Legal Services': { avgCustomerValue: 2000, potentialLeadsLost: { low: 5, high: 15 } },
-  'Medical & Dental': { avgCustomerValue: 800, potentialLeadsLost: { low: 8, high: 20 } },
-  'Construction & Contracting': { avgCustomerValue: 3000, potentialLeadsLost: { low: 5, high: 12 } },
-  'Home Services': { avgCustomerValue: 400, potentialLeadsLost: { low: 12, high: 30 } },
-  'Landscaping': { avgCustomerValue: 350, potentialLeadsLost: { low: 10, high: 25 } },
-  'Auto Services': { avgCustomerValue: 450, potentialLeadsLost: { low: 10, high: 20 } },
-  'Other': { avgCustomerValue: 500, potentialLeadsLost: { low: 8, high: 20 } },
+const industryData: Record<string, { potentialLeadsLost: { low: number; high: number } }> = {
+  'Plumbing & HVAC': { potentialLeadsLost: { low: 10, high: 25 } },
+  'Legal Services': { potentialLeadsLost: { low: 5, high: 15 } },
+  'Medical & Dental': { potentialLeadsLost: { low: 8, high: 20 } },
+  'Construction & Contracting': { potentialLeadsLost: { low: 5, high: 12 } },
+  'Home Services': { potentialLeadsLost: { low: 12, high: 30 } },
+  'Landscaping': { potentialLeadsLost: { low: 10, high: 25 } },
+  'Auto Services': { potentialLeadsLost: { low: 10, high: 20 } },
+  'Other': { potentialLeadsLost: { low: 8, high: 20 } },
 };
+const AVG_CUSTOMER_VALUE = 3000;
 
 // Map Spanish options to English keys for industryData lookup
 const businessTypeKeyMap: Record<string, string> = {
@@ -206,7 +207,7 @@ export default function WebsiteScore() {
       const key = getBusinessTypeKey(answers[2]);
       const industry = industryData[key] || industryData['Other'];
       const leadsLost = scores.overall <= 50 ? industry.potentialLeadsLost.high : industry.potentialLeadsLost.low;
-      const revenueLost = leadsLost * industry.avgCustomerValue;
+      const revenueLost = leadsLost * AVG_CUSTOMER_VALUE;
 
       // Generate share token
       const token = crypto.randomUUID().replace(/-/g, '').slice(0, 12);
@@ -349,7 +350,7 @@ export default function WebsiteScore() {
   const key = getBusinessTypeKey(answers[2]);
   const industry = industryData[key] || industryData['Other'];
   const leadsLost = scoreData ? (scoreData.overall <= 50 ? industry.potentialLeadsLost.high : industry.potentialLeadsLost.low) : 0;
-  const revenueLost = leadsLost * industry.avgCustomerValue;
+  const revenueLost = leadsLost * AVG_CUSTOMER_VALUE;
   const roiMultiplier = revenueLost > 0 ? Math.max(2, Math.round(revenueLost / 2200)) : 5;
 
   return (
@@ -401,13 +402,43 @@ export default function WebsiteScore() {
                   )}
                   {'options' in currentQuestion && currentQuestion.options && (
                     <div className="grid gap-3">
-                      {currentQuestion.options.map(option => (
-                        <button key={option} onClick={() => handleAnswer(option)}
-                          className={cn("text-left p-4 rounded-lg border-2 transition-all", answers[currentStep] === option ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
-                          {option}
-                        </button>
-                      ))}
+                      {currentQuestion.options.map(option => {
+                        const isOther = option === 'Other' || option === 'Otro';
+                        const hasOther = 'hasOtherInput' in currentQuestion && currentQuestion.hasOtherInput;
+                        const isCustomAnswer = hasOther && answers[currentStep] !== '' && !(currentQuestion.options as readonly string[]).includes(answers[currentStep]);
+                        const isSelected = answers[currentStep] === option || (isOther && isCustomAnswer);
+                        return (
+                          <button key={option} onClick={() => handleAnswer(option)}
+                            className={cn("text-left p-4 rounded-lg border-2 transition-all", isSelected ? "border-accent bg-accent/5" : "border-border hover:border-accent/50")}>
+                            {option}
+                          </button>
+                        );
+                      })}
+                      {(() => {
+                        const hasOther = 'hasOtherInput' in currentQuestion && currentQuestion.hasOtherInput;
+                        const selectedIsOther = answers[currentStep] === 'Other' || answers[currentStep] === 'Otro';
+                        const isCustom = hasOther && answers[currentStep] !== '' && !(currentQuestion.options as readonly string[]).includes(answers[currentStep]);
+                        if (hasOther && (selectedIsOther || isCustom)) {
+                          return (
+                            <Input
+                              value={selectedIsOther ? '' : answers[currentStep]}
+                              onChange={e => handleAnswer(e.target.value || '')}
+                              placeholder={'otherPlaceholder' in currentQuestion ? currentQuestion.otherPlaceholder as string : ''}
+                              className="text-lg py-6 mt-2"
+                              autoFocus
+                            />
+                          );
+                        }
+                        return null;
+                      })()}
                     </div>
+                  )}
+
+                  {/* Privacy disclaimer before phone/name questions */}
+                  {(currentStep === 6 || currentStep === 7) && (
+                    <p className="text-sm text-muted-foreground bg-secondary/50 rounded-lg p-4 border border-border">
+                      {t.privacyDisclaimer}
+                    </p>
                   )}
                 </motion.div>
               </AnimatePresence>
@@ -641,8 +672,8 @@ export default function WebsiteScore() {
                 <p className="text-lg leading-relaxed opacity-95">
                   {t.results.impactText
                     .replace('{leads}', String(leadsLost))
-                    .replace('${value}', String(industry.avgCustomerValue.toLocaleString()))
-                    .replace('${revenue}', String(revenueLost.toLocaleString()))
+                    .replace('${value}', `$${AVG_CUSTOMER_VALUE.toLocaleString()}`)
+                    .replace('${revenue}', `$${revenueLost.toLocaleString()}`)
                   }
                 </p>
               </motion.div>
