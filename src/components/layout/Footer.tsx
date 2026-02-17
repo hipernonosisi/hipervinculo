@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,9 @@ import logoFull from '@/assets/logo-hipervinculo.png';
 
 export function Footer() {
   const { t, language } = useLanguage();
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
+  const isOnWebsiteScore = location.pathname === '/website-score';
 
   const quickLinks = [
     { href: '/about', label: t.nav.aboutUs },
@@ -41,12 +43,14 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link to="/website-score">
-              <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
-                {language === 'en' ? 'Get Your Free Score' : 'Obtén Tu Score Gratis'}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            {!isOnWebsiteScore && (
+              <Link to="/website-score">
+                <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
+                  {language === 'en' ? 'Get Your Free Score' : 'Obtén Tu Score Gratis'}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            )}
             <Link to="/contact">
               <Button variant="outline" className="border-2 border-white rounded-full px-8 py-6 text-base font-semibold transition-colors" style={{ color: '#203B2C', backgroundColor: 'white' }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; }}
