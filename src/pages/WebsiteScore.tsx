@@ -507,7 +507,7 @@ export default function WebsiteScore() {
                 className="rounded-2xl p-8 text-white" style={{ backgroundColor: '#2d4a2d' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <DollarSign className="h-6 w-6" />
-                  <h2 className="text-xl md:text-2xl font-bold">{t.results.impactTitle}</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold text-white">{t.results.impactTitle}</h2>
                 </div>
                 <p className="text-lg leading-relaxed opacity-95">
                   {t.results.impactText
