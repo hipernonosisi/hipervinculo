@@ -23,6 +23,7 @@ import ThankYouContact from "./pages/ThankYouContact";
 import ThankYouAudit from "./pages/ThankYouAudit";
 import WebsiteScore from "./pages/WebsiteScore";
 import ThankYouWebsiteScore from "./pages/ThankYouWebsiteScore";
+import SharedResults from "./pages/SharedResults";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/thank-you/audit" element={<ThankYouAudit />} />
             <Route path="/website-score" element={<WebsiteScore />} />
             <Route path="/thank-you/website-score" element={<ThankYouWebsiteScore />} />
+            <Route path="/results/:token" element={<SharedResults />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

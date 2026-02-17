@@ -315,6 +315,7 @@ export type Database = {
           performance_score: number | null
           phone: string | null
           seo_score: number | null
+          share_token: string | null
           timeline: string | null
           website_url: string
         }
@@ -340,6 +341,7 @@ export type Database = {
           performance_score?: number | null
           phone?: string | null
           seo_score?: number | null
+          share_token?: string | null
           timeline?: string | null
           website_url: string
         }
@@ -365,6 +367,7 @@ export type Database = {
           performance_score?: number | null
           phone?: string | null
           seo_score?: number | null
+          share_token?: string | null
           timeline?: string | null
           website_url?: string
         }
