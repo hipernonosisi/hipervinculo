@@ -232,6 +232,7 @@ export default function WebsiteScore() {
       if (error) throw error;
       setRecordId(data.id);
       setPhase('analysis');
+      window.scrollTo({ top: 0, behavior: 'instant' });
 
       // Fetch scores during animation
       const scores = await fetchPageSpeedScores(answers[0]);
