@@ -578,25 +578,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#8BC34A' }}>
-        <div className="container text-center">
-          <AnimatedSection className="max-w-3xl mx-auto space-y-8">
-            <h2 
-              className="text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.05] tracking-[-0.03em]"
-              style={{ fontWeight: 800 }}
-            >
-              {t.about.cta.title}
-            </h2>
-            <p className="text-[18px] md:text-[20px] text-white/80 leading-relaxed max-w-2xl mx-auto">
-              {t.about.cta.subtitle}
-            </p>
-            <Button asChild size="lg" className="bg-white text-foreground hover:bg-white/95 rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg mt-4">
-              <Link to="/contact">{t.about.cta.button} <ArrowRight className="ml-2 h-5 w-5" /></Link>
-            </Button>
-          </AnimatedSection>
-        </div>
-      </section>
     </Layout>
   );
 }
