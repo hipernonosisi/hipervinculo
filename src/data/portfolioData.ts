@@ -83,7 +83,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://pulverizadoresindustriales.com/',
     image: '/portfolio/pulverizadores-industriales.png',
     imageMobile: '/portfolio/pulverizadores-industriales-mobile.png',
-    extraImages: ['/portfolio/pulverizadores-industriales.png', '/portfolio/pulverizadores-industriales-mobile.png'],
+    extraImages: ['/portfolio/pulverizadores-industriales-materials.png', '/portfolio/pulverizadores-industriales-catalog.png', '/portfolio/pulverizadores-industriales-comparison.png', '/portfolio/pulverizadores-industriales-contact.png'],
     description: { en: 'Industrial plastic pulverizers with advanced Vectored Air technology.', es: 'Pulverizadores industriales de plástico con tecnología avanzada Vectored Air.' },
     industry: { en: 'Industrial Equipment', es: 'Equipos Industriales' },
     tagline: { en: 'A digital platform for industrial pulverizer technology.', es: 'Una plataforma digital para tecnología de pulverizadores industriales.' },
