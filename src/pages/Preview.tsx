@@ -289,34 +289,45 @@ export default function Preview() {
           <div className="max-w-2xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
-              <p className="text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
+              {isPricingStep ? (
+                <>
+                  <span className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    {language === 'en' ? 'Step 10 of 10 complete' : 'Paso 10 de 10 completado'}
+                  </span>
+                  <h1 className="text-3xl md:text-4xl font-bold mb-4">
+                    {language === 'en' ? 'One Last Step' : 'Un Último Paso'}
+                  </h1>
+                  <p className="text-muted-foreground">
+                    {language === 'en'
+                      ? 'Review what happens next, then request your preview.'
+                      : 'Revisa lo que sigue y solicita tu vista previa.'}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
+                  <p className="text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
+                </>
+              )}
             </div>
 
-            {/* Progress */}
-            {isPricingStep && (
-              <div className="mb-6 text-center">
-                <p className="text-2xl md:text-3xl font-bold text-accent">
-                  {language === 'en' ? '🎯 Almost done — just hit submit!' : '🎯 ¡Casi listo — solo presiona enviar!'}
-                </p>
+            {/* Progress - only for question steps */}
+            {!isPricingStep && (
+              <div className="mb-12">
+                <div className="flex justify-between text-sm text-muted-foreground mb-2">
+                  <span>
+                    {language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}
+                  </span>
+                  <span>{Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%</span>
+                </div>
+                <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-accent transition-all duration-300"
+                    style={{ width: `${((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
+                  />
+                </div>
               </div>
             )}
-            <div className="mb-12">
-              <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                <span>
-                  {isPricingStep
-                    ? (language === 'en' ? 'One last step' : 'Un último paso')
-                    : <>{language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}</>}
-                </span>
-                <span>{isPricingStep ? '95%' : `${Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%`}</span>
-              </div>
-              <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-accent transition-all duration-300"
-                  style={{ width: `${isPricingStep ? 95 : ((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
-                />
-              </div>
-            </div>
 
             {/* Content */}
             <div className="animate-fade-in" key={currentStep}>
