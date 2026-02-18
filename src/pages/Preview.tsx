@@ -54,7 +54,7 @@ function calculateLeadScore(answers: string[]) {
 const previewTranslations = {
   en: {
     seoTitle: 'See What Your New Website Could Look Like',
-    headline: 'See What Your New Website Could Look Like',
+    headline: 'See What Your Website\nCould Look Like',
     subtitle: "See a custom preview of your new website before making any decisions. No cost. No commitment.",
     questions: [
       { label: "What's your current website URL?", placeholder: 'www.yourbusiness.com', noWebsiteLink: "I don't have a website yet" },
@@ -76,7 +76,7 @@ const previewTranslations = {
   },
   es: {
     seoTitle: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
-    headline: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
+    headline: 'Mira Cómo Se Vería\nTu Sitio Web',
     subtitle: 'Visualiza tu nuevo sitio web antes de tomar cualquier decisión. Sin costo. Sin compromiso.',
     questions: [
       { label: '¿Cuál es la URL de tu sitio web actual?', placeholder: 'www.tunegocio.com', noWebsiteLink: 'Aún no tengo sitio web' },
@@ -218,7 +218,7 @@ export default function Preview() {
           <div className="max-w-2xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{t.headline}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
               <p className="text-muted-foreground">{t.subtitle}</p>
             </div>
 
