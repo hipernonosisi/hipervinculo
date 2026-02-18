@@ -296,8 +296,8 @@ export default function Preview() {
                   </span>
                   <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
                     {language === 'en'
-                      ? 'One Last Step to Get a Custom No-Cost Preview\nof Your Business Website'
-                      : 'Un Último Paso para Obtener una Vista Previa\nSin Costo de Tu Sitio Web'}
+                      ? 'One Last Step to Get\nYour No-Cost Preview'
+                      : 'Un Último Paso para\nTu Vista Previa Sin Costo'}
                   </h1>
                 </>
               ) : (
