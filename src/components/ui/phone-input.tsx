@@ -52,8 +52,14 @@ export function PhoneInput({ value, onChange, placeholder = "(555) 123-4567", cl
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
-    const formatted = selectedCountry.code === "+1" ? formatUSPhone(raw) : raw;
-    onChange(`${selectedCountry.code} ${formatted}`);
+    onChange(`${selectedCountry.code} ${raw}`);
+  };
+
+  const handleBlur = () => {
+    if (selectedCountry.code === "+1") {
+      const formatted = formatUSPhone(phoneNumber);
+      onChange(`${selectedCountry.code} ${formatted}`);
+    }
   };
 
   const handleCountrySelect = (country: CountryCode) => {
@@ -91,6 +97,7 @@ export function PhoneInput({ value, onChange, placeholder = "(555) 123-4567", cl
         type="tel"
         value={phoneNumber}
         onChange={handlePhoneChange}
+        onBlur={handleBlur}
         placeholder={placeholder}
         autoFocus={autoFocus}
         className="flex-1 bg-transparent px-3 py-2 text-base md:text-sm outline-none placeholder:text-muted-foreground h-full"
