@@ -100,7 +100,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'stillwater-day-spa',
     name: 'Stillwater Day Spa',
     url: 'https://stillwaterdayspa.com/',
-    image: '/portfolio/stillwater-day-spa.png',
+    image: '/portfolio/stillwater-day-spa-hero.png',
     imageMobile: '/portfolio/stillwater-day-spa-mobile.png',
     extraImages: ['/portfolio/stillwater-day-spa.png', '/portfolio/stillwater-day-spa-services.png', '/portfolio/stillwater-day-spa-mobile.png'],
     description: { en: 'Luxury day spa with online booking and membership system.', es: 'Spa de lujo con reservas en línea y sistema de membresías.' },
