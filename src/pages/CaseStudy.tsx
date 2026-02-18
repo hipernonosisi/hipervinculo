@@ -153,14 +153,14 @@ export default function CaseStudy() {
                 .map((img, i) => (
                   <AnimatedSection key={img} delay={i * 0.1}>
                     <motion.div
-                      className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-lg"
+                      className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-lg aspect-video"
                       whileHover={{ scale: 1.01 }}
                       transition={{ duration: 0.3 }}
                     >
                       <img
                         src={img}
                         alt={`${project.name} screenshot ${i + 1}`}
-                        className="w-full object-cover object-top"
+                        className="w-full h-full object-cover object-top"
                         loading="lazy"
                       />
                     </motion.div>
