@@ -465,7 +465,7 @@ export default function Preview() {
                     : isLastStep
                     ? pricing.submitButton
                     : t.next}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {!isPricingStep && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </div>
             </div>
