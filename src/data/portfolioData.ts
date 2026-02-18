@@ -119,7 +119,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'rasetta-innovations',
     name: 'Rasetta Innovations',
     url: 'https://rasettainnovations.com/',
-    image: '/portfolio/rasetta-innovations.png',
+    image: '/portfolio/rasetta-innovations-hero.png',
     imageMobile: '/portfolio/rasetta-innovations-mobile.png',
     extraImages: ['/portfolio/rasetta-innovations.png', '/portfolio/rasetta-innovations-mobile.png'],
     description: { en: 'Residential & commercial design studio with expert craftsmanship.', es: 'Estudio de diseño residencial y comercial con artesanía experta.' },
