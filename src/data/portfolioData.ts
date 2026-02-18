@@ -140,7 +140,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://lajexllc.com/',
     image: '/portfolio/lajex-llc.png',
     imageMobile: '',
-    extraImages: [],
+    extraImages: ['/portfolio/lajex-llc.png', '/portfolio/lajex-llc-benefits.png', '/portfolio/lajex-llc-products.png', '/portfolio/lajex-llc-contact.png'],
     description: { en: 'Business solutions and consulting services.', es: 'Soluciones empresariales y servicios de consultoría.' },
     industry: { en: 'Business Services', es: 'Servicios Empresariales' },
     tagline: { en: 'A professional web presence for a consulting firm.', es: 'Una presencia web profesional para una firma de consultoría.' },
