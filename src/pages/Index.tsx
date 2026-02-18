@@ -688,7 +688,7 @@ export default function Index() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#8BC34A' }}>
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#203B2C' }}>
         <div className="container text-center">
           <AnimatedSection className="max-w-3xl mx-auto space-y-8">
             <h2 
