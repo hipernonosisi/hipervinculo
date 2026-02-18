@@ -138,7 +138,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'lajex-llc',
     name: 'Lajex LLC',
     url: 'https://lajexllc.com/',
-    image: '',
+    image: '/portfolio/lajex-llc.png',
     imageMobile: '',
     extraImages: [],
     description: { en: 'Business solutions and consulting services.', es: 'Soluciones empresariales y servicios de consultoría.' },
