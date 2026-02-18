@@ -26,7 +26,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://stepsolutionusa.com/',
     image: '/portfolio/step-solution-hero.png',
     imageMobile: '/portfolio/step-solution-mobile.png',
-    extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-projects.png', '/portfolio/step-solution-products.png', '/portfolio/step-solution-pro.png', '/portfolio/step-solution-order.png', '/portfolio/step-solution-mobile.png'],
+    extraImages: ['/portfolio/step-solution-projects.png', '/portfolio/step-solution-products.png', '/portfolio/step-solution-pro.png', '/portfolio/step-solution-order.png', '/portfolio/step-solution-mobile.png'],
     description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
     industry: { en: 'Manufacturing & E-Commerce', es: 'Manufactura & E-Commerce' },
     tagline: { en: 'An e-commerce platform for a custom stair solutions manufacturer.', es: 'Una plataforma e-commerce para un fabricante de soluciones de escaleras personalizadas.' },
