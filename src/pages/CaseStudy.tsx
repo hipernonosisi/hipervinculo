@@ -31,7 +31,7 @@ export default function CaseStudy() {
       nextProject: 'Next Project',
       prevProject: 'Previous Project',
       ctaTitle: 'Want Results Like These?',
-      ctaText: 'Get a custom preview of what your new website could look like — at no cost.',
+      ctaText: 'Get a custom preview of what your new website\ncould look like — at no cost.',
       ctaButton: 'Get Your Free Preview',
     },
     es: {
@@ -43,7 +43,7 @@ export default function CaseStudy() {
       nextProject: 'Siguiente Proyecto',
       prevProject: 'Proyecto Anterior',
       ctaTitle: '¿Quieres Resultados Como Estos?',
-      ctaText: 'Obtén una vista previa personalizada de cómo podría verse tu nuevo sitio web — sin costo.',
+      ctaText: 'Obtén una vista previa personalizada de cómo podría verse\ntu nuevo sitio web — sin costo.',
       ctaButton: 'Obtén Tu Vista Previa Gratis',
     },
   };
@@ -263,7 +263,7 @@ export default function CaseStudy() {
               >
                 {c.ctaTitle}
               </h2>
-              <p className="text-[17px] text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
+              <p className="text-[17px] text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8 whitespace-pre-line">
                 {c.ctaText}
               </p>
               <Button
