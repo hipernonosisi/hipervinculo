@@ -32,7 +32,24 @@ Deno.serve(async (req) => {
       formattedUrl = `https://${formattedUrl}`;
     }
 
-    console.log('Scraping URL:', formattedUrl);
+    console.log('Scraping URL:', formattedUrl, 'Options:', JSON.stringify(options));
+
+    const body: Record<string, unknown> = {
+      url: formattedUrl,
+      formats: options?.formats || ['markdown', 'html'],
+      onlyMainContent: options?.onlyMainContent ?? false,
+      waitFor: options?.waitFor || 2000,
+    };
+
+    // Support mobile viewport
+    if (options?.mobile) {
+      body.mobile = true;
+    }
+
+    // Support location
+    if (options?.location) {
+      body.location = options.location;
+    }
 
     const response = await fetch('https://api.firecrawl.dev/v1/scrape', {
       method: 'POST',
@@ -40,12 +57,7 @@ Deno.serve(async (req) => {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        url: formattedUrl,
-        formats: options?.formats || ['markdown', 'html'],
-        onlyMainContent: options?.onlyMainContent ?? false,
-        waitFor: options?.waitFor || 2000,
-      }),
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();
