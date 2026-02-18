@@ -546,6 +546,9 @@ export const translations = {
       differentPartnership: 'True Partnership',
       differentPartnershipDesc: 'We become an extension of your team. Weekly calls, Slack access, and proactive recommendations — not just monthly reports.',
       partnersTitle: 'Certified Partners',
+      portfolioSneakTitle: 'Recent Work',
+      portfolioSneakSubtitle: 'A look at some of our latest projects',
+      portfolioSneakCta: 'View All Projects',
       industriesTitle: 'Industries We Serve',
       industriesSubtitle: 'We have deep experience across these verticals',
       industries: [
@@ -1570,6 +1573,9 @@ export const translations = {
       differentPartnership: 'Asociación Verdadera',
       differentPartnershipDesc: 'Nos convertimos en una extensión de tu equipo. Llamadas semanales, acceso a Slack y recomendaciones proactivas — no solo reportes mensuales.',
       partnersTitle: 'Socios Certificados',
+      portfolioSneakTitle: 'Trabajo Reciente',
+      portfolioSneakSubtitle: 'Un vistazo a algunos de nuestros últimos proyectos',
+      portfolioSneakCta: 'Ver Todos los Proyectos',
       industriesTitle: 'Industrias que Atendemos',
       industriesSubtitle: 'Tenemos experiencia profunda en estos verticales',
       industries: [

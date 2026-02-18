@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, LineChart } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, LineChart, ExternalLink } from 'lucide-react';
+import { portfolioProjects } from '@/data/portfolioData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -493,6 +494,52 @@ export default function Index() {
               })}
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Portfolio Sneak Peek */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container">
+          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+            <div>
+              <p className="text-accent font-semibold text-[14px] mb-2">{t.homepage.portfolioSneakTitle}</p>
+              <h3 className="text-[24px] md:text-[28px] font-bold" style={{ color: '#2d4a2d' }}>
+                {t.homepage.portfolioSneakSubtitle}
+              </h3>
+            </div>
+            <Button asChild variant="ghost" className="text-accent hover:text-accent/80 font-semibold text-[15px] px-0">
+              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+          </AnimatedSection>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {portfolioProjects.slice(0, 4).map((project, index) => (
+              <AnimatedSection key={project.slug} delay={index * 0.08}>
+                <Link to={`/portfolio/${project.slug}`} className="group block">
+                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-muted mb-3">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+                        {project.name}
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  </div>
+                  <h4 className="text-[14px] md:text-[15px] font-bold text-foreground group-hover:text-accent transition-colors">
+                    {project.name}
+                  </h4>
+                  <p className="text-[12px] md:text-[13px] text-muted-foreground">
+                    {project.industry[language]}
+                  </p>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
