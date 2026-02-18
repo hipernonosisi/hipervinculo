@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PhoneInput } from '@/components/ui/phone-input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Layout } from '@/components/layout/Layout';
@@ -185,13 +186,11 @@ export default function Contact() {
                   required
                   className="bg-white border-border/50 rounded-xl h-12 px-4"
                 />
-                <Input
-                  placeholder={t.contact.form.phone}
-                  type="tel"
+                <PhoneInput
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  required
-                  className="bg-white border-border/50 rounded-xl h-12 px-4"
+                  onChange={(val) => setFormData({ ...formData, phone: val })}
+                  placeholder="(555) 123-4567"
+                  className="bg-white border-border/50 rounded-xl h-12"
                 />
               </div>
 

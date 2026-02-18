@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PhoneInput } from '@/components/ui/phone-input';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -240,10 +241,22 @@ export default function Preview() {
             <div className="space-y-8 animate-fade-in" key={currentStep}>
               <h2 className="text-2xl md:text-3xl font-bold">{currentQuestion.label}</h2>
 
-              {(currentQuestion.type === 'text' || currentQuestion.type === 'tel' || currentQuestion.type === 'email') && (
+              {currentQuestion.type === 'tel' && (
+                <div className="space-y-3">
+                  <PhoneInput
+                    value={answers[currentStep]}
+                    onChange={(val) => handleAnswer(val)}
+                    placeholder={currentQuestion.placeholder}
+                    className="text-lg py-1"
+                    autoFocus
+                  />
+                </div>
+              )}
+
+              {(currentQuestion.type === 'text' || currentQuestion.type === 'email') && (
                 <div className="space-y-3">
                   <Input
-                    type={currentQuestion.type === 'tel' ? 'tel' : currentQuestion.type === 'email' ? 'email' : 'text'}
+                    type={currentQuestion.type === 'email' ? 'email' : 'text'}
                     value={answers[currentStep]}
                     onChange={(e) => handleAnswer(e.target.value)}
                     placeholder={currentQuestion.placeholder}
