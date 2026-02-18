@@ -19,23 +19,23 @@ export interface PortfolioProject {
 }
 
 export const portfolioProjects: PortfolioProject[] = [
-  // 1. Rasetta Innovations
+  // 1. Step Solution USA
   {
-    slug: 'rasetta-innovations',
-    name: 'Rasetta Innovations',
-    url: 'https://rasettainnovations.com/',
-    image: '/portfolio/rasetta-innovations.png',
-    imageMobile: '/portfolio/rasetta-innovations-mobile.png',
-    extraImages: ['/portfolio/rasetta-innovations.png', '/portfolio/rasetta-innovations-mobile.png'],
-    description: { en: 'Residential & commercial design studio with expert craftsmanship.', es: 'Estudio de diseño residencial y comercial con artesanía experta.' },
-    industry: { en: 'Interior Design', es: 'Diseño de Interiores' },
-    tagline: { en: 'A premium web presence for a design studio transforming spaces.', es: 'Una presencia web premium para un estudio de diseño que transforma espacios.' },
-    overview: { en: 'Rasetta Innovations needed a website that reflected the quality and sophistication of their residential and commercial design work. We designed and developed a conversion-focused site with an elegant visual identity, optimized for lead generation and mobile performance.', es: 'Rasetta Innovations necesitaba un sitio web que reflejara la calidad y sofisticación de su trabajo de diseño residencial y comercial. Diseñamos y desarrollamos un sitio enfocado en conversión con una identidad visual elegante, optimizado para generación de leads y rendimiento móvil.' },
-    servicesUsed: { en: ['Website Development', 'Brand Identity', 'Lead Generation'], es: ['Desarrollo Web', 'Identidad de Marca', 'Generación de Leads'] },
+    slug: 'step-solution-usa',
+    name: 'Step Solution USA',
+    url: 'https://stepsolutionusa.com/',
+    image: '/portfolio/step-solution.png',
+    imageMobile: '/portfolio/step-solution-mobile.png',
+    extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-projects.png', '/portfolio/step-solution-products.png', '/portfolio/step-solution-pro.png', '/portfolio/step-solution-order.png', '/portfolio/step-solution-mobile.png'],
+    description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
+    industry: { en: 'Manufacturing & E-Commerce', es: 'Manufactura & E-Commerce' },
+    tagline: { en: 'An e-commerce platform for a custom stair solutions manufacturer.', es: 'Una plataforma e-commerce para un fabricante de soluciones de escaleras personalizadas.' },
+    overview: { en: 'Step Solution needed a comprehensive digital platform to showcase their custom stair treads and nosing products, integrate a dealer network, and enable online ordering. We built a full e-commerce experience with AI-powered product assistance and a pro program for contractors.', es: 'Step Solution necesitaba una plataforma digital integral para mostrar sus productos de peldaños y narices personalizadas, integrar una red de distribuidores y habilitar pedidos en línea. Construimos una experiencia e-commerce completa con asistente de producto con IA y programa pro para contratistas.' },
+    servicesUsed: { en: ['E-Commerce Development', 'AI Chatbot', 'Dealer Network Integration'], es: ['Desarrollo E-Commerce', 'Chatbot con IA', 'Integración de Red de Distribuidores'] },
     outcomes: [
-      { metric: '+180%', label: { en: 'Increase in consultation requests', es: 'Aumento en solicitudes de consulta' } },
-      { metric: '2.1s', label: { en: 'Average page load time', es: 'Tiempo promedio de carga' } },
-      { metric: '+65%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
+      { metric: '+320%', label: { en: 'Increase in online orders', es: 'Aumento en pedidos en línea' } },
+      { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
+      { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
     ],
   },
   // 2. ZERMA Latin America
@@ -114,23 +114,23 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+90%', label: { en: 'Membership sign-ups growth', es: 'Crecimiento en inscripciones de membresía' } },
     ],
   },
-  // 6. Step Solution USA
+  // 6. Rasetta Innovations
   {
-    slug: 'step-solution-usa',
-    name: 'Step Solution USA',
-    url: 'https://stepsolutionusa.com/',
-    image: '/portfolio/step-solution.png',
-    imageMobile: '/portfolio/step-solution-mobile.png',
-    extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-projects.png', '/portfolio/step-solution-products.png', '/portfolio/step-solution-pro.png', '/portfolio/step-solution-order.png', '/portfolio/step-solution-mobile.png'],
-    description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
-    industry: { en: 'Manufacturing & E-Commerce', es: 'Manufactura & E-Commerce' },
-    tagline: { en: 'An e-commerce platform for a custom stair solutions manufacturer.', es: 'Una plataforma e-commerce para un fabricante de soluciones de escaleras personalizadas.' },
-    overview: { en: 'Step Solution needed a comprehensive digital platform to showcase their custom stair treads and nosing products, integrate a dealer network, and enable online ordering. We built a full e-commerce experience with AI-powered product assistance and a pro program for contractors.', es: 'Step Solution necesitaba una plataforma digital integral para mostrar sus productos de peldaños y narices personalizadas, integrar una red de distribuidores y habilitar pedidos en línea. Construimos una experiencia e-commerce completa con asistente de producto con IA y programa pro para contratistas.' },
-    servicesUsed: { en: ['E-Commerce Development', 'AI Chatbot', 'Dealer Network Integration'], es: ['Desarrollo E-Commerce', 'Chatbot con IA', 'Integración de Red de Distribuidores'] },
+    slug: 'rasetta-innovations',
+    name: 'Rasetta Innovations',
+    url: 'https://rasettainnovations.com/',
+    image: '/portfolio/rasetta-innovations.png',
+    imageMobile: '/portfolio/rasetta-innovations-mobile.png',
+    extraImages: ['/portfolio/rasetta-innovations.png', '/portfolio/rasetta-innovations-mobile.png'],
+    description: { en: 'Residential & commercial design studio with expert craftsmanship.', es: 'Estudio de diseño residencial y comercial con artesanía experta.' },
+    industry: { en: 'Interior Design', es: 'Diseño de Interiores' },
+    tagline: { en: 'A premium web presence for a design studio transforming spaces.', es: 'Una presencia web premium para un estudio de diseño que transforma espacios.' },
+    overview: { en: 'Rasetta Innovations needed a website that reflected the quality and sophistication of their residential and commercial design work. We designed and developed a conversion-focused site with an elegant visual identity, optimized for lead generation and mobile performance.', es: 'Rasetta Innovations necesitaba un sitio web que reflejara la calidad y sofisticación de su trabajo de diseño residencial y comercial. Diseñamos y desarrollamos un sitio enfocado en conversión con una identidad visual elegante, optimizado para generación de leads y rendimiento móvil.' },
+    servicesUsed: { en: ['Website Development', 'Brand Identity', 'Lead Generation'], es: ['Desarrollo Web', 'Identidad de Marca', 'Generación de Leads'] },
     outcomes: [
-      { metric: '+320%', label: { en: 'Increase in online orders', es: 'Aumento en pedidos en línea' } },
-      { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
-      { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
+      { metric: '+180%', label: { en: 'Increase in consultation requests', es: 'Aumento en solicitudes de consulta' } },
+      { metric: '2.1s', label: { en: 'Average page load time', es: 'Tiempo promedio de carga' } },
+      { metric: '+65%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
   },
   // 7. Lajex LLC
