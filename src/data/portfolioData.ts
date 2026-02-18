@@ -24,7 +24,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'step-solution-usa',
     name: 'Step Solution USA',
     url: 'https://stepsolutionusa.com/',
-    image: '/portfolio/step-solution.png',
+    image: '/portfolio/step-solution-hero.png',
     imageMobile: '/portfolio/step-solution-mobile.png',
     extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-projects.png', '/portfolio/step-solution-products.png', '/portfolio/step-solution-pro.png', '/portfolio/step-solution-order.png', '/portfolio/step-solution-mobile.png'],
     description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
