@@ -108,19 +108,36 @@ export default function CaseStudy() {
         <section className="bg-white">
           <div className="container py-12 md:py-16">
             <AnimatedSection>
-              <motion.div
-                className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-2xl"
-                whileHover={{ scale: 1.005 }}
-                transition={{ duration: 0.4 }}
-              >
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={project.image}
-                    alt={`${project.name} website screenshot`}
-                    className="w-full object-cover object-top"
-                  />
-                </a>
-              </motion.div>
+              <div className="relative">
+                <motion.div
+                  className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-2xl"
+                  whileHover={{ scale: 1.005 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={project.image}
+                      alt={`${project.name} website screenshot`}
+                      className="w-full object-cover object-top"
+                    />
+                  </a>
+                </motion.div>
+                {project.imageMobile && (
+                  <motion.div
+                    className="absolute -bottom-8 right-4 md:right-8 w-[18%] md:w-[15%] rounded-xl overflow-hidden shadow-2xl border-3 border-white z-10"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <img
+                      src={project.imageMobile}
+                      alt={`${project.name} mobile screenshot`}
+                      className="w-full object-cover object-top"
+                    />
+                  </motion.div>
+                )}
+              </div>
             </AnimatedSection>
           </div>
         </section>
