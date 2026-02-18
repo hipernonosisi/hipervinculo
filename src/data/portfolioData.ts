@@ -121,7 +121,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://rasettainnovations.com/',
     image: '/portfolio/rasetta-innovations-hero.png',
     imageMobile: '/portfolio/rasetta-innovations-mobile.png',
-    extraImages: ['/portfolio/rasetta-innovations.png', '/portfolio/rasetta-innovations-mobile.png'],
+    extraImages: ['/portfolio/rasetta-innovations-hero.png', '/portfolio/rasetta-innovations-services.png', '/portfolio/rasetta-innovations.png', '/portfolio/rasetta-innovations-mobile.png'],
     description: { en: 'Residential & commercial design studio with expert craftsmanship.', es: 'Estudio de diseño residencial y comercial con artesanía experta.' },
     industry: { en: 'Interior Design', es: 'Diseño de Interiores' },
     tagline: { en: 'A premium web presence for a design studio transforming spaces.', es: 'Una presencia web premium para un estudio de diseño que transforma espacios.' },
