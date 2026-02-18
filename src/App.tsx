@@ -23,6 +23,7 @@ import ThankYouContact from "./pages/ThankYouContact";
 import ThankYouAudit from "./pages/ThankYouAudit";
 import Preview from "./pages/Preview";
 import ThankYouPreview from "./pages/ThankYouPreview";
+import Portfolio from "./pages/Portfolio";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/thank-you/audit" element={<ThankYouAudit />} />
             <Route path="/preview" element={<Preview />} />
             <Route path="/thank-you/preview" element={<ThankYouPreview />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
