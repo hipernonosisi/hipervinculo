@@ -57,7 +57,7 @@ export default function Portfolio() {
               >
                 {c.title}
               </h1>
-              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-4xl mx-auto leading-relaxed whitespace-nowrap">
                 {c.subtitle}
               </p>
             </AnimatedSection>
