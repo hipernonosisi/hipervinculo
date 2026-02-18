@@ -18,7 +18,7 @@ export default function Portfolio() {
       title: 'Recent\nProjects',
       subtitle: 'A selection of websites and digital platforms we have built for clients across different industries.',
       ctaTitle: 'Want a Website Like These?',
-      ctaText: 'Get a custom preview of what your new website could look like — at no cost.',
+      ctaText: 'Get a custom preview of what your new website\ncould look like — at no cost.',
       ctaButton: 'Get Your Free Preview',
     },
     es: {
@@ -28,7 +28,7 @@ export default function Portfolio() {
       title: 'Proyectos\nRecientes',
       subtitle: 'Una selección de sitios web y plataformas digitales que hemos construido para clientes de distintas industrias.',
       ctaTitle: '¿Quieres un Sitio Web Como Estos?',
-      ctaText: 'Obtén una vista previa personalizada de cómo podría verse tu nuevo sitio web — sin costo.',
+      ctaText: 'Obtén una vista previa personalizada de cómo podría verse\ntu nuevo sitio web — sin costo.',
       ctaButton: 'Obtén Tu Vista Previa Gratis',
     },
   };
@@ -83,7 +83,7 @@ export default function Portfolio() {
               >
                 {c.ctaTitle}
               </h2>
-              <p className="text-[18px] md:text-[20px] text-white/80 max-w-2xl mx-auto leading-relaxed mb-10">
+              <p className="text-[18px] md:text-[20px] text-white/80 max-w-2xl mx-auto leading-relaxed mb-10 whitespace-pre-line">
                 {c.ctaText}
               </p>
               <Button
