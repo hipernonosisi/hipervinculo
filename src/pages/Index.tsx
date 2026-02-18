@@ -335,8 +335,8 @@ export default function Index() {
                 {t.homepage.portfolioSneakSubtitle}
               </h3>
             </div>
-            <Button asChild variant="ghost" className="text-accent hover:text-accent/80 font-semibold text-[15px] px-0">
-              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            <Button asChild size="lg" className="rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg text-white hover:opacity-90" style={{ backgroundColor: '#8BC34A' }}>
+              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </AnimatedSection>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
