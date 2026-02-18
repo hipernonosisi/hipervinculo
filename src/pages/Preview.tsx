@@ -90,7 +90,7 @@ const previewTranslations = {
         'Recommended minimum ad budget: $1,200/month (paid directly to Google)',
       ],
       pricingFooter: 'No contracts — you stay because the system works.',
-      trustNote: 'Remember: the preview is completely free. You only invest if you love what you see and want to move forward.',
+      trustNote: 'Remember: the preview is completely free.\nYou only invest if you love what you see and want to move forward.',
       submitButton: 'Get My Preview →',
     },
   },
@@ -129,7 +129,7 @@ const previewTranslations = {
         'Presupuesto mínimo recomendado de anuncios: $1,200/mes (pagado directamente a Google)',
       ],
       pricingFooter: 'Sin contratos — te quedas porque el sistema funciona.',
-      trustNote: 'Recuerda: la vista previa es completamente sin costo. Solo inviertes si te encanta lo que ves y quieres avanzar.',
+      trustNote: 'Recuerda: la vista previa es completamente sin costo.\nSolo inviertes si te encanta lo que ves y quieres avanzar.',
       submitButton: 'Obtener Mi Vista Previa →',
     },
   },
@@ -369,7 +369,7 @@ export default function Preview() {
                   </div>
 
                   {/* Trust Note */}
-                  <p className="text-sm text-muted-foreground text-center">{pricing.trustNote}</p>
+                  <p className="text-sm text-muted-foreground text-center whitespace-pre-line">{pricing.trustNote}</p>
                 </div>
               ) : (
                 /* Regular Question */
