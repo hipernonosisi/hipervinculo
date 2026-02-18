@@ -45,7 +45,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://zerma-la.com/',
     image: '/portfolio/zerma-la.png',
     imageMobile: '/portfolio/zerma-la-mobile.png',
-    extraImages: ['/portfolio/zerma-la.png', '/portfolio/zerma-la-mobile.png'],
+    extraImages: ['/portfolio/zerma-la-about.png', '/portfolio/zerma-la-company.png', '/portfolio/zerma-la-products.png', '/portfolio/zerma-la-plastics.png'],
     description: { en: 'Industrial machinery leader for the recycling industry across LATAM.', es: 'Líder en maquinaria industrial para la industria del reciclaje en LATAM.' },
     industry: { en: 'Industrial Machinery', es: 'Maquinaria Industrial' },
     tagline: { en: 'A bilingual digital hub for an industrial machinery leader.', es: 'Un hub digital bilingüe para un líder en maquinaria industrial.' },
