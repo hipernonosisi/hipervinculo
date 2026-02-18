@@ -171,7 +171,24 @@ export default function Preview() {
 
   const isPricingStep = currentStep === PRICING_STEP;
   const isLastStep = currentStep === PRICING_STEP;
-  const canProceed = isPricingStep || answers[currentStep]?.trim() !== '';
+
+  const isValidDomain = (value: string) => {
+    const trimmed = value.trim().toLowerCase();
+    // Match domain with TLD (e.g. example.com, my-site.co.uk)
+    return /^([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/.test(
+      trimmed.replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace(/^www\./, '')
+    );
+  };
+
+  const canProceed = isPricingStep || (() => {
+    const val = answers[currentStep]?.trim();
+    if (!val) return false;
+    // Step 0 (website URL): require valid domain unless "no website" was selected
+    if (currentStep === 0 && val !== (language === 'en' ? "I don't have a website yet" : "Aún no tengo sitio web")) {
+      return isValidDomain(val);
+    }
+    return true;
+  })();
 
   const handleSubmit = useCallback(async () => {
     setIsSubmitting(true);
