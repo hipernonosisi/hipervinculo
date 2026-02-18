@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Layout as LayoutIcon, MessageCircle, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
@@ -27,12 +27,14 @@ function calculateLeadScore(answers: string[]) {
   const employees = answers[4];
   const advertising = answers[5];
 
-  // Budget scoring
-  if (budget === '$1,500 - $3,000' || budget === 'More than $3,000' || budget === 'Más de $3,000') {
+  // Budget scoring — UPDATED RANGES
+  if (budget === '$3,000 - $10,000' || budget === '$10,000 - $50,000' ||
+      budget === 'More than $50,000' || budget === 'Más de $50,000') {
     points += 2;
-  } else if (budget === '$500 - $1,500') {
+  } else if (budget === '$1,000 - $3,000') {
     points += 1;
   }
+  // Less than $1,000 / Menos de $1,000 → 0 points
 
   // Employee scoring
   if (employees !== 'Just me' && employees !== 'Solo yo') {
@@ -67,13 +69,30 @@ const previewTranslations = {
       { label: "What's your full name?", placeholder: 'John Smith' },
       { label: "What's the best phone number to reach you?", placeholder: '(555) 123-4567' },
       { label: "What's the best email to send your preview?", placeholder: 'john@yourbusiness.com' },
-      { label: "What's your approximate monthly budget for marketing?", options: ['Less than $500', '$500 - $1,500', '$1,500 - $3,000', 'More than $3,000'] },
+      { label: "What's your approximate monthly budget for marketing?", options: ['Less than $1,000', '$1,000 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'More than $50,000'] },
     ],
     next: 'Next',
     back: 'Back',
     submit: 'Get My Preview',
     pressEnter: 'Press Enter ↵',
     submitting: 'Submitting...',
+    pricingStep: {
+      headline: "Here's How It Works",
+      steps: [
+        { title: 'We design your preview — no cost', subtitle: "Our team builds a custom preview of your new website so you can see exactly what you'd get." },
+        { title: 'We review it together', subtitle: "We'll walk you through the preview, answer your questions, and discuss how it can generate leads for your business." },
+        { title: 'If you love it, we build it', subtitle: 'We bring your new website to life and set up your lead generation system.' },
+      ],
+      pricingIntro: 'If you decide to move forward, here\'s the investment:',
+      pricingItems: [
+        'Website Development + Lead System Setup: **$2,500** (one-time)',
+        'Google Ads Management & Optimization: **$1,000/month**',
+        'Recommended minimum ad budget: $1,200/month (paid directly to Google)',
+      ],
+      pricingFooter: 'No contracts — you stay because the system works.',
+      trustNote: 'Remember: the preview is completely free. You only invest if you love what you see and want to move forward.',
+      submitButton: 'Get My Preview →',
+    },
   },
   es: {
     seoTitle: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
@@ -89,15 +108,44 @@ const previewTranslations = {
       { label: '¿Cuál es tu nombre completo?', placeholder: 'Tu nombre completo' },
       { label: '¿Cuál es el mejor teléfono para contactarte?', placeholder: '(555) 123-4567' },
       { label: '¿Cuál es el mejor email para enviarte tu vista previa?', placeholder: 'john@tunegocio.com' },
-      { label: '¿Cuál es tu presupuesto mensual aproximado para marketing?', options: ['Menos de $500', '$500 - $1,500', '$1,500 - $3,000', 'Más de $3,000'] },
+      { label: '¿Cuál es tu presupuesto mensual aproximado para marketing?', options: ['Menos de $1,000', '$1,000 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'Más de $50,000'] },
     ],
     next: 'Siguiente',
     back: 'Atrás',
     submit: 'Obtener Mi Vista Previa',
     pressEnter: 'Presiona Enter ↵',
     submitting: 'Enviando...',
+    pricingStep: {
+      headline: 'Así Es Como Funciona',
+      steps: [
+        { title: 'Diseñamos tu vista previa — sin costo', subtitle: 'Nuestro equipo construye una vista previa personalizada de tu nuevo sitio web para que veas exactamente lo que recibirías.' },
+        { title: 'Lo revisamos juntos', subtitle: 'Te mostramos la vista previa, respondemos tus preguntas, y discutimos cómo puede generar leads para tu negocio.' },
+        { title: 'Si te encanta, lo construimos', subtitle: 'Hacemos realidad tu nuevo sitio web y configuramos tu sistema de captación de clientes.' },
+      ],
+      pricingIntro: 'Si decides avanzar, esta es la inversión:',
+      pricingItems: [
+        'Desarrollo Web + Sistema de Captación: **$2,500** (único pago)',
+        'Gestión y Optimización de Google Ads: **$1,000/mes**',
+        'Presupuesto mínimo recomendado de anuncios: $1,200/mes (pagado directamente a Google)',
+      ],
+      pricingFooter: 'Sin contratos — te quedas porque el sistema funciona.',
+      trustNote: 'Recuerda: la vista previa es completamente sin costo. Solo inviertes si te encanta lo que ves y quieres avanzar.',
+      submitButton: 'Obtener Mi Vista Previa →',
+    },
   },
 } as const;
+
+const TOTAL_STEPS = 11; // 10 questions + 1 pricing screen
+const PRICING_STEP = 10; // index 10 = pricing screen
+
+const pricingIcons = [LayoutIcon, MessageCircle, Rocket];
+
+function renderBold(text: string) {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i} className="font-bold">{part}</strong> : part
+  );
+}
 
 export default function Preview() {
   const { language } = useLanguage();
@@ -121,69 +169,72 @@ export default function Preview() {
     return base;
   });
 
-  const currentQuestion = questions[currentStep];
-  const isLastStep = currentStep === questions.length - 1;
-  const canProceed = answers[currentStep].trim() !== '';
+  const isPricingStep = currentStep === PRICING_STEP;
+  const isLastStep = currentStep === PRICING_STEP;
+  const canProceed = isPricingStep || answers[currentStep]?.trim() !== '';
+
+  const handleSubmit = useCallback(async () => {
+    setIsSubmitting(true);
+    try {
+      const leadScore = calculateLeadScore(answers);
+
+      const { error } = await supabase.from('preview_leads').insert({
+        website_url: answers[0],
+        business_name: answers[1],
+        business_type: answers[2],
+        service_area: answers[3],
+        employee_count: answers[4],
+        current_advertising: answers[5],
+        contact_name: answers[6],
+        phone: answers[7],
+        email: answers[8],
+        monthly_budget: answers[9],
+        lead_score: leadScore,
+        language,
+      });
+
+      if (error) throw error;
+
+      supabase.functions.invoke('send-notification', {
+        body: {
+          type: 'preview-lead',
+          language,
+          businessName: answers[1],
+          businessType: answers[2],
+          websiteUrl: answers[0],
+          serviceArea: answers[3],
+          employeeCount: answers[4],
+          currentAdvertising: answers[5],
+          contactName: answers[6],
+          phone: answers[7],
+          email: answers[8],
+          monthlyBudget: answers[9],
+          leadScore,
+        }
+      }).catch(err => console.error('Notification error:', err));
+
+      navigate('/thank-you/preview');
+    } catch (error) {
+      console.error('Error submitting preview request:', error);
+      toast({
+        title: 'Error',
+        description: language === 'en' ? 'Failed to submit. Please try again.' : 'Error al enviar. Inténtalo de nuevo.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [answers, language, toast, navigate]);
 
   const handleNext = useCallback(async () => {
     if (!canProceed) return;
 
-    if (isLastStep) {
-      setIsSubmitting(true);
-      try {
-        const leadScore = calculateLeadScore(answers);
-
-        const { error } = await supabase.from('preview_leads').insert({
-          website_url: answers[0],
-          business_name: answers[1],
-          business_type: answers[2],
-          service_area: answers[3],
-          employee_count: answers[4],
-          current_advertising: answers[5],
-          contact_name: answers[6],
-          phone: answers[7],
-          email: answers[8],
-          monthly_budget: answers[9],
-          lead_score: leadScore,
-          language,
-        });
-
-        if (error) throw error;
-
-        // Send notification (don't block)
-        supabase.functions.invoke('send-notification', {
-          body: {
-            type: 'preview-lead',
-            language,
-            businessName: answers[1],
-            businessType: answers[2],
-            websiteUrl: answers[0],
-            serviceArea: answers[3],
-            employeeCount: answers[4],
-            currentAdvertising: answers[5],
-            contactName: answers[6],
-            phone: answers[7],
-            email: answers[8],
-            monthlyBudget: answers[9],
-            leadScore,
-          }
-        }).catch(err => console.error('Notification error:', err));
-
-        navigate('/thank-you/preview');
-      } catch (error) {
-        console.error('Error submitting preview request:', error);
-        toast({
-          title: 'Error',
-          description: language === 'en' ? 'Failed to submit. Please try again.' : 'Error al enviar. Inténtalo de nuevo.',
-          variant: 'destructive',
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
+    if (isPricingStep) {
+      handleSubmit();
     } else {
       setCurrentStep((prev) => prev + 1);
     }
-  }, [canProceed, isLastStep, answers, language, toast, navigate]);
+  }, [canProceed, isPricingStep, handleSubmit]);
 
   const handleBack = () => {
     if (currentStep > 0) setCurrentStep((prev) => prev - 1);
@@ -207,6 +258,8 @@ export default function Preview() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [canProceed, isSubmitting, handleNext]);
 
+  const pricing = t.pricingStep;
+
   return (
     <Layout>
       <SEO
@@ -226,74 +279,121 @@ export default function Preview() {
             {/* Progress */}
             <div className="mb-12">
               <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                <span>{language === 'en' ? 'Question' : 'Pregunta'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {questions.length}</span>
-                <span>{Math.round(((currentStep + 1) / questions.length) * 100)}%</span>
+                <span>
+                  {language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}
+                </span>
+                <span>{Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%</span>
               </div>
               <div className="h-2 bg-secondary rounded-full overflow-hidden">
                 <div
                   className="h-full bg-accent transition-all duration-300"
-                  style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
+                  style={{ width: `${((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
                 />
               </div>
             </div>
 
-            {/* Question */}
-            <div className="space-y-8 animate-fade-in" key={currentStep}>
-              <h2 className="text-2xl md:text-3xl font-bold">{currentQuestion.label}</h2>
+            {/* Content */}
+            <div className="animate-fade-in" key={currentStep}>
+              {isPricingStep ? (
+                /* Pricing / How It Works Screen */
+                <div className="space-y-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-center">{pricing.headline}</h2>
 
-              {currentQuestion.type === 'tel' && (
-                <div className="space-y-3">
-                  <PhoneInput
-                    value={answers[currentStep]}
-                    onChange={(val) => handleAnswer(val)}
-                    placeholder={currentQuestion.placeholder}
-                    className="text-lg py-1"
-                    autoFocus
-                  />
+                  {/* 3 Steps */}
+                  <div className="space-y-4">
+                    {pricing.steps.map((step, i) => {
+                      const Icon = pricingIcons[i];
+                      return (
+                        <div key={i} className="flex gap-4 items-start p-4 rounded-xl border border-border bg-background">
+                          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                            <Icon className="h-5 w-5 text-accent" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-foreground">{step.title}</h3>
+                            <p className="text-sm text-muted-foreground mt-1">{step.subtitle}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Pricing Box */}
+                  <div className="rounded-xl border border-border bg-muted/50 p-6 space-y-4">
+                    <p className="font-bold text-foreground">{pricing.pricingIntro}</p>
+                    <ul className="space-y-2 text-sm text-foreground">
+                      {pricing.pricingItems.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                          <span>{renderBold(item)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-sm text-muted-foreground">{pricing.pricingFooter}</p>
+                  </div>
+
+                  {/* Trust Note */}
+                  <p className="text-sm text-muted-foreground text-center">{pricing.trustNote}</p>
                 </div>
-              )}
+              ) : (
+                /* Regular Question */
+                <div className="space-y-8">
+                  <h2 className="text-2xl md:text-3xl font-bold">{questions[currentStep].label}</h2>
 
-              {(currentQuestion.type === 'text' || currentQuestion.type === 'email') && (
-                <div className="space-y-3">
-                  <Input
-                    type={currentQuestion.type === 'email' ? 'email' : 'text'}
-                    value={answers[currentStep]}
-                    onChange={(e) => handleAnswer(e.target.value)}
-                    placeholder={currentQuestion.placeholder}
-                    className="text-lg py-6"
-                    autoFocus
-                  />
-                  {currentQuestion.noWebsiteLink && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        handleAnswer('no-website');
-                        setCurrentStep((prev) => prev + 1);
-                      }}
-                      className="text-sm text-muted-foreground underline hover:text-foreground transition-colors"
-                    >
-                      {currentQuestion.noWebsiteLink}
-                    </button>
+                  {questions[currentStep].type === 'tel' && (
+                    <div className="space-y-3">
+                      <PhoneInput
+                        value={answers[currentStep]}
+                        onChange={(val) => handleAnswer(val)}
+                        placeholder={questions[currentStep].placeholder}
+                        className="text-lg py-1"
+                        autoFocus
+                      />
+                    </div>
                   )}
-                </div>
-              )}
 
-              {currentQuestion.type === 'select' && currentQuestion.options && (
-                <div className="grid gap-3">
-                  {currentQuestion.options.map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => handleAnswer(option)}
-                      className={cn(
-                        'text-left p-4 rounded-lg border-2 transition-all',
-                        answers[currentStep] === option
-                          ? 'border-accent bg-accent/5'
-                          : 'border-border hover:border-accent/50'
+                  {(questions[currentStep].type === 'text' || questions[currentStep].type === 'email') && (
+                    <div className="space-y-3">
+                      <Input
+                        type={questions[currentStep].type === 'email' ? 'email' : 'text'}
+                        value={answers[currentStep]}
+                        onChange={(e) => handleAnswer(e.target.value)}
+                        placeholder={questions[currentStep].placeholder}
+                        className="text-lg py-6"
+                        autoFocus
+                      />
+                      {questions[currentStep].noWebsiteLink && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleAnswer('no-website');
+                            setCurrentStep((prev) => prev + 1);
+                          }}
+                          className="text-sm text-muted-foreground underline hover:text-foreground transition-colors"
+                        >
+                          {questions[currentStep].noWebsiteLink}
+                        </button>
                       )}
-                    >
-                      {option}
-                    </button>
-                  ))}
+                    </div>
+                  )}
+
+                  {questions[currentStep].type === 'select' && questions[currentStep].options && (
+                    <div className="grid gap-3">
+                      {questions[currentStep].options!.map((option) => (
+                        <button
+                          key={option}
+                          onClick={() => handleAnswer(option)}
+                          className={cn(
+                            'text-left p-4 rounded-lg border-2 transition-all',
+                            answers[currentStep] === option
+                              ? 'border-accent bg-accent/5'
+                              : 'border-border hover:border-accent/50'
+                          )}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -310,9 +410,11 @@ export default function Preview() {
               </Button>
 
               <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground hidden sm:inline">
-                  {t.pressEnter}
-                </span>
+                {!isPricingStep && (
+                  <span className="text-sm text-muted-foreground hidden sm:inline">
+                    {t.pressEnter}
+                  </span>
+                )}
                 <Button
                   onClick={handleNext}
                   disabled={!canProceed || isSubmitting}
@@ -321,7 +423,7 @@ export default function Preview() {
                   {isSubmitting
                     ? t.submitting
                     : isLastStep
-                    ? t.submit
+                    ? pricing.submitButton
                     : t.next}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
