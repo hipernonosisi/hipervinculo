@@ -297,14 +297,16 @@ export default function Preview() {
             <div className="mb-12">
               <div className="flex justify-between text-sm text-muted-foreground mb-2">
                 <span>
-                  {language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}
+                  {isPricingStep
+                    ? (language === 'en' ? 'Almost done!' : '¡Casi listo!')
+                    : <>{language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}</>}
                 </span>
-                <span>{Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%</span>
+                <span>{isPricingStep ? '95%' : `${Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%`}</span>
               </div>
               <div className="h-2 bg-secondary rounded-full overflow-hidden">
                 <div
                   className="h-full bg-accent transition-all duration-300"
-                  style={{ width: `${((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
+                  style={{ width: `${isPricingStep ? 95 : ((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
                 />
               </div>
             </div>
@@ -435,7 +437,12 @@ export default function Preview() {
                 <Button
                   onClick={handleNext}
                   disabled={!canProceed || isSubmitting}
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground"
+                  className={cn(
+                    isPricingStep
+                      ? "bg-accent hover:bg-accent/90 text-accent-foreground text-base px-8 py-3 h-auto animate-pulse hover:animate-none"
+                      : "bg-accent hover:bg-accent/90 text-accent-foreground"
+                  )}
+                  size={isPricingStep ? "lg" : "default"}
                 >
                   {isSubmitting
                     ? t.submitting
