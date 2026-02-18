@@ -139,7 +139,7 @@ export const portfolioProjects: PortfolioProject[] = [
     name: 'Lajex LLC',
     url: 'https://lajexllc.com/',
     image: '/portfolio/lajex-llc.png',
-    imageMobile: '',
+    imageMobile: '/portfolio/lajex-llc-mobile.png',
     extraImages: ['/portfolio/lajex-llc.png', '/portfolio/lajex-llc-benefits.png', '/portfolio/lajex-llc-products.png', '/portfolio/lajex-llc-contact.png'],
     description: { en: 'Licensed & insured plumbing with water purification systems in South Florida.', es: 'Plomería licenciada y asegurada con sistemas de purificación de agua en el sur de Florida.' },
     industry: { en: 'Plumbing & Water Purification', es: 'Plomería & Purificación de Agua' },
