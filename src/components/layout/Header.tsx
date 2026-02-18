@@ -151,7 +151,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-white">
+        <div className="lg:hidden border-t border-border bg-white max-h-[calc(100vh-10rem)] overflow-y-auto">
           <nav className="container py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <div key={link.href}>
