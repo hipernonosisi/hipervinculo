@@ -126,7 +126,34 @@ export default function CaseStudy() {
         </section>
       )}
 
-      {/* Overview + Services + Outcomes */}
+      {/* Extra Screenshots Gallery */}
+      {project.extraImages.filter(img => img !== project.image && img !== project.imageMobile).length > 0 && (
+        <section className="bg-white pb-12 md:pb-16">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {project.extraImages
+                .filter(img => img !== project.image && img !== project.imageMobile)
+                .map((img, i) => (
+                  <AnimatedSection key={img} delay={i * 0.1}>
+                    <motion.div
+                      className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-lg"
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <img
+                        src={img}
+                        alt={`${project.name} screenshot ${i + 1}`}
+                        className="w-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    </motion.div>
+                  </AnimatedSection>
+                ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-16 md:py-24 bg-white">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
