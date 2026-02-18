@@ -25,20 +25,22 @@ export function PortfolioGrid({ limit }: PortfolioGridProps) {
         >
           <Link
             to={`/portfolio/${project.slug}`}
-            className="group block rounded-2xl overflow-hidden border-2 border-border/50 bg-background hover:shadow-xl transition-shadow"
+            className="group block rounded-2xl overflow-visible border-2 border-border/50 bg-background hover:shadow-xl transition-shadow"
           >
             {/* Desktop + Mobile mockup */}
-            <div className="relative aspect-video overflow-hidden bg-muted">
+            <div className="relative aspect-video bg-muted rounded-t-2xl">
               {/* Desktop screenshot */}
-              <img
-                src={project.image}
-                alt={`${project.name} desktop`}
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
+              <div className="absolute inset-0 overflow-hidden rounded-t-2xl">
+                <img
+                  src={project.image}
+                  alt={`${project.name} desktop`}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
               {/* Mobile screenshot overlay */}
               {project.imageMobile && (
-                <div className="absolute bottom-2 right-3 w-[18%] rounded-lg overflow-hidden shadow-xl border-2 border-white/80">
+                <div className="absolute -bottom-4 right-3 w-[22%] rounded-lg overflow-hidden shadow-2xl border-2 border-white/90 z-10">
                   <img
                     src={project.imageMobile}
                     alt={`${project.name} mobile`}
