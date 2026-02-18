@@ -299,6 +299,7 @@ export default function Preview() {
                       ? 'One Last Step to Get\nYour No-Cost Preview'
                       : 'Un Último Paso para\nTu Vista Previa Sin Costo'}
                   </h1>
+                  <p className="text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
                 </>
               ) : (
                 <>
