@@ -55,7 +55,7 @@ const previewTranslations = {
   en: {
     seoTitle: 'See What Your New Website Could Look Like',
     headline: 'See What Your New Website Could Look Like',
-    subtitle: "We'll design a preview of a high-performance website built specifically for your business — so you can see your new website before making any decisions. No cost. No commitment.",
+    subtitle: "See a custom preview of your new website before making any decisions. No cost. No commitment.",
     questions: [
       { label: "What's your current website URL?", placeholder: 'www.yourbusiness.com', noWebsiteLink: "I don't have a website yet" },
       { label: "What's your business name?", placeholder: "Smith's Plumbing" },
@@ -77,7 +77,7 @@ const previewTranslations = {
   es: {
     seoTitle: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
     headline: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
-    subtitle: 'Diseñamos una vista previa de un sitio web de alto rendimiento creado específicamente para tu negocio — para que puedas ver tu nueva web antes de tomar cualquier decisión. Sin costo. Sin compromiso.',
+    subtitle: 'Visualiza tu nuevo sitio web antes de tomar cualquier decisión. Sin costo. Sin compromiso.',
     questions: [
       { label: '¿Cuál es la URL de tu sitio web actual?', placeholder: 'www.tunegocio.com', noWebsiteLink: 'Aún no tengo sitio web' },
       { label: '¿Cuál es el nombre de tu negocio?', placeholder: 'Tu nombre de negocio' },
