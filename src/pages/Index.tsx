@@ -325,6 +325,132 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Portfolio Sneak Peek */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container">
+          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+            <div>
+              <p className="text-accent font-semibold text-[14px] mb-2">{t.homepage.portfolioSneakTitle}</p>
+              <h3 className="text-[24px] md:text-[28px] font-bold" style={{ color: '#2d4a2d' }}>
+                {t.homepage.portfolioSneakSubtitle}
+              </h3>
+            </div>
+            <Button asChild variant="ghost" className="text-accent hover:text-accent/80 font-semibold text-[15px] px-0">
+              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+          </AnimatedSection>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {portfolioProjects.slice(0, 4).map((project, index) => (
+              <AnimatedSection key={project.slug} delay={index * 0.08}>
+                <Link to={`/portfolio/${project.slug}`} className="group block">
+                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-muted mb-3">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+                        {project.name}
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  </div>
+                  <h4 className="text-[14px] md:text-[15px] font-bold text-foreground group-hover:text-accent transition-colors">
+                    {project.name}
+                  </h4>
+                  <p className="text-[12px] md:text-[13px] text-muted-foreground">
+                    {project.industry[language]}
+                  </p>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Clients Stay */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="container">
+          <AnimatedSection className="text-center mb-6">
+            <h2 
+              className="text-[48px] md:text-[60px] lg:text-[72px] mb-4 leading-[1.05] tracking-[-0.02em]"
+              style={{ fontWeight: 800, color: '#1a1a2e' }}
+            >
+              {t.homepage.partnersTitle}
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 lg:gap-24 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div 
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
+                >
+                  20+
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.homepage.trustBadge1}</p>
+              </div>
+              <div className="text-center">
+                <div 
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
+                >
+                  $100M+
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.provenResults.stat1}</p>
+              </div>
+              <div className="text-center">
+                <div 
+                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
+                  style={{ fontWeight: 800, color: '#8BC34A' }}
+                >
+                  5-8
+                </div>
+                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.homepage.trustBadge2}</p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section className="py-20 md:py-24 bg-[#f5f5f5]">
+        <div className="container">
+          <AnimatedSection className="text-center mb-12">
+            <h3 className="text-[28px] md:text-[32px] font-bold mb-4" style={{ color: '#2d4a2d' }}>{t.homepage.industriesTitle}</h3>
+            <p className="text-[17px] md:text-[18px] text-muted-foreground">
+              {t.homepage.industriesSubtitle}
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+              {t.homepage.industries.map((industry, index) => {
+                const Icon = industryIcons[index];
+                return (
+                  <div 
+                    key={index}
+                    className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
+                  >
+                    <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <Icon className="h-6 w-6 text-accent" />
+                    </div>
+                    <h4 className="text-[14px] md:text-[15px] font-bold text-foreground mb-1 tracking-wide">
+                      {industry.name}
+                    </h4>
+                    <p className="text-[12px] md:text-[13px] text-muted-foreground">
+                      {industry.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Playbook Download */}
       <section className="py-24 md:py-32 bg-[#f8f9f5]">
         <div className="container">
@@ -414,132 +540,6 @@ export default function Index() {
               </div>
             </div>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Why Clients Stay */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container">
-          <AnimatedSection className="text-center mb-6">
-            <h2 
-              className="text-[48px] md:text-[60px] lg:text-[72px] mb-4 leading-[1.05] tracking-[-0.02em]"
-              style={{ fontWeight: 800, color: '#1a1a2e' }}
-            >
-              {t.homepage.partnersTitle}
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2}>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 lg:gap-24 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div 
-                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
-                  style={{ fontWeight: 800, color: '#8BC34A' }}
-                >
-                  20+
-                </div>
-                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.homepage.trustBadge1}</p>
-              </div>
-              <div className="text-center">
-                <div 
-                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
-                  style={{ fontWeight: 800, color: '#8BC34A' }}
-                >
-                  $100M+
-                </div>
-                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.provenResults.stat1}</p>
-              </div>
-              <div className="text-center">
-                <div 
-                  className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
-                  style={{ fontWeight: 800, color: '#8BC34A' }}
-                >
-                  5-8
-                </div>
-                <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.homepage.trustBadge2}</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="py-20 md:py-24 bg-[#f5f5f5]">
-        <div className="container">
-          <AnimatedSection className="text-center mb-12">
-            <h3 className="text-[28px] md:text-[32px] font-bold mb-4" style={{ color: '#2d4a2d' }}>{t.homepage.industriesTitle}</h3>
-            <p className="text-[17px] md:text-[18px] text-muted-foreground">
-              {t.homepage.industriesSubtitle}
-            </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.1}>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-              {t.homepage.industries.map((industry, index) => {
-                const Icon = industryIcons[index];
-                return (
-                  <div 
-                    key={index}
-                    className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
-                  >
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <Icon className="h-6 w-6 text-accent" />
-                    </div>
-                    <h4 className="text-[14px] md:text-[15px] font-bold text-foreground mb-1 tracking-wide">
-                      {industry.name}
-                    </h4>
-                    <p className="text-[12px] md:text-[13px] text-muted-foreground">
-                      {industry.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Portfolio Sneak Peek */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container">
-          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
-            <div>
-              <p className="text-accent font-semibold text-[14px] mb-2">{t.homepage.portfolioSneakTitle}</p>
-              <h3 className="text-[24px] md:text-[28px] font-bold" style={{ color: '#2d4a2d' }}>
-                {t.homepage.portfolioSneakSubtitle}
-              </h3>
-            </div>
-            <Button asChild variant="ghost" className="text-accent hover:text-accent/80 font-semibold text-[15px] px-0">
-              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-1 h-4 w-4" /></Link>
-            </Button>
-          </AnimatedSection>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {portfolioProjects.slice(0, 4).map((project, index) => (
-              <AnimatedSection key={project.slug} delay={index * 0.08}>
-                <Link to={`/portfolio/${project.slug}`} className="group block">
-                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-muted mb-3">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
-                        {project.name}
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                  </div>
-                  <h4 className="text-[14px] md:text-[15px] font-bold text-foreground group-hover:text-accent transition-colors">
-                    {project.name}
-                  </h4>
-                  <p className="text-[12px] md:text-[13px] text-muted-foreground">
-                    {project.industry[language]}
-                  </p>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </section>
 
