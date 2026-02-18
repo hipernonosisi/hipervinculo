@@ -64,7 +64,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://filtrolaserparaplastico.com/',
     image: '/portfolio/filtro-laser.png',
     imageMobile: '/portfolio/filtro-laser-mobile.png',
-    extraImages: ['/portfolio/filtro-laser.png', '/portfolio/filtro-laser-mobile.png'],
+    extraImages: ['/portfolio/filtro-laser-problem.png', '/portfolio/filtro-laser-product.png', '/portfolio/filtro-laser-applications.png', '/portfolio/filtro-laser-specs.png'],
     description: { en: 'High-precision self-cleaning filters for plastic extrusion & recycling.', es: 'Filtros autolimpiantes de alta precisión para extrusión y reciclaje de plástico.' },
     industry: { en: 'Industrial Equipment', es: 'Equipos Industriales' },
     tagline: { en: 'A product-focused website for high-precision industrial filtration.', es: 'Un sitio web enfocado en producto para filtración industrial de alta precisión.' },
