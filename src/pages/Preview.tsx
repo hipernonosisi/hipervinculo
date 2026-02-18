@@ -294,11 +294,18 @@ export default function Preview() {
             </div>
 
             {/* Progress */}
+            {isPricingStep && (
+              <div className="mb-6 text-center">
+                <p className="text-2xl md:text-3xl font-bold text-accent">
+                  {language === 'en' ? '🎯 Almost done — just hit submit!' : '🎯 ¡Casi listo — solo presiona enviar!'}
+                </p>
+              </div>
+            )}
             <div className="mb-12">
               <div className="flex justify-between text-sm text-muted-foreground mb-2">
                 <span>
                   {isPricingStep
-                    ? (language === 'en' ? 'Almost done!' : '¡Casi listo!')
+                    ? (language === 'en' ? 'One last step' : 'Un último paso')
                     : <>{language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}</>}
                 </span>
                 <span>{isPricingStep ? '95%' : `${Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%`}</span>
