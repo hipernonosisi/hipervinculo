@@ -19,6 +19,7 @@ export interface PortfolioProject {
 }
 
 export const portfolioProjects: PortfolioProject[] = [
+  // 1. Rasetta Innovations
   {
     slug: 'rasetta-innovations',
     name: 'Rasetta Innovations',
@@ -37,42 +38,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+65%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
   },
-  {
-    slug: 'stillwater-day-spa',
-    name: 'Stillwater Day Spa',
-    url: 'https://stillwaterdayspa.com/',
-    image: '/portfolio/stillwater-day-spa.png',
-    imageMobile: '/portfolio/stillwater-day-spa-mobile.png',
-    extraImages: ['/portfolio/stillwater-day-spa.png', '/portfolio/stillwater-day-spa-services.png', '/portfolio/stillwater-day-spa-mobile.png'],
-    description: { en: 'Luxury day spa with online booking and membership system.', es: 'Spa de lujo con reservas en línea y sistema de membresías.' },
-    industry: { en: 'Wellness & Spa', es: 'Bienestar & Spa' },
-    tagline: { en: 'A serene digital experience for a luxury day spa.', es: 'Una experiencia digital serena para un spa de lujo.' },
-    overview: { en: 'Stillwater Day Spa wanted to increase online bookings and promote their membership program. We built a calming, conversion-optimized website with integrated booking, first-visit specials, and a membership enrollment flow.', es: 'Stillwater Day Spa quería aumentar las reservas en línea y promover su programa de membresías. Construimos un sitio web optimizado para conversión con reservas integradas, especiales de primera visita y flujo de membresías.' },
-    servicesUsed: { en: ['Website Development', 'Booking Integration', 'Lead Generation'], es: ['Desarrollo Web', 'Integración de Reservas', 'Generación de Leads'] },
-    outcomes: [
-      { metric: '+240%', label: { en: 'Increase in online bookings', es: 'Aumento en reservas en línea' } },
-      { metric: '35%', label: { en: 'Of new clients from web', es: 'De nuevos clientes desde la web' } },
-      { metric: '+90%', label: { en: 'Membership sign-ups growth', es: 'Crecimiento en inscripciones de membresía' } },
-    ],
-  },
-  {
-    slug: 'step-solution-usa',
-    name: 'Step Solution USA',
-    url: 'https://stepsolutionusa.com/',
-    image: '/portfolio/step-solution.png',
-    imageMobile: '/portfolio/step-solution-mobile.png',
-    extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-mobile.png'],
-    description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
-    industry: { en: 'Manufacturing & E-Commerce', es: 'Manufactura & E-Commerce' },
-    tagline: { en: 'An e-commerce platform for a custom stair solutions manufacturer.', es: 'Una plataforma e-commerce para un fabricante de soluciones de escaleras personalizadas.' },
-    overview: { en: 'Step Solution needed a comprehensive digital platform to showcase their custom stair treads and nosing products, integrate a dealer network, and enable online ordering. We built a full e-commerce experience with AI-powered product assistance and a pro program for contractors.', es: 'Step Solution necesitaba una plataforma digital integral para mostrar sus productos de peldaños y narices personalizadas, integrar una red de distribuidores y habilitar pedidos en línea. Construimos una experiencia e-commerce completa con asistente de producto con IA y programa pro para contratistas.' },
-    servicesUsed: { en: ['E-Commerce Development', 'AI Chatbot', 'Dealer Network Integration'], es: ['Desarrollo E-Commerce', 'Chatbot con IA', 'Integración de Red de Distribuidores'] },
-    outcomes: [
-      { metric: '+320%', label: { en: 'Increase in online orders', es: 'Aumento en pedidos en línea' } },
-      { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
-      { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
-    ],
-  },
+  // 2. ZERMA Latin America
   {
     slug: 'zerma-latin-america',
     name: 'ZERMA Latin America',
@@ -91,6 +57,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+85%', label: { en: 'Organic visibility growth', es: 'Crecimiento de visibilidad orgánica' } },
     ],
   },
+  // 3. Filtro Láser
   {
     slug: 'filtro-laser',
     name: 'Filtro Láser para Plástico',
@@ -109,6 +76,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '28s', label: { en: 'Avg. time to first interaction', es: 'Tiempo promedio a primera interacción' } },
     ],
   },
+  // 4. Pulverizadores Industriales (Reduction)
   {
     slug: 'pulverizadores-industriales',
     name: 'Pulverizadores Industriales',
@@ -127,6 +95,45 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+110%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
   },
+  // 5. Stillwater Day Spa
+  {
+    slug: 'stillwater-day-spa',
+    name: 'Stillwater Day Spa',
+    url: 'https://stillwaterdayspa.com/',
+    image: '/portfolio/stillwater-day-spa.png',
+    imageMobile: '/portfolio/stillwater-day-spa-mobile.png',
+    extraImages: ['/portfolio/stillwater-day-spa.png', '/portfolio/stillwater-day-spa-services.png', '/portfolio/stillwater-day-spa-mobile.png'],
+    description: { en: 'Luxury day spa with online booking and membership system.', es: 'Spa de lujo con reservas en línea y sistema de membresías.' },
+    industry: { en: 'Wellness & Spa', es: 'Bienestar & Spa' },
+    tagline: { en: 'A serene digital experience for a luxury day spa.', es: 'Una experiencia digital serena para un spa de lujo.' },
+    overview: { en: 'Stillwater Day Spa wanted to increase online bookings and promote their membership program. We built a calming, conversion-optimized website with integrated booking, first-visit specials, and a membership enrollment flow.', es: 'Stillwater Day Spa quería aumentar las reservas en línea y promover su programa de membresías. Construimos un sitio web optimizado para conversión con reservas integradas, especiales de primera visita y flujo de membresías.' },
+    servicesUsed: { en: ['Website Development', 'Booking Integration', 'Lead Generation'], es: ['Desarrollo Web', 'Integración de Reservas', 'Generación de Leads'] },
+    outcomes: [
+      { metric: '+240%', label: { en: 'Increase in online bookings', es: 'Aumento en reservas en línea' } },
+      { metric: '35%', label: { en: 'Of new clients from web', es: 'De nuevos clientes desde la web' } },
+      { metric: '+90%', label: { en: 'Membership sign-ups growth', es: 'Crecimiento en inscripciones de membresía' } },
+    ],
+  },
+  // 6. Step Solution USA
+  {
+    slug: 'step-solution-usa',
+    name: 'Step Solution USA',
+    url: 'https://stepsolutionusa.com/',
+    image: '/portfolio/step-solution.png',
+    imageMobile: '/portfolio/step-solution-mobile.png',
+    extraImages: ['/portfolio/step-solution.png', '/portfolio/step-solution-mobile.png'],
+    description: { en: 'Custom stair treads & nosing manufacturer with e-commerce platform.', es: 'Fabricante de peldaños y narices personalizadas con plataforma e-commerce.' },
+    industry: { en: 'Manufacturing & E-Commerce', es: 'Manufactura & E-Commerce' },
+    tagline: { en: 'An e-commerce platform for a custom stair solutions manufacturer.', es: 'Una plataforma e-commerce para un fabricante de soluciones de escaleras personalizadas.' },
+    overview: { en: 'Step Solution needed a comprehensive digital platform to showcase their custom stair treads and nosing products, integrate a dealer network, and enable online ordering. We built a full e-commerce experience with AI-powered product assistance and a pro program for contractors.', es: 'Step Solution necesitaba una plataforma digital integral para mostrar sus productos de peldaños y narices personalizadas, integrar una red de distribuidores y habilitar pedidos en línea. Construimos una experiencia e-commerce completa con asistente de producto con IA y programa pro para contratistas.' },
+    servicesUsed: { en: ['E-Commerce Development', 'AI Chatbot', 'Dealer Network Integration'], es: ['Desarrollo E-Commerce', 'Chatbot con IA', 'Integración de Red de Distribuidores'] },
+    outcomes: [
+      { metric: '+320%', label: { en: 'Increase in online orders', es: 'Aumento en pedidos en línea' } },
+      { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
+      { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
+    ],
+  },
+  // 7. Lajex LLC
   {
     slug: 'lajex-llc',
     name: 'Lajex LLC',
