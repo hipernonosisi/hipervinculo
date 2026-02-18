@@ -10,7 +10,7 @@ interface PortfolioGridProps {
 
 export function PortfolioGrid({ limit }: PortfolioGridProps) {
   const { language } = useLanguage();
-  const projects = limit ? portfolioProjects.filter(p => p.image).slice(0, limit) : portfolioProjects.filter(p => p.image);
+  const projects = limit ? portfolioProjects.slice(0, limit) : portfolioProjects;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -31,12 +31,18 @@ export function PortfolioGrid({ limit }: PortfolioGridProps) {
             <div className="relative aspect-video bg-muted rounded-t-2xl">
               {/* Desktop screenshot */}
               <div className="absolute inset-0 overflow-hidden rounded-t-2xl">
-                <img
-                  src={project.image}
-                  alt={`${project.name} desktop`}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`${project.name} desktop`}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-accent/10">
+                    <span className="text-2xl font-bold text-muted-foreground/40">{project.name}</span>
+                  </div>
+                )}
               </div>
               {/* Mobile screenshot overlay */}
               {project.imageMobile && (
