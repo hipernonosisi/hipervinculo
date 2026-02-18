@@ -294,14 +294,11 @@ export default function Preview() {
                   <span className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
                     {language === 'en' ? 'Before you go' : 'Antes de terminar'}
                   </span>
-                  <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                    {language === 'en' ? 'One Last Step' : 'Un Último Paso'}
-                  </h1>
-                  <p className="text-muted-foreground">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
                     {language === 'en'
-                      ? 'Review what happens next, then request your preview.'
-                      : 'Revisa lo que sigue y solicita tu vista previa.'}
-                  </p>
+                      ? 'One Last Step to Get a Custom No-Cost Preview\nof Your Business Website'
+                      : 'Un Último Paso para Obtener una Vista Previa\nSin Costo de Tu Sitio Web'}
+                  </h1>
                 </>
               ) : (
                 <>
