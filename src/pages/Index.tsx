@@ -328,7 +328,7 @@ export default function Index() {
       {/* Portfolio Sneak Peek */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container">
-          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
             <div>
               <p className="text-accent font-semibold text-[14px] mb-2">{t.homepage.portfolioSneakTitle}</p>
               <h3 className="text-[24px] md:text-[28px] font-bold" style={{ color: '#2d4a2d' }}>
