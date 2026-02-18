@@ -292,7 +292,7 @@ export default function Preview() {
               {isPricingStep ? (
                 <>
                   <span className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-                    {language === 'en' ? 'Step 10 of 10 complete' : 'Paso 10 de 10 completado'}
+                    {language === 'en' ? 'Before you go' : 'Antes de terminar'}
                   </span>
                   <h1 className="text-3xl md:text-4xl font-bold mb-4">
                     {language === 'en' ? 'One Last Step' : 'Un Último Paso'}
