@@ -55,7 +55,7 @@ export default function ThankYouPreview() {
   const t = content[language];
 
   return (
-    <Layout>
+    <Layout hideBottomCta>
       <SEO
         title={language === 'en' ? 'Thank You | Website Preview' : 'Gracias | Vista Previa'}
         description={t.text}

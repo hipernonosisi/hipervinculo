@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
 
-export function Footer() {
+export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
   const { t, language } = useLanguage();
   const location = useLocation();
   const currentYear = new Date().getFullYear();
@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <footer>
       {/* CTA Banner */}
-      <div className="py-16 md:py-24" style={{ backgroundColor: '#8BCB43' }}>
+      {!hideBottomCta && <div className="py-16 md:py-24" style={{ backgroundColor: '#8BCB43' }}>
         <div className="container text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
             {language === 'en'
@@ -61,7 +61,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* Main Footer - White */}
       <div className="bg-white border-t border-border">
