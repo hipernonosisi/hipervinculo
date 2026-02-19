@@ -187,18 +187,24 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
   const quickQuestions = language === 'es' 
     ? [
         '¿Qué servicios ofrecen?',
-        '¿Cuánto cuesta una web?',
-        '¿Manejan Google Ads?',
+        '¿Cuánto cuesta una landing page?',
+        '¿Cuánto cuesta un sitio en Shopify?',
+        '¿Manejan Meta Ads y Google Ads?',
         '¿Tienen ejemplos de proyectos?',
         '¿Ofrecen diseño de marca?',
+        '¿Cómo funciona la generación de leads?',
+        '¿Venden en Amazon?',
         '¿Ofrecen auditoría gratis?',
       ]
     : [
         'What services do you offer?',
-        'How much does a website cost?',
-        'Do you manage Google Ads?',
+        'How much does a landing page cost?',
+        'How much does a Shopify site cost?',
+        'Do you manage Meta Ads & Google Ads?',
         'Can I see portfolio examples?',
         'Do you offer branding services?',
+        'How does lead generation work?',
+        'Do you help with Amazon selling?',
         'Do you offer a free audit?',
       ];
 
