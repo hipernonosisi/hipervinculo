@@ -10,6 +10,7 @@ import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -22,6 +23,9 @@ export default function ThankYouPreview() {
         window.gtag('event', 'conversion', {
           send_to: 'AW-1004326069/preview_lead_conversion',
         });
+      }
+      if (window.fbq) {
+        window.fbq('track', 'Lead', { content_name: 'Free Preview' });
       }
     }, 1500);
     return () => clearTimeout(timer);
