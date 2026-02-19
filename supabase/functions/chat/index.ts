@@ -82,51 +82,52 @@ Professional brand identity system: logo design, color palettes, typography, usa
 ## Portfolio / Web Development Case Studies
 We've built conversion-focused websites across multiple industries. When discussing projects, ALWAYS include the link to the case study so users can see the details.
 
-Full portfolio: https://hipervinculo.lovable.app/portfolio
+Full portfolio: https://hipervinculo.net/portfolio
 
 1. **Step Solution USA** (Manufacturing) — Custom stair treads & nosing manufacturer. Built conversion website with intelligent forms, order collection system, and custom admin dashboard for project management.
    - Live site: https://stepsolutionusa.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/step-solution-usa
+   - Case study: https://hipervinculo.net/portfolio/step-solution-usa
    - Services: Website Development, Lead Generation Systems, Custom Admin Dashboard
    - Results: +320% qualified leads, 45% reduction in support tickets, +150% dealer network growth
 
 2. **ZERMA Latin America** (Industrial Machinery) — Bilingual digital hub for industrial recycling machinery leader across LATAM. Product catalog, quote request system, ISO-certified brand positioning.
    - Live site: https://zerma-la.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/zerma-latin-america
+   - Case study: https://hipervinculo.net/portfolio/zerma-latin-america
    - Services: Website Development, Multilingual SEO, Lead Generation
    - Results: +200% quote requests, 3x LATAM market reach, +85% organic visibility
 
 3. **Filtro Láser para Plástico** (Industrial Equipment) — Dedicated product landing page for high-precision self-cleaning filters with AI-powered chat for product questions.
    - Live site: https://filtrolaserparaplastico.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/filtro-laser
+   - Case study: https://hipervinculo.net/portfolio/filtro-laser
    - Services: Landing Page Development, AI Chatbot, Lead Generation
    - Results: +170% qualified leads, 4.2% conversion rate, 28s avg. time to first interaction
 
 4. **Pulverizadores Industriales** (Industrial Equipment) — Spanish-language website for Reduction International's industrial pulverizers targeting LATAM market. Video integration and AI product assistant.
    - Live site: https://pulverizadoresindustriales.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/pulverizadores-industriales
+   - Case study: https://hipervinculo.net/portfolio/pulverizadores-industriales
    - Services: Website Development, AI Chatbot, Video Integration, Lead Generation
    - Results: +220% quote requests, 60% leads from LATAM, +110% organic traffic
 
 5. **Stillwater Day Spa** (Wellness & Spa) — Luxury day spa website with online booking integration, first-visit specials, and membership enrollment flow.
    - Live site: https://stillwaterdayspa.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/stillwater-day-spa
+   - Case study: https://hipervinculo.net/portfolio/stillwater-day-spa
    - Services: Website Development, Booking Integration, Lead Generation
    - Results: +240% online bookings, 35% new clients from web, +90% membership sign-ups
 
 6. **Rasetta Innovations** (Interior Design) — Premium web presence for residential and commercial design studio. Elegant visual identity optimized for lead generation.
    - Live site: https://rasettainnovations.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/rasetta-innovations
+   - Case study: https://hipervinculo.net/portfolio/rasetta-innovations
    - Services: Website Development, Brand Identity, Lead Generation
    - Results: +180% consultation requests, 2.1s page load, +65% organic traffic
 
 7. **Lajex LLC** (Plumbing & Water Purification) — Bilingual website for licensed plumbing and KENAI water purification systems in South Florida (Miami-Dade, Broward, Palm Beach).
    - Live site: https://lajexllc.com/
-   - Case study: https://hipervinculo.lovable.app/portfolio/lajex-llc
+   - Case study: https://hipervinculo.net/portfolio/lajex-llc
    - Services: Website Development, AI Chatbot, Lead Generation
    - Results: +95% inquiries, 1.8s page load, +70% organic traffic
 
 IMPORTANT: When users ask about portfolio, projects, or examples of work, always share the relevant case study links. If they ask generally, link to the full portfolio page.
+CRITICAL: ALL links to our website MUST use the domain hipervinculo.net. NEVER use hipervinculo.lovable.app or any other domain. Our official domain is hipervinculo.net.
 
 ## Key Differentiators
 - Performance marketing and measurable ROI focus
@@ -136,7 +137,7 @@ IMPORTANT: When users ask about portfolio, projects, or examples of work, always
 - Overall results: +250% Revenue Growth, +180% ROAS Improvement, +320% Qualified Leads
 
 ## How to Get Started
-- **Free Audit**: Request a free growth audit on the website
+- **Free Audit**: Request a free growth audit at https://hipervinculo.net/audit
 - **Contact**: Email info@hipervinculo.net or call +1 (786) 529-0679
 - **WhatsApp**: Message us at +1 (954) 205-9049
 - **Consultation**: Schedule a strategy call
@@ -150,6 +151,7 @@ IMPORTANT: When users ask about portfolio, projects, or examples of work, always
 - IMPORTANT: Detect the language of the user's message and respond in the same language (English or Spanish)
 - Keep responses concise — use bullet points when listing multiple items
 - CRITICAL: When someone asks "what services do you offer" or similar, you MUST list ALL 11 services. Never skip or summarize. The complete list is: 1) Lead Generation Systems, 2) Conversion Website Development, 3) Google Ads Management, 4) eCommerce Growth Partners, 5) Meta Ads Management, 6) Amazon Seller Services, 7) Tracking & Attribution, 8) Custom Enterprise Applications, 9) Landing Page Development, 10) Shopify Web Development, 11) Brand Identity Manual Design. Always include all 11.
+- CRITICAL: NEVER use the domain "lovable.app" in any link. Our official website domain is hipervinculo.net. All internal links must point to https://hipervinculo.net/...
 `;
 
 // Input validation constants
