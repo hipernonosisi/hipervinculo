@@ -23,34 +23,18 @@ interface Question {
 
 function calculateLeadScore(answers: string[]) {
   let points = 0;
-  const budget = answers[9];
-  const employees = answers[4];
-  const advertising = answers[5];
+  const budget = answers[5];
 
-  // Budget scoring — UPDATED RANGES
+  // Budget scoring
   if (budget === '$3,000 - $10,000' || budget === '$10,000 - $50,000' ||
       budget === 'More than $50,000' || budget === 'Más de $50,000') {
     points += 2;
   } else if (budget === '$1,000 - $3,000') {
     points += 1;
   }
-  // Less than $1,000 / Menos de $1,000 → 0 points
 
-  // Employee scoring
-  if (employees !== 'Just me' && employees !== 'Solo yo') {
-    points += 1;
-  }
-  if (employees === '6-15' || employees === '16-50' || employees === '50+') {
-    points += 1;
-  }
-
-  // Advertising scoring
-  if (advertising !== 'No, not yet' && advertising !== 'No, todavía no') {
-    points += 1;
-  }
-
-  if (points >= 3) return 'hot';
-  if (points >= 2) return 'warm';
+  if (points >= 2) return 'hot';
+  if (points >= 1) return 'warm';
   return 'cold';
 }
 
@@ -62,10 +46,6 @@ const previewTranslations = {
     questions: [
       { label: "What's your current website URL?", placeholder: 'www.yourbusiness.com', noWebsiteLink: "I don't have a website yet" },
       { label: "What's your business name?", placeholder: "Smith's Plumbing" },
-      { label: 'What type of service do you provide?', options: ['Plumbing & HVAC', 'Legal Services', 'Medical & Dental', 'Construction & Contracting', 'Home Services', 'Landscaping', 'Auto Services', 'Real Estate', 'Other'] },
-      { label: 'What area do you serve?', placeholder: 'Miami, FL or Broward County' },
-      { label: 'How many people work in your business?', options: ['Just me', '2-5', '6-15', '16-50', '50+'] },
-      { label: 'Are you currently investing in any online advertising?', options: ['Yes, Google Ads', 'Yes, Social Media Ads', 'Yes, Both', 'No, not yet'] },
       { label: "What's your full name?", placeholder: 'John Smith' },
       { label: "What's the best phone number to reach you?", placeholder: '(555) 123-4567' },
       { label: "What's the best email to send your preview?", placeholder: 'john@yourbusiness.com' },
@@ -101,10 +81,6 @@ const previewTranslations = {
     questions: [
       { label: '¿Cuál es la URL de tu sitio web actual?', placeholder: 'www.tunegocio.com', noWebsiteLink: 'Aún no tengo sitio web' },
       { label: '¿Cuál es el nombre de tu negocio?', placeholder: 'Tu nombre de negocio' },
-      { label: '¿Qué tipo de servicio ofreces?', options: ['Plomería y HVAC', 'Servicios Legales', 'Médico y Dental', 'Construcción y Contratación', 'Servicios del Hogar', 'Jardinería y Paisajismo', 'Servicios Automotrices', 'Bienes Raíces', 'Otro'] },
-      { label: '¿En qué zona ofreces tus servicios?', placeholder: 'Tu ciudad o zona de servicio' },
-      { label: '¿Cuántas personas trabajan en tu negocio?', options: ['Solo yo', '2-5', '6-15', '16-50', '50+'] },
-      { label: '¿Actualmente inviertes en algún tipo de publicidad en línea?', options: ['Sí, Google Ads', 'Sí, Anuncios en Redes Sociales', 'Sí, Ambos', 'No, todavía no'] },
       { label: '¿Cuál es tu nombre completo?', placeholder: 'Tu nombre completo' },
       { label: '¿Cuál es el mejor teléfono para contactarte?', placeholder: '(555) 123-4567' },
       { label: '¿Cuál es el mejor email para enviarte tu vista previa?', placeholder: 'john@tunegocio.com' },
@@ -135,8 +111,8 @@ const previewTranslations = {
   },
 } as const;
 
-const TOTAL_STEPS = 11; // 10 questions + 1 pricing screen
-const PRICING_STEP = 10; // index 10 = pricing screen
+const TOTAL_STEPS = 7; // 6 questions + 1 pricing screen
+const PRICING_STEP = 6; // index 6 = pricing screen
 
 const pricingIcons = [LayoutIcon, MessageCircle, Rocket];
 
@@ -154,11 +130,11 @@ export default function Preview() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [answers, setAnswers] = useState<string[]>(Array(10).fill(''));
+  const [answers, setAnswers] = useState<string[]>(Array(6).fill(''));
 
   const questions: Question[] = t.questions.map((q, i) => {
     const base: Question = {
-      type: 'options' in q ? 'select' : i === 7 ? 'tel' : i === 8 ? 'email' : 'text',
+      type: 'options' in q ? 'select' : i === 3 ? 'tel' : i === 4 ? 'email' : 'text',
       label: q.label,
       placeholder: 'placeholder' in q ? q.placeholder : undefined,
       options: 'options' in q ? q.options : undefined,
@@ -198,14 +174,11 @@ export default function Preview() {
       const { error } = await supabase.from('preview_leads').insert({
         website_url: answers[0],
         business_name: answers[1],
-        business_type: answers[2],
-        service_area: answers[3],
-        employee_count: answers[4],
-        current_advertising: answers[5],
-        contact_name: answers[6],
-        phone: answers[7],
-        email: answers[8],
-        monthly_budget: answers[9],
+        business_type: '',
+        contact_name: answers[2],
+        phone: answers[3],
+        email: answers[4],
+        monthly_budget: answers[5],
         lead_score: leadScore,
         language,
       });
@@ -217,15 +190,12 @@ export default function Preview() {
           type: 'preview-lead',
           language,
           businessName: answers[1],
-          businessType: answers[2],
+          businessType: '',
           websiteUrl: answers[0],
-          serviceArea: answers[3],
-          employeeCount: answers[4],
-          currentAdvertising: answers[5],
-          contactName: answers[6],
-          phone: answers[7],
-          email: answers[8],
-          monthlyBudget: answers[9],
+          contactName: answers[2],
+          phone: answers[3],
+          email: answers[4],
+          monthlyBudget: answers[5],
           leadScore,
         }
       }).catch(err => console.error('Notification error:', err));
