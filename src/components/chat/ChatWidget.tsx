@@ -189,16 +189,16 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
         '¿Qué servicios ofrecen?',
         '¿Cuánto cuesta una web?',
         '¿Manejan Google Ads?',
-        '¿Cómo funciona la generación de leads?',
-        '¿Trabajan con Shopify?',
+        '¿Tienen ejemplos de proyectos?',
+        '¿Ofrecen diseño de marca?',
         '¿Ofrecen auditoría gratis?',
       ]
     : [
         'What services do you offer?',
         'How much does a website cost?',
         'Do you manage Google Ads?',
-        'How does lead generation work?',
-        'Do you work with Shopify?',
+        'Can I see portfolio examples?',
+        'Do you offer branding services?',
         'Do you offer a free audit?',
       ];
 
