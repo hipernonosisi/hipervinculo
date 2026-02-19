@@ -190,20 +190,20 @@ export function CostaFirmePDFDocument({ logoBase64 }: Props) {
 
       {/* PAGE 4: Lead Gen Service */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICIO 2</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.leadGenService.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.leadGenService.headline}</Text>
+        <View style={{ ...s.accent, marginBottom: 10 }} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 4 }}>SERVICIO 2</Text>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 3 }}>{content.leadGenService.title}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 8 }}>{content.leadGenService.headline}</Text>
 
-        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 14, marginBottom: 12 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 10, marginBottom: 8 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <View>
               <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>RETAINER MENSUAL</Text>
               <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Mes a Mes</Text>
             </View>
             <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'white' }}>{content.leadGenService.retainer}</Text>
           </View>
-          <View style={{ borderTopWidth: 0.5, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ borderTopWidth: 0.5, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 6, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View>
               <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INVERSIÓN EN MEDIOS RECOMENDADA</Text>
               <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Pagado directamente a Google</Text>
@@ -212,13 +212,13 @@ export function CostaFirmePDFDocument({ logoBase64 }: Props) {
           </View>
         </View>
 
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 10 }}>{content.leadGenService.description}</Text>
+        <Text style={{ fontSize: 9, color: gray, lineHeight: 1.5, marginBottom: 6 }}>{content.leadGenService.description}</Text>
 
         {content.leadGenService.includes.map((item, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
+          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 8, marginBottom: 4, flexDirection: 'row', gap: 10 }}>
             <View style={{ paddingTop: 1 }}><CheckIcon size={12} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 1 }}>{item.title}</Text>
               <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
             </View>
           </View>
