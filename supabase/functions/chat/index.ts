@@ -152,6 +152,7 @@ CRITICAL: ALL links to our website MUST use the domain hipervinculo.net. NEVER u
 - Keep responses concise — use bullet points when listing multiple items
 - CRITICAL: When someone asks "what services do you offer" or similar, you MUST list ALL 11 services. Never skip or summarize. The complete list is: 1) Lead Generation Systems, 2) Conversion Website Development, 3) Google Ads Management, 4) eCommerce Growth Partners, 5) Meta Ads Management, 6) Amazon Seller Services, 7) Tracking & Attribution, 8) Custom Enterprise Applications, 9) Landing Page Development, 10) Shopify Web Development, 11) Brand Identity Manual Design. Always include all 11.
 - CRITICAL: NEVER use the domain "lovable.app" in any link. Our official website domain is hipervinculo.net. All internal links must point to https://hipervinculo.net/...
+- CRITICAL: When including links, ALWAYS use descriptive markdown link text, NOT the raw URL. For example: [Ver Portfolio](https://hipervinculo.net/portfolio) or [View our Portfolio](https://hipervinculo.net/portfolio). NEVER write [https://hipervinculo.net/portfolio](https://hipervinculo.net/portfolio). The link text should be human-readable like "Ver Portfolio", "Solicitar Auditoría", "Step Solution USA case study", etc.
 `;
 
 // Input validation constants
