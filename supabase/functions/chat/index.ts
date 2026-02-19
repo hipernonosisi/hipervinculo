@@ -79,16 +79,54 @@ Professional brand identity system: logo design, color palettes, typography, usa
 - Excludes source files (AI, PSD, Figma)
 - Contact for pricing
 
-## Portfolio / Case Studies
-We've worked across multiple industries. Some notable projects:
+## Portfolio / Web Development Case Studies
+We've built conversion-focused websites across multiple industries. When discussing projects, ALWAYS include the link to the case study so users can see the details.
 
-1. **Step Solution USA** (Manufacturing) — Stair treads manufacturer. Built conversion website + lead gen + custom admin dashboard. Results: +320% qualified leads, +150% dealer network growth.
-2. **ZERMA Latin America** (Industrial Machinery) — Bilingual platform for recycling machinery. Results: +200% quote requests, 3x LATAM market reach.
-3. **Filtro Láser** (Industrial Equipment) — Product landing page with AI chat. Results: +170% qualified leads, 4.2% conversion rate.
-4. **Pulverizadores Industriales** (Industrial Equipment) — Spanish-language site for LATAM market. Results: +220% quote requests, +110% organic traffic.
-5. **Stillwater Day Spa** (Wellness) — Spa website with booking integration. Results: +240% online bookings, +90% membership sign-ups.
-6. **Rasetta Innovations** (Interior Design) — Premium design studio website. Results: +180% consultation requests, +65% organic traffic.
-7. **Lajex LLC** (Plumbing & Water Purification) — Bilingual site with AI chat. Results: +95% inquiries, +70% organic traffic growth.
+Full portfolio: https://hipervinculo.lovable.app/portfolio
+
+1. **Step Solution USA** (Manufacturing) — Custom stair treads & nosing manufacturer. Built conversion website with intelligent forms, order collection system, and custom admin dashboard for project management.
+   - Live site: https://stepsolutionusa.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/step-solution-usa
+   - Services: Website Development, Lead Generation Systems, Custom Admin Dashboard
+   - Results: +320% qualified leads, 45% reduction in support tickets, +150% dealer network growth
+
+2. **ZERMA Latin America** (Industrial Machinery) — Bilingual digital hub for industrial recycling machinery leader across LATAM. Product catalog, quote request system, ISO-certified brand positioning.
+   - Live site: https://zerma-la.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/zerma-latin-america
+   - Services: Website Development, Multilingual SEO, Lead Generation
+   - Results: +200% quote requests, 3x LATAM market reach, +85% organic visibility
+
+3. **Filtro Láser para Plástico** (Industrial Equipment) — Dedicated product landing page for high-precision self-cleaning filters with AI-powered chat for product questions.
+   - Live site: https://filtrolaserparaplastico.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/filtro-laser
+   - Services: Landing Page Development, AI Chatbot, Lead Generation
+   - Results: +170% qualified leads, 4.2% conversion rate, 28s avg. time to first interaction
+
+4. **Pulverizadores Industriales** (Industrial Equipment) — Spanish-language website for Reduction International's industrial pulverizers targeting LATAM market. Video integration and AI product assistant.
+   - Live site: https://pulverizadoresindustriales.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/pulverizadores-industriales
+   - Services: Website Development, AI Chatbot, Video Integration, Lead Generation
+   - Results: +220% quote requests, 60% leads from LATAM, +110% organic traffic
+
+5. **Stillwater Day Spa** (Wellness & Spa) — Luxury day spa website with online booking integration, first-visit specials, and membership enrollment flow.
+   - Live site: https://stillwaterdayspa.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/stillwater-day-spa
+   - Services: Website Development, Booking Integration, Lead Generation
+   - Results: +240% online bookings, 35% new clients from web, +90% membership sign-ups
+
+6. **Rasetta Innovations** (Interior Design) — Premium web presence for residential and commercial design studio. Elegant visual identity optimized for lead generation.
+   - Live site: https://rasettainnovations.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/rasetta-innovations
+   - Services: Website Development, Brand Identity, Lead Generation
+   - Results: +180% consultation requests, 2.1s page load, +65% organic traffic
+
+7. **Lajex LLC** (Plumbing & Water Purification) — Bilingual website for licensed plumbing and KENAI water purification systems in South Florida (Miami-Dade, Broward, Palm Beach).
+   - Live site: https://lajexllc.com/
+   - Case study: https://hipervinculo.lovable.app/portfolio/lajex-llc
+   - Services: Website Development, AI Chatbot, Lead Generation
+   - Results: +95% inquiries, 1.8s page load, +70% organic traffic
+
+IMPORTANT: When users ask about portfolio, projects, or examples of work, always share the relevant case study links. If they ask generally, link to the full portfolio page.
 
 ## Key Differentiators
 - Performance marketing and measurable ROI focus
