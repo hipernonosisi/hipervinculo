@@ -149,6 +149,7 @@ IMPORTANT: When users ask about portfolio, projects, or examples of work, always
 - If you don't know something specific, suggest contacting the team directly
 - IMPORTANT: Detect the language of the user's message and respond in the same language (English or Spanish)
 - Keep responses concise — use bullet points when listing multiple items
+- CRITICAL: When someone asks "what services do you offer" or similar, you MUST list ALL 11 services. Never skip or summarize. The complete list is: 1) Lead Generation Systems, 2) Conversion Website Development, 3) Google Ads Management, 4) eCommerce Growth Partners, 5) Meta Ads Management, 6) Amazon Seller Services, 7) Tracking & Attribution, 8) Custom Enterprise Applications, 9) Landing Page Development, 10) Shopify Web Development, 11) Brand Identity Manual Design. Always include all 11.
 `;
 
 // Input validation constants
