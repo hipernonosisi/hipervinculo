@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ChatWidget } from '@/components/chat/ChatWidget';
@@ -8,13 +9,15 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
-      <ChatWidget />
-      <WhatsAppWidget />
+      <ChatWidget onOpenChange={setIsChatOpen} />
+      <WhatsAppWidget hidden={isChatOpen} />
     </div>
   );
 }
