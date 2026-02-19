@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -21,6 +22,9 @@ export default function ThankYouAudit() {
         window.gtag('event', 'conversion', {
           send_to: 'AW-1004326069/bi7JCNXgnvobELWZ894D',
         });
+      }
+      if (window.fbq) {
+        window.fbq('track', 'Lead', { content_name: 'Free Audit' });
       }
     }, 1500);
     return () => clearTimeout(timer);
