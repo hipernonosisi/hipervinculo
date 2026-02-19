@@ -252,40 +252,40 @@ export default function Preview() {
   const pricing = t.pricingStep;
 
   return (
-    <Layout>
+    <Layout hideBottomCta>
       <SEO
         title={t.seoTitle}
         description={t.subtitle}
         url="https://hipervinculo.net/preview"
       />
-      <section className="py-20 md:py-28">
+      <section className="py-10 md:py-28">
         <div className="container">
           <div className="max-w-2xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-6 md:mb-12">
               {isPricingStep ? (
                 <>
                   <span className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
                     {language === 'en' ? 'Before you go' : 'Antes de terminar'}
                   </span>
-                  <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
+                  <h1 className="text-2xl md:text-4xl font-bold mb-4 whitespace-pre-line">
                     {language === 'en'
                       ? 'One Last Step to Get\nYour No-Cost Preview'
                       : 'Un Último Paso para\nTu Vista Previa Sin Costo'}
                   </h1>
-                  <p className="text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
+                  <p className="text-sm md:text-base text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
                 </>
               ) : (
                 <>
-                  <h1 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
-                  <p className="text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
+                  <h1 className="text-2xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
+                  <p className="text-sm md:text-base text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
                 </>
               )}
             </div>
 
             {/* Progress - only for question steps */}
             {!isPricingStep && (
-              <div className="mb-12">
+              <div className="mb-6 md:mb-12">
                 <div className="flex justify-between text-sm text-muted-foreground mb-2">
                   <span>
                     {language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}
@@ -305,15 +305,15 @@ export default function Preview() {
             <div className="animate-fade-in" key={currentStep}>
               {isPricingStep ? (
                 /* Pricing / How It Works Screen */
-                <div className="space-y-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-center">{pricing.headline}</h2>
+                <div className="space-y-5 md:space-y-8">
+                  <h2 className="text-xl md:text-3xl font-bold text-center">{pricing.headline}</h2>
 
                   {/* 3 Steps */}
                   <div className="space-y-4">
                     {pricing.steps.map((step, i) => {
                       const Icon = pricingIcons[i];
                       return (
-                        <div key={i} className="flex gap-4 items-start p-4 rounded-xl border border-border bg-background">
+                        <div key={i} className="flex gap-4 items-start p-3 md:p-4 rounded-xl border border-border bg-background">
                           <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
                             <Icon className="h-5 w-5 text-accent" />
                           </div>
@@ -327,9 +327,9 @@ export default function Preview() {
                   </div>
 
                   {/* Pricing Box */}
-                  <div className="rounded-xl border border-border bg-muted/50 p-6 space-y-4">
-                    <p className="font-bold text-foreground">{pricing.pricingIntro}</p>
-                    <ul className="space-y-2 text-sm text-foreground">
+                  <div className="rounded-xl border border-border bg-muted/50 p-4 md:p-6 space-y-4">
+                    <p className="text-sm md:text-base font-bold text-foreground">{pricing.pricingIntro}</p>
+                    <ul className="space-y-2 text-xs md:text-sm text-foreground">
                       {pricing.pricingItems.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
@@ -337,7 +337,7 @@ export default function Preview() {
                         </li>
                       ))}
                     </ul>
-                    <p className="text-sm text-muted-foreground">{pricing.pricingFooter}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{pricing.pricingFooter}</p>
                   </div>
 
                   {/* Trust Note */}
@@ -345,8 +345,8 @@ export default function Preview() {
                 </div>
               ) : (
                 /* Regular Question */
-                <div className="space-y-8">
-                  <h2 className="text-2xl md:text-3xl font-bold">{questions[currentStep].label}</h2>
+                <div className="space-y-5 md:space-y-8">
+                  <h2 className="text-xl md:text-3xl font-bold">{questions[currentStep].label}</h2>
 
                   {questions[currentStep].type === 'tel' && (
                     <div className="space-y-3">
@@ -354,7 +354,7 @@ export default function Preview() {
                         value={answers[currentStep]}
                         onChange={(val) => handleAnswer(val)}
                         placeholder={questions[currentStep].placeholder}
-                        className="text-lg py-1"
+                        className="text-base py-1 md:text-lg"
                         autoFocus
                       />
                     </div>
@@ -367,7 +367,7 @@ export default function Preview() {
                         value={answers[currentStep]}
                         onChange={(e) => handleAnswer(e.target.value)}
                         placeholder={questions[currentStep].placeholder}
-                        className="text-lg py-6"
+                        className="text-base py-4 md:text-lg md:py-6"
                         autoFocus
                       />
                       {questions[currentStep].noWebsiteLink && (
@@ -378,7 +378,7 @@ export default function Preview() {
                             setCurrentStep((prev) => prev + 1);
                             window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                           }}
-                          className="text-sm text-muted-foreground underline hover:text-foreground transition-colors"
+                          className="text-sm text-muted-foreground underline hover:text-foreground transition-colors py-2"
                         >
                           {questions[currentStep].noWebsiteLink}
                         </button>
@@ -387,13 +387,13 @@ export default function Preview() {
                   )}
 
                   {questions[currentStep].type === 'select' && questions[currentStep].options && (
-                    <div className="grid gap-3">
+                    <div className="grid gap-2 md:gap-3">
                       {questions[currentStep].options!.map((option) => (
                         <button
                           key={option}
                           onClick={() => handleAnswer(option)}
                           className={cn(
-                            'text-left p-4 rounded-lg border-2 transition-all',
+                            'text-left p-3 md:p-4 rounded-lg border-2 transition-all min-h-[48px] text-sm md:text-base',
                             answers[currentStep] === option
                               ? 'border-accent bg-accent/5'
                               : 'border-border hover:border-accent/50'
@@ -409,7 +409,7 @@ export default function Preview() {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between mt-12">
+            <div className="flex items-center justify-between mt-6 md:mt-12 sticky bottom-0 bg-background py-4 md:py-0 md:static border-t md:border-t-0 border-border -mx-4 px-4 md:mx-0 md:px-0">
               <Button
                 variant="ghost"
                 onClick={handleBack}
