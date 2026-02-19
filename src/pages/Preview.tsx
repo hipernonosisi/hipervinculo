@@ -250,11 +250,15 @@ export default function Preview() {
       handleSubmit();
     } else {
       setCurrentStep((prev) => prev + 1);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [canProceed, isPricingStep, handleSubmit]);
 
   const handleBack = () => {
-    if (currentStep > 0) setCurrentStep((prev) => prev - 1);
+    if (currentStep > 0) {
+      setCurrentStep((prev) => prev - 1);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
   };
 
   const handleAnswer = (value: string) => {
@@ -402,6 +406,7 @@ export default function Preview() {
                           onClick={() => {
                             handleAnswer('no-website');
                             setCurrentStep((prev) => prev + 1);
+                            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                           }}
                           className="text-sm text-muted-foreground underline hover:text-foreground transition-colors"
                         >
