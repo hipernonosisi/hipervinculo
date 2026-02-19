@@ -88,12 +88,14 @@ export default function Audit() {
       }
     } else {
       setCurrentStep((prev) => prev + 1);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [canProceed, isLastStep, answers, toast]);
 
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   };
 
