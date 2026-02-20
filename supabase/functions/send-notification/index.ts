@@ -180,6 +180,20 @@ const emailTranslations = {
   }
 };
 
+// Dark mode override meta + styles for email clients
+const getDarkModeOverride = () => `
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
+  <style>
+    :root { color-scheme: light only; }
+    [data-ogsc] .logo-header, .logo-header { background-color: #ffffff !important; }
+    @media (prefers-color-scheme: dark) {
+      .logo-header { background-color: #ffffff !important; }
+      .logo-header img { filter: none !important; }
+    }
+  </style>
+`;
+
 // Admin email styles (simple)
 const getAdminEmailStyles = () => `
   body { 
@@ -202,7 +216,7 @@ const getAdminEmailStyles = () => `
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .logo-header {
-    background: #ffffff;
+    background-color: #ffffff !important;
     padding: 24px;
     text-align: center;
     border-bottom: 1px solid #eee;
@@ -281,7 +295,7 @@ const getClientEmailStyles = () => `
     box-shadow: 0 8px 24px rgba(45, 74, 45, 0.12);
   }
   .logo-header {
-    background: #ffffff;
+    background-color: #ffffff !important;
     padding: 32px 24px;
     text-align: center;
   }
@@ -456,15 +470,16 @@ const getClientEmailStyles = () => `
 const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data: { fullName: string; email: string; companyName?: string; inquiryType?: string; message: string }) => `
   <!DOCTYPE html>
   <html>
-  <head>
+   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ${getDarkModeOverride()}
     <style>${getClientEmailStyles()}</style>
   </head>
   <body>
     <div class="wrapper">
       <div class="container">
-        <div class="logo-header">
+        <div class="logo-header" style="background-color:#ffffff !important;">
           <img src="${LOGO_URL}" alt="Hipervinculo" class="logo">
         </div>
         <div class="header">
@@ -539,15 +554,16 @@ const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data
 const generateClientAuditEmail = (t: typeof emailTranslations.en.audit, data: { companyName: string; email: string; websiteUrl?: string; businessType?: string; monthlyRevenue?: string; monthlyAdSpend?: string; growthGoals?: string }) => `
   <!DOCTYPE html>
   <html>
-  <head>
+   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ${getDarkModeOverride()}
     <style>${getClientEmailStyles()}</style>
   </head>
   <body>
     <div class="wrapper">
       <div class="container">
-        <div class="logo-header">
+        <div class="logo-header" style="background-color:#ffffff !important;">
           <img src="${LOGO_URL}" alt="Hipervinculo" class="logo">
         </div>
         <div class="header" style="background: #8BC34A;">
@@ -662,15 +678,16 @@ const handler = async (req: Request): Promise<Response> => {
       adminHtml = `
         <!DOCTYPE html>
         <html>
-        <head>
+         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          ${getDarkModeOverride()}
           <style>${getAdminEmailStyles()}</style>
         </head>
         <body>
           <div class="wrapper">
             <div class="container">
-              <div class="logo-header">
+               <div class="logo-header" style="background-color:#ffffff !important;">
                 <img src="${LOGO_URL}" alt="Hipervinculo" class="logo">
               </div>
               <div class="header">
@@ -721,15 +738,16 @@ const handler = async (req: Request): Promise<Response> => {
       adminHtml = `
         <!DOCTYPE html>
         <html>
-        <head>
+         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          ${getDarkModeOverride()}
           <style>${getAdminEmailStyles()}</style>
         </head>
         <body>
           <div class="wrapper">
             <div class="container">
-              <div class="logo-header">
+               <div class="logo-header" style="background-color:#ffffff !important;">
                 <img src="${LOGO_URL}" alt="Hipervinculo" class="logo">
               </div>
               <div class="header" style="background: #8BC34A;">
@@ -785,9 +803,9 @@ const handler = async (req: Request): Promise<Response> => {
 
       adminSubject = `[Hipervinculo] New Website Score Lead: ${businessName} (Score: ${overallScore}/100)`;
       adminHtml = `
-        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
+         <!DOCTYPE html><html><head><meta charset="utf-8">${getDarkModeOverride()}<style>${getAdminEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
-          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="logo-header" style="background-color:#ffffff !important;"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
           <div class="header"><h1>New Website Score Lead</h1></div>
           <div class="content">
             <div class="field"><div class="label">Business:</div><div class="value">${businessName}</div></div>
@@ -804,9 +822,9 @@ const handler = async (req: Request): Promise<Response> => {
 
       clientSubject = lang === 'es' ? 'Tu Score de Rendimiento Web - Hipervinculo' : 'Your Website Performance Score - Hipervinculo';
       clientHtml = `
-        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getClientEmailStyles()}</style></head><body>
+         <!DOCTYPE html><html><head><meta charset="utf-8">${getDarkModeOverride()}<style>${getClientEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
-          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="logo-header" style="background-color:#ffffff !important;"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
           <div class="header"><h1>${lang === 'es' ? 'Tu Score de Rendimiento Web' : 'Your Website Performance Score'}</h1>
             <p>${lang === 'es' ? 'Aquí están los resultados de tu análisis' : 'Here are your analysis results'}</p></div>
           <div class="content">
@@ -842,9 +860,9 @@ const handler = async (req: Request): Promise<Response> => {
       const scoreEmoji = leadScore === 'hot' ? '🔥 HOT' : leadScore === 'warm' ? '⚡ Warm' : '📋 New';
       adminSubject = `${scoreEmoji} Lead — ${businessName} wants a website preview`;
       adminHtml = `
-        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getAdminEmailStyles()}</style></head><body>
+         <!DOCTYPE html><html><head><meta charset="utf-8">${getDarkModeOverride()}<style>${getAdminEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
-          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="logo-header" style="background-color:#ffffff !important;"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
           <div class="header" style="background:${leadScore === 'hot' ? '#ef4444' : leadScore === 'warm' ? '#f97316' : '#2d4a2d'};"><h1>${scoreEmoji} Lead — Website Preview Request</h1></div>
           <div class="content">
             <div style="text-align:center;padding:16px;margin-bottom:16px;background:${leadScore === 'hot' ? '#fef2f2' : leadScore === 'warm' ? '#fff7ed' : '#f8f9f5'};border-radius:8px;">
@@ -867,9 +885,9 @@ const handler = async (req: Request): Promise<Response> => {
       // Client confirmation
       clientSubject = lang === 'es' ? '¡Tu Vista Previa está en Camino! - Hipervinculo' : "Your Website Preview is On Its Way! - Hipervinculo";
       clientHtml = `
-        <!DOCTYPE html><html><head><meta charset="utf-8"><style>${getClientEmailStyles()}</style></head><body>
+         <!DOCTYPE html><html><head><meta charset="utf-8">${getDarkModeOverride()}<style>${getClientEmailStyles()}</style></head><body>
         <div class="wrapper"><div class="container">
-          <div class="logo-header"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
+          <div class="logo-header" style="background-color:#ffffff !important;"><img src="${LOGO_URL}" alt="Hipervinculo" class="logo"></div>
           <div class="header"><h1>${lang === 'es' ? '¡Tu Vista Previa está en Camino!' : "Your Website Preview is On Its Way!"}</h1>
             <p>${lang === 'es' ? 'Estamos diseñando algo especial para tu negocio' : "We're designing something special for your business"}</p></div>
           <div class="content">
