@@ -115,6 +115,7 @@ export type Database = {
           id: string
           inquiry_type: string | null
           message: string
+          phone: string | null
         }
         Insert: {
           company_name?: string | null
@@ -124,6 +125,7 @@ export type Database = {
           id?: string
           inquiry_type?: string | null
           message: string
+          phone?: string | null
         }
         Update: {
           company_name?: string | null
@@ -133,6 +135,7 @@ export type Database = {
           id?: string
           inquiry_type?: string | null
           message?: string
+          phone?: string | null
         }
         Relationships: []
       }

@@ -29,6 +29,7 @@ interface ContactSubmission {
   id: string;
   full_name: string;
   email: string;
+  phone: string | null;
   company_name: string | null;
   inquiry_type: string | null;
   message: string;
@@ -739,6 +740,14 @@ export default function Admin() {
                     {selectedContact.email}
                   </a>
                 </div>
+                {selectedContact.phone && (
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Phone</p>
+                    <a href={`tel:${selectedContact.phone}`} className="font-medium text-accent hover:underline">
+                      {selectedContact.phone}
+                    </a>
+                  </div>
+                )}
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Company</p>
                   <p className="font-medium">{selectedContact.company_name || '-'}</p>

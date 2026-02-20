@@ -60,6 +60,7 @@ export default function Contact() {
         full_name: formData.fullName,
         company_name: formData.companyName,
         email: formData.email,
+        phone: formData.phone,
         inquiry_type: formData.howCanWeHelp,
         message: formData.message,
       });
