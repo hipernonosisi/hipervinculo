@@ -728,7 +728,7 @@ export default function Admin() {
           </DialogHeader>
           {selectedContact && (
             <div className="space-y-6 pt-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Full Name</p>
                   <p className="font-medium">{selectedContact.full_name}</p>
@@ -751,7 +751,7 @@ export default function Admin() {
                     </Badge>
                   ) : '-'}
                 </div>
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <p className="text-sm text-muted-foreground mb-1">Date</p>
                   <p className="font-medium">{formatDate(selectedContact.created_at)}</p>
                 </div>
@@ -787,7 +787,7 @@ export default function Admin() {
           </DialogHeader>
           {selectedAudit && (
             <div className="space-y-6 pt-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Company Name</p>
                   <p className="font-medium">{selectedAudit.company_name}</p>
@@ -834,7 +834,7 @@ export default function Admin() {
                     {selectedAudit.monthly_ad_spend || '-'}
                   </p>
                 </div>
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <p className="text-sm text-muted-foreground mb-1">Date</p>
                   <p className="font-medium">{formatDate(selectedAudit.created_at)}</p>
                 </div>
