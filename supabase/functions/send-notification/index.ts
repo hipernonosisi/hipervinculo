@@ -25,6 +25,7 @@ interface ContactNotification {
   language: "en" | "es";
   fullName: string;
   email: string;
+  phone?: string;
   companyName?: string;
   inquiryType?: string;
   message: string;
@@ -83,6 +84,7 @@ const emailTranslations = {
       clientSubtitle: "We have received your message and our team will get back to you shortly.",
       name: "Name:",
       email: "Email:",
+      phone: "Phone:",
       company: "Company:",
       inquiryType: "Inquiry type:",
       message: "Message:",
@@ -134,6 +136,7 @@ const emailTranslations = {
       clientSubtitle: "Hemos recibido tu mensaje y nuestro equipo te responderá pronto.",
       name: "Nombre:",
       email: "Email:",
+      phone: "Teléfono:",
       company: "Empresa:",
       inquiryType: "Tipo de consulta:",
       message: "Mensaje:",
@@ -467,7 +470,7 @@ const getClientEmailStyles = () => `
 `;
 
 // Generate client email HTML
-const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data: { fullName: string; email: string; companyName?: string; inquiryType?: string; message: string }) => `
+const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data: { fullName: string; email: string; phone?: string; companyName?: string; inquiryType?: string; message: string }) => `
   <!DOCTYPE html>
   <html>
    <head>
@@ -497,6 +500,12 @@ const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data
               <div class="label">${t.email}</div>
               <div class="value">${data.email}</div>
             </div>
+            ${data.phone ? `
+            <div class="field">
+              <div class="label">${t.phone}</div>
+              <div class="value"><a href="tel:${data.phone}">${data.phone}</a></div>
+            </div>
+            ` : ''}
             ${data.companyName ? `
             <div class="field">
               <div class="label">${t.company}</div>
@@ -670,7 +679,7 @@ const handler = async (req: Request): Promise<Response> => {
     let clientEmail: string;
 
     if (payload.type === "contact") {
-      const { fullName, email, companyName, inquiryType, message } = payload;
+      const { fullName, email, companyName, phone, inquiryType, message } = payload;
       clientEmail = email;
       
       // Admin email (simple)
@@ -702,6 +711,12 @@ const handler = async (req: Request): Promise<Response> => {
                   <div class="label">${t.contact.email}</div>
                   <div class="value"><a href="mailto:${email}">${email}</a></div>
                 </div>
+                ${phone ? `
+                <div class="field">
+                  <div class="label">${t.contact.phone}</div>
+                  <div class="value"><a href="tel:${phone}">${phone}</a></div>
+                </div>
+                ` : ''}
                 ${companyName ? `
                 <div class="field">
                   <div class="label">${t.contact.company}</div>
@@ -727,7 +742,7 @@ const handler = async (req: Request): Promise<Response> => {
 
       // Client confirmation email (beautiful)
       clientSubject = t.subject.contactClient;
-      clientHtml = generateClientContactEmail(t.contact, { fullName, email, companyName, inquiryType, message });
+      clientHtml = generateClientContactEmail(t.contact, { fullName, email, phone, companyName, inquiryType, message });
 
     } else if (payload.type === "audit") {
       const { companyName, email, websiteUrl, monthlyRevenue, monthlyAdSpend, businessType, growthGoals } = payload;
