@@ -1,5 +1,5 @@
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowRight, X, Check, ArrowLeft } from 'lucide-react';
+import { ArrowRight, X, Check, ArrowLeft, Magnet, ShoppingCart, Globe, Package, Search, Activity, Code, Palette, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -8,6 +8,17 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
 
 type ServiceType = 'leadGen' | 'conversionWeb' | 'ecommerce' | 'amazon' | 'googleAds' | 'tracking' | 'customApps' | 'brandIdentity';
+
+const serviceIconMap: Record<ServiceType, LucideIcon> = {
+  leadGen: Magnet,
+  conversionWeb: Globe,
+  ecommerce: ShoppingCart,
+  amazon: Package,
+  googleAds: Search,
+  tracking: Activity,
+  customApps: Code,
+  brandIdentity: Palette,
+};
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -49,6 +60,7 @@ export default function ServiceDetail() {
   }
 
   const { service, type } = serviceInfo;
+  const ServiceIcon = serviceIconMap[type];
 
   if (type === 'leadGen') {
     return (
@@ -86,7 +98,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -331,7 +345,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -609,7 +625,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -882,7 +900,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -1146,7 +1166,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -1409,7 +1431,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -1709,7 +1733,9 @@ export default function ServiceDetail() {
                   <ArrowLeft className="h-4 w-4" />
                   {t.nav.services}
                 </Link>
-                <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                  <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+                </div>
                 <h1 
                   className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
@@ -1979,7 +2005,9 @@ export default function ServiceDetail() {
                 <ArrowLeft className="h-4 w-4" />
                 {t.nav.services}
               </Link>
-              <p className="text-accent font-semibold text-[15px] mb-4">{t.nav.services}</p>
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                <ServiceIcon className="h-7 w-7 text-white" strokeWidth={1.5} />
+              </div>
               <h1 
                 className="text-[48px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-[-0.03em] mb-6"
                 style={{ fontWeight: 800, color: '#2d4a2d' }}
