@@ -73,7 +73,7 @@ export function Header() {
                   <button
                     onClick={() => setServicesOpen((prev) => !prev)}
                     className={cn(
-                      "flex items-center gap-1 text-[15px] font-medium transition-colors hover:text-accent px-5 py-2",
+                      "flex items-center gap-1 text-[14px] font-medium transition-colors hover:text-accent px-3 py-2 whitespace-nowrap",
                       location.pathname.startsWith('/services') ? "text-accent" : "text-foreground"
                     )}
                   >
@@ -105,7 +105,7 @@ export function Header() {
                 <Link
                   to={link.href}
                   className={cn(
-                    "text-[15px] font-medium transition-colors hover:text-accent px-5 py-2",
+                    "text-[14px] font-medium transition-colors hover:text-accent px-3 py-2 whitespace-nowrap",
                     location.pathname === link.href ? "text-accent" : "text-foreground"
                   )}
                 >
