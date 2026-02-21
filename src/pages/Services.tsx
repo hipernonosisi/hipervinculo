@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Target, Globe, Search, LineChart, ShoppingCart, Package, Code, Palette } from 'lucide-react';
+import { ArrowRight, CheckCircle, Magnet, Globe, Search, Activity, ShoppingCart, Package, Code, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -13,7 +13,7 @@ export default function Services() {
 
   const services = [
     {
-      icon: Target,
+      icon: Magnet,
       title: t.servicesPage.leadGen.title,
       description: t.servicesPage.leadGen.description,
       features: t.servicesPage.leadGen.features,
@@ -49,7 +49,7 @@ export default function Services() {
       detailSlug: 'google-ads-management',
     },
     {
-      icon: LineChart,
+      icon: Activity,
       title: t.servicesPage.tracking.title,
       description: t.servicesPage.tracking.description,
       features: t.servicesPage.tracking.features,

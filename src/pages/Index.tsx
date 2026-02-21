@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Target, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, LineChart, ExternalLink } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Magnet, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, Activity, ExternalLink } from 'lucide-react';
 import { portfolioProjects } from '@/data/portfolioData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,7 +12,7 @@ import { AnimatedSection } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
 
-const serviceIcons = [Phone, Target, Search, ShoppingCart, Package, LineChart, Code, Award];
+const serviceIcons = [Phone, Magnet, Search, ShoppingCart, Package, Activity, Code, Award];
 const industryIcons = [Phone, ShieldCheck, Settings, ShoppingCart, Zap];
 
 export default function Index() {
@@ -258,7 +258,7 @@ export default function Index() {
               <Card className="bg-white border-0 h-full rounded-2xl shadow-xl">
                 <CardHeader className="pb-4">
                   <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-5">
-                    <Target className="h-7 w-7 text-accent" />
+                    <Magnet className="h-7 w-7 text-accent" />
                   </div>
                   <CardTitle className="text-[22px] md:text-[24px] font-bold text-foreground">{t.homepage.differentExperts}</CardTitle>
                 </CardHeader>
