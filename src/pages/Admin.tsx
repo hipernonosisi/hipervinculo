@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -198,6 +198,18 @@ export default function Admin() {
     navigate('/auth');
   };
 
+  const handleDeleteContact = async (id: string) => {
+    if (!window.confirm('¿Seguro que quieres eliminar este contacto?')) return;
+    const { error } = await supabase.from('contact_submissions').delete().eq('id', id);
+    if (error) {
+      toast({ title: 'Error', description: 'No se pudo eliminar.', variant: 'destructive' });
+    } else {
+      setContactSubmissions(prev => prev.filter(c => c.id !== id));
+      setSelectedContact(null);
+      toast({ title: 'Eliminado', description: 'Contacto eliminado correctamente.' });
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -384,6 +396,7 @@ export default function Admin() {
                             <TableHead>Company</TableHead>
                             <TableHead>Type</TableHead>
                             <TableHead className="max-w-[300px]">Message</TableHead>
+                            <TableHead className="w-10"></TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -424,6 +437,19 @@ export default function Admin() {
                                 <p className="text-sm text-muted-foreground line-clamp-2">
                                   {submission.message}
                                 </p>
+                              </TableCell>
+                              <TableCell>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 text-muted-foreground hover:text-red-600"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteContact(submission.id);
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
                               </TableCell>
                             </TableRow>
                           ))}
@@ -997,6 +1023,14 @@ export default function Admin() {
                 >
                   <Mail className="h-4 w-4 mr-2" />
                   Reply via Email
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="rounded-full text-red-600 border-red-200 hover:bg-red-50"
+                  onClick={() => handleDeleteContact(selectedContact.id)}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete
                 </Button>
               </div>
             </div>
