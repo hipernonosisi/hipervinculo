@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -314,7 +314,7 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-4 sm:grid-cols-8 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-4 sm:grid-cols-9 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
@@ -352,6 +352,11 @@ export default function Admin() {
                 <ScrollText className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Proposals</span>
                 <span className="sm:hidden">Proposals</span>
+              </TabsTrigger>
+              <TabsTrigger value="icons" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <Shapes className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Icons</span>
+                <span className="sm:hidden">Icons</span>
               </TabsTrigger>
             </TabsList>
             
@@ -712,6 +717,219 @@ export default function Admin() {
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
                   {activeProposal === 'skyscraper' && <SkyscraperProposal />}
                   {activeProposal === 'costafirme' && <CostaFirmeProposal />}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Icons Tab */}
+            <TabsContent value="icons" className="mt-0">
+              <Card className="border-0 shadow-lg rounded-2xl">
+                <CardHeader>
+                  <CardTitle>Service Icons Preview</CardTitle>
+                  <CardDescription>Propuestas de íconos para cada servicio. Cada servicio tiene 3 opciones de ícono.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Lead Generation Systems */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Lead Generation</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Magnet, label: 'Magnet' },
+                          { Icon: Target, label: 'Target' },
+                          { Icon: Crosshair, label: 'Crosshair' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* eCommerce Growth */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>eCommerce Growth</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: ShoppingCart, label: 'Cart' },
+                          { Icon: TrendingUp, label: 'Growth' },
+                          { Icon: Rocket, label: 'Rocket' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Website Development */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Website Dev</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Globe, label: 'Globe' },
+                          { Icon: LayoutGrid, label: 'Layout' },
+                          { Icon: Zap, label: 'Zap' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Amazon */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Amazon Services</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Package, label: 'Package' },
+                          { Icon: ShoppingBag, label: 'Bag' },
+                          { Icon: Layers, label: 'Layers' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Google Ads */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Google Ads</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Search, label: 'Search' },
+                          { Icon: MousePointerClick, label: 'Click' },
+                          { Icon: Megaphone, label: 'Megaphone' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Tracking & Attribution */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Tracking</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Activity, label: 'Activity' },
+                          { Icon: PieChart, label: 'PieChart' },
+                          { Icon: Fingerprint, label: 'Fingerprint' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Custom Enterprise Apps */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Custom Apps</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Code, label: 'Code' },
+                          { Icon: Cpu, label: 'Cpu' },
+                          { Icon: Database, label: 'Database' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Brand Identity */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold" style={{ color: '#2d4a2d' }}>Brand Identity</h4>
+                      <div className="flex gap-3">
+                        {[
+                          { Icon: Palette, label: 'Palette' },
+                          { Icon: PenTool, label: 'PenTool' },
+                          { Icon: BookOpen, label: 'BookOpen' },
+                        ].map(({ Icon, label }) => (
+                          <div key={label} className="flex flex-col items-center gap-1.5">
+                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md" style={{ backgroundColor: '#8BC34A' }}>
+                              <Icon className="h-7 w-7 text-white" />
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dark variant preview */}
+                  <div className="mt-10 pt-8 border-t">
+                    <h3 className="text-sm font-semibold text-muted-foreground mb-4">Vista alternativa — fondo oscuro</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 p-6 rounded-2xl" style={{ backgroundColor: '#2d4a2d' }}>
+                      {[
+                        { Icon: Magnet, label: 'Lead Gen' },
+                        { Icon: ShoppingCart, label: 'eCommerce' },
+                        { Icon: Globe, label: 'Websites' },
+                        { Icon: Package, label: 'Amazon' },
+                        { Icon: Search, label: 'Google Ads' },
+                        { Icon: Activity, label: 'Tracking' },
+                        { Icon: Code, label: 'Custom Apps' },
+                        { Icon: Palette, label: 'Branding' },
+                      ].map(({ Icon, label }) => (
+                        <div key={label} className="flex flex-col items-center gap-2">
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'rgba(139, 195, 74, 0.2)' }}>
+                            <Icon className="h-6 w-6" style={{ color: '#8BC34A' }} />
+                          </div>
+                          <span className="text-[10px] text-white/70 text-center">{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Outline variant preview */}
+                  <div className="mt-8 pt-8 border-t">
+                    <h3 className="text-sm font-semibold text-muted-foreground mb-4">Vista alternativa — outline</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+                      {[
+                        { Icon: Magnet, label: 'Lead Gen' },
+                        { Icon: ShoppingCart, label: 'eCommerce' },
+                        { Icon: Globe, label: 'Websites' },
+                        { Icon: Package, label: 'Amazon' },
+                        { Icon: Search, label: 'Google Ads' },
+                        { Icon: Activity, label: 'Tracking' },
+                        { Icon: Code, label: 'Custom Apps' },
+                        { Icon: Palette, label: 'Branding' },
+                      ].map(({ Icon, label }) => (
+                        <div key={label} className="flex flex-col items-center gap-2">
+                          <div className="w-12 h-12 rounded-xl border-2 flex items-center justify-center" style={{ borderColor: '#8BC34A' }}>
+                            <Icon className="h-6 w-6" style={{ color: '#2d4a2d' }} />
+                          </div>
+                          <span className="text-[10px] text-muted-foreground text-center">{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
