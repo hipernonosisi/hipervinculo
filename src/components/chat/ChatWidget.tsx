@@ -27,6 +27,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
     onOpenChange?.(open);
   };
   const [messages, setMessages] = useState<Message[]>([]);
+  const [askedQuestions, setAskedQuestions] = useState<Set<string>>(new Set());
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -210,6 +211,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
       ];
 
   const handleQuickQuestion = (question: string) => {
+    setAskedQuestions(prev => new Set(prev).add(question));
     setInput(question);
     // Auto-send after a tick so state updates
     setTimeout(() => {
@@ -516,6 +518,33 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
                   </div>
                 </motion.div>
               ))}
+
+              {/* Show remaining quick questions after last assistant message */}
+              {messages.length > 0 && !isLoading && messages[messages.length - 1]?.role === 'assistant' && (() => {
+                const remaining = quickQuestions.filter(q => !askedQuestions.has(q));
+                if (remaining.length === 0) return null;
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-wrap gap-2 pl-11"
+                  >
+                    {remaining.map((q, i) => (
+                      <motion.button
+                        key={q}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 + i * 0.05 }}
+                        onClick={() => handleQuickQuestion(q)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors text-left"
+                      >
+                        {q}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                );
+              })()}
 
               {isLoading && messages[messages.length - 1]?.role === 'user' && (
                 <motion.div
