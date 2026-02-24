@@ -42,7 +42,7 @@ export function BrandIdentityPricingSlide({ content }: BrandIdentityPricingSlide
       </p>
       
       {/* 3-column pricing */}
-      <div className="grid grid-cols-3 gap-1 sm:gap-2 md:gap-3 flex-1 min-h-0">
+      <div className={`grid ${content.packages.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-1 sm:gap-2 md:gap-3 flex-1 min-h-0`}>
         {content.packages.map((pkg, index) => (
           <div 
             key={index}

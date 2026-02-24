@@ -63,9 +63,8 @@ Tailored web apps: inventory control, production management, CRM, operations das
 
 ### 9. Landing Page Development
 Single-URL conversion tool with full tracking instrumentation (Pixel, GA4, GTM, CAPI, Server-side).
-- **Basic**: $1,250
-- **Standard**: $1,750
-- **Advanced**: $2,000
+- **Standard**: $1,500
+- **Premium**: $2,000
 - All packages include hosting
 
 ### 10. Shopify Web Development
