@@ -626,6 +626,7 @@ export default function Admin() {
                             <TableHead>Monthly Revenue</TableHead>
                             <TableHead>Ad Spend</TableHead>
                             <TableHead className="max-w-[200px]">Goals</TableHead>
+                            <TableHead className="w-10"></TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -687,6 +688,24 @@ export default function Admin() {
                                 <p className="text-sm text-muted-foreground line-clamp-2">
                                   {request.growth_goals || '-'}
                                 </p>
+                              </TableCell>
+                              <TableCell>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                                  onClick={async (e) => {
+                                    e.stopPropagation();
+                                    if (!window.confirm('¿Eliminar esta solicitud de auditoría?')) return;
+                                    const { error } = await supabase.from('audit_requests').delete().eq('id', request.id);
+                                    if (!error) {
+                                      setAuditRequests(prev => prev.filter(a => a.id !== request.id));
+                                      toast({ title: 'Eliminado', description: 'Auditoría eliminada.' });
+                                    }
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
                               </TableCell>
                             </TableRow>
                           ))}
