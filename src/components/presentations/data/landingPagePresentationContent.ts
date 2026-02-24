@@ -172,7 +172,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
       packages: [
         {
           name: 'Basic',
-          price: '$750',
+          price: '$1,250',
           revisions: 'Up to 1 design revision',
           includes: [
             'Single-page landing page design & development',
@@ -187,7 +187,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
         },
         {
           name: 'Standard',
-          price: '$1,500',
+          price: '$1,750',
           highlight: true,
           revisions: 'Up to 2 design revisions',
           includes: [
@@ -205,7 +205,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
         },
         {
           name: 'Advanced',
-          price: '$2,500',
+          price: '$2,000',
           revisions: 'Up to 3 design revisions',
           includes: [
             'Premium custom design with animations',
@@ -365,7 +365,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
       packages: [
         {
           name: 'Básica',
-          price: '$750',
+          price: '$1,250',
           revisions: 'Hasta 1 revisión de diseño',
           includes: [
             'Diseño y desarrollo de landing page de una página',
@@ -380,7 +380,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
         },
         {
           name: 'Estándar',
-          price: '$1,500',
+          price: '$1,750',
           highlight: true,
           revisions: 'Hasta 2 revisiones de diseño',
           includes: [
@@ -398,7 +398,7 @@ export const landingPagePresentationContent: Record<LandingPageLanguage, Landing
         },
         {
           name: 'Avanzada',
-          price: '$2,500',
+          price: '$2,000',
           revisions: 'Hasta 3 revisiones de diseño',
           includes: [
             'Diseño premium personalizado con animaciones',
