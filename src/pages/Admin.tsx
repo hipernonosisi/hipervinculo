@@ -515,7 +515,7 @@ export default function Admin() {
                     <div className="overflow-x-auto">
                       <Table>
                         <TableHeader>
-                          <TableRow className="bg-gray-50">
+                         <TableRow className="bg-gray-50">
                             <TableHead>Date</TableHead>
                             <TableHead>Name</TableHead>
                             <TableHead>Email</TableHead>
@@ -523,6 +523,7 @@ export default function Admin() {
                             <TableHead>Website</TableHead>
                             <TableHead>Budget</TableHead>
                             <TableHead>Score</TableHead>
+                            <TableHead>Status</TableHead>
                             <TableHead className="w-10"></TableHead>
                           </TableRow>
                         </TableHeader>
@@ -570,6 +571,14 @@ export default function Admin() {
                                   !lead.lead_score && "bg-gray-300"
                                 )}>
                                   {lead.lead_score || 'unscored'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={cn(
+                                  "text-xs rounded-full",
+                                  lead.preview_sent ? "bg-accent/10 text-accent" : "bg-yellow-100 text-yellow-700"
+                                )}>
+                                  {lead.preview_sent ? 'Sent' : 'Pending'}
                                 </Badge>
                               </TableCell>
                               <TableCell>
