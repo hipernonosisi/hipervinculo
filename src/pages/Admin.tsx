@@ -75,6 +75,8 @@ export default function Admin() {
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [auditRequests, setAuditRequests] = useState<AuditRequest[]>([]);
   const [chatConversations, setChatConversations] = useState<ChatConversation[]>([]);
+  const [previewLeads, setPreviewLeads] = useState<any[]>([]);
+  const [selectedPreviewLead, setSelectedPreviewLead] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedContact, setSelectedContact] = useState<ContactSubmission | null>(null);
   const [selectedAudit, setSelectedAudit] = useState<AuditRequest | null>(null);
@@ -131,13 +133,15 @@ export default function Admin() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [contactRes, auditRes, chatRes] = await Promise.all([
+      const [contactRes, auditRes, chatRes, previewRes] = await Promise.all([
         supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
         supabase.from('audit_requests').select('*').order('created_at', { ascending: false }),
-        supabase.from('chat_conversations').select('*').order('updated_at', { ascending: false })
+        supabase.from('chat_conversations').select('*').order('updated_at', { ascending: false }),
+        supabase.from('preview_leads').select('*').order('created_at', { ascending: false })
       ]);
 
       if (contactRes.data) setContactSubmissions(contactRes.data);
+      if (previewRes.data) setPreviewLeads(previewRes.data);
       if (auditRes.data) setAuditRequests(auditRes.data);
       if (chatRes.data) {
         // Get message counts for each conversation
@@ -278,7 +282,7 @@ export default function Admin() {
 
       <div className="container px-4 py-6 sm:py-8">
         {/* Stats Cards */}
-        <AnimatedSection className="grid md:grid-cols-3 gap-6 mb-8">
+        <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
           <Card className="border-0 shadow-lg rounded-2xl">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
@@ -323,12 +327,27 @@ export default function Admin() {
               <p className="text-sm text-muted-foreground">AI chatbot conversations</p>
             </CardContent>
           </Card>
+
+          <Card className="border-0 shadow-lg rounded-2xl">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold">Preview Leads</CardTitle>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
+                  <Magnet className="h-5 w-5 text-white" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewLeads.length}</p>
+              <p className="text-sm text-muted-foreground">Free preview submissions</p>
+            </CardContent>
+          </Card>
         </AnimatedSection>
 
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-5 sm:grid-cols-10 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-5 sm:grid-cols-11 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
@@ -346,6 +365,12 @@ export default function Admin() {
                 <span className="hidden sm:inline">Chats</span>
                 <span className="sm:hidden">Chats</span>
                 <span className="ml-1">({chatConversations.length})</span>
+              </TabsTrigger>
+              <TabsTrigger value="preview" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
+                <Magnet className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Preview</span>
+                <span className="sm:hidden">Preview</span>
+                <span className="ml-1">({previewLeads.length})</span>
               </TabsTrigger>
               <TabsTrigger value="incomplete" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
                 <UserX className="w-3.5 h-3.5" />
@@ -471,6 +496,108 @@ export default function Admin() {
             {/* Incomplete Leads Tab */}
             <TabsContent value="incomplete">
               <IncompleteLeadsSection />
+            </TabsContent>
+
+            {/* Preview Leads Tab */}
+            <TabsContent value="preview">
+              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                <CardHeader>
+                  <CardTitle>Preview Leads</CardTitle>
+                  <CardDescription>Completed submissions from the Free Preview funnel</CardDescription>
+                </CardHeader>
+                <CardContent className="p-0">
+                  {previewLeads.length === 0 ? (
+                    <div className="p-12 text-center">
+                      <Magnet className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
+                      <p className="text-muted-foreground">No preview leads yet</p>
+                    </div>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="bg-gray-50">
+                            <TableHead>Date</TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Phone</TableHead>
+                            <TableHead>Website</TableHead>
+                            <TableHead>Budget</TableHead>
+                            <TableHead>Score</TableHead>
+                            <TableHead className="w-10"></TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {previewLeads.map((lead) => (
+                            <TableRow 
+                              key={lead.id} 
+                              className="cursor-pointer hover:bg-accent/5"
+                              onClick={() => setSelectedPreviewLead(lead)}
+                            >
+                              <TableCell className="whitespace-nowrap">
+                                <div className="flex items-center gap-2 text-sm">
+                                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                                  {formatDate(lead.created_at)}
+                                </div>
+                              </TableCell>
+                              <TableCell className="font-medium">{lead.contact_name}</TableCell>
+                              <TableCell>
+                                <a href={`mailto:${lead.email}`} className="text-primary hover:underline text-sm">{lead.email}</a>
+                              </TableCell>
+                              <TableCell>
+                                {lead.phone ? (
+                                  <a href={`tel:${lead.phone}`} className="text-primary hover:underline text-sm">{lead.phone}</a>
+                                ) : '-'}
+                              </TableCell>
+                              <TableCell>
+                                {lead.website_url ? (
+                                  <a href={lead.website_url.startsWith('http') ? lead.website_url : `https://${lead.website_url}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm flex items-center gap-1">
+                                    <Globe className="h-3.5 w-3.5" />
+                                    {lead.website_url.replace(/^https?:\/\//, '').slice(0, 25)}
+                                  </a>
+                                ) : '-'}
+                              </TableCell>
+                              <TableCell>
+                                {lead.monthly_budget ? (
+                                  <Badge variant="outline" className="text-xs">{lead.monthly_budget}</Badge>
+                                ) : '-'}
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={cn(
+                                  "text-xs",
+                                  lead.lead_score === 'hot' && "bg-red-500 text-white",
+                                  lead.lead_score === 'warm' && "bg-orange-500 text-white",
+                                  lead.lead_score === 'cold' && "bg-blue-500 text-white",
+                                  !lead.lead_score && "bg-gray-300"
+                                )}>
+                                  {lead.lead_score || 'unscored'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                                  onClick={async (e) => {
+                                    e.stopPropagation();
+                                    if (!window.confirm('¿Eliminar este lead?')) return;
+                                    const { error } = await supabase.from('preview_leads').delete().eq('id', lead.id);
+                                    if (!error) {
+                                      setPreviewLeads(prev => prev.filter(l => l.id !== lead.id));
+                                      toast({ title: 'Eliminado', description: 'Lead eliminado.' });
+                                    }
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
             </TabsContent>
             
             {/* Audit Requests Tab */}
@@ -1016,6 +1143,105 @@ export default function Admin() {
                   </div>
                 )}
               </ScrollArea>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Preview Lead Detail Dialog */}
+      <Dialog open={!!selectedPreviewLead} onOpenChange={() => setSelectedPreviewLead(null)}>
+        <DialogContent className="max-w-lg rounded-2xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold" style={{ color: '#2d4a2d' }}>
+              Preview Lead Details
+            </DialogTitle>
+          </DialogHeader>
+          {selectedPreviewLead && (
+            <div className="space-y-6 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Name</p>
+                  <p className="font-medium">{selectedPreviewLead.contact_name}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Email</p>
+                  <a href={`mailto:${selectedPreviewLead.email}`} className="font-medium text-primary hover:underline">{selectedPreviewLead.email}</a>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Phone</p>
+                  {selectedPreviewLead.phone ? (
+                    <a href={`tel:${selectedPreviewLead.phone}`} className="font-medium text-primary hover:underline">{selectedPreviewLead.phone}</a>
+                  ) : <p className="font-medium">-</p>}
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Business</p>
+                  <p className="font-medium">{selectedPreviewLead.business_name || '-'}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Business Type</p>
+                  <p className="font-medium">{selectedPreviewLead.business_type || '-'}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Website</p>
+                  {selectedPreviewLead.website_url ? (
+                    <a href={selectedPreviewLead.website_url.startsWith('http') ? selectedPreviewLead.website_url : `https://${selectedPreviewLead.website_url}`} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">{selectedPreviewLead.website_url}</a>
+                  ) : <p className="font-medium">-</p>}
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Monthly Budget</p>
+                  <Badge variant="outline">{selectedPreviewLead.monthly_budget || 'Not specified'}</Badge>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Lead Score</p>
+                  <Badge className={cn(
+                    selectedPreviewLead.lead_score === 'hot' && "bg-red-500 text-white",
+                    selectedPreviewLead.lead_score === 'warm' && "bg-orange-500 text-white",
+                    selectedPreviewLead.lead_score === 'cold' && "bg-blue-500 text-white",
+                  )}>
+                    {selectedPreviewLead.lead_score || 'unscored'}
+                  </Badge>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Language</p>
+                  <Badge variant="secondary" className="uppercase">{selectedPreviewLead.language || 'en'}</Badge>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Date</p>
+                  <p className="font-medium">{formatDate(selectedPreviewLead.created_at)}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Button 
+                  className="rounded-full"
+                  style={{ backgroundColor: '#8BC34A' }}
+                  onClick={() => window.open(`mailto:${selectedPreviewLead.email}`, '_blank')}
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
+                </Button>
+                {selectedPreviewLead.phone && (
+                  <Button 
+                    className="rounded-full bg-green-600 hover:bg-green-700"
+                    onClick={() => window.open(`https://wa.me/${selectedPreviewLead.phone.replace(/\D/g, '')}`, '_blank')}
+                  >
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    WhatsApp
+                  </Button>
+                )}
+                {selectedPreviewLead.website_url && (
+                  <Button 
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => window.open(
+                      selectedPreviewLead.website_url?.startsWith('http') ? selectedPreviewLead.website_url : `https://${selectedPreviewLead.website_url}`,
+                      '_blank'
+                    )}
+                  >
+                    <Globe className="h-4 w-4 mr-2" />
+                    Website
+                  </Button>
+                )}
+              </div>
             </div>
           )}
         </DialogContent>
