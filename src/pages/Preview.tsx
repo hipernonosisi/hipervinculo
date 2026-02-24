@@ -129,6 +129,37 @@ export default function Preview() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [answers, setAnswers] = useState<string[]>(Array(5).fill(''));
+  const [sessionId] = useState(() => {
+    const existing = sessionStorage.getItem('preview_session_id');
+    if (existing) return existing;
+    const id = crypto.randomUUID();
+    sessionStorage.setItem('preview_session_id', id);
+    return id;
+  });
+
+  // Save partial data to incomplete_leads on each step change
+  useEffect(() => {
+    const savePartialData = async () => {
+      const payload = {
+        session_id: sessionId,
+        current_step: currentStep,
+        website_url: answers[0] || null,
+        contact_name: answers[1] || null,
+        phone: answers[2] || null,
+        email: answers[3] || null,
+        monthly_budget: answers[4] || null,
+        language,
+        updated_at: new Date().toISOString(),
+      };
+      
+      await supabase.from('incomplete_leads').upsert(payload, { onConflict: 'session_id' });
+    };
+
+    // Only save if the user has started interacting
+    if (currentStep > 0 || answers.some(a => a)) {
+      savePartialData();
+    }
+  }, [currentStep, sessionId, language]);
 
   const questions: Question[] = t.questions.map((q, i) => {
     const base: Question = {
@@ -182,6 +213,12 @@ export default function Preview() {
       });
 
       if (error) throw error;
+
+      // Mark incomplete lead as completed
+      supabase.from('incomplete_leads')
+        .update({ completed: true })
+        .eq('session_id', sessionId)
+        .then(() => {});
 
       supabase.functions.invoke('send-notification', {
         body: {

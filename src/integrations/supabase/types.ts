@@ -181,6 +181,51 @@ export type Database = {
         }
         Relationships: []
       }
+      incomplete_leads: {
+        Row: {
+          completed: boolean
+          contact_name: string | null
+          created_at: string
+          current_step: number
+          email: string | null
+          id: string
+          language: string | null
+          monthly_budget: string | null
+          phone: string | null
+          session_id: string
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          completed?: boolean
+          contact_name?: string | null
+          created_at?: string
+          current_step?: number
+          email?: string | null
+          id?: string
+          language?: string | null
+          monthly_budget?: string | null
+          phone?: string | null
+          session_id: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          completed?: boolean
+          contact_name?: string | null
+          created_at?: string
+          current_step?: number
+          email?: string | null
+          id?: string
+          language?: string | null
+          monthly_budget?: string | null
+          phone?: string | null
+          session_id?: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       preview_leads: {
         Row: {
           business_name: string
