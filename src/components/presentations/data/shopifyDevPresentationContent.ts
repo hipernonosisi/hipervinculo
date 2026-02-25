@@ -200,7 +200,7 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
       packages: [
         {
           name: 'Starter',
-          price: '$2,500',
+          price: '$3,000',
           revisions: 'Up to 2 design revisions',
           includes: [
             'Custom theme design (based on premium theme)',
@@ -421,7 +421,7 @@ export const shopifyDevPresentationContent: Record<ShopifyDevLanguage, ShopifyDe
       packages: [
         {
           name: 'Starter',
-          price: '$2,500',
+          price: '$3,000',
           revisions: 'Hasta 2 revisiones de diseño',
           includes: [
             'Diseño de tema personalizado (basado en tema premium)',

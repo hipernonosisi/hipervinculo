@@ -21,7 +21,7 @@ export const costaFirmeProposalContent = {
   webService: {
     title: 'Desarrollo Web Inteligente para Leads',
     headline: 'Un Sitio Web de Alta Conversión Diseñado para Captar Clientes',
-    price: '$2,500',
+    price: '$3,000',
     priceLabel: 'Inversión Única',
     description:
       'Diseñaremos y desarrollaremos un sitio web profesional y optimizado para conversiones para Almacenadora Costa Firme. Esto no es solo un sitio web — es una máquina de generación de leads construida para impulsar consultas calificadas para sus servicios de almacenaje.',
@@ -55,7 +55,7 @@ export const costaFirmeProposalContent = {
   leadGenService: {
     title: 'Generación de Leads vía Google Ads',
     headline: 'Flujo Constante de Leads Calificados para Almacenaje',
-    retainer: '$1,000',
+    retainer: '$1,250',
     retainerLabel: 'Retainer Mensual (Mes a Mes)',
     mediaSpend: '$50/día',
     mediaSpendLabel: 'Inversión en Medios Recomendada',
@@ -97,7 +97,7 @@ export const costaFirmeProposalContent = {
     headline: 'Su Paquete Completo de Crecimiento',
     setup: {
       title: 'Desarrollo Web',
-      price: '$2,500',
+      price: '$3,000',
       includes: [
         'Diseño responsivo personalizado (hasta 5 páginas)',
         'Sistema de captura de leads y formularios',
@@ -109,7 +109,7 @@ export const costaFirmeProposalContent = {
     },
     monthly: {
       title: 'Lead Gen con Google Ads (Mes a Mes)',
-      price: '$1,000/mes',
+      price: '$1,250/mes',
       includes: [
         'Estrategia y configuración completa de campaña',
         'Creación profesional de anuncios y redacción',
@@ -170,8 +170,8 @@ export const costaFirmeProposalContent = {
         heading: 'Método de Pago y Servicios',
         items: [
           'Todos los pagos a Hipervinculo LLC deben realizarse dentro de los 10 días posteriores a la recepción de la factura.',
-          'La tarifa única de desarrollo web de $2,500 se debe al aceptar la propuesta, antes de que el trabajo comience.',
-          'El retainer mensual de Generación de Leads de $1,000 se factura al inicio de cada mes de servicio.',
+          'La tarifa única de desarrollo web de $3,000 se debe al aceptar la propuesta, antes de que el trabajo comience.',
+          'El retainer mensual de Generación de Leads de $1,250 se factura al inicio de cada mes de servicio.',
           'La inversión en medios ($50/día recomendada) se paga directamente a Google por el cliente y es independiente del retainer.',
           'Los pagos de impuestos y otros ítems contables son responsabilidad del cliente.',
         ],
