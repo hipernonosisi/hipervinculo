@@ -23,8 +23,8 @@ You are the AI assistant for Hiperv√≠nculo, a digital growth agency based in Sou
 
 ### 1. Lead Generation Systems
 Conversion-focused websites, landing pages, call/form optimization, WhatsApp intake, Google Ads for high-intent searches, and tracking infrastructure.
-- Website builds start around **$2,500**
-- Monthly lead gen management starts at **$1,000/month**
+- Website builds start around **$3,000**
+- Monthly lead gen management starts at **$1,250/month**
 - No long-term contracts
 - Best for: service businesses (plumbers, lawyers, contractors, clinics) that want consistent inbound inquiries
 
@@ -43,7 +43,7 @@ Full-funnel paid media for Shopify brands across Meta, Google, Amazon, TikTok ‚Ä
 - Best for: eCommerce brands doing $50K+/month in revenue
 
 ### 5. Meta Ads Management
-- **Starter Plan**: $1,000/month retainer (for Shopify stores billing <$20K/month)
+- **Starter Plan**: $1,250/month retainer (for Shopify stores billing <$20K/month)
 - **Growth Partner**: 5% of net Shopify revenue (for stores billing >$20K/month)
 - Includes: static creative design and video editing (no filming/UGC production)
 - Uses WeTracked.io for attribution
@@ -68,7 +68,7 @@ Single-URL conversion tool with full tracking instrumentation (Pixel, GA4, GTM, 
 - All packages include hosting
 
 ### 10. Shopify Web Development
-- **Starter**: $2,500 (up to 5 products)
+- **Starter**: $3,000 (up to 5 products)
 - **Professional**: $5,000 (up to 25 products)
 - **Enterprise**: $10,000+ (custom Liquid development)
 - Add-ons: Copywriting ($500), Store Management ($500/month)

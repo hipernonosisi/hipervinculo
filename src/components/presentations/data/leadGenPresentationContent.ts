@@ -218,7 +218,7 @@ export const leadGenPresentationContent = {
       headline: 'Transparent, Results-Based Pricing',
       setup: {
         title: 'Website & Infrastructure',
-        price: 'Starting at $2,500',
+        price: 'Starting at $3,000',
         includes: [
           'Conversion-focused website build',
           'Landing page development',
@@ -229,7 +229,7 @@ export const leadGenPresentationContent = {
       },
       monthly: {
         title: 'Monthly Management',
-        price: 'Starting at $1,000/month',
+        price: 'Starting at $1,250/month',
         includes: [
           'Google Ads management',
           'Ongoing landing page optimization',
@@ -528,7 +528,7 @@ export const leadGenPresentationContent = {
       headline: 'Precios Transparentes, Basados en Resultados',
       setup: {
         title: 'Sitio Web e Infraestructura',
-        price: 'Desde $2,500',
+        price: 'Desde $3,000',
         includes: [
           'Construcción de sitio enfocado en conversión',
           'Desarrollo de landing pages',
@@ -539,7 +539,7 @@ export const leadGenPresentationContent = {
       },
       monthly: {
         title: 'Gestión Mensual',
-        price: 'Desde $1,000/mes',
+        price: 'Desde $1,250/mes',
         includes: [
           'Gestión de Google Ads',
           'Optimización continua de landing pages',

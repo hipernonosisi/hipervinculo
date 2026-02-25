@@ -29,7 +29,7 @@ function calculateLeadScore(answers: string[]) {
   if (budget === '$3,000 - $10,000' || budget === '$10,000 - $50,000' ||
       budget === 'More than $50,000' || budget === 'Más de $50,000') {
     points += 2;
-  } else if (budget === '$1,000 - $3,000') {
+  } else if (budget === '$1,250 - $3,000') {
     points += 1;
   }
 
@@ -48,7 +48,7 @@ const previewTranslations = {
       { label: "What's your full name?", placeholder: 'John Smith' },
       { label: "What's the best phone number to reach you?", placeholder: '(555) 123-4567' },
       { label: "What's the best email to send your preview?", placeholder: 'john@yourbusiness.com' },
-      { label: "What's your approximate monthly budget for marketing?", options: ['Less than $1,000', '$1,000 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'More than $50,000'] },
+      { label: "What's your approximate monthly budget for marketing?", options: ['Less than $1,250', '$1,250 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'More than $50,000'] },
     ],
     next: 'Next',
     back: 'Back',
@@ -64,8 +64,8 @@ const previewTranslations = {
       ],
       pricingIntro: 'If you decide to move forward, here\'s the investment:',
       pricingItems: [
-        'Website Development + Lead System Setup: **$2,500** (one-time)',
-        'Google Ads Management & Optimization: **$1,000/month**',
+        'Website Development + Lead System Setup: **$3,000** (one-time)',
+        'Google Ads Management & Optimization: **$1,250/month**',
         'Recommended minimum ad budget: $1,200/month (paid directly to Google)',
       ],
       pricingFooter: 'No contracts — you stay because the system works.',
@@ -82,7 +82,7 @@ const previewTranslations = {
       { label: '¿Cuál es tu nombre completo?', placeholder: 'Tu nombre completo' },
       { label: '¿Cuál es el mejor teléfono para contactarte?', placeholder: '(555) 123-4567' },
       { label: '¿Cuál es el mejor email para enviarte tu vista previa?', placeholder: 'john@tunegocio.com' },
-      { label: '¿Cuál es tu presupuesto mensual aproximado para marketing?', options: ['Menos de $1,000', '$1,000 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'Más de $50,000'] },
+      { label: '¿Cuál es tu presupuesto mensual aproximado para marketing?', options: ['Menos de $1,250', '$1,250 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'Más de $50,000'] },
     ],
     next: 'Siguiente',
     back: 'Atrás',
@@ -98,8 +98,8 @@ const previewTranslations = {
       ],
       pricingIntro: 'Si decides avanzar, esta es la inversión:',
       pricingItems: [
-        'Desarrollo Web + Sistema de Captación: **$2,500** (único pago)',
-        'Gestión y Optimización de Google Ads: **$1,000/mes**',
+        'Desarrollo Web + Sistema de Captación: **$3,000** (único pago)',
+        'Gestión y Optimización de Google Ads: **$1,250/mes**',
         'Presupuesto mínimo recomendado de anuncios: $1,200/mes (pagado directamente a Google)',
       ],
       pricingFooter: 'Sin contratos — te quedas porque el sistema funciona.',

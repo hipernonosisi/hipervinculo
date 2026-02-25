@@ -96,8 +96,8 @@ export const translations = {
           },
           entryOffer: {
             title: 'Entry Offer',
-            website: 'Website builds typically start around $2,500',
-            monthly: 'Monthly lead generation management starts at $1,000',
+            website: 'Website builds typically start around $3,000',
+            monthly: 'Monthly lead generation management starts at $1,250',
             note: 'No long-term contracts. Clients stay because results compound over time.',
           },
           whoFor: {
@@ -671,8 +671,8 @@ export const translations = {
       leadGen: {
         title: 'Lead Generation System',
         subtitle: 'For service businesses',
-        setupPrice: '$2,500',
-        monthlyPrice: '$1,000/month',
+        setupPrice: '$3,000',
+        monthlyPrice: '$1,250/month',
         features: [
           'Landing page development',
           'Google Ads setup & management',
@@ -1123,8 +1123,8 @@ export const translations = {
           },
           entryOffer: {
             title: 'Oferta de Entrada',
-            website: 'Los sitios web típicamente comienzan alrededor de $2,500',
-            monthly: 'La gestión mensual de generación de leads comienza en $1,000',
+            website: 'Los sitios web típicamente comienzan alrededor de $3,000',
+            monthly: 'La gestión mensual de generación de leads comienza en $1,250',
             note: 'Sin contratos a largo plazo. Los clientes se quedan porque los resultados se componen con el tiempo.',
           },
           whoFor: {
@@ -1698,8 +1698,8 @@ export const translations = {
       leadGen: {
         title: 'Sistema de Generación de Leads',
         subtitle: 'Para negocios de servicios',
-        setupPrice: '$2,500',
-        monthlyPrice: '$1,000/mes',
+        setupPrice: '$3,000',
+        monthlyPrice: '$1,250/mes',
         features: [
           'Desarrollo de landing page',
           'Configuración y gestión de Google Ads',

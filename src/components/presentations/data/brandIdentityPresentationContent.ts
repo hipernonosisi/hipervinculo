@@ -162,7 +162,7 @@ export const brandIdentityPresentationContent: Record<BrandIdentityLanguage, Bra
         },
         {
           name: 'Professional',
-          price: '$2,500',
+          price: '$3,000',
           highlight: true,
           revisions: 'Up to 3 revisions',
           includes: [
@@ -334,7 +334,7 @@ export const brandIdentityPresentationContent: Record<BrandIdentityLanguage, Bra
         },
         {
           name: 'Profesional',
-          price: '$2,500',
+          price: '$3,000',
           highlight: true,
           revisions: 'Hasta 3 revisiones',
           includes: [

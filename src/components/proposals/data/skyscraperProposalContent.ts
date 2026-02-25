@@ -21,7 +21,7 @@ export const skyscraperProposalContent = {
   webService: {
     title: 'Intelligent Web Development for Leads',
     headline: 'A High-Converting Website Built to Capture Leads',
-    price: '$2,500',
+    price: '$3,000',
     priceLabel: 'One-Time Investment',
     description:
       'We will design and develop a professional, conversion-optimized website for Skyscraper Construction. This is not just a website — it is a lead generation machine built to drive qualified inquiries for your construction services.',
@@ -55,7 +55,7 @@ export const skyscraperProposalContent = {
   leadGenService: {
     title: 'Lead Generation via Google Ads',
     headline: 'Consistent Flow of Qualified Construction Leads',
-    retainer: '$1,000',
+    retainer: '$1,250',
     retainerLabel: 'Monthly Retainer (Month-to-Month)',
     mediaSpend: '$50/day',
     mediaSpendLabel: 'Recommended Media Spend',
@@ -97,7 +97,7 @@ export const skyscraperProposalContent = {
     headline: 'Your Complete Growth Package',
     setup: {
       title: 'Website Development',
-      price: '$2,500',
+      price: '$3,000',
       includes: [
         'Custom responsive design (up to 5 pages)',
         'Lead capture system & forms',
@@ -109,7 +109,7 @@ export const skyscraperProposalContent = {
     },
     monthly: {
       title: 'Google Ads Lead Gen (Month-to-Month)',
-      price: '$1,000/mo',
+      price: '$1,250/mo',
       includes: [
         'Full campaign strategy & setup',
         'Professional ad creation & copywriting',
@@ -170,8 +170,8 @@ export const skyscraperProposalContent = {
         heading: 'Payment Method and Services',
         items: [
           'All payments to Hipervinculo LLC must be made within 10 days of receipt of the invoice.',
-          'The one-time website development fee of $2,500 is due upon agreement acceptance before work begins.',
-          'The monthly Lead Generation retainer of $1,000 is billed at the beginning of each service month.',
+          'The one-time website development fee of $3,000 is due upon agreement acceptance before work begins.',
+          'The monthly Lead Generation retainer of $1,250 is billed at the beginning of each service month.',
           'Media spend ($50/day recommended) is paid directly to Google by the client and is separate from the retainer fee.',
           'Tax payments and other accounting items are the responsibility of the client.',
         ],

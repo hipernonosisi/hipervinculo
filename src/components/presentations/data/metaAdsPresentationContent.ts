@@ -285,7 +285,7 @@ export const metaAdsPresentationContent: Record<MetaAdsLanguage, MetaAdsContent>
       headline: 'Simple, Transparent Pricing',
       setup: {
         title: 'Starter Plan',
-        price: '$1,000/month',
+        price: '$1,250/month',
         includes: [
           'Fixed monthly retainer',
           'For Shopify stores under $20K/month revenue',
@@ -556,7 +556,7 @@ export const metaAdsPresentationContent: Record<MetaAdsLanguage, MetaAdsContent>
       headline: 'Precios Simples y Transparentes',
       setup: {
         title: 'Plan Starter',
-        price: '$1,000/mes',
+        price: '$1,250/mes',
         includes: [
           'Retainer mensual fijo',
           'Para tiendas Shopify con menos de $20K/mes de ingresos',
