@@ -158,7 +158,7 @@ export const portfolioProjects: PortfolioProject[] = [
     name: 'Délios Home',
     url: 'https://delioshome.com/',
     image: '/portfolio/delios-home-hero.png',
-    imageMobile: '',
+    imageMobile: '/portfolio/delios-home-mobile.png',
     extraImages: ['/portfolio/delios-home-process.png', '/portfolio/delios-home-steps.png', '/portfolio/delios-home-about.png', '/portfolio/delios-home-booking.png'],
     description: { en: 'Premium kitchen renovation studio with 3D visualization and booking system in Madrid.', es: 'Estudio premium de renovación de cocinas con visualización 3D y sistema de reservas en Madrid.' },
     industry: { en: 'Home Renovation', es: 'Renovación del Hogar' },
