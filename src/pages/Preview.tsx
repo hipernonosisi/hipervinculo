@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
-import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX } from 'lucide-react';
+import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
@@ -144,8 +144,13 @@ function VSLPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [speed, setSpeed] = useState(1);
+  const [showControls, setShowControls] = useState(false);
+  const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const containerRef = useRef(null);
+  const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
 
   // Autoplay muted + 2x speed on mount
@@ -164,30 +169,38 @@ function VSLPlayer() {
     const onTime = () => {
       if (v.duration) setProgress((v.currentTime / v.duration) * 100);
     };
+    const onPlay = () => setPaused(false);
+    const onPause = () => setPaused(true);
     v.addEventListener('timeupdate', onTime);
-    return () => v.removeEventListener('timeupdate', onTime);
+    v.addEventListener('play', onPlay);
+    v.addEventListener('pause', onPause);
+    return () => {
+      v.removeEventListener('timeupdate', onTime);
+      v.removeEventListener('play', onPlay);
+      v.removeEventListener('pause', onPause);
+    };
   }, []);
 
   const handleClick = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
     if (state === 'preview') {
-      // Switch to full playback with audio
       v.muted = false;
       v.playbackRate = 1;
       v.currentTime = 0;
       v.play().catch(() => {});
       setMuted(false);
+      setSpeed(1);
       setState('playing');
-    } else {
-      // Toggle play/pause
-      if (v.paused) {
-        v.play().catch(() => {});
-      } else {
-        v.pause();
-      }
     }
   }, [state]);
+
+  const togglePlayPause = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play().catch(() => {}); else v.pause();
+  }, []);
 
   const toggleMute = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -195,6 +208,35 @@ function VSLPlayer() {
     if (!v) return;
     v.muted = !v.muted;
     setMuted(v.muted);
+  }, []);
+
+  const changeSpeed = useCallback((newSpeed: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.playbackRate = newSpeed;
+    setSpeed(newSpeed);
+    setShowSpeedMenu(false);
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    if (state !== 'playing') return;
+    clearTimeout(hideTimer.current);
+    setShowControls(true);
+  }, [state]);
+
+  const handleMouseLeave = useCallback(() => {
+    setShowSpeedMenu(false);
+    hideTimer.current = setTimeout(() => setShowControls(false), 300);
+  }, []);
+
+  const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v || !v.duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    v.currentTime = pct * v.duration;
   }, []);
 
   return (
@@ -206,8 +248,10 @@ function VSLPlayer() {
       className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
     >
       <div
-        className="relative aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl cursor-pointer"
-        onClick={handleClick}
+        className="relative aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl cursor-pointer group"
+        onClick={state === 'preview' ? handleClick : togglePlayPause}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <video
           ref={videoRef}
@@ -221,10 +265,7 @@ function VSLPlayer() {
         {/* Overlay for preview state */}
         {state === 'preview' && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
-            {/* Dark overlay for contrast */}
             <div className="absolute inset-0 bg-foreground/20" />
-
-            {/* Pulsating play button */}
             <div className="relative flex items-center justify-center">
               <motion.div
                 animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
@@ -240,8 +281,6 @@ function VSLPlayer() {
                 <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
               </div>
             </div>
-
-            {/* CTA label */}
             <motion.div
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -255,20 +294,78 @@ function VSLPlayer() {
           </div>
         )}
 
-        {/* Controls for playing state */}
+        {/* Playing state controls on hover */}
         {state === 'playing' && (
           <>
-            {/* Mute toggle */}
-            <button
-              onClick={toggleMute}
-              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors"
-            >
-              {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
+            {/* Center pause icon on tap feedback */}
+            {paused && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-foreground/50 backdrop-blur-sm flex items-center justify-center">
+                  <Play className="w-8 h-8 text-background ml-0.5" fill="currentColor" />
+                </div>
+              </div>
+            )}
 
-            {/* Progress bar */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 h-1 bg-foreground/20">
-              <div className="h-full bg-accent transition-all duration-300" style={{ width: `${progress}%` }} />
+            {/* Bottom control bar — visible on hover */}
+            <div className={`absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+              {/* Progress bar (clickable) */}
+              <div className="px-3 mb-1">
+                <div className="h-1.5 bg-background/20 rounded-full cursor-pointer relative" onClick={handleProgressClick}>
+                  <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+
+              {/* Controls row */}
+              <div className="flex items-center justify-between px-3 pb-3 pt-1">
+                <div className="flex items-center gap-2">
+                  {/* Play/Pause */}
+                  <button onClick={togglePlayPause} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
+                    {paused ? <Play className="w-4 h-4 ml-0.5" fill="currentColor" /> : <Pause className="w-4 h-4" />}
+                  </button>
+                  {/* Volume */}
+                  <button onClick={toggleMute} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
+                    {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  </button>
+                </div>
+
+                {/* Speed selector */}
+                <div className="relative">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setShowSpeedMenu(!showSpeedMenu); }}
+                    className="h-8 px-2.5 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center gap-1 text-background hover:bg-foreground/80 transition-colors text-xs font-semibold"
+                  >
+                    <FastForward className="w-3.5 h-3.5" />
+                    {speed}x
+                  </button>
+                  {showSpeedMenu && (
+                    <div className="absolute bottom-10 right-0 bg-foreground/90 backdrop-blur-md rounded-lg overflow-hidden shadow-xl border border-background/10">
+                      {[0.5, 1, 1.25, 1.5, 2].map((s) => (
+                        <button
+                          key={s}
+                          onClick={(e) => changeSpeed(s, e)}
+                          className={`block w-full px-4 py-2 text-xs font-medium text-left hover:bg-background/20 transition-colors ${speed === s ? 'text-accent' : 'text-background'}`}
+                        >
+                          {s}x
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Book a Call floating button — visible on hover */}
+            <div className={`absolute top-4 left-0 right-0 z-20 flex justify-center transition-all duration-300 ${showControls ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="bg-accent text-accent-foreground px-5 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-accent/90 transition-colors flex items-center gap-2"
+              >
+                Book a Call
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </>
         )}
