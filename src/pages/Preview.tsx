@@ -143,6 +143,12 @@ const VSL_URLS = [
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1',
 ];
 
+function formatTime(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
 function VSLPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
