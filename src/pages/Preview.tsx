@@ -240,8 +240,25 @@ function VSLPlayer() {
 
   const handleMouseLeave = useCallback(() => {
     setShowSpeedMenu(false);
-    hideTimer.current = setTimeout(() => setShowControls(false), 300);
+    hideTimer.current = setTimeout(() => setShowControls(false), 2000);
   }, []);
+
+  // Toggle controls on tap (mobile)
+  const handleVideoTap = useCallback(() => {
+    if (state !== 'playing') return;
+    if (showControls) {
+      setShowControls(false);
+      setShowSpeedMenu(false);
+    } else {
+      setShowControls(true);
+      // Auto-hide after 4 seconds
+      clearTimeout(hideTimer.current);
+      hideTimer.current = setTimeout(() => {
+        setShowControls(false);
+        setShowSpeedMenu(false);
+      }, 4000);
+    }
+  }, [state, showControls]);
 
   const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -289,7 +306,7 @@ function VSLPlayer() {
       <div
         ref={playerRef}
         className={`relative overflow-hidden cursor-pointer group bg-black ${isFullscreen ? 'w-screen h-screen rounded-none border-0' : 'aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl border border-border shadow-2xl'}`}
-        onClick={state === 'preview' ? handleClick : togglePlayPause}
+        onClick={state === 'preview' ? handleClick : handleVideoTap}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
