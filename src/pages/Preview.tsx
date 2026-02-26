@@ -733,21 +733,21 @@ export default function Preview() {
       </Section>
 
       {/* ── S9: Final CTA ── */}
-      <section className="relative py-24 md:py-36 bg-foreground text-background overflow-hidden">
+      <section className="relative py-16 md:py-36 bg-foreground text-background overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         
-        <div className="container relative z-10 max-w-4xl text-center">
+        <div className="container relative z-10 max-w-4xl text-center px-6 md:px-4">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-background/10 backdrop-blur-sm border border-background/10 rounded-full px-4 py-2 mb-8"
+            className="inline-flex items-center gap-2 bg-background/10 backdrop-blur-sm border border-background/10 rounded-full px-4 py-2 mb-6 md:mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
+            <span className="text-xs md:text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
           </motion.div>
 
           <motion.h2
@@ -755,7 +755,7 @@ export default function Preview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-5xl md:text-[56px] font-extrabold leading-[1.08] mb-6"
+            className="text-2xl sm:text-4xl md:text-[56px] font-extrabold leading-[1.15] md:leading-[1.08] mb-4 md:mb-6"
           >
             Your Competitors Are Getting the Customers That Should Be{' '}
             <span className="text-accent">Yours.</span>
@@ -766,7 +766,7 @@ export default function Preview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl opacity-70 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-base md:text-xl opacity-70 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
           </motion.p>
@@ -790,7 +790,7 @@ export default function Preview() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-sm opacity-50 mt-6"
+            className="text-sm opacity-50 mt-5 md:mt-6"
           >
             No pressure. No hard sell. Just a conversation about your business.
           </motion.p>
@@ -801,7 +801,7 @@ export default function Preview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex gap-8 md:gap-16 justify-center mt-14 pt-10 border-t border-background/10"
+            className="flex gap-6 md:gap-16 justify-center mt-10 md:mt-14 pt-8 md:pt-10 border-t border-background/10"
           >
             {[
               { value: '200+', label: 'Businesses Served' },
@@ -809,8 +809,8 @@ export default function Preview() {
               { value: '$98M+', label: 'Revenue Generated' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold text-accent">{stat.value}</div>
-                <div className="text-xs opacity-50 mt-1">{stat.label}</div>
+                <div className="text-xl md:text-3xl font-extrabold text-accent">{stat.value}</div>
+                <div className="text-[10px] md:text-xs opacity-50 mt-1">{stat.label}</div>
               </div>
             ))}
           </motion.div>
