@@ -138,7 +138,10 @@ const adsFeatures = [
   'Scale up as results grow',
 ];
 
-const VSL_URL = 'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1';
+const VSL_URLS = [
+  'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&raw=1',
+  'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1',
+];
 
 function VSLPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -149,6 +152,7 @@ function VSLPlayer() {
   const [speed, setSpeed] = useState(1);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  const [videoSrcIndex, setVideoSrcIndex] = useState(0);
   const containerRef = useRef(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
@@ -160,7 +164,7 @@ function VSLPlayer() {
     v.muted = true;
     v.playbackRate = 2;
     v.play().catch(() => {});
-  }, [isInView]);
+  }, [isInView, videoSrcIndex]);
 
   // Track progress
   useEffect(() => {
@@ -255,12 +259,16 @@ function VSLPlayer() {
       >
         <video
           ref={videoRef}
-          src={VSL_URL}
+          src={VSL_URLS[videoSrcIndex]}
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
           muted
+          autoPlay={state === 'preview'}
           loop={state === 'preview'}
           preload="metadata"
+          onError={() => {
+            setVideoSrcIndex((prev) => (prev < VSL_URLS.length - 1 ? prev + 1 : prev));
+          }}
         />
 
         {/* Overlay for preview state */}
