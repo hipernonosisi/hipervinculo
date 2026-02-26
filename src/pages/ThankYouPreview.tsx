@@ -57,8 +57,8 @@ export default function ThankYouPreview() {
   return (
     <Layout hideBottomCta>
       <SEO
-        title={language === 'en' ? 'Thank You | Website Preview' : 'Gracias | Vista Previa'}
-        description={t.text}
+        title={language === 'en' ? 'Call Confirmed | Hipervínculo' : 'Llamada Confirmada | Hipervínculo'}
+        description={language === 'en' ? 'Your strategy call has been scheduled. We will confirm via email and phone shortly.' : 'Tu llamada de estrategia ha sido agendada. Te confirmaremos por email y teléfono en breve.'}
         url="https://hipervinculo.net/thank-you/preview"
       />
       <section className="py-20 md:py-32">
