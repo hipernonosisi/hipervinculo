@@ -395,8 +395,30 @@ function VSLPlayer() {
             <div className={`absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
               {/* Progress bar + timestamp */}
               <div className="px-3 mb-1">
-                <div className="h-1.5 bg-background/20 rounded-full cursor-pointer relative" onClick={handleProgressClick}>
-                  <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${progress}%` }} />
+                <div
+                  className="h-3 bg-background/20 rounded-full cursor-pointer relative flex items-center"
+                  onClick={handleProgressClick}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                    setHoverTime(duration ? pct * duration : null);
+                    setHoverX(pct * 100);
+                  }}
+                  onMouseLeave={() => setHoverTime(null)}
+                >
+                  <div className="h-1.5 w-full bg-background/20 rounded-full overflow-hidden">
+                    <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${progress}%` }} />
+                  </div>
+                  {hoverTime !== null && (
+                    <div
+                      className="absolute -top-7 pointer-events-none"
+                      style={{ left: `${hoverX}%`, transform: 'translateX(-50%)' }}
+                    >
+                      <span className="bg-foreground/90 text-background text-[10px] font-mono tabular-nums px-1.5 py-0.5 rounded">
+                        {formatTime(hoverTime)}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex justify-between mt-1">
                   <span className="text-[10px] text-background/70 font-mono tabular-nums">{formatTime(currentTime)}</span>
