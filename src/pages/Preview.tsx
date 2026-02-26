@@ -354,10 +354,18 @@ function VSLPlayer() {
 
               {/* Controls row */}
               <div className="flex items-center justify-between px-3 pb-3 pt-1">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   {/* Play/Pause */}
                   <button onClick={togglePlayPause} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
                     {paused ? <Play className="w-4 h-4 ml-0.5" fill="currentColor" /> : <Pause className="w-4 h-4" />}
+                  </button>
+                  {/* -10s */}
+                  <button onClick={(e) => skip(-10, e)} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
+                    <RotateCcw className="w-3.5 h-3.5" />
+                  </button>
+                  {/* +10s */}
+                  <button onClick={(e) => skip(10, e)} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
+                    <RotateCw className="w-3.5 h-3.5" />
                   </button>
                   {/* Volume */}
                   <button onClick={toggleMute} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
@@ -365,28 +373,34 @@ function VSLPlayer() {
                   </button>
                 </div>
 
-                {/* Speed selector */}
-                <div className="relative">
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setShowSpeedMenu(!showSpeedMenu); }}
-                    className="h-8 px-2.5 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center gap-1 text-background hover:bg-foreground/80 transition-colors text-xs font-semibold"
-                  >
-                    <FastForward className="w-3.5 h-3.5" />
-                    {speed}x
+                <div className="flex items-center gap-1.5">
+                  {/* Speed selector */}
+                  <div className="relative">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setShowSpeedMenu(!showSpeedMenu); }}
+                      className="h-8 px-2.5 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center gap-1 text-background hover:bg-foreground/80 transition-colors text-xs font-semibold"
+                    >
+                      <FastForward className="w-3.5 h-3.5" />
+                      {speed}x
+                    </button>
+                    {showSpeedMenu && (
+                      <div className="absolute bottom-10 right-0 bg-foreground/90 backdrop-blur-md rounded-lg overflow-hidden shadow-xl border border-background/10">
+                        {[0.5, 1, 1.25, 1.5, 2].map((s) => (
+                          <button
+                            key={s}
+                            onClick={(e) => changeSpeed(s, e)}
+                            className={`block w-full px-4 py-2 text-xs font-medium text-left hover:bg-background/20 transition-colors ${speed === s ? 'text-accent' : 'text-background'}`}
+                          >
+                            {s}x
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {/* Fullscreen */}
+                  <button onClick={toggleFullscreen} className="w-8 h-8 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors">
+                    <Maximize className="w-3.5 h-3.5" />
                   </button>
-                  {showSpeedMenu && (
-                    <div className="absolute bottom-10 right-0 bg-foreground/90 backdrop-blur-md rounded-lg overflow-hidden shadow-xl border border-background/10">
-                      {[0.5, 1, 1.25, 1.5, 2].map((s) => (
-                        <button
-                          key={s}
-                          onClick={(e) => changeSpeed(s, e)}
-                          className={`block w-full px-4 py-2 text-xs font-medium text-left hover:bg-background/20 transition-colors ${speed === s ? 'text-accent' : 'text-background'}`}
-                        >
-                          {s}x
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
