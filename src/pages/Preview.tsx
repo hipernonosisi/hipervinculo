@@ -257,44 +257,7 @@ export default function Preview() {
         </div>
       </section>
 
-      {/* ── S2: Google Reviews ── */}
-      <Section className="py-16 md:py-20 bg-secondary">
-        <div className="container">
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
-            <span className="text-sm font-semibold text-foreground">Google Reviews</span>
-            <div className="flex gap-0.5 ml-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              ))}
-            </div>
-            <span className="text-sm text-muted-foreground ml-1">5.0</span>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {googleReviews.map((review) => (
-              <div key={review.name} className="bg-background border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">"{review.text}"</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">
-                      {review.name.charAt(0)}
-                    </div>
-                    <span className="text-sm font-semibold text-foreground">{review.name}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{review.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ── S3: How It Works (creme.digital style — alternating layout with images) ── */}
+      {/* ── S3: How It Works ── */}
       <Section className="py-20 md:py-28">
         <div className="container max-w-6xl">
           <div className="text-center mb-4">
@@ -369,7 +332,43 @@ export default function Preview() {
         </div>
       </Section>
 
-      {/* ── S6: Pricing ── */}
+      {/* ── Google Reviews ── */}
+      <Section className="py-16 md:py-20">
+        <div className="container">
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
+            <span className="text-sm font-semibold text-foreground">Google Reviews</span>
+            <div className="flex gap-0.5 ml-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              ))}
+            </div>
+            <span className="text-sm text-muted-foreground ml-1">5.0</span>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {googleReviews.map((review) => (
+              <div key={review.name} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
+                <div className="flex gap-0.5 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">"{review.text}"</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">
+                      {review.name.charAt(0)}
+                    </div>
+                    <span className="text-sm font-semibold text-foreground">{review.name}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">{review.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-4xl">
           <div className="text-center mb-4">
