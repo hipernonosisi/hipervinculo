@@ -175,15 +175,22 @@ function VSLPlayer() {
     const v = videoRef.current;
     if (!v) return;
     const onTime = () => {
-      if (v.duration) setProgress((v.currentTime / v.duration) * 100);
+      if (v.duration) {
+        setProgress((v.currentTime / v.duration) * 100);
+        setCurrentTime(v.currentTime);
+        setDuration(v.duration);
+      }
     };
+    const onLoaded = () => { if (v.duration) setDuration(v.duration); };
     const onPlay = () => setPaused(false);
     const onPause = () => setPaused(true);
     v.addEventListener('timeupdate', onTime);
+    v.addEventListener('loadedmetadata', onLoaded);
     v.addEventListener('play', onPlay);
     v.addEventListener('pause', onPause);
     return () => {
       v.removeEventListener('timeupdate', onTime);
+      v.removeEventListener('loadedmetadata', onLoaded);
       v.removeEventListener('play', onPlay);
       v.removeEventListener('pause', onPause);
     };
