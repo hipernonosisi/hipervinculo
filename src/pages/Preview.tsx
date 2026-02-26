@@ -291,19 +291,19 @@ export default function Preview() {
         </div>
       </Section>
 
-      {/* ── S4: Results / Case Studies (large cards with parallax) ── */}
-      <Section className="py-20 md:py-28 bg-secondary" id="results">
+      {/* ── S4: Results / Case Studies (Apple-style scroll reveal) ── */}
+      <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
         <div className="container max-w-5xl">
-          <div className="text-center mb-4">
+          <div className="text-center mb-16">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Real Businesses. Real Results.</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-12">
-              These aren't stock photos or fake testimonials. These are live projects you can visit right now.
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Projects That Speak for Themselves</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Live websites you can visit right now. Real businesses generating real revenue.
             </p>
           </div>
 
           {caseStudies.map((cs, i) => (
-            <ProjectCard key={cs.name} project={cs} />
+            <ScrollRevealCard key={cs.name} project={cs} index={i} />
           ))}
 
           <div className="text-center mt-8">
@@ -312,7 +312,7 @@ export default function Preview() {
             </Button>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* ── S5: Why Hipervínculo ── */}
       <Section className="py-20 md:py-28">
