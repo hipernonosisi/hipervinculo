@@ -187,6 +187,13 @@ function VSLPlayer() {
     };
   }, []);
 
+  // Track fullscreen changes
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onFsChange);
+    return () => document.removeEventListener('fullscreenchange', onFsChange);
+  }, []);
+
   const handleClick = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
