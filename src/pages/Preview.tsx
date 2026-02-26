@@ -503,50 +503,6 @@ export default function Preview() {
         </div>
       </Section>
 
-      {/* ── S4: Results / Case Studies (Apple-style scroll reveal) ── */}
-      <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Projects That Speak for Themselves</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Live websites you can visit right now. Real businesses generating real revenue.
-            </p>
-          </div>
-
-          {caseStudies.map((cs, i) => (
-            <ScrollRevealCard key={cs.name} project={cs} index={i} />
-          ))}
-
-          <div className="text-center mt-8">
-            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-sm md:text-base font-semibold w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── S5: Why Hipervínculo ── */}
-      <Section className="py-20 md:py-28">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Why us?</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-12">Why 200+ Businesses Trust Us</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyCards.map((c) => (
-              <div key={c.title} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-                  <c.icon className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-base font-bold text-foreground mb-2">{c.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
       {/* ── Google Reviews ── */}
       <Section className="py-16 md:py-20">
         <div className="container">
@@ -604,6 +560,52 @@ export default function Preview() {
           </div>
         </div>
       </Section>
+
+      {/* ── S4: Results / Case Studies (Apple-style scroll reveal) ── */}
+      <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Projects That Speak for Themselves</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Live websites you can visit right now. Real businesses generating real revenue.
+            </p>
+          </div>
+
+          {caseStudies.map((cs, i) => (
+            <ScrollRevealCard key={cs.name} project={cs} index={i} />
+          ))}
+
+          <div className="text-center mt-8">
+            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-sm md:text-base font-semibold w-full sm:w-auto">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── S5: Why Hipervínculo ── */}
+      <Section className="py-20 md:py-28">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Why us?</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-12">Why 200+ Businesses Trust Us</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyCards.map((c) => (
+              <div key={c.title} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                  <c.icon className="w-6 h-6 text-accent" />
+                </div>
+                <h3 className="text-base font-bold text-foreground mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+
 
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-4xl">
