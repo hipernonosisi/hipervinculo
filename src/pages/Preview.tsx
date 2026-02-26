@@ -207,9 +207,9 @@ export default function Preview() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.25 }}
-            className="relative max-w-3xl mx-auto mb-12 md:mb-16"
+            className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
           >
-            <div className="relative aspect-video bg-gradient-to-br from-foreground/5 to-foreground/10 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl flex items-center justify-center cursor-pointer group">
+            <div className="relative aspect-[9/16] bg-gradient-to-br from-foreground/5 to-foreground/10 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl flex items-center justify-center cursor-pointer group">
               {/* Pulsating glow ring */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
