@@ -258,8 +258,9 @@ function VSLPlayer() {
           src={VSL_URL}
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
+          muted
           loop={state === 'preview'}
-          preload="auto"
+          preload="metadata"
         />
 
         {/* Overlay for preview state */}
@@ -577,8 +578,8 @@ export default function Preview() {
           ))}
 
           <div className="text-center mt-8">
-            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-sm md:text-base font-semibold w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
+            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">Want results like these? Book Your Free Strategy Call</a>
             </Button>
           </div>
         </div>
@@ -589,7 +590,7 @@ export default function Preview() {
         <div className="container max-w-5xl">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Why us?</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-12">Why 200+ Businesses Trust Us</h2>
+            <h2 className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap">Why 200+ Businesses Trust Us</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyCards.map((c) => (
