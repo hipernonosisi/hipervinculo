@@ -563,7 +563,7 @@ export default function Preview() {
           </div>
           <div className="text-center mt-8">
             <a
-              href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews"
+              href="https://www.google.com/search?q=Hipervinculo+agency+Weston"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium underline underline-offset-4 decoration-muted-foreground/40 hover:decoration-foreground/60"
