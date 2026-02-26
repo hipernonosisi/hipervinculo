@@ -463,30 +463,18 @@ export default function Preview() {
             </div>
             <span className="text-sm text-muted-foreground ml-1">5.0 (23 reviews)</span>
           </a>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {googleReviews.map((review) => (
-              <div key={review.name} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">"{review.text}"</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ backgroundColor: review.color }}>
-                      {review.name.charAt(0)}
-                    </div>
-                    <span className="text-sm font-semibold text-foreground">{review.name}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{review.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-6">
-            <a href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews" target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:underline font-medium">
-              Read all 23 reviews on Google →
+
+          <div className="max-w-2xl mx-auto bg-secondary border border-border rounded-2xl p-6 text-center">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              For transparency, we only show live reviews directly on Google.
+            </p>
+            <a
+              href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 text-sm text-accent hover:underline font-semibold"
+            >
+              Read all reviews on Google →
             </a>
           </div>
         </div>
