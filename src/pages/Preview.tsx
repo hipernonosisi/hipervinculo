@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, animate } from 'framer-motion';
-import { Eye, Hammer, Rocket, Play, Check, ChevronDown, Award, Users, Zap, FileText, Globe2, Shield } from 'lucide-react';
+import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
+import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
@@ -28,7 +28,7 @@ function Section({ children, className = '', id }: { children: React.ReactNode; 
 }
 
 // ── Animated counter ──
-function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
+function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [value, setValue] = useState(0);
@@ -43,7 +43,55 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
     return () => controls.stop();
   }, [isInView, target]);
 
-  return <span ref={ref}>{value}{suffix}</span>;
+  return <span ref={ref}>{prefix}{value}{suffix}</span>;
+}
+
+// ── Parallax project card (large, like creme.digital) ──
+function ProjectCard({ project, index }: { project: typeof caseStudies[0]; index: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      className="mb-8 md:mb-12"
+    >
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block"
+      >
+        <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-muted border border-border shadow-sm hover:shadow-xl transition-shadow duration-500">
+          <motion.div style={{ y }} className="relative">
+            <img
+              src={project.image}
+              alt={project.name}
+              className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700"
+              loading="lazy"
+            />
+          </motion.div>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+                {project.type}
+              </span>
+            </div>
+            <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">{project.name}</h3>
+            <p className="text-sm md:text-base text-white/80 font-medium">{project.result}</p>
+          </div>
+        </div>
+      </a>
+    </motion.div>
+  );
 }
 
 // ── Case studies data ──
@@ -60,9 +108,9 @@ const caseStudies = [
 ];
 
 const steps = [
-  { icon: Eye, title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing.' },
-  { icon: Hammer, title: 'We Build & Launch Your Website', desc: 'Once approved, we build a high-performance website engineered to convert visitors into customers. Not a pretty brochure — a lead generation machine.' },
-  { icon: Rocket, title: 'We Drive Qualified Traffic', desc: 'We launch targeted Google Ads campaigns that put you in front of people actively searching for your services. Then we optimize weekly to maximize your ROI.' },
+  { icon: Eye, label: 'Preview', title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing.', image: '/portfolio/delios-home-hero.png' },
+  { icon: Hammer, label: 'Build', title: 'We Build & Launch Your Website', desc: 'Once approved, we build a high-performance website engineered to convert visitors into customers. Not a pretty brochure — a lead generation machine.', image: '/portfolio/stillwater-day-spa-hero.png' },
+  { icon: Rocket, label: 'Grow', title: 'We Drive Qualified Traffic', desc: 'We launch targeted Google Ads campaigns that put you in front of people actively searching for your services. Then we optimize weekly to maximize your ROI.', image: '/portfolio/rasetta-innovations-hero.png' },
 ];
 
 const whyCards = [
@@ -109,7 +157,7 @@ export default function Preview() {
   }, []);
 
   return (
-    <div className="dark bg-[hsl(147,25%,6%)] min-h-screen text-[hsl(0,0%,98%)]">
+    <div className="bg-background min-h-screen text-foreground">
       <SEO
         title="Grow Your Business — Hipervínculo"
         description="We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services."
@@ -117,25 +165,25 @@ export default function Preview() {
       />
 
       {/* ── Sticky Header ── */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[hsl(147,25%,6%)]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-transparent'}`}>
         <div className="container flex h-16 items-center justify-between">
           <Link to="/">
-            <img src={logoFull} alt="Hipervínculo" className="h-10 brightness-0 invert" />
+            <img src={logoFull} alt="Hipervínculo" className="h-10" />
           </Link>
-          <Button asChild className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-6 h-10 font-semibold text-sm">
+          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Call</a>
           </Button>
         </div>
       </header>
 
       {/* ── S1: Hero ── */}
-      <section className="pt-32 pb-20 md:pt-44 md:pb-32">
+      <section className="pt-32 pb-16 md:pt-44 md:pb-24">
         <div className="container max-w-4xl text-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-[hsl(0,0%,100%)] mb-6"
+            className="text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-[1.08] tracking-tight text-foreground mb-6"
           >
             Stop Losing Customers to Competitors Who Simply Show Up First on Google
           </motion.h1>
@@ -143,7 +191,7 @@ export default function Preview() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-base sm:text-lg text-[hsl(0,0%,65%)] max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services. 200+ businesses. 20+ years. Real results.
           </motion.p>
@@ -153,200 +201,223 @@ export default function Preview() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
-            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
+            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-[hsl(0,0%,30%)] text-[hsl(0,0%,85%)] hover:bg-[hsl(0,0%,10%)] rounded-full px-8 h-14 text-base font-semibold bg-transparent"
+              className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
               onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
             >
               See Our Work
             </Button>
           </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="flex justify-center gap-8 sm:gap-16"
-          >
-            {[
-              { target: 200, suffix: '+', label: 'Clients' },
-              { target: 20, suffix: '+', label: 'Years' },
-              { target: 30, suffix: 'M+', label: 'Generated' },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[hsl(88,56%,53%)]">
-                  {s.label === 'Generated' && '$'}
-                  <Counter target={s.target} suffix={s.suffix} />
-                </div>
-                <div className="text-xs sm:text-sm text-[hsl(0,0%,50%)] mt-1">{s.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* ── S2: VSL Video ── */}
-      <Section className="py-20 bg-[hsl(147,25%,8%)]">
-        <div className="container max-w-3xl text-center">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-8">
-            Watch: How We Help Businesses Like Yours Get Found Online
-          </h2>
-          <div className="relative aspect-video bg-[hsl(147,20%,12%)] rounded-2xl overflow-hidden border border-[hsl(147,20%,18%)] mb-6 flex items-center justify-center cursor-pointer group">
-            <div className="w-20 h-20 rounded-full bg-[hsl(88,56%,53%)] flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Play className="w-8 h-8 text-[hsl(0,0%,100%)] ml-1" fill="white" />
+      {/* ── Hero showcase carousel (auto-scrolling images like creme.digital) ── */}
+      <Section className="pb-16 md:pb-24">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
+              <img src="/portfolio/stillwater-day-spa-hero.png" alt="Stillwater Day Spa" className="w-full h-auto object-cover" />
             </div>
-            <div className="absolute bottom-4 left-4 text-xs text-[hsl(0,0%,50%)]">Video coming soon</div>
+            <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
+              <img src="/portfolio/rasetta-innovations-hero.png" alt="Rasetta Innovations" className="w-full h-auto object-cover" />
+            </div>
           </div>
-          <p className="text-[hsl(0,0%,60%)] mb-6">
-            See the real projects below — click through and visit their live websites.
-          </p>
-          <Button asChild variant="outline" className="border-[hsl(0,0%,25%)] text-[hsl(0,0%,80%)] hover:bg-[hsl(0,0%,10%)] rounded-full bg-transparent">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Ready to talk? Book Your Call</a>
-          </Button>
         </div>
       </Section>
 
-      {/* ── S3: How It Works ── */}
+      {/* ── Stats bar ── */}
+      <Section className="py-12 md:py-16 border-y border-border">
+        <div className="container flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16">
+          {[
+            { target: 200, suffix: '+', label: 'Clients Served', prefix: '' },
+            { target: 20, suffix: '+', label: 'Years Experience', prefix: '' },
+            { target: 30, suffix: 'M+', label: 'Revenue Generated', prefix: '$' },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-4xl sm:text-5xl font-extrabold text-foreground">
+                <Counter target={s.target} suffix={s.suffix} prefix={s.prefix} />
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── S2: VSL Video (Vertical — 9:16) ── */}
       <Section className="py-20 md:py-28">
-        <div className="container max-w-5xl">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+        <div className="container max-w-xl text-center">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">
+            Watch: How We Help Businesses Get Found Online
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            See the real projects below — click through and visit their live websites.
+          </p>
+          <div className="relative aspect-[9/16] max-w-[360px] mx-auto bg-muted rounded-3xl overflow-hidden border border-border shadow-lg flex items-center justify-center cursor-pointer group">
+            <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Play className="w-8 h-8 text-accent-foreground ml-1" fill="currentColor" />
+            </div>
+            <div className="absolute bottom-6 left-0 right-0 text-center">
+              <span className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">Video coming soon</span>
+            </div>
+          </div>
+          <div className="mt-8">
+            <Button asChild variant="outline" className="border-border text-foreground hover:bg-muted rounded-full">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Ready to talk? Book Your Call</a>
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── S3: How It Works (creme.digital style — alternating layout with images) ── */}
+      <Section className="py-20 md:py-28 bg-secondary">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">How we work?</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
+              We simplify growth into 3 focused steps that deliver real results.
+            </h2>
+          </div>
+
+          <div className="mt-16 md:mt-24 space-y-20 md:space-y-32">
             {steps.map((step, i) => (
-              <div key={i} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 hover:border-[hsl(88,56%,53%)] transition-colors">
-                <div className="w-12 h-12 rounded-xl bg-[hsl(88,56%,53%)]/10 flex items-center justify-center mb-5">
-                  <step.icon className="w-6 h-6 text-[hsl(88,56%,53%)]" />
+              <div key={i} className={`flex flex-col ${i % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-12`}>
+                <div className="flex-1 w-full">
+                  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-3 bg-accent/10 px-3 py-1 rounded-full">
+                    {step.label}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-4 leading-tight">{step.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{step.desc}</p>
                 </div>
-                <div className="text-xs font-semibold text-[hsl(88,56%,53%)] mb-2">STEP {i + 1}</div>
-                <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-3">{step.title}</h3>
-                <p className="text-sm text-[hsl(0,0%,60%)] leading-relaxed">{step.desc}</p>
+                <div className="flex-1 w-full">
+                  <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
+                    <img src={step.image} alt={step.title} className="w-full h-auto object-cover" loading="lazy" />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* ── S4: Results / Case Studies ── */}
-      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]" id="results">
-        <div className="container max-w-6xl">
-          <div className="text-center mb-14">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-4">Real Businesses. Real Results.</h2>
-            <p className="text-[hsl(0,0%,55%)] max-w-xl mx-auto">
+      {/* ── S4: Results / Case Studies (large cards with parallax) ── */}
+      <Section className="py-20 md:py-28" id="results">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Real Businesses. Real Results.</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-12">
               These aren't stock photos or fake testimonials. These are live projects you can visit right now.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {caseStudies.map((cs) => (
-              <a
-                key={cs.name}
-                href={cs.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl overflow-hidden hover:border-[hsl(88,56%,53%)] transition-all hover:-translate-y-1"
-              >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img src={cs.image} alt={cs.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                </div>
-                <div className="p-5">
-                  <div className="text-xs font-semibold text-[hsl(88,56%,53%)] mb-1">{cs.type}</div>
-                  <p className="text-sm text-[hsl(0,0%,75%)] font-medium leading-snug">{cs.result}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
+
+          {caseStudies.map((cs, i) => (
+            <ProjectCard key={cs.name} project={cs} index={i} />
+          ))}
+
+          <div className="text-center mt-8">
+            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
             </Button>
           </div>
         </div>
       </Section>
 
-      {/* ── S5: Pricing ── */}
-      <Section className="py-20 md:py-28">
-        <div className="container max-w-4xl">
-          <div className="text-center mb-14">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-[hsl(0,0%,55%)]">No hidden fees. No long-term contracts. Just results.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Website */}
-            <div className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 hover:border-[hsl(88,56%,53%)] transition-colors">
-              <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-1">Website Development</h3>
-              <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold text-[hsl(88,56%,53%)]">$3,000</span>
-              </div>
-              <p className="text-sm text-[hsl(0,0%,50%)] mb-6">one-time investment</p>
-              <ul className="space-y-3">
-                {websiteFeatures.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-[hsl(0,0%,70%)]">
-                    <Check className="w-4 h-4 text-[hsl(88,56%,53%)] mt-0.5 shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* Google Ads */}
-            <div className="bg-[hsl(147,20%,10%)] border-2 border-[hsl(88,56%,53%)] rounded-2xl p-8 relative">
-              <div className="absolute -top-3 right-6 bg-[hsl(88,56%,53%)] text-[hsl(0,0%,100%)] text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
-              <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-1">Google Ads Management</h3>
-              <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold text-[hsl(88,56%,53%)]">$1,250</span>
-                <span className="text-lg text-[hsl(0,0%,50%)]">/month</span>
-              </div>
-              <p className="text-sm text-[hsl(0,0%,50%)] mb-6">ongoing lead generation</p>
-              <ul className="space-y-3">
-                {adsFeatures.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-[hsl(0,0%,70%)]">
-                    <Check className="w-4 h-4 text-[hsl(88,56%,53%)] mt-0.5 shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <p className="text-center text-[hsl(0,0%,50%)] text-sm mt-8">
-            Every project starts with a free website preview — zero risk.
-          </p>
-          <div className="text-center mt-6">
-            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book Your Free Strategy Call</a>
-            </Button>
-          </div>
-        </div>
-      </Section>
-
-      {/* ── S6: Why Hipervínculo ── */}
-      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]">
+      {/* ── S5: Why Hipervínculo (creme.digital "Why subscribe" style) ── */}
+      <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-5xl">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">Why 200+ Businesses Trust Us</h2>
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Why subscribe?</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-12">Why 200+ Businesses Trust Us</h2>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyCards.map((c) => (
-              <div key={c.title} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-6 hover:border-[hsl(88,56%,53%)] transition-colors">
-                <c.icon className="w-8 h-8 text-[hsl(88,56%,53%)] mb-4" />
-                <h3 className="text-base font-bold text-[hsl(0,0%,100%)] mb-2">{c.title}</h3>
-                <p className="text-sm text-[hsl(0,0%,60%)] leading-relaxed">{c.desc}</p>
+              <div key={c.title} className="bg-background border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                  <c.icon className="w-6 h-6 text-accent" />
+                </div>
+                <h3 className="text-base font-bold text-foreground mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* ── S7: Founder Story ── */}
+      {/* ── S6: Pricing (creme.digital style — side by side cards) ── */}
       <Section className="py-20 md:py-28">
+        <div className="container max-w-4xl">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Our Pricing</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-muted-foreground">No hidden fees. No long-term contracts. Just results.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 mt-14">
+            {/* Website */}
+            <div className="bg-background border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
+              <h3 className="text-lg font-bold text-foreground mb-1">Website Development</h3>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-extrabold text-foreground">$3,000</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">one-time investment</p>
+              <p className="text-xs text-muted-foreground mb-4">Pause or cancel anytime</p>
+              <Button asChild className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 font-semibold mb-6">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book A Call</a>
+              </Button>
+              <p className="text-xs font-semibold text-muted-foreground mb-3">What's included:</p>
+              <ul className="space-y-3">
+                {websiteFeatures.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Google Ads */}
+            <div className="bg-foreground text-background rounded-2xl p-8 relative">
+              <h3 className="text-lg font-bold mb-1">Google Ads Management</h3>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-extrabold">$1,250</span>
+                <span className="text-lg opacity-60">/month</span>
+              </div>
+              <p className="text-sm opacity-60 mb-6">ongoing lead generation</p>
+              <p className="text-xs opacity-60 mb-4">Pause or cancel anytime</p>
+              <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 font-semibold mb-6">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Get Started Today</a>
+              </Button>
+              <p className="text-xs font-semibold opacity-60 mb-3">What's included:</p>
+              <ul className="space-y-3">
+                {adsFeatures.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm opacity-80">
+                    <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-muted-foreground text-sm mt-8">
+            Every project starts with a free website preview — zero risk.
+          </p>
+        </div>
+      </Section>
+
+      {/* ── S7: Founder Story ── */}
+      <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-3xl">
-          <div className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-            <div className="w-24 h-24 rounded-full bg-[hsl(88,56%,53%)]/10 flex items-center justify-center shrink-0 text-3xl font-bold text-[hsl(88,56%,53%)]">M</div>
+          <div className="bg-background border border-border rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center shrink-0 text-3xl font-bold text-accent">M</div>
             <div>
-              <p className="text-[hsl(0,0%,75%)] leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4">
                 "I started Hipervínculo when I was 21 years old in Venezuela. In 2011, I brought the company to the United States. Over 20 years and 200+ clients later, we've helped businesses across every industry build their digital presence and grow."
               </p>
-              <p className="text-sm font-semibold text-[hsl(0,0%,100%)]">— Miguel, Founder</p>
-              <Button asChild variant="link" className="text-[hsl(88,56%,53%)] p-0 mt-3 h-auto font-semibold">
+              <p className="text-sm font-semibold text-foreground">— Miguel, Founder</p>
+              <Button asChild variant="link" className="text-accent p-0 mt-3 h-auto font-semibold">
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Let's talk about your business → Book a Call</a>
               </Button>
             </div>
@@ -355,16 +426,19 @@ export default function Preview() {
       </Section>
 
       {/* ── S8: FAQ ── */}
-      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]">
+      <Section className="py-20 md:py-28">
         <div className="container max-w-3xl">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">Frequently Asked Questions</h2>
+          <div className="text-center mb-14">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Built for {new Date().getFullYear()}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">Frequently Asked Questions</h2>
+          </div>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-xl px-6 overflow-hidden">
-                <AccordionTrigger className="text-left text-[hsl(0,0%,90%)] font-semibold text-sm hover:no-underline py-5">
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-secondary border border-border rounded-xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-foreground font-semibold text-sm hover:no-underline py-5">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-[hsl(0,0%,60%)] text-sm leading-relaxed pb-5">
+                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -373,30 +447,30 @@ export default function Preview() {
         </div>
       </Section>
 
-      {/* ── S9: Final CTA ── */}
-      <Section className="py-20 md:py-28">
+      {/* ── S9: Final CTA (dark section like creme.digital footer CTA) ── */}
+      <section className="py-20 md:py-28 bg-foreground text-background">
         <div className="container max-w-3xl text-center">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-6">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-6">
             Your Competitors Are Getting the Customers That Should Be Yours.
           </h2>
-          <p className="text-[hsl(0,0%,55%)] mb-10 max-w-xl mx-auto">
+          <p className="opacity-70 mb-10 max-w-xl mx-auto">
             Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
           </p>
-          <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-10 h-16 text-lg font-semibold">
+          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 h-16 text-lg font-semibold">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book Your Free Strategy Call</a>
           </Button>
-          <p className="text-xs text-[hsl(0,0%,40%)] mt-4">No pressure. No hard sell. Just a conversation about your business.</p>
+          <p className="text-xs opacity-40 mt-4">No pressure. No hard sell. Just a conversation about your business.</p>
         </div>
-      </Section>
+      </section>
 
       {/* ── S10: Footer ── */}
-      <footer className="py-10 border-t border-[hsl(147,20%,16%)]">
+      <footer className="py-10 border-t border-border bg-background">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link to="/">
-            <img src={logoFull} alt="Hipervínculo" className="h-8 brightness-0 invert" />
+            <img src={logoFull} alt="Hipervínculo" className="h-8" />
           </Link>
-          <p className="text-xs text-[hsl(0,0%,40%)]">© {new Date().getFullYear()} Hipervínculo. All rights reserved.</p>
-          <Link to="/privacy" className="text-xs text-[hsl(0,0%,40%)] hover:text-[hsl(0,0%,70%)] transition-colors">Privacy Policy</Link>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. All rights reserved.</p>
+          <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
         </div>
       </footer>
     </div>
