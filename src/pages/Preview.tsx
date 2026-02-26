@@ -266,10 +266,14 @@ function VSLPlayer() {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else {
-      el.requestFullscreen().catch(() => {
+      el.requestFullscreen().then(() => {
+        setShowControls(true);
+      }).catch(() => {
         // Fallback for iOS
         const v = videoRef.current as any;
-        if (v?.webkitEnterFullscreen) v.webkitEnterFullscreen();
+        if (v?.webkitEnterFullscreen) {
+          v.webkitEnterFullscreen();
+        }
       });
     }
   }, []);
@@ -284,7 +288,7 @@ function VSLPlayer() {
     >
       <div
         ref={playerRef}
-        className="relative aspect-[9/16] [&:fullscreen]:aspect-auto [&:fullscreen]:w-full [&:fullscreen]:h-full bg-foreground/5 rounded-2xl md:rounded-3xl [&:fullscreen]:rounded-none overflow-hidden border border-border [&:fullscreen]:border-0 shadow-2xl cursor-pointer group bg-black"
+        className={`relative overflow-hidden cursor-pointer group bg-black ${isFullscreen ? 'w-screen h-screen rounded-none border-0' : 'aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl border border-border shadow-2xl'}`}
         onClick={state === 'preview' ? handleClick : togglePlayPause}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
