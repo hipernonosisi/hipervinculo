@@ -164,7 +164,7 @@ function VSLPlayer() {
     v.muted = true;
     v.playbackRate = 2;
     v.play().catch(() => {});
-  }, [isInView]);
+  }, [isInView, videoSrcIndex]);
 
   // Track progress
   useEffect(() => {
