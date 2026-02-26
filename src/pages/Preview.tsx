@@ -177,84 +177,93 @@ export default function Preview() {
       </header>
 
       {/* ── S1: Hero + VSL Video ── */}
-      <section className="pt-32 pb-16 md:pt-44 md:pb-24">
+      <section className="pt-28 pb-12 md:pt-40 md:pb-20">
         <div className="container">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            {/* Left: Copy */}
-            <div className="flex-1 text-center lg:text-left">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-3xl sm:text-5xl md:text-[56px] font-extrabold leading-[1.08] tracking-tight text-foreground mb-6"
-              >
-                Stop Losing Customers to Competitors Who Simply Show Up First on Google
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15 }}
-                className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
-              >
-                We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services. 200+ businesses. 20+ years. Real results.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
-              >
-                <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
-                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
-                  onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  See Our Work
-                </Button>
-              </motion.div>
-              {/* Stats inline */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex gap-8 justify-center lg:justify-start"
-              >
-                {[
-                  { target: 200, suffix: '+', label: 'Clients', prefix: '' },
-                  { target: 20, suffix: '+', label: 'Years', prefix: '' },
-                  { target: 98, suffix: 'M+', label: 'Generated', prefix: '$' },
-                ].map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="text-2xl sm:text-3xl font-extrabold text-foreground">
-                      <Counter target={s.target} suffix={s.suffix} prefix={s.prefix} />
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Right: Vertical VSL Video */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex-shrink-0 w-full max-w-[300px] lg:max-w-[340px]"
+          {/* Headline centered */}
+          <div className="text-center max-w-4xl mx-auto mb-10 md:mb-14">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl sm:text-5xl md:text-[56px] font-extrabold leading-[1.08] tracking-tight text-foreground mb-5"
             >
-              <div className="relative aspect-[9/16] bg-muted rounded-3xl overflow-hidden border border-border shadow-lg flex items-center justify-center cursor-pointer group">
-                <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-8 h-8 text-accent-foreground ml-1" fill="currentColor" />
-                </div>
-                <div className="absolute bottom-6 left-0 right-0 text-center">
-                  <span className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">Video coming soon</span>
-                </div>
-              </div>
-            </motion.div>
+              Stop Losing Customers to Competitors Who Simply Show Up First on Google
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            >
+              We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services.
+            </motion.p>
           </div>
+
+          {/* VSL Video — HERO PROTAGONIST */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.25 }}
+            className="relative max-w-3xl mx-auto mb-12 md:mb-16"
+          >
+            <div className="relative aspect-video bg-gradient-to-br from-foreground/5 to-foreground/10 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl flex items-center justify-center cursor-pointer group">
+              {/* Pulsating glow ring */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-accent/30 absolute"
+                />
+                <motion.div
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-accent/20 absolute"
+                />
+              </div>
+              <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-accent/30">
+                <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
+              </div>
+              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 text-center z-10">
+                <span className="text-xs md:text-sm text-muted-foreground bg-background/80 backdrop-blur-sm px-4 py-1.5 rounded-full font-medium">▶ Watch how we grow businesses — 2 min</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA + Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-center"
+          >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
+                onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                See Our Work
+              </Button>
+            </div>
+            <div className="flex gap-8 justify-center">
+              {[
+                { target: 200, suffix: '+', label: 'Clients', prefix: '' },
+                { target: 20, suffix: '+', label: 'Years', prefix: '' },
+                { target: 98, suffix: 'M+', label: 'Generated', prefix: '$' },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-foreground">
+                    <Counter target={s.target} suffix={s.suffix} prefix={s.prefix} />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
