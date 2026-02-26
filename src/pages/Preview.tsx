@@ -369,7 +369,7 @@ export default function Preview() {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">"{review.text}"</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ backgroundColor: review.color }}>
                       {review.name.charAt(0)}
                     </div>
                     <span className="text-sm font-semibold text-foreground">{review.name}</span>
