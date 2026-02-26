@@ -152,6 +152,7 @@ function VSLPlayer() {
   const [speed, setSpeed] = useState(1);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  const [videoSrcIndex, setVideoSrcIndex] = useState(0);
   const containerRef = useRef(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
