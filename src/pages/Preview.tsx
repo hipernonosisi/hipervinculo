@@ -294,7 +294,7 @@ function VSLPlayer() {
   );
 }
 
-
+export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
