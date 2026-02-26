@@ -199,11 +199,11 @@ function VSLPlayer() {
     if (!v) return;
     if (state === 'preview') {
       v.muted = false;
-      v.playbackRate = 1;
+      v.playbackRate = 1.25;
       v.currentTime = 0;
       v.play().catch(() => {});
       setMuted(false);
-      setSpeed(1);
+      setSpeed(1.25);
       setState('playing');
     }
   }, [state]);
