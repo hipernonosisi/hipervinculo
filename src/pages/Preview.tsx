@@ -281,10 +281,6 @@ function VSLPlayer() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        onClick={state === 'preview' ? handleClick : togglePlayPause}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
         {/* Fallback background image while video loads */}
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
