@@ -84,14 +84,17 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
   );
 }
 
+// ── Google-style avatar colors ──
+const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#FF6D01', '#46BDC6', '#7B1FA2', '#C2185B'];
+
 // ── Google Reviews data (placeholder — replace with real reviews) ──
 const googleReviews = [
-  { name: 'Carlos M.', text: 'Incredible results. Within 60 days of launching our Google Ads campaign, we were getting 15+ qualified leads per week. The team is responsive, professional, and truly understands digital growth.', date: '2 months ago' },
-  { name: 'Sarah T.', text: 'They redesigned our website and it looks absolutely stunning. More importantly, our conversion rate tripled. Best investment we\'ve made for our business this year.', date: '3 months ago' },
-  { name: 'Roberto L.', text: 'Working with Hipervínculo has been a game-changer. Our online presence went from non-existent to dominating local search results. Highly recommend their team.', date: '1 month ago' },
-  { name: 'Jennifer K.', text: 'What I love most is the transparency. They show us exactly where every dollar goes and the results speak for themselves. 5 stars all the way.', date: '4 months ago' },
-  { name: 'David P.', text: 'The free website preview sold us immediately. We could see exactly what we were getting before committing. The final product exceeded our expectations.', date: '2 months ago' },
-  { name: 'María G.', text: 'Excelente equipo bilingüe. Nos ayudaron con todo — diseño web, Google Ads, y estrategia digital. Los resultados hablan por sí solos. 100% recomendados.', date: '3 weeks ago' },
+  { name: 'Carlos M.', text: 'Incredible results. Within 60 days of launching our Google Ads campaign, we were getting 15+ qualified leads per week. The team is responsive, professional, and truly understands digital growth.', date: '2 months ago', color: googleColors[0] },
+  { name: 'Sarah T.', text: 'They redesigned our website and it looks absolutely stunning. More importantly, our conversion rate tripled. Best investment we\'ve made for our business this year.', date: '3 months ago', color: googleColors[1] },
+  { name: 'Roberto L.', text: 'Working with Hipervínculo has been a game-changer. Our online presence went from non-existent to dominating local search results. Highly recommend their team.', date: '1 month ago', color: googleColors[3] },
+  { name: 'Jennifer K.', text: 'What I love most is the transparency. They show us exactly where every dollar goes and the results speak for themselves. 5 stars all the way.', date: '4 months ago', color: googleColors[2] },
+  { name: 'David P.', text: 'The free website preview sold us immediately. We could see exactly what we were getting before committing. The final product exceeded our expectations.', date: '2 months ago', color: googleColors[4] },
+  { name: 'María G.', text: 'Excelente equipo bilingüe. Nos ayudaron con todo — diseño web, Google Ads, y estrategia digital. Los resultados hablan por sí solos. 100% recomendados.', date: '3 weeks ago', color: googleColors[5] },
 ];
 
 // ── Case studies data ──
