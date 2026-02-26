@@ -764,7 +764,7 @@ export default function Preview() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mb-6 md:mb-8"
             >
-              <h2 className="text-[28px] sm:text-4xl md:text-[56px] font-extrabold leading-[1.2] md:leading-[1.08]">
+              <h2 className="text-[28px] sm:text-4xl md:text-[56px] font-extrabold leading-[1.2] md:leading-[1.08] text-background">
                 Your Competitors Are Getting the Customers That Should Be{' '}
                 <span className="text-accent">Yours.</span>
               </h2>
