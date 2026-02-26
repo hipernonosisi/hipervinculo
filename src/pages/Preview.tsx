@@ -777,8 +777,8 @@ export default function Preview() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-12 h-16 text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.4)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-shadow">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+            <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.4)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-shadow w-full sm:w-auto">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
                 Book Your Free Strategy Call
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
