@@ -257,9 +257,15 @@ function VSLPlayer() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        {/* Fallback background image while video loads */}
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/images/miguel-founder.png)' }}
+        />
         <video
           ref={videoRef}
           src={VSL_URLS[videoSrcIndex]}
+          poster="/images/miguel-founder.png"
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
           muted
