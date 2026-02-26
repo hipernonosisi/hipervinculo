@@ -430,16 +430,28 @@ export default function Preview() {
 
       {/* ── S7: Founder Story ── */}
       <Section className="py-20 md:py-28">
-        <div className="container max-w-3xl">
-          <div className="bg-secondary border border-border rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-            <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center shrink-0 text-3xl font-bold text-accent">M</div>
-            <div>
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14">
+            {/* Photo */}
+            <div className="shrink-0 w-full max-w-[280px] md:max-w-[320px]">
+              <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
+                <img src="/images/miguel-founder.png" alt="Miguel — Founder of Hipervínculo" className="w-full h-auto object-cover" />
+              </div>
+            </div>
+            {/* Story */}
+            <div className="flex-1">
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-4">Meet the Founder</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 leading-tight">
+                If your business doesn't show up on Google... you're invisible.
+              </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                "I started Hipervínculo when I was 21 years old in Venezuela. In 2011, I brought the company to the United States. Over 20 years and 200+ clients later, we've helped businesses across every industry build their digital presence and grow."
+                I'm Miguel, founder of Hipervínculo. I started this company when I was 21 years old in Venezuela. I was obsessed with the internet, obsessed with what it could do for businesses, and I built my first websites before most people in my country even had a broadband connection. In 2011, I brought the company to the United States, right here to South Florida.
               </p>
-              <p className="text-sm font-semibold text-foreground">— Miguel, Founder</p>
-              <Button asChild variant="link" className="text-accent p-0 mt-3 h-auto font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Let's talk about your business → Book a Call</a>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Over the last 20 years, I've helped more than 200 businesses — from local service companies to international distributors — go from invisible online to generating real customers, real calls, and real revenue. Every single week. Not sometimes. <span className="font-semibold text-foreground">Every week.</span>
+              </p>
+              <Button asChild className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-12 font-semibold">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Let's Talk About Your Business</a>
               </Button>
             </div>
           </div>
