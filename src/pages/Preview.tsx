@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
-import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2, Star } from 'lucide-react';
+import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
