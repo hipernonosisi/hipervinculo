@@ -149,6 +149,8 @@ function VSLPlayer() {
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [speed, setSpeed] = useState(1.25);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
