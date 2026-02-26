@@ -275,7 +275,12 @@ function VSLPlayer() {
       className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
     >
       <div
-        className="relative aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl cursor-pointer group"
+        ref={playerRef}
+        className="relative aspect-[9/16] [&:fullscreen]:aspect-auto [&:fullscreen]:w-full [&:fullscreen]:h-full bg-foreground/5 rounded-2xl md:rounded-3xl [&:fullscreen]:rounded-none overflow-hidden border border-border [&:fullscreen]:border-0 shadow-2xl cursor-pointer group bg-black"
+        onClick={state === 'preview' ? handleClick : togglePlayPause}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         onClick={state === 'preview' ? handleClick : togglePlayPause}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
