@@ -261,7 +261,6 @@ function VSLPlayer() {
           muted
           loop={state === 'preview'}
           preload="metadata"
-          crossOrigin="anonymous"
         />
 
         {/* Overlay for preview state */}
