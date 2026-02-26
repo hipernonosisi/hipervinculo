@@ -243,6 +243,28 @@ function VSLPlayer() {
     v.currentTime = pct * v.duration;
   }, []);
 
+  const skip = useCallback((seconds: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + seconds));
+  }, []);
+
+  const toggleFullscreen = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const container = containerRef.current as HTMLElement | null;
+    if (!container) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      container.requestFullscreen().catch(() => {
+        // Fallback for iOS
+        const v = videoRef.current as any;
+        if (v?.webkitEnterFullscreen) v.webkitEnterFullscreen();
+      });
+    }
+  }, []);
+
   return (
     <motion.div
       ref={containerRef}
