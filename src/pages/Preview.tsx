@@ -306,7 +306,7 @@ function VSLPlayer() {
       <div
         ref={playerRef}
         className={`relative overflow-hidden cursor-pointer group bg-black ${isFullscreen ? 'w-screen h-screen rounded-none border-0' : 'aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl border border-border shadow-2xl'}`}
-        onClick={state === 'preview' ? handleClick : togglePlayPause}
+        onClick={state === 'preview' ? handleClick : handleVideoTap}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
