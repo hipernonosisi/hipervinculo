@@ -591,7 +591,7 @@ export default function Preview() {
         <div className="container max-w-5xl">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Why us?</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-12">Why 200+ Businesses Trust Us</h2>
+            <h2 className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap">Why 200+ Businesses Trust Us</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyCards.map((c) => (
