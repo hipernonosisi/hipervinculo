@@ -33,21 +33,21 @@ export default function ThankYouPreview() {
 
   const content = {
     en: {
-      title: "You're In! Let's Talk Strategy",
-      text: "Thanks for your interest! The next step is a quick strategy call where we'll learn about your business, discuss your goals, and show you exactly how we can help you grow. Book your free call below — no commitment, just clarity.",
+      title: "You're All Set! We'll Be in Touch Soon",
+      text: "Thanks for booking your strategy call! You'll receive a confirmation email shortly with all the details. We may also give you a quick call or text to confirm the time — please keep an eye out and answer when we reach out. We're excited to learn about your business!",
       backHome: 'Back to Home',
-      bookCall: 'Book Your Free Strategy Call',
+      bookCall: 'View Our Portfolio',
       portfolioTitle: "Recent Projects We've Built",
-      portfolioSubtitle: "Take a look at some of the websites we've recently developed for our clients.",
+      portfolioSubtitle: "While you wait, take a look at some of the websites we've recently developed for our clients.",
       viewAll: 'View Full Portfolio',
     },
     es: {
-      title: '¡Excelente! Hablemos de Estrategia',
-      text: 'Gracias por tu interés. El siguiente paso es una llamada de estrategia donde conoceremos tu negocio, hablaremos de tus objetivos y te mostraremos exactamente cómo podemos ayudarte a crecer. Agenda tu llamada gratuita — sin compromiso, solo claridad.',
+      title: '¡Listo! Nos Pondremos en Contacto Pronto',
+      text: '¡Gracias por agendar tu llamada de estrategia! Recibirás un email de confirmación con todos los detalles. También es posible que te llamemos o enviemos un mensaje para confirmar la hora — por favor estate atento y responde cuando te contactemos. ¡Estamos emocionados de conocer tu negocio!',
       backHome: 'Volver al Inicio',
-      bookCall: 'Agenda Tu Llamada Gratuita',
+      bookCall: 'Ver Nuestro Portafolio',
       portfolioTitle: 'Proyectos Recientes que Hemos Construido',
-      portfolioSubtitle: 'Echa un vistazo a algunos de los sitios web que hemos desarrollado recientemente para nuestros clientes.',
+      portfolioSubtitle: 'Mientras esperas, echa un vistazo a algunos de los sitios web que hemos desarrollado recientemente para nuestros clientes.',
       viewAll: 'Ver Portafolio Completo',
     },
   };
