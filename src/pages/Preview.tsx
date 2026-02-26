@@ -566,11 +566,11 @@ export default function Preview() {
               href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full font-semibold text-sm hover:bg-accent/90 transition-colors shadow-md"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium underline underline-offset-4 decoration-muted-foreground/40 hover:decoration-foreground/60"
             >
               <img src="https://www.google.com/favicon.ico" alt="Google" className="w-4 h-4" />
               Read All 23 Reviews on Google
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
