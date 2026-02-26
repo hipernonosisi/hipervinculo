@@ -521,7 +521,7 @@ export default function Preview() {
       {/* ── Google Reviews ── */}
       <Section className="py-16 md:py-20">
         <div className="container">
-          <a href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
+          <a href="https://www.google.com/search?q=Hipervinculo+agency+Weston" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
             <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
             <span className="text-sm font-semibold text-foreground">Google Reviews</span>
             <div className="flex gap-0.5 ml-1">
