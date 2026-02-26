@@ -160,6 +160,8 @@ function VSLPlayer() {
   const [speed, setSpeed] = useState(1.25);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  const [hoverTime, setHoverTime] = useState<number | null>(null);
+  const [hoverX, setHoverX] = useState(0);
   const [videoSrcIndex, setVideoSrcIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
