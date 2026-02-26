@@ -153,6 +153,8 @@ function VSLPlayer() {
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const [videoSrcIndex, setVideoSrcIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const playerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
@@ -183,6 +185,13 @@ function VSLPlayer() {
       v.removeEventListener('play', onPlay);
       v.removeEventListener('pause', onPause);
     };
+  }, []);
+
+  // Track fullscreen changes
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onFsChange);
+    return () => document.removeEventListener('fullscreenchange', onFsChange);
   }, []);
 
   const handleClick = useCallback(() => {
@@ -252,12 +261,12 @@ function VSLPlayer() {
 
   const toggleFullscreen = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    const container = containerRef.current as HTMLElement | null;
-    if (!container) return;
+    const el = playerRef.current as HTMLElement | null;
+    if (!el) return;
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else {
-      container.requestFullscreen().catch(() => {
+      el.requestFullscreen().catch(() => {
         // Fallback for iOS
         const v = videoRef.current as any;
         if (v?.webkitEnterFullscreen) v.webkitEnterFullscreen();
@@ -274,7 +283,8 @@ function VSLPlayer() {
       className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
     >
       <div
-        className="relative aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl cursor-pointer group"
+        ref={playerRef}
+        className="relative aspect-[9/16] [&:fullscreen]:aspect-auto [&:fullscreen]:w-full [&:fullscreen]:h-full bg-foreground/5 rounded-2xl md:rounded-3xl [&:fullscreen]:rounded-none overflow-hidden border border-border [&:fullscreen]:border-0 shadow-2xl cursor-pointer group bg-black"
         onClick={state === 'preview' ? handleClick : togglePlayPause}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -288,7 +298,7 @@ function VSLPlayer() {
           ref={videoRef}
           src={VSL_URLS[videoSrcIndex]}
           poster="/images/miguel-founder.png"
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full ${isFullscreen ? 'object-contain' : 'object-cover'}`}
           playsInline
           muted
           autoPlay={state === 'preview'}
