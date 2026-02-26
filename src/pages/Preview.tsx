@@ -333,7 +333,7 @@ export default function Preview() {
       {/* ── Google Reviews ── */}
       <Section className="py-16 md:py-20">
         <div className="container">
-          <div className="flex items-center justify-center gap-2 mb-8">
+          <a href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
             <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
             <span className="text-sm font-semibold text-foreground">Google Reviews</span>
             <div className="flex gap-0.5 ml-1">
@@ -341,8 +341,8 @@ export default function Preview() {
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground ml-1">5.0</span>
-          </div>
+            <span className="text-sm text-muted-foreground ml-1">5.0 (23 reviews)</span>
+          </a>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {googleReviews.map((review) => (
               <div key={review.name} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
@@ -363,6 +363,11 @@ export default function Preview() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-6">
+            <a href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews" target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:underline font-medium">
+              Read all 23 reviews on Google →
+            </a>
           </div>
         </div>
       </Section>
