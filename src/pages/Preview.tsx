@@ -385,10 +385,14 @@ function VSLPlayer() {
 
             {/* Bottom control bar — visible on hover */}
             <div className={`absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-              {/* Progress bar (clickable) */}
+              {/* Progress bar + timestamp */}
               <div className="px-3 mb-1">
                 <div className="h-1.5 bg-background/20 rounded-full cursor-pointer relative" onClick={handleProgressClick}>
                   <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${progress}%` }} />
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[10px] text-background/70 font-mono tabular-nums">{formatTime(currentTime)}</span>
+                  <span className="text-[10px] text-background/70 font-mono tabular-nums">{formatTime(duration)}</span>
                 </div>
               </div>
 
