@@ -253,12 +253,12 @@ function VSLPlayer() {
 
   const toggleFullscreen = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    const container = containerRef.current as HTMLElement | null;
-    if (!container) return;
+    const el = playerRef.current as HTMLElement | null;
+    if (!el) return;
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else {
-      container.requestFullscreen().catch(() => {
+      el.requestFullscreen().catch(() => {
         // Fallback for iOS
         const v = videoRef.current as any;
         if (v?.webkitEnterFullscreen) v.webkitEnterFullscreen();
