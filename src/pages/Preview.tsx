@@ -765,9 +765,9 @@ export default function Preview() {
               className="mb-6 md:mb-8"
             >
               <h2 className="text-[28px] sm:text-4xl md:text-[56px] font-extrabold leading-[1.2] md:leading-[1.08]">
-                Your Competitors Are Getting the Customers That Should Be
+                Your Competitors Are Getting the Customers That Should Be{' '}
+                <span className="text-accent">Yours.</span>
               </h2>
-              <p className="text-accent text-[32px] sm:text-5xl md:text-[64px] font-extrabold leading-[1.2] mt-2 md:mt-3">Yours.</p>
             </motion.div>
 
             <motion.p
