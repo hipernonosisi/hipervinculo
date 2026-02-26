@@ -107,9 +107,10 @@ const caseStudies = [
 ];
 
 const steps = [
-  { icon: Eye, label: 'Preview', title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing.', image: '/portfolio/delios-home-hero.png' },
-  { icon: Hammer, label: 'Build', title: 'We Build & Launch Your Website', desc: 'Once approved, we build a high-performance website engineered to convert visitors into customers. Not a pretty brochure — a lead generation machine.', image: '/portfolio/stillwater-day-spa-hero.png' },
-  { icon: Rocket, label: 'Grow', title: 'We Drive Qualified Traffic', desc: 'We launch targeted Google Ads campaigns that put you in front of people actively searching for your services. Then we optimize weekly to maximize your ROI.', image: '/portfolio/rasetta-innovations-hero.png' },
+  { icon: Eye, label: 'Preview', title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing. No commitment, no risk.', image: '/portfolio/delios-home-hero.png' },
+  { icon: Hammer, label: 'Build', title: 'We Build & Launch Your Website', desc: 'Not just any website. A high-performance website specifically engineered to convert visitors into customers. Every button, every headline, every page is designed with one goal — make the phone ring. Make the form get filled out. Make the sale happen. This isn\'t about looking pretty. This is about making money.', image: '/portfolio/stillwater-day-spa-hero.png' },
+  { icon: Rocket, label: 'Grow', title: 'We Drive Qualified Traffic', desc: 'We put your business in front of people who are actively searching for your services right now. Not random people scrolling Instagram. People who just typed "plumber near me" or "best dentist in Cancun" into Google. These people have intent, urgency, and a credit card. All they need is to find YOU.', image: '/portfolio/google-ads-dashboard-1.png' },
+  { icon: Zap, label: 'Scale', title: 'We Optimize & Scale Your Results', desc: 'Every week, we analyze your campaigns. We track every call, every form submission, every dollar spent and every dollar earned. We kill what doesn\'t work. We double down on what does. Month after month, your lead flow grows, your cost per lead goes down, and your revenue goes up. It\'s a machine — and once it\'s running, it just keeps getting better.', image: '/portfolio/google-ads-dashboard-2.png' },
 ];
 
 const whyCards = [
