@@ -203,34 +203,7 @@ export default function Preview() {
           </div>
 
           {/* VSL Video — HERO PROTAGONIST */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.25 }}
-            className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
-          >
-            <div className="relative aspect-[9/16] bg-gradient-to-br from-foreground/5 to-foreground/10 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl flex items-center justify-center cursor-pointer group">
-              {/* Pulsating glow ring */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-accent/30 absolute"
-                />
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-accent/20 absolute"
-                />
-              </div>
-              <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-accent/30">
-                <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
-              </div>
-              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 text-center z-10">
-                <span className="text-xs md:text-sm text-muted-foreground bg-background/80 backdrop-blur-sm px-4 py-1.5 rounded-full font-medium">▶ Watch how we grow businesses — 2 min</span>
-              </div>
-            </div>
-          </motion.div>
+          <VSLPlayer />
 
           {/* CTA + Stats */}
           <motion.div
