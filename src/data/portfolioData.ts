@@ -152,4 +152,23 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+70%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
   },
+  // 8. Délios Home
+  {
+    slug: 'delios-home',
+    name: 'Délios Home',
+    url: 'https://delioshome.com/',
+    image: '/portfolio/delios-home-hero.png',
+    imageMobile: '',
+    extraImages: ['/portfolio/delios-home-process.png', '/portfolio/delios-home-steps.png', '/portfolio/delios-home-about.png', '/portfolio/delios-home-booking.png'],
+    description: { en: 'Premium kitchen renovation studio with 3D visualization and booking system in Madrid.', es: 'Estudio premium de renovación de cocinas con visualización 3D y sistema de reservas en Madrid.' },
+    industry: { en: 'Home Renovation', es: 'Renovación del Hogar' },
+    tagline: { en: 'A conversion-focused landing page for a premium kitchen design & renovation studio.', es: 'Una landing page enfocada en conversión para un estudio premium de diseño y renovación de cocinas.' },
+    overview: { en: 'Délios Home needed a high-converting landing page to capture consultation bookings for their premium kitchen renovation services in Madrid. We built a visually striking single-page experience featuring photorealistic 3D renders, a clear 4-step process, an embedded Calendly booking flow, testimonials with video, and WhatsApp integration — all designed to eliminate buyer anxiety and drive qualified meetings.', es: 'Délios Home necesitaba una landing page de alta conversión para captar reservas de consultas para sus servicios premium de renovación de cocinas en Madrid. Construimos una experiencia visual de una sola página con renders 3D fotorrealistas, un proceso claro de 4 pasos, flujo de reservas con Calendly integrado, testimonios con video e integración de WhatsApp — todo diseñado para eliminar la ansiedad del comprador y generar reuniones calificadas.' },
+    servicesUsed: { en: ['Landing Page Development', 'Conversion Optimization', 'Booking Integration', 'WhatsApp Integration'], es: ['Desarrollo de Landing Page', 'Optimización de Conversión', 'Integración de Reservas', 'Integración de WhatsApp'] },
+    outcomes: [
+      { metric: '+280%', label: { en: 'Increase in consultation bookings', es: 'Aumento en reservas de consulta' } },
+      { metric: '3.8%', label: { en: 'Visitor-to-booking rate', es: 'Tasa de visitante a reserva' } },
+      { metric: '45s', label: { en: 'Avg. time to first CTA click', es: 'Tiempo promedio al primer clic en CTA' } },
+    ],
+  },
 ];
