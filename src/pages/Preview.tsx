@@ -164,7 +164,7 @@ function VSLPlayer() {
     if (!isInView || !videoRef.current) return;
     const v = videoRef.current;
     v.muted = true;
-    v.playbackRate = 2;
+    v.playbackRate = 1.25;
     v.play().catch(() => {});
   }, [isInView, videoSrcIndex]);
 
