@@ -258,8 +258,10 @@ function VSLPlayer() {
           src={VSL_URL}
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
+          muted
           loop={state === 'preview'}
-          preload="auto"
+          preload="metadata"
+          crossOrigin="anonymous"
         />
 
         {/* Overlay for preview state */}
