@@ -95,14 +95,15 @@ const googleReviews = [
 // ── Case studies data ──
 const caseStudies = [
   { name: 'Stillwater Day Spa', type: 'Spa (Dallas, TX)', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
+  { name: 'Google Ads Performance', type: 'Paid Search Results', result: '1,247 conversions at $4.82 per conversion — 9.97x ROAS', image: '/portfolio/google-ads-dashboard-1.png', url: BOOKING_URL },
   { name: 'Rasetta Innovations', type: 'Real Estate Brokerage', result: '800+ leads/month, 20 properties closed/month', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
   { name: 'Délios Home', type: 'Kitchen Cabinet Refacing', result: '0 to 10 qualified leads/month, 60% close rate in 90 days', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+  { name: 'Lead Generation Campaign', type: 'Google Ads Results', result: '823 leads at $6.12/lead — 342% ROI in 6 months', image: '/portfolio/google-ads-dashboard-2.png', url: BOOKING_URL },
   { name: 'Step Solution USA', type: 'Dental Clinic (Playa del Carmen)', result: '200+ patient inquiries/week from international clients', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
   { name: 'Filtro Láser', type: 'Party Rentals', result: '300 online quotes/month for 10+ years straight', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
   { name: 'Pulverizadores Industriales', type: 'Pickleball Distributor', result: '$200K+/month in sales through targeted ads', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
   { name: 'Lajex LLC', type: 'Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
   { name: 'ZERMA Latin America', type: 'Heavy Machinery Distributor', result: '$30M+ in sales over 15 years', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Lajex Water Systems', type: 'Interior Design Store (Miami)', result: 'Consistent weekly leads for 8+ years', image: '/portfolio/lajex-llc-products.png', url: 'https://lajexllc.com/' },
 ];
 
 const steps = [
