@@ -149,7 +149,7 @@ function VSLPlayer() {
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(1.25);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const [videoSrcIndex, setVideoSrcIndex] = useState(0);
@@ -159,7 +159,7 @@ function VSLPlayer() {
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
 
-  // Autoplay muted + 2x speed on mount
+  // Autoplay muted + 1.25x speed on mount
   useEffect(() => {
     if (!isInView || !videoRef.current) return;
     const v = videoRef.current;
