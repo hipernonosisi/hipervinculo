@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
-import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight } from 'lucide-react';
+import { Eye, Hammer, Rocket, Play, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
@@ -150,6 +150,150 @@ const adsFeatures = [
   'Scale up as results grow',
 ];
 
+const VSL_URL = 'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1';
+
+function VSLPlayer() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [state, setState] = useState<'preview' | 'playing'>('preview');
+  const [muted, setMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true });
+
+  // Autoplay muted + 2x speed on mount
+  useEffect(() => {
+    if (!isInView || !videoRef.current) return;
+    const v = videoRef.current;
+    v.muted = true;
+    v.playbackRate = 2;
+    v.play().catch(() => {});
+  }, [isInView]);
+
+  // Track progress
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onTime = () => {
+      if (v.duration) setProgress((v.currentTime / v.duration) * 100);
+    };
+    v.addEventListener('timeupdate', onTime);
+    return () => v.removeEventListener('timeupdate', onTime);
+  }, []);
+
+  const handleClick = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (state === 'preview') {
+      // Switch to full playback with audio
+      v.muted = false;
+      v.playbackRate = 1;
+      v.currentTime = 0;
+      v.play().catch(() => {});
+      setMuted(false);
+      setState('playing');
+    } else {
+      // Toggle play/pause
+      if (v.paused) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    }
+  }, [state]);
+
+  const toggleMute = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  }, []);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 1, delay: 0.25 }}
+      className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
+    >
+      <div
+        className="relative aspect-[9/16] bg-foreground/5 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl cursor-pointer"
+        onClick={handleClick}
+      >
+        <video
+          ref={videoRef}
+          src={VSL_URL}
+          className="absolute inset-0 w-full h-full object-cover"
+          playsInline
+          loop={state === 'preview'}
+          preload="auto"
+        />
+
+        {/* Overlay for preview state */}
+        {state === 'preview' && (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
+            {/* Dark overlay for contrast */}
+            <div className="absolute inset-0 bg-foreground/20" />
+
+            {/* Pulsating play button */}
+            <div className="relative flex items-center justify-center">
+              <motion.div
+                animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-accent/30 absolute"
+              />
+              <motion.div
+                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-accent/20 absolute"
+              />
+              <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
+              </div>
+            </div>
+
+            {/* CTA label */}
+            <motion.div
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="relative z-10 mt-6"
+            >
+              <span className="text-sm md:text-base font-semibold text-background bg-accent px-5 py-2 rounded-full shadow-lg flex items-center gap-2">
+                <Volume2 className="w-4 h-4" />
+                Tap to Watch with Sound
+              </span>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Controls for playing state */}
+        {state === 'playing' && (
+          <>
+            {/* Mute toggle */}
+            <button
+              onClick={toggleMute}
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-foreground/60 backdrop-blur-sm flex items-center justify-center text-background hover:bg-foreground/80 transition-colors"
+            >
+              {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+            </button>
+
+            {/* Progress bar */}
+            <div className="absolute bottom-0 left-0 right-0 z-20 h-1 bg-foreground/20">
+              <div className="h-full bg-accent transition-all duration-300" style={{ width: `${progress}%` }} />
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Duration badge */}
+      <div className="text-center mt-3">
+        <span className="text-xs text-muted-foreground">9 min · Watch how we grow businesses</span>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -203,34 +347,7 @@ export default function Preview() {
           </div>
 
           {/* VSL Video — HERO PROTAGONIST */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.25 }}
-            className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto mb-12 md:mb-16"
-          >
-            <div className="relative aspect-[9/16] bg-gradient-to-br from-foreground/5 to-foreground/10 rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-2xl flex items-center justify-center cursor-pointer group">
-              {/* Pulsating glow ring */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-accent/30 absolute"
-                />
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-accent/20 absolute"
-                />
-              </div>
-              <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-accent/30">
-                <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
-              </div>
-              <div className="absolute bottom-4 md:bottom-6 left-0 right-0 text-center z-10">
-                <span className="text-xs md:text-sm text-muted-foreground bg-background/80 backdrop-blur-sm px-4 py-1.5 rounded-full font-medium">▶ Watch how we grow businesses — 2 min</span>
-              </div>
-            </div>
-          </motion.div>
+          <VSLPlayer />
 
           {/* CTA + Stats */}
           <motion.div
