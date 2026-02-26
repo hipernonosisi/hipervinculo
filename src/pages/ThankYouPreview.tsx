@@ -78,8 +78,8 @@ export default function ThankYouPreview() {
                 <Link to="/">{t.backHome}</Link>
               </Button>
               <Button asChild className="rounded-xl bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link to="/services">
-                  {t.exploreServices}
+                <Link to="/book">
+                  {t.bookCall}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
