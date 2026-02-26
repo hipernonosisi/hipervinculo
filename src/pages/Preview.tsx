@@ -143,12 +143,20 @@ const VSL_URLS = [
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1',
 ];
 
+function formatTime(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
 function VSLPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [speed, setSpeed] = useState(1.25);
   const [showControls, setShowControls] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
@@ -173,15 +181,22 @@ function VSLPlayer() {
     const v = videoRef.current;
     if (!v) return;
     const onTime = () => {
-      if (v.duration) setProgress((v.currentTime / v.duration) * 100);
+      if (v.duration) {
+        setProgress((v.currentTime / v.duration) * 100);
+        setCurrentTime(v.currentTime);
+        setDuration(v.duration);
+      }
     };
+    const onLoaded = () => { if (v.duration) setDuration(v.duration); };
     const onPlay = () => setPaused(false);
     const onPause = () => setPaused(true);
     v.addEventListener('timeupdate', onTime);
+    v.addEventListener('loadedmetadata', onLoaded);
     v.addEventListener('play', onPlay);
     v.addEventListener('pause', onPause);
     return () => {
       v.removeEventListener('timeupdate', onTime);
+      v.removeEventListener('loadedmetadata', onLoaded);
       v.removeEventListener('play', onPlay);
       v.removeEventListener('pause', onPause);
     };
@@ -376,10 +391,14 @@ function VSLPlayer() {
 
             {/* Bottom control bar — visible on hover */}
             <div className={`absolute bottom-0 left-0 right-0 z-20 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-              {/* Progress bar (clickable) */}
+              {/* Progress bar + timestamp */}
               <div className="px-3 mb-1">
                 <div className="h-1.5 bg-background/20 rounded-full cursor-pointer relative" onClick={handleProgressClick}>
                   <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${progress}%` }} />
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[10px] text-background/70 font-mono tabular-nums">{formatTime(currentTime)}</span>
+                  <span className="text-[10px] text-background/70 font-mono tabular-nums">{formatTime(duration)}</span>
                 </div>
               </div>
 
