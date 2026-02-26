@@ -46,29 +46,31 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
   return <span ref={ref}>{prefix}{value}{suffix}</span>;
 }
 
-// ── Parallax project card (large, like creme.digital) ──
-function ProjectCard({ project }: { project: typeof caseStudies[0] }) {
+// ── Apple-style scroll-reveal project card ──
+function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; index: number }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  // Alternate: even from left, odd from right
+  const fromLeft = index % 2 === 0;
+  const startX = fromLeft ? -60 : 60; // start percentage off-screen
+
+  const x = useTransform(scrollYProgress, [0, 0.3, 0.5], [startX, startX * 0.3, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.45], [0.3, 0.7, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5], [0.85, 0.95, 1]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 60 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: 0.1 }}
-      className="mb-8 md:mb-12"
+      style={{ x: useTransform(x, (v) => `${v}%`), opacity, scale }}
+      className="mb-6 md:mb-10"
     >
       <a href={project.url} target="_blank" rel="noopener noreferrer" className="group block">
         <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-muted border border-border shadow-sm hover:shadow-xl transition-shadow duration-500">
-          <motion.div style={{ y }} className="relative">
-            <img src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
-          </motion.div>
+          <img src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-accent">{project.type}</span>
