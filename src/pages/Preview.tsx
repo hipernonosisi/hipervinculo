@@ -266,10 +266,14 @@ function VSLPlayer() {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     } else {
-      el.requestFullscreen().catch(() => {
+      el.requestFullscreen().then(() => {
+        setShowControls(true);
+      }).catch(() => {
         // Fallback for iOS
         const v = videoRef.current as any;
-        if (v?.webkitEnterFullscreen) v.webkitEnterFullscreen();
+        if (v?.webkitEnterFullscreen) {
+          v.webkitEnterFullscreen();
+        }
       });
     }
   }, []);
