@@ -1,487 +1,404 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Layout as LayoutIcon, MessageCircle, Rocket } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useInView, animate } from 'framer-motion';
+import { Eye, Hammer, Rocket, Play, Check, ChevronDown, Award, Users, Zap, FileText, Globe2, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { PhoneInput } from '@/components/ui/phone-input';
-import { Layout } from '@/components/layout/Layout';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
-import { cn } from '@/lib/utils';
+import logoFull from '@/assets/logo-hipervinculo.png';
 
-type QuestionType = 'text' | 'select' | 'email' | 'tel';
+const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08';
 
-interface Question {
-  type: QuestionType;
-  label: string;
-  placeholder?: string;
-  options?: readonly string[];
-  noWebsiteLink?: string;
-}
-
-function calculateLeadScore(answers: string[]) {
-  let points = 0;
-  const budget = answers[4];
-
-  // Budget scoring
-  if (budget === '$3,000 - $10,000' || budget === '$10,000 - $50,000' ||
-      budget === 'More than $50,000' || budget === 'Más de $50,000') {
-    points += 2;
-  } else if (budget === '$1,250 - $3,000') {
-    points += 1;
-  }
-
-  if (points >= 2) return 'hot';
-  if (points >= 1) return 'warm';
-  return 'cold';
-}
-
-const previewTranslations = {
-  en: {
-    seoTitle: 'See What Your New Website Could Look Like',
-    headline: 'See What Your Website\nCould Look Like',
-    subtitle: "See a custom preview of your new website before making any decisions.\nNo cost. No commitment.",
-    questions: [
-      { label: "What's your current website URL?", placeholder: 'www.yourbusiness.com', noWebsiteLink: "I don't have a website yet" },
-      { label: "What's your full name?", placeholder: 'John Smith' },
-      { label: "What's the best phone number to reach you?", placeholder: '(555) 123-4567' },
-      { label: "What's the best email to send your preview?", placeholder: 'john@yourbusiness.com' },
-      { label: "What's your approximate monthly budget for marketing?", options: ['Less than $1,250', '$1,250 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'More than $50,000'] },
-    ],
-    next: 'Next',
-    back: 'Back',
-    submit: 'Get My Preview',
-    pressEnter: 'Press Enter ↵',
-    submitting: 'Submitting...',
-    pricingStep: {
-      headline: "Here's How It Works",
-      steps: [
-        { title: 'We design your preview — no cost', subtitle: "Our team builds a custom preview of your new website so you can see exactly what you'd get." },
-        { title: 'We review it together', subtitle: "We'll walk you through the preview, answer your questions, and discuss how it can generate leads for your business." },
-        { title: 'If you love it, we build it', subtitle: 'We bring your new website to life and set up your lead generation system.' },
-      ],
-      pricingIntro: 'If you decide to move forward, here\'s the investment:',
-      pricingItems: [
-        'Website Development + Lead System Setup: **$3,000** (one-time)',
-        'Google Ads Management & Optimization: **$1,250/month**',
-        'Recommended minimum ad budget: $1,200/month (paid directly to Google)',
-      ],
-      pricingFooter: 'No contracts — you stay because the system works.',
-      trustNote: 'Remember: the preview is completely free.\nYou only invest if you love what you see and want to move forward.',
-      submitButton: 'Get My Preview →',
-    },
-  },
-  es: {
-    seoTitle: 'Mira Cómo Se Vería Tu Nuevo Sitio Web',
-    headline: 'Mira Cómo Se Vería\nTu Sitio Web',
-    subtitle: 'Visualiza tu nuevo sitio web antes de tomar cualquier decisión.\nSin costo. Sin compromiso.',
-    questions: [
-      { label: '¿Cuál es la URL de tu sitio web actual?', placeholder: 'www.tunegocio.com', noWebsiteLink: 'Aún no tengo sitio web' },
-      { label: '¿Cuál es tu nombre completo?', placeholder: 'Tu nombre completo' },
-      { label: '¿Cuál es el mejor teléfono para contactarte?', placeholder: '(555) 123-4567' },
-      { label: '¿Cuál es el mejor email para enviarte tu vista previa?', placeholder: 'john@tunegocio.com' },
-      { label: '¿Cuál es tu presupuesto mensual aproximado para marketing?', options: ['Menos de $1,250', '$1,250 - $3,000', '$3,000 - $10,000', '$10,000 - $50,000', 'Más de $50,000'] },
-    ],
-    next: 'Siguiente',
-    back: 'Atrás',
-    submit: 'Obtener Mi Vista Previa',
-    pressEnter: 'Presiona Enter ↵',
-    submitting: 'Enviando...',
-    pricingStep: {
-      headline: 'Así Es Como Funciona',
-      steps: [
-        { title: 'Diseñamos tu vista previa — sin costo', subtitle: 'Nuestro equipo construye una vista previa personalizada de tu nuevo sitio web para que veas exactamente lo que recibirías.' },
-        { title: 'Lo revisamos juntos', subtitle: 'Te mostramos la vista previa, respondemos tus preguntas, y discutimos cómo puede generar leads para tu negocio.' },
-        { title: 'Si te encanta, lo construimos', subtitle: 'Hacemos realidad tu nuevo sitio web y configuramos tu sistema de captación de clientes.' },
-      ],
-      pricingIntro: 'Si decides avanzar, esta es la inversión:',
-      pricingItems: [
-        'Desarrollo Web + Sistema de Captación: **$3,000** (único pago)',
-        'Gestión y Optimización de Google Ads: **$1,250/mes**',
-        'Presupuesto mínimo recomendado de anuncios: $1,200/mes (pagado directamente a Google)',
-      ],
-      pricingFooter: 'Sin contratos — te quedas porque el sistema funciona.',
-      trustNote: 'Recuerda: la vista previa es completamente sin costo.\nSolo inviertes si te encanta lo que ves y quieres avanzar.',
-      submitButton: 'Obtener Mi Vista Previa →',
-    },
-  },
-} as const;
-
-const TOTAL_STEPS = 6; // 5 questions + 1 pricing screen
-const PRICING_STEP = 5; // index 5 = pricing screen
-
-const pricingIcons = [LayoutIcon, MessageCircle, Rocket];
-
-function renderBold(text: string) {
-  const parts = text.split(/\*\*(.*?)\*\*/g);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <strong key={i} className="font-bold">{part}</strong> : part
+// ── Animated section wrapper ──
+function Section({ children, className = '', id }: { children: React.ReactNode; className?: string; id?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.section
+      ref={ref}
+      id={id}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className={className}
+    >
+      {children}
+    </motion.section>
   );
 }
 
+// ── Animated counter ──
+function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(0, target, {
+      duration: 2,
+      ease: 'easeOut',
+      onUpdate: (v) => setValue(Math.floor(v)),
+    });
+    return () => controls.stop();
+  }, [isInView, target]);
+
+  return <span ref={ref}>{value}{suffix}</span>;
+}
+
+// ── Case studies data ──
+const caseStudies = [
+  { name: 'Stillwater Day Spa', type: 'Spa (Dallas, TX)', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
+  { name: 'Rasetta Innovations', type: 'Real Estate Brokerage', result: '800+ leads/month, 20 properties closed/month', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
+  { name: 'Délios Home', type: 'Kitchen Cabinet Refacing', result: '0 to 10 qualified leads/month, 60% close rate in 90 days', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+  { name: 'Step Solution USA', type: 'Dental Clinic (Playa del Carmen)', result: '200+ patient inquiries/week from international clients', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
+  { name: 'Filtro Láser', type: 'Party Rentals', result: '300 online quotes/month for 10+ years straight', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { name: 'Pulverizadores Industriales', type: 'Pickleball Distributor', result: '$200K+/month in sales through targeted ads', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
+  { name: 'Lajex LLC', type: 'Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
+  { name: 'ZERMA Latin America', type: 'Heavy Machinery Distributor', result: '$30M+ in sales over 15 years', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
+  { name: 'Lajex Water Systems', type: 'Interior Design Store (Miami)', result: 'Consistent weekly leads for 8+ years', image: '/portfolio/lajex-llc-products.png', url: 'https://lajexllc.com/' },
+];
+
+const steps = [
+  { icon: Eye, title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing.' },
+  { icon: Hammer, title: 'We Build & Launch Your Website', desc: 'Once approved, we build a high-performance website engineered to convert visitors into customers. Not a pretty brochure — a lead generation machine.' },
+  { icon: Rocket, title: 'We Drive Qualified Traffic', desc: 'We launch targeted Google Ads campaigns that put you in front of people actively searching for your services. Then we optimize weekly to maximize your ROI.' },
+];
+
+const whyCards = [
+  { icon: Award, title: '20+ Years of Experience', desc: 'We\'ve been building websites and running digital campaigns since before most agencies existed.' },
+  { icon: Users, title: '200+ Clients Served', desc: 'From local service businesses to international distributors across the US and Latin America.' },
+  { icon: Eye, title: 'See Before You Pay', desc: 'We design your custom website preview in 1 business day — completely free. No commitment.' },
+  { icon: Shield, title: 'No Long-Term Contracts', desc: 'We keep clients because we deliver results, not because we lock them into agreements.' },
+  { icon: Zap, title: 'Real Results, Not Reports', desc: 'We track every call, every form, every dollar. You see exactly what your investment generates.' },
+  { icon: Globe2, title: 'Bilingual Team', desc: 'We serve businesses in English and Spanish across the US, Latin America, and beyond.' },
+];
+
+const faqs = [
+  { q: 'How does the free website preview work?', a: 'We design a custom preview of your new website in just 1 business day. You see exactly what your site will look like before paying anything. If you love it, we move forward. If not, you walk away — no charge.' },
+  { q: 'What\'s included in the $3,000 website?', a: 'A fully custom, mobile-optimized website designed to convert visitors into customers. This includes design, development, content setup, SEO-ready structure, and launch.' },
+  { q: 'What does the $1,250/month Google Ads management include?', a: 'Campaign strategy, ad creation, keyword targeting, landing page optimization, conversion tracking, and weekly optimization. Your ad spend with Google is separate and you control the budget.' },
+  { q: 'Do I need to sign a long-term contract?', a: 'No. We work month to month. You stay because the results speak for themselves.' },
+  { q: 'How soon will I see results?', a: 'Most clients see their first qualified leads within 30-60 days of launching Google Ads. Some see results in as little as 2 weeks.' },
+  { q: 'What industries do you work with?', a: 'We work with any service-based business that has a Google Business Profile — plumbers, spas, realtors, dentists, contractors, retailers, distributors, and more.' },
+];
+
+const websiteFeatures = [
+  'Custom design tailored to your business',
+  'Mobile-optimized and fast-loading',
+  'Built to convert visitors into customers',
+  'SEO-ready structure',
+  'Free website preview before you commit',
+];
+
+const adsFeatures = [
+  'Targeted campaigns for your service area',
+  'Only reach people actively searching for your services',
+  'Weekly optimization and reporting',
+  'Conversion tracking on every call and form',
+  'Scale up as results grow',
+];
+
 export default function Preview() {
-  const { language } = useLanguage();
-  const t = previewTranslations[language];
-  const { toast } = useToast();
-  const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [answers, setAnswers] = useState<string[]>(Array(5).fill(''));
-  const [sessionId] = useState(() => {
-    const existing = sessionStorage.getItem('preview_session_id');
-    if (existing) return existing;
-    const id = crypto.randomUUID();
-    sessionStorage.setItem('preview_session_id', id);
-    return id;
-  });
+  const [scrolled, setScrolled] = useState(false);
 
-  // Save partial data to incomplete_leads on each step change
   useEffect(() => {
-    const savePartialData = async () => {
-      const payload = {
-        session_id: sessionId,
-        current_step: currentStep,
-        website_url: answers[0] || null,
-        contact_name: answers[1] || null,
-        phone: answers[2] || null,
-        email: answers[3] || null,
-        monthly_budget: answers[4] || null,
-        language,
-        updated_at: new Date().toISOString(),
-      };
-      
-      await supabase.from('incomplete_leads').upsert(payload, { onConflict: 'session_id' });
-    };
-
-    // Only save if the user has started interacting
-    if (currentStep > 0 || answers.some(a => a)) {
-      savePartialData();
-    }
-  }, [currentStep, sessionId, language]);
-
-  const questions: Question[] = t.questions.map((q, i) => {
-    const base: Question = {
-      type: 'options' in q ? 'select' : i === 2 ? 'tel' : i === 3 ? 'email' : 'text',
-      label: q.label,
-      placeholder: 'placeholder' in q ? q.placeholder : undefined,
-      options: 'options' in q ? q.options : undefined,
-    };
-    if (i === 0 && 'noWebsiteLink' in q) {
-      base.noWebsiteLink = q.noWebsiteLink;
-    }
-    return base;
-  });
-
-  const isPricingStep = currentStep === PRICING_STEP;
-  const isLastStep = currentStep === PRICING_STEP;
-
-  const isValidDomain = (value: string) => {
-    const trimmed = value.trim().toLowerCase();
-    // Match domain with TLD (e.g. example.com, my-site.co.uk)
-    return /^([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/.test(
-      trimmed.replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace(/^www\./, '')
-    );
-  };
-
-  const canProceed = isPricingStep || (() => {
-    const val = answers[currentStep]?.trim();
-    if (!val) return false;
-    // Step 0 (website URL): require valid domain unless "no website" was selected
-    if (currentStep === 0 && val !== (language === 'en' ? "I don't have a website yet" : "Aún no tengo sitio web")) {
-      return isValidDomain(val);
-    }
-    return true;
-  })();
-
-  const handleSubmit = useCallback(async () => {
-    setIsSubmitting(true);
-    try {
-      const leadScore = calculateLeadScore(answers);
-
-      const { error } = await supabase.from('preview_leads').insert({
-        website_url: answers[0],
-        business_name: '',
-        business_type: '',
-        contact_name: answers[1],
-        phone: answers[2],
-        email: answers[3],
-        monthly_budget: answers[4],
-        lead_score: leadScore,
-        language,
-      });
-
-      if (error) throw error;
-
-      // Mark incomplete lead as completed
-      supabase.from('incomplete_leads')
-        .update({ completed: true })
-        .eq('session_id', sessionId)
-        .then(() => {});
-
-      supabase.functions.invoke('send-notification', {
-        body: {
-          type: 'preview-lead',
-          language,
-          businessName: '',
-          businessType: '',
-          websiteUrl: answers[0],
-          contactName: answers[1],
-          phone: answers[2],
-          email: answers[3],
-          monthlyBudget: answers[4],
-          leadScore,
-        }
-      }).catch(err => console.error('Notification error:', err));
-
-      navigate('/thank-you/preview');
-    } catch (error) {
-      console.error('Error submitting preview request:', error);
-      toast({
-        title: 'Error',
-        description: language === 'en' ? 'Failed to submit. Please try again.' : 'Error al enviar. Inténtalo de nuevo.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  }, [answers, language, toast, navigate]);
-
-  const handleNext = useCallback(async () => {
-    if (!canProceed) return;
-
-    if (isPricingStep) {
-      handleSubmit();
-    } else {
-      setCurrentStep((prev) => prev + 1);
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }
-  }, [canProceed, isPricingStep, handleSubmit]);
-
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }
-  };
-
-  const handleAnswer = (value: string) => {
-    const newAnswers = [...answers];
-    newAnswers[currentStep] = value;
-    setAnswers(newAnswers);
-  };
-
-  // Handle Enter key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && !e.shiftKey && canProceed && !isSubmitting) {
-        e.preventDefault();
-        handleNext();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [canProceed, isSubmitting, handleNext]);
-
-  const pricing = t.pricingStep;
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <Layout hideBottomCta>
+    <div className="dark bg-[hsl(147,25%,6%)] min-h-screen text-[hsl(0,0%,98%)]">
       <SEO
-        title={t.seoTitle}
-        description={t.subtitle}
+        title="Grow Your Business — Hipervínculo"
+        description="We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services."
         url="https://hipervinculo.net/preview"
       />
-      <section className="py-10 md:py-28">
-        <div className="container">
-          <div className="max-w-2xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-6 md:mb-12">
-              {isPricingStep ? (
-                <>
-                  <span className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-                    {language === 'en' ? 'Before you go' : 'Antes de terminar'}
-                  </span>
-                  <h1 className="text-2xl md:text-4xl font-bold mb-4 whitespace-pre-line">
-                    {language === 'en'
-                      ? 'One Last Step to Get\nYour No-Cost Preview'
-                      : 'Un Último Paso para\nTu Vista Previa Sin Costo'}
-                  </h1>
-                  <p className="text-sm md:text-base text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
-                </>
-              ) : (
-                <>
-                  <h1 className="text-2xl md:text-4xl font-bold mb-4 whitespace-pre-line">{t.headline}</h1>
-                  <p className="text-sm md:text-base text-muted-foreground whitespace-pre-line">{t.subtitle}</p>
-                </>
-              )}
-            </div>
 
-            {/* Progress - only for question steps */}
-            {!isPricingStep && (
-              <div className="mb-6 md:mb-12">
-                <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                  <span>
-                    {language === 'en' ? 'Step' : 'Paso'} {currentStep + 1} {language === 'en' ? 'of' : 'de'} {TOTAL_STEPS}
-                  </span>
-                  <span>{Math.round(((currentStep + 1) / TOTAL_STEPS) * 100)}%</span>
+      {/* ── Sticky Header ── */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[hsl(147,25%,6%)]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <div className="container flex h-16 items-center justify-between">
+          <Link to="/">
+            <img src={logoFull} alt="Hipervínculo" className="h-10 brightness-0 invert" />
+          </Link>
+          <Button asChild className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-6 h-10 font-semibold text-sm">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Call</a>
+          </Button>
+        </div>
+      </header>
+
+      {/* ── S1: Hero ── */}
+      <section className="pt-32 pb-20 md:pt-44 md:pb-32">
+        <div className="container max-w-4xl text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-[hsl(0,0%,100%)] mb-6"
+          >
+            Stop Losing Customers to Competitors Who Simply Show Up First on Google
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="text-base sm:text-lg text-[hsl(0,0%,65%)] max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services. 200+ businesses. 20+ years. Real results.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          >
+            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-[hsl(0,0%,30%)] text-[hsl(0,0%,85%)] hover:bg-[hsl(0,0%,10%)] rounded-full px-8 h-14 text-base font-semibold bg-transparent"
+              onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              See Our Work
+            </Button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="flex justify-center gap-8 sm:gap-16"
+          >
+            {[
+              { target: 200, suffix: '+', label: 'Clients' },
+              { target: 20, suffix: '+', label: 'Years' },
+              { target: 30, suffix: 'M+', label: 'Generated' },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-3xl sm:text-4xl font-extrabold text-[hsl(88,56%,53%)]">
+                  {s.label === 'Generated' && '$'}
+                  <Counter target={s.target} suffix={s.suffix} />
                 </div>
-                <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-accent transition-all duration-300"
-                    style={{ width: `${((currentStep + 1) / TOTAL_STEPS) * 100}%` }}
-                  />
-                </div>
+                <div className="text-xs sm:text-sm text-[hsl(0,0%,50%)] mt-1">{s.label}</div>
               </div>
-            )}
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-            {/* Content */}
-            <div className="animate-fade-in" key={currentStep}>
-              {isPricingStep ? (
-                /* Pricing / How It Works Screen */
-                <div className="space-y-5 md:space-y-8">
-                  <h2 className="text-xl md:text-3xl font-bold text-center">{pricing.headline}</h2>
-
-                  {/* 3 Steps */}
-                  <div className="space-y-4">
-                    {pricing.steps.map((step, i) => {
-                      const Icon = pricingIcons[i];
-                      return (
-                        <div key={i} className="flex gap-4 items-start p-3 md:p-4 rounded-xl border border-border bg-background">
-                          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                            <Icon className="h-5 w-5 text-accent" />
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-foreground">{step.title}</h3>
-                            <p className="text-sm text-muted-foreground mt-1">{step.subtitle}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Pricing Box */}
-                  <div className="rounded-xl border border-border bg-muted/50 p-4 md:p-6 space-y-4">
-                    <p className="text-sm md:text-base font-bold text-foreground">{pricing.pricingIntro}</p>
-                    <ul className="space-y-2 text-xs md:text-sm text-foreground">
-                      {pricing.pricingItems.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                          <span>{renderBold(item)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-xs md:text-sm text-muted-foreground">{pricing.pricingFooter}</p>
-                  </div>
-
-                  {/* Trust Note */}
-                  <p className="text-sm text-muted-foreground text-center whitespace-pre-line">{pricing.trustNote}</p>
-                </div>
-              ) : (
-                /* Regular Question */
-                <div className="space-y-5 md:space-y-8">
-                  <h2 className="text-xl md:text-3xl font-bold">{questions[currentStep].label}</h2>
-
-                  {questions[currentStep].type === 'tel' && (
-                    <div className="space-y-3">
-                      <PhoneInput
-                        value={answers[currentStep]}
-                        onChange={(val) => handleAnswer(val)}
-                        placeholder={questions[currentStep].placeholder}
-                        className="text-base py-1 md:text-lg"
-                        autoFocus
-                      />
-                    </div>
-                  )}
-
-                  {(questions[currentStep].type === 'text' || questions[currentStep].type === 'email') && (
-                    <div className="space-y-3">
-                      <Input
-                        type={questions[currentStep].type === 'email' ? 'email' : 'text'}
-                        value={answers[currentStep]}
-                        onChange={(e) => handleAnswer(e.target.value)}
-                        placeholder={questions[currentStep].placeholder}
-                        className="text-base py-4 md:text-lg md:py-6"
-                        autoFocus
-                      />
-                      {questions[currentStep].noWebsiteLink && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            handleAnswer('no-website');
-                            setCurrentStep((prev) => prev + 1);
-                            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-                          }}
-                          className="text-sm text-muted-foreground underline hover:text-foreground transition-colors py-2"
-                        >
-                          {questions[currentStep].noWebsiteLink}
-                        </button>
-                      )}
-                    </div>
-                  )}
-
-                  {questions[currentStep].type === 'select' && questions[currentStep].options && (
-                    <div className="grid gap-2 md:gap-3">
-                      {questions[currentStep].options!.map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => handleAnswer(option)}
-                          className={cn(
-                            'text-left p-3 md:p-4 rounded-lg border-2 transition-all min-h-[48px] text-sm md:text-base',
-                            answers[currentStep] === option
-                              ? 'border-accent bg-accent/5'
-                              : 'border-border hover:border-accent/50'
-                          )}
-                        >
-                          {option}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+      {/* ── S2: VSL Video ── */}
+      <Section className="py-20 bg-[hsl(147,25%,8%)]">
+        <div className="container max-w-3xl text-center">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-8">
+            Watch: How We Help Businesses Like Yours Get Found Online
+          </h2>
+          <div className="relative aspect-video bg-[hsl(147,20%,12%)] rounded-2xl overflow-hidden border border-[hsl(147,20%,18%)] mb-6 flex items-center justify-center cursor-pointer group">
+            <div className="w-20 h-20 rounded-full bg-[hsl(88,56%,53%)] flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Play className="w-8 h-8 text-[hsl(0,0%,100%)] ml-1" fill="white" />
             </div>
+            <div className="absolute bottom-4 left-4 text-xs text-[hsl(0,0%,50%)]">Video coming soon</div>
+          </div>
+          <p className="text-[hsl(0,0%,60%)] mb-6">
+            See the real projects below — click through and visit their live websites.
+          </p>
+          <Button asChild variant="outline" className="border-[hsl(0,0%,25%)] text-[hsl(0,0%,80%)] hover:bg-[hsl(0,0%,10%)] rounded-full bg-transparent">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Ready to talk? Book Your Call</a>
+          </Button>
+        </div>
+      </Section>
 
-            {/* Navigation */}
-            <div className="flex items-center justify-between mt-6 md:mt-12 sticky bottom-0 bg-background py-4 md:py-0 md:static border-t md:border-t-0 border-border -mx-4 px-4 md:mx-0 md:px-0">
-              <Button
-                variant="ghost"
-                onClick={handleBack}
-                disabled={currentStep === 0}
-                className={currentStep === 0 ? 'invisible' : ''}
+      {/* ── S3: How It Works ── */}
+      <Section className="py-20 md:py-28">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {steps.map((step, i) => (
+              <div key={i} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 hover:border-[hsl(88,56%,53%)] transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[hsl(88,56%,53%)]/10 flex items-center justify-center mb-5">
+                  <step.icon className="w-6 h-6 text-[hsl(88,56%,53%)]" />
+                </div>
+                <div className="text-xs font-semibold text-[hsl(88,56%,53%)] mb-2">STEP {i + 1}</div>
+                <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-3">{step.title}</h3>
+                <p className="text-sm text-[hsl(0,0%,60%)] leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ── S4: Results / Case Studies ── */}
+      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]" id="results">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-14">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-4">Real Businesses. Real Results.</h2>
+            <p className="text-[hsl(0,0%,55%)] max-w-xl mx-auto">
+              These aren't stock photos or fake testimonials. These are live projects you can visit right now.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {caseStudies.map((cs) => (
+              <a
+                key={cs.name}
+                href={cs.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl overflow-hidden hover:border-[hsl(88,56%,53%)] transition-all hover:-translate-y-1"
               >
-                <ArrowLeft className="mr-2 h-4 w-4" /> {t.back}
-              </Button>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img src={cs.image} alt={cs.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                </div>
+                <div className="p-5">
+                  <div className="text-xs font-semibold text-[hsl(88,56%,53%)] mb-1">{cs.type}</div>
+                  <p className="text-sm text-[hsl(0,0%,75%)] font-medium leading-snug">{cs.result}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
+            </Button>
+          </div>
+        </div>
+      </Section>
 
-              <div className="flex items-center gap-4">
-                {!isPricingStep && (
-                  <span className="text-sm text-muted-foreground hidden sm:inline">
-                    {t.pressEnter}
-                  </span>
-                )}
-                <Button
-                  onClick={handleNext}
-                  disabled={!canProceed || isSubmitting}
-                  className={cn(
-                    isPricingStep
-                      ? "bg-accent hover:bg-accent/90 text-accent-foreground text-base px-8 py-3 h-auto animate-pulse hover:animate-none"
-                      : "bg-accent hover:bg-accent/90 text-accent-foreground"
-                  )}
-                  size={isPricingStep ? "lg" : "default"}
-                >
-                  {isSubmitting
-                    ? t.submitting
-                    : isLastStep
-                    ? pricing.submitButton
-                    : t.next}
-                  {!isPricingStep && <ArrowRight className="ml-2 h-4 w-4" />}
-                </Button>
+      {/* ── S5: Pricing ── */}
+      <Section className="py-20 md:py-28">
+        <div className="container max-w-4xl">
+          <div className="text-center mb-14">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-[hsl(0,0%,55%)]">No hidden fees. No long-term contracts. Just results.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Website */}
+            <div className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 hover:border-[hsl(88,56%,53%)] transition-colors">
+              <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-1">Website Development</h3>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-extrabold text-[hsl(88,56%,53%)]">$3,000</span>
               </div>
+              <p className="text-sm text-[hsl(0,0%,50%)] mb-6">one-time investment</p>
+              <ul className="space-y-3">
+                {websiteFeatures.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-[hsl(0,0%,70%)]">
+                    <Check className="w-4 h-4 text-[hsl(88,56%,53%)] mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Google Ads */}
+            <div className="bg-[hsl(147,20%,10%)] border-2 border-[hsl(88,56%,53%)] rounded-2xl p-8 relative">
+              <div className="absolute -top-3 right-6 bg-[hsl(88,56%,53%)] text-[hsl(0,0%,100%)] text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
+              <h3 className="text-lg font-bold text-[hsl(0,0%,100%)] mb-1">Google Ads Management</h3>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-extrabold text-[hsl(88,56%,53%)]">$1,250</span>
+                <span className="text-lg text-[hsl(0,0%,50%)]">/month</span>
+              </div>
+              <p className="text-sm text-[hsl(0,0%,50%)] mb-6">ongoing lead generation</p>
+              <ul className="space-y-3">
+                {adsFeatures.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-[hsl(0,0%,70%)]">
+                    <Check className="w-4 h-4 text-[hsl(88,56%,53%)] mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-[hsl(0,0%,50%)] text-sm mt-8">
+            Every project starts with a free website preview — zero risk.
+          </p>
+          <div className="text-center mt-6">
+            <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-8 h-14 text-base font-semibold">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book Your Free Strategy Call</a>
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── S6: Why Hipervínculo ── */}
+      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]">
+        <div className="container max-w-5xl">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">Why 200+ Businesses Trust Us</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyCards.map((c) => (
+              <div key={c.title} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-6 hover:border-[hsl(88,56%,53%)] transition-colors">
+                <c.icon className="w-8 h-8 text-[hsl(88,56%,53%)] mb-4" />
+                <h3 className="text-base font-bold text-[hsl(0,0%,100%)] mb-2">{c.title}</h3>
+                <p className="text-sm text-[hsl(0,0%,60%)] leading-relaxed">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ── S7: Founder Story ── */}
+      <Section className="py-20 md:py-28">
+        <div className="container max-w-3xl">
+          <div className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="w-24 h-24 rounded-full bg-[hsl(88,56%,53%)]/10 flex items-center justify-center shrink-0 text-3xl font-bold text-[hsl(88,56%,53%)]">M</div>
+            <div>
+              <p className="text-[hsl(0,0%,75%)] leading-relaxed mb-4">
+                "I started Hipervínculo when I was 21 years old in Venezuela. In 2011, I brought the company to the United States. Over 20 years and 200+ clients later, we've helped businesses across every industry build their digital presence and grow."
+              </p>
+              <p className="text-sm font-semibold text-[hsl(0,0%,100%)]">— Miguel, Founder</p>
+              <Button asChild variant="link" className="text-[hsl(88,56%,53%)] p-0 mt-3 h-auto font-semibold">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Let's talk about your business → Book a Call</a>
+              </Button>
             </div>
           </div>
         </div>
-      </section>
-    </Layout>
+      </Section>
+
+      {/* ── S8: FAQ ── */}
+      <Section className="py-20 md:py-28 bg-[hsl(147,25%,8%)]">
+        <div className="container max-w-3xl">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] text-center mb-14">Frequently Asked Questions</h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-[hsl(147,20%,10%)] border border-[hsl(147,20%,16%)] rounded-xl px-6 overflow-hidden">
+                <AccordionTrigger className="text-left text-[hsl(0,0%,90%)] font-semibold text-sm hover:no-underline py-5">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-[hsl(0,0%,60%)] text-sm leading-relaxed pb-5">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </Section>
+
+      {/* ── S9: Final CTA ── */}
+      <Section className="py-20 md:py-28">
+        <div className="container max-w-3xl text-center">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[hsl(0,0%,100%)] mb-6">
+            Your Competitors Are Getting the Customers That Should Be Yours.
+          </h2>
+          <p className="text-[hsl(0,0%,55%)] mb-10 max-w-xl mx-auto">
+            Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
+          </p>
+          <Button asChild size="lg" className="bg-[hsl(88,56%,53%)] hover:bg-[hsl(88,56%,45%)] text-[hsl(0,0%,100%)] rounded-full px-10 h-16 text-lg font-semibold">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book Your Free Strategy Call</a>
+          </Button>
+          <p className="text-xs text-[hsl(0,0%,40%)] mt-4">No pressure. No hard sell. Just a conversation about your business.</p>
+        </div>
+      </Section>
+
+      {/* ── S10: Footer ── */}
+      <footer className="py-10 border-t border-[hsl(147,20%,16%)]">
+        <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Link to="/">
+            <img src={logoFull} alt="Hipervínculo" className="h-8 brightness-0 invert" />
+          </Link>
+          <p className="text-xs text-[hsl(0,0%,40%)]">© {new Date().getFullYear()} Hipervínculo. All rights reserved.</p>
+          <Link to="/privacy" className="text-xs text-[hsl(0,0%,40%)] hover:text-[hsl(0,0%,70%)] transition-colors">Privacy Policy</Link>
+        </div>
+      </footer>
+    </div>
   );
 }

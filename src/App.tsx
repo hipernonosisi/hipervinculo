@@ -25,6 +25,7 @@ import Preview from "./pages/Preview";
 import ThankYouPreview from "./pages/ThankYouPreview";
 import Portfolio from "./pages/Portfolio";
 import CaseStudy from "./pages/CaseStudy";
+import Book from "./pages/Book";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/thank-you/preview" element={<ThankYouPreview />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/portfolio/:slug" element={<CaseStudy />} />
+            <Route path="/book" element={<Book />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
