@@ -228,7 +228,7 @@ export default function Preview() {
                 {[
                   { target: 200, suffix: '+', label: 'Clients', prefix: '' },
                   { target: 20, suffix: '+', label: 'Years', prefix: '' },
-                  { target: 30, suffix: 'M+', label: 'Generated', prefix: '$' },
+                  { target: 98, suffix: 'M+', label: 'Generated', prefix: '$' },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div className="text-2xl sm:text-3xl font-extrabold text-foreground">
