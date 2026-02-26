@@ -259,12 +259,16 @@ function VSLPlayer() {
       >
         <video
           ref={videoRef}
-          src={VSL_URL}
+          src={VSL_URLS[videoSrcIndex]}
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
           muted
+          autoPlay={state === 'preview'}
           loop={state === 'preview'}
           preload="metadata"
+          onError={() => {
+            setVideoSrcIndex((prev) => (prev < VSL_URLS.length - 1 ? prev + 1 : prev));
+          }}
         />
 
         {/* Overlay for preview state */}
