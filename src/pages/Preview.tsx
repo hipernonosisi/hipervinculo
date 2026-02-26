@@ -138,7 +138,10 @@ const adsFeatures = [
   'Scale up as results grow',
 ];
 
-const VSL_URL = 'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1';
+const VSL_URLS = [
+  'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&raw=1',
+  'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1',
+];
 
 function VSLPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
