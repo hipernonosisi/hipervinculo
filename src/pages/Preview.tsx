@@ -733,87 +733,99 @@ export default function Preview() {
       </Section>
 
       {/* ── S9: Final CTA ── */}
-      <section className="relative py-16 md:py-36 bg-foreground text-background overflow-hidden">
+      <section className="relative py-20 md:py-36 bg-foreground text-background overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/[0.06] blur-[120px] pointer-events-none" />
         
-        <div className="container relative z-10 max-w-4xl text-center px-6 md:px-4">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-background/10 backdrop-blur-sm border border-background/10 rounded-full px-4 py-2 mb-6 md:mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs md:text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-2xl sm:text-4xl md:text-[56px] font-extrabold leading-[1.15] md:leading-[1.08] mb-4 md:mb-6"
-          >
-            Your Competitors Are Getting the Customers That Should Be{' '}
-            <span className="text-accent">Yours.</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-base md:text-xl opacity-70 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.4)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-shadow w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
-                Book Your Free Strategy Call
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-sm opacity-50 mt-5 md:mt-6"
-          >
-            No pressure. No hard sell. Just a conversation about your business.
-          </motion.p>
-
-          {/* Trust stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex gap-6 md:gap-16 justify-center mt-10 md:mt-14 pt-8 md:pt-10 border-t border-background/10"
-          >
-            {[
-              { value: '200+', label: 'Businesses Served' },
-              { value: '20+', label: 'Years of Experience' },
-              { value: '$98M+', label: 'Revenue Generated' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-xl md:text-3xl font-extrabold text-accent">{stat.value}</div>
-                <div className="text-[10px] md:text-xs opacity-50 mt-1">{stat.label}</div>
+        <div className="container relative z-10 max-w-4xl px-6 md:px-4">
+          {/* Mobile: card-style layout / Desktop: centered */}
+          <div className="md:text-center">
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex md:justify-center mb-8 md:mb-10"
+            >
+              <div className="inline-flex items-center gap-2.5 bg-background/[0.08] backdrop-blur-sm border border-background/10 rounded-full px-5 py-2.5">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="text-xs md:text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+
+            {/* Heading - split for mobile impact */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mb-6 md:mb-8"
+            >
+              <h2 className="text-[28px] sm:text-4xl md:text-[56px] font-extrabold leading-[1.2] md:leading-[1.08]">
+                Your Competitors Are Getting the Customers That Should Be
+              </h2>
+              <p className="text-accent text-[32px] sm:text-5xl md:text-[64px] font-extrabold leading-[1.2] mt-2 md:mt-3">Yours.</p>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-[15px] md:text-xl opacity-60 mb-10 md:mb-12 max-w-2xl md:mx-auto leading-relaxed"
+            >
+              Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mb-5 md:mb-6"
+            >
+              <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.3)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-all w-full sm:w-auto">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+                  Book Your Free Strategy Call
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-sm opacity-40 mb-12 md:mb-16"
+            >
+              No pressure. No hard sell. Just a conversation about your business.
+            </motion.p>
+
+            {/* Trust stats - horizontal cards on mobile */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="grid grid-cols-3 gap-3 md:gap-0 md:flex md:justify-center md:gap-16 pt-8 md:pt-10 border-t border-background/10"
+            >
+              {[
+                { value: '200+', label: 'Businesses Served' },
+                { value: '20+', label: 'Years Experience' },
+                { value: '$98M+', label: 'Revenue Generated' },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center bg-background/[0.05] md:bg-transparent rounded-xl py-4 md:py-0 px-2 md:px-0">
+                  <div className="text-lg md:text-3xl font-extrabold text-accent">{stat.value}</div>
+                  <div className="text-[10px] md:text-xs opacity-50 mt-1 leading-tight">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
