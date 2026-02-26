@@ -169,7 +169,6 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '3', label: { en: 'Consultation calls booked in first 24h', es: 'Llamadas de consulta agendadas en las primeras 24h' } },
       { metric: '+280%', label: { en: 'Increase in consultation bookings', es: 'Aumento en reservas de consulta' } },
       { metric: '3.8%', label: { en: 'Visitor-to-booking rate', es: 'Tasa de visitante a reserva' } },
-      { metric: '45s', label: { en: 'Avg. time to first CTA click', es: 'Tiempo promedio al primer clic en CTA' } },
     ],
   },
 ];
