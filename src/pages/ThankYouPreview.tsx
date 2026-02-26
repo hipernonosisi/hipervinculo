@@ -33,19 +33,19 @@ export default function ThankYouPreview() {
 
   const content = {
     en: {
-      title: "You're In! We're Designing Your Preview",
-      text: "Our team will review your information and design a custom preview of what your new website could look like. You'll receive it via email within 3-5 business days. If we have questions, we'll call you first.",
+      title: "You're In! Let's Talk Strategy",
+      text: "Thanks for your interest! The next step is a quick strategy call where we'll learn about your business, discuss your goals, and show you exactly how we can help you grow. Book your free call below — no commitment, just clarity.",
       backHome: 'Back to Home',
-      exploreServices: 'Explore Our Services',
+      bookCall: 'Book Your Free Strategy Call',
       portfolioTitle: "Recent Projects We've Built",
       portfolioSubtitle: "Take a look at some of the websites we've recently developed for our clients.",
       viewAll: 'View Full Portfolio',
     },
     es: {
-      title: '¡Listo! Estamos Diseñando Tu Vista Previa',
-      text: 'Nuestro equipo revisará tu información y diseñará una vista previa personalizada de cómo podría verse tu nuevo sitio web. La recibirás por email en 3-5 días hábiles. Si tenemos preguntas, te llamaremos primero.',
+      title: '¡Excelente! Hablemos de Estrategia',
+      text: 'Gracias por tu interés. El siguiente paso es una llamada de estrategia donde conoceremos tu negocio, hablaremos de tus objetivos y te mostraremos exactamente cómo podemos ayudarte a crecer. Agenda tu llamada gratuita — sin compromiso, solo claridad.',
       backHome: 'Volver al Inicio',
-      exploreServices: 'Explora Nuestros Servicios',
+      bookCall: 'Agenda Tu Llamada Gratuita',
       portfolioTitle: 'Proyectos Recientes que Hemos Construido',
       portfolioSubtitle: 'Echa un vistazo a algunos de los sitios web que hemos desarrollado recientemente para nuestros clientes.',
       viewAll: 'Ver Portafolio Completo',
@@ -78,8 +78,8 @@ export default function ThankYouPreview() {
                 <Link to="/">{t.backHome}</Link>
               </Button>
               <Button asChild className="rounded-xl bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link to="/services">
-                  {t.exploreServices}
+                <Link to="/book">
+                  {t.bookCall}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
