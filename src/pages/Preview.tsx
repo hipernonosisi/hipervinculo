@@ -84,18 +84,6 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
   );
 }
 
-// ── Google-style avatar colors ──
-const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#FF6D01', '#46BDC6', '#7B1FA2', '#C2185B'];
-
-// ── Google Reviews data (from provided screenshot) ──
-const googleReviews = [
-  { name: 'Carlos M.', text: 'Incredible results. Within 60 days of launching our Google Ads campaign, we were getting 15+ qualified leads per week. The team is responsive, professional, and truly understands digital...', date: '2 months ago', color: googleColors[0] },
-  { name: 'Sarah T.', text: "They redesigned our website and it looks absolutely stunning. More importantly, our conversion rate tripled. Best investment we've made for our business this year.", date: '3 months ago', color: googleColors[1] },
-  { name: 'Roberto L.', text: 'Working with Hipervínculo has been a game-changer. Our online presence went from non-existent to dominating local search results. Highly recommend their team.', date: '1 month ago', color: googleColors[3] },
-  { name: 'Jennifer K.', text: 'What I love most is the transparency. They show us exactly where every dollar goes and the results speak for themselves. 5 stars all the way.', date: '4 months ago', color: googleColors[2] },
-  { name: 'David P.', text: 'The free website preview sold us immediately. We could see exactly what we were getting before committing. The final product exceeded our expectations.', date: '2 months ago', color: googleColors[4] },
-  { name: 'María G.', text: 'Excelente equipo bilingüe. Nos ayudaron con todo — diseño web, Google Ads, y estrategia digital. Los resultados hablan por sí solos. 100% recomendados.', date: '3 weeks ago', color: googleColors[5] },
-];
 
 // ── Case studies data ──
 const caseStudies = [
@@ -475,30 +463,18 @@ export default function Preview() {
             </div>
             <span className="text-sm text-muted-foreground ml-1">5.0 (23 reviews)</span>
           </a>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {googleReviews.map((review) => (
-              <div key={review.name} className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-md transition-shadow">
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">"{review.text}"</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ backgroundColor: review.color }}>
-                      {review.name.charAt(0)}
-                    </div>
-                    <span className="text-sm font-semibold text-foreground">{review.name}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{review.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-6">
-            <a href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews" target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:underline font-medium">
-              Read all 23 reviews on Google →
+
+          <div className="max-w-2xl mx-auto bg-secondary border border-border rounded-2xl p-6 text-center">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              For transparency, we only show live reviews directly on Google.
+            </p>
+            <a
+              href="https://www.google.com/search?q=Hipervinculo+Weston+Reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 text-sm text-accent hover:underline font-semibold"
+            >
+              Read all reviews on Google →
             </a>
           </div>
         </div>
