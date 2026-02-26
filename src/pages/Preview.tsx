@@ -298,8 +298,7 @@ function VSLPlayer() {
           ref={videoRef}
           src={VSL_URLS[videoSrcIndex]}
           poster="/images/miguel-founder.png"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectFit: document.fullscreenElement ? 'contain' : 'cover' }}
+          className={`absolute inset-0 w-full h-full ${isFullscreen ? 'object-contain' : 'object-cover'}`}
           playsInline
           muted
           autoPlay={state === 'preview'}
