@@ -305,7 +305,7 @@ export default function Preview() {
           ))}
 
           <div className="text-center mt-8">
-            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
+            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-sm md:text-base font-semibold w-full sm:w-auto">
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Want results like these? Book Your Free Strategy Call</a>
             </Button>
           </div>
