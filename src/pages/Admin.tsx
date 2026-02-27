@@ -26,6 +26,7 @@ import { ServiceIconsGrid } from '@/components/admin/ServiceIconsGrid';
 import { IncompleteLeadsSection } from '@/components/admin/IncompletLeadsSection';
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
+import { PreviewAnalyticsDashboard } from '@/components/admin/PreviewAnalyticsDashboard';
 
 interface ContactSubmission {
   id: string;
