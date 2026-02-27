@@ -316,56 +316,29 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-4 sm:grid-cols-9 h-auto gap-1">
-              <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Contact</span>
-                <span className="sm:hidden">Contact</span>
-                <span className="ml-1">({contactSubmissions.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="audit" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <FileText className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Audits</span>
-                <span className="sm:hidden">Audits</span>
-                <span className="ml-1">({auditRequests.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="chat" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <MessageCircle className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Chats</span>
-                <span className="sm:hidden">Chats</span>
-                <span className="ml-1">({chatConversations.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="preview" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Magnet className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Preview</span>
-                <span className="sm:hidden">Preview</span>
-                <span className="ml-1">({previewLeads.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Presentation className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Presentations</span>
-                <span className="sm:hidden">Present.</span>
-              </TabsTrigger>
-              <TabsTrigger value="reports" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <BarChart3 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Reports</span>
-                <span className="sm:hidden">Reports</span>
-              </TabsTrigger>
-              <TabsTrigger value="proposals" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <ScrollText className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Proposals</span>
-                <span className="sm:hidden">Proposals</span>
-              </TabsTrigger>
-              <TabsTrigger value="icons" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Shapes className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Icons</span>
-                <span className="sm:hidden">Icons</span>
-              </TabsTrigger>
-              <TabsTrigger value="analytics" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <ChartArea className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Analytics</span>
-                <span className="sm:hidden">Analytics</span>
-              </TabsTrigger>
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex overflow-x-auto sm:grid sm:grid-cols-9 h-auto gap-1 no-scrollbar">
+              {[
+                { value: 'contact', label: 'Contact', shortLabel: 'Contact', Icon: Mail, count: contactSubmissions.length },
+                { value: 'audit', label: 'Audits', shortLabel: 'Audits', Icon: FileText, count: auditRequests.length },
+                { value: 'chat', label: 'Chats', shortLabel: 'Chats', Icon: MessageCircle, count: chatConversations.length },
+                { value: 'preview', label: 'Preview', shortLabel: 'Preview', Icon: Magnet, count: previewLeads.length },
+                { value: 'presentations', label: 'Presentations', shortLabel: 'Present.', Icon: Presentation },
+                { value: 'reports', label: 'Reports', shortLabel: 'Reports', Icon: BarChart3 },
+                { value: 'proposals', label: 'Proposals', shortLabel: 'Proposals', Icon: ScrollText },
+                { value: 'icons', label: 'Icons', shortLabel: 'Icons', Icon: Shapes },
+                { value: 'analytics', label: 'Analytics', shortLabel: 'Analytics', Icon: ChartArea },
+              ].map(({ value, label, shortLabel, Icon, count }) => (
+                <TabsTrigger 
+                  key={value} 
+                  value={value} 
+                  className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1 whitespace-nowrap flex-shrink-0 sm:flex-shrink"
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">{label}</span>
+                  <span className="sm:hidden">{shortLabel}</span>
+                  {count !== undefined && <span className="ml-0.5">({count})</span>}
+                </TabsTrigger>
+              ))}
             </TabsList>
             
             {/* Contact Submissions Tab */}

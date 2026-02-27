@@ -386,16 +386,16 @@ export function PreviewAnalyticsDashboard() {
           <CardTitle className="text-sm font-semibold">Conversion Funnel</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {[
               { label: 'Page Views', value: stats.pageViews, pct: 100 },
               { label: 'Scrolled 50%+', value: stats.scroll50, pct: stats.uniqueSessions > 0 ? Math.round((stats.scroll50 / stats.uniqueSessions) * 100) : 0 },
               { label: 'CTA Clicked', value: stats.ctaClicks, pct: stats.uniqueSessions > 0 ? Math.round((stats.ctaClicks / stats.uniqueSessions) * 100) : 0 },
               { label: 'Calendar Clicked', value: stats.calendarClicks, pct: stats.uniqueSessions > 0 ? Math.round((stats.calendarClicks / stats.uniqueSessions) * 100) : 0 },
             ].map(({ label, value, pct }) => (
-              <div key={label} className="flex items-center gap-3">
-                <div className="w-36 text-sm font-medium text-muted-foreground">{label}</div>
-                <div className="flex-1 h-8 bg-gray-100 rounded-lg overflow-hidden relative">
+              <div key={label} className="flex items-center gap-2 sm:gap-3">
+                <div className="w-24 sm:w-36 text-xs sm:text-sm font-medium text-muted-foreground shrink-0">{label}</div>
+                <div className="flex-1 h-7 sm:h-8 bg-gray-100 rounded-lg overflow-hidden relative">
                   <div
                     className="h-full rounded-lg transition-all duration-500"
                     style={{
@@ -404,7 +404,7 @@ export function PreviewAnalyticsDashboard() {
                       opacity: 0.3 + (pct / 100) * 0.7,
                     }}
                   />
-                  <div className="absolute inset-0 flex items-center px-3 text-xs font-semibold">
+                  <div className="absolute inset-0 flex items-center px-2 sm:px-3 text-[10px] sm:text-xs font-semibold">
                     {value} ({pct}%)
                   </div>
                 </div>
