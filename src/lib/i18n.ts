@@ -888,8 +888,8 @@ export const translations = {
       },
       stats: {
         title: 'Experience That Goes Beyond Theory',
-        subtitle: 'Hipervinculo has managed over $100M in advertising spend across platforms.',
-        adSpend: '$100M+',
+        subtitle: 'Hipervinculo has managed over $92M in advertising spend across platforms.',
+        adSpend: '$92M+',
         adSpendLabel: 'Managed Ad Spend',
         years: '20+',
         yearsLabel: 'Years of Experience',
