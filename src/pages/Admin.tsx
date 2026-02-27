@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes, Trash2, Download, UserX } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes, Trash2, Download, UserX, ChartArea } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
