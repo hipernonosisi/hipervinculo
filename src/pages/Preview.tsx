@@ -86,7 +86,7 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
 const caseStudies = [
   { name: 'Step Solution USA', type: 'Manufacturing', result: '+320% increase in qualified dealer leads', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
   { name: 'ZERMA Latin America', type: 'Industrial Machinery', result: '+200% increase in quote requests across LATAM', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in under 2 weeks', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in 2 days', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
   { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
   { name: 'Stillwater Day Spa', type: 'Wellness & Spa', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
   { name: 'Rasetta Innovations', type: 'Interior Design', result: '+180% increase in consultation requests', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
