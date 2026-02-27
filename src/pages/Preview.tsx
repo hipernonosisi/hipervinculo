@@ -520,6 +520,7 @@ function VSLPlayer() {
 
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
+  const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
