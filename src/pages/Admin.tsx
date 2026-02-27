@@ -135,18 +135,22 @@ export default function Admin() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [contactRes, auditRes, chatRes, previewRes] = await Promise.all([
+      const since7d = new Date();
+      since7d.setDate(since7d.getDate() - 7);
+
+      const [contactRes, auditRes, chatRes, previewRes, viewsRes] = await Promise.all([
         supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
         supabase.from('audit_requests').select('*').order('created_at', { ascending: false }),
         supabase.from('chat_conversations').select('*').order('updated_at', { ascending: false }),
-        supabase.from('preview_leads').select('*').order('created_at', { ascending: false })
+        supabase.from('preview_leads').select('*').order('created_at', { ascending: false }),
+        supabase.from('page_events').select('*', { count: 'exact', head: true }).eq('event_type', 'page_view').eq('page_url', '/preview').gte('created_at', since7d.toISOString()),
       ]);
 
       if (contactRes.data) setContactSubmissions(contactRes.data);
       if (previewRes.data) setPreviewLeads(previewRes.data);
       if (auditRes.data) setAuditRequests(auditRes.data);
+      setPreviewViews7d(viewsRes.count || 0);
       if (chatRes.data) {
-        // Get message counts for each conversation
         const conversationsWithCounts = await Promise.all(
           chatRes.data.map(async (conv) => {
             const { count } = await supabase
