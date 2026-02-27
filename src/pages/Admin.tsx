@@ -288,7 +288,7 @@ export default function Admin() {
 
       <div className="container px-4 py-6 sm:py-8">
         {/* Stats Cards */}
-        <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+        <AnimatedSection className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 mb-8">
           <Card className="border-0 shadow-lg rounded-2xl">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
