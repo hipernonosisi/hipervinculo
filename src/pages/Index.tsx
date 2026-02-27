@@ -398,7 +398,7 @@ export default function Index() {
                   className="text-[48px] md:text-[64px] lg:text-[72px] mb-2 leading-none"
                   style={{ fontWeight: 800, color: '#8BC34A' }}
                 >
-                  $100M+
+                  $92M+
                 </div>
                 <p className="text-[14px] md:text-[16px] text-muted-foreground">{t.provenResults.stat1}</p>
               </div>
