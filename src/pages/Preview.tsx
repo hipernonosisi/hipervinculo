@@ -89,7 +89,7 @@ const caseStudies = [
   { name: 'Filtro Láser', type: 'Industrial Filtration', result: 'Full digital presence built & launched in under 2 weeks', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
   { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
   { name: 'Stillwater Day Spa', type: 'Spa (Dallas, TX)', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
-  { name: 'Rasetta Innovations', type: 'Real Estate Brokerage', result: '800+ leads/month, 20 properties closed/month', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
+  { name: 'Rasetta Innovations', type: 'Kitchen Refacing', result: '800+ leads/month through Google & Meta Ads', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
   { name: 'Lajex LLC', type: 'Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
   { name: 'Délios Home', type: 'Kitchen Cabinet Refacing', result: '0 to 10 qualified leads/month, 60% close rate in 90 days', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
 ];
