@@ -764,7 +764,7 @@ export default function Preview() {
               <p className="text-sm text-muted-foreground mb-6">one-time investment</p>
               <p className="text-xs text-muted-foreground mb-4">Pause or cancel anytime</p>
               <Button asChild className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book A Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>Book A Call</a>
               </Button>
               <p className="text-xs font-semibold text-muted-foreground mb-3">What's included:</p>
               <ul className="space-y-3">
