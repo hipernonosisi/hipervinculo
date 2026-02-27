@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
+import { format, subDays, startOfDay, endOfDay, isToday, isYesterday } from 'date-fns';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar, Play, Volume2 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
-import { Film } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
+import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarIcon, Play, Volume2, Film } from 'lucide-react';
 
 interface PageEvent {
   id: string;
