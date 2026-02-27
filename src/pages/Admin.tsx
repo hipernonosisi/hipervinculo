@@ -88,6 +88,7 @@ export default function Admin() {
   const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
+  const [previewViews7d, setPreviewViews7d] = useState<number>(0);
 
   // Check authentication and admin role
   useEffect(() => {
