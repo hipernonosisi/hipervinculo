@@ -348,6 +348,20 @@ export default function Admin() {
               <p className="text-sm text-muted-foreground">Free preview submissions</p>
             </CardContent>
           </Card>
+          <Card className="border-0 shadow-lg rounded-2xl">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold">Preview Views</CardTitle>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
+                  <ChartArea className="h-5 w-5 text-white" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewViews7d}</p>
+              <p className="text-sm text-muted-foreground">Last 7 days</p>
+            </CardContent>
+          </Card>
         </AnimatedSection>
 
         {/* Tabs */}
