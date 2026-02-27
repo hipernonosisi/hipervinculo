@@ -348,7 +348,7 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-5 sm:grid-cols-11 h-auto gap-1">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-5 sm:grid-cols-12 h-auto gap-1">
               <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
                 <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
                 <span className="hidden sm:inline">Contact</span>
