@@ -179,7 +179,7 @@ function VSLPlayer() {
     v.play().catch(() => {});
   }, [isInView, videoSrcIndex]);
 
-  // Track progress
+  // Track progress + max watched seconds
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -188,6 +188,10 @@ function VSLPlayer() {
         setProgress((v.currentTime / v.duration) * 100);
         setCurrentTime(v.currentTime);
         setDuration(v.duration);
+        // Track max watched time (only in 'playing' state, not preview autoplay)
+        if (state === 'playing') {
+          maxWatchedSeconds.current = Math.max(maxWatchedSeconds.current, Math.floor(v.currentTime));
+        }
       }
     };
     const onLoaded = () => { if (v.duration) setDuration(v.duration); };
@@ -202,6 +206,31 @@ function VSLPlayer() {
       v.removeEventListener('loadedmetadata', onLoaded);
       v.removeEventListener('play', onPlay);
       v.removeEventListener('pause', onPause);
+    };
+  }, [state]);
+
+  // Send video watch duration on page exit
+  useEffect(() => {
+    const sendWatchDuration = () => {
+      if (maxWatchedSeconds.current > 0) {
+        const v = videoRef.current;
+        const totalDuration = v?.duration ? Math.floor(v.duration) : 0;
+        const pctWatched = totalDuration > 0 ? Math.round((maxWatchedSeconds.current / totalDuration) * 100) : 0;
+        trackEvent('video_watch_duration', {
+          seconds_watched: maxWatchedSeconds.current,
+          total_duration: totalDuration,
+          percent_watched: pctWatched,
+        });
+      }
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') sendWatchDuration();
+    };
+    window.addEventListener('beforeunload', sendWatchDuration);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('beforeunload', sendWatchDuration);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
 
