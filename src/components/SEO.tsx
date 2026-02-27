@@ -42,6 +42,8 @@ export function SEO({
   const { language } = useLanguage();
   const defaults = defaultMeta[language];
 
+  const isLovableSubdomain = typeof window !== 'undefined' && window.location.hostname.includes('lovable.app');
+
   const finalTitle = title
     ? `${title} | Hipervínculo`
     : defaults.title;
@@ -55,7 +57,7 @@ export function SEO({
       <meta name="title" content={finalTitle} />
       <meta name="description" content={finalDescription} />
       <meta name="keywords" content={finalKeywords} />
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
+      {(noIndex || isLovableSubdomain) && <meta name="robots" content="noindex, nofollow" />}
       
       {/* Language */}
       <html lang={language} />
