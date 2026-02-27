@@ -22,8 +22,8 @@ export default function About() {
       <SEO
         title={t.about.title}
         description={language === 'en' 
-          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $100M+ in managed ad spend."
-          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $100M+ en inversión publicitaria gestionada."
+          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $92M+ in managed ad spend."
+          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $92M+ en inversión publicitaria gestionada."
         }
         url="https://hipervinculo.net/about"
       />
