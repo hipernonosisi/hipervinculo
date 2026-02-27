@@ -226,6 +226,33 @@ export type Database = {
         }
         Relationships: []
       }
+      page_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          page_url: string
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          page_url?: string
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          page_url?: string
+          session_id?: string
+        }
+        Relationships: []
+      }
       preview_leads: {
         Row: {
           business_name: string
