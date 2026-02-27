@@ -274,7 +274,7 @@ export default function About() {
           
           <AnimatedSection delay={0.2}>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* $100M+ - Bar Chart */}
+              {/* $92M+ - Bar Chart */}
               <motion.div 
                 className="text-center bg-white/10 backdrop-blur rounded-2xl p-8"
                 initial={{ opacity: 0, y: 30 }}

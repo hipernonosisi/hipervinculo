@@ -1915,8 +1915,8 @@ export const translations = {
       },
       stats: {
         title: 'Experiencia que Va Más Allá de la Teoría',
-        subtitle: 'Hipervínculo ha gestionado más de $100M en gasto publicitario en todas las plataformas.',
-        adSpend: '$100M+',
+        subtitle: 'Hipervínculo ha gestionado más de $92M en gasto publicitario en todas las plataformas.',
+        adSpend: '$92M+',
         adSpendLabel: 'Gasto Publicitario Gestionado',
         years: '20+',
         yearsLabel: 'Años de Experiencia',
