@@ -786,7 +786,7 @@ export default function Preview() {
               <p className="text-sm opacity-60 mb-6">ongoing lead generation</p>
               <p className="text-xs opacity-60 mb-4">Pause or cancel anytime</p>
               <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Get Started Today</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>Get Started Today</a>
               </Button>
               <p className="text-xs font-semibold opacity-60 mb-3">What's included:</p>
               <ul className="space-y-3">
