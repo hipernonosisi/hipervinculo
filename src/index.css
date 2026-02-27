@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@utilities;
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 /* Hipervínculo Design System - EXACT values from hipervinculo.net
    Primary/Accent: #8BC34A (lime green)
