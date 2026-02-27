@@ -88,6 +88,7 @@ export default function Admin() {
   const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
+  const [previewViews7d, setPreviewViews7d] = useState<number>(0);
 
   // Check authentication and admin role
   useEffect(() => {
@@ -134,18 +135,22 @@ export default function Admin() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [contactRes, auditRes, chatRes, previewRes] = await Promise.all([
+      const since7d = new Date();
+      since7d.setDate(since7d.getDate() - 7);
+
+      const [contactRes, auditRes, chatRes, previewRes, viewsRes] = await Promise.all([
         supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
         supabase.from('audit_requests').select('*').order('created_at', { ascending: false }),
         supabase.from('chat_conversations').select('*').order('updated_at', { ascending: false }),
-        supabase.from('preview_leads').select('*').order('created_at', { ascending: false })
+        supabase.from('preview_leads').select('*').order('created_at', { ascending: false }),
+        supabase.from('page_events').select('*', { count: 'exact', head: true }).eq('event_type', 'page_view').eq('page_url', '/preview').gte('created_at', since7d.toISOString()),
       ]);
 
       if (contactRes.data) setContactSubmissions(contactRes.data);
       if (previewRes.data) setPreviewLeads(previewRes.data);
       if (auditRes.data) setAuditRequests(auditRes.data);
+      setPreviewViews7d(viewsRes.count || 0);
       if (chatRes.data) {
-        // Get message counts for each conversation
         const conversationsWithCounts = await Promise.all(
           chatRes.data.map(async (conv) => {
             const { count } = await supabase
@@ -283,7 +288,7 @@ export default function Admin() {
 
       <div className="container px-4 py-6 sm:py-8">
         {/* Stats Cards */}
-        <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+        <AnimatedSection className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 mb-8">
           <Card className="border-0 shadow-lg rounded-2xl">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
@@ -341,6 +346,20 @@ export default function Admin() {
             <CardContent>
               <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewLeads.length}</p>
               <p className="text-sm text-muted-foreground">Free preview submissions</p>
+            </CardContent>
+          </Card>
+          <Card className="border-0 shadow-lg rounded-2xl">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold">Preview Views</CardTitle>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
+                  <ChartArea className="h-5 w-5 text-white" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewViews7d}</p>
+              <p className="text-sm text-muted-foreground">Last 7 days</p>
             </CardContent>
           </Card>
         </AnimatedSection>
