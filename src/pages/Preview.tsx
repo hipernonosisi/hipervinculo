@@ -543,7 +543,7 @@ export default function Preview() {
             <img src={logoFull} alt="Hipervínculo" className="h-10" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Call</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>Book a Call</a>
           </Button>
         </div>
       </header>
