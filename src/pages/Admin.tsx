@@ -803,10 +803,6 @@ export default function Admin() {
             </TabsContent>
             
 
-            {/* Creatives Dashboard Tab */}
-            <TabsContent value="creatives" className="mt-0">
-              <TopCreativesDashboard />
-            </TabsContent>
             
             {/* Presentations Tab */}
             <TabsContent value="presentations" className="mt-0 space-y-4">
