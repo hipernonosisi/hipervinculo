@@ -181,18 +181,18 @@ export function PreviewAnalyticsDashboard() {
             Tracking visitor behavior on /preview
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-visible no-scrollbar">
           {[
             { key: 'today', label: 'Today', from: new Date(), to: new Date() },
             { key: 'yesterday', label: 'Yesterday', from: subDays(new Date(), 1), to: subDays(new Date(), 1) },
-            { key: '7d', label: '7 Days', from: subDays(new Date(), 7), to: new Date() },
-            { key: '30d', label: '30 Days', from: subDays(new Date(), 30), to: new Date() },
-            { key: '90d', label: '90 Days', from: subDays(new Date(), 90), to: new Date() },
+            { key: '7d', label: '7d', from: subDays(new Date(), 7), to: new Date() },
+            { key: '30d', label: '30d', from: subDays(new Date(), 30), to: new Date() },
+            { key: '90d', label: '90d', from: subDays(new Date(), 90), to: new Date() },
           ].map((preset) => (
             <button
               key={preset.key}
               onClick={() => { setDateFrom(preset.from); setDateTo(preset.to); setActivePreset(preset.key); }}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap flex-shrink-0 ${
                 activePreset === preset.key
                   ? 'bg-accent text-white'
                   : 'bg-white border hover:bg-gray-50'
@@ -208,17 +208,17 @@ export function PreviewAnalyticsDashboard() {
                 variant="outline"
                 size="sm"
                 className={cn(
-                  "text-xs gap-1.5",
+                  "text-xs gap-1.5 whitespace-nowrap flex-shrink-0",
                   activePreset === 'custom' && 'bg-accent text-white hover:bg-accent/90 border-accent'
                 )}
               >
                 <CalendarIcon className="h-3.5 w-3.5" />
                 {activePreset === 'custom'
                   ? `${format(dateFrom, 'MMM d')} – ${format(dateTo, 'MMM d')}`
-                  : 'Custom Range'}
+                  : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="end">
+            <PopoverContent className="w-auto p-0" align="end" side="bottom" sideOffset={8}>
               <Calendar
                 mode="range"
                 selected={{ from: dateFrom, to: dateTo }}
@@ -229,21 +229,21 @@ export function PreviewAnalyticsDashboard() {
                     setActivePreset('custom');
                   }
                 }}
-                numberOfMonths={2}
+                numberOfMonths={1}
                 className={cn("p-3 pointer-events-auto")}
                 disabled={(date) => date > new Date()}
               />
             </PopoverContent>
           </Popover>
 
-          <Button onClick={fetchEvents} variant="outline" size="sm" disabled={loading}>
+          <Button onClick={fetchEvents} variant="outline" size="sm" disabled={loading} className="flex-shrink-0">
             <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
           </Button>
         </div>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
         {[
           { icon: Eye, label: 'Page Views', value: stats.pageViews, color: '#8BC34A' },
           { icon: Eye, label: 'Unique Visitors', value: stats.uniqueSessions, color: '#2d4a2d' },
@@ -254,19 +254,19 @@ export function PreviewAnalyticsDashboard() {
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
         ].map(({ icon: Icon, label, value, color }) => (
           <Card key={label} className="border-0 shadow-sm rounded-xl">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center"
                   style={{ backgroundColor: `${color}20` }}
                 >
-                  <Icon className="h-4 w-4" style={{ color }} />
+                  <Icon className="h-3 w-3 sm:h-4 sm:w-4" style={{ color }} />
                 </div>
               </div>
-              <p className="text-2xl font-bold" style={{ color: '#2d4a2d' }}>
+              <p className="text-lg sm:text-2xl font-bold" style={{ color: '#2d4a2d' }}>
                 {value}
               </p>
-              <p className="text-xs text-muted-foreground">{label}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">{label}</p>
             </CardContent>
           </Card>
         ))}
@@ -328,7 +328,7 @@ export function PreviewAnalyticsDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-4 mb-6">
             {[
               { label: 'Played Video', value: stats.videoPlays, sub: `${stats.uniqueSessions > 0 ? Math.round((stats.videoPlays / stats.uniqueSessions) * 100) : 0}% of visitors` },
               { label: 'Unmuted', value: stats.videoUnmutes, sub: `${stats.videoPlays > 0 ? Math.round((stats.videoUnmutes / stats.videoPlays) * 100) : 0}% of plays` },
@@ -336,10 +336,10 @@ export function PreviewAnalyticsDashboard() {
               { label: 'Max Watch', value: formatTime(stats.maxWatchSeconds), sub: 'longest session' },
               { label: 'Watch Data', value: stats.watchEventsCount, sub: 'sessions recorded' },
             ].map(({ label, value, sub }) => (
-              <div key={label} className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
-                <p className="text-xs font-medium text-muted-foreground">{label}</p>
-                <p className="text-[10px] text-muted-foreground/70 mt-0.5">{sub}</p>
+              <div key={label} className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <p className="text-base sm:text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
+                <p className="text-[10px] sm:text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-[9px] sm:text-[10px] text-muted-foreground/70 mt-0.5 hidden sm:block">{sub}</p>
               </div>
             ))}
           </div>
@@ -386,16 +386,16 @@ export function PreviewAnalyticsDashboard() {
           <CardTitle className="text-sm font-semibold">Conversion Funnel</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {[
               { label: 'Page Views', value: stats.pageViews, pct: 100 },
               { label: 'Scrolled 50%+', value: stats.scroll50, pct: stats.uniqueSessions > 0 ? Math.round((stats.scroll50 / stats.uniqueSessions) * 100) : 0 },
               { label: 'CTA Clicked', value: stats.ctaClicks, pct: stats.uniqueSessions > 0 ? Math.round((stats.ctaClicks / stats.uniqueSessions) * 100) : 0 },
               { label: 'Calendar Clicked', value: stats.calendarClicks, pct: stats.uniqueSessions > 0 ? Math.round((stats.calendarClicks / stats.uniqueSessions) * 100) : 0 },
             ].map(({ label, value, pct }) => (
-              <div key={label} className="flex items-center gap-3">
-                <div className="w-36 text-sm font-medium text-muted-foreground">{label}</div>
-                <div className="flex-1 h-8 bg-gray-100 rounded-lg overflow-hidden relative">
+              <div key={label} className="flex items-center gap-2 sm:gap-3">
+                <div className="w-24 sm:w-36 text-xs sm:text-sm font-medium text-muted-foreground shrink-0">{label}</div>
+                <div className="flex-1 h-7 sm:h-8 bg-gray-100 rounded-lg overflow-hidden relative">
                   <div
                     className="h-full rounded-lg transition-all duration-500"
                     style={{
@@ -404,7 +404,7 @@ export function PreviewAnalyticsDashboard() {
                       opacity: 0.3 + (pct / 100) * 0.7,
                     }}
                   />
-                  <div className="absolute inset-0 flex items-center px-3 text-xs font-semibold">
+                  <div className="absolute inset-0 flex items-center px-2 sm:px-3 text-[10px] sm:text-xs font-semibold">
                     {value} ({pct}%)
                   </div>
                 </div>

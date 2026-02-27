@@ -288,135 +288,57 @@ export default function Admin() {
 
       <div className="container px-4 py-6 sm:py-8">
         {/* Stats Cards */}
-        <AnimatedSection className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 mb-8">
-          <Card className="border-0 shadow-lg rounded-2xl">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Contact Submissions</CardTitle>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
-                  <Mail className="h-5 w-5 text-white" />
+        <AnimatedSection className="flex gap-3 sm:gap-4 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-5 sm:overflow-visible">
+          {[
+            { title: 'Contact Submissions', count: contactSubmissions.length, desc: 'Total inquiries received', Icon: Mail },
+            { title: 'Audit Requests', count: auditRequests.length, desc: 'Free audit requests', Icon: FileText },
+            { title: 'Chat Conversations', count: chatConversations.length, desc: 'AI chatbot conversations', Icon: MessageCircle },
+            { title: 'Preview Leads', count: previewLeads.length, desc: 'Free preview submissions', Icon: Magnet },
+            { title: 'Preview Views', count: previewViews7d, desc: 'Last 7 days', Icon: ChartArea },
+          ].map(({ title, count, desc, Icon }) => (
+            <Card key={title} className="border-0 shadow-lg rounded-2xl min-w-[160px] sm:min-w-0 flex-shrink-0 sm:flex-shrink">
+              <CardHeader className="pb-2 p-4 sm:p-6 sm:pb-2">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm sm:text-lg font-semibold leading-tight">{title}</CardTitle>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#8BC34A' }}>
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                  </div>
                 </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{contactSubmissions.length}</p>
-              <p className="text-sm text-muted-foreground">Total inquiries received</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-lg rounded-2xl">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Audit Requests</CardTitle>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
-                  <FileText className="h-5 w-5 text-white" />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{auditRequests.length}</p>
-              <p className="text-sm text-muted-foreground">Free audit requests</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-0 shadow-lg rounded-2xl">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Chat Conversations</CardTitle>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
-                  <MessageCircle className="h-5 w-5 text-white" />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{chatConversations.length}</p>
-              <p className="text-sm text-muted-foreground">AI chatbot conversations</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-0 shadow-lg rounded-2xl">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Preview Leads</CardTitle>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
-                  <Magnet className="h-5 w-5 text-white" />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewLeads.length}</p>
-              <p className="text-sm text-muted-foreground">Free preview submissions</p>
-            </CardContent>
-          </Card>
-          <Card className="border-0 shadow-lg rounded-2xl">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Preview Views</CardTitle>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#8BC34A' }}>
-                  <ChartArea className="h-5 w-5 text-white" />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold" style={{ color: '#2d4a2d' }}>{previewViews7d}</p>
-              <p className="text-sm text-muted-foreground">Last 7 days</p>
-            </CardContent>
-          </Card>
+              </CardHeader>
+              <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                <p className="text-2xl sm:text-4xl font-bold" style={{ color: '#2d4a2d' }}>{count}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{desc}</p>
+              </CardContent>
+            </Card>
+          ))}
         </AnimatedSection>
 
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full grid grid-cols-4 sm:grid-cols-9 h-auto gap-1">
-              <TabsTrigger value="contact" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <Mail className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Contact</span>
-                <span className="sm:hidden">Contact</span>
-                <span className="ml-1">({contactSubmissions.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="audit" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <FileText className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Audits</span>
-                <span className="sm:hidden">Audits</span>
-                <span className="ml-1">({auditRequests.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="chat" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white">
-                <MessageCircle className="w-3.5 h-3.5 sm:hidden mr-1" />
-                <span className="hidden sm:inline">Chats</span>
-                <span className="sm:hidden">Chats</span>
-                <span className="ml-1">({chatConversations.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="preview" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Magnet className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Preview</span>
-                <span className="sm:hidden">Preview</span>
-                <span className="ml-1">({previewLeads.length})</span>
-              </TabsTrigger>
-              <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Presentation className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Presentations</span>
-                <span className="sm:hidden">Present.</span>
-              </TabsTrigger>
-              <TabsTrigger value="reports" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <BarChart3 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Reports</span>
-                <span className="sm:hidden">Reports</span>
-              </TabsTrigger>
-              <TabsTrigger value="proposals" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <ScrollText className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Proposals</span>
-                <span className="sm:hidden">Proposals</span>
-              </TabsTrigger>
-              <TabsTrigger value="icons" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Shapes className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Icons</span>
-                <span className="sm:hidden">Icons</span>
-              </TabsTrigger>
-              <TabsTrigger value="analytics" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <ChartArea className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Analytics</span>
-                <span className="sm:hidden">Analytics</span>
-              </TabsTrigger>
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex overflow-x-auto sm:grid sm:grid-cols-9 h-auto gap-1 no-scrollbar">
+              {[
+                { value: 'contact', label: 'Contact', shortLabel: 'Contact', Icon: Mail, count: contactSubmissions.length },
+                { value: 'audit', label: 'Audits', shortLabel: 'Audits', Icon: FileText, count: auditRequests.length },
+                { value: 'chat', label: 'Chats', shortLabel: 'Chats', Icon: MessageCircle, count: chatConversations.length },
+                { value: 'preview', label: 'Preview', shortLabel: 'Preview', Icon: Magnet, count: previewLeads.length },
+                { value: 'presentations', label: 'Presentations', shortLabel: 'Present.', Icon: Presentation },
+                { value: 'reports', label: 'Reports', shortLabel: 'Reports', Icon: BarChart3 },
+                { value: 'proposals', label: 'Proposals', shortLabel: 'Proposals', Icon: ScrollText },
+                { value: 'icons', label: 'Icons', shortLabel: 'Icons', Icon: Shapes },
+                { value: 'analytics', label: 'Analytics', shortLabel: 'Analytics', Icon: ChartArea },
+              ].map(({ value, label, shortLabel, Icon, count }) => (
+                <TabsTrigger 
+                  key={value} 
+                  value={value} 
+                  className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1 whitespace-nowrap flex-shrink-0 sm:flex-shrink"
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">{label}</span>
+                  <span className="sm:hidden">{shortLabel}</span>
+                  {count !== undefined && <span className="ml-0.5">({count})</span>}
+                </TabsTrigger>
+              ))}
             </TabsList>
             
             {/* Contact Submissions Tab */}
