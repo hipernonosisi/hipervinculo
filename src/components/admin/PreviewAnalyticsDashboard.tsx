@@ -181,22 +181,61 @@ export function PreviewAnalyticsDashboard() {
             Tracking visitor behavior on /preview
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="flex rounded-lg border overflow-hidden">
-            {(['7d', '30d', 'all'] as const).map((range) => (
-              <button
-                key={range}
-                onClick={() => setDateRange(range)}
-                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                  dateRange === range
-                    ? 'bg-accent text-white'
-                    : 'bg-white hover:bg-gray-50'
-                }`}
+        <div className="flex flex-wrap items-center gap-2">
+          {[
+            { key: 'today', label: 'Today', from: new Date(), to: new Date() },
+            { key: 'yesterday', label: 'Yesterday', from: subDays(new Date(), 1), to: subDays(new Date(), 1) },
+            { key: '7d', label: '7 Days', from: subDays(new Date(), 7), to: new Date() },
+            { key: '30d', label: '30 Days', from: subDays(new Date(), 30), to: new Date() },
+            { key: '90d', label: '90 Days', from: subDays(new Date(), 90), to: new Date() },
+          ].map((preset) => (
+            <button
+              key={preset.key}
+              onClick={() => { setDateFrom(preset.from); setDateTo(preset.to); setActivePreset(preset.key); }}
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                activePreset === preset.key
+                  ? 'bg-accent text-white'
+                  : 'bg-white border hover:bg-gray-50'
+              }`}
+            >
+              {preset.label}
+            </button>
+          ))}
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className={cn(
+                  "text-xs gap-1.5",
+                  activePreset === 'custom' && 'bg-accent text-white hover:bg-accent/90 border-accent'
+                )}
               >
-                {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : 'All Time'}
-              </button>
-            ))}
-          </div>
+                <CalendarIcon className="h-3.5 w-3.5" />
+                {activePreset === 'custom'
+                  ? `${format(dateFrom, 'MMM d')} – ${format(dateTo, 'MMM d')}`
+                  : 'Custom Range'}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="end">
+              <Calendar
+                mode="range"
+                selected={{ from: dateFrom, to: dateTo }}
+                onSelect={(range) => {
+                  if (range?.from) {
+                    setDateFrom(range.from);
+                    setDateTo(range.to || range.from);
+                    setActivePreset('custom');
+                  }
+                }}
+                numberOfMonths={2}
+                className={cn("p-3 pointer-events-auto")}
+                disabled={(date) => date > new Date()}
+              />
+            </PopoverContent>
+          </Popover>
+
           <Button onClick={fetchEvents} variant="outline" size="sm" disabled={loading}>
             <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
           </Button>
