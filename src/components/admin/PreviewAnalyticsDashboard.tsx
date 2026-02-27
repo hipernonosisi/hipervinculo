@@ -328,7 +328,7 @@ export function PreviewAnalyticsDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-4 mb-6">
             {[
               { label: 'Played Video', value: stats.videoPlays, sub: `${stats.uniqueSessions > 0 ? Math.round((stats.videoPlays / stats.uniqueSessions) * 100) : 0}% of visitors` },
               { label: 'Unmuted', value: stats.videoUnmutes, sub: `${stats.videoPlays > 0 ? Math.round((stats.videoUnmutes / stats.videoPlays) * 100) : 0}% of plays` },
@@ -336,10 +336,10 @@ export function PreviewAnalyticsDashboard() {
               { label: 'Max Watch', value: formatTime(stats.maxWatchSeconds), sub: 'longest session' },
               { label: 'Watch Data', value: stats.watchEventsCount, sub: 'sessions recorded' },
             ].map(({ label, value, sub }) => (
-              <div key={label} className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
-                <p className="text-xs font-medium text-muted-foreground">{label}</p>
-                <p className="text-[10px] text-muted-foreground/70 mt-0.5">{sub}</p>
+              <div key={label} className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <p className="text-base sm:text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
+                <p className="text-[10px] sm:text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-[9px] sm:text-[10px] text-muted-foreground/70 mt-0.5 hidden sm:block">{sub}</p>
               </div>
             ))}
           </div>
