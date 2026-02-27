@@ -269,6 +269,11 @@ function VSLPlayer() {
       setMuted(false);
       setSpeed(1.25);
       setState('playing');
+      // Track video play (user tapped to watch with sound)
+      if (!videoPlayTracked.current) {
+        videoPlayTracked.current = true;
+        trackEvent('video_play');
+      }
     }
   }, [state]);
 
@@ -285,6 +290,11 @@ function VSLPlayer() {
     if (!v) return;
     v.muted = !v.muted;
     setMuted(v.muted);
+    // Track unmute
+    if (!v.muted && !videoUnmuteTracked.current) {
+      videoUnmuteTracked.current = true;
+      trackEvent('video_unmute');
+    }
   }, []);
 
   const changeSpeed = useCallback((newSpeed: number, e: React.MouseEvent) => {
