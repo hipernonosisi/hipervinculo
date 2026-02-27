@@ -355,76 +355,93 @@ export default function Admin() {
                       <p className="text-muted-foreground">No contact submissions yet</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="bg-gray-50">
-                            <TableHead>Date</TableHead>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Company</TableHead>
-                            <TableHead>Type</TableHead>
-                            <TableHead className="max-w-[300px]">Message</TableHead>
-                            <TableHead className="w-10"></TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {contactSubmissions.map((submission) => (
-                            <TableRow 
-                              key={submission.id} 
-                              className="cursor-pointer hover:bg-accent/5"
-                              onClick={() => setSelectedContact(submission)}
-                            >
-                              <TableCell className="whitespace-nowrap">
-                                <div className="flex items-center gap-2 text-sm">
-                                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                                  {formatDate(submission.created_at)}
-                                </div>
-                              </TableCell>
-                              <TableCell className="font-medium">{submission.full_name}</TableCell>
-                              <TableCell>
-                                <span className="text-accent">
-                                  {submission.email}
-                                </span>
-                              </TableCell>
-                              <TableCell>
-                                {submission.company_name ? (
-                                  <div className="flex items-center gap-2">
-                                    <Building className="h-4 w-4 text-muted-foreground" />
-                                    {submission.company_name}
-                                  </div>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
-                                {submission.inquiry_type && (
-                                  <Badge variant="secondary" className="rounded-full">
-                                    {submission.inquiry_type}
-                                  </Badge>
-                                )}
-                              </TableCell>
-                              <TableCell className="max-w-[300px]">
-                                <p className="text-sm text-muted-foreground line-clamp-2">
-                                  {submission.message}
-                                </p>
-                              </TableCell>
-                              <TableCell>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 text-muted-foreground hover:text-red-600"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteContact(submission.id);
-                                  }}
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </TableCell>
+                    <>
+                      {/* Mobile Card View */}
+                      <div className="sm:hidden divide-y">
+                        {contactSubmissions.map((submission) => (
+                          <div 
+                            key={submission.id} 
+                            className="p-4 cursor-pointer active:bg-accent/5"
+                            onClick={() => setSelectedContact(submission)}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <p className="font-semibold text-sm">{submission.full_name}</p>
+                                <p className="text-xs text-accent">{submission.email}</p>
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-muted-foreground hover:text-red-600 -mt-1 -mr-2"
+                                onClick={(e) => { e.stopPropagation(); handleDeleteContact(submission.id); }}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              {submission.company_name && (
+                                <Badge variant="outline" className="text-xs gap-1"><Building className="h-3 w-3" />{submission.company_name}</Badge>
+                              )}
+                              {submission.inquiry_type && (
+                                <Badge variant="secondary" className="text-xs rounded-full">{submission.inquiry_type}</Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground line-clamp-2 mb-1">{submission.message}</p>
+                            <p className="text-[11px] text-muted-foreground/60">{formatDate(submission.created_at)}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Desktop Table View */}
+                      <div className="hidden sm:block overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow className="bg-gray-50">
+                              <TableHead>Date</TableHead>
+                              <TableHead>Name</TableHead>
+                              <TableHead>Email</TableHead>
+                              <TableHead>Company</TableHead>
+                              <TableHead>Type</TableHead>
+                              <TableHead className="max-w-[300px]">Message</TableHead>
+                              <TableHead className="w-10"></TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
+                          </TableHeader>
+                          <TableBody>
+                            {contactSubmissions.map((submission) => (
+                              <TableRow 
+                                key={submission.id} 
+                                className="cursor-pointer hover:bg-accent/5"
+                                onClick={() => setSelectedContact(submission)}
+                              >
+                                <TableCell className="whitespace-nowrap">
+                                  <div className="flex items-center gap-2 text-sm">
+                                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                                    {formatDate(submission.created_at)}
+                                  </div>
+                                </TableCell>
+                                <TableCell className="font-medium">{submission.full_name}</TableCell>
+                                <TableCell><span className="text-accent">{submission.email}</span></TableCell>
+                                <TableCell>
+                                  {submission.company_name ? (
+                                    <div className="flex items-center gap-2"><Building className="h-4 w-4 text-muted-foreground" />{submission.company_name}</div>
+                                  ) : '-'}
+                                </TableCell>
+                                <TableCell>
+                                  {submission.inquiry_type && <Badge variant="secondary" className="rounded-full">{submission.inquiry_type}</Badge>}
+                                </TableCell>
+                                <TableCell className="max-w-[300px]">
+                                  <p className="text-sm text-muted-foreground line-clamp-2">{submission.message}</p>
+                                </TableCell>
+                                <TableCell>
+                                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-red-600" onClick={(e) => { e.stopPropagation(); handleDeleteContact(submission.id); }}>
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </>
                   )}
                 </CardContent>
               </Card>
