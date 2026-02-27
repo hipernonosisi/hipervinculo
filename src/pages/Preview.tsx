@@ -84,14 +84,14 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
 
 // ── Case studies data ──
 const caseStudies = [
-  { name: 'Step Solution USA', type: 'Dental Equipment Supplier', result: '200+ patient inquiries/week from international clients', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
-  { name: 'ZERMA Latin America', type: 'Heavy Machinery Distributor', result: '$30M+ in sales over 15 years', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Filtro Láser', type: 'Industrial Filtration', result: 'Full digital presence built & launched in under 2 weeks', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { name: 'Step Solution USA', type: 'Manufacturing', result: '+320% increase in qualified dealer leads', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
+  { name: 'ZERMA Latin America', type: 'Industrial Machinery', result: '+200% increase in quote requests across LATAM', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
+  { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in under 2 weeks', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
   { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
-  { name: 'Stillwater Day Spa', type: 'Spa (Dallas, TX)', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
-  { name: 'Rasetta Innovations', type: 'Kitchen Refacing', result: '800+ leads/month through Google & Meta Ads', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
-  { name: 'Lajex LLC', type: 'Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
-  { name: 'Délios Home', type: 'Kitchen Cabinet Refacing', result: '0 to 10 qualified leads/month, 40% close rate in 90 days', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+  { name: 'Stillwater Day Spa', type: 'Wellness & Spa', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
+  { name: 'Rasetta Innovations', type: 'Interior Design', result: '+180% increase in consultation requests', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
+  { name: 'Lajex LLC', type: 'Plumbing & Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
+  { name: 'Délios Home', type: 'Home Renovation', result: '3 consultation calls booked in first 24 hours', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
 ];
 
 const steps = [
