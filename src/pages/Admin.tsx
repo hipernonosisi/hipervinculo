@@ -392,16 +392,6 @@ export default function Admin() {
                 <span className="sm:hidden">Preview</span>
                 <span className="ml-1">({previewLeads.length})</span>
               </TabsTrigger>
-              <TabsTrigger value="incomplete" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <UserX className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Incomplete</span>
-                <span className="sm:hidden">Drop</span>
-              </TabsTrigger>
-              <TabsTrigger value="creatives" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Creatives</span>
-                <span className="sm:hidden">Creatives</span>
-              </TabsTrigger>
               <TabsTrigger value="presentations" className="rounded-lg px-2 sm:px-4 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1">
                 <Presentation className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Presentations</span>
