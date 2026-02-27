@@ -204,6 +204,23 @@ function VSLPlayer() {
     };
   }, []);
 
+  // Keyboard: spacebar toggles play/pause (YouTube-style)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (state !== 'playing') return;
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        const v = videoRef.current;
+        if (v) { v.paused ? v.play().catch(() => {}) : v.pause(); }
+        setShowControls(true);
+        clearTimeout(hideTimer.current);
+        hideTimer.current = setTimeout(() => { setShowControls(false); setShowSpeedMenu(false); }, 4000);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [state]);
+
   // Track fullscreen changes
   useEffect(() => {
     const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
