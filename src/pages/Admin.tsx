@@ -355,76 +355,93 @@ export default function Admin() {
                       <p className="text-muted-foreground">No contact submissions yet</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="bg-gray-50">
-                            <TableHead>Date</TableHead>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Company</TableHead>
-                            <TableHead>Type</TableHead>
-                            <TableHead className="max-w-[300px]">Message</TableHead>
-                            <TableHead className="w-10"></TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {contactSubmissions.map((submission) => (
-                            <TableRow 
-                              key={submission.id} 
-                              className="cursor-pointer hover:bg-accent/5"
-                              onClick={() => setSelectedContact(submission)}
-                            >
-                              <TableCell className="whitespace-nowrap">
-                                <div className="flex items-center gap-2 text-sm">
-                                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                                  {formatDate(submission.created_at)}
-                                </div>
-                              </TableCell>
-                              <TableCell className="font-medium">{submission.full_name}</TableCell>
-                              <TableCell>
-                                <span className="text-accent">
-                                  {submission.email}
-                                </span>
-                              </TableCell>
-                              <TableCell>
-                                {submission.company_name ? (
-                                  <div className="flex items-center gap-2">
-                                    <Building className="h-4 w-4 text-muted-foreground" />
-                                    {submission.company_name}
-                                  </div>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
-                                {submission.inquiry_type && (
-                                  <Badge variant="secondary" className="rounded-full">
-                                    {submission.inquiry_type}
-                                  </Badge>
-                                )}
-                              </TableCell>
-                              <TableCell className="max-w-[300px]">
-                                <p className="text-sm text-muted-foreground line-clamp-2">
-                                  {submission.message}
-                                </p>
-                              </TableCell>
-                              <TableCell>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 text-muted-foreground hover:text-red-600"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteContact(submission.id);
-                                  }}
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </TableCell>
+                    <>
+                      {/* Mobile Card View */}
+                      <div className="sm:hidden divide-y">
+                        {contactSubmissions.map((submission) => (
+                          <div 
+                            key={submission.id} 
+                            className="p-4 cursor-pointer active:bg-accent/5"
+                            onClick={() => setSelectedContact(submission)}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <p className="font-semibold text-sm">{submission.full_name}</p>
+                                <p className="text-xs text-accent">{submission.email}</p>
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-muted-foreground hover:text-red-600 -mt-1 -mr-2"
+                                onClick={(e) => { e.stopPropagation(); handleDeleteContact(submission.id); }}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              {submission.company_name && (
+                                <Badge variant="outline" className="text-xs gap-1"><Building className="h-3 w-3" />{submission.company_name}</Badge>
+                              )}
+                              {submission.inquiry_type && (
+                                <Badge variant="secondary" className="text-xs rounded-full">{submission.inquiry_type}</Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground line-clamp-2 mb-1">{submission.message}</p>
+                            <p className="text-[11px] text-muted-foreground/60">{formatDate(submission.created_at)}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Desktop Table View */}
+                      <div className="hidden sm:block overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow className="bg-gray-50">
+                              <TableHead>Date</TableHead>
+                              <TableHead>Name</TableHead>
+                              <TableHead>Email</TableHead>
+                              <TableHead>Company</TableHead>
+                              <TableHead>Type</TableHead>
+                              <TableHead className="max-w-[300px]">Message</TableHead>
+                              <TableHead className="w-10"></TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
+                          </TableHeader>
+                          <TableBody>
+                            {contactSubmissions.map((submission) => (
+                              <TableRow 
+                                key={submission.id} 
+                                className="cursor-pointer hover:bg-accent/5"
+                                onClick={() => setSelectedContact(submission)}
+                              >
+                                <TableCell className="whitespace-nowrap">
+                                  <div className="flex items-center gap-2 text-sm">
+                                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                                    {formatDate(submission.created_at)}
+                                  </div>
+                                </TableCell>
+                                <TableCell className="font-medium">{submission.full_name}</TableCell>
+                                <TableCell><span className="text-accent">{submission.email}</span></TableCell>
+                                <TableCell>
+                                  {submission.company_name ? (
+                                    <div className="flex items-center gap-2"><Building className="h-4 w-4 text-muted-foreground" />{submission.company_name}</div>
+                                  ) : '-'}
+                                </TableCell>
+                                <TableCell>
+                                  {submission.inquiry_type && <Badge variant="secondary" className="rounded-full">{submission.inquiry_type}</Badge>}
+                                </TableCell>
+                                <TableCell className="max-w-[300px]">
+                                  <p className="text-sm text-muted-foreground line-clamp-2">{submission.message}</p>
+                                </TableCell>
+                                <TableCell>
+                                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-red-600" onClick={(e) => { e.stopPropagation(); handleDeleteContact(submission.id); }}>
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </>
                   )}
                 </CardContent>
               </Card>
@@ -445,98 +462,123 @@ export default function Admin() {
                       <p className="text-muted-foreground">No preview leads yet</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                         <TableRow className="bg-gray-50">
-                            <TableHead>Date</TableHead>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Phone</TableHead>
-                            <TableHead>Website</TableHead>
-                            <TableHead>Budget</TableHead>
-                            <TableHead>Score</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead className="w-10"></TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {previewLeads.map((lead) => (
-                            <TableRow 
-                              key={lead.id} 
-                              className="cursor-pointer hover:bg-accent/5"
-                              onClick={() => setSelectedPreviewLead(lead)}
-                            >
-                              <TableCell className="whitespace-nowrap">
-                                <div className="flex items-center gap-2 text-sm">
-                                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                                  {formatDate(lead.created_at)}
-                                </div>
-                              </TableCell>
-                              <TableCell className="font-medium">{lead.contact_name}</TableCell>
-                              <TableCell>
-                                <a href={`mailto:${lead.email}`} className="text-primary hover:underline text-sm">{lead.email}</a>
-                              </TableCell>
-                              <TableCell>
-                                {lead.phone ? (
-                                  <a href={`tel:${lead.phone}`} className="text-primary hover:underline text-sm">{lead.phone}</a>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
-                                {lead.website_url ? (
-                                  <a href={lead.website_url.startsWith('http') ? lead.website_url : `https://${lead.website_url}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm flex items-center gap-1">
-                                    <Globe className="h-3.5 w-3.5" />
-                                    {lead.website_url.replace(/^https?:\/\//, '').slice(0, 25)}
-                                  </a>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
-                                {lead.monthly_budget ? (
-                                  <Badge variant="outline" className="text-xs">{lead.monthly_budget}</Badge>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
+                    <>
+                      {/* Mobile Card View */}
+                      <div className="sm:hidden divide-y">
+                        {previewLeads.map((lead) => (
+                          <div 
+                            key={lead.id} 
+                            className="p-4 cursor-pointer active:bg-accent/5"
+                            onClick={() => setSelectedPreviewLead(lead)}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="min-w-0 flex-1">
+                                <p className="font-semibold text-sm">{lead.contact_name}</p>
+                                <p className="text-xs text-accent truncate">{lead.email}</p>
+                              </div>
+                              <div className="flex items-center gap-1 shrink-0 ml-2">
                                 <Badge className={cn(
-                                  "text-xs",
-                                  lead.lead_score === 'hot' && "bg-red-500 text-white",
-                                  lead.lead_score === 'warm' && "bg-orange-500 text-white",
-                                  lead.lead_score === 'cold' && "bg-blue-500 text-white",
-                                  !lead.lead_score && "bg-gray-300"
-                                )}>
-                                  {lead.lead_score || 'unscored'}
-                                </Badge>
-                              </TableCell>
-                              <TableCell>
-                                <Badge className={cn(
-                                  "text-xs rounded-full",
+                                  "text-[10px] rounded-full",
                                   lead.preview_sent ? "bg-accent/10 text-accent" : "bg-yellow-100 text-yellow-700"
                                 )}>
                                   {lead.preview_sent ? 'Sent' : 'Pending'}
                                 </Badge>
-                              </TableCell>
-                              <TableCell>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                                <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive -mr-2"
                                   onClick={async (e) => {
                                     e.stopPropagation();
                                     if (!window.confirm('¿Eliminar este lead?')) return;
                                     const { error } = await supabase.from('preview_leads').delete().eq('id', lead.id);
-                                    if (!error) {
-                                      setPreviewLeads(prev => prev.filter(l => l.id !== lead.id));
-                                      toast({ title: 'Eliminado', description: 'Lead eliminado.' });
-                                    }
+                                    if (!error) { setPreviewLeads(prev => prev.filter(l => l.id !== lead.id)); toast({ title: 'Eliminado', description: 'Lead eliminado.' }); }
                                   }}
                                 >
                                   <Trash2 className="h-4 w-4" />
                                 </Button>
-                              </TableCell>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              {lead.phone && <Badge variant="outline" className="text-[10px]">{lead.phone}</Badge>}
+                              {lead.monthly_budget && <Badge variant="outline" className="text-[10px]"><DollarSign className="h-3 w-3 mr-0.5" />{lead.monthly_budget}</Badge>}
+                              <Badge className={cn(
+                                "text-[10px]",
+                                lead.lead_score === 'hot' && "bg-red-500 text-white",
+                                lead.lead_score === 'warm' && "bg-orange-500 text-white",
+                                lead.lead_score === 'cold' && "bg-blue-500 text-white",
+                                !lead.lead_score && "bg-gray-300"
+                              )}>
+                                {lead.lead_score || 'unscored'}
+                              </Badge>
+                            </div>
+                            {lead.website_url && (
+                              <p className="text-[11px] text-accent truncate mb-1">
+                                <Globe className="h-3 w-3 inline mr-1" />
+                                {lead.website_url.replace(/^https?:\/\//, '')}
+                              </p>
+                            )}
+                            <p className="text-[11px] text-muted-foreground/60">{formatDate(lead.created_at)}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Desktop Table View */}
+                      <div className="hidden sm:block overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                           <TableRow className="bg-gray-50">
+                              <TableHead>Date</TableHead>
+                              <TableHead>Name</TableHead>
+                              <TableHead>Email</TableHead>
+                              <TableHead>Phone</TableHead>
+                              <TableHead>Website</TableHead>
+                              <TableHead>Budget</TableHead>
+                              <TableHead>Score</TableHead>
+                              <TableHead>Status</TableHead>
+                              <TableHead className="w-10"></TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
+                          </TableHeader>
+                          <TableBody>
+                            {previewLeads.map((lead) => (
+                              <TableRow key={lead.id} className="cursor-pointer hover:bg-accent/5" onClick={() => setSelectedPreviewLead(lead)}>
+                                <TableCell className="whitespace-nowrap">
+                                  <div className="flex items-center gap-2 text-sm"><Calendar className="h-4 w-4 text-muted-foreground" />{formatDate(lead.created_at)}</div>
+                                </TableCell>
+                                <TableCell className="font-medium">{lead.contact_name}</TableCell>
+                                <TableCell><a href={`mailto:${lead.email}`} className="text-primary hover:underline text-sm">{lead.email}</a></TableCell>
+                                <TableCell>{lead.phone ? <a href={`tel:${lead.phone}`} className="text-primary hover:underline text-sm">{lead.phone}</a> : '-'}</TableCell>
+                                <TableCell>
+                                  {lead.website_url ? (
+                                    <a href={lead.website_url.startsWith('http') ? lead.website_url : `https://${lead.website_url}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm flex items-center gap-1">
+                                      <Globe className="h-3.5 w-3.5" />{lead.website_url.replace(/^https?:\/\//, '').slice(0, 25)}
+                                    </a>
+                                  ) : '-'}
+                                </TableCell>
+                                <TableCell>{lead.monthly_budget ? <Badge variant="outline" className="text-xs">{lead.monthly_budget}</Badge> : '-'}</TableCell>
+                                <TableCell>
+                                  <Badge className={cn("text-xs", lead.lead_score === 'hot' && "bg-red-500 text-white", lead.lead_score === 'warm' && "bg-orange-500 text-white", lead.lead_score === 'cold' && "bg-blue-500 text-white", !lead.lead_score && "bg-gray-300")}>
+                                    {lead.lead_score || 'unscored'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <Badge className={cn("text-xs rounded-full", lead.preview_sent ? "bg-accent/10 text-accent" : "bg-yellow-100 text-yellow-700")}>
+                                    {lead.preview_sent ? 'Sent' : 'Pending'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                                    onClick={async (e) => {
+                                      e.stopPropagation();
+                                      if (!window.confirm('¿Eliminar este lead?')) return;
+                                      const { error } = await supabase.from('preview_leads').delete().eq('id', lead.id);
+                                      if (!error) { setPreviewLeads(prev => prev.filter(l => l.id !== lead.id)); toast({ title: 'Eliminado', description: 'Lead eliminado.' }); }
+                                    }}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </>
                   )}
                 </CardContent>
               </Card>
@@ -556,104 +598,105 @@ export default function Admin() {
                       <p className="text-muted-foreground">No audit requests yet</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="bg-gray-50">
-                            <TableHead>Date</TableHead>
-                            <TableHead>Company</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Website</TableHead>
-                            <TableHead>Business Type</TableHead>
-                            <TableHead>Monthly Revenue</TableHead>
-                            <TableHead>Ad Spend</TableHead>
-                            <TableHead className="max-w-[200px]">Goals</TableHead>
-                            <TableHead className="w-10"></TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {auditRequests.map((request) => (
-                            <TableRow 
-                              key={request.id}
-                              className="cursor-pointer hover:bg-accent/5"
-                              onClick={() => setSelectedAudit(request)}
-                            >
-                              <TableCell className="whitespace-nowrap">
-                                <div className="flex items-center gap-2 text-sm">
-                                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                                  {formatDate(request.created_at)}
-                                </div>
-                              </TableCell>
-                              <TableCell className="font-medium">
-                                <div className="flex items-center gap-2">
-                                  <Building className="h-4 w-4 text-muted-foreground" />
+                    <>
+                      {/* Mobile Card View */}
+                      <div className="sm:hidden divide-y">
+                        {auditRequests.map((request) => (
+                          <div 
+                            key={request.id} 
+                            className="p-4 cursor-pointer active:bg-accent/5"
+                            onClick={() => setSelectedAudit(request)}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="min-w-0 flex-1">
+                                <p className="font-semibold text-sm flex items-center gap-1.5">
+                                  <Building className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                                   {request.company_name}
-                                </div>
-                              </TableCell>
-                              <TableCell>
-                                <span className="text-accent">
-                                  {request.email}
-                                </span>
-                              </TableCell>
-                              <TableCell>
-                                {request.website_url ? (
-                                  <div className="flex items-center gap-2 text-accent">
-                                    <Globe className="h-4 w-4" />
-                                    {request.website_url.replace(/^https?:\/\//, '').substring(0, 20)}...
-                                  </div>
-                                ) : '-'}
-                              </TableCell>
-                              <TableCell>
-                                {request.business_type && (
-                                  <Badge variant="secondary" className="rounded-full">
-                                    {request.business_type}
-                                  </Badge>
-                                )}
-                              </TableCell>
-                              <TableCell>
-                                {request.monthly_revenue && (
-                                  <div className="flex items-center gap-2">
-                                    <DollarSign className="h-4 w-4 text-muted-foreground" />
-                                    {request.monthly_revenue}
-                                  </div>
-                                )}
-                              </TableCell>
-                              <TableCell>
-                                {request.monthly_ad_spend && (
-                                  <div className="flex items-center gap-2">
-                                    <Target className="h-4 w-4 text-muted-foreground" />
-                                    {request.monthly_ad_spend}
-                                  </div>
-                                )}
-                              </TableCell>
-                              <TableCell className="max-w-[200px]">
-                                <p className="text-sm text-muted-foreground line-clamp-2">
-                                  {request.growth_goals || '-'}
                                 </p>
-                              </TableCell>
-                              <TableCell>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                                  onClick={async (e) => {
-                                    e.stopPropagation();
-                                    if (!window.confirm('¿Eliminar esta solicitud de auditoría?')) return;
-                                    const { error } = await supabase.from('audit_requests').delete().eq('id', request.id);
-                                    if (!error) {
-                                      setAuditRequests(prev => prev.filter(a => a.id !== request.id));
-                                      toast({ title: 'Eliminado', description: 'Auditoría eliminada.' });
-                                    }
-                                  }}
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </TableCell>
+                                <p className="text-xs text-accent">{request.email}</p>
+                              </div>
+                              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive -mt-1 -mr-2"
+                                onClick={async (e) => {
+                                  e.stopPropagation();
+                                  if (!window.confirm('¿Eliminar esta solicitud de auditoría?')) return;
+                                  const { error } = await supabase.from('audit_requests').delete().eq('id', request.id);
+                                  if (!error) { setAuditRequests(prev => prev.filter(a => a.id !== request.id)); toast({ title: 'Eliminado', description: 'Auditoría eliminada.' }); }
+                                }}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              {request.business_type && <Badge variant="secondary" className="text-[10px] rounded-full">{request.business_type}</Badge>}
+                              {request.monthly_revenue && <Badge variant="outline" className="text-[10px] gap-0.5"><DollarSign className="h-3 w-3" />{request.monthly_revenue}</Badge>}
+                              {request.monthly_ad_spend && <Badge variant="outline" className="text-[10px] gap-0.5"><Target className="h-3 w-3" />{request.monthly_ad_spend}</Badge>}
+                            </div>
+                            {request.website_url && (
+                              <p className="text-[11px] text-accent truncate mb-1">
+                                <Globe className="h-3 w-3 inline mr-1" />
+                                {request.website_url.replace(/^https?:\/\//, '')}
+                              </p>
+                            )}
+                            {request.growth_goals && (
+                              <p className="text-xs text-muted-foreground line-clamp-2 mb-1">{request.growth_goals}</p>
+                            )}
+                            <p className="text-[11px] text-muted-foreground/60">{formatDate(request.created_at)}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Desktop Table View */}
+                      <div className="hidden sm:block overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow className="bg-gray-50">
+                              <TableHead>Date</TableHead>
+                              <TableHead>Company</TableHead>
+                              <TableHead>Email</TableHead>
+                              <TableHead>Website</TableHead>
+                              <TableHead>Business Type</TableHead>
+                              <TableHead>Monthly Revenue</TableHead>
+                              <TableHead>Ad Spend</TableHead>
+                              <TableHead className="max-w-[200px]">Goals</TableHead>
+                              <TableHead className="w-10"></TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
+                          </TableHeader>
+                          <TableBody>
+                            {auditRequests.map((request) => (
+                              <TableRow key={request.id} className="cursor-pointer hover:bg-accent/5" onClick={() => setSelectedAudit(request)}>
+                                <TableCell className="whitespace-nowrap">
+                                  <div className="flex items-center gap-2 text-sm"><Calendar className="h-4 w-4 text-muted-foreground" />{formatDate(request.created_at)}</div>
+                                </TableCell>
+                                <TableCell className="font-medium">
+                                  <div className="flex items-center gap-2"><Building className="h-4 w-4 text-muted-foreground" />{request.company_name}</div>
+                                </TableCell>
+                                <TableCell><span className="text-accent">{request.email}</span></TableCell>
+                                <TableCell>
+                                  {request.website_url ? (
+                                    <div className="flex items-center gap-2 text-accent"><Globe className="h-4 w-4" />{request.website_url.replace(/^https?:\/\//, '').substring(0, 20)}...</div>
+                                  ) : '-'}
+                                </TableCell>
+                                <TableCell>{request.business_type && <Badge variant="secondary" className="rounded-full">{request.business_type}</Badge>}</TableCell>
+                                <TableCell>{request.monthly_revenue && <div className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-muted-foreground" />{request.monthly_revenue}</div>}</TableCell>
+                                <TableCell>{request.monthly_ad_spend && <div className="flex items-center gap-2"><Target className="h-4 w-4 text-muted-foreground" />{request.monthly_ad_spend}</div>}</TableCell>
+                                <TableCell className="max-w-[200px]"><p className="text-sm text-muted-foreground line-clamp-2">{request.growth_goals || '-'}</p></TableCell>
+                                <TableCell>
+                                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                                    onClick={async (e) => {
+                                      e.stopPropagation();
+                                      if (!window.confirm('¿Eliminar esta solicitud de auditoría?')) return;
+                                      const { error } = await supabase.from('audit_requests').delete().eq('id', request.id);
+                                      if (!error) { setAuditRequests(prev => prev.filter(a => a.id !== request.id)); toast({ title: 'Eliminado', description: 'Auditoría eliminada.' }); }
+                                    }}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </>
                   )}
                 </CardContent>
               </Card>
