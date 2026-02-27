@@ -583,7 +583,7 @@ export default function Preview() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>Book a Free Strategy Call</a>
               </Button>
               <Button
                 variant="outline"
