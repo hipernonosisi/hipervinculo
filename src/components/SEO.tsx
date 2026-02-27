@@ -42,6 +42,8 @@ export function SEO({
   const { language } = useLanguage();
   const defaults = defaultMeta[language];
 
+  const isLovableSubdomain = typeof window !== 'undefined' && window.location.hostname.includes('lovable.app');
+
   const finalTitle = title
     ? `${title} | Hipervínculo`
     : defaults.title;
