@@ -57,7 +57,7 @@ export function SEO({
       <meta name="title" content={finalTitle} />
       <meta name="description" content={finalDescription} />
       <meta name="keywords" content={finalKeywords} />
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
+      {(noIndex || isLovableSubdomain) && <meta name="robots" content="noindex, nofollow" />}
       
       {/* Language */}
       <html lang={language} />
