@@ -72,9 +72,6 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
         <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-muted border border-border shadow-sm hover:shadow-xl transition-shadow duration-500">
           <img src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-accent">{project.type}</span>
-            </div>
             <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">{project.name}</h3>
             <p className="text-sm md:text-base text-white/80 font-medium">{project.result}</p>
           </div>
