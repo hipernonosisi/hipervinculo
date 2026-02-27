@@ -189,8 +189,8 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
   const quickQuestions = language === 'es' 
     ? [
         '¿Qué servicios ofrecen?',
-        '¿Cuánto cuesta una landing page?',
-        '¿Cuánto cuesta un sitio en Shopify?',
+        '¿Qué incluye el servicio de landing page?',
+        '¿Qué incluye el desarrollo web en Shopify?',
         '¿Manejan Meta Ads y Google Ads?',
         '¿Tienen ejemplos de proyectos?',
         '¿Ofrecen diseño de marca?',
@@ -200,8 +200,8 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
       ]
     : [
         'What services do you offer?',
-        'How much does a landing page cost?',
-        'How much does a Shopify site cost?',
+        'What\'s included in your landing page service?',
+        'What\'s included in Shopify development?',
         'Do you manage Meta Ads & Google Ads?',
         'Can I see portfolio examples?',
         'Do you offer branding services?',
