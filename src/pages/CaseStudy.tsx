@@ -72,21 +72,12 @@ export default function CaseStudy() {
 
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
               <div>
-                <span
-                  className="inline-block text-[12px] font-semibold px-3 py-1 rounded-full mb-4"
-                  style={{ backgroundColor: '#8BC34A20', color: '#6d9a2b' }}
-                >
-                  {project.industry[language]}
-                </span>
                 <h1
                   className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.03em]"
                   style={{ fontWeight: 800, color: '#2d4a2d' }}
                 >
                   {project.name}
                 </h1>
-                <p className="text-[17px] text-muted-foreground mt-3 max-w-xl">
-                  {project.tagline[language]}
-                </p>
               </div>
 
               <Button
