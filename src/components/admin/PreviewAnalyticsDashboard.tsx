@@ -243,7 +243,7 @@ export function PreviewAnalyticsDashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
         {[
           { icon: Eye, label: 'Page Views', value: stats.pageViews, color: '#8BC34A' },
           { icon: Eye, label: 'Unique Visitors', value: stats.uniqueSessions, color: '#2d4a2d' },
@@ -254,19 +254,19 @@ export function PreviewAnalyticsDashboard() {
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
         ].map(({ icon: Icon, label, value, color }) => (
           <Card key={label} className="border-0 shadow-sm rounded-xl">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center"
                   style={{ backgroundColor: `${color}20` }}
                 >
-                  <Icon className="h-4 w-4" style={{ color }} />
+                  <Icon className="h-3 w-3 sm:h-4 sm:w-4" style={{ color }} />
                 </div>
               </div>
-              <p className="text-2xl font-bold" style={{ color: '#2d4a2d' }}>
+              <p className="text-lg sm:text-2xl font-bold" style={{ color: '#2d4a2d' }}>
                 {value}
               </p>
-              <p className="text-xs text-muted-foreground">{label}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">{label}</p>
             </CardContent>
           </Card>
         ))}
