@@ -46,14 +46,9 @@ export function PreviewAnalyticsDashboard() {
       .select('*')
       .eq('page_url', '/preview')
       .order('created_at', { ascending: false })
-      .limit(5000);
-
-    if (dateRange !== 'all') {
-      const days = dateRange === '7d' ? 7 : 30;
-      const since = new Date();
-      since.setDate(since.getDate() - days);
-      query = query.gte('created_at', since.toISOString());
-    }
+      .limit(5000)
+      .gte('created_at', startOfDay(dateFrom).toISOString())
+      .lte('created_at', endOfDay(dateTo).toISOString());
 
     const { data, error } = await query;
     if (error) console.error('Error fetching events:', error);
