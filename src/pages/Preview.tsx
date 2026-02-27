@@ -86,7 +86,7 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
 const caseStudies = [
   { name: 'Step Solution USA', type: 'Dental Equipment Supplier', result: '200+ patient inquiries/week from international clients', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
   { name: 'ZERMA Latin America', type: 'Heavy Machinery Distributor', result: '$30M+ in sales over 15 years', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Filtro Láser', type: 'Industrial Filtration', result: '300 online quotes/month for 10+ years straight', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { name: 'Filtro Láser', type: 'Industrial Filtration', result: 'Full digital presence built & launched in under 2 weeks', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
   { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '$200K+/month in sales through targeted ads', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
   { name: 'Stillwater Day Spa', type: 'Spa (Dallas, TX)', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
   { name: 'Rasetta Innovations', type: 'Real Estate Brokerage', result: '800+ leads/month, 20 properties closed/month', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
