@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
 import logoFull from '@/assets/logo-hipervinculo.png';
+import { usePageTracking } from '@/hooks/usePageTracking';
 
 const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08';
 
@@ -519,6 +520,7 @@ function VSLPlayer() {
 
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
+  const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -541,7 +543,7 @@ export default function Preview() {
             <img src={logoFull} alt="Hipervínculo" className="h-10" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Call</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>Book a Call</a>
           </Button>
         </div>
       </header>
@@ -581,13 +583,13 @@ export default function Preview() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a Free Strategy Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>Book a Free Strategy Call</a>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
-                onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => { trackClick('Hero - See Our Work'); document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }); }}
               >
                 See Our Work
               </Button>
@@ -716,7 +718,7 @@ export default function Preview() {
 
           <div className="text-center mt-8">
             <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">Want results like these? Book Your Free Strategy Call</a>
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Results - Want results like these?'); trackCalendarClick(); }} className="whitespace-nowrap">Want results like these? Book Your Free Strategy Call</a>
             </Button>
           </div>
         </div>
@@ -762,7 +764,7 @@ export default function Preview() {
               <p className="text-sm text-muted-foreground mb-6">one-time investment</p>
               <p className="text-xs text-muted-foreground mb-4">Pause or cancel anytime</p>
               <Button asChild className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book A Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>Book A Call</a>
               </Button>
               <p className="text-xs font-semibold text-muted-foreground mb-3">What's included:</p>
               <ul className="space-y-3">
@@ -784,7 +786,7 @@ export default function Preview() {
               <p className="text-sm opacity-60 mb-6">ongoing lead generation</p>
               <p className="text-xs opacity-60 mb-4">Pause or cancel anytime</p>
               <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Get Started Today</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>Get Started Today</a>
               </Button>
               <p className="text-xs font-semibold opacity-60 mb-3">What's included:</p>
               <ul className="space-y-3">
@@ -826,7 +828,7 @@ export default function Preview() {
                 Over the last 20 years, I've helped more than 200 businesses — from local service companies to international distributors — go from invisible online to generating real customers, real calls, and real revenue. Every single week. Not sometimes. <span className="font-semibold text-foreground">Every week.</span>
               </p>
               <Button asChild className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-12 font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Let's Talk About Your Business</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Founder - Lets Talk'); trackCalendarClick(); }}>Let's Talk About Your Business</a>
               </Button>
             </div>
           </div>
@@ -912,7 +914,7 @@ export default function Preview() {
               className="mb-5 md:mb-6"
             >
               <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.3)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-all w-full sm:w-auto">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Final CTA - Book Strategy Call'); trackCalendarClick(); }} className="whitespace-nowrap">
                   Book Your Free Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
