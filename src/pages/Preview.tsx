@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
 import logoFull from '@/assets/logo-hipervinculo.png';
-import { usePageTracking } from '@/hooks/usePageTracking';
+import { usePageTracking, trackEvent } from '@/hooks/usePageTracking';
 
 const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08';
 
