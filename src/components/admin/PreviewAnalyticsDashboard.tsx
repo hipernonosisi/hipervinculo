@@ -280,6 +280,47 @@ export function PreviewAnalyticsDashboard() {
         </Card>
       </div>
 
+      {/* VSL Video Engagement */}
+      <Card className="border-0 shadow-sm rounded-xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <Film className="h-4 w-4 text-purple-500" />
+            VSL Video Engagement
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+            {[
+              { label: 'Played Video', value: stats.videoPlays, sub: `${stats.uniqueSessions > 0 ? Math.round((stats.videoPlays / stats.uniqueSessions) * 100) : 0}% of visitors` },
+              { label: 'Unmuted', value: stats.videoUnmutes, sub: `${stats.videoPlays > 0 ? Math.round((stats.videoUnmutes / stats.videoPlays) * 100) : 0}% of plays` },
+              { label: 'Avg. Watch', value: formatTime(stats.avgWatchSeconds), sub: `${stats.avgWatchPercent}% of video` },
+              { label: 'Max Watch', value: formatTime(stats.maxWatchSeconds), sub: 'longest session' },
+              { label: 'Watch Data', value: stats.watchEventsCount, sub: 'sessions recorded' },
+            ].map(({ label, value, sub }) => (
+              <div key={label} className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
+                <p className="text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-[10px] text-muted-foreground/70 mt-0.5">{sub}</p>
+              </div>
+            ))}
+          </div>
+          {stats.watchEventsCount > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground mb-3">Watch Duration Distribution</p>
+              <ResponsiveContainer width="100%" height={160}>
+                <BarChart data={Object.entries(stats.watchBuckets).map(([range, count]) => ({ range, count }))}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="range" tick={{ fontSize: 11 }} />
+                  <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#A855F7" radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* CTA Clicks Breakdown */}
       {ctaData.length > 0 && (
         <Card className="border-0 shadow-sm rounded-xl">
