@@ -932,6 +932,11 @@ export default function Admin() {
                 </CardContent>
               </Card>
             </TabsContent>
+
+            {/* Analytics Tab */}
+            <TabsContent value="analytics" className="mt-0">
+              <PreviewAnalyticsDashboard />
+            </TabsContent>
           </Tabs>
         </AnimatedSection>
       </div>
