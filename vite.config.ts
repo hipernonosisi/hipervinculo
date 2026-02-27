@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => ({
         short_name: "HV Admin",
         description: "Admin Dashboard — Hipervínculo Digital Growth Agency",
         theme_color: "#2d4a2d",
-        background_color: "#f8f9f5",
+        background_color: "#ffffff",
         display: "standalone",
         scope: "/",
         start_url: "/admin",
