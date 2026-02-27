@@ -914,7 +914,7 @@ export default function Preview() {
               className="mb-5 md:mb-6"
             >
               <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.3)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-all w-full sm:w-auto">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Final CTA - Book Strategy Call'); trackCalendarClick(); }} className="whitespace-nowrap">
                   Book Your Free Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
