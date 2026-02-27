@@ -943,7 +943,7 @@ export default function Preview() {
               {[
                 { value: '200+', label: 'Businesses Served' },
                 { value: '20+', label: 'Years Experience' },
-                { value: '$98M+', label: 'Revenue Generated' },
+                { value: '$92M+', label: 'Revenue Generated' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center bg-background/[0.05] md:bg-transparent rounded-xl py-4 md:py-0 px-2 md:px-0">
                   <div className="text-lg md:text-3xl font-extrabold text-accent">{stat.value}</div>

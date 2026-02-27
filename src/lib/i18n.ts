@@ -888,8 +888,8 @@ export const translations = {
       },
       stats: {
         title: 'Experience That Goes Beyond Theory',
-        subtitle: 'Hipervinculo has managed over $100M in advertising spend across platforms.',
-        adSpend: '$100M+',
+        subtitle: 'Hipervinculo has managed over $92M in advertising spend across platforms.',
+        adSpend: '$92M+',
         adSpendLabel: 'Managed Ad Spend',
         years: '20+',
         yearsLabel: 'Years of Experience',
@@ -1915,8 +1915,8 @@ export const translations = {
       },
       stats: {
         title: 'Experiencia que Va Más Allá de la Teoría',
-        subtitle: 'Hipervínculo ha gestionado más de $100M en gasto publicitario en todas las plataformas.',
-        adSpend: '$100M+',
+        subtitle: 'Hipervínculo ha gestionado más de $92M en gasto publicitario en todas las plataformas.',
+        adSpend: '$92M+',
         adSpendLabel: 'Gasto Publicitario Gestionado',
         years: '20+',
         yearsLabel: 'Años de Experiencia',
