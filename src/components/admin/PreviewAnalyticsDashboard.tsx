@@ -68,6 +68,28 @@ export function PreviewAnalyticsDashboard() {
     const videoPlays = events.filter((e) => e.event_type === 'video_play').length;
     const videoUnmutes = events.filter((e) => e.event_type === 'video_unmute').length;
 
+    // Video watch duration stats
+    const watchEvents = events.filter((e) => e.event_type === 'video_watch_duration');
+    const avgWatchSeconds = watchEvents.length > 0
+      ? Math.round(watchEvents.reduce((sum, e) => sum + (e.event_data?.seconds_watched || 0), 0) / watchEvents.length)
+      : 0;
+    const avgWatchPercent = watchEvents.length > 0
+      ? Math.round(watchEvents.reduce((sum, e) => sum + (e.event_data?.percent_watched || 0), 0) / watchEvents.length)
+      : 0;
+    const maxWatchSeconds = watchEvents.length > 0
+      ? Math.max(...watchEvents.map((e) => e.event_data?.seconds_watched || 0))
+      : 0;
+    // Watch duration distribution
+    const watchBuckets = { '0-30s': 0, '30s-1m': 0, '1-3m': 0, '3-5m': 0, '5m+': 0 };
+    watchEvents.forEach((e) => {
+      const s = e.event_data?.seconds_watched || 0;
+      if (s <= 30) watchBuckets['0-30s']++;
+      else if (s <= 60) watchBuckets['30s-1m']++;
+      else if (s <= 180) watchBuckets['1-3m']++;
+      else if (s <= 300) watchBuckets['3-5m']++;
+      else watchBuckets['5m+']++;
+    });
+
     // Average time on page
     const timeEvents = events.filter((e) => e.event_type === 'time_on_page');
     const avgTime =
@@ -113,6 +135,11 @@ export function PreviewAnalyticsDashboard() {
       videoPlays,
       videoUnmutes,
       avgTime,
+      avgWatchSeconds,
+      avgWatchPercent,
+      maxWatchSeconds,
+      watchBuckets,
+      watchEventsCount: watchEvents.length,
       scroll25,
       scroll50,
       scroll75,
