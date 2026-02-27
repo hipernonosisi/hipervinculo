@@ -508,10 +508,6 @@ export default function Admin() {
               </Card>
             </TabsContent>
 
-            {/* Incomplete Leads Tab */}
-            <TabsContent value="incomplete">
-              <IncompleteLeadsSection />
-            </TabsContent>
 
             {/* Preview Leads Tab */}
             <TabsContent value="preview">
