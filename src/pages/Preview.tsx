@@ -166,6 +166,9 @@ function VSLPlayer() {
   const containerRef = useRef(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
+  const videoPlayTracked = useRef(false);
+  const videoUnmuteTracked = useRef(false);
+  const maxWatchedSeconds = useRef(0);
 
   // Autoplay muted + 1.25x speed on mount
   useEffect(() => {
