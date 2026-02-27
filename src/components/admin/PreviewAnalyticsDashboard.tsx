@@ -218,7 +218,7 @@ export function PreviewAnalyticsDashboard() {
                   : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="bottom" sideOffset={8} avoidCollisions>
+            <PopoverContent className="w-auto p-0 z-[9999] bg-background border shadow-xl" align="end" side="bottom" sideOffset={8} avoidCollisions>
               <Calendar
                 mode="range"
                 selected={{ from: dateFrom, to: dateTo }}
