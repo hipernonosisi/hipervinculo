@@ -58,7 +58,7 @@ export function PreviewAnalyticsDashboard() {
 
   useEffect(() => {
     fetchEvents();
-  }, [dateRange]);
+  }, [dateFrom, dateTo]);
 
   const stats = useMemo(() => {
     const sessions = new Set(events.map((e) => e.session_id));
