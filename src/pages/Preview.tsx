@@ -589,7 +589,7 @@ export default function Preview() {
                 variant="outline"
                 size="lg"
                 className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
-                onClick={() => document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => { trackClick('Hero - See Our Work'); document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }); }}
               >
                 See Our Work
               </Button>
