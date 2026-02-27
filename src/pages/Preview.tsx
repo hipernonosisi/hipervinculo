@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
 import logoFull from '@/assets/logo-hipervinculo.png';
-import { usePageTracking } from '@/hooks/usePageTracking';
+import { usePageTracking, trackEvent } from '@/hooks/usePageTracking';
 
 const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08';
 
@@ -166,6 +166,9 @@ function VSLPlayer() {
   const containerRef = useRef(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout>>();
   const isInView = useInView(containerRef, { once: true });
+  const videoPlayTracked = useRef(false);
+  const videoUnmuteTracked = useRef(false);
+  const maxWatchedSeconds = useRef(0);
 
   // Autoplay muted + 1.25x speed on mount
   useEffect(() => {
@@ -176,7 +179,7 @@ function VSLPlayer() {
     v.play().catch(() => {});
   }, [isInView, videoSrcIndex]);
 
-  // Track progress
+  // Track progress + max watched seconds
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -185,6 +188,10 @@ function VSLPlayer() {
         setProgress((v.currentTime / v.duration) * 100);
         setCurrentTime(v.currentTime);
         setDuration(v.duration);
+        // Track max watched time (only in 'playing' state, not preview autoplay)
+        if (state === 'playing') {
+          maxWatchedSeconds.current = Math.max(maxWatchedSeconds.current, Math.floor(v.currentTime));
+        }
       }
     };
     const onLoaded = () => { if (v.duration) setDuration(v.duration); };
@@ -199,6 +206,31 @@ function VSLPlayer() {
       v.removeEventListener('loadedmetadata', onLoaded);
       v.removeEventListener('play', onPlay);
       v.removeEventListener('pause', onPause);
+    };
+  }, [state]);
+
+  // Send video watch duration on page exit
+  useEffect(() => {
+    const sendWatchDuration = () => {
+      if (maxWatchedSeconds.current > 0) {
+        const v = videoRef.current;
+        const totalDuration = v?.duration ? Math.floor(v.duration) : 0;
+        const pctWatched = totalDuration > 0 ? Math.round((maxWatchedSeconds.current / totalDuration) * 100) : 0;
+        trackEvent('video_watch_duration', {
+          seconds_watched: maxWatchedSeconds.current,
+          total_duration: totalDuration,
+          percent_watched: pctWatched,
+        });
+      }
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') sendWatchDuration();
+    };
+    window.addEventListener('beforeunload', sendWatchDuration);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('beforeunload', sendWatchDuration);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
 
@@ -237,6 +269,11 @@ function VSLPlayer() {
       setMuted(false);
       setSpeed(1.25);
       setState('playing');
+      // Track video play (user tapped to watch with sound)
+      if (!videoPlayTracked.current) {
+        videoPlayTracked.current = true;
+        trackEvent('video_play');
+      }
     }
   }, [state]);
 
@@ -253,6 +290,11 @@ function VSLPlayer() {
     if (!v) return;
     v.muted = !v.muted;
     setMuted(v.muted);
+    // Track unmute
+    if (!v.muted && !videoUnmuteTracked.current) {
+      videoUnmuteTracked.current = true;
+      trackEvent('video_unmute');
+    }
   }, []);
 
   const changeSpeed = useCallback((newSpeed: number, e: React.MouseEvent) => {

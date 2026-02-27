@@ -10,7 +10,7 @@ function getSessionId(): string {
   return sid;
 }
 
-function trackEvent(eventType: string, eventData: Record<string, any> = {}, pageUrl = '/preview') {
+export function trackEvent(eventType: string, eventData: Record<string, any> = {}, pageUrl = '/preview') {
   const sessionId = getSessionId();
   supabase
     .from('page_events')

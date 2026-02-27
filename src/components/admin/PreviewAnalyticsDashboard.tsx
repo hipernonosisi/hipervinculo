@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar, Play, Volume2 } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
+import { Film } from 'lucide-react';
 
 interface PageEvent {
   id: string;
@@ -67,6 +68,28 @@ export function PreviewAnalyticsDashboard() {
     const videoPlays = events.filter((e) => e.event_type === 'video_play').length;
     const videoUnmutes = events.filter((e) => e.event_type === 'video_unmute').length;
 
+    // Video watch duration stats
+    const watchEvents = events.filter((e) => e.event_type === 'video_watch_duration');
+    const avgWatchSeconds = watchEvents.length > 0
+      ? Math.round(watchEvents.reduce((sum, e) => sum + (e.event_data?.seconds_watched || 0), 0) / watchEvents.length)
+      : 0;
+    const avgWatchPercent = watchEvents.length > 0
+      ? Math.round(watchEvents.reduce((sum, e) => sum + (e.event_data?.percent_watched || 0), 0) / watchEvents.length)
+      : 0;
+    const maxWatchSeconds = watchEvents.length > 0
+      ? Math.max(...watchEvents.map((e) => e.event_data?.seconds_watched || 0))
+      : 0;
+    // Watch duration distribution
+    const watchBuckets = { '0-30s': 0, '30s-1m': 0, '1-3m': 0, '3-5m': 0, '5m+': 0 };
+    watchEvents.forEach((e) => {
+      const s = e.event_data?.seconds_watched || 0;
+      if (s <= 30) watchBuckets['0-30s']++;
+      else if (s <= 60) watchBuckets['30s-1m']++;
+      else if (s <= 180) watchBuckets['1-3m']++;
+      else if (s <= 300) watchBuckets['3-5m']++;
+      else watchBuckets['5m+']++;
+    });
+
     // Average time on page
     const timeEvents = events.filter((e) => e.event_type === 'time_on_page');
     const avgTime =
@@ -112,6 +135,11 @@ export function PreviewAnalyticsDashboard() {
       videoPlays,
       videoUnmutes,
       avgTime,
+      avgWatchSeconds,
+      avgWatchPercent,
+      maxWatchSeconds,
+      watchBuckets,
+      watchEventsCount: watchEvents.length,
       scroll25,
       scroll50,
       scroll75,
@@ -251,6 +279,47 @@ export function PreviewAnalyticsDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* VSL Video Engagement */}
+      <Card className="border-0 shadow-sm rounded-xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <Film className="h-4 w-4 text-purple-500" />
+            VSL Video Engagement
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+            {[
+              { label: 'Played Video', value: stats.videoPlays, sub: `${stats.uniqueSessions > 0 ? Math.round((stats.videoPlays / stats.uniqueSessions) * 100) : 0}% of visitors` },
+              { label: 'Unmuted', value: stats.videoUnmutes, sub: `${stats.videoPlays > 0 ? Math.round((stats.videoUnmutes / stats.videoPlays) * 100) : 0}% of plays` },
+              { label: 'Avg. Watch', value: formatTime(stats.avgWatchSeconds), sub: `${stats.avgWatchPercent}% of video` },
+              { label: 'Max Watch', value: formatTime(stats.maxWatchSeconds), sub: 'longest session' },
+              { label: 'Watch Data', value: stats.watchEventsCount, sub: 'sessions recorded' },
+            ].map(({ label, value, sub }) => (
+              <div key={label} className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-xl font-bold" style={{ color: '#2d4a2d' }}>{value}</p>
+                <p className="text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-[10px] text-muted-foreground/70 mt-0.5">{sub}</p>
+              </div>
+            ))}
+          </div>
+          {stats.watchEventsCount > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground mb-3">Watch Duration Distribution</p>
+              <ResponsiveContainer width="100%" height={160}>
+                <BarChart data={Object.entries(stats.watchBuckets).map(([range, count]) => ({ range, count }))}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="range" tick={{ fontSize: 11 }} />
+                  <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#A855F7" radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* CTA Clicks Breakdown */}
       {ctaData.length > 0 && (
