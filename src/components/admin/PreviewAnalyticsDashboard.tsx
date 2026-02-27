@@ -35,7 +35,9 @@ const EVENT_COLORS: Record<string, string> = {
 export function PreviewAnalyticsDashboard() {
   const [events, setEvents] = useState<PageEvent[]>([]);
   const [loading, setLoading] = useState(true);
-  const [dateRange, setDateRange] = useState<'7d' | '30d' | 'all'>('7d');
+  const [dateFrom, setDateFrom] = useState<Date>(subDays(new Date(), 7));
+  const [dateTo, setDateTo] = useState<Date>(new Date());
+  const [activePreset, setActivePreset] = useState<string>('7d');
 
   const fetchEvents = async () => {
     setLoading(true);
