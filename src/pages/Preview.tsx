@@ -274,7 +274,7 @@ function VSLPlayer() {
 
   const handleMouseLeave = useCallback(() => {
     setShowSpeedMenu(false);
-    hideTimer.current = setTimeout(() => setShowControls(false), 2000);
+    hideTimer.current = setTimeout(() => setShowControls(false), 800);
   }, []);
 
   // Tap on video: toggle play/pause + show controls
