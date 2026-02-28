@@ -106,6 +106,19 @@ export function PreviewAnalyticsDashboard() {
     const scroll75 = new Set(events.filter((e) => e.event_type === 'scroll_75').map((e) => e.session_id)).size;
     const scroll100 = new Set(events.filter((e) => e.event_type === 'scroll_100').map((e) => e.session_id)).size;
 
+    // Average scroll depth per session
+    const sessionMaxScroll: Record<string, number> = {};
+    events.forEach((e) => {
+      if (e.event_type === 'scroll_25') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 25);
+      if (e.event_type === 'scroll_50') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 50);
+      if (e.event_type === 'scroll_75') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 75);
+      if (e.event_type === 'scroll_100') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 100);
+    });
+    const scrollSessions = Object.values(sessionMaxScroll);
+    const avgScrollDepth = scrollSessions.length > 0
+      ? Math.round(scrollSessions.reduce((a, b) => a + b, 0) / scrollSessions.length)
+      : 0;
+
     // CTA breakdown
     const ctaBreakdown: Record<string, number> = {};
     events
@@ -157,6 +170,7 @@ export function PreviewAnalyticsDashboard() {
       scroll50,
       scroll75,
       scroll100,
+      avgScrollDepth,
       ctaBreakdown,
       dailyViews,
       topLocations,
@@ -263,7 +277,7 @@ export function PreviewAnalyticsDashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
+      <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
         {[
           { icon: Eye, label: 'Page Views', value: stats.pageViews, color: '#8BC34A' },
           { icon: Eye, label: 'Unique Visitors', value: stats.uniqueSessions, color: '#2d4a2d' },
@@ -272,6 +286,7 @@ export function PreviewAnalyticsDashboard() {
           { icon: CalendarLucideIcon, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
           { icon: Play, label: 'Video Plays', value: stats.videoPlays, color: '#A855F7' },
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
+          { icon: ArrowDown, label: 'Avg. Scroll', value: `${stats.avgScrollDepth}%`, color: '#3B82F6' },
         ].map(({ icon: Icon, label, value, color }) => (
           <Card key={label} className="border-0 shadow-sm rounded-xl">
             <CardContent className="p-3 sm:p-4">
