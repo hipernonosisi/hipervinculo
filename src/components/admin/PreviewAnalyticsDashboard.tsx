@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarIcon, Play, Volume2, Film } from 'lucide-react';
+import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarLucideIcon, Play, Volume2, Film } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 interface PageEvent {
@@ -212,14 +212,19 @@ export function PreviewAnalyticsDashboard() {
                   activePreset === 'custom' && 'bg-accent text-white hover:bg-accent/90 border-accent'
                 )}
               >
-                <CalendarIcon className="h-3.5 w-3.5" />
+                <CalendarLucideIcon className="h-3.5 w-3.5" />
                 {activePreset === 'custom'
                   ? `${format(dateFrom, 'MMM d')} – ${format(dateTo, 'MMM d')}`
                   : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="top" sideOffset={10} avoidCollisions collisionPadding={16}>
-              <div className="rounded-md border bg-background shadow-xl">
+            <PopoverContent 
+              className="w-auto p-0" 
+              align="end" 
+              side="bottom" 
+              sideOffset={8}
+              style={{ zIndex: 9999 }}
+            >
                 <Calendar
                   mode="range"
                   selected={{ from: dateFrom, to: dateTo }}
@@ -231,10 +236,9 @@ export function PreviewAnalyticsDashboard() {
                     }
                   }}
                   numberOfMonths={1}
-                  className={cn("p-3 pointer-events-auto bg-background")}
+                  className={cn("p-3 pointer-events-auto")}
                   disabled={(date) => date > new Date()}
                 />
-              </div>
             </PopoverContent>
           </Popover>
 
@@ -251,7 +255,7 @@ export function PreviewAnalyticsDashboard() {
           { icon: Eye, label: 'Unique Visitors', value: stats.uniqueSessions, color: '#2d4a2d' },
           { icon: Clock, label: 'Avg. Time', value: formatTime(stats.avgTime), color: '#14B8A6' },
           { icon: MousePointerClick, label: 'CTA Clicks', value: stats.ctaClicks, color: '#FF6B35' },
-          { icon: Calendar, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
+          { icon: CalendarLucideIcon, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
           { icon: Play, label: 'Video Plays', value: stats.videoPlays, color: '#A855F7' },
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
         ].map(({ icon: Icon, label, value, color }) => (
