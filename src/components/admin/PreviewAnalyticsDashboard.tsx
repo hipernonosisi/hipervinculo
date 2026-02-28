@@ -286,6 +286,7 @@ export function PreviewAnalyticsDashboard() {
           { icon: CalendarLucideIcon, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
           { icon: Play, label: 'Video Plays', value: stats.videoPlays, color: '#A855F7' },
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
+          { icon: ArrowDown, label: 'Avg. Scroll', value: `${stats.avgScrollDepth}%`, color: '#3B82F6' },
         ].map(({ icon: Icon, label, value, color }) => (
           <Card key={label} className="border-0 shadow-sm rounded-xl">
             <CardContent className="p-3 sm:p-4">
