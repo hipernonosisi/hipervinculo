@@ -218,8 +218,13 @@ export function PreviewAnalyticsDashboard() {
                   : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="top" sideOffset={10} avoidCollisions collisionPadding={16}>
-              <div className="rounded-md border bg-background shadow-xl">
+            <PopoverContent 
+              className="w-auto p-0" 
+              align="end" 
+              side="bottom" 
+              sideOffset={8}
+              style={{ zIndex: 9999 }}
+            >
                 <Calendar
                   mode="range"
                   selected={{ from: dateFrom, to: dateTo }}
@@ -231,10 +236,9 @@ export function PreviewAnalyticsDashboard() {
                     }
                   }}
                   numberOfMonths={1}
-                  className={cn("p-3 pointer-events-auto bg-background")}
+                  className={cn("p-3 pointer-events-auto")}
                   disabled={(date) => date > new Date()}
                 />
-              </div>
             </PopoverContent>
           </Popover>
 
