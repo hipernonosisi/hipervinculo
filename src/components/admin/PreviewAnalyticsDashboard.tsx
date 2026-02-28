@@ -218,7 +218,7 @@ export function PreviewAnalyticsDashboard() {
                   : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="bottom" sideOffset={8} avoidCollisions>
+            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="top" sideOffset={10} avoidCollisions collisionPadding={16}>
               <div className="rounded-md border bg-background shadow-xl">
                 <Calendar
                   mode="range"
