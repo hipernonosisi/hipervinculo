@@ -202,7 +202,7 @@ export function PreviewAnalyticsDashboard() {
             </button>
           ))}
 
-          <Popover>
+          <Popover modal>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
@@ -218,21 +218,23 @@ export function PreviewAnalyticsDashboard() {
                   : 'Custom'}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 z-[9999] bg-background border shadow-xl" align="end" side="bottom" sideOffset={8} avoidCollisions>
-              <Calendar
-                mode="range"
-                selected={{ from: dateFrom, to: dateTo }}
-                onSelect={(range) => {
-                  if (range?.from) {
-                    setDateFrom(range.from);
-                    setDateTo(range.to || range.from);
-                    setActivePreset('custom');
-                  }
-                }}
-                numberOfMonths={1}
-                className={cn("p-3 pointer-events-auto")}
-                disabled={(date) => date > new Date()}
-              />
+            <PopoverContent className="w-auto p-0 z-[9999]" align="end" side="bottom" sideOffset={8} avoidCollisions>
+              <div className="rounded-md border bg-background shadow-xl">
+                <Calendar
+                  mode="range"
+                  selected={{ from: dateFrom, to: dateTo }}
+                  onSelect={(range) => {
+                    if (range?.from) {
+                      setDateFrom(range.from);
+                      setDateTo(range.to || range.from);
+                      setActivePreset('custom');
+                    }
+                  }}
+                  numberOfMonths={1}
+                  className={cn("p-3 pointer-events-auto bg-background")}
+                  disabled={(date) => date > new Date()}
+                />
+              </div>
             </PopoverContent>
           </Popover>
 
