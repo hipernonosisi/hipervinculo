@@ -20,16 +20,29 @@ export function trackEvent(eventType: string, eventData: Record<string, any> = {
     });
 }
 
+async function fetchGeoData(): Promise<Record<string, string>> {
+  try {
+    const res = await supabase.functions.invoke('geolocate');
+    if (res.error) throw res.error;
+    return res.data as Record<string, string>;
+  } catch (e) {
+    console.warn('[Geo] Could not fetch location', e);
+    return {};
+  }
+}
+
 export function usePageTracking(pageUrl = '/preview') {
   const startTime = useRef(Date.now());
   const scrollMilestones = useRef(new Set<number>());
   const tracked = useRef(false);
 
-  // Track page view once
+  // Track page view once with geo data
   useEffect(() => {
     if (tracked.current) return;
     tracked.current = true;
-    trackEvent('page_view', { referrer: document.referrer, userAgent: navigator.userAgent }, pageUrl);
+    fetchGeoData().then((geo) => {
+      trackEvent('page_view', { referrer: document.referrer, userAgent: navigator.userAgent, ...geo }, pageUrl);
+    });
   }, [pageUrl]);
 
   // Track scroll depth milestones
