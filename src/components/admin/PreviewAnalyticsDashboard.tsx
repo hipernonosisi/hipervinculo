@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarLucideIcon, Play, Volume2, Film } from 'lucide-react';
+import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarLucideIcon, Play, Volume2, Film, MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 interface PageEvent {
@@ -115,6 +115,19 @@ export function PreviewAnalyticsDashboard() {
         ctaBreakdown[label] = (ctaBreakdown[label] || 0) + 1;
       });
 
+    // Location breakdown from page_view events
+    const locationMap: Record<string, number> = {};
+    events
+      .filter((e) => e.event_type === 'page_view' && e.event_data?.city && e.event_data?.country)
+      .forEach((e) => {
+        const loc = `${e.event_data.city}, ${e.event_data.country}`;
+        locationMap[loc] = (locationMap[loc] || 0) + 1;
+      });
+    const topLocations = Object.entries(locationMap)
+      .map(([location, count]) => ({ location, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
+
     // Daily views (for line chart)
     const dailyMap: Record<string, number> = {};
     events
@@ -146,6 +159,7 @@ export function PreviewAnalyticsDashboard() {
       scroll100,
       ctaBreakdown,
       dailyViews,
+      topLocations,
     };
   }, [events]);
 
@@ -420,7 +434,51 @@ export function PreviewAnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      {/* Recent Events */}
+      {/* Top Locations */}
+      <Card className="border-0 shadow-sm rounded-xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-muted-foreground" />
+            Top Locations
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {stats.topLocations.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-4 text-center">No location data yet</p>
+          ) : (
+            <div className="space-y-2">
+              {stats.topLocations.map(({ location, count }, i) => {
+                const maxCount = stats.topLocations[0]?.count || 1;
+                const pct = Math.round((count / maxCount) * 100);
+                return (
+                  <div key={location} className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-5 text-right font-mono">{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-0.5">
+                        <span className="text-xs font-medium truncate">{location}</span>
+                        <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
+                          {count} {count === 1 ? 'visit' : 'visits'}
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{
+                            width: `${pct}%`,
+                            backgroundColor: '#8BC34A',
+                            opacity: 0.5 + (pct / 100) * 0.5,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       <Card className="border-0 shadow-sm rounded-xl">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold">Recent Events (last 50)</CardTitle>
