@@ -106,6 +106,19 @@ export function PreviewAnalyticsDashboard() {
     const scroll75 = new Set(events.filter((e) => e.event_type === 'scroll_75').map((e) => e.session_id)).size;
     const scroll100 = new Set(events.filter((e) => e.event_type === 'scroll_100').map((e) => e.session_id)).size;
 
+    // Average scroll depth per session
+    const sessionMaxScroll: Record<string, number> = {};
+    events.forEach((e) => {
+      if (e.event_type === 'scroll_25') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 25);
+      if (e.event_type === 'scroll_50') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 50);
+      if (e.event_type === 'scroll_75') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 75);
+      if (e.event_type === 'scroll_100') sessionMaxScroll[e.session_id] = Math.max(sessionMaxScroll[e.session_id] || 0, 100);
+    });
+    const scrollSessions = Object.values(sessionMaxScroll);
+    const avgScrollDepth = scrollSessions.length > 0
+      ? Math.round(scrollSessions.reduce((a, b) => a + b, 0) / scrollSessions.length)
+      : 0;
+
     // CTA breakdown
     const ctaBreakdown: Record<string, number> = {};
     events
