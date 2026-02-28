@@ -212,7 +212,7 @@ export function PreviewAnalyticsDashboard() {
                   activePreset === 'custom' && 'bg-accent text-white hover:bg-accent/90 border-accent'
                 )}
               >
-                <CalendarIcon className="h-3.5 w-3.5" />
+                <CalendarLucideIcon className="h-3.5 w-3.5" />
                 {activePreset === 'custom'
                   ? `${format(dateFrom, 'MMM d')} – ${format(dateTo, 'MMM d')}`
                   : 'Custom'}
