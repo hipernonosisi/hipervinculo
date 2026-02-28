@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarIcon, Play, Volume2, Film } from 'lucide-react';
+import { RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Calendar as CalendarLucideIcon, Play, Volume2, Film } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 interface PageEvent {
