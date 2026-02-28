@@ -115,6 +115,19 @@ export function PreviewAnalyticsDashboard() {
         ctaBreakdown[label] = (ctaBreakdown[label] || 0) + 1;
       });
 
+    // Location breakdown from page_view events
+    const locationMap: Record<string, number> = {};
+    events
+      .filter((e) => e.event_type === 'page_view' && e.event_data?.city && e.event_data?.country)
+      .forEach((e) => {
+        const loc = `${e.event_data.city}, ${e.event_data.country}`;
+        locationMap[loc] = (locationMap[loc] || 0) + 1;
+      });
+    const topLocations = Object.entries(locationMap)
+      .map(([location, count]) => ({ location, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
+
     // Daily views (for line chart)
     const dailyMap: Record<string, number> = {};
     events
@@ -146,6 +159,7 @@ export function PreviewAnalyticsDashboard() {
       scroll100,
       ctaBreakdown,
       dailyViews,
+      topLocations,
     };
   }, [events]);
 
