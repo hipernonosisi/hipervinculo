@@ -434,7 +434,51 @@ export function PreviewAnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      {/* Recent Events */}
+      {/* Top Locations */}
+      <Card className="border-0 shadow-sm rounded-xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-muted-foreground" />
+            Top Locations
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {stats.topLocations.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-4 text-center">No location data yet</p>
+          ) : (
+            <div className="space-y-2">
+              {stats.topLocations.map(({ location, count }, i) => {
+                const maxCount = stats.topLocations[0]?.count || 1;
+                const pct = Math.round((count / maxCount) * 100);
+                return (
+                  <div key={location} className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-5 text-right font-mono">{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-0.5">
+                        <span className="text-xs font-medium truncate">{location}</span>
+                        <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
+                          {count} {count === 1 ? 'visit' : 'visits'}
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{
+                            width: `${pct}%`,
+                            backgroundColor: '#8BC34A',
+                            opacity: 0.5 + (pct / 100) * 0.5,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       <Card className="border-0 shadow-sm rounded-xl">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold">Recent Events (last 50)</CardTitle>
