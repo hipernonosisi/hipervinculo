@@ -170,6 +170,7 @@ export function PreviewAnalyticsDashboard() {
       scroll50,
       scroll75,
       scroll100,
+      avgScrollDepth,
       ctaBreakdown,
       dailyViews,
       topLocations,
