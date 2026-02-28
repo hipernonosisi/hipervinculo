@@ -432,6 +432,7 @@ export function PreviewAnalyticsDashboard() {
                 <tr>
                   <th className="text-left p-3 font-medium">Time</th>
                   <th className="text-left p-3 font-medium">Event</th>
+                  <th className="text-left p-3 font-medium">Location</th>
                   <th className="text-left p-3 font-medium">Details</th>
                   <th className="text-left p-3 font-medium">Session</th>
                 </tr>
@@ -458,6 +459,11 @@ export function PreviewAnalyticsDashboard() {
                       >
                         {ev.event_type}
                       </Badge>
+                    </td>
+                    <td className="p-3 text-muted-foreground text-xs max-w-[180px] truncate">
+                      {ev.event_data?.city && ev.event_data?.country
+                        ? `${ev.event_data.city}, ${ev.event_data.country}`
+                        : '—'}
                     </td>
                     <td className="p-3 text-muted-foreground text-xs max-w-[200px] truncate">
                       {ev.event_data?.label ||
