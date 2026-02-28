@@ -255,7 +255,7 @@ export function PreviewAnalyticsDashboard() {
           { icon: Eye, label: 'Unique Visitors', value: stats.uniqueSessions, color: '#2d4a2d' },
           { icon: Clock, label: 'Avg. Time', value: formatTime(stats.avgTime), color: '#14B8A6' },
           { icon: MousePointerClick, label: 'CTA Clicks', value: stats.ctaClicks, color: '#FF6B35' },
-          { icon: Calendar, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
+          { icon: CalendarLucideIcon, label: 'Calendar Clicks', value: stats.calendarClicks, color: '#6366F1' },
           { icon: Play, label: 'Video Plays', value: stats.videoPlays, color: '#A855F7' },
           { icon: Volume2, label: 'Unmuted Video', value: stats.videoUnmutes, color: '#EC4899' },
         ].map(({ icon: Icon, label, value, color }) => (
