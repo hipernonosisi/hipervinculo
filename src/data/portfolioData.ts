@@ -123,6 +123,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '35%', label: { en: 'Of new clients from web', es: 'De nuevos clientes desde la web' } },
       { metric: '+90%', label: { en: 'Membership sign-ups growth', es: 'Crecimiento en inscripciones de membresía' } },
     ],
+    challenge: { en: 'Fully dependent on referrals with no digital channel to generate calls — missing out on high-intent local searches.', es: 'Dependencia total de referidos sin canal digital para generar llamadas — perdiendo búsquedas locales de alta intención.' },
+    solution: { en: 'A booking-focused site with call scheduling, first-visit specials, and membership enrollment — growing from 2-3 to 20+ calls per day.', es: 'Un sitio enfocado en booking de llamadas, especiales de primera visita y membresías — pasando de 2-3 a 20+ llamadas por día.' },
   },
   // 6. Rasetta Innovations
   {
