@@ -616,7 +616,7 @@ export default function Preview() {
               transition={{ duration: 0.8 }}
               className="text-3xl sm:text-5xl md:text-[56px] font-extrabold leading-[1.08] tracking-tight text-foreground mb-5"
             >
-              Stop Losing Customers to Competitors Who Simply Show Up First on Google
+              {p.hero.headline}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -624,7 +624,7 @@ export default function Preview() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             >
-              We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services.
+              {p.hero.subheadline}
             </motion.p>
           </div>
 
