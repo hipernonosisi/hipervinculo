@@ -711,7 +711,7 @@ export default function Preview() {
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground ml-1">5.0 (23 reviews)</span>
+            <span className="text-sm text-muted-foreground ml-1">{p.reviews.rating}</span>
           </a>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
