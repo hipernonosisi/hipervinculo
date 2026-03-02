@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ArrowRight, Check, Download, ShieldCheck, Phone, Magnet, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, Activity, ExternalLink } from 'lucide-react';
+import { ArrowRight, Check, Download, ShieldCheck, Phone, Magnet, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, Activity, ExternalLink, Star } from 'lucide-react';
 import { portfolioProjects } from '@/data/portfolioData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
