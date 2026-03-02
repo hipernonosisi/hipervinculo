@@ -593,6 +593,9 @@ export default function Preview() {
     target: whyCardsRef,
     offset: ['start end', 'end 0.6'],
   });
+  const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.15], [0, 1]);
+  const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.2], [0, 1]);
+  const whyTitleScale = useTransform(whyCardsProgress, [0, 0.2], [2.5, 1]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
