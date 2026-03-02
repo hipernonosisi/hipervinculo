@@ -542,7 +542,7 @@ function VSLPlayer() {
                 onClick={(e) => e.stopPropagation()}
                 className="bg-accent text-accent-foreground px-5 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-accent/90 transition-colors flex items-center gap-2"
               >
-                Book a Call
+                {t.preview.video.bookACall}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
