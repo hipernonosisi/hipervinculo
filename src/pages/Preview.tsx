@@ -939,7 +939,7 @@ export default function Preview() {
             >
               <div className="inline-flex items-center gap-2.5 bg-background/[0.08] backdrop-blur-sm border border-background/10 rounded-full px-5 py-2.5">
                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <span className="text-xs md:text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
+                <span className="text-xs md:text-sm font-medium opacity-80">{p.finalCta.badge}</span>
               </div>
             </motion.div>
 
