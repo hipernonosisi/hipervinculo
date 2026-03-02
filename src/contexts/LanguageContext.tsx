@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { translations, type Language } from '@/lib/i18n';
+import { useSearchParams } from 'react-router-dom';
 
 type TranslationType = typeof translations.en | typeof translations.es;
 
