@@ -21,7 +21,7 @@ export default function ThankYouPreview() {
     const timer = setTimeout(() => {
       if (window.gtag) {
         window.gtag('event', 'conversion', {
-          send_to: 'AW-1004326069/preview_lead_conversion',
+          send_to: 'AW-1004326069/6gFiCNye54EcELWz894D',
         });
       }
       if (window.fbq) {
