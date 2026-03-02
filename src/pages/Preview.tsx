@@ -49,8 +49,7 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
 }
 
 // ── Zoom-out card for "Why us" section ──
-function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
-  // Each card gets its own segment of the scroll progress
+function ZoomCard({ card, index, scrollYProgress }: { card: { title: string; desc: string; icon: any }; index: number; scrollYProgress: any }) {
   const totalCards = 6;
   const cardStart = (index) / totalCards;
   const cardEnd = (index + 1) / totalCards;
