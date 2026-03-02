@@ -427,7 +427,7 @@ function VSLPlayer() {
             >
               <span className="text-sm md:text-base font-semibold text-background bg-accent px-5 py-2 rounded-full shadow-lg flex items-center gap-2">
                 <Volume2 className="w-4 h-4" />
-                Tap to Watch with Sound
+                {t.preview.video.tapToWatch}
               </span>
             </motion.div>
           </div>
