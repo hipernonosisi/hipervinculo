@@ -138,28 +138,33 @@ export default function CaseStudy() {
         </section>
       )}
 
-      {/* Extra Screenshots Gallery */}
+      {/* Extra Screenshots Gallery — Horizontal Scroll */}
       {project.extraImages.filter(img => img !== project.image && img !== project.imageMobile).length > 0 && (
-        <section className="bg-white pb-12 md:pb-16">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section className="bg-white pb-12 md:pb-16 overflow-hidden">
+          <div className="relative">
+            <div
+              className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth px-[max(1rem,calc((100vw-72rem)/2+1rem))] pb-4 no-scrollbar"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
               {project.extraImages
                 .filter(img => img !== project.image && img !== project.imageMobile)
                 .map((img, i) => (
-                  <AnimatedSection key={img} delay={i * 0.1}>
-                    <motion.div
-                      className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-lg aspect-video"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <img
-                        src={img}
-                        alt={`${project.name} screenshot ${i + 1}`}
-                        className="w-full h-full object-cover object-top"
-                        loading="lazy"
-                      />
-                    </motion.div>
-                  </AnimatedSection>
+                  <motion.div
+                    key={img}
+                    className="snap-center shrink-0 w-[85vw] md:w-[45vw] lg:w-[40vw] rounded-2xl overflow-hidden border-2 border-border/30 shadow-lg aspect-video"
+                    initial={{ opacity: 0, x: 60 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-10%' }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    whileHover={{ scale: 1.01 }}
+                  >
+                    <img
+                      src={img}
+                      alt={`${project.name} screenshot ${i + 1}`}
+                      className="w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  </motion.div>
                 ))}
             </div>
           </div>
