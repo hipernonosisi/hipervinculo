@@ -47,6 +47,29 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
   return <span ref={ref}>{prefix}{value}{suffix}</span>;
 }
 
+// ── Zoom-out card for "Why us" section ──
+function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
+  const start = 0.1 + index * 0.08;
+  const end = Math.min(start + 0.25, 0.95);
+  const opacity = useTransform(scrollYProgress, [start, end * 0.6], [0, 1]);
+  const scale = useTransform(scrollYProgress, [start, end], [3, 1]);
+  const blur = useTransform(scrollYProgress, [start, end * 0.7], [10, 0]);
+  const filterStyle = useTransform(blur, (v: number) => `blur(${v}px)`);
+
+  return (
+    <motion.div
+      className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
+      style={{ opacity, scale, filter: filterStyle }}
+    >
+      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+        <card.icon className="w-6 h-6 text-accent" />
+      </div>
+      <h3 className="text-base font-bold text-foreground mb-2">{card.title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+    </motion.div>
+  );
+}
+
 // ── Apple-style scroll-reveal project card ──
 function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; index: number }) {
   const ref = useRef(null);
