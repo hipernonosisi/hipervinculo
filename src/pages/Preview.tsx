@@ -879,18 +879,18 @@ export default function Preview() {
             </div>
             {/* Story */}
             <div className="flex-1">
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-4">Meet the Founder</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-4">{p.founder.subtitle}</p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 leading-tight">
-                If your business doesn't show up on Google... you're invisible.
+                {p.founder.title}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                I'm Miguel, founder of Hipervínculo. I started this company when I was 21 years old in Venezuela. I was obsessed with the internet, obsessed with what it could do for businesses, and I built my first websites before most people in my country even had a broadband connection. In 2011, I brought the company to the United States, right here to South Florida.
+                {p.founder.p1}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Over the last 20 years, I've helped more than 200 businesses — from local service companies to international distributors — go from invisible online to generating real customers, real calls, and real revenue. Every single week. Not sometimes. <span className="font-semibold text-foreground">Every week.</span>
+                {p.founder.p2} <span className="font-semibold text-foreground">{p.founder.p2Bold}</span>
               </p>
               <Button asChild className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-12 font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Founder - Lets Talk'); trackCalendarClick(); }}>Let's Talk About Your Business</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Founder - Lets Talk'); trackCalendarClick(); }}>{p.founder.cta}</a>
               </Button>
             </div>
           </div>
