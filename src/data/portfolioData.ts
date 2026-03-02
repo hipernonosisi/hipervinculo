@@ -186,5 +186,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+280%', label: { en: 'Increase in consultation bookings', es: 'Aumento en reservas de consulta' } },
       { metric: '3.8%', label: { en: 'Visitor-to-booking rate', es: 'Tasa de visitante a reserva' } },
     ],
+    challenge: { en: 'A premium kitchen renovation studio in Madrid with no digital channel to capture leads or schedule consultations.', es: 'Un estudio premium de renovación de cocinas en Madrid sin canal digital para captar leads ni agendar consultas.' },
+    solution: { en: 'A high-converting landing page with 3D renders, Calendly, WhatsApp, and Meta Ads — generating leads and 3 booked consultations within the first 24 hours.', es: 'Una landing page de alta conversión con renders 3D, Calendly, WhatsApp y Meta Ads — generando leads y 3 consultas agendadas en las primeras 24 horas.' },
   },
 ];
