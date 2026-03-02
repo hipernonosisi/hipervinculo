@@ -552,7 +552,7 @@ function VSLPlayer() {
 
       {/* Duration badge */}
       <div className="text-center mt-3">
-        <span className="text-xs text-muted-foreground">9 min · Watch how we grow businesses</span>
+        <span className="text-xs text-muted-foreground">{t.preview.video.duration}</span>
       </div>
     </motion.div>
   );
