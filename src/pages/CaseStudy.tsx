@@ -195,6 +195,28 @@ export default function CaseStudy() {
         </div>
       </section>
 
+      {/* Challenge & Solution */}
+      {project.challenge && project.solution && (
+        <section className="py-16 md:py-24" style={{ backgroundColor: '#f8f9f5' }}>
+          <div className="container">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <AnimatedSection direction="left">
+                <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-border/30 h-full">
+                  <h2 className="text-[13px] font-bold uppercase tracking-widest text-accent mb-4">{c.challenge}</h2>
+                  <p className="text-[16px] text-foreground leading-relaxed">{project.challenge[language]}</p>
+                </div>
+              </AnimatedSection>
+              <AnimatedSection direction="right" delay={0.1}>
+                <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-border/30 h-full">
+                  <h2 className="text-[13px] font-bold uppercase tracking-widest text-accent mb-4">{c.solution}</h2>
+                  <p className="text-[16px] text-foreground leading-relaxed">{project.solution[language]}</p>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Outcomes */}
       {project.outcomes.length > 0 && (
         <section className="py-16 md:py-24" style={{ backgroundColor: '#2d4a2d' }}>

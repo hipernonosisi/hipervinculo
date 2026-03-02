@@ -148,6 +148,36 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Aggregated Impact Metrics */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#2d4a2d' }}>
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-5xl mx-auto">
+            {[
+              { value: '+320%', label: language === 'en' ? 'Best lead increase achieved' : 'Mayor aumento de leads logrado' },
+              { value: '20+', label: language === 'en' ? 'Record daily call volume' : 'Récord de llamadas diarias' },
+              { value: '24h', label: language === 'en' ? 'Fastest time to first results' : 'Tiempo más rápido a primeros resultados' },
+              { value: '3.8%', label: language === 'en' ? 'Best visitor-to-booking rate' : 'Mejor tasa de visitante a reserva' },
+            ].map((metric, i) => (
+              <motion.div
+                key={i}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+              >
+                <p className="text-[40px] md:text-[52px] font-extrabold text-white leading-none mb-2">
+                  {metric.value}
+                </p>
+                <p className="text-[13px] md:text-[14px] text-white/60 leading-snug">
+                  {metric.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Proven Results Section */}
       <section className="py-24 lg:py-32" style={{ backgroundColor: '#3d5a3d' }}>
         <div className="container">
