@@ -60,6 +60,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '3x', label: { en: 'LATAM market reach', es: 'Alcance del mercado LATAM' } },
       { metric: '+85%', label: { en: 'Organic visibility growth', es: 'Crecimiento de visibilidad orgánica' } },
     ],
+    challenge: { en: 'A global leader in recycling machinery with no Spanish-language digital presence to penetrate the LATAM market.', es: 'Líder mundial en maquinaria de reciclaje sin presencia digital en español para penetrar el mercado LATAM.' },
+    solution: { en: 'A 16+ year partnership: bilingual platform with full product catalog, quote request system, and SEO — achieving +200% quote requests and 3x LATAM reach.', es: 'Una alianza de +16 años: plataforma bilingüe con catálogo completo, sistema de cotización y SEO — logrando +200% en cotizaciones y 3x alcance LATAM.' },
   },
   // 3. Filtro Láser
   {
