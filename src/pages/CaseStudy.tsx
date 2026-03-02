@@ -33,6 +33,8 @@ export default function CaseStudy() {
       ctaTitle: 'Want Results Like These?',
       ctaText: 'Get a custom preview of what your new website\ncould look like — at no cost.',
       ctaButton: 'Get Your Free Preview',
+      challenge: 'The Challenge',
+      solution: 'Our Solution',
     },
     es: {
       back: 'Volver al Portafolio',
@@ -45,6 +47,8 @@ export default function CaseStudy() {
       ctaTitle: '¿Quieres Resultados Como Estos?',
       ctaText: 'Obtén una vista previa personalizada de cómo podría verse\ntu nuevo sitio web — sin costo.',
       ctaButton: 'Obtén Tu Vista Previa Gratis',
+      challenge: 'El Reto',
+      solution: 'Nuestra Solución',
     },
   };
 
