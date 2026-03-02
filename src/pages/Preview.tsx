@@ -591,15 +591,15 @@ export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
   
-  // Why cards zoom-out scroll
+  // Why cards zoom-out scroll — tall container for scroll hijack
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
     target: whyCardsRef,
-    offset: ['start end', 'end 0.3'],
+    offset: ['start start', 'end end'],
   });
-  const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.15], [0, 1]);
-  const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.2], [0, 1]);
-  const whyTitleScale = useTransform(whyCardsProgress, [0, 0.2], [2.5, 1]);
+  const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.08], [0, 1]);
+  const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.1], [0, 1]);
+  const whyTitleScale = useTransform(whyCardsProgress, [0, 0.1], [2.5, 1]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
