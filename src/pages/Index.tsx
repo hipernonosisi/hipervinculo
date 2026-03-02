@@ -28,15 +28,18 @@ export default function Index() {
     return () => clearInterval(interval);
   }, [rotatingHeadlines.length]);
 
-  const partners = [
-    { name: 'Google Ads', subtitle: 'Certified Partner' },
-    { name: 'Meta Ads', subtitle: 'Certified Buyer Professional' },
+  const certifiedPartners = [
+    { name: 'Google Ads', subtitle: language === 'es' ? 'Partner Certificado' : 'Certified Partner' },
+    { name: 'Meta Ads', subtitle: language === 'es' ? 'Comprador Certificado' : 'Certified Buyer Professional' },
+  ];
+
+  const toolPartners = [
+    { name: 'Shopify', subtitle: 'Partner' },
     { name: 'Amazon', subtitle: 'Amazon PPC Specialist' },
     { name: 'Helium 10', subtitle: 'Partner' },
-    { name: 'Elevar', subtitle: 'Integration' },
+    { name: 'Elevar', subtitle: language === 'es' ? 'Integración' : 'Integration' },
     { name: 'MNTN', subtitle: 'MNTN Media Buyer' },
     { name: 'Polar Analytics', subtitle: 'Partner' },
-    { name: 'Shopify', subtitle: 'Partner' },
   ];
 
   return (
@@ -661,27 +664,51 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Tools and Media Platforms */}
+      {/* Certified Partners & Tools */}
       <section className="py-24 md:py-32 bg-secondary">
         <div className="container">
           <AnimatedSection className="text-center mb-6">
-            <p className="text-accent font-semibold text-[15px]">{t.partners.title}</p>
+            <p className="text-accent font-semibold text-[15px]">
+              {language === 'es' ? 'Partners Certificados y Herramientas' : 'Certified Partners & Tools'}
+            </p>
           </AnimatedSection>
           <AnimatedSection className="text-center mb-16">
             <h2 
               className="text-[40px] md:text-[52px] lg:text-[60px] mb-5 leading-[1.1] tracking-[-0.03em]"
               style={{ fontWeight: 800, color: '#2d4a2d' }}
             >
-              {t.partners.title}
+              {language === 'es' ? 'Partners Certificados y Herramientas' : 'Certified Partners & Tools'}
             </h2>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {partners.map((partner, index) => (
+
+          {/* Certified Partners - Prominent */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
+            {certifiedPartners.map((partner, index) => (
+              <AnimatedSection key={partner.name} delay={index * 0.1}>
+                <Card className="text-center bg-white rounded-2xl hover:shadow-xl transition-shadow shadow-md border-2" style={{ borderColor: '#8BC34A' }}>
+                  <CardContent className="p-10">
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <ShieldCheck className="h-6 w-6" style={{ color: '#8BC34A' }} />
+                      <span className="text-[12px] font-bold uppercase tracking-widest" style={{ color: '#8BC34A' }}>
+                        {language === 'es' ? 'Certificado' : 'Certified'}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-[22px] md:text-[26px] mb-2 text-foreground">{partner.name}</h3>
+                    <p className="text-[14px] md:text-[15px] text-muted-foreground">{partner.subtitle}</p>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          {/* Tool Partners - Compact */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {toolPartners.map((partner, index) => (
               <AnimatedSection key={partner.name} delay={index * 0.05}>
                 <Card className="text-center bg-white border-0 rounded-2xl hover:shadow-lg transition-shadow shadow-sm">
-                  <CardContent className="p-8">
-                    <h3 className="font-bold text-[18px] md:text-[20px] mb-2 text-foreground">{partner.name}</h3>
-                    <p className="text-[14px] md:text-[15px] text-muted-foreground">{partner.subtitle}</p>
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-[16px] md:text-[18px] mb-1 text-foreground">{partner.name}</h3>
+                    <p className="text-[13px] md:text-[14px] text-muted-foreground">{partner.subtitle}</p>
                   </CardContent>
                 </Card>
               </AnimatedSection>
