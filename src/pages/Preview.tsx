@@ -591,7 +591,7 @@ export default function Preview() {
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
     target: whyCardsRef,
-    offset: ['start end', 'end start'],
+    offset: ['start end', 'end 0.3'],
   });
   const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.15], [0, 1]);
   const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.2], [0, 1]);
