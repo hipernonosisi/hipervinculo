@@ -165,6 +165,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '1.8s', label: { en: 'Page load time', es: 'Tiempo de carga' } },
       { metric: '+70%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'A local plumbing company in South Florida with no digital visibility to attract qualified clients.', es: 'Una empresa de plomería local en el sur de Florida sin visibilidad digital para atraer clientes calificados.' },
+    solution: { en: 'A bilingual site with AI chat and county-based targeting — focused on high-quality leads, growing from 1-2 to 7-8 clients per week.', es: 'Un sitio bilingüe con chat IA y segmentación por condado — enfocado en leads de calidad, pasando de 1-2 a 7-8 clientes por semana.' },
   },
   // 8. Délios Home
   {
