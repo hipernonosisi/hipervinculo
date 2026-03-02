@@ -1018,8 +1018,8 @@ export default function Preview() {
           <Link to="/">
             <img src={logoFull} alt="Hipervínculo" className="h-8" />
           </Link>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. All rights reserved.</p>
-          <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. {p.footer.rights}</p>
+          <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>
         </div>
       </footer>
     </div>
