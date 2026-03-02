@@ -812,25 +812,25 @@ export default function Preview() {
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-4xl">
           <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Our Pricing</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-muted-foreground">No hidden fees. No long-term contracts. Just results.</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.pricing.subtitle}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.pricing.title}</h2>
+            <p className="text-muted-foreground">{p.pricing.description}</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mt-14">
             {/* Website */}
             <div className="bg-background border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <h3 className="text-lg font-bold text-foreground mb-1">Website Development</h3>
+              <h3 className="text-lg font-bold text-foreground mb-1">{p.pricing.website.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold text-foreground">$3,000</span>
+                <span className="text-4xl font-extrabold text-foreground">{p.pricing.website.price}</span>
               </div>
-              <p className="text-sm text-muted-foreground mb-6">one-time investment</p>
-              <p className="text-xs text-muted-foreground mb-4">Pause or cancel anytime</p>
+              <p className="text-sm text-muted-foreground mb-6">{p.pricing.website.period}</p>
+              <p className="text-xs text-muted-foreground mb-4">{p.pricing.website.pause}</p>
               <Button asChild className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>Book A Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>{p.pricing.website.cta}</a>
               </Button>
-              <p className="text-xs font-semibold text-muted-foreground mb-3">What's included:</p>
+              <p className="text-xs font-semibold text-muted-foreground mb-3">{p.pricing.website.included}</p>
               <ul className="space-y-3">
-                {websiteFeatures.map((f) => (
+                {p.pricing.website.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                     {f}
@@ -840,19 +840,19 @@ export default function Preview() {
             </div>
             {/* Google Ads */}
             <div className="bg-foreground text-background rounded-2xl p-8 relative">
-              <h3 className="text-lg font-bold mb-1">Google Ads Management</h3>
+              <h3 className="text-lg font-bold mb-1">{p.pricing.ads.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold">$1,250</span>
-                <span className="text-lg opacity-60">/month</span>
+                <span className="text-4xl font-extrabold">{p.pricing.ads.price}</span>
+                <span className="text-lg opacity-60">{p.pricing.ads.period}</span>
               </div>
-              <p className="text-sm opacity-60 mb-6">ongoing lead generation</p>
-              <p className="text-xs opacity-60 mb-4">Pause or cancel anytime</p>
+              <p className="text-sm opacity-60 mb-6">{p.pricing.ads.periodDesc}</p>
+              <p className="text-xs opacity-60 mb-4">{p.pricing.ads.pause}</p>
               <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>Get Started Today</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>{p.pricing.ads.cta}</a>
               </Button>
-              <p className="text-xs font-semibold opacity-60 mb-3">What's included:</p>
+              <p className="text-xs font-semibold opacity-60 mb-3">{p.pricing.ads.included}</p>
               <ul className="space-y-3">
-                {adsFeatures.map((f) => (
+                {p.pricing.ads.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm opacity-80">
                     <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                     {f}
@@ -862,7 +862,7 @@ export default function Preview() {
             </div>
           </div>
           <p className="text-center text-muted-foreground text-sm mt-8">
-            Every project starts with a free website preview — zero risk.
+            {p.pricing.footer}
           </p>
         </div>
       </Section>
