@@ -901,8 +901,8 @@ export default function Preview() {
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Built for {new Date().getFullYear()}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">Frequently Asked Questions</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.faq.subtitle} {new Date().getFullYear()}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">{p.faq.title}</h2>
           </div>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (
