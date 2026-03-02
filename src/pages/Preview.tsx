@@ -640,7 +640,7 @@ export default function Preview() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>Book a Free Strategy Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>{p.hero.cta1}</a>
               </Button>
               <Button
                 variant="outline"
@@ -648,14 +648,14 @@ export default function Preview() {
                 className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
                 onClick={() => { trackClick('Hero - See Our Work'); document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }); }}
               >
-                See Our Work
+                {p.hero.cta2}
               </Button>
             </div>
             <div className="flex gap-8 justify-center">
               {[
-                { target: 200, suffix: '+', label: 'Clients', prefix: '' },
-                { target: 20, suffix: '+', label: 'Years', prefix: '' },
-                { target: 98, suffix: 'M+', label: 'Generated', prefix: '$' },
+                { target: 200, suffix: '+', label: p.hero.stats.clients, prefix: '' },
+                { target: 20, suffix: '+', label: p.hero.stats.years, prefix: '' },
+                { target: 98, suffix: 'M+', label: p.hero.stats.generated, prefix: '$' },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <div className="text-2xl sm:text-3xl font-extrabold text-foreground">
