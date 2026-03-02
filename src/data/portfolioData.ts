@@ -16,6 +16,8 @@ export interface PortfolioProject {
   overview: { en: string; es: string };
   servicesUsed: { en: string[]; es: string[] };
   outcomes: PortfolioOutcome[];
+  challenge?: { en: string; es: string };
+  solution?: { en: string; es: string };
 }
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -37,6 +39,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
       { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
     ],
+    challenge: { en: 'No digital presence to capture distributors or manage orders — relying entirely on traditional channels.', es: 'Sin presencia digital para captar distribuidores ni gestionar pedidos — dependiendo completamente de canales tradicionales.' },
+    solution: { en: 'A lead generation platform with intelligent forms, an admin dashboard, and a streamlined order collection flow — resulting in +320% qualified leads.', es: 'Una plataforma de generación de leads con formularios inteligentes, panel de administración y flujo de pedidos optimizado — logrando +320% en leads calificados.' },
   },
   // 2. ZERMA Latin America
   {
@@ -56,6 +60,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '3x', label: { en: 'LATAM market reach', es: 'Alcance del mercado LATAM' } },
       { metric: '+85%', label: { en: 'Organic visibility growth', es: 'Crecimiento de visibilidad orgánica' } },
     ],
+    challenge: { en: 'A global leader in recycling machinery with no Spanish-language digital presence to penetrate the LATAM market.', es: 'Líder mundial en maquinaria de reciclaje sin presencia digital en español para penetrar el mercado LATAM.' },
+    solution: { en: 'A 16+ year partnership: bilingual platform with full product catalog, quote request system, and SEO — achieving +200% quote requests and 3x LATAM reach.', es: 'Una alianza de +16 años: plataforma bilingüe con catálogo completo, sistema de cotización y SEO — logrando +200% en cotizaciones y 3x alcance LATAM.' },
   },
   // 3. Filtro Láser
   {
@@ -75,6 +81,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '4.2%', label: { en: 'Conversion rate', es: 'Tasa de conversión' } },
       { metric: '28s', label: { en: 'Avg. time to first interaction', es: 'Tiempo promedio a primera interacción' } },
     ],
+    challenge: { en: 'A high-precision industrial product with zero digital presence — no way for buyers to discover or evaluate the technology online.', es: 'Un producto industrial de alta precisión sin presencia digital — sin forma de que los compradores descubran o evalúen la tecnología en línea.' },
+    solution: { en: 'A technical landing page with detailed specs, AI chatbot for product questions, and a rapid contact flow — launched in just 2 days.', es: 'Una landing técnica con especificaciones detalladas, chatbot IA para preguntas del producto y flujo de contacto rápido — lanzada en solo 2 días.' },
   },
   // 4. Pulverizadores Industriales (Reduction)
   {
@@ -94,6 +102,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '60%', label: { en: 'Leads from LATAM market', es: 'Leads del mercado LATAM' } },
       { metric: '+110%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'Specialized equipment for the Spanish-speaking market with no digital channel to generate qualified inquiries.', es: 'Equipos especializados para el mercado hispanohablante sin canal digital para generar consultas calificadas.' },
+    solution: { en: 'A product site with video integration, detailed specs, AI-powered assistant, and streamlined quote flow — generating 50+ qualified leads per year.', es: 'Un sitio de producto con integración de video, specs detalladas, asistente con IA y flujo de cotización optimizado — generando 50+ leads calificados al año.' },
   },
   // 5. Stillwater Day Spa
   {
@@ -113,6 +123,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '35%', label: { en: 'Of new clients from web', es: 'De nuevos clientes desde la web' } },
       { metric: '+90%', label: { en: 'Membership sign-ups growth', es: 'Crecimiento en inscripciones de membresía' } },
     ],
+    challenge: { en: 'Fully dependent on referrals with no digital channel to generate calls — missing out on high-intent local searches.', es: 'Dependencia total de referidos sin canal digital para generar llamadas — perdiendo búsquedas locales de alta intención.' },
+    solution: { en: 'A booking-focused site with call scheduling, first-visit specials, and membership enrollment — growing from 2-3 to 20+ calls per day.', es: 'Un sitio enfocado en booking de llamadas, especiales de primera visita y membresías — pasando de 2-3 a 20+ llamadas por día.' },
   },
   // 6. Rasetta Innovations
   {
@@ -132,6 +144,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '2.1s', label: { en: 'Average page load time', es: 'Tiempo promedio de carga' } },
       { metric: '+65%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'A website that didn\'t reflect the premium quality of their work and failed to attract high-quality leads.', es: 'Un sitio que no reflejaba la calidad premium de su trabajo y no atraía leads de alta calidad.' },
+    solution: { en: 'An elegant visual identity optimized to attract and convert high-quality leads — achieving +180% in consultation requests.', es: 'Una identidad visual elegante optimizada para atraer y convertir leads de alta calidad — logrando +180% en solicitudes de consulta.' },
   },
   // 7. Lajex LLC
   {
@@ -151,6 +165,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '1.8s', label: { en: 'Page load time', es: 'Tiempo de carga' } },
       { metric: '+70%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'A local plumbing company in South Florida with no digital visibility to attract qualified clients.', es: 'Una empresa de plomería local en el sur de Florida sin visibilidad digital para atraer clientes calificados.' },
+    solution: { en: 'A bilingual site with AI chat and county-based targeting — focused on high-quality leads, growing from 1-2 to 7-8 clients per week.', es: 'Un sitio bilingüe con chat IA y segmentación por condado — enfocado en leads de calidad, pasando de 1-2 a 7-8 clientes por semana.' },
   },
   // 8. Délios Home
   {
@@ -170,5 +186,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '+280%', label: { en: 'Increase in consultation bookings', es: 'Aumento en reservas de consulta' } },
       { metric: '3.8%', label: { en: 'Visitor-to-booking rate', es: 'Tasa de visitante a reserva' } },
     ],
+    challenge: { en: 'A premium kitchen renovation studio in Madrid with no digital channel to capture leads or schedule consultations.', es: 'Un estudio premium de renovación de cocinas en Madrid sin canal digital para captar leads ni agendar consultas.' },
+    solution: { en: 'A high-converting landing page with 3D renders, Calendly, WhatsApp, and Meta Ads — generating leads and 3 booked consultations within the first 24 hours.', es: 'Una landing page de alta conversión con renders 3D, Calendly, WhatsApp y Meta Ads — generando leads y 3 consultas agendadas en las primeras 24 horas.' },
   },
 ];
