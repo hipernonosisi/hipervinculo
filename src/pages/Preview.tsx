@@ -964,7 +964,7 @@ export default function Preview() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-[15px] md:text-xl opacity-60 mb-10 md:mb-12 max-w-2xl md:mx-auto leading-relaxed"
             >
-              Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
+              {p.finalCta.description}
             </motion.p>
 
             {/* CTA Button */}
