@@ -673,9 +673,9 @@ export default function Preview() {
       <Section className="py-20 md:py-28">
         <div className="container max-w-6xl">
           <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">How we work?</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.howWeWork.subtitle}</p>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
-              We simplify growth into 3 focused steps that deliver real results.
+              {p.howWeWork.title}
             </h2>
           </div>
 
