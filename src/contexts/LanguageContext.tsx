@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { translations, type Language } from '@/lib/i18n';
-import { useSearchParams } from 'react-router-dom';
 
 type TranslationType = typeof translations.en | typeof translations.es;
 
@@ -15,6 +14,13 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
+      // Check URL param first (?lang=es or ?lang=en)
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang') as Language;
+      if (langParam === 'en' || langParam === 'es') {
+        localStorage.setItem('hipervinculo-language', langParam);
+        return langParam;
+      }
       const saved = localStorage.getItem('hipervinculo-language') as Language;
       if (saved === 'en' || saved === 'es') {
         return saved;
