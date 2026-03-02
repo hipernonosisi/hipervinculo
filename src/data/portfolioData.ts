@@ -81,6 +81,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '4.2%', label: { en: 'Conversion rate', es: 'Tasa de conversión' } },
       { metric: '28s', label: { en: 'Avg. time to first interaction', es: 'Tiempo promedio a primera interacción' } },
     ],
+    challenge: { en: 'A high-precision industrial product with zero digital presence — no way for buyers to discover or evaluate the technology online.', es: 'Un producto industrial de alta precisión sin presencia digital — sin forma de que los compradores descubran o evalúen la tecnología en línea.' },
+    solution: { en: 'A technical landing page with detailed specs, AI chatbot for product questions, and a rapid contact flow — launched in just 2 days.', es: 'Una landing técnica con especificaciones detalladas, chatbot IA para preguntas del producto y flujo de contacto rápido — lanzada en solo 2 días.' },
   },
   // 4. Pulverizadores Industriales (Reduction)
   {
