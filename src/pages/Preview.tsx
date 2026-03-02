@@ -75,7 +75,7 @@ function ZoomCard({ card, index, scrollYProgress }: { card: { title: string; des
 }
 
 // ── Apple-style scroll-reveal project card ──
-function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; index: number }) {
+function ScrollRevealCard({ project, index }: { project: { name: string; result: string; image: string; url: string }; index: number }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
