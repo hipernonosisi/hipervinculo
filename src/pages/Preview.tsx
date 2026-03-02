@@ -761,10 +761,10 @@ export default function Preview() {
       <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
         <div className="container max-w-5xl">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Projects That Speak for Themselves</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.results.subtitle}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.results.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Live websites you can visit right now. Real businesses generating real revenue.
+              {p.results.description}
             </p>
           </div>
 
