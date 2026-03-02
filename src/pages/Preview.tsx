@@ -111,58 +111,28 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
 }
 
 
-// ── Case studies data ──
-const caseStudies = [
-  { name: 'Step Solution USA', type: 'Manufacturing', result: '+320% increase in qualified dealer leads', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
-  { name: 'ZERMA Latin America', type: 'Industrial Machinery', result: '+200% increase in quote requests across LATAM', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in 2 days', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
-  { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
-  { name: 'Stillwater Day Spa', type: 'Wellness & Spa', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
-  { name: 'Rasetta Innovations', type: 'Interior Design', result: '+180% increase in consultation requests', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
-  { name: 'Lajex LLC', type: 'Plumbing & Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
-  { name: 'Délios Home', type: 'Home Renovation', result: '3 consultation calls booked in first 24 hours', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+// ── Case studies images & URLs (language-independent) ──
+const caseStudyMeta = [
+  { image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
+  { image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
+  { image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
+  { image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
+  { image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
+  { image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
+  { image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
 ];
 
-const steps = [
-  { icon: Eye, label: 'Preview', title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing. No commitment, no risk.', image: '/portfolio/delios-home-hero.png' },
-  { icon: Hammer, label: 'Build', title: 'We Build & Launch Your Website', desc: 'Not just any website. A high-performance website specifically engineered to convert visitors into customers. Every button, every headline, every page is designed with one goal — make the phone ring. Make the form get filled out. Make the sale happen. This isn\'t about looking pretty. This is about making money.', image: '/portfolio/stillwater-day-spa-hero.png' },
-  { icon: Rocket, label: 'Grow', title: 'We Drive Qualified Traffic', desc: 'We put your business in front of people who are actively searching for your services right now. Not random people scrolling Instagram. People who just typed "plumber near me" or "best dentist in Cancun" into Google. These people have intent, urgency, and a credit card. All they need is to find YOU.', image: '/portfolio/google-ads-dashboard-1.png' },
-  { icon: Zap, label: 'Scale', title: 'We Optimize & Scale Your Results', desc: 'Every week, we analyze your campaigns. We track every call, every form submission, every dollar spent and every dollar earned. We kill what doesn\'t work. We double down on what does. Month after month, your lead flow grows, your cost per lead goes down, and your revenue goes up. It\'s a machine — and once it\'s running, it just keeps getting better.', image: '/portfolio/google-ads-dashboard-2.png' },
+const stepImages = [
+  '/portfolio/delios-home-hero.png',
+  '/portfolio/stillwater-day-spa-hero.png',
+  '/portfolio/google-ads-dashboard-1.png',
+  '/portfolio/google-ads-dashboard-2.png',
 ];
 
-const whyCards = [
-  { icon: Award, title: '20+ Years of Experience', desc: 'We\'ve been building websites and running digital campaigns since before most agencies existed.' },
-  { icon: Users, title: '200+ Clients Served', desc: 'From local service businesses to international distributors across the US and Latin America.' },
-  { icon: Eye, title: 'See Before You Pay', desc: 'We design your custom website preview in 1 business day — completely free. No commitment.' },
-  { icon: Shield, title: 'No Long-Term Contracts', desc: 'We keep clients because we deliver results, not because we lock them into agreements.' },
-  { icon: Zap, title: 'Real Results, Not Reports', desc: 'We track every call, every form, every dollar. You see exactly what your investment generates.' },
-  { icon: Globe2, title: 'Bilingual Team', desc: 'We serve businesses in English and Spanish across the US, Latin America, and beyond.' },
-];
+const stepIcons = [Eye, Hammer, Rocket, Zap];
 
-const faqs = [
-  { q: 'How does the free website preview work?', a: 'We design a custom preview of your new website in just 1 business day. You see exactly what your site will look like before paying anything. If you love it, we move forward. If not, you walk away — no charge.' },
-  { q: 'What\'s included in the $3,000 website?', a: 'A fully custom, mobile-optimized website designed to convert visitors into customers. This includes design, development, content setup, SEO-ready structure, and launch.' },
-  { q: 'What does the $1,250/month Google Ads management include?', a: 'Campaign strategy, ad creation, keyword targeting, landing page optimization, conversion tracking, and weekly optimization. Your ad spend with Google is separate and you control the budget.' },
-  { q: 'Do I need to sign a long-term contract?', a: 'No. We work month to month. You stay because the results speak for themselves.' },
-  { q: 'How soon will I see results?', a: 'Most clients see their first qualified leads within 30-60 days of launching Google Ads. Some see results in as little as 2 weeks.' },
-  { q: 'What industries do you work with?', a: 'We work with any service-based business that has a Google Business Profile — plumbers, spas, realtors, dentists, contractors, retailers, distributors, and more.' },
-];
-
-const websiteFeatures = [
-  'Custom design tailored to your business',
-  'Mobile-optimized and fast-loading',
-  'Built to convert visitors into customers',
-  'SEO-ready structure',
-  'Free website preview before you commit',
-];
-
-const adsFeatures = [
-  'Targeted campaigns for your service area',
-  'Only reach people actively searching for your services',
-  'Weekly optimization and reporting',
-  'Conversion tracking on every call and form',
-  'Scale up as results grow',
-];
+const whyCardIcons = [Award, Users, Eye, Shield, Zap, Globe2];
 
 const VSL_URLS = [
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&raw=1',
