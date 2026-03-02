@@ -16,6 +16,8 @@ export interface PortfolioProject {
   overview: { en: string; es: string };
   servicesUsed: { en: string[]; es: string[] };
   outcomes: PortfolioOutcome[];
+  challenge?: { en: string; es: string };
+  solution?: { en: string; es: string };
 }
 
 export const portfolioProjects: PortfolioProject[] = [
