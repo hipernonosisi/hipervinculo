@@ -39,6 +39,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '45%', label: { en: 'Reduction in support tickets', es: 'Reducción en tickets de soporte' } },
       { metric: '+150%', label: { en: 'Dealer network growth', es: 'Crecimiento de red de distribuidores' } },
     ],
+    challenge: { en: 'No digital presence to capture distributors or manage orders — relying entirely on traditional channels.', es: 'Sin presencia digital para captar distribuidores ni gestionar pedidos — dependiendo completamente de canales tradicionales.' },
+    solution: { en: 'A lead generation platform with intelligent forms, an admin dashboard, and a streamlined order collection flow — resulting in +320% qualified leads.', es: 'Una plataforma de generación de leads con formularios inteligentes, panel de administración y flujo de pedidos optimizado — logrando +320% en leads calificados.' },
   },
   // 2. ZERMA Latin America
   {
