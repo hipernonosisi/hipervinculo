@@ -102,6 +102,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '60%', label: { en: 'Leads from LATAM market', es: 'Leads del mercado LATAM' } },
       { metric: '+110%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'Specialized equipment for the Spanish-speaking market with no digital channel to generate qualified inquiries.', es: 'Equipos especializados para el mercado hispanohablante sin canal digital para generar consultas calificadas.' },
+    solution: { en: 'A product site with video integration, detailed specs, AI-powered assistant, and streamlined quote flow — generating 50+ qualified leads per year.', es: 'Un sitio de producto con integración de video, specs detalladas, asistente con IA y flujo de cotización optimizado — generando 50+ leads calificados al año.' },
   },
   // 5. Stillwater Day Spa
   {
