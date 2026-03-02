@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
 import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward, Maximize, RotateCcw, RotateCw } from 'lucide-react';
@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { SEO } from '@/components/SEO';
 import logoFull from '@/assets/logo-hipervinculo.png';
 import { usePageTracking, trackEvent } from '@/hooks/usePageTracking';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08';
 
@@ -48,8 +49,7 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
 }
 
 // ── Zoom-out card for "Why us" section ──
-function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
-  // Each card gets its own segment of the scroll progress
+function ZoomCard({ card, index, scrollYProgress }: { card: { title: string; desc: string; icon: any }; index: number; scrollYProgress: any }) {
   const totalCards = 6;
   const cardStart = (index) / totalCards;
   const cardEnd = (index + 1) / totalCards;
@@ -75,7 +75,7 @@ function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; 
 }
 
 // ── Apple-style scroll-reveal project card ──
-function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; index: number }) {
+function ScrollRevealCard({ project, index }: { project: { name: string; result: string; image: string; url: string }; index: number }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -110,58 +110,28 @@ function ScrollRevealCard({ project, index }: { project: typeof caseStudies[0]; 
 }
 
 
-// ── Case studies data ──
-const caseStudies = [
-  { name: 'Step Solution USA', type: 'Manufacturing', result: '+320% increase in qualified dealer leads', image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
-  { name: 'ZERMA Latin America', type: 'Industrial Machinery', result: '+200% increase in quote requests across LATAM', image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in 2 days', image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
-  { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche', image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
-  { name: 'Stillwater Day Spa', type: 'Wellness & Spa', result: 'From 2-3 calls/day to 20+ calls/day', image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
-  { name: 'Rasetta Innovations', type: 'Interior Design', result: '+180% increase in consultation requests', image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
-  { name: 'Lajex LLC', type: 'Plumbing & Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days', image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
-  { name: 'Délios Home', type: 'Home Renovation', result: '3 consultation calls booked in first 24 hours', image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+// ── Case studies images & URLs (language-independent) ──
+const caseStudyMeta = [
+  { image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
+  { image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
+  { image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
+  { image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
+  { image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
+  { image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
+  { image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
+  { image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
 ];
 
-const steps = [
-  { icon: Eye, label: 'Preview', title: 'We Design Your Website Preview', desc: 'Before you pay a single dollar, we design a custom preview of your new website in just 1 business day. You see exactly what you\'re getting before committing. No commitment, no risk.', image: '/portfolio/delios-home-hero.png' },
-  { icon: Hammer, label: 'Build', title: 'We Build & Launch Your Website', desc: 'Not just any website. A high-performance website specifically engineered to convert visitors into customers. Every button, every headline, every page is designed with one goal — make the phone ring. Make the form get filled out. Make the sale happen. This isn\'t about looking pretty. This is about making money.', image: '/portfolio/stillwater-day-spa-hero.png' },
-  { icon: Rocket, label: 'Grow', title: 'We Drive Qualified Traffic', desc: 'We put your business in front of people who are actively searching for your services right now. Not random people scrolling Instagram. People who just typed "plumber near me" or "best dentist in Cancun" into Google. These people have intent, urgency, and a credit card. All they need is to find YOU.', image: '/portfolio/google-ads-dashboard-1.png' },
-  { icon: Zap, label: 'Scale', title: 'We Optimize & Scale Your Results', desc: 'Every week, we analyze your campaigns. We track every call, every form submission, every dollar spent and every dollar earned. We kill what doesn\'t work. We double down on what does. Month after month, your lead flow grows, your cost per lead goes down, and your revenue goes up. It\'s a machine — and once it\'s running, it just keeps getting better.', image: '/portfolio/google-ads-dashboard-2.png' },
+const stepImages = [
+  '/portfolio/delios-home-hero.png',
+  '/portfolio/stillwater-day-spa-hero.png',
+  '/portfolio/google-ads-dashboard-1.png',
+  '/portfolio/google-ads-dashboard-2.png',
 ];
 
-const whyCards = [
-  { icon: Award, title: '20+ Years of Experience', desc: 'We\'ve been building websites and running digital campaigns since before most agencies existed.' },
-  { icon: Users, title: '200+ Clients Served', desc: 'From local service businesses to international distributors across the US and Latin America.' },
-  { icon: Eye, title: 'See Before You Pay', desc: 'We design your custom website preview in 1 business day — completely free. No commitment.' },
-  { icon: Shield, title: 'No Long-Term Contracts', desc: 'We keep clients because we deliver results, not because we lock them into agreements.' },
-  { icon: Zap, title: 'Real Results, Not Reports', desc: 'We track every call, every form, every dollar. You see exactly what your investment generates.' },
-  { icon: Globe2, title: 'Bilingual Team', desc: 'We serve businesses in English and Spanish across the US, Latin America, and beyond.' },
-];
+const stepIcons = [Eye, Hammer, Rocket, Zap];
 
-const faqs = [
-  { q: 'How does the free website preview work?', a: 'We design a custom preview of your new website in just 1 business day. You see exactly what your site will look like before paying anything. If you love it, we move forward. If not, you walk away — no charge.' },
-  { q: 'What\'s included in the $3,000 website?', a: 'A fully custom, mobile-optimized website designed to convert visitors into customers. This includes design, development, content setup, SEO-ready structure, and launch.' },
-  { q: 'What does the $1,250/month Google Ads management include?', a: 'Campaign strategy, ad creation, keyword targeting, landing page optimization, conversion tracking, and weekly optimization. Your ad spend with Google is separate and you control the budget.' },
-  { q: 'Do I need to sign a long-term contract?', a: 'No. We work month to month. You stay because the results speak for themselves.' },
-  { q: 'How soon will I see results?', a: 'Most clients see their first qualified leads within 30-60 days of launching Google Ads. Some see results in as little as 2 weeks.' },
-  { q: 'What industries do you work with?', a: 'We work with any service-based business that has a Google Business Profile — plumbers, spas, realtors, dentists, contractors, retailers, distributors, and more.' },
-];
-
-const websiteFeatures = [
-  'Custom design tailored to your business',
-  'Mobile-optimized and fast-loading',
-  'Built to convert visitors into customers',
-  'SEO-ready structure',
-  'Free website preview before you commit',
-];
-
-const adsFeatures = [
-  'Targeted campaigns for your service area',
-  'Only reach people actively searching for your services',
-  'Weekly optimization and reporting',
-  'Conversion tracking on every call and form',
-  'Scale up as results grow',
-];
+const whyCardIcons = [Award, Users, Eye, Shield, Zap, Globe2];
 
 const VSL_URLS = [
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&raw=1',
@@ -175,6 +145,7 @@ function formatTime(seconds: number): string {
 }
 
 function VSLPlayer() {
+  const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
@@ -456,7 +427,7 @@ function VSLPlayer() {
             >
               <span className="text-sm md:text-base font-semibold text-background bg-accent px-5 py-2 rounded-full shadow-lg flex items-center gap-2">
                 <Volume2 className="w-4 h-4" />
-                Tap to Watch with Sound
+                {t.preview.video.tapToWatch}
               </span>
             </motion.div>
           </div>
@@ -571,7 +542,7 @@ function VSLPlayer() {
                 onClick={(e) => e.stopPropagation()}
                 className="bg-accent text-accent-foreground px-5 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-accent/90 transition-colors flex items-center gap-2"
               >
-                Book a Call
+                {t.preview.video.bookACall}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -581,7 +552,7 @@ function VSLPlayer() {
 
       {/* Duration badge */}
       <div className="text-center mt-3">
-        <span className="text-xs text-muted-foreground">9 min · Watch how we grow businesses</span>
+        <span className="text-xs text-muted-foreground">{t.preview.video.duration}</span>
       </div>
     </motion.div>
   );
@@ -590,7 +561,15 @@ function VSLPlayer() {
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
+  const { t } = useLanguage();
+  const p = t.preview;
   
+  // Build translated data arrays
+  const caseStudies = useMemo(() => p.results.caseStudies.map((cs, i) => ({ ...cs, ...caseStudyMeta[i] })), [p]);
+  const steps = useMemo(() => p.howWeWork.steps.map((s, i) => ({ ...s, icon: stepIcons[i], image: stepImages[i] })), [p]);
+  const whyCards = useMemo(() => p.whyUs.cards.map((c, i) => ({ ...c, icon: whyCardIcons[i] })), [p]);
+  const faqs = useMemo(() => p.faq.items, [p]);
+
   // Why cards zoom-out scroll — tall container for scroll hijack
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
@@ -610,8 +589,8 @@ export default function Preview() {
   return (
     <div className="bg-background min-h-screen text-foreground">
       <SEO
-        title="Grow Your Business — Hipervínculo"
-        description="We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services."
+        title={p.seo.title}
+        description={p.seo.description}
         url="https://hipervinculo.net/preview"
       />
 
@@ -622,7 +601,7 @@ export default function Preview() {
             <img src={logoFull} alt="Hipervínculo" className="h-10" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>Book a Call</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>{p.header.bookACall}</a>
           </Button>
         </div>
       </header>
@@ -638,7 +617,7 @@ export default function Preview() {
               transition={{ duration: 0.8 }}
               className="text-3xl sm:text-5xl md:text-[56px] font-extrabold leading-[1.08] tracking-tight text-foreground mb-5"
             >
-              Stop Losing Customers to Competitors Who Simply Show Up First on Google
+              {p.hero.headline}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -646,7 +625,7 @@ export default function Preview() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             >
-              We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services.
+              {p.hero.subheadline}
             </motion.p>
           </div>
 
@@ -662,7 +641,7 @@ export default function Preview() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>Book a Free Strategy Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>{p.hero.cta1}</a>
               </Button>
               <Button
                 variant="outline"
@@ -670,14 +649,14 @@ export default function Preview() {
                 className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
                 onClick={() => { trackClick('Hero - See Our Work'); document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }); }}
               >
-                See Our Work
+                {p.hero.cta2}
               </Button>
             </div>
             <div className="flex gap-8 justify-center">
               {[
-                { target: 200, suffix: '+', label: 'Clients', prefix: '' },
-                { target: 20, suffix: '+', label: 'Years', prefix: '' },
-                { target: 98, suffix: 'M+', label: 'Generated', prefix: '$' },
+                { target: 200, suffix: '+', label: p.hero.stats.clients, prefix: '' },
+                { target: 20, suffix: '+', label: p.hero.stats.years, prefix: '' },
+                { target: 98, suffix: 'M+', label: p.hero.stats.generated, prefix: '$' },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <div className="text-2xl sm:text-3xl font-extrabold text-foreground">
@@ -695,9 +674,9 @@ export default function Preview() {
       <Section className="py-20 md:py-28">
         <div className="container max-w-6xl">
           <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">How we work?</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.howWeWork.subtitle}</p>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
-              We simplify growth into 3 focused steps that deliver real results.
+              {p.howWeWork.title}
             </h2>
           </div>
 
@@ -727,13 +706,13 @@ export default function Preview() {
         <div className="container">
           <a href="https://www.google.com/search?q=Hipervinculo+agency+Weston" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
             <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
-            <span className="text-sm font-semibold text-foreground">Google Reviews</span>
+            <span className="text-sm font-semibold text-foreground">{p.reviews.title}</span>
             <div className="flex gap-0.5 ml-1">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground ml-1">5.0 (23 reviews)</span>
+            <span className="text-sm text-muted-foreground ml-1">{p.reviews.rating}</span>
           </a>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -772,8 +751,7 @@ export default function Preview() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium underline underline-offset-4 decoration-muted-foreground/40 hover:decoration-foreground/60"
             >
-              <img src="https://www.google.com/favicon.ico" alt="Google" className="w-4 h-4" />
-              Read All 23 Reviews on Google
+              {p.reviews.readAll}
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -784,10 +762,10 @@ export default function Preview() {
       <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
         <div className="container max-w-5xl">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Explore work</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Projects That Speak for Themselves</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.results.subtitle}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.results.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Live websites you can visit right now. Real businesses generating real revenue.
+              {p.results.description}
             </p>
           </div>
 
@@ -797,7 +775,7 @@ export default function Preview() {
 
           <div className="text-center mt-8">
             <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Results - Want results like these?'); trackCalendarClick(); }} className="whitespace-nowrap">Want results like these? Book Your Free Strategy Call</a>
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Results - Want results like these?'); trackCalendarClick(); }} className="whitespace-nowrap">{p.results.cta}</a>
             </Button>
           </div>
         </div>
@@ -812,13 +790,13 @@ export default function Preview() {
                 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
                 style={{ opacity: whySubtitleOpacity }}
               >
-                Why us?
+                {p.whyUs.subtitle}
               </motion.p>
               <motion.h2
                 className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
                 style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
               >
-                Why 200+ Businesses Trust Us
+                {p.whyUs.title}
               </motion.h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -835,25 +813,25 @@ export default function Preview() {
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-4xl">
           <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Our Pricing</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-muted-foreground">No hidden fees. No long-term contracts. Just results.</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.pricing.subtitle}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.pricing.title}</h2>
+            <p className="text-muted-foreground">{p.pricing.description}</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mt-14">
             {/* Website */}
             <div className="bg-background border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <h3 className="text-lg font-bold text-foreground mb-1">Website Development</h3>
+              <h3 className="text-lg font-bold text-foreground mb-1">{p.pricing.website.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold text-foreground">$3,000</span>
+                <span className="text-4xl font-extrabold text-foreground">{p.pricing.website.price}</span>
               </div>
-              <p className="text-sm text-muted-foreground mb-6">one-time investment</p>
-              <p className="text-xs text-muted-foreground mb-4">Pause or cancel anytime</p>
+              <p className="text-sm text-muted-foreground mb-6">{p.pricing.website.period}</p>
+              <p className="text-xs text-muted-foreground mb-4">{p.pricing.website.pause}</p>
               <Button asChild className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>Book A Call</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Website Book A Call'); trackCalendarClick(); }}>{p.pricing.website.cta}</a>
               </Button>
-              <p className="text-xs font-semibold text-muted-foreground mb-3">What's included:</p>
+              <p className="text-xs font-semibold text-muted-foreground mb-3">{p.pricing.website.included}</p>
               <ul className="space-y-3">
-                {websiteFeatures.map((f) => (
+                {p.pricing.website.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                     {f}
@@ -863,19 +841,19 @@ export default function Preview() {
             </div>
             {/* Google Ads */}
             <div className="bg-foreground text-background rounded-2xl p-8 relative">
-              <h3 className="text-lg font-bold mb-1">Google Ads Management</h3>
+              <h3 className="text-lg font-bold mb-1">{p.pricing.ads.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold">$1,250</span>
-                <span className="text-lg opacity-60">/month</span>
+                <span className="text-4xl font-extrabold">{p.pricing.ads.price}</span>
+                <span className="text-lg opacity-60">{p.pricing.ads.period}</span>
               </div>
-              <p className="text-sm opacity-60 mb-6">ongoing lead generation</p>
-              <p className="text-xs opacity-60 mb-4">Pause or cancel anytime</p>
+              <p className="text-sm opacity-60 mb-6">{p.pricing.ads.periodDesc}</p>
+              <p className="text-xs opacity-60 mb-4">{p.pricing.ads.pause}</p>
               <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 font-semibold mb-6">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>Get Started Today</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Pricing - Google Ads Get Started'); trackCalendarClick(); }}>{p.pricing.ads.cta}</a>
               </Button>
-              <p className="text-xs font-semibold opacity-60 mb-3">What's included:</p>
+              <p className="text-xs font-semibold opacity-60 mb-3">{p.pricing.ads.included}</p>
               <ul className="space-y-3">
-                {adsFeatures.map((f) => (
+                {p.pricing.ads.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm opacity-80">
                     <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                     {f}
@@ -885,7 +863,7 @@ export default function Preview() {
             </div>
           </div>
           <p className="text-center text-muted-foreground text-sm mt-8">
-            Every project starts with a free website preview — zero risk.
+            {p.pricing.footer}
           </p>
         </div>
       </Section>
@@ -902,18 +880,18 @@ export default function Preview() {
             </div>
             {/* Story */}
             <div className="flex-1">
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-4">Meet the Founder</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent mb-4">{p.founder.subtitle}</p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 leading-tight">
-                If your business doesn't show up on Google... you're invisible.
+                {p.founder.title}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                I'm Miguel, founder of Hipervínculo. I started this company when I was 21 years old in Venezuela. I was obsessed with the internet, obsessed with what it could do for businesses, and I built my first websites before most people in my country even had a broadband connection. In 2011, I brought the company to the United States, right here to South Florida.
+                {p.founder.p1}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Over the last 20 years, I've helped more than 200 businesses — from local service companies to international distributors — go from invisible online to generating real customers, real calls, and real revenue. Every single week. Not sometimes. <span className="font-semibold text-foreground">Every week.</span>
+                {p.founder.p2} <span className="font-semibold text-foreground">{p.founder.p2Bold}</span>
               </p>
               <Button asChild className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-12 font-semibold">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Founder - Lets Talk'); trackCalendarClick(); }}>Let's Talk About Your Business</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Founder - Lets Talk'); trackCalendarClick(); }}>{p.founder.cta}</a>
               </Button>
             </div>
           </div>
@@ -924,8 +902,8 @@ export default function Preview() {
       <Section className="py-20 md:py-28 bg-secondary">
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Built for {new Date().getFullYear()}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">Frequently Asked Questions</h2>
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.faq.subtitle} {new Date().getFullYear()}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">{p.faq.title}</h2>
           </div>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (
@@ -962,7 +940,7 @@ export default function Preview() {
             >
               <div className="inline-flex items-center gap-2.5 bg-background/[0.08] backdrop-blur-sm border border-background/10 rounded-full px-5 py-2.5">
                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <span className="text-xs md:text-sm font-medium opacity-80">Limited availability — only 5 spots this month</span>
+                <span className="text-xs md:text-sm font-medium opacity-80">{p.finalCta.badge}</span>
               </div>
             </motion.div>
 
@@ -975,8 +953,8 @@ export default function Preview() {
               className="mb-6 md:mb-8"
             >
               <h2 className="text-[28px] sm:text-4xl md:text-[56px] font-extrabold leading-[1.2] md:leading-[1.08] text-background">
-                Your Competitors Are Getting the Customers That Should Be{' '}
-                <span className="text-accent">Yours.</span>
+                {p.finalCta.title1}{' '}
+                <span className="text-accent">{p.finalCta.titleAccent}</span>
               </h2>
             </motion.div>
 
@@ -987,7 +965,7 @@ export default function Preview() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-[15px] md:text-xl opacity-60 mb-10 md:mb-12 max-w-2xl md:mx-auto leading-relaxed"
             >
-              Let's fix that. Book a free 15-minute strategy call and see how we'd build your growth system.
+              {p.finalCta.description}
             </motion.p>
 
             {/* CTA Button */}
@@ -1000,7 +978,7 @@ export default function Preview() {
             >
               <Button asChild size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-8 md:px-12 h-14 md:h-16 text-base md:text-lg font-extrabold shadow-[0_0_40px_rgba(139,195,74,0.3)] hover:shadow-[0_0_60px_rgba(139,195,74,0.5)] transition-all w-full sm:w-auto">
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Final CTA - Book Strategy Call'); trackCalendarClick(); }} className="whitespace-nowrap">
-                  Book Your Free Strategy Call
+                  {p.finalCta.cta}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </Button>
@@ -1013,7 +991,7 @@ export default function Preview() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-sm opacity-40 mb-12 md:mb-16"
             >
-              No pressure. No hard sell. Just a conversation about your business.
+              {p.finalCta.noPressure}
             </motion.p>
 
             {/* Trust stats - horizontal cards on mobile */}
@@ -1024,11 +1002,7 @@ export default function Preview() {
               transition={{ duration: 0.7, delay: 0.6 }}
               className="grid grid-cols-3 gap-3 md:gap-0 md:flex md:justify-center md:gap-16 pt-8 md:pt-10 border-t border-background/10"
             >
-              {[
-                { value: '200+', label: 'Businesses Served' },
-                { value: '20+', label: 'Years Experience' },
-                { value: '$92M+', label: 'Revenue Generated' },
-              ].map((stat) => (
+              {p.finalCta.stats.map((stat) => (
                 <div key={stat.label} className="text-center bg-background/[0.05] md:bg-transparent rounded-xl py-4 md:py-0 px-2 md:px-0">
                   <div className="text-lg md:text-3xl font-extrabold text-accent">{stat.value}</div>
                   <div className="text-[10px] md:text-xs opacity-50 mt-1 leading-tight">{stat.label}</div>
@@ -1045,8 +1019,8 @@ export default function Preview() {
           <Link to="/">
             <img src={logoFull} alt="Hipervínculo" className="h-8" />
           </Link>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. All rights reserved.</p>
-          <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. {p.footer.rights}</p>
+          <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>
         </div>
       </footer>
     </div>
