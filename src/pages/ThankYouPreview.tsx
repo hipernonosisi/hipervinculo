@@ -27,7 +27,7 @@ export default function ThankYouPreview() {
       if (window.fbq) {
         window.fbq('track', 'Lead', { content_name: 'Free Preview' });
       }
-    }, 1500);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
