@@ -28,15 +28,18 @@ export default function Index() {
     return () => clearInterval(interval);
   }, [rotatingHeadlines.length]);
 
-  const partners = [
-    { name: 'Google Ads', subtitle: 'Certified Partner' },
-    { name: 'Meta Ads', subtitle: 'Certified Buyer Professional' },
+  const certifiedPartners = [
+    { name: 'Google Ads', subtitle: language === 'es' ? 'Partner Certificado' : 'Certified Partner' },
+    { name: 'Meta Ads', subtitle: language === 'es' ? 'Comprador Certificado' : 'Certified Buyer Professional' },
+  ];
+
+  const toolPartners = [
+    { name: 'Shopify', subtitle: 'Partner' },
     { name: 'Amazon', subtitle: 'Amazon PPC Specialist' },
     { name: 'Helium 10', subtitle: 'Partner' },
-    { name: 'Elevar', subtitle: 'Integration' },
+    { name: 'Elevar', subtitle: language === 'es' ? 'Integración' : 'Integration' },
     { name: 'MNTN', subtitle: 'MNTN Media Buyer' },
     { name: 'Polar Analytics', subtitle: 'Partner' },
-    { name: 'Shopify', subtitle: 'Partner' },
   ];
 
   return (
