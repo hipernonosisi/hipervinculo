@@ -705,7 +705,7 @@ export default function Preview() {
         <div className="container">
           <a href="https://www.google.com/search?q=Hipervinculo+agency+Weston" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
             <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
-            <span className="text-sm font-semibold text-foreground">Google Reviews</span>
+            <span className="text-sm font-semibold text-foreground">{p.reviews.title}</span>
             <div className="flex gap-0.5 ml-1">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
