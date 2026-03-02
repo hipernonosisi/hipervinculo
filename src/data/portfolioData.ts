@@ -144,6 +144,8 @@ export const portfolioProjects: PortfolioProject[] = [
       { metric: '2.1s', label: { en: 'Average page load time', es: 'Tiempo promedio de carga' } },
       { metric: '+65%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
     ],
+    challenge: { en: 'A website that didn\'t reflect the premium quality of their work and failed to attract high-quality leads.', es: 'Un sitio que no reflejaba la calidad premium de su trabajo y no atraía leads de alta calidad.' },
+    solution: { en: 'An elegant visual identity optimized to attract and convert high-quality leads — achieving +180% in consultation requests.', es: 'Una identidad visual elegante optimizada para atraer y convertir leads de alta calidad — logrando +180% en solicitudes de consulta.' },
   },
   // 7. Lajex LLC
   {
