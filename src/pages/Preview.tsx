@@ -49,11 +49,15 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
 
 // ── Zoom-out card for "Why us" section ──
 function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
-  const start = 0.02 + index * 0.1;
-  const end = start + 0.3;
-  const opacity = useTransform(scrollYProgress, [start, start + 0.15], [0, 1]);
-  const scale = useTransform(scrollYProgress, [start, end], [3, 1]);
-  const blur = useTransform(scrollYProgress, [start, start + 0.18], [10, 0]);
+  // Each card gets its own segment of the scroll progress
+  const totalCards = 6;
+  const cardStart = (index) / totalCards;
+  const cardEnd = (index + 1) / totalCards;
+  const midPoint = (cardStart + cardEnd) / 2;
+
+  const opacity = useTransform(scrollYProgress, [cardStart, midPoint], [0, 1]);
+  const scale = useTransform(scrollYProgress, [cardStart, cardEnd], [2.5, 1]);
+  const blur = useTransform(scrollYProgress, [cardStart, midPoint], [12, 0]);
   const filterStyle = useTransform(blur, (v: number) => `blur(${v}px)`);
 
   return (
