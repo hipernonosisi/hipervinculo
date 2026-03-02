@@ -990,7 +990,7 @@ export default function Preview() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-sm opacity-40 mb-12 md:mb-16"
             >
-              No pressure. No hard sell. Just a conversation about your business.
+              {p.finalCta.noPressure}
             </motion.p>
 
             {/* Trust stats - horizontal cards on mobile */}
