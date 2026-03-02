@@ -803,27 +803,29 @@ export default function Preview() {
         </div>
       </section>
 
-      {/* ── S5: Why Hipervínculo — Zoom-out scroll reveal ── */}
-      <section ref={whyCardsRef} className="py-20 md:py-28 overflow-hidden">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-4">
-            <motion.p
-              className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
-              style={{ opacity: whySubtitleOpacity }}
-            >
-              Why us?
-            </motion.p>
-            <motion.h2
-              className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
-              style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
-            >
-              Why 200+ Businesses Trust Us
-            </motion.h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyCards.map((c, i) => (
-              <ZoomCard key={c.title} card={c} index={i} scrollYProgress={whyCardsProgress} />
-            ))}
+      {/* ── S5: Why Hipervínculo — Scroll-hijack zoom reveal ── */}
+      <section ref={whyCardsRef} className="relative" style={{ height: '350vh' }}>
+        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+          <div className="container max-w-5xl w-full">
+            <div className="text-center mb-4">
+              <motion.p
+                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
+                style={{ opacity: whySubtitleOpacity }}
+              >
+                Why us?
+              </motion.p>
+              <motion.h2
+                className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
+                style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
+              >
+                Why 200+ Businesses Trust Us
+              </motion.h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {whyCards.map((c, i) => (
+                <ZoomCard key={c.title} card={c} index={i} scrollYProgress={whyCardsProgress} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
