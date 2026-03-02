@@ -49,11 +49,15 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
 
 // ── Zoom-out card for "Why us" section ──
 function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
-  const start = 0.02 + index * 0.1;
-  const end = start + 0.3;
-  const opacity = useTransform(scrollYProgress, [start, start + 0.15], [0, 1]);
-  const scale = useTransform(scrollYProgress, [start, end], [3, 1]);
-  const blur = useTransform(scrollYProgress, [start, start + 0.18], [10, 0]);
+  // Each card gets its own segment of the scroll progress
+  const totalCards = 6;
+  const cardStart = (index) / totalCards;
+  const cardEnd = (index + 1) / totalCards;
+  const midPoint = (cardStart + cardEnd) / 2;
+
+  const opacity = useTransform(scrollYProgress, [cardStart, midPoint], [0, 1]);
+  const scale = useTransform(scrollYProgress, [cardStart, cardEnd], [2.5, 1]);
+  const blur = useTransform(scrollYProgress, [cardStart, midPoint], [12, 0]);
   const filterStyle = useTransform(blur, (v: number) => `blur(${v}px)`);
 
   return (
@@ -587,15 +591,15 @@ export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
   
-  // Why cards zoom-out scroll
+  // Why cards zoom-out scroll — tall container for scroll hijack
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
     target: whyCardsRef,
-    offset: ['start end', 'end 0.3'],
+    offset: ['start start', 'end end'],
   });
-  const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.15], [0, 1]);
-  const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.2], [0, 1]);
-  const whyTitleScale = useTransform(whyCardsProgress, [0, 0.2], [2.5, 1]);
+  const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.08], [0, 1]);
+  const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.1], [0, 1]);
+  const whyTitleScale = useTransform(whyCardsProgress, [0, 0.1], [2.5, 1]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -799,27 +803,29 @@ export default function Preview() {
         </div>
       </section>
 
-      {/* ── S5: Why Hipervínculo — Zoom-out scroll reveal ── */}
-      <section ref={whyCardsRef} className="py-20 md:py-28 overflow-hidden">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-4">
-            <motion.p
-              className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
-              style={{ opacity: whySubtitleOpacity }}
-            >
-              Why us?
-            </motion.p>
-            <motion.h2
-              className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
-              style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
-            >
-              Why 200+ Businesses Trust Us
-            </motion.h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyCards.map((c, i) => (
-              <ZoomCard key={c.title} card={c} index={i} scrollYProgress={whyCardsProgress} />
-            ))}
+      {/* ── S5: Why Hipervínculo — Scroll-hijack zoom reveal ── */}
+      <section ref={whyCardsRef} className="relative" style={{ height: '350vh' }}>
+        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+          <div className="container max-w-5xl w-full">
+            <div className="text-center mb-4">
+              <motion.p
+                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
+                style={{ opacity: whySubtitleOpacity }}
+              >
+                Why us?
+              </motion.p>
+              <motion.h2
+                className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
+                style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
+              >
+                Why 200+ Businesses Trust Us
+              </motion.h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {whyCards.map((c, i) => (
+                <ZoomCard key={c.title} card={c} index={i} scrollYProgress={whyCardsProgress} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
