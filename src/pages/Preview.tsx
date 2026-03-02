@@ -145,6 +145,7 @@ function formatTime(seconds: number): string {
 }
 
 function VSLPlayer() {
+  const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
