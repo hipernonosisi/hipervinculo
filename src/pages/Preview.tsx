@@ -49,11 +49,11 @@ function Counter({ target, suffix = '', prefix = '' }: { target: number; suffix?
 
 // ── Zoom-out card for "Why us" section ──
 function ZoomCard({ card, index, scrollYProgress }: { card: typeof whyCards[0]; index: number; scrollYProgress: any }) {
-  const start = 0.05 + index * 0.12;
-  const end = start + 0.35;
-  const opacity = useTransform(scrollYProgress, [start, start + 0.18], [0, 1]);
+  const start = 0.02 + index * 0.1;
+  const end = start + 0.3;
+  const opacity = useTransform(scrollYProgress, [start, start + 0.15], [0, 1]);
   const scale = useTransform(scrollYProgress, [start, end], [3, 1]);
-  const blur = useTransform(scrollYProgress, [start, start + 0.22], [10, 0]);
+  const blur = useTransform(scrollYProgress, [start, start + 0.18], [10, 0]);
   const filterStyle = useTransform(blur, (v: number) => `blur(${v}px)`);
 
   return (
@@ -591,7 +591,7 @@ export default function Preview() {
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
     target: whyCardsRef,
-    offset: ['start end', 'end start'],
+    offset: ['start end', 'end 0.3'],
   });
   const whySubtitleOpacity = useTransform(whyCardsProgress, [0, 0.15], [0, 1]);
   const whyTitleOpacity = useTransform(whyCardsProgress, [0, 0.2], [0, 1]);
