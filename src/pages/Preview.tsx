@@ -563,6 +563,13 @@ function VSLPlayer() {
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
+  
+  // Why cards zoom-out scroll
+  const whyCardsRef = useRef(null);
+  const { scrollYProgress: whyCardsProgress } = useScroll({
+    target: whyCardsRef,
+    offset: ['start end', 'end 0.6'],
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
