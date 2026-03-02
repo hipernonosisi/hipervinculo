@@ -789,13 +789,13 @@ export default function Preview() {
                 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
                 style={{ opacity: whySubtitleOpacity }}
               >
-                Why us?
+                {p.whyUs.subtitle}
               </motion.p>
               <motion.h2
                 className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
                 style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
               >
-                Why 200+ Businesses Trust Us
+                {p.whyUs.title}
               </motion.h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
