@@ -588,8 +588,8 @@ export default function Preview() {
   return (
     <div className="bg-background min-h-screen text-foreground">
       <SEO
-        title="Grow Your Business — Hipervínculo"
-        description="We design high-performance websites and run targeted Google Ads that put your business in front of people already searching for your services."
+        title={p.seo.title}
+        description={p.seo.description}
         url="https://hipervinculo.net/preview"
       />
 
@@ -600,7 +600,7 @@ export default function Preview() {
             <img src={logoFull} alt="Hipervínculo" className="h-10" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>Book a Call</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>{p.header.bookACall}</a>
           </Button>
         </div>
       </header>
