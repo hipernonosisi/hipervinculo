@@ -805,16 +805,13 @@ export default function Preview() {
           <div className="text-center mb-4">
             <motion.p
               className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
-              style={{ opacity: useTransform(whyCardsProgress, [0, 0.15], [0, 1]) }}
+              style={{ opacity: whySubtitleOpacity }}
             >
               Why us?
             </motion.p>
             <motion.h2
               className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
-              style={{
-                opacity: useTransform(whyCardsProgress, [0, 0.2], [0, 1]),
-                scale: useTransform(whyCardsProgress, [0, 0.2], [2.5, 1]),
-              }}
+              style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
             >
               Why 200+ Businesses Trust Us
             </motion.h2>
