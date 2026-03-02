@@ -561,7 +561,15 @@ function VSLPlayer() {
 export default function Preview() {
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
+  const { t } = useLanguage();
+  const p = t.preview;
   
+  // Build translated data arrays
+  const caseStudies = useMemo(() => p.results.caseStudies.map((cs, i) => ({ ...cs, ...caseStudyMeta[i] })), [p]);
+  const steps = useMemo(() => p.howWeWork.steps.map((s, i) => ({ ...s, icon: stepIcons[i], image: stepImages[i] })), [p]);
+  const whyCards = useMemo(() => p.whyUs.cards.map((c, i) => ({ ...c, icon: whyCardIcons[i] })), [p]);
+  const faqs = useMemo(() => p.faq.items, [p]);
+
   // Why cards zoom-out scroll — tall container for scroll hijack
   const whyCardsRef = useRef(null);
   const { scrollYProgress: whyCardsProgress } = useScroll({
