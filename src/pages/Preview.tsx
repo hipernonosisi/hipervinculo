@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { ChatWidget } from '@/components/chat/ChatWidget';
+import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
 import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward, Maximize, RotateCcw, RotateCw } from 'lucide-react';
