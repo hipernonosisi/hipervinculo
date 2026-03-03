@@ -150,7 +150,8 @@ function formatTime(seconds: number): string {
 }
 
 function VSLPlayer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const VSL_URLS = language === 'es' ? VSL_URLS_ES : VSL_URLS_EN;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
