@@ -133,9 +133,14 @@ const stepIcons = [Eye, Hammer, Rocket, Zap];
 
 const whyCardIcons = [Award, Users, Eye, Shield, Zap, Globe2];
 
-const VSL_URLS = [
+const VSL_URLS_EN = [
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&raw=1',
   'https://www.dropbox.com/scl/fi/490x2sa40x6fpyflaimkn/VSL_WEBDEV_HIPER_reduced.mp4?rlkey=gnufghnfggtarklawt13dtzu1&dl=1',
+];
+
+const VSL_URLS_ES = [
+  'https://www.dropbox.com/scl/fi/51b6t0z2ppu9aawv4brh4/ad_spanish-compressed.mp4?rlkey=uugqzujbf4wkmbj3hv90e3cug&raw=1',
+  'https://www.dropbox.com/scl/fi/51b6t0z2ppu9aawv4brh4/ad_spanish-compressed.mp4?rlkey=uugqzujbf4wkmbj3hv90e3cug&dl=1',
 ];
 
 function formatTime(seconds: number): string {
@@ -145,7 +150,8 @@ function formatTime(seconds: number): string {
 }
 
 function VSLPlayer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const VSL_URLS = language === 'es' ? VSL_URLS_ES : VSL_URLS_EN;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<'preview' | 'playing'>('preview');
   const [muted, setMuted] = useState(true);
