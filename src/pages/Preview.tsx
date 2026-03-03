@@ -1032,6 +1032,8 @@ export default function Preview() {
           <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>
         </div>
       </footer>
+      <ChatWidget onOpenChange={setIsChatOpen} />
+      <WhatsAppWidget hidden={isChatOpen} />
     </div>
   );
 }
