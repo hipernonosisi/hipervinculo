@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { ChatWidget } from '@/components/chat/ChatWidget';
+import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
 import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward, Maximize, RotateCcw, RotateCw } from 'lucide-react';
@@ -565,6 +567,7 @@ function VSLPlayer() {
 }
 
 export default function Preview() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute } = usePageTracking('/preview');
   const { t } = useLanguage();
@@ -1029,6 +1032,8 @@ export default function Preview() {
           <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>
         </div>
       </footer>
+      <ChatWidget onOpenChange={setIsChatOpen} />
+      <WhatsAppWidget hidden={isChatOpen} />
     </div>
   );
 }
