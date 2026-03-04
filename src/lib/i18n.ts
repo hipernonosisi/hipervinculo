@@ -30,9 +30,9 @@ export const translations = {
       trustBadge3: 'Built for serious businesses only',
       rotatingHeadlines: [
         'Google Ads That\nDrive Calls\nand Leads',
-        'Inbound Websites\nBuilt to\nConvert',
-        'eCommerce Growth\nStrategies\nThat Scale',
-        'Lead Generation\nSystems That\nConvert',
+        'Inbound Websites\nBuilt to Convert\nVisitors',
+        'eCommerce Growth\nStrategies That\nScale Fast',
+        'Lead Generation\nSystems That\nConvert More',
       ],
       provenResultsTitle: 'Proven Results Across Growth Channels\nand Inbound Lead Systems',
       provenResultsCta: 'Request a conversion and lead system walkthrough — tailored to your business.',
