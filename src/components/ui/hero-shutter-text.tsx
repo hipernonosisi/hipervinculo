@@ -8,64 +8,79 @@ interface HeroShutterTextProps {
 }
 
 export function HeroShutterText({ text, className = "" }: HeroShutterTextProps) {
-  const characters = text.split("");
+  const lines = text.split("\n");
+  let wordCounter = 0;
 
   return (
-    <span className={cn("inline-flex flex-wrap", className)}>
-      {characters.map((char, i) => (
-        <span key={`${char}-${i}`} className="relative inline-block overflow-hidden">
-          {/* Base character for layout */}
-          <span className="invisible">{char === " " ? "\u00A0" : char}</span>
+    <span className={cn("inline", className)}>
+      {lines.map((line, lineIdx) => {
+        const words = line.split(" ");
+        return (
+          <React.Fragment key={lineIdx}>
+            {words.map((word, wordIdx) => {
+              const delay = wordCounter * 0.08;
+              wordCounter++;
+              return (
+                <React.Fragment key={`${word}-${wordIdx}`}>
+                  <span className="relative inline-block overflow-hidden">
+                    <span className="invisible">{word}</span>
 
-          {/* Top slice */}
-          <motion.span
-            className="absolute inset-0 overflow-hidden"
-            style={{ clipPath: "inset(0 0 66% 0)" }}
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
-            transition={{
-              duration: 0.4,
-              delay: i * 0.03,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            aria-hidden
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
+                    {/* Top slice */}
+                    <motion.span
+                      className="absolute inset-0 overflow-hidden"
+                      style={{ clipPath: "inset(0 0 66% 0)" }}
+                      initial={{ x: "110%", opacity: 0 }}
+                      animate={{ x: "0%", opacity: 1 }}
+                      transition={{
+                        duration: 0.35,
+                        delay,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      aria-hidden
+                    >
+                      {word}
+                    </motion.span>
 
-          {/* Middle slice */}
-          <motion.span
-            className="absolute inset-0 overflow-hidden"
-            style={{ clipPath: "inset(33% 0 33% 0)" }}
-            initial={{ x: "-100%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
-            transition={{
-              duration: 0.4,
-              delay: i * 0.03 + 0.08,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            aria-hidden
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
+                    {/* Middle slice */}
+                    <motion.span
+                      className="absolute inset-0 overflow-hidden"
+                      style={{ clipPath: "inset(33% 0 33% 0)" }}
+                      initial={{ x: "-110%", opacity: 0 }}
+                      animate={{ x: "0%", opacity: 1 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: delay + 0.07,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      aria-hidden
+                    >
+                      {word}
+                    </motion.span>
 
-          {/* Bottom slice */}
-          <motion.span
-            className="absolute inset-0 overflow-hidden"
-            style={{ clipPath: "inset(66% 0 0 0)" }}
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
-            transition={{
-              duration: 0.4,
-              delay: i * 0.03 + 0.16,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            aria-hidden
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        </span>
-      ))}
+                    {/* Bottom slice */}
+                    <motion.span
+                      className="absolute inset-0 overflow-hidden"
+                      style={{ clipPath: "inset(66% 0 0 0)" }}
+                      initial={{ x: "110%", opacity: 0 }}
+                      animate={{ x: "0%", opacity: 1 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: delay + 0.14,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      aria-hidden
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                  {wordIdx < words.length - 1 && " "}
+                </React.Fragment>
+              );
+            })}
+            {lineIdx < lines.length - 1 && <br />}
+          </React.Fragment>
+        );
+      })}
     </span>
   );
 }
