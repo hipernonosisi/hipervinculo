@@ -4,6 +4,7 @@ import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
 import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward, Maximize, RotateCcw, RotateCw } from 'lucide-react';
+import ThermodynamicGrid from '@/components/ui/interactive-thermodynamic-grid';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
@@ -680,11 +681,16 @@ export default function Preview() {
       </section>
 
       {/* ── S3: How It Works ── */}
-      <Section className="py-20 md:py-28">
-        <div className="container max-w-6xl">
+      <Section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Thermodynamic grid background */}
+        <div className="absolute inset-0 z-0">
+          <ThermodynamicGrid resolution={20} coolingFactor={0.97} />
+        </div>
+
+        <div className="container max-w-6xl relative z-10">
           <div className="text-center mb-4">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.howWeWork.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground/80 mb-3">{p.howWeWork.subtitle}</p>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white max-w-3xl mx-auto">
               {p.howWeWork.title}
             </h2>
           </div>
@@ -696,11 +702,11 @@ export default function Preview() {
                   <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-3 bg-accent/10 px-3 py-1 rounded-full">
                     {step.label}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-4 leading-tight">{step.title}</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">{step.desc}</p>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight">{step.title}</h3>
+                  <p className="text-base text-white/70 leading-relaxed">{step.desc}</p>
                 </div>
                 <div className="flex-1 w-full">
-                  <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
+                  <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-sm">
                     <img src={step.image} alt={step.title} className="w-full h-auto object-cover" loading="lazy" />
                   </div>
                 </div>
