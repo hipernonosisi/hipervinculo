@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/ui/motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioProjects } from '@/data/portfolioData';
+import { RevealWaveImage } from '@/components/ui/reveal-wave-image';
 import NotFound from './NotFound';
 
 export default function CaseStudy() {
