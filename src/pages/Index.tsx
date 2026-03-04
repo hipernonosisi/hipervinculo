@@ -11,6 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GrowthMetricsCard } from '@/components/home/GrowthMetricsCard';
+import { HeroShutterText } from '@/components/ui/hero-shutter-text';
 
 const serviceIcons = [Phone, Magnet, Search, ShoppingCart, Package, Activity, Code, Award];
 const industryIcons = [Phone, ShieldCheck, Settings, ShoppingCart, Zap];
