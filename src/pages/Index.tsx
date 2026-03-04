@@ -81,14 +81,14 @@ export default function Index() {
                 <AnimatePresence mode="wait">
                   <motion.h1
                     key={wordIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.3 }}
                     className="text-[52px] md:text-[64px] lg:text-[72px] leading-[1.02] tracking-[-0.03em]"
                     style={{ fontWeight: 800, color: '#2d4a2d' }}
                   >
-                    {rotatingHeadlines[wordIndex]}
+                    <HeroShutterText text={rotatingHeadlines[wordIndex]} />
                   </motion.h1>
                 </AnimatePresence>
               </motion.div>
