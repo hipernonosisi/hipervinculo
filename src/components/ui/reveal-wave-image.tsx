@@ -87,7 +87,6 @@ const fragmentShader = `
 
 interface ImagePlaneProps {
   src: string;
-  aspectRatio: number;
   revealRadius: number;
   revealSoftness: number;
   pixelSize: number;
@@ -100,7 +99,6 @@ interface ImagePlaneProps {
 
 function ImagePlane({
   src,
-  aspectRatio,
   revealRadius,
   revealSoftness,
   pixelSize,
@@ -112,7 +110,7 @@ function ImagePlane({
 }: ImagePlaneProps) {
   const texture = useTexture(src);
   const meshRef = useRef<THREE.Mesh>(null);
-  const { pointer } = useThree();
+  const { viewport, pointer } = useThree();
   const mouseActiveRef = useRef(0);
   const hasEnteredRef = useRef(false);
 
@@ -132,11 +130,6 @@ function ImagePlane({
     }),
     [texture, revealRadius, revealSoftness, pixelSize, waveSpeed, waveFrequency, waveAmplitude, mouseRadius],
   );
-
-  const scale = useMemo<[number, number, number]>(() => {
-    if (aspectRatio > 1) return [aspectRatio, 1, 1];
-    return [1, 1 / aspectRatio, 1];
-  }, [aspectRatio]);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -159,8 +152,8 @@ function ImagePlane({
   });
 
   return (
-    <mesh ref={meshRef} scale={scale}>
-      <planeGeometry args={[2, 2]} />
+    <mesh ref={meshRef}>
+      <planeGeometry args={[viewport.width, viewport.height]} />
       <shaderMaterial
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
@@ -195,14 +188,12 @@ export function RevealWaveImage({
   className = "h-full w-full",
 }: RevealWaveImageProps) {
   const [isMouseInCanvas, setIsMouseInCanvas] = useState(false);
-  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const img = new Image();
     img.src = src;
-    img.onload = () => {
-      setAspectRatio(img.naturalWidth / img.naturalHeight);
-    };
+    img.onload = () => setReady(true);
   }, [src]);
 
   return (
@@ -211,16 +202,16 @@ export function RevealWaveImage({
       onMouseEnter={() => setIsMouseInCanvas(true)}
       onMouseLeave={() => setIsMouseInCanvas(false)}
     >
-      {aspectRatio !== null && (
+      {ready && (
         <Canvas
           orthographic
-          camera={{ zoom: 1, position: [0, 0, 1] }}
+          camera={{ zoom: 1, position: [0, 0, 1], near: 0.1, far: 10 }}
           gl={{ antialias: false, alpha: true }}
           style={{ width: "100%", height: "100%" }}
+          resize={{ scroll: false }}
         >
           <ImagePlane
             src={src}
-            aspectRatio={aspectRatio}
             revealRadius={revealRadius}
             revealSoftness={revealSoftness}
             pixelSize={pixelSize}
