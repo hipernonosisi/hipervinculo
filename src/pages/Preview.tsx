@@ -4,6 +4,7 @@ import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
 import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, animate } from 'framer-motion';
 import { Eye, Hammer, Rocket, Play, Pause, Check, Award, Users, Zap, Shield, Globe2, Star, ArrowRight, Volume2, VolumeX, FastForward, Maximize, RotateCcw, RotateCw } from 'lucide-react';
+import ThermodynamicGrid from '@/components/ui/interactive-thermodynamic-grid';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { SEO } from '@/components/SEO';
