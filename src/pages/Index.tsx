@@ -85,7 +85,7 @@ export default function Index() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="text-[52px] md:text-[64px] lg:text-[72px] leading-[1.02] tracking-[-0.03em]"
+                    className="text-[46px] md:text-[58px] lg:text-[64px] leading-[1.02] tracking-[-0.03em]"
                     style={{ fontWeight: 800, color: '#2d4a2d' }}
                   >
                     <HeroShutterText text={rotatingHeadlines[wordIndex]} />
