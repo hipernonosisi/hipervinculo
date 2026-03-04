@@ -690,7 +690,7 @@ export default function Preview() {
         <div className="container max-w-6xl relative z-10">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground/80 mb-3">{p.howWeWork.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white max-w-3xl mx-auto">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white max-w-3xl mx-auto leading-tight [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">
               {p.howWeWork.title}
             </h2>
           </div>
@@ -702,8 +702,8 @@ export default function Preview() {
                   <span className="inline-block text-xs font-semibold uppercase tracking-wider text-accent mb-3 bg-accent/10 px-3 py-1 rounded-full">
                     {step.label}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight">{step.title}</h3>
-                  <p className="text-base text-white/70 leading-relaxed">{step.desc}</p>
+                  <h3 className="text-xl md:text-2xl font-extrabold text-white mb-4 leading-tight [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">{step.title}</h3>
+                  <p className="text-sm md:text-base text-white/70 leading-relaxed [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">{step.desc}</p>
                 </div>
                 <div className="flex-1 w-full">
                   <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-sm">
