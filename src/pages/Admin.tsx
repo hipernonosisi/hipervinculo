@@ -17,6 +17,7 @@ import { LandingPagePresentation } from '@/components/presentations/LandingPageP
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
 import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 import { CostaFirmeProposal } from '@/components/proposals/CostaFirmeProposal';
+import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmobiliariosProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
