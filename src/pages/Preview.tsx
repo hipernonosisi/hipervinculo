@@ -690,7 +690,7 @@ export default function Preview() {
         <div className="container max-w-6xl relative z-10">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground/80 mb-3">{p.howWeWork.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white max-w-3xl mx-auto">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white max-w-3xl mx-auto leading-tight [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden">
               {p.howWeWork.title}
             </h2>
           </div>
