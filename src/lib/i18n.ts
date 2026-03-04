@@ -1200,9 +1200,9 @@ export const translations = {
       trustBadge3: 'Solo para negocios serios',
       rotatingHeadlines: [
         'Google Ads que\nGeneran Llamadas\ny Leads',
-        'Sitios Web Inbound\nque\nConvierten',
-        'Estrategias eCommerce\nque\nEscalan',
-        'Sistemas de Leads\nque\nConvierten',
+        'Sitios Web Inbound\nDiseñados para\nConvertir',
+        'Estrategias eCommerce\nque Escalan\nTu Negocio',
+        'Sistemas de Leads\nque Generan\nMás Ventas',
       ],
       provenResultsTitle: 'Resultados Comprobados en Canales de Crecimiento\ny Sistemas de Generación de Leads Inbound',
       provenResultsCta: 'Solicita un recorrido de tu sistema de conversión y leads — adaptado a tu negocio.',
