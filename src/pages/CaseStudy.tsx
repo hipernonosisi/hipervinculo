@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/ui/motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioProjects } from '@/data/portfolioData';
-import { RevealWaveImage } from '@/components/ui/reveal-wave-image';
 import NotFound from './NotFound';
 
 export default function CaseStudy() {
@@ -105,30 +104,19 @@ export default function CaseStudy() {
           <div className="container py-12 md:py-16">
             <AnimatedSection>
               <div className="relative">
-                <div className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-2xl">
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                    {/* Reveal wave canvas (desktop only) */}
-                    <div className="hidden md:block aspect-[16/9]">
-                      <RevealWaveImage
-                        src={project.image}
-                        className="w-full h-full"
-                        revealRadius={0.18}
-                        revealSoftness={0.5}
-                        pixelSize={3}
-                        waveSpeed={0.4}
-                        waveFrequency={3.0}
-                        waveAmplitude={0.15}
-                        mouseRadius={0.2}
-                      />
-                    </div>
-                    {/* Fallback static image (mobile) */}
+                <motion.div
+                  className="rounded-2xl overflow-hidden border-2 border-border/30 shadow-2xl"
+                  whileHover={{ scale: 1.005 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
                     <img
                       src={project.image}
                       alt={`${project.name} website screenshot`}
-                      className="w-full object-cover object-top md:hidden"
+                      className="w-full object-cover object-top"
                     />
                   </a>
-                </div>
+                </motion.div>
                 {project.imageMobile && (
                   <motion.div
                     className="absolute -bottom-8 right-4 md:right-8 w-[18%] md:w-[15%] rounded-xl overflow-hidden shadow-2xl border-3 border-white z-10"
