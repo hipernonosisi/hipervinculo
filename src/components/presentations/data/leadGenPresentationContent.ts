@@ -3,6 +3,7 @@ export const leadGenPresentationContent = {
   en: {
     // Slide 1: Cover
     cover: {
+      supertitle: 'Qualified Lead Acquisition System',
       title: 'Lead Generation',
       subtitle: 'Convert Traffic Into Qualified Opportunities',
       tagline: 'Websites. Funnels. Ads. Attribution.',
