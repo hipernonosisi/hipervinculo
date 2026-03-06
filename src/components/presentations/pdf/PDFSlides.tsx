@@ -182,10 +182,19 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     borderRadius: 4,
   },
-  coverTitle: {
-    fontSize: 96,
+  coverSupertitle: {
+    fontSize: 108,
     fontWeight: 'bold',
     color: colors.darkGreen,
+    textAlign: 'center',
+    marginBottom: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+  },
+  coverTitle: {
+    fontSize: 72,
+    fontWeight: 'bold',
+    color: colors.limeGreen,
     textAlign: 'center',
     marginBottom: 24,
   },
