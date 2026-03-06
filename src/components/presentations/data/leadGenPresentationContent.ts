@@ -314,6 +314,7 @@ export const leadGenPresentationContent = {
   es: {
     // Slide 1: Cover
     cover: {
+      supertitle: 'Sistema de Captación de Clientes Potenciales',
       title: 'Generación de Leads',
       subtitle: 'Convierte Tráfico en Oportunidades Calificadas',
       tagline: 'Sitios Web. Embudos. Anuncios. Atribución.',

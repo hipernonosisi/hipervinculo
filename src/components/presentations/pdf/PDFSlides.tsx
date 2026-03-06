@@ -742,6 +742,7 @@ export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent
     <View style={styles.coverContainer}>
       <Image src={logoBase64} style={styles.coverLogo} />
       <View style={styles.coverLine} />
+      {content.supertitle && <Text style={styles.coverSupertitle}>{content.supertitle}</Text>}
       <Text style={styles.coverTitle}>{content.title}</Text>
       <Text style={styles.coverSubtitle}>{content.subtitle}</Text>
       <View style={styles.coverLine} />
