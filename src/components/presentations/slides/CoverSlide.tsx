@@ -42,7 +42,7 @@ export function CoverSlide({ content }: CoverSlideProps) {
         {/* Supertitle */}
         {content.supertitle && (
           <h1 
-            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-1 sm:mb-2 md:mb-3 tracking-tight uppercase"
+            className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-1 sm:mb-2 md:mb-3 tracking-tight uppercase"
             style={{ color: '#2d4a2d' }}
           >
             {content.supertitle}
@@ -51,7 +51,7 @@ export function CoverSlide({ content }: CoverSlideProps) {
         
         {/* Title */}
         <h2 
-          className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-tight"
+          className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-tight"
           style={{ color: '#8BC34A' }}
         >
           {content.title}
