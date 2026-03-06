@@ -182,10 +182,19 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     borderRadius: 4,
   },
-  coverTitle: {
-    fontSize: 96,
+  coverSupertitle: {
+    fontSize: 108,
     fontWeight: 'bold',
     color: colors.darkGreen,
+    textAlign: 'center',
+    marginBottom: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+  },
+  coverTitle: {
+    fontSize: 72,
+    fontWeight: 'bold',
+    color: colors.limeGreen,
     textAlign: 'center',
     marginBottom: 24,
   },
@@ -733,6 +742,7 @@ export const CoverSlidePDF = ({ content, logoBase64 }: { content: LeadGenContent
     <View style={styles.coverContainer}>
       <Image src={logoBase64} style={styles.coverLogo} />
       <View style={styles.coverLine} />
+      {content.supertitle && <Text style={styles.coverSupertitle}>{content.supertitle}</Text>}
       <Text style={styles.coverTitle}>{content.title}</Text>
       <Text style={styles.coverSubtitle}>{content.subtitle}</Text>
       <View style={styles.coverLine} />

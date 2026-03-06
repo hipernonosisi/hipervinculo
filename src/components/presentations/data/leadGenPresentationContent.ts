@@ -3,6 +3,7 @@ export const leadGenPresentationContent = {
   en: {
     // Slide 1: Cover
     cover: {
+      supertitle: 'Qualified Lead Acquisition System',
       title: 'Lead Generation',
       subtitle: 'Convert Traffic Into Qualified Opportunities',
       tagline: 'Websites. Funnels. Ads. Attribution.',
@@ -313,6 +314,7 @@ export const leadGenPresentationContent = {
   es: {
     // Slide 1: Cover
     cover: {
+      supertitle: 'Sistema de Captación de Clientes Potenciales',
       title: 'Generación de Leads',
       subtitle: 'Convierte Tráfico en Oportunidades Calificadas',
       tagline: 'Sitios Web. Embudos. Anuncios. Atribución.',
