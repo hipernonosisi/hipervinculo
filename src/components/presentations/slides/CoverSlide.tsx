@@ -2,6 +2,7 @@ import logoHipervinculo from '@/assets/logo-hipervinculo.png';
 
 interface CoverSlideProps {
   content: {
+    supertitle?: string;
     title: string;
     subtitle: string;
     tagline: string;
