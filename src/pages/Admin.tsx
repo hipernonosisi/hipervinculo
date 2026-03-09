@@ -888,12 +888,22 @@ export default function Admin() {
                   <Building className="w-4 h-4" />
                   Valores Inmobiliarios
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('futurealkaline')}
+                  className={`gap-2 ${activeProposal === 'futurealkaline' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Building className="w-4 h-4" />
+                  Future Alkaline Water
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
                   {activeProposal === 'skyscraper' && <SkyscraperProposal />}
                   {activeProposal === 'costafirme' && <CostaFirmeProposal />}
                   {activeProposal === 'valoresinmobiliarios' && <ValoresInmobiliariosProposal />}
+                  {activeProposal === 'futurealkaline' && <FutureAlkalineProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
