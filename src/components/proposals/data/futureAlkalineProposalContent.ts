@@ -272,10 +272,10 @@ export const futureAlkalineProposalContent = {
       {
         heading: 'Método de Pago y Servicios',
         items: [
-          'Todos los pagos a Hipervinculo LLC deben realizarse dentro de los 10 días posteriores a la recepción de la factura.',
+          'Todos los pagos a Hipervinculo LLC se realizan por adelantado, antes del inicio de cualquier trabajo o periodo de servicio.',
           'La tarifa única de desarrollo web de $3,000 se debe al aceptar la propuesta, antes de iniciar el trabajo.',
           'La tarifa única de setup del bot de $1,250 se debe antes de iniciar la configuración.',
-          'Los retainers mensuales de Google Ads ($1,250), Meta Ads ($3,750) y Mantenimiento del Bot se facturan al inicio de cada mes de servicio.',
+          'Los retainers mensuales de Google Ads ($1,250), Meta Ads ($3,750) y Mantenimiento del Bot se pagan por adelantado al inicio de cada mes de servicio.',
           'La inversión en medios ($300/mes recomendado por plataforma) se paga directamente a Google y Meta por el cliente.',
           'Los pagos de impuestos y otros asuntos contables son responsabilidad del cliente.',
         ],
