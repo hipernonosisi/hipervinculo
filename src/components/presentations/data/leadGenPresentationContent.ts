@@ -246,9 +246,14 @@ export const leadGenPresentationContent = {
       title: 'Optional Add-Ons',
       items: [
         {
-          title: 'Additional Landing Pages',
-          price: '$500 per page',
-          description: 'Campaign-specific pages for new services or locations.',
+          title: 'Additional Landing Pages (Standard)',
+          price: '$1,500 per page',
+          description: 'Campaign-specific conversion page with tracking setup and responsive design.',
+        },
+        {
+          title: 'Additional Landing Pages (Premium)',
+          price: '$2,000 per page',
+          description: 'Advanced conversion page with A/B testing, enhanced animations, and premium copywriting.',
         },
         {
           title: 'WhatsApp Business Setup',
