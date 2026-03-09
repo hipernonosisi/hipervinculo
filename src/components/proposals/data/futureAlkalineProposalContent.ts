@@ -197,6 +197,7 @@ export const futureAlkalineProposalContent = {
         },
         advanced: {
           name: 'Advanced',
+          recommended: false,
           features: ['Todo de Growth', 'Webhooks entrantes y salientes', 'Múltiples workspaces', 'Single Sign-On (SSO)', 'Canales personalizados', '10 usuarios incluidos'],
         },
       },
