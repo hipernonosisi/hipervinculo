@@ -187,6 +187,7 @@ export const futureAlkalineProposalContent = {
       plans: {
         starter: {
           name: 'Starter',
+          recommended: false,
           features: ['Inbox de equipo', 'App móvil', 'AI Prompt y AI Assist', 'Reportes básicos', '5 usuarios incluidos'],
         },
         growth: {
