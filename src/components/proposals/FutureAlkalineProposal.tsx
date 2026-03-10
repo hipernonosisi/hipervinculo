@@ -219,38 +219,38 @@ export function FutureAlkalineProposal() {
 
           {/* PAGE 5: Meta Ads Service */}
           <Page>
-            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Servicio 3</p>
-              <h2 className="text-2xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.metaAdsService.title}</h2>
-              <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.metaAdsService.headline}</p>
-              <div className="rounded-2xl px-8 py-4 mb-4" style={{ backgroundColor: '#2d4a2d' }}>
+            <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-1.5" style={{ color: '#8BC34A' }}>Servicio 3</p>
+              <h2 className="text-2xl font-extrabold mb-0.5" style={{ color: '#2d4a2d' }}>{content.metaAdsService.title}</h2>
+              <p className="font-medium text-sm mb-3" style={{ color: '#8BC34A' }}>{content.metaAdsService.headline}</p>
+              <div className="rounded-2xl px-8 py-3.5 mb-3" style={{ backgroundColor: '#2d4a2d' }}>
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Retainer Mensual</div>
-                    <div className="text-white/40 text-xs mt-1">Incluye hasta 10 creativos UGC con IA</div>
+                    <div className="text-white/40 text-xs mt-0.5">Incluye hasta 10 creativos UGC con IA</div>
                   </div>
                   <span className="text-4xl font-extrabold text-white">{content.metaAdsService.retainer}</span>
                 </div>
-                <div className="border-t border-white/10 mt-3 pt-3 flex items-center justify-between">
+                <div className="border-t border-white/10 mt-2.5 pt-2.5 flex items-center justify-between">
                   <div>
                     <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Inversión en Medios Recomendada</div>
-                    <div className="text-white/40 text-xs mt-1">{content.metaAdsService.mediaSpendNote}</div>
+                    <div className="text-white/40 text-xs mt-0.5">{content.metaAdsService.mediaSpendNote}</div>
                   </div>
                   <span className="text-2xl font-extrabold text-white">{content.metaAdsService.mediaSpend}</span>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed mb-3 text-[14px]">{content.metaAdsService.description}</p>
-              <p className="text-[13px] font-medium mb-4 px-4 py-3 rounded-xl" style={{ backgroundColor: 'rgba(139,195,74,0.1)', color: '#2d4a2d' }}>
+              <p className="text-gray-600 leading-snug mb-2 text-[13px]">{content.metaAdsService.description}</p>
+              <p className="text-[12px] font-medium mb-3 px-4 py-2.5 rounded-xl" style={{ backgroundColor: 'rgba(139,195,74,0.1)', color: '#2d4a2d' }}>
                 🎨 {content.metaAdsService.creativosNote}
               </p>
-              <div className="space-y-2">
+              <div className="space-y-1.5 flex-1">
                 {content.metaAdsService.includes.map((item, i) => (
-                  <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
-                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
+                  <div key={i} className="flex gap-3 p-2.5 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                     <div>
-                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                      <h3 className="font-bold text-[13px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[12px] text-gray-500 mt-0.5 leading-snug">{item.description}</p>
                     </div>
                   </div>
                 ))}
