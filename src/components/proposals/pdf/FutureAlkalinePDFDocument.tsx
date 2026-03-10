@@ -378,9 +378,9 @@ export function FutureAlkalinePDFDocument({ logoBase64 }: Props) {
           <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 20 }}>
             <Text style={{ fontSize: 13, fontWeight: 'bold', color: green, marginBottom: 14 }}>{content.investment.monthly.title}</Text>
             {content.investment.monthly.items.map((item, i) => (
-              <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                <Text style={{ fontSize: 10, color: gray }}>{item.name}</Text>
-                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{item.price}</Text>
+              <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10, alignItems: 'center' }}>
+                <Text style={{ fontSize: 9, color: gray, flex: 1, paddingRight: 8 }}>{item.name}</Text>
+                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
               </View>
             ))}
             <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', paddingTop: 10, marginTop: 6 }}>
