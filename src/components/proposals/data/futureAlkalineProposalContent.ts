@@ -57,7 +57,7 @@ export const futureAlkalineProposalContent = {
     headline: 'Flujo Constante de Leads Calificados desde Búsquedas',
     retainer: '$1,250',
     retainerLabel: 'Retainer Mensual (Mes a Mes)',
-    mediaSpend: '$300/mes',
+    mediaSpend: '$300/día',
     mediaSpendLabel: 'Inversión Inicial Recomendada',
     mediaSpendNote: 'Se pagará directamente a Google. El presupuesto se irá optimizando según los resultados.',
     description:
