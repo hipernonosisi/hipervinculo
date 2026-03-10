@@ -94,7 +94,7 @@ export const futureAlkalineProposalContent = {
     headline: 'Generación de Leads a través de Instagram y WhatsApp',
     retainer: '$3,750',
     retainerLabel: 'Retainer Mensual (Mes a Mes)',
-    mediaSpend: '$300/mes',
+    mediaSpend: '$300/día',
     mediaSpendLabel: 'Inversión Inicial Recomendada',
     mediaSpendNote: 'Se pagará directamente a Meta. El presupuesto se irá optimizando según los resultados.',
     description:
