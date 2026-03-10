@@ -221,7 +221,7 @@ export const futureAlkalineProposalContent = {
         { name: 'Gestión de Meta Ads + Creativos UGC', price: '$3,750/mes' },
         { name: 'Mantenimiento del Bot', price: 'Desde $297/mes' },
       ],
-      mediaNote: '+ $300/mes inversión en medios para Google Ads (pago directo a Google)\n+ $300/mes inversión en medios para Meta Ads (pago directo a Meta)',
+      mediaNote: '+ $300/día inversión en medios para Google Ads (pago directo a Google)\n+ $300/día inversión en medios para Meta Ads (pago directo a Meta)',
     },
     note: 'El desarrollo web y el setup del bot son inversiones únicas. Los servicios mensuales operan mes a mes sin contratos a largo plazo. Las inversiones en medios se pagan directamente a Google y Meta. Los presupuestos de medios se irán optimizando y ajustando según los resultados obtenidos.',
   },
