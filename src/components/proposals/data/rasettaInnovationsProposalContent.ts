@@ -21,9 +21,9 @@ export const rasettaInnovationsProposalContent = {
   metaAdsService: {
     title: 'Gestión de Meta Ads + Creativos UGC con IA',
     headline: 'Generación de Leads a través de Instagram y WhatsApp',
-    retainer: '$3,750',
+    retainer: '$2,250',
     retainerLabel: 'Retainer Mensual (Mes a Mes)',
-    mediaSpend: '$150/día',
+    mediaSpend: '$75/día',
     mediaSpendLabel: 'Inversión Inicial Recomendada',
     mediaSpendNote: 'Se pagará directamente a Meta. El presupuesto se irá optimizando según los resultados.',
     description:
@@ -59,7 +59,7 @@ export const rasettaInnovationsProposalContent = {
   botService: {
     title: 'Bot de Calificación de Leads',
     headline: 'Calentamiento y Calificación Automática via Instagram DM y WhatsApp',
-    setupPrice: '$1,250',
+    setupPrice: '$1,750',
     setupLabel: 'Setup e Instalación (Único)',
     description:
       'Implementaremos un bot conversacional inteligente que se conecta a su cuenta de Instagram y/o WhatsApp Business para automatizar el calentamiento y la calificación de leads. Utilizamos la plataforma Respond.io, líder mundial en gestión de conversaciones omnicanal, utilizada por más de 10,000 marcas incluyendo Toyota, McDonald\'s, British Airways y Radisson Hotels.',
@@ -107,11 +107,11 @@ export const rasettaInnovationsProposalContent = {
       headline: 'Planes Según Volumen de Conversaciones',
       note: 'El plan se selecciona según el número de conversaciones mensuales que atiende el bot. Todos los precios son mensuales.',
       tiers: [
-        { contacts: 'Hasta 1,000', starter: '$297', growth: '$597', advanced: '$1,047' },
-        { contacts: 'Hasta 2,500', starter: '$297', growth: '$897', advanced: '$1,587' },
-        { contacts: 'Hasta 5,000', starter: '$297', growth: '$1,197', advanced: '$2,097' },
-        { contacts: 'Hasta 10,000', starter: '$297', growth: '$1,677', advanced: '$2,967' },
-        { contacts: '+ de 10,000', starter: '$297', growth: '$1,677 + $0.50/conv', advanced: '$2,967 + $0.89/conv' },
+        { contacts: 'Hasta 1,000', starter: '$499', growth: '$997', advanced: '$1,797' },
+        { contacts: 'Hasta 2,500', starter: '$499', growth: '$1,497', advanced: '$2,697' },
+        { contacts: 'Hasta 5,000', starter: '$499', growth: '$1,997', advanced: '$3,597' },
+        { contacts: 'Hasta 10,000', starter: '$499', growth: '$2,797', advanced: '$4,977' },
+        { contacts: '+ de 10,000', starter: '$499', growth: '$2,797 + $0.84/conv', advanced: '$4,977 + $1.49/conv' },
       ],
       plans: {
         starter: {
@@ -139,16 +139,16 @@ export const rasettaInnovationsProposalContent = {
       title: 'Etapa 1 — Meta Ads + Creativos UGC',
       subtitle: 'Generación de Leads vía Instagram y WhatsApp',
       items: [
-        { name: 'Meta Ads + Creativos UGC', price: '$3,750/mes' },
+        { name: 'Meta Ads + Creativos UGC', price: '$2,250/mes' },
       ],
-      mediaNote: '+ $150/día inversión en medios (pago directo a Meta)',
+      mediaNote: '+ $75/día inversión en medios (pago directo a Meta)',
       note: 'Servicio mes a mes. Incluye hasta 10 creativos UGC con IA por mes.',
     },
     phase2: {
       title: 'Etapa 2 — Bot de Calificación',
       subtitle: 'Automatización y Calificación de Leads',
-      setup: { name: 'Setup e Instalación del Bot', price: '$1,250' },
-      monthly: { name: 'Mantenimiento del Bot', price: 'Desde $297/mes' },
+      setup: { name: 'Setup e Instalación del Bot', price: '$1,750' },
+      monthly: { name: 'Mantenimiento del Bot', price: 'Desde $499/mes' },
       note: 'El setup es un pago único. El mantenimiento varía según el plan y volumen de conversaciones.',
     },
     note: 'La Etapa 1 puede comenzar inmediatamente. La Etapa 2 se implementa una vez que el flujo de leads esté activo y estabilizado. Los servicios mensuales operan mes a mes sin contratos a largo plazo. La inversión en medios se paga directamente a Meta.',
@@ -196,10 +196,10 @@ export const rasettaInnovationsProposalContent = {
         heading: 'Método de Pago y Servicios',
         items: [
           'Todos los pagos a Hipervinculo LLC se realizan por adelantado, antes del inicio de cualquier trabajo o periodo de servicio.',
-          'El retainer mensual de Meta Ads ($3,750) se paga por adelantado al inicio de cada mes de servicio.',
-          'La tarifa única de setup del bot de $1,250 se debe antes de iniciar la configuración.',
+          'El retainer mensual de Meta Ads ($2,250) se paga por adelantado al inicio de cada mes de servicio.',
+          'La tarifa única de setup del bot de $1,750 se debe antes de iniciar la configuración.',
           'El mantenimiento mensual del bot se paga por adelantado al inicio de cada mes de servicio.',
-          'La inversión en medios ($150/día recomendado) se paga directamente a Meta por el cliente.',
+          'La inversión en medios ($75/día recomendado) se paga directamente a Meta por el cliente.',
           'Los pagos de impuestos y otros asuntos contables son responsabilidad del cliente.',
         ],
       },
