@@ -81,7 +81,7 @@ export const tailyProposalContent = {
       },
       {
         title: 'Bid Optimization & Budget Management',
-        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–20% target range.',
+        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–25% target range.',
       },
       {
         title: 'Keyword Research & Harvesting',
