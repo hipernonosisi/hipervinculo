@@ -342,8 +342,8 @@ export function XtralluxProposal() {
                       {content.investment.setup.items.map((item, i) => (
                         <tr key={i}>
                           <td className="py-2 pr-4 align-top">
-                            <span className="text-[14px] text-gray-700 font-medium">{item.name}</span>
-                            <span className="text-xs text-gray-400 ml-1.5">({item.detail})</span>
+                            <div className="text-[14px] text-gray-700 font-medium">{item.name}</div>
+                            <div className="text-xs text-gray-400 mt-0.5">{item.detail}</div>
                           </td>
                           <td className="py-2 text-right align-top whitespace-nowrap">
                             <span className="font-extrabold text-xl" style={{ color: '#2d4a2d' }}>{item.price}</span>

@@ -316,7 +316,7 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
       </Page>
 
       {/* PAGE 8: Investment Summary */}
-      <Page size="A4" style={s.pageBg}>
+      <Page size="A4" style={{ ...s.pageBg, padding: 50 }}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
@@ -330,7 +330,7 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
               <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
                 <View style={{ flex: 1, paddingRight: 12 }}>
                   <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{item.name}</Text>
-                  <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>({item.detail})</Text>
+                  <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{item.detail}</Text>
                 </View>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
               </View>
@@ -423,17 +423,17 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
       </Page>
 
       {/* PAGE 10: Agreement Details */}
-      <Page size="A4" style={{ ...s.pageBg, padding: 50 }}>
+      <Page size="A4" style={{ ...s.pageBg, padding: 50 }} wrap={false}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>AGREEMENT</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 20 }}>{content.legalTerms.title}</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 18 }}>{content.legalTerms.title}</Text>
         {content.legalTerms.sections.map((section, i) => (
-          <View key={i} style={{ marginBottom: 16 }}>
-            <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 6 }}>{section.heading}</Text>
+          <View key={i} style={{ marginBottom: 14 }}>
+            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 5 }}>{section.heading}</Text>
             {section.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', gap: 6, marginBottom: 5, paddingLeft: 10 }}>
-                <Text style={{ fontSize: 8.5, color: gray }}>{j + 1}.</Text>
-                <Text style={{ fontSize: 8.5, color: gray, lineHeight: 1.5, flex: 1 }}>{item}</Text>
+              <View key={j} style={{ flexDirection: 'row', gap: 6, marginBottom: 4, paddingLeft: 10 }}>
+                <Text style={{ fontSize: 8, color: gray }}>{j + 1}.</Text>
+                <Text style={{ fontSize: 8, color: gray, lineHeight: 1.5, flex: 1 }}>{item}</Text>
               </View>
             ))}
           </View>
