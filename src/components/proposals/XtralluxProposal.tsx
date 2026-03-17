@@ -333,43 +333,60 @@ export function XtralluxProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              <div className="grid grid-cols-2 gap-5 mb-5">
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 {/* Setup */}
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
-                  {content.investment.setup.items.map((item, i) => (
-                    <div key={i} className="flex items-baseline justify-between mb-3">
-                      <div className="flex-1 pr-3">
-                        <span className="text-sm text-gray-700 font-medium">{item.name}</span>
-                        <span className="text-xs text-gray-400 ml-1">({item.detail})</span>
-                      </div>
-                      <span className="font-extrabold text-xl flex-shrink-0" style={{ color: '#2d4a2d' }}>{item.price}</span>
-                    </div>
-                  ))}
-                  <div className="border-t border-gray-200 pt-4 mt-3 flex items-center justify-between">
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
+                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 6px' }}>
+                    <tbody>
+                      {content.investment.setup.items.map((item, i) => (
+                        <tr key={i}>
+                          <td className="py-2 pr-4 align-top">
+                            <span className="text-[14px] text-gray-700 font-medium">{item.name}</span>
+                            <span className="text-xs text-gray-400 ml-1.5">({item.detail})</span>
+                          </td>
+                          <td className="py-2 text-right align-top whitespace-nowrap">
+                            <span className="font-extrabold text-xl" style={{ color: '#2d4a2d' }}>{item.price}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="border-t border-gray-200 pt-5 mt-4 flex items-center justify-between">
                     <span className="font-bold text-sm" style={{ color: '#2d4a2d' }}>Total Setup</span>
                     <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.setup.total}</span>
                   </div>
                 </div>
 
                 {/* Ongoing */}
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
-                  <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
-                    <div>
-                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
-                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
-                    </div>
-                    <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
-                  </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.sellerise.label}</p>
-                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.sellerise.detail}</p>
-                    </div>
-                    <span className="font-bold text-lg flex-shrink-0" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.sellerise.price}</span>
-                  </div>
-                  <div className="border-t border-gray-200 pt-3 mt-1">
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
+                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}>
+                    <tbody>
+                      <tr>
+                        <td className="py-2 pr-4 align-top">
+                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
+                        </td>
+                        <td className="py-2 text-right align-top whitespace-nowrap">
+                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan={2}><div className="border-b border-gray-100" /></td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 align-top">
+                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.sellerise.label}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.sellerise.detail}</p>
+                        </td>
+                        <td className="py-2 text-right align-top whitespace-nowrap">
+                          <span className="font-bold text-xl" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.sellerise.price}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="border-t border-gray-200 pt-4 mt-4">
                     <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.commission.description}</p>
                   </div>
                 </div>
@@ -429,9 +446,9 @@ export function XtralluxProposal() {
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
                         <Icon className="w-5 h-5" style={{ color: '#8BC34A' }} />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{section.title}</h3>
-                        <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{section.description}</p>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{section.title}</h3>
+                        <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{section.description}</p>
                       </div>
                     </div>
                   );
@@ -440,18 +457,19 @@ export function XtralluxProposal() {
             </div>
           </Page>
 
-          {/* PAGE 10: Legal Terms */}
+          {/* PAGE 10: Agreement Details */}
           <Page bg="#f8f9f5">
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Agreement</p>
               <h2 className="text-3xl font-extrabold mb-8" style={{ color: '#2d4a2d' }}>{content.legalTerms.title}</h2>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {content.legalTerms.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="font-extrabold text-[15px] mb-2" style={{ color: '#2d4a2d' }}>{section.heading}</h3>
-                    <ol className="space-y-1.5 pl-6 list-decimal">
+                    <h3 className="font-extrabold text-[15px] mb-2.5" style={{ color: '#2d4a2d' }}>{section.heading}</h3>
+                    <ol className="space-y-2 pl-6 list-decimal">
                       {section.items.map((item, j) => (
-                        <li key={j} className="text-[13px] text-gray-600 leading-relaxed pl-1">{item}</li>
+                        <li key={j} className="text-[12px] text-gray-600 leading-relaxed pl-1">{item}</li>
                       ))}
                     </ol>
                   </div>
