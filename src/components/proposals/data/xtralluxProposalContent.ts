@@ -33,7 +33,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Advertising Campaigns',
-        description: 'Strategic creation and ongoing optimization of Sponsored Products, Sponsored Brands, and Sponsored Display campaigns to maximize visibility and sales at profitable TACOS levels.',
+        description: 'Strategic creation and ongoing optimization of Sponsored Products, Sponsored Brands, and Sponsored Display campaigns to maintain healthy TACOS levels between 15–25%.',
       },
       {
         title: 'Listing Redesign & Optimization',
@@ -52,6 +52,10 @@ export const xtralluxProposalContent = {
         description: 'Handling of all general support cases with Amazon Seller Support. For escalated cases (ASIN suspensions, account-level issues), our external legal team is available at an additional cost.',
       },
     ],
+    exclusions: {
+      title: 'Out of Scope',
+      description: 'Hipervínculo will NOT be responsible for logistics, fulfillment (FBA/FBM preparation), product sourcing, inventory purchasing, or any administrative or accounting functions related to the Amazon account. These responsibilities remain entirely with the client.',
+    },
   },
   listingService: {
     title: 'Listing Redesign',
@@ -124,7 +128,7 @@ export const xtralluxProposalContent = {
     title: 'Amazon Advertising Management',
     headline: 'Sponsored Campaigns Optimized for Profit',
     description:
-      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS (Total Advertising Cost of Sales) levels while aggressively growing market share and organic rankings.',
+      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS levels (15–25%) while aggressively growing market share and organic rankings, targeting a healthy net profit margin of 12–20%.',
     includes: [
       {
         title: 'Sponsored Products Campaigns',
@@ -140,7 +144,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Bid Optimization & Budget Management',
-        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while controlling TACOS.',
+        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 15–25% target range.',
       },
       {
         title: 'Keyword Research & Harvesting',
@@ -156,9 +160,9 @@ export const xtralluxProposalContent = {
     title: 'Sellerise Integration',
     headline: 'Complete Financial Transparency & Automation',
     monthlyCost: '$100/mo',
-    monthlyCostLabel: 'Paid Directly by Client',
+    monthlyCostLabel: 'Paid Directly by Client to Sellerise',
     description:
-      'We will install and configure Sellerise on your Amazon account to provide a complete financial picture of your business. This tool will serve as the foundation for calculating our performance commission, tracking profitability, monitoring inventory, and automating review requests.',
+      'We will install and configure Sellerise on your Amazon account to provide a complete financial picture of your business. This tool will serve as the single source of truth for calculating our performance commission, tracking profitability, monitoring inventory, and automating review requests.',
     features: [
       {
         title: 'Financial Dashboard',
@@ -174,7 +178,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Commission Tracking',
-        description: 'Transparent tracking of net profitability from which our 15% performance commission will be calculated.',
+        description: 'Transparent tracking of net profitability from which our 15% performance commission will be calculated. The Sellerise number is the definitive figure used for invoicing.',
       },
       {
         title: 'Cost Structure Setup',
@@ -205,24 +209,47 @@ export const xtralluxProposalContent = {
     title: 'Investment Summary',
     headline: 'Your Complete Amazon Growth Package',
     setup: {
-      title: 'One-Time Setup Investments',
+      title: 'One-Time Setup Investment',
       items: [
-        { name: 'Listing Redesign (3 Listings × $1,500)', price: '$4,500' },
-        { name: 'Amazon Store Design', price: '$3,000' },
+        { name: 'Listing Redesign', detail: '3 Listings × $1,500', price: '$4,500' },
+        { name: 'Amazon Store Design', detail: 'Full brand store', price: '$3,000' },
       ],
       total: '$7,500',
     },
     ongoing: {
-      title: 'Ongoing Services',
-      items: [
-        { name: 'Account Management + Advertising', price: '15% of Net Profit' },
-        { name: 'Sellerise Subscription', price: '$100/mo (paid by client)' },
+      title: 'Ongoing Monthly Services',
+      commission: {
+        label: 'Management Commission',
+        rate: '15%',
+        basis: 'of Net Profit',
+        description: 'Calculated on net profitability after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). If there is no net profit in a given month, no commission is charged.',
+      },
+      sellerise: {
+        label: 'Sellerise Subscription',
+        price: '$100/mo',
+        detail: 'Paid directly by client to Sellerise',
+      },
+    },
+    example: {
+      title: 'Commission Example',
+      subtitle: 'How it works — based on Sellerise data',
+      rows: [
+        { label: 'Gross Revenue (Amazon Sales)', value: '$50,000', type: 'revenue' as const },
+        { label: 'Amazon Fees (Referral + FBA)', value: '−$12,500', type: 'deduction' as const },
+        { label: 'Advertising Spend', value: '−$5,000', type: 'deduction' as const },
+        { label: 'Returns & Refunds', value: '−$2,500', type: 'deduction' as const },
+        { label: 'Product Cost (COGS)', value: '−$15,000', type: 'deduction' as const },
       ],
-      note: 'Our 15% commission is calculated on net profitability after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). If there is no net profit in a given month, no commission is charged.',
+      netProfit: { label: 'Net Profit', value: '$15,000' },
+      commission: { label: 'Hipervínculo Commission (15%)', value: '$2,250' },
+      note: 'All figures are sourced directly from Sellerise. The net profit number displayed in Sellerise is the definitive figure used to calculate our 15% commission each month.',
+      tacos: { label: 'TACOS in this example', value: '10%', target: 'Target: 15–25%' },
+      profitMargin: { label: 'Net Profit Margin', value: '30%', target: 'Healthy: 12–20%' },
     },
     timeline: {
       title: 'Setup Timeline',
-      duration: '30 Days',
+      duration: '30',
+      durationUnit: 'Days',
       description: 'The initial setup phase includes listing redesign, A+ Content creation, Amazon Store build, Sellerise configuration, campaign setup, and all cost structure inputs. After 30 days, ongoing management and optimization begins.',
     },
   },
@@ -232,7 +259,7 @@ export const xtralluxProposalContent = {
     sections: [
       {
         title: 'Minimum Agreement Duration',
-        description: 'This agreement has a minimum duration of 12 months from the start date of ongoing services. After 12 months, the agreement auto-renews on a month-to-month basis unless either party provides 30 days written notice.',
+        description: 'This agreement has a minimum duration of 12 months from the start date of ongoing services. After the initial 12-month period, the agreement automatically renews on a quarterly (3-month) basis unless either party provides 30 days written notice before the end of the current quarter.',
         icon: 'calendar',
       },
       {
@@ -242,7 +269,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Payment Terms — Commission',
-        description: 'The 15% net profit commission is invoiced monthly based on Sellerise data and is payable within 10 days of invoice receipt. Commissions are due only after Amazon disbursement.',
+        description: 'The 15% net profit commission is invoiced monthly based on Sellerise data and is payable within 10 days of invoice receipt. Commissions are due only after Amazon disbursement. The Sellerise figure is the definitive source for all calculations.',
         icon: 'dollar',
       },
       {
@@ -252,7 +279,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Exclusions',
-        description: 'This proposal does not include logistics, fulfillment (FBA/FBM preparation), product sourcing, or inventory purchasing. These responsibilities remain with the client.',
+        description: 'This proposal does not include logistics, fulfillment (FBA/FBM preparation), product sourcing, inventory purchasing, or any administrative or accounting functions of the Amazon account. These responsibilities remain entirely with the client.',
         icon: 'files',
       },
       {
@@ -262,7 +289,7 @@ export const xtralluxProposalContent = {
       },
       {
         title: 'Monthly Meetings',
-        description: 'Up to 2 meetings per month for performance review, strategy discussion, and reporting. Additional meetings can be scheduled as needed.',
+        description: 'Up to 2 online meetings per month for performance review, strategy discussion, and reporting. Meetings are conducted via Zoom or Google Meet. In-person meetings can be arranged upon request.',
         icon: 'calendar',
       },
     ],
@@ -274,12 +301,19 @@ export const xtralluxProposalContent = {
         heading: 'Payment Method & Services',
         items: [
           'The one-time setup fee of $7,500 is due in full before work begins.',
-          'The 15% net profit commission is invoiced monthly. "Net profit" is defined as total Amazon revenue minus returns, Amazon fees, advertising spend, and product costs (COGS), as tracked by Sellerise.',
+          'The 15% net profit commission is invoiced monthly. "Net profit" is defined as total Amazon revenue minus returns, Amazon fees, advertising spend, and product costs (COGS), as tracked and reported by Sellerise. The Sellerise figure is the definitive and binding source for all commission calculations.',
           'If net profit is zero or negative in any given month, no commission is charged for that period.',
           'The Sellerise subscription ($100/month) is paid directly by the client to Sellerise.',
           'All advertising budgets are paid directly by the client through Amazon Advertising.',
           'Tax payments and other accounting matters are the responsibility of the client.',
           'Commission payments are due within 10 days of invoice receipt and are only due after Amazon has disbursed payment.',
+        ],
+      },
+      {
+        heading: 'Scope Exclusions',
+        items: [
+          'Hipervínculo LLC is not responsible for logistics, fulfillment (FBA/FBM preparation, shipment creation, or warehouse operations), product sourcing, inventory purchasing, or any administrative, accounting, or tax-related functions of the Amazon Seller account.',
+          'These operational responsibilities remain entirely with the client at all times.',
         ],
       },
       {
@@ -306,7 +340,7 @@ export const xtralluxProposalContent = {
         heading: 'Contract Termination',
         items: [
           'The minimum agreement duration is 12 months from the start date of ongoing services.',
-          'After 12 months, the agreement auto-renews month-to-month. Either party may terminate with 30 days written notice.',
+          'After 12 months, the agreement automatically renews on a quarterly (3-month) basis. Either party may terminate with 30 days written notice before the end of the current quarter.',
           'In case of early termination by the client, Hipervínculo LLC is not obligated to refund any previously received amounts.',
           'Upon termination, all advertising campaigns created by the agency shall be deleted as they remain the intellectual property of Hipervínculo LLC.',
           'All due payments up to the termination date must be settled within 10 days.',

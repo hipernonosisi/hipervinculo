@@ -327,51 +327,88 @@ export function XtralluxProposal() {
 
           {/* PAGE 8: Investment Summary */}
           <Page bg="#f8f9f5">
-            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
-              <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
+            <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
-              <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
-              <p className="font-medium mb-10" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
+              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              <div className="grid grid-cols-2 gap-6 mb-8">
+              <div className="grid grid-cols-2 gap-5 mb-5">
                 {/* Setup */}
-                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-lg mb-6" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
+                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
                   {content.investment.setup.items.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-600 flex-1">{item.name}</span>
-                      <span className="font-bold text-lg flex-shrink-0" style={{ color: '#2d4a2d' }}>{item.price}</span>
+                    <div key={i} className="flex items-baseline justify-between mb-3">
+                      <div className="flex-1 pr-3">
+                        <span className="text-sm text-gray-700 font-medium">{item.name}</span>
+                        <span className="text-xs text-gray-400 ml-1">({item.detail})</span>
+                      </div>
+                      <span className="font-extrabold text-xl flex-shrink-0" style={{ color: '#2d4a2d' }}>{item.price}</span>
                     </div>
                   ))}
-                  <div className="border-t pt-4 mt-4 flex items-center justify-between">
+                  <div className="border-t border-gray-200 pt-4 mt-3 flex items-center justify-between">
                     <span className="font-bold text-sm" style={{ color: '#2d4a2d' }}>Total Setup</span>
                     <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.setup.total}</span>
                   </div>
                 </div>
 
                 {/* Ongoing */}
-                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-lg mb-6" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
-                  {content.investment.ongoing.items.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-600 flex-1">{item.name}</span>
-                      <span className="font-bold flex-shrink-0" style={{ color: '#2d4a2d' }}>{item.price}</span>
+                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
+                  <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
+                    <div>
+                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
                     </div>
-                  ))}
-                  <div className="border-t pt-4 mt-4">
-                    <p className="text-[12px] text-gray-500 leading-relaxed">{content.investment.ongoing.note}</p>
+                    <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.sellerise.label}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.sellerise.detail}</p>
+                    </div>
+                    <span className="font-bold text-lg flex-shrink-0" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.sellerise.price}</span>
+                  </div>
+                  <div className="border-t border-gray-200 pt-3 mt-1">
+                    <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.commission.description}</p>
                   </div>
                 </div>
               </div>
 
+              {/* Commission Example */}
+              <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                <div className="flex items-center gap-2 mb-1">
+                  <BarChart3 className="w-4 h-4" style={{ color: '#8BC34A' }} />
+                  <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{content.investment.example.title}</h3>
+                </div>
+                <p className="text-xs text-gray-400 mb-4">{content.investment.example.subtitle}</p>
+                <div className="grid grid-cols-[1fr_auto] gap-x-6 gap-y-1.5">
+                  {content.investment.example.rows.map((row, i) => (
+                    <div key={i} className="contents">
+                      <span className="text-[13px] text-gray-600">{row.label}</span>
+                      <span className={`text-[13px] font-semibold text-right ${row.type === 'deduction' ? 'text-red-400' : ''}`} style={row.type === 'revenue' ? { color: '#2d4a2d' } : undefined}>{row.value}</span>
+                    </div>
+                  ))}
+                  <div className="col-span-2 border-t border-gray-200 my-1" />
+                  <span className="text-[14px] font-bold" style={{ color: '#2d4a2d' }}>{content.investment.example.netProfit.label}</span>
+                  <span className="text-xl font-extrabold text-right" style={{ color: '#8BC34A' }}>{content.investment.example.netProfit.value}</span>
+                  <span className="text-[14px] font-bold" style={{ color: '#2d4a2d' }}>{content.investment.example.commission.label}</span>
+                  <span className="text-xl font-extrabold text-right" style={{ color: '#2d4a2d' }}>{content.investment.example.commission.value}</span>
+                </div>
+                <p className="text-[10px] text-gray-400 mt-3 leading-relaxed">{content.investment.example.note}</p>
+              </div>
+
               {/* Timeline */}
-              <div className="bg-white rounded-2xl p-6 mb-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <div className="bg-white rounded-2xl p-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold text-lg" style={{ color: '#2d4a2d' }}>{content.investment.timeline.title}</h3>
-                    <p className="text-sm text-gray-500 mt-1">{content.investment.timeline.description}</p>
+                  <div className="flex-1 pr-6">
+                    <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{content.investment.timeline.title}</h3>
+                    <p className="text-[12px] text-gray-500 mt-1 leading-relaxed">{content.investment.timeline.description}</p>
                   </div>
-                  <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.timeline.duration}</span>
+                  <div className="flex-shrink-0 text-right">
+                    <span className="text-4xl font-extrabold leading-none" style={{ color: '#8BC34A' }}>{content.investment.timeline.duration}</span>
+                    <span className="block text-lg font-bold" style={{ color: '#8BC34A' }}>{content.investment.timeline.durationUnit}</span>
+                  </div>
                 </div>
               </div>
             </div>
