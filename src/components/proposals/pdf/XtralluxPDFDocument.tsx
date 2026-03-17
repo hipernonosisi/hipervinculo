@@ -362,7 +362,6 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
             </View>
           </View>
         </View>
-        </View>
 
         {/* Commission Example */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 16, marginBottom: 12 }}>
