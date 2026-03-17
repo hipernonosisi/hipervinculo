@@ -20,6 +20,7 @@ import { CostaFirmeProposal } from '@/components/proposals/CostaFirmeProposal';
 import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmobiliariosProposal';
 import { FutureAlkalineProposal } from '@/components/proposals/FutureAlkalineProposal';
 import { RasettaInnovationsProposal } from '@/components/proposals/RasettaInnovationsProposal';
+import { XtralluxProposal } from '@/components/proposals/XtralluxProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
