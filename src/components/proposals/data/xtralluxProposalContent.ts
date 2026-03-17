@@ -295,7 +295,7 @@ export const xtralluxProposalContent = {
     ],
   },
   legalTerms: {
-    title: 'LEGAL TERMS',
+    title: 'Agreement Details',
     sections: [
       {
         heading: 'Payment Method & Services',
