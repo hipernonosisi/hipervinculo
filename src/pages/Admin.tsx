@@ -908,6 +908,15 @@ export default function Admin() {
                   <Building className="w-4 h-4" />
                   Rasetta Innovations
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('xtrallux')}
+                  className={`gap-2 ${activeProposal === 'xtrallux' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Building className="w-4 h-4" />
+                  XTRALLUX
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
@@ -916,6 +925,7 @@ export default function Admin() {
                   {activeProposal === 'valoresinmobiliarios' && <ValoresInmobiliariosProposal />}
                   {activeProposal === 'futurealkaline' && <FutureAlkalineProposal />}
                   {activeProposal === 'rasettainnovations' && <RasettaInnovationsProposal />}
+                  {activeProposal === 'xtrallux' && <XtralluxProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
