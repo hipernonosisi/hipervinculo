@@ -457,18 +457,19 @@ export function XtralluxProposal() {
             </div>
           </Page>
 
-          {/* PAGE 10: Legal Terms */}
+          {/* PAGE 10: Agreement Details */}
           <Page bg="#f8f9f5">
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Agreement</p>
               <h2 className="text-3xl font-extrabold mb-8" style={{ color: '#2d4a2d' }}>{content.legalTerms.title}</h2>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {content.legalTerms.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="font-extrabold text-[15px] mb-2" style={{ color: '#2d4a2d' }}>{section.heading}</h3>
-                    <ol className="space-y-1.5 pl-6 list-decimal">
+                    <h3 className="font-extrabold text-[15px] mb-2.5" style={{ color: '#2d4a2d' }}>{section.heading}</h3>
+                    <ol className="space-y-2 pl-6 list-decimal">
                       {section.items.map((item, j) => (
-                        <li key={j} className="text-[13px] text-gray-600 leading-relaxed pl-1">{item}</li>
+                        <li key={j} className="text-[12px] text-gray-600 leading-relaxed pl-1">{item}</li>
                       ))}
                     </ol>
                   </div>
