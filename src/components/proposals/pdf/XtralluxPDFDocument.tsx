@@ -316,7 +316,7 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
       </Page>
 
       {/* PAGE 8: Investment Summary */}
-      <Page size="A4" style={s.pageBg}>
+      <Page size="A4" style={{ ...s.pageBg, padding: 50 }}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
