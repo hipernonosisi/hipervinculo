@@ -21,6 +21,7 @@ import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmo
 import { FutureAlkalineProposal } from '@/components/proposals/FutureAlkalineProposal';
 import { RasettaInnovationsProposal } from '@/components/proposals/RasettaInnovationsProposal';
 import { XtralluxProposal } from '@/components/proposals/XtralluxProposal';
+import { TailyProposal } from '@/components/proposals/TailyProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
