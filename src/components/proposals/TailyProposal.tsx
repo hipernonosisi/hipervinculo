@@ -294,7 +294,7 @@ export function TailyProposal() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white rounded-2xl p-5 text-center" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                   <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Target TACOS</p>
-                  <p className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>10–20%</p>
+                  <p className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>10–25%</p>
                 </div>
                 <div className="bg-white rounded-2xl p-5 text-center" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                   <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Target Net Profit</p>

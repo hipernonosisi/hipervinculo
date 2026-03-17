@@ -147,7 +147,7 @@ export const tailyProposalContent = {
       netProfit: { label: 'Net Profit', value: '$200,000' },
       commission: { label: 'Hipervínculo Commission (5%)', value: '$10,000' },
       note: 'All figures are sourced directly from the agreed-upon financial tracking platform. The net profit number is the definitive figure used to calculate our 5% commission each month.',
-      tacos: { label: 'TACOS in this example', value: '10%', target: 'Target: 10–20%' },
+      tacos: { label: 'TACOS in this example', value: '10%', target: 'Target: 10–25%' },
       profitMargin: { label: 'Net Profit Margin', value: '20%', target: 'Target: 15–25%' },
     },
   },

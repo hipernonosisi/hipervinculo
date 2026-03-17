@@ -267,7 +267,7 @@ export function TailyPDFDocument({ logoBase64 }: Props) {
         <View style={{ flexDirection: 'row', gap: 14 }}>
           <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, paddingVertical: 16, alignItems: 'center' }}>
             <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 2, marginBottom: 6 }}>TARGET TACOS</Text>
-            <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime }}>10–20%</Text>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime }}>10–25%</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, paddingVertical: 16, alignItems: 'center' }}>
             <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 2, marginBottom: 6 }}>TARGET NET PROFIT</Text>
