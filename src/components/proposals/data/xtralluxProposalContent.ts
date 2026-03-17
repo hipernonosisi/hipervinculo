@@ -222,7 +222,7 @@ export const xtralluxProposalContent = {
         label: 'Management Commission',
         rate: '15%',
         basis: 'of Net Profit',
-        description: 'Calculated on net profitability after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). If there is no net profit in a given month, no commission is charged.',
+        description: 'Calculated on net profitability as reported by Sellerise, after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). The Sellerise figure is the definitive and binding source for all commission calculations. If there is no net profit in a given month, no commission is charged.',
       },
       sellerise: {
         label: 'Sellerise Subscription',
