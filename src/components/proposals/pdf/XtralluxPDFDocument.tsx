@@ -322,45 +322,46 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 24 }}>{content.investment.headline}</Text>
 
-        <View style={{ flexDirection: 'row', gap: 14, marginBottom: 12 }}>
+        <View style={{ flexDirection: 'row', gap: 16, marginBottom: 14 }}>
           {/* Setup */}
-          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 18 }}>
-            <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 12 }}>{content.investment.setup.title}</Text>
+          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 22 }}>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, marginBottom: 16 }}>{content.investment.setup.title}</Text>
             {content.investment.setup.items.map((item, i) => (
-              <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8, alignItems: 'baseline' }}>
-                <View style={{ flex: 1, paddingRight: 8 }}>
-                  <Text style={{ fontSize: 9, color: '#374151', fontWeight: 'medium' }}>{item.name}</Text>
-                  <Text style={{ fontSize: 7, color: grayLight }}>{item.detail}</Text>
+              <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
+                <View style={{ flex: 1, paddingRight: 12 }}>
+                  <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{item.name}</Text>
+                  <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>({item.detail})</Text>
                 </View>
-                <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
               </View>
             ))}
-            <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', paddingTop: 10, marginTop: 4, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>Total Setup</Text>
-              <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime }}>{content.investment.setup.total}</Text>
+            <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 12, marginTop: 4, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Text style={{ fontSize: 11, fontWeight: 'bold', color: green }}>Total Setup</Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: lime }}>{content.investment.setup.total}</Text>
             </View>
           </View>
           {/* Ongoing */}
-          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 18 }}>
-            <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 12 }}>{content.investment.ongoing.title}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f3f4f6' }}>
-              <View>
-                <Text style={{ fontSize: 9, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.commission.label}</Text>
-                <Text style={{ fontSize: 7, color: grayLight }}>{content.investment.ongoing.commission.basis}</Text>
+          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 22 }}>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, marginBottom: 16 }}>{content.investment.ongoing.title}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, paddingBottom: 12, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
+              <View style={{ flex: 1, paddingRight: 8 }}>
+                <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.commission.label}</Text>
+                <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{content.investment.ongoing.commission.basis}</Text>
               </View>
-              <Text style={{ fontSize: 26, fontWeight: 'bold', color: lime, flexShrink: 0 }}>{content.investment.ongoing.commission.rate}</Text>
+              <Text style={{ fontSize: 28, fontWeight: 'bold', color: lime, flexShrink: 0 }}>{content.investment.ongoing.commission.rate}</Text>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-              <View>
-                <Text style={{ fontSize: 9, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.sellerise.label}</Text>
-                <Text style={{ fontSize: 7, color: grayLight }}>{content.investment.ongoing.sellerise.detail}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, paddingBottom: 12, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
+              <View style={{ flex: 1, paddingRight: 8 }}>
+                <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.sellerise.label}</Text>
+                <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{content.investment.ongoing.sellerise.detail}</Text>
               </View>
-              <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, flexShrink: 0 }}>{content.investment.ongoing.sellerise.price}</Text>
+              <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, flexShrink: 0 }}>{content.investment.ongoing.sellerise.price}</Text>
             </View>
-            <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', paddingTop: 8, marginTop: 2 }}>
-              <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.commission.description}</Text>
+            <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 10 }}>
+              <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.commission.description}</Text>
             </View>
           </View>
+        </View>
         </View>
 
         {/* Commission Example */}
