@@ -330,7 +330,7 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
               <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
                 <View style={{ flex: 1, paddingRight: 12 }}>
                   <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{item.name}</Text>
-                  <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>({item.detail})</Text>
+                  <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{item.detail}</Text>
                 </View>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
               </View>
