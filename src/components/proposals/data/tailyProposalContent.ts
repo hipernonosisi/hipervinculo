@@ -41,7 +41,7 @@ export const tailyProposalContent = {
       },
       {
         title: 'Bid Optimization & Budget Management',
-        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–20% target range.',
+        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–25% target range.',
       },
       {
         title: 'Keyword Research & Harvesting',
@@ -61,7 +61,7 @@ export const tailyProposalContent = {
     title: 'Amazon Advertising Management',
     headline: 'Sponsored Campaigns Optimized for Profit',
     description:
-      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS levels (10–20%) while aggressively growing market share and organic rankings, targeting a net profit margin of 15–25%.',
+      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS levels (10–25%) while aggressively growing market share and organic rankings, targeting a net profit margin of 15–25%.',
     includes: [
       {
         title: 'Sponsored Products Campaigns',
@@ -81,7 +81,7 @@ export const tailyProposalContent = {
       },
       {
         title: 'Bid Optimization & Budget Management',
-        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–20% target range.',
+        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 10–25% target range.',
       },
       {
         title: 'Keyword Research & Harvesting',
@@ -147,7 +147,7 @@ export const tailyProposalContent = {
       netProfit: { label: 'Net Profit', value: '$200,000' },
       commission: { label: 'Hipervínculo Commission (5%)', value: '$10,000' },
       note: 'All figures are sourced directly from the agreed-upon financial tracking platform. The net profit number is the definitive figure used to calculate our 5% commission each month.',
-      tacos: { label: 'TACOS in this example', value: '10%', target: 'Target: 10–20%' },
+      tacos: { label: 'TACOS in this example', value: '10%', target: 'Target: 10–25%' },
       profitMargin: { label: 'Net Profit Margin', value: '20%', target: 'Target: 15–25%' },
     },
   },
