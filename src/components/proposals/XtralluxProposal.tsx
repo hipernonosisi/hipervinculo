@@ -333,43 +333,60 @@ export function XtralluxProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              <div className="grid grid-cols-2 gap-5 mb-5">
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 {/* Setup */}
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
-                  {content.investment.setup.items.map((item, i) => (
-                    <div key={i} className="flex items-baseline justify-between mb-3">
-                      <div className="flex-1 pr-3">
-                        <span className="text-sm text-gray-700 font-medium">{item.name}</span>
-                        <span className="text-xs text-gray-400 ml-1">({item.detail})</span>
-                      </div>
-                      <span className="font-extrabold text-xl flex-shrink-0" style={{ color: '#2d4a2d' }}>{item.price}</span>
-                    </div>
-                  ))}
-                  <div className="border-t border-gray-200 pt-4 mt-3 flex items-center justify-between">
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.setup.title}</h3>
+                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 6px' }}>
+                    <tbody>
+                      {content.investment.setup.items.map((item, i) => (
+                        <tr key={i}>
+                          <td className="py-2 pr-4 align-top">
+                            <span className="text-[14px] text-gray-700 font-medium">{item.name}</span>
+                            <span className="text-xs text-gray-400 ml-1.5">({item.detail})</span>
+                          </td>
+                          <td className="py-2 text-right align-top whitespace-nowrap">
+                            <span className="font-extrabold text-xl" style={{ color: '#2d4a2d' }}>{item.price}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="border-t border-gray-200 pt-5 mt-4 flex items-center justify-between">
                     <span className="font-bold text-sm" style={{ color: '#2d4a2d' }}>Total Setup</span>
                     <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.setup.total}</span>
                   </div>
                 </div>
 
                 {/* Ongoing */}
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
-                  <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
-                    <div>
-                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
-                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
-                    </div>
-                    <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
-                  </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-sm text-gray-700 font-medium">{content.investment.ongoing.sellerise.label}</p>
-                      <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.sellerise.detail}</p>
-                    </div>
-                    <span className="font-bold text-lg flex-shrink-0" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.sellerise.price}</span>
-                  </div>
-                  <div className="border-t border-gray-200 pt-3 mt-1">
+                <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
+                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}>
+                    <tbody>
+                      <tr>
+                        <td className="py-2 pr-4 align-top">
+                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
+                        </td>
+                        <td className="py-2 text-right align-top whitespace-nowrap">
+                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan={2}><div className="border-b border-gray-100" /></td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 align-top">
+                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.sellerise.label}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.sellerise.detail}</p>
+                        </td>
+                        <td className="py-2 text-right align-top whitespace-nowrap">
+                          <span className="font-bold text-xl" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.sellerise.price}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="border-t border-gray-200 pt-4 mt-4">
                     <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.commission.description}</p>
                   </div>
                 </div>
