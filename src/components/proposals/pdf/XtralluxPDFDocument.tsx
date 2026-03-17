@@ -423,17 +423,18 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
 
-      {/* PAGE 10: Legal Terms */}
-      <Page size="A4" style={s.pageBg}>
+      {/* PAGE 10: Agreement Details */}
+      <Page size="A4" style={{ ...s.pageBg, padding: 50 }}>
         <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>AGREEMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 20 }}>{content.legalTerms.title}</Text>
         {content.legalTerms.sections.map((section, i) => (
-          <View key={i} style={{ marginBottom: 14 }}>
+          <View key={i} style={{ marginBottom: 16 }}>
             <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 6 }}>{section.heading}</Text>
             {section.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', gap: 6, marginBottom: 4, paddingLeft: 8 }}>
-                <Text style={{ fontSize: 9, color: gray }}>{j + 1}.</Text>
-                <Text style={{ fontSize: 9, color: gray, lineHeight: 1.5, flex: 1 }}>{item}</Text>
+              <View key={j} style={{ flexDirection: 'row', gap: 6, marginBottom: 5, paddingLeft: 10 }}>
+                <Text style={{ fontSize: 8.5, color: gray }}>{j + 1}.</Text>
+                <Text style={{ fontSize: 8.5, color: gray, lineHeight: 1.5, flex: 1 }}>{item}</Text>
               </View>
             ))}
           </View>
