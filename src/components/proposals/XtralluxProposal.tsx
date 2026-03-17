@@ -446,9 +446,9 @@ export function XtralluxProposal() {
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
                         <Icon className="w-5 h-5" style={{ color: '#8BC34A' }} />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{section.title}</h3>
-                        <p className="text-sm text-gray-500 mt-0.5 leading-relaxed">{section.description}</p>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{section.title}</h3>
+                        <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{section.description}</p>
                       </div>
                     </div>
                   );
