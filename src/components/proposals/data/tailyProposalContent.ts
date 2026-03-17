@@ -61,7 +61,7 @@ export const tailyProposalContent = {
     title: 'Amazon Advertising Management',
     headline: 'Sponsored Campaigns Optimized for Profit',
     description:
-      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS levels (10–20%) while aggressively growing market share and organic rankings, targeting a net profit margin of 15–25%.',
+      'We will create, manage, and continuously optimize your Amazon advertising campaigns with a profit-first approach. Our strategy focuses on maintaining healthy TACOS levels (10–25%) while aggressively growing market share and organic rankings, targeting a net profit margin of 15–25%.',
     includes: [
       {
         title: 'Sponsored Products Campaigns',
