@@ -401,7 +401,7 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
       </Page>
 
       {/* PAGE 9: Terms */}
-      <Page size="A4" style={s.page}>
+      <Page size="A4" style={{ ...s.page, padding: 50 }}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>TERMS</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.terms.title}</Text>
@@ -414,8 +414,8 @@ export function XtralluxPDFDocument({ logoBase64 }: Props) {
                 <Icon size={14} />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{section.title}</Text>
-                <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{section.description}</Text>
+                <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 2 }}>{section.title}</Text>
+                <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.45 }}>{section.description}</Text>
               </View>
             </View>
           );
