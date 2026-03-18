@@ -26,6 +26,7 @@ import ThankYouPreview from "./pages/ThankYouPreview";
 import Portfolio from "./pages/Portfolio";
 import CaseStudy from "./pages/CaseStudy";
 import Book from "./pages/Book";
+import AmazonCallback from "./pages/AmazonCallback";
 
 const queryClient = new QueryClient();
 
