@@ -276,7 +276,7 @@ export const LVTherapyPDFDocument = ({ content, logoBase64 }: LVTherapyPDFDocume
             <Text style={{ fontSize: 26, fontWeight: 'bold', color: colors.darkGreen, marginLeft: 12 }}>Target Keywords</Text>
           </View>
           {content.googleAds.targeting.map((kw, idx) => (
-            <View key={idx} style={{ backgroundColor: colors.white, borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10, marginBottom: 10, shadowColor: '#000', shadowOpacity: 0.03, shadowRadius: 4 }}>
+            <View key={idx} style={{ backgroundColor: colors.white, borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10, marginBottom: 10 }}>
               <Text style={{ fontSize: 22, color: colors.darkGreen, fontFamily: 'Courier' }}>{kw}</Text>
             </View>
           ))}
