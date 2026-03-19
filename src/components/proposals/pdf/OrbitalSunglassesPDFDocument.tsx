@@ -399,7 +399,46 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Eclipse + Hipervínculo</Text>
       </Page>
 
-      {/* PAGE 10: Contact */}
+      {/* PAGE 10: Signature */}
+      <Page size="A4" style={s.pageBg}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>ACEPTACIÓN</Text>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 8 }}>Firma de Acuerdo</Text>
+        <Text style={{ fontSize: 9, color: gray, marginBottom: 30, lineHeight: 1.5, maxWidth: 340 }}>
+          Al firmar este documento, ambas partes aceptan los términos y condiciones descritos en esta propuesta.
+        </Text>
+
+        <View style={{ flexDirection: 'row', gap: 40, flex: 1, alignItems: 'flex-start', marginTop: 20 }}>
+          {/* Client */}
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, letterSpacing: 2, marginBottom: 4 }}>EL CLIENTE</Text>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, marginBottom: 2 }}>Gustavo Holstein</Text>
+            <Text style={{ fontSize: 8, color: grayLight, marginBottom: 40 }}>Orbital Sunglasses</Text>
+            <View style={{ borderBottomWidth: 1.5, borderBottomColor: '#cccccc', marginBottom: 6, height: 50 }} />
+            <Text style={{ fontSize: 7, color: grayLight }}>Firma</Text>
+            <View style={{ borderBottomWidth: 0.5, borderBottomColor: '#e0e0e0', marginBottom: 6, height: 30, marginTop: 16 }} />
+            <Text style={{ fontSize: 7, color: grayLight }}>Fecha</Text>
+          </View>
+
+          {/* Agency */}
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, letterSpacing: 2, marginBottom: 4 }}>LA AGENCIA</Text>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, marginBottom: 2 }}>Eclipse Marketing & CX + Hipervínculo</Text>
+            <Text style={{ fontSize: 8, color: grayLight, marginBottom: 40 }}>Miguel Camacho — Director</Text>
+            <View style={{ borderBottomWidth: 1.5, borderBottomColor: '#cccccc', marginBottom: 6, height: 50 }} />
+            <Text style={{ fontSize: 7, color: grayLight }}>Firma</Text>
+            <View style={{ borderBottomWidth: 0.5, borderBottomColor: '#e0e0e0', marginBottom: 6, height: 30, marginTop: 16 }} />
+            <Text style={{ fontSize: 7, color: grayLight }}>Fecha</Text>
+          </View>
+        </View>
+
+        <Text style={{ fontSize: 7, color: grayLight, textAlign: 'center', marginTop: 20 }}>
+          Este documento tiene validez como acuerdo entre las partes una vez firmado por ambos representantes.
+        </Text>
+        <Text style={s.footer}>Eclipse + Hipervínculo</Text>
+      </Page>
+
+      {/* PAGE 11: Contact */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
         <View style={{ backgroundColor: green, padding: 40, flex: 1 }}>
           <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 8 }}>CONTÁCTANOS</Text>
