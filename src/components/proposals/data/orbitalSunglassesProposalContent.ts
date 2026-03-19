@@ -246,7 +246,7 @@ export const orbitalSunglassesProposalContent = {
         items: [
           'La alianza Eclipse + Hipervínculo se encargará del desarrollo de la tienda Shopify, gestión de campañas publicitarias en Google y Meta, y asesoría estratégica.',
           'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan por separado.',
-          'No se incluye la creación de contenido audiovisual (fotografía, video). El cliente debe proveer los assets necesarios.',
+          'La fotografía de producto será generada con inteligencia artificial. No se incluye producción audiovisual tradicional (sesiones fotográficas, video).',
           'No se incluyen servicios de logística, fulfillment, gestión de inventario físico, ni funciones administrativas o contables.',
         ],
       },
