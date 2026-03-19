@@ -351,7 +351,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Google Business Profile optimization',
           'Lead qualification bot setup & configuration',
           'Full tracking infrastructure (Google, Meta, server-side)',
-          'Local directory submissions (20+ listings)',
+          'Local SEO strategy & Google Business Profile setup',
         ],
       },
       monthly: {
