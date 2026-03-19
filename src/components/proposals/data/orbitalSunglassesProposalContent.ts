@@ -51,7 +51,7 @@ export const orbitalSunglassesProposalContent = {
     price: '$7,500',
     priceLabel: 'Inversión Única',
     description:
-      'Desarrollaremos la tienda completa de Orbital Sunglasses en Shopify con un enfoque profesional. Incluye selección y configuración del template, dirección gráfica alineada a la marca, optimización del flujo de compra, y revisión de calidad de todos los assets visuales. Hasta 25 productos configurados. Productos adicionales se cotizan por separado a $150 por producto.',
+      'Desarrollaremos la tienda completa de Orbital Sunglasses en Shopify con un enfoque profesional. Incluye selección y configuración del template, dirección gráfica alineada a la marca, optimización del flujo de compra, y revisión de calidad de todos los assets visuales. Hasta 25 productos configurados. Productos adicionales se cotizan por separado.',
     includes: [
       {
         title: 'Diseño y Configuración del Template',
@@ -63,7 +63,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         title: 'Configuración de Productos',
-        description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios. Productos adicionales más allá de los 25 incluidos se cotizan a $150/producto.',
+        description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios. Productos adicionales más allá de los 25 incluidos se cotizan por separado.',
       },
       {
         title: 'Optimización UX/UI del Funnel',
@@ -241,7 +241,7 @@ export const orbitalSunglassesProposalContent = {
         heading: 'Alcance y Exclusiones',
         items: [
           'La alianza Eclipse + Hipervínculo se encargará del desarrollo de la tienda Shopify, gestión de campañas publicitarias en Google y Meta, y asesoría estratégica.',
-          'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan a $150 por producto, incluyendo configuración completa de variantes, imágenes y descripciones.',
+          'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan por separado.',
           'No se incluye la creación de contenido audiovisual (fotografía, video). El cliente debe proveer los assets necesarios.',
           'No se incluyen servicios de logística, fulfillment, gestión de inventario físico, ni funciones administrativas o contables.',
         ],
