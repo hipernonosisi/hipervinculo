@@ -299,8 +299,8 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           description: 'Automated post-session email/SMS flow requesting Google reviews. Reviews are the #1 ranking factor for local SEO.',
         },
         {
-          title: 'Local Directory Listings',
-          description: 'Consistent NAP (name, address, phone) across Psychology Today, TherapyDen, Zocdoc, and 20+ directories.',
+          title: 'Local Directory Listings (Recommended)',
+          description: 'We recommend maintaining consistent NAP (name, address, phone) across Psychology Today, TherapyDen, Zocdoc, and 20+ directories — this is something your team can handle directly.',
         },
         {
           title: 'Location-Based Content',
@@ -351,7 +351,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Google Business Profile optimization',
           'Lead qualification bot setup & configuration',
           'Full tracking infrastructure (Google, Meta, server-side)',
-          'Local directory submissions (20+ listings)',
+          'Local SEO strategy & Google Business Profile setup',
         ],
       },
       monthly: {
@@ -605,8 +605,8 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           description: 'Flujo automatizado post-sesión por email/SMS solicitando reseñas en Google. Las reseñas son el factor #1 de ranking.',
         },
         {
-          title: 'Listados en Directorios Locales',
-          description: 'NAP consistente en Psychology Today, TherapyDen, Zocdoc y 20+ directorios.',
+          title: 'Listados en Directorios Locales (Recomendación)',
+          description: 'Recomendamos mantener NAP consistente en Psychology Today, TherapyDen, Zocdoc y 20+ directorios — esto es algo que tu equipo puede gestionar directamente.',
         },
         {
           title: 'Contenido Basado en Ubicación',
@@ -657,7 +657,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Optimización de Google Business Profile',
           'Setup y configuración de bot de calificación',
           'Infraestructura completa de tracking (Google, Meta, server-side)',
-          'Envíos a directorios locales (20+ listados)',
+          'Estrategia de SEO local y setup de Google Business Profile',
         ],
       },
       monthly: {
