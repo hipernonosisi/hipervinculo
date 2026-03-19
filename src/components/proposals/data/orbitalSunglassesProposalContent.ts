@@ -181,7 +181,7 @@ export const orbitalSunglassesProposalContent = {
         { label: 'Fees de Shopify & Procesamiento', value: '−$5,000', type: 'deduction' as const },
       ],
       netProfit: { label: 'Profit Neto', value: '$47,000' },
-      commission: { label: 'Comisión Eclipse + Hipervínculo (10%)', value: '$6,000' },
+      commission: { label: 'Comisión Eclipse + Hipervínculo (10%)', value: '$4,700' },
       note: 'Todas las cifras se obtienen de los reportes de ventas de Shopify. El costo de producto (COGS landed) incluye producto, importación, flete y almacenamiento en USA. El profit neto es la cifra definitiva utilizada para calcular la comisión del 10% cada mes.',
     },
     timeline: {
