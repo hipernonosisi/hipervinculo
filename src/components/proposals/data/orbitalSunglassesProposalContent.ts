@@ -292,7 +292,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         company: 'Hipervínculo',
-        name: 'Miguel Sánchez — Director',
+        name: 'Miguel Camacho — Director',
         email: 'info@hipervinculo.net',
         phone: '+1 (786) 529-0679',
         website: 'hipervinculo.net',
