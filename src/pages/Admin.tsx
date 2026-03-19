@@ -15,6 +15,7 @@ import { BrandIdentityPresentation } from '@/components/presentations/BrandIdent
 import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
+import { LVTherapyPresentation } from '@/components/presentations/LVTherapyPresentation';
 import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 import { CostaFirmeProposal } from '@/components/proposals/CostaFirmeProposal';
 import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmobiliariosProposal';
