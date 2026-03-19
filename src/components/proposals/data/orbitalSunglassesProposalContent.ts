@@ -75,7 +75,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         title: 'Fotografía de Producto con IA',
-        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones.',
+        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones. No incluye contenido en video.',
       },
       {
         title: 'Revisión de Assets Visuales',
@@ -246,7 +246,7 @@ export const orbitalSunglassesProposalContent = {
         items: [
           'La alianza Eclipse + Hipervínculo se encargará del desarrollo de la tienda Shopify, gestión de campañas publicitarias en Google y Meta, y asesoría estratégica.',
           'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan por separado.',
-          'La fotografía de producto será generada con inteligencia artificial. No se incluye producción audiovisual tradicional (sesiones fotográficas, video).',
+          'La fotografía de producto será generada con inteligencia artificial. No se incluye producción de video ni contenido audiovisual en movimiento.',
           'No se incluyen servicios de logística, fulfillment, gestión de inventario físico, ni funciones administrativas o contables.',
         ],
       },
