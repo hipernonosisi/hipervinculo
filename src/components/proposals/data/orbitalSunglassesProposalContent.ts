@@ -63,7 +63,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         title: 'Configuración de Productos',
-        description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios. Productos adicionales más allá de los 25 incluidos se cotizan a $150/producto.',
+        description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios. Productos adicionales más allá de los 25 incluidos se cotizan por separado.',
       },
       {
         title: 'Optimización UX/UI del Funnel',
