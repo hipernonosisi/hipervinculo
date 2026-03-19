@@ -368,7 +368,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Recommended ad spend: $2,000 - $5,000/mo',
         ],
       },
-      note: 'Video filming is your responsibility — we provide creative direction, scripts, and handle all editing and post-production. Ad spend is billed directly by Google/Meta.',
+      note: 'Video filming is your responsibility — we provide creative direction, scripts, and handle all editing and post-production. Alternatively, we can create AI-powered avatar videos if you prefer not to film. Ad spend is billed directly by Google/Meta.',
     },
     otherServices: {
       title: 'Other Services We Offer',
