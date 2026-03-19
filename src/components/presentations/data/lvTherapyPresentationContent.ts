@@ -605,8 +605,8 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           description: 'Flujo automatizado post-sesión por email/SMS solicitando reseñas en Google. Las reseñas son el factor #1 de ranking.',
         },
         {
-          title: 'Listados en Directorios Locales',
-          description: 'NAP consistente en Psychology Today, TherapyDen, Zocdoc y 20+ directorios.',
+          title: 'Listados en Directorios Locales (Recomendación)',
+          description: 'Recomendamos mantener NAP consistente en Psychology Today, TherapyDen, Zocdoc y 20+ directorios — esto es algo que tu equipo puede gestionar directamente.',
         },
         {
           title: 'Contenido Basado en Ubicación',
