@@ -22,6 +22,7 @@ import { FutureAlkalineProposal } from '@/components/proposals/FutureAlkalinePro
 import { RasettaInnovationsProposal } from '@/components/proposals/RasettaInnovationsProposal';
 import { XtralluxProposal } from '@/components/proposals/XtralluxProposal';
 import { TailyProposal } from '@/components/proposals/TailyProposal';
+import { OrbitalSunglassesProposal } from '@/components/proposals/OrbitalSunglassesProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
