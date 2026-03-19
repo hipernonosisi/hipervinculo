@@ -241,7 +241,7 @@ export const orbitalSunglassesProposalContent = {
         heading: 'Alcance y Exclusiones',
         items: [
           'La alianza Eclipse + Hipervínculo se encargará del desarrollo de la tienda Shopify, gestión de campañas publicitarias en Google y Meta, y asesoría estratégica.',
-          'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan a $150 por producto, incluyendo configuración completa de variantes, imágenes y descripciones.',
+          'El desarrollo incluye hasta 25 productos. Productos adicionales se cotizan por separado.',
           'No se incluye la creación de contenido audiovisual (fotografía, video). El cliente debe proveer los assets necesarios.',
           'No se incluyen servicios de logística, fulfillment, gestión de inventario físico, ni funciones administrativas o contables.',
         ],
