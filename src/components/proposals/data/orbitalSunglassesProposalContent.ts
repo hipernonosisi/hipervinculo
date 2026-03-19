@@ -74,8 +74,12 @@ export const orbitalSunglassesProposalContent = {
         description: 'Configuración de Google Analytics, Meta Pixel, Google Merchant Center, y herramientas de email marketing (Klaviyo) para tracking completo.',
       },
       {
+        title: 'Fotografía de Producto con IA',
+        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones.',
+      },
+      {
         title: 'Revisión de Assets Visuales',
-        description: 'Evaluación de imágenes y videos existentes para asegurar estándares de calidad. Sugerencias sobre nuevos assets a producir.',
+        description: 'Evaluación de imágenes y videos existentes para asegurar estándares de calidad. Complemento con assets generados por IA donde sea necesario.',
       },
       {
         title: 'Responsive & Mobile-First',
