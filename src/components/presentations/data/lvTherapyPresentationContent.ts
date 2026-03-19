@@ -299,8 +299,8 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           description: 'Automated post-session email/SMS flow requesting Google reviews. Reviews are the #1 ranking factor for local SEO.',
         },
         {
-          title: 'Local Directory Listings',
-          description: 'Consistent NAP (name, address, phone) across Psychology Today, TherapyDen, Zocdoc, and 20+ directories.',
+          title: 'Local Directory Listings (Recommended)',
+          description: 'We recommend maintaining consistent NAP (name, address, phone) across Psychology Today, TherapyDen, Zocdoc, and 20+ directories — this is something your team can handle directly.',
         },
         {
           title: 'Location-Based Content',
