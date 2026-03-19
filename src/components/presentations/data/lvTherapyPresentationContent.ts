@@ -657,7 +657,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Optimización de Google Business Profile',
           'Setup y configuración de bot de calificación',
           'Infraestructura completa de tracking (Google, Meta, server-side)',
-          'Envíos a directorios locales (20+ listados)',
+          'Estrategia de SEO local y setup de Google Business Profile',
         ],
       },
       monthly: {
