@@ -15,6 +15,7 @@ import { BrandIdentityPresentation } from '@/components/presentations/BrandIdent
 import { ShopifyDevPresentation } from '@/components/presentations/ShopifyDevPresentation';
 import { LandingPagePresentation } from '@/components/presentations/LandingPagePresentation';
 import { MetaAdsPresentation } from '@/components/presentations/MetaAdsPresentation';
+import { LVTherapyPresentation } from '@/components/presentations/LVTherapyPresentation';
 import { SkyscraperProposal } from '@/components/proposals/SkyscraperProposal';
 import { CostaFirmeProposal } from '@/components/proposals/CostaFirmeProposal';
 import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmobiliariosProposal';
@@ -90,7 +91,7 @@ export default function Admin() {
   const [selectedChat, setSelectedChat] = useState<ChatConversation | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
-  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads'>('leadgen');
+  const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
   const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
@@ -823,6 +824,15 @@ export default function Admin() {
                   <Megaphone className="w-4 h-4" />
                   Meta Ads
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActivePresentation('lvtherapy')}
+                  className={`gap-2 ${activePresentation === 'lvtherapy' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Target className="w-4 h-4" />
+                  LV Therapy
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
@@ -831,6 +841,7 @@ export default function Admin() {
                   {activePresentation === 'shopifydev' && <ShopifyDevPresentation />}
                   {activePresentation === 'landingpage' && <LandingPagePresentation />}
                   {activePresentation === 'metaads' && <MetaAdsPresentation />}
+                  {activePresentation === 'lvtherapy' && <LVTherapyPresentation />}
                 </CardContent>
               </Card>
             </TabsContent>
