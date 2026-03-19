@@ -407,7 +407,53 @@ export function OrbitalSunglassesProposal() {
             </div>
           </Page>
 
-          {/* PAGE 10: Contact */}
+          {/* PAGE 10: Signature */}
+          <Page bg="#f8f9f5">
+            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Aceptación</p>
+              <h2 className="text-3xl font-extrabold mb-3" style={{ color: '#2d4a2d' }}>Firma de Acuerdo</h2>
+              <p className="text-sm text-gray-500 mb-12 max-w-lg">
+                Al firmar este documento, ambas partes aceptan los términos y condiciones descritos en esta propuesta.
+              </p>
+
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="grid grid-cols-2 gap-16">
+                  {/* Client signature */}
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] mb-1" style={{ color: '#8BC34A' }}>El Cliente</p>
+                    <p className="font-bold text-[15px] mb-1" style={{ color: '#2d4a2d' }}>Gustavo Holstein</p>
+                    <p className="text-xs text-gray-400 mb-8">Orbital Sunglasses</p>
+                    <div className="border-b-2 border-gray-300 mb-2 h-16" />
+                    <p className="text-xs text-gray-400">Firma</p>
+                    <div className="mt-6">
+                      <div className="border-b border-gray-200 mb-2 h-8" />
+                      <p className="text-xs text-gray-400">Fecha</p>
+                    </div>
+                  </div>
+
+                  {/* Agency signature */}
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] mb-1" style={{ color: '#8BC34A' }}>La Agencia</p>
+                    <p className="font-bold text-[15px] mb-1" style={{ color: '#2d4a2d' }}>Eclipse Marketing & CX + Hipervínculo</p>
+                    <p className="text-xs text-gray-400 mb-8">Miguel Camacho — Director</p>
+                    <div className="border-b-2 border-gray-300 mb-2 h-16" />
+                    <p className="text-xs text-gray-400">Firma</p>
+                    <div className="mt-6">
+                      <div className="border-b border-gray-200 mb-2 h-8" />
+                      <p className="text-xs text-gray-400">Fecha</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[10px] text-gray-400 text-center mt-8">
+                Este documento tiene validez como acuerdo entre las partes una vez firmado por ambos representantes.
+              </p>
+            </div>
+          </Page>
+
+          {/* PAGE 11: Contact */}
           <Page>
             <div className="flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px` }}>
               <div className="px-16 py-14 flex-1" style={{ backgroundColor: '#2d4a2d' }}>
