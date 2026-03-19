@@ -586,7 +586,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
       ],
       comparison: [
         { label: 'Velocidad', current: '4-6 segundos', proposed: '<2 segundos' },
-        { label: 'Tasa de Conversión', current: '~1-2%', proposed: '8-15%' },
+        { label: 'Tasa de Conversión', current: '~1-2%', proposed: '3-5%' },
         { label: 'UX Móvil', current: 'Genérica', proposed: 'Optimizada para terapia' },
         { label: 'Tracking', current: 'Ninguno', proposed: 'Atribución completa' },
       ],
