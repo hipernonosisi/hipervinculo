@@ -75,7 +75,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         title: 'Fotografía de Producto con IA',
-        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones.',
+        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones. No incluye contenido en video.',
       },
       {
         title: 'Revisión de Assets Visuales',
