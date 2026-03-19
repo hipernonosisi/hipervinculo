@@ -947,6 +947,7 @@ export default function Admin() {
                   {activeProposal === 'rasettainnovations' && <RasettaInnovationsProposal />}
                   {activeProposal === 'xtrallux' && <XtralluxProposal />}
                   {activeProposal === 'taily' && <TailyProposal />}
+                  {activeProposal === 'orbital' && <OrbitalSunglassesProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
