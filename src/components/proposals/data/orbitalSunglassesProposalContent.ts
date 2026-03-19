@@ -4,6 +4,7 @@ export const orbitalSunglassesProposalContent = {
     subtitle: 'Paid Advertising &\nShopify Development\npara Orbital Sunglasses',
     tagline: 'Eclipse Marketing & CX + Hipervínculo',
     alliance: 'En alianza estratégica',
+    preparedFor: 'Preparado para Gustavo Holstein',
   },
   about: {
     title: 'Quiénes Somos',
