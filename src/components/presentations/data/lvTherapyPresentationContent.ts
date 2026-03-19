@@ -405,6 +405,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
       address: '2645 Executive Park Dr, Suite 146\nWeston, FL 33331',
       website: 'hipervinculo.net',
       cta: 'Schedule a Call',
+      ctaLink: 'https://calendly.com/hipervinculo_usa/30-minutes-call',
     },
   },
   es: {
