@@ -366,7 +366,7 @@ export const LVTherapyPDFDocument = ({ content, logoBase64 }: LVTherapyPDFDocume
       <Text style={{ fontSize: 28, color: colors.gray, lineHeight: 1.5, marginBottom: 32 }}>{content.localSeo.description}</Text>
       <View style={{ flexDirection: 'row' as const, flexWrap: 'wrap' as const, gap: 24 }}>
         {content.localSeo.actions.map((action, idx) => (
-          <View key={idx} style={{ width: '48%', backgroundColor: colors.white, borderRadius: 16, padding: 28, shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 8 }}>
+          <View key={idx} style={{ width: '48%', backgroundColor: colors.white, borderRadius: 16, padding: 28 }}>
             <View style={{ flexDirection: 'row' as const, alignItems: 'center' as const, marginBottom: 12 }}>
               <View style={{ width: 44, height: 44, borderRadius: 10, backgroundColor: colors.limeGreenLight, alignItems: 'center' as const, justifyContent: 'center' as const, marginRight: 12 }}>
                 <MapPinIcon size={20} />
