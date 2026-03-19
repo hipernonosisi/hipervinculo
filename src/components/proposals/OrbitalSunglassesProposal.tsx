@@ -103,7 +103,8 @@ export function OrbitalSunglassesProposal() {
                 <h1 className="text-5xl font-extrabold text-white mb-5 leading-[1.1] whitespace-pre-line">
                   {content.cover.subtitle}
                 </h1>
-                <p className="text-xl text-white/60 mb-10">{content.cover.tagline}</p>
+                <p className="text-xl text-white/60 mb-4">{content.cover.tagline}</p>
+                <p className="text-sm text-white/40 mb-10 tracking-wide">{content.cover.preparedFor}</p>
                 <div className="w-20 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
               </div>
               <div className="px-16 py-6 flex items-center justify-between bg-white">

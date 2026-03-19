@@ -131,8 +131,11 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
           <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'white', marginBottom: 10, lineHeight: 1.15 }}>
             {content.cover.subtitle}
           </Text>
-          <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 24 }}>
+          <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>
             {content.cover.tagline}
+          </Text>
+          <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', marginBottom: 24, letterSpacing: 0.5 }}>
+            {content.cover.preparedFor}
           </Text>
           <View style={{ width: 50, height: 3, backgroundColor: lime }} />
         </View>
