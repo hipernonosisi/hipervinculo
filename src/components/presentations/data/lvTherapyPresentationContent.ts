@@ -674,7 +674,7 @@ export const lvTherapyPresentationContent: Record<LVTherapyLanguage, LVTherapyCo
           'Inversión recomendada en ads: $2,000 - $5,000/mes',
         ],
       },
-      note: 'La filmación de video es tu responsabilidad — nosotros proveemos dirección creativa, guiones y manejamos toda la edición y post-producción. La inversión en ads se factura directamente por Google/Meta.',
+      note: 'La filmación de video es tu responsabilidad — nosotros proveemos dirección creativa, guiones y manejamos toda la edición y post-producción. Alternativamente, podemos crear videos con avatares de IA si prefieres no filmar. La inversión en ads se factura directamente por Google/Meta.',
     },
     otherServices: {
       title: 'Otros Servicios Que Ofrecemos',
