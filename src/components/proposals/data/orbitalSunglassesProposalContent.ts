@@ -193,7 +193,7 @@ export const orbitalSunglassesProposalContent = {
   },
   terms: {
     title: 'Términos y Condiciones',
-    headline: 'Lo Que Necesitas Saber',
+    headline: 'Condiciones del Servicio',
     sections: [
       {
         title: 'Duración Mínima del Acuerdo',
