@@ -340,7 +340,7 @@ export const LVTherapyPDFDocument = ({ content, logoBase64 }: LVTherapyPDFDocume
         </View>
         <View style={{ flex: 1 }}>
           <Text style={{ fontSize: 26, fontWeight: 'bold', color: colors.darkGreen, marginBottom: 16 }}>Current vs. Proposed</Text>
-          <View style={{ backgroundColor: colors.white, borderRadius: 16, overflow: 'hidden' as const, shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 8 }}>
+          <View style={{ backgroundColor: colors.white, borderRadius: 16, overflow: 'hidden' as const }}>
             <View style={{ flexDirection: 'row' as const, backgroundColor: colors.darkGreen, paddingVertical: 14, paddingHorizontal: 20 }}>
               <Text style={{ flex: 1, fontSize: 20, fontWeight: 'bold', color: colors.white }}>Metric</Text>
               <Text style={{ flex: 1, fontSize: 20, fontWeight: 'bold', color: colors.white }}>Current</Text>
