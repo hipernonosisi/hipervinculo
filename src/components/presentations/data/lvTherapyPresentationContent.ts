@@ -97,6 +97,7 @@ export interface LVTherapyContent {
     address: string;
     website: string;
     cta: string;
+    ctaLink: string;
   };
 }
 
