@@ -928,6 +928,15 @@ export default function Admin() {
                   <ShoppingCart className="w-4 h-4" />
                   Taily
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('orbital')}
+                  className={`gap-2 ${activeProposal === 'orbital' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Globe className="w-4 h-4" />
+                  Orbital Sunglasses
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
