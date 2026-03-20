@@ -247,7 +247,7 @@ export default function HipervinculoAds() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-primary-foreground sm:text-5xl md:text-6xl"
+              className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl"
             >
               Tu PPC en Amazon.
               <br />
