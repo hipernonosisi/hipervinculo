@@ -223,6 +223,11 @@ export default function HipervinculoAds() {
     document.getElementById('como-funciona')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const { scrollY } = useScroll();
+  const navBg = useTransform(scrollY, [0, 100], ['rgba(255,255,255,0.6)', 'rgba(255,255,255,0.98)']);
+  const navShadow = useTransform(scrollY, [0, 100], ['0 0 0 transparent', '0 4px 20px rgba(0,0,0,0.06)']);
+  const heroParallaxY = useTransform(scrollY, [0, 600], [0, -80]);
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SEO
