@@ -224,12 +224,12 @@ export default function HipervinculoAds() {
 
       <section className="relative flex min-h-[90vh] items-center px-6 pt-28">
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, rgba(255,255,255,0.08) 54px, rgba(255,255,255,0.08) 55px)`,
+            backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, hsl(var(--primary) / 0.08) 54px, hsl(var(--primary) / 0.08) 55px)`,
           }}
         />
-        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
