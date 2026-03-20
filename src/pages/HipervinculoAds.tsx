@@ -523,7 +523,7 @@ export default function HipervinculoAds() {
       <section className="bg-primary px-6 py-28 text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
           <FadeIn>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-accent">
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               El objetivo final
             </div>
