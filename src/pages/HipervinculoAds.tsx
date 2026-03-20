@@ -555,10 +555,10 @@ export default function HipervinculoAds() {
             <div className="mb-8 inline-flex rounded-2xl px-5 py-4">
               <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
             </div>
-            <h2 className="mb-5 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">
+            <h2 className="mb-5 text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
               ¿Listo para poner tu PPC en piloto automático?
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
+            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary/70">
               Sin contratos. Sin setup fees. Resultados en la primera semana.
             </p>
             <a
