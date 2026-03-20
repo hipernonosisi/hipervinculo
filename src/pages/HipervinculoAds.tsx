@@ -551,7 +551,7 @@ export default function HipervinculoAds() {
 
       <section className="px-6 pb-24 pt-8">
         <FadeIn>
-          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary-foreground/10 bg-primary-foreground/[0.05] px-8 py-10 text-center shadow-2xl sm:px-12">
+          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12">
             <div className="mb-8 inline-flex rounded-2xl bg-white px-5 py-4 shadow-lg">
               <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
             </div>
