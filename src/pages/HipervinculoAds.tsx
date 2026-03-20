@@ -527,7 +527,7 @@ export default function HipervinculoAds() {
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               El objetivo final
             </div>
-            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl">
               El objetivo no es tener buen ACoS.
               <br />
               <span className="text-accent">Es llegar a posición orgánica #1.</span>
