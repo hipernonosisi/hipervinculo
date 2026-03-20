@@ -583,11 +583,11 @@ export default function HipervinculoAds() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="rounded-[24px] border border-primary-foreground/10 p-3">
-              <img
+            <div className="rounded-[24px] border border-primary-foreground/10 p-3 overflow-hidden">
+              <ParallaxImage
                 src={rankingImage}
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
-                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                speed={0.12}
               />
             </div>
           </FadeIn>
