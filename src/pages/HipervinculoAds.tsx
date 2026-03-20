@@ -325,10 +325,10 @@ export default function HipervinculoAds() {
             className="hidden lg:block"
           >
             <BrandCard className="p-3">
-              <img
+              <ParallaxImage
                 src={dashboardImage}
                 alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
-                className="w-full rounded-[20px] border border-border object-cover"
+                speed={0.1}
               />
             </BrandCard>
           </motion.div>
