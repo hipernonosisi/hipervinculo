@@ -1,14 +1,143 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Search, Rocket, Settings, TrendingUp, Target, Clock, Zap, BarChart3, Bot, Shield, Layout, DollarSign, CheckCircle2, X, ArrowDown, ChevronRight } from 'lucide-react';
+import {
+  Search,
+  Rocket,
+  Settings,
+  TrendingUp,
+  Target,
+  Clock,
+  Zap,
+  BarChart3,
+  Bot,
+  Shield,
+  LayoutDashboard,
+  DollarSign,
+  CheckCircle2,
+  X,
+  ArrowDown,
+  ChevronRight,
+} from 'lucide-react';
 import { SEO } from '@/components/SEO';
-import adsLogo from '@/assets/ads-logo.png';
-import adsDashboard from '@/assets/ads-dashboard-mockup.jpg';
-import adsFlow from '@/assets/ads-automation-flow.jpg';
-import adsRanking from '@/assets/ads-ranking-growth.jpg';
-import adsTelegram from '@/assets/ads-telegram-bot.jpg';
+import logoFull from '@/assets/logo-hipervinculo.png';
+import dashboardImage from '@/assets/ads-dashboard-hipervinculo.jpg';
+import flowImage from '@/assets/ads-flow-hipervinculo.jpg';
+import botImage from '@/assets/ads-bot-hipervinculo.jpg';
+import rankingImage from '@/assets/ads-ranking-hipervinculo.jpg';
 
-// ─── Animated Counter ───
+const problemCards = [
+  {
+    icon: TrendingUp,
+    title: 'Escala imposible',
+    desc: 'Gestionar 100+ keywords manualmente es un trabajo de tiempo completo. Cada decisión de bid es una apuesta.',
+  },
+  {
+    icon: Clock,
+    title: 'Reacción lenta',
+    desc: 'Para cuando detectas que un keyword no imprime o que el ACoS se disparó, ya perdiste días de oportunidad.',
+  },
+  {
+    icon: Zap,
+    title: 'PPC desconectado del orgánico',
+    desc: 'Las herramientas optimizan ACoS en aislamiento. Ignoran que PPC es la palanca para dominar el ranking orgánico.',
+  },
+];
+
+const workflowSteps = [
+  {
+    icon: Search,
+    title: 'Descubrimiento',
+    desc: 'Cruza Amazon Autocomplete, keywords sugeridos, y DataForSEO para encontrar oportunidades con volumen real. +3,800 keywords calificados por producto.',
+  },
+  {
+    icon: Rocket,
+    title: 'Lanzamiento',
+    desc: 'Crea campañas STC automáticamente. 1 keyword = 1 campaña = control total sobre bid, presupuesto, y datos.',
+  },
+  {
+    icon: Settings,
+    title: 'Optimización',
+    desc: 'Cada 60 minutos analiza impresiones, clicks, y ACoS. Sube bids si no imprime. Baja si el ACoS es alto. Testea Top of Search antes de cortar.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Escalamiento',
+    desc: 'Si un keyword vende bien, el presupuesto sube: $10 → $20 → $40 → $80 → $150 → $300 → sin techo. Si no funciona, se contiene.',
+  },
+  {
+    icon: Target,
+    title: 'Medición',
+    desc: 'Tracking diario de ranking orgánico. El objetivo real no es ACoS — es llegar a posición #1 orgánica.',
+  },
+];
+
+const featureCards = [
+  {
+    icon: Clock,
+    title: 'Bid Adjustment Horario',
+    desc: 'Ajustes cada 60 min basados en impresiones, clicks, y ACoS',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Budget Scaling Diario',
+    desc: 'Presupuesto que crece con resultados, sin techo artificial',
+  },
+  {
+    icon: Search,
+    title: 'Keyword Discovery Semanal',
+    desc: '3,800+ keywords descubiertos y filtrados automáticamente',
+  },
+  {
+    icon: BarChart3,
+    title: 'Ranking Tracker Diario',
+    desc: 'Posición orgánica de cada keyword, cada día',
+  },
+  {
+    icon: LayoutDashboard,
+    title: 'Dashboard en Vivo',
+    desc: 'Métricas por producto y campaña, actualizado cada 3 horas',
+  },
+  {
+    icon: Zap,
+    title: 'Reporte Diario Multi-Período',
+    desc: 'Hoy, ayer, 7 días, lifetime — por email y Telegram',
+  },
+  {
+    icon: Bot,
+    title: 'Bot de Telegram 24/7',
+    desc: 'Pregunta por status, ACoS, campañas desde tu teléfono',
+  },
+  {
+    icon: Shield,
+    title: 'Auditoría Automática',
+    desc: 'Verificación de integridad después de cada tarea',
+  },
+  {
+    icon: Target,
+    title: 'Campañas STC',
+    desc: '1 keyword, 1 campaña, match exacto. Control total.',
+  },
+];
+
+const comparisonRows = [
+  ['Frecuencia de ajustes', 'Diario / semanal', 'Cada 60 minutos'],
+  ['Estructura de campañas', 'Multi-keyword', 'STC (1 keyword = 1 campaña)'],
+  ['Presupuesto', 'Fijo', 'Escala con resultados'],
+  ['Conexión PPC-Orgánico', 'No existe', 'Ranking tracker integrado'],
+  ['Reportes', 'Dashboard pasivo', 'Bot activo + email + Telegram'],
+  ['Estrategia', 'Una sola (ACoS)', 'Dos (VENTAS + RANKEO)'],
+  ['Lanzamiento de campañas', 'Manual', 'Automático'],
+  ['Descubrimiento de keywords', 'Manual o básico', 'Automatizado multi-fuente'],
+];
+
+const stats = [
+  { num: 138, suffix: '+', label: 'Campañas activas gestionadas simultáneamente' },
+  { num: 3800, suffix: '+', label: 'Keywords descubiertos y calificados' },
+  { num: 24, suffix: '', label: 'Ajustes de bid al día por campaña' },
+  { num: 9, suffix: '', label: 'Tareas automatizadas corriendo 24/7' },
+  { num: 0, prefix: '$', label: 'Intervención manual' },
+];
+
 function AnimatedCounter({ end, suffix = '', prefix = '' }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -16,9 +145,11 @@ function AnimatedCounter({ end, suffix = '', prefix = '' }: { end: number; suffi
 
   useEffect(() => {
     if (!isInView) return;
+
     let start = 0;
-    const duration = 2000;
+    const duration = 1800;
     const increment = end / (duration / 16);
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -28,20 +159,20 @@ function AnimatedCounter({ end, suffix = '', prefix = '' }: { end: number; suffi
         setCount(Math.floor(start));
       }
     }, 16);
+
     return () => clearInterval(timer);
   }, [isInView, end]);
 
   return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
 }
 
-// ─── Fade In wrapper ───
 function FadeIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}
@@ -49,14 +180,10 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
   );
 }
 
-// ─── Glow Card ───
-function GlowCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative group ${className}`}>
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-emerald-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-      <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 h-full">
-        {children}
-      </div>
+    <div className={`rounded-[24px] border border-primary-foreground/10 bg-primary-foreground/[0.04] p-6 shadow-2xl backdrop-blur-sm ${className}`}>
+      {children}
     </div>
   );
 }
@@ -67,190 +194,171 @@ export default function HipervinculoAds() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-white overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-primary text-primary-foreground">
       <SEO
-        title="Hipervinculo Ads — Amazon PPC en Piloto Automático"
-        description="Automatiza tu PPC en Amazon. Descubre keywords, lanza campañas, ajusta bids cada hora y escala con resultados reales."
+        title="Hipervinculo Ads | Amazon PPC en Piloto Automático"
+        description="Automatiza tu PPC en Amazon con el estilo y metodología de Hipervínculo: discovery, campañas STC, ajustes horarios y escalamiento inteligente."
+        url="https://hipervinculo.net/ads"
       />
 
-      {/* ═══════════════ NAV BAR ═══════════════ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0f1a]/80 backdrop-blur-lg border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src={adsLogo} alt="Hipervinculo Ads" className="h-9 w-9 object-contain" />
-            <span className="font-bold text-lg">Hipervinculo <span className="text-emerald-400">Ads</span></span>
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-primary/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
+            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm text-gray-400">
-            <a href="#como-funciona" className="hover:text-white transition-colors">Cómo Funciona</a>
-            <a href="#estrategias" className="hover:text-white transition-colors">Estrategias</a>
-            <a href="#features" className="hover:text-white transition-colors">Características</a>
+
+          <div className="hidden items-center gap-8 text-sm text-primary-foreground/70 md:flex">
+            <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
+            <a href="#estrategias" className="transition-colors hover:text-accent">Estrategias</a>
+            <a href="#features" className="transition-colors hover:text-accent">Características</a>
           </div>
+
           <a
             href="https://calendly.com/hipervinculo_usa/30-minutes-call"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-lg text-sm transition-all"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
           >
             Agenda una Demo
           </a>
         </div>
       </nav>
 
-      {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 pt-16 overflow-hidden">
-        {/* Grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1a]" />
-        {/* Glow orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-[120px]" />
+      <section className="relative flex min-h-[90vh] items-center px-6 pt-28">
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, rgba(255,255,255,0.08) 54px, rgba(255,255,255,0.08) 55px)`,
+          }}
+        />
+        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-8"
-            >
-              <Clock className="w-4 h-4" />
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+              <Clock className="h-4 w-4" />
               Ajustes cada 60 minutos
-            </motion.div>
+            </div>
+
+            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-primary-foreground/10 bg-primary-foreground/5 px-4 py-2 text-sm text-primary-foreground/80">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+              Hipervínculo presenta su sistema de Amazon PPC Automation
+            </div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-primary-foreground sm:text-5xl md:text-6xl"
             >
               Tu PPC en Amazon.
               <br />
-              <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-                En Piloto Automático.
-              </span>
+              <span className="text-accent">En Piloto Automático.</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-lg text-gray-400 max-w-xl mb-10 leading-relaxed"
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="mb-10 max-w-2xl text-lg leading-relaxed text-primary-foreground/72"
             >
               Hipervinculo Ads descubre keywords, lanza campañas, ajusta bids cada hora, y escala tu presupuesto con resultados reales. Sin intervención humana.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-start gap-4"
+              transition={{ duration: 0.7, delay: 0.45 }}
+              className="flex flex-col gap-4 sm:flex-row sm:items-center"
             >
               <a
                 href="https://calendly.com/hipervinculo_usa/30-minutes-call"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-lg transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-base font-semibold text-accent-foreground transition-opacity hover:opacity-90"
               >
                 Agenda una Demo
+                <ChevronRight className="h-5 w-5" />
               </a>
               <button
                 onClick={scrollToHow}
-                className="flex items-center gap-2 px-6 py-4 text-gray-400 hover:text-white transition-colors group"
+                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 px-6 py-4 text-primary-foreground/78 transition-colors hover:text-accent"
               >
                 Ver cómo funciona
-                <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                <ArrowDown className="h-4 w-4" />
               </button>
             </motion.div>
           </div>
 
-          {/* Dashboard mockup */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 28 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.75, delay: 0.35 }}
             className="hidden lg:block"
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-2xl blur-xl" />
+            <BrandCard className="p-3">
               <img
-                src={adsDashboard}
-                alt="Hipervinculo Ads Dashboard - Gestión automatizada de campañas PPC"
-                className="relative rounded-2xl border border-white/10 shadow-2xl w-full"
+                src={dashboardImage}
+                alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
+                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
               />
-            </div>
+            </BrandCard>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════════ EL PROBLEMA ═══════════════ */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">El PPC manual no escala</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">El problema</p>
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">El PPC manual no escala</h2>
+            <div className="mx-auto h-1 w-20 rounded-full bg-accent" />
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: TrendingUp, title: 'Escala imposible', desc: 'Gestionar 100+ keywords manualmente es un trabajo de tiempo completo. Cada decisión de bid es una apuesta.' },
-              { icon: Clock, title: 'Reacción lenta', desc: 'Para cuando detectas que un keyword no imprime o que el ACoS se disparó, ya perdiste días de oportunidad.' },
-              { icon: Zap, title: 'PPC desconectado del orgánico', desc: 'Las herramientas optimizan ACoS en aislamiento. Ignoran que PPC es la palanca para dominar el ranking orgánico.' },
-            ].map((card, i) => (
-              <FadeIn key={i} delay={i * 0.15}>
-                <GlowCard>
-                  <card.icon className="w-10 h-10 text-emerald-400 mb-4" />
-                  <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{card.desc}</p>
-                </GlowCard>
+          <div className="grid gap-6 md:grid-cols-3">
+            {problemCards.map((card, index) => (
+              <FadeIn key={card.title} delay={index * 0.1}>
+                <BrandCard className="h-full">
+                  <card.icon className="mb-4 h-10 w-10 text-accent" />
+                  <h3 className="mb-3 text-xl font-bold text-primary-foreground">{card.title}</h3>
+                  <p className="leading-relaxed text-primary-foreground/70">{card.desc}</p>
+                </BrandCard>
               </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ CÓMO FUNCIONA ═══════════════ */}
-      <section id="como-funciona" className="py-24 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent" />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Un motor que nunca para</h2>
-            <p className="text-gray-400 text-lg">5 sistemas conectados que trabajan las 24 horas</p>
+      <section id="como-funciona" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">La solución</p>
+            <h2 className="mb-4 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Un motor que nunca para</h2>
+            <p className="text-lg text-primary-foreground/72">5 sistemas conectados que trabajan las 24 horas</p>
           </FadeIn>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Flow image */}
+          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <FadeIn>
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-2xl blur-xl" />
+              <BrandCard className="p-3">
                 <img
-                  src={adsFlow}
-                  alt="Motor de automatización de Hipervinculo Ads - 5 sistemas conectados"
-                  className="relative rounded-2xl border border-white/10 w-full"
+                  src={flowImage}
+                  alt="Diagrama del sistema de automatización de Amazon PPC de Hipervínculo"
+                  className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
                 />
-              </div>
+              </BrandCard>
             </FadeIn>
 
-            {/* Steps */}
             <div className="space-y-5">
-              {[
-                { icon: Search, title: 'Descubrimiento', desc: 'Cruza Amazon Autocomplete, keywords sugeridos, y DataForSEO. +3,800 keywords calificados por producto.', color: 'emerald' },
-                { icon: Rocket, title: 'Lanzamiento', desc: 'Crea campañas STC automáticamente. 1 keyword = 1 campaña = control total.', color: 'blue' },
-                { icon: Settings, title: 'Optimización', desc: 'Cada 60 min analiza impresiones, clicks, y ACoS. Sube o baja bids inteligentemente.', color: 'emerald' },
-                { icon: TrendingUp, title: 'Escalamiento', desc: '$10 → $20 → $40 → $80 → $150 → $300 → sin techo. Si no funciona, se contiene.', color: 'blue' },
-                { icon: Target, title: 'Medición', desc: 'Tracking diario de ranking orgánico. El objetivo: posición #1 orgánica.', color: 'emerald' },
-              ].map((step, i) => (
-                <FadeIn key={i} delay={i * 0.1}>
-                  <div className="flex items-start gap-4 group">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${step.color === 'emerald' ? 'bg-emerald-500/10 border border-emerald-500/30' : 'bg-blue-500/10 border border-blue-500/30'}`}>
-                      <step.icon className={`w-5 h-5 ${step.color === 'emerald' ? 'text-emerald-400' : 'text-blue-400'}`} />
+              {workflowSteps.map((step, index) => (
+                <FadeIn key={step.title} delay={index * 0.08}>
+                  <div className="flex gap-4 rounded-[22px] border border-primary-foreground/10 bg-primary-foreground/[0.03] p-5">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
+                      <step.icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-[10px] font-bold uppercase tracking-widest ${step.color === 'emerald' ? 'text-emerald-400' : 'text-blue-400'}`}>Paso {i + 1}</span>
-                      </div>
-                      <h3 className="text-lg font-bold mb-1">{step.title}</h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                      <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-accent">Paso {index + 1}</p>
+                      <h3 className="mb-2 text-lg font-bold text-primary-foreground">{step.title}</h3>
+                      <p className="text-sm leading-relaxed text-primary-foreground/70">{step.desc}</p>
                     </div>
                   </div>
                 </FadeIn>
@@ -260,40 +368,54 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      {/* ═══════════════ DOS ESTRATEGIAS ═══════════════ */}
-      <section id="estrategias" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Dos estrategias. Un objetivo.</h2>
+      <section id="estrategias" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Dos estrategias</p>
+            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Dos estrategias. Un objetivo.</h2>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <FadeIn delay={0.1}>
-              <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-8 h-full">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold mb-6">
-                  <DollarSign className="w-4 h-4" /> VENTAS
+          <div className="grid gap-6 md:grid-cols-2">
+            <FadeIn>
+              <div className="h-full rounded-[28px] border border-primary-foreground/10 bg-primary-foreground/[0.05] p-8">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+                  <DollarSign className="h-4 w-4" />
+                  VENTAS
                 </div>
-                <ul className="space-y-4">
-                  {['Maximiza rentabilidad', 'Target ACoS < 40%', 'Escala cuando es rentable', 'Se contiene cuando no lo es', 'Para keywords donde ya tienes posición'].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                      {item}
+                <ul className="space-y-4 text-primary-foreground/84">
+                  {[
+                    'Maximiza rentabilidad',
+                    'Target ACoS < 40%',
+                    'Escala cuando es rentable',
+                    'Se contiene cuando no lo es',
+                    'Para keywords donde ya tienes posición',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2}>
-              <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.04] p-8 h-full">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold mb-6">
-                  <Target className="w-4 h-4" /> RANKEO
+            <FadeIn delay={0.08}>
+              <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
+                  <Target className="h-4 w-4" />
+                  RANKEO
                 </div>
-                <ul className="space-y-4">
-                  {['Conquista posición orgánica #1', 'El ACoS no importa — el ranking sí', 'Siempre sube bids si no hay impresiones', 'Escala cuando el ranking mejora', 'Para keywords estratégicos que quieres dominar'].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                      {item}
+                <ul className="space-y-4 text-primary-foreground/92">
+                  {[
+                    'Conquista posición orgánica #1',
+                    'El ACoS no importa — el ranking sí',
+                    'Siempre sube bids si no hay impresiones',
+                    'Escala cuando el ranking mejora',
+                    'Para keywords estratégicos que quieres dominar',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -303,107 +425,70 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      {/* ═══════════════ QUÉ INCLUYE ═══════════════ */}
-      <section id="features" className="py-24 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Todo lo que necesitas. Nada que no.</h2>
+      <section id="features" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Qué incluye</p>
+            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Todo lo que necesitas. Nada que no.</h2>
           </FadeIn>
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-12">
-            {/* Left column: Feature cards */}
-            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-5">
-              {[
-                { icon: Clock, title: 'Bid Adjustment Horario', desc: 'Ajustes cada 60 min basados en impresiones, clicks, y ACoS' },
-                { icon: TrendingUp, title: 'Budget Scaling Diario', desc: 'Presupuesto que crece con resultados, sin techo artificial' },
-                { icon: Search, title: 'Keyword Discovery Semanal', desc: '3,800+ keywords descubiertos y filtrados automáticamente' },
-                { icon: BarChart3, title: 'Ranking Tracker Diario', desc: 'Posición orgánica de cada keyword, cada día' },
-                { icon: Layout, title: 'Dashboard en Vivo', desc: 'Métricas por producto y campaña, actualizado cada 3 horas' },
-                { icon: Zap, title: 'Reporte Multi-Período', desc: 'Hoy, ayer, 7 días, lifetime — por email y Telegram' },
-              ].map((feature, i) => (
-                <FadeIn key={i} delay={(i % 2) * 0.1}>
-                  <GlowCard>
-                    <feature.icon className="w-8 h-8 text-emerald-400 mb-3" />
-                    <h3 className="font-bold mb-2">{feature.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-                  </GlowCard>
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {featureCards.map((feature, index) => (
+                <FadeIn key={feature.title} delay={(index % 3) * 0.08}>
+                  <BrandCard className="h-full">
+                    <feature.icon className="mb-4 h-8 w-8 text-accent" />
+                    <h3 className="mb-2 text-base font-bold text-primary-foreground">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-primary-foreground/70">{feature.desc}</p>
+                  </BrandCard>
                 </FadeIn>
               ))}
             </div>
 
-            {/* Right column: Telegram bot image */}
-            <FadeIn delay={0.2} className="hidden lg:block">
-              <div className="relative h-full">
-                <div className="absolute -inset-2 bg-gradient-to-b from-emerald-500/10 to-blue-500/10 rounded-2xl blur-lg" />
+            <FadeIn className="hidden lg:block">
+              <BrandCard className="h-full p-3">
                 <img
-                  src={adsTelegram}
-                  alt="Bot de Telegram de Hipervinculo Ads - Reportes y consultas 24/7"
-                  className="relative rounded-2xl border border-white/10 w-full h-full object-cover"
+                  src={botImage}
+                  alt="Bot de reportes de Hipervínculo para Amazon PPC"
+                  className="h-full w-full rounded-[20px] border border-primary-foreground/10 object-cover"
                 />
-              </div>
+              </BrandCard>
             </FadeIn>
-          </div>
-
-          {/* Bottom row: remaining 3 features */}
-          <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { icon: Bot, title: 'Bot de Telegram 24/7', desc: 'Pregunta por status, ACoS, campañas desde tu teléfono' },
-              { icon: Shield, title: 'Auditoría Automática', desc: 'Verificación de integridad después de cada tarea' },
-              { icon: Target, title: 'Campañas STC', desc: '1 keyword, 1 campaña, match exacto. Control total.' },
-            ].map((feature, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <GlowCard>
-                  <feature.icon className="w-8 h-8 text-emerald-400 mb-3" />
-                  <h3 className="font-bold mb-2">{feature.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-                </GlowCard>
-              </FadeIn>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ COMPARATIVA ═══════════════ */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">No es otro dashboard</h2>
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Comparativa</p>
+            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">No es otro dashboard</h2>
           </FadeIn>
 
           <FadeIn>
-            <div className="overflow-x-auto rounded-2xl border border-white/10">
-              <table className="w-full min-w-[600px]">
+            <div className="overflow-x-auto rounded-[28px] border border-primary-foreground/10 bg-primary-foreground/[0.03]">
+              <table className="w-full min-w-[680px]">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left p-4 text-gray-400 font-medium text-sm" />
-                    <th className="p-4 text-gray-400 font-medium text-sm text-center">Herramientas tradicionales</th>
-                    <th className="p-4 text-center">
-                      <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent font-bold text-sm">Hipervinculo Ads</span>
-                    </th>
+                  <tr className="border-b border-primary-foreground/10">
+                    <th className="p-5 text-left text-sm font-semibold text-primary-foreground/55"></th>
+                    <th className="p-5 text-center text-sm font-semibold text-primary-foreground/55">Herramientas tradicionales</th>
+                    <th className="p-5 text-center text-sm font-semibold text-accent">Hipervinculo Ads</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    ['Frecuencia de ajustes', 'Diario / semanal', 'Cada 60 minutos'],
-                    ['Estructura de campañas', 'Multi-keyword', 'STC (1 keyword = 1 campaña)'],
-                    ['Presupuesto', 'Fijo', 'Escala con resultados'],
-                    ['Conexión PPC-Orgánico', 'No existe', 'Ranking tracker integrado'],
-                    ['Reportes', 'Dashboard pasivo', 'Bot activo + email + Telegram'],
-                    ['Estrategia', 'Una sola (ACoS)', 'Dos (VENTAS + RANKEO)'],
-                    ['Lanzamiento de campañas', 'Manual', 'Automático'],
-                    ['Descubrimiento de keywords', 'Manual o básico', 'Automatizado multi-fuente'],
-                  ].map(([label, trad, hv], i) => (
-                    <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                      <td className="p-4 text-sm font-medium">{label}</td>
-                      <td className="p-4 text-center">
-                        <span className="inline-flex items-center gap-2 text-gray-500 text-sm">
-                          <X className="w-4 h-4 text-red-400/70" /> {trad}
+                  {comparisonRows.map(([label, traditional, ours]) => (
+                    <tr key={label} className="border-b border-primary-foreground/5">
+                      <td className="p-5 text-sm font-medium text-primary-foreground">{label}</td>
+                      <td className="p-5 text-center text-sm text-primary-foreground/58">
+                        <span className="inline-flex items-center gap-2">
+                          <X className="h-4 w-4 text-primary-foreground/42" />
+                          {traditional}
                         </span>
                       </td>
-                      <td className="p-4 text-center">
-                        <span className="inline-flex items-center gap-2 text-sm text-emerald-300">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" /> {hv}
+                      <td className="p-5 text-center text-sm text-primary-foreground">
+                        <span className="inline-flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-accent" />
+                          {ours}
                         </span>
                       </td>
                     </tr>
@@ -415,98 +500,96 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      {/* ═══════════════ MÉTRICAS ═══════════════ */}
-      <section className="py-24 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent" />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Números reales</h2>
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Métricas</p>
+            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Números reales</h2>
           </FadeIn>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { num: 138, suffix: '+', label: 'Campañas activas gestionadas' },
-              { num: 3800, suffix: '+', label: 'Keywords descubiertos y calificados' },
-              { num: 24, suffix: '', label: 'Ajustes de bid al día por campaña' },
-              { num: 9, suffix: '', label: 'Tareas automatizadas 24/7' },
-              { num: 0, prefix: '$', label: 'Intervención manual' },
-            ].map((stat, i) => (
-              <FadeIn key={i} delay={i * 0.1} className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent mb-2">
-                  <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix || ''} />
-                </div>
-                <p className="text-gray-400 text-sm">{stat.label}</p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {stats.map((stat, index) => (
+              <FadeIn key={stat.label} delay={index * 0.08}>
+                <BrandCard className="h-full text-center">
+                  <div className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent">
+                    <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix || ''} />
+                  </div>
+                  <p className="text-sm leading-relaxed text-primary-foreground/70">{stat.label}</p>
+                </BrandCard>
               </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ OBJETIVO FINAL ═══════════════ */}
-      <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-blue-500/10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[150px]" />
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <section className="px-6 py-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+              El objetivo final
+            </div>
+            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl">
               El objetivo no es tener buen ACoS.
               <br />
-              <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-                Es llegar a posición orgánica #1.
-              </span>
+              <span className="text-accent">Es llegar a posición orgánica #1.</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/72">
               Cuando tu producto domina orgánicamente, las ventas naturales toman el control, el PPC se reduce, y cada dólar invertido en publicidad fue una inversión que compró posición permanente.
             </p>
           </FadeIn>
-          <FadeIn delay={0.2} className="hidden lg:block">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/15 to-blue-500/15 rounded-2xl blur-xl" />
+
+          <FadeIn delay={0.1}>
+            <BrandCard className="p-3">
               <img
-                src={adsRanking}
-                alt="Crecimiento de ranking orgánico con Hipervinculo Ads"
-                className="relative rounded-2xl border border-white/10 w-full"
+                src={rankingImage}
+                alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
+                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
               />
-            </div>
+            </BrandCard>
           </FadeIn>
         </div>
       </section>
 
-      {/* ═══════════════ CTA FINAL ═══════════════ */}
-      <section className="py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <FadeIn>
-            <img src={adsLogo} alt="Hipervinculo Ads" className="h-16 w-16 mx-auto mb-8 object-contain" />
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+      <section className="px-6 pb-24 pt-8">
+        <FadeIn>
+          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary-foreground/10 bg-primary-foreground/[0.05] px-8 py-10 text-center shadow-2xl sm:px-12">
+            <div className="mb-8 inline-flex rounded-2xl bg-white px-5 py-4 shadow-lg">
+              <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
+            </div>
+            <h2 className="mb-5 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">
               ¿Listo para poner tu PPC en piloto automático?
             </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
+              Sin contratos. Sin setup fees. Resultados en la primera semana.
+            </p>
             <a
               href="https://calendly.com/hipervinculo_usa/30-minutes-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-lg transition-all hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-10 py-5 text-lg font-semibold text-accent-foreground transition-opacity hover:opacity-90"
             >
               Agenda una Demo
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="h-5 w-5" />
             </a>
-            <p className="text-gray-500 mt-6 text-sm">Sin contratos. Sin setup fees. Resultados en la primera semana.</p>
-          </FadeIn>
-        </div>
+          </div>
+        </FadeIn>
       </section>
 
-      {/* ═══════════════ FOOTER ═══════════════ */}
-      <footer className="border-t border-white/10 py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img src={adsLogo} alt="Hipervinculo Ads" className="h-8 w-8 object-contain" />
-            <span className="font-bold text-lg">Hipervinculo <span className="text-emerald-400">Ads</span></span>
+      <footer className="border-t border-primary-foreground/10 px-6 py-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
+          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
+            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
           </div>
-          <nav className="flex items-center gap-6 text-sm text-gray-400">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-white transition-colors">Inicio</a>
-            <a href="#como-funciona" className="hover:text-white transition-colors">Cómo Funciona</a>
-            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">hipervinculo.net</a>
+
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/65">
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="transition-colors hover:text-accent">Inicio</a>
+            <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
+            <a href="#features" className="transition-colors hover:text-accent">Características</a>
+            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">hipervinculo.net</a>
           </nav>
-          <p className="text-xs text-gray-600">© 2026 Hipervínculo. Todos los derechos reservados.</p>
+
+          <p className="text-xs text-primary-foreground/45">© 2026 Hipervínculo. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
