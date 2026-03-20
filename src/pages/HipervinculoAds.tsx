@@ -298,7 +298,7 @@ export default function HipervinculoAds() {
               <img
                 src={dashboardImage}
                 alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
-                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                className="w-full rounded-[20px] border border-border object-cover"
               />
             </BrandCard>
           </motion.div>
