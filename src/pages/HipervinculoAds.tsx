@@ -368,10 +368,10 @@ export default function HipervinculoAds() {
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <FadeIn>
               <BrandCard className="p-3">
-                <img
+                <ParallaxImage
                   src={flowImage}
                   alt="Diagrama del sistema de automatización de Amazon PPC de Hipervínculo"
-                  className="w-full rounded-[20px] border border-border object-cover"
+                  speed={0.15}
                 />
               </BrandCard>
             </FadeIn>
