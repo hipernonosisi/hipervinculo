@@ -203,9 +203,7 @@ export default function HipervinculoAds() {
 
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary/10 bg-white backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
-            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
-          </div>
+          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
           <div className="hidden items-center gap-8 text-sm text-primary-foreground/70 md:flex">
             <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
