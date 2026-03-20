@@ -201,16 +201,14 @@ export default function HipervinculoAds() {
         url="https://hipervinculo.net/ads"
       />
 
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-primary/90 backdrop-blur-xl">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary/10 bg-white backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
-            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
-          </div>
+          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
-          <div className="hidden items-center gap-8 text-sm text-primary-foreground/70 md:flex">
-            <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
-            <a href="#estrategias" className="transition-colors hover:text-accent">Estrategias</a>
-            <a href="#features" className="transition-colors hover:text-accent">Características</a>
+          <div className="hidden items-center gap-8 text-sm text-primary/70 md:flex">
+            <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">Cómo Funciona</a>
+            <a href="#estrategias" className="text-primary transition-colors hover:text-accent">Estrategias</a>
+            <a href="#features" className="text-primary transition-colors hover:text-accent">Características</a>
           </div>
 
           <a
@@ -553,14 +551,14 @@ export default function HipervinculoAds() {
 
       <section className="px-6 pb-24 pt-8">
         <FadeIn>
-          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary-foreground/10 bg-primary-foreground/[0.05] px-8 py-10 text-center shadow-2xl sm:px-12">
-            <div className="mb-8 inline-flex rounded-2xl bg-white px-5 py-4 shadow-lg">
+          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12">
+            <div className="mb-8 inline-flex rounded-2xl px-5 py-4">
               <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
             </div>
-            <h2 className="mb-5 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">
+            <h2 className="mb-5 text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
               ¿Listo para poner tu PPC en piloto automático?
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
+            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary/70">
               Sin contratos. Sin setup fees. Resultados en la primera semana.
             </p>
             <a
@@ -576,20 +574,18 @@ export default function HipervinculoAds() {
         </FadeIn>
       </section>
 
-      <footer className="border-t border-primary-foreground/10 px-6 py-10">
+      <footer className="border-t border-primary/10 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
-            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
-          </div>
+          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
 
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/65">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="transition-colors hover:text-accent">Inicio</a>
-            <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
-            <a href="#features" className="transition-colors hover:text-accent">Características</a>
-            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">hipervinculo.net</a>
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary/65">
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-primary transition-colors hover:text-accent">Inicio</a>
+            <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">Cómo Funciona</a>
+            <a href="#features" className="text-primary transition-colors hover:text-accent">Características</a>
+            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="text-primary transition-colors hover:text-accent">hipervinculo.net</a>
           </nav>
 
-          <p className="text-xs text-primary-foreground/45">© 2026 Hipervínculo. Todos los derechos reservados.</p>
+          <p className="text-xs text-primary/45">© 2026 Hipervínculo. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
