@@ -222,7 +222,7 @@ export default function HipervinculoAds() {
         </div>
       </nav>
 
-      <section className="relative flex min-h-[90vh] items-center px-6 pt-28">
+      <section className="relative flex min-h-[90vh] items-center bg-[#f8f9f5] px-6 pt-28">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
