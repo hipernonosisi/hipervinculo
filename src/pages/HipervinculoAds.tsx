@@ -182,7 +182,7 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
 
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-[24px] border border-primary-foreground/10 bg-primary-foreground/[0.04] p-6 shadow-2xl backdrop-blur-sm ${className}`}>
+    <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
       {children}
     </div>
   );
@@ -194,7 +194,7 @@ export default function HipervinculoAds() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-primary text-primary-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SEO
         title="Hipervinculo Ads | Amazon PPC en Piloto Automático"
         description="Automatiza tu PPC en Amazon con el estilo y metodología de Hipervínculo: discovery, campañas STC, ajustes horarios y escalamiento inteligente."
@@ -224,21 +224,21 @@ export default function HipervinculoAds() {
 
       <section className="relative flex min-h-[90vh] items-center px-6 pt-28">
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, rgba(255,255,255,0.08) 54px, rgba(255,255,255,0.08) 55px)`,
+            backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, hsl(var(--primary) / 0.08) 54px, hsl(var(--primary) / 0.08) 55px)`,
           }}
         />
-        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-primary">
               <Clock className="h-4 w-4" />
               Ajustes cada 60 minutos
             </div>
 
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-primary-foreground/10 bg-primary-foreground/5 px-4 py-2 text-sm text-primary-foreground/80">
+            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-border bg-muted px-4 py-2 text-sm text-muted-foreground">
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               Hipervínculo presenta su sistema de Amazon PPC Automation
             </div>
@@ -247,7 +247,7 @@ export default function HipervinculoAds() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-primary-foreground sm:text-5xl md:text-6xl"
+              className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl"
             >
               Tu PPC en Amazon.
               <br />
@@ -258,7 +258,7 @@ export default function HipervinculoAds() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="mb-10 max-w-2xl text-lg leading-relaxed text-primary-foreground/72"
+              className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             >
               Hipervinculo Ads descubre keywords, lanza campañas, ajusta bids cada hora, y escala tu presupuesto con resultados reales. Sin intervención humana.
             </motion.p>
@@ -280,7 +280,7 @@ export default function HipervinculoAds() {
               </a>
               <button
                 onClick={scrollToHow}
-                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 px-6 py-4 text-primary-foreground/78 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-4 text-muted-foreground transition-colors hover:text-accent"
               >
                 Ver cómo funciona
                 <ArrowDown className="h-4 w-4" />
@@ -298,7 +298,7 @@ export default function HipervinculoAds() {
               <img
                 src={dashboardImage}
                 alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
-                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                className="w-full rounded-[20px] border border-border object-cover"
               />
             </BrandCard>
           </motion.div>
@@ -309,7 +309,7 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">El problema</p>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">El PPC manual no escala</h2>
+            <h2 className="mb-4 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">El PPC manual no escala</h2>
             <div className="mx-auto h-1 w-20 rounded-full bg-accent" />
           </FadeIn>
 
@@ -318,8 +318,8 @@ export default function HipervinculoAds() {
               <FadeIn key={card.title} delay={index * 0.1}>
                 <BrandCard className="h-full">
                   <card.icon className="mb-4 h-10 w-10 text-accent" />
-                  <h3 className="mb-3 text-xl font-bold text-primary-foreground">{card.title}</h3>
-                  <p className="leading-relaxed text-primary-foreground/70">{card.desc}</p>
+                  <h3 className="mb-3 text-xl font-bold text-foreground">{card.title}</h3>
+                  <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
                 </BrandCard>
               </FadeIn>
             ))}
@@ -331,8 +331,8 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">La solución</p>
-            <h2 className="mb-4 text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Un motor que nunca para</h2>
-            <p className="text-lg text-primary-foreground/72">5 sistemas conectados que trabajan las 24 horas</p>
+            <h2 className="mb-4 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">Un motor que nunca para</h2>
+            <p className="text-lg text-muted-foreground">5 sistemas conectados que trabajan las 24 horas</p>
           </FadeIn>
 
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -341,7 +341,7 @@ export default function HipervinculoAds() {
                 <img
                   src={flowImage}
                   alt="Diagrama del sistema de automatización de Amazon PPC de Hipervínculo"
-                  className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                  className="w-full rounded-[20px] border border-border object-cover"
                 />
               </BrandCard>
             </FadeIn>
@@ -349,14 +349,14 @@ export default function HipervinculoAds() {
             <div className="space-y-5">
               {workflowSteps.map((step, index) => (
                 <FadeIn key={step.title} delay={index * 0.08}>
-                  <div className="flex gap-4 rounded-[22px] border border-primary-foreground/10 bg-primary-foreground/[0.03] p-5">
+                  <div className="flex gap-4 rounded-[22px] border border-border bg-muted p-5">
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
                       <step.icon className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-accent">Paso {index + 1}</p>
-                      <h3 className="mb-2 text-lg font-bold text-primary-foreground">{step.title}</h3>
-                      <p className="text-sm leading-relaxed text-primary-foreground/70">{step.desc}</p>
+                      <h3 className="mb-2 text-lg font-bold text-foreground">{step.title}</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
                     </div>
                   </div>
                 </FadeIn>
@@ -370,17 +370,17 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Dos estrategias</p>
-            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Dos estrategias. Un objetivo.</h2>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">Dos estrategias. Un objetivo.</h2>
           </FadeIn>
 
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn>
-              <div className="h-full rounded-[28px] border border-primary-foreground/10 bg-primary-foreground/[0.05] p-8">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+              <div className="h-full rounded-[28px] border border-border bg-muted p-8">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
                   <DollarSign className="h-4 w-4" />
                   VENTAS
                 </div>
-                <ul className="space-y-4 text-primary-foreground/84">
+                <ul className="space-y-4 text-foreground">
                   {[
                     'Maximiza rentabilidad',
                     'Target ACoS < 40%',
@@ -403,7 +403,7 @@ export default function HipervinculoAds() {
                   <Target className="h-4 w-4" />
                   RANKEO
                 </div>
-                <ul className="space-y-4 text-primary-foreground/92">
+                <ul className="space-y-4 text-foreground">
                   {[
                     'Conquista posición orgánica #1',
                     'El ACoS no importa — el ranking sí',
@@ -427,7 +427,7 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Qué incluye</p>
-            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Todo lo que necesitas. Nada que no.</h2>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">Todo lo que necesitas. Nada que no.</h2>
           </FadeIn>
 
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -436,8 +436,8 @@ export default function HipervinculoAds() {
                 <FadeIn key={feature.title} delay={(index % 3) * 0.08}>
                   <BrandCard className="h-full">
                     <feature.icon className="mb-4 h-8 w-8 text-accent" />
-                    <h3 className="mb-2 text-base font-bold text-primary-foreground">{feature.title}</h3>
-                    <p className="text-sm leading-relaxed text-primary-foreground/70">{feature.desc}</p>
+                    <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
                   </BrandCard>
                 </FadeIn>
               ))}
@@ -448,7 +448,7 @@ export default function HipervinculoAds() {
                 <img
                   src={botImage}
                   alt="Bot de reportes de Hipervínculo para Amazon PPC"
-                  className="h-full w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                  className="h-full w-full rounded-[20px] border border-border object-cover"
                 />
               </BrandCard>
             </FadeIn>
@@ -460,30 +460,30 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-5xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Comparativa</p>
-            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">No es otro dashboard</h2>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">No es otro dashboard</h2>
           </FadeIn>
 
           <FadeIn>
-            <div className="overflow-x-auto rounded-[28px] border border-primary-foreground/10 bg-primary-foreground/[0.03]">
+            <div className="overflow-x-auto rounded-[28px] border border-border bg-muted">
               <table className="w-full min-w-[680px]">
                 <thead>
-                  <tr className="border-b border-primary-foreground/10">
-                    <th className="p-5 text-left text-sm font-semibold text-primary-foreground/55"></th>
-                    <th className="p-5 text-center text-sm font-semibold text-primary-foreground/55">Herramientas tradicionales</th>
+                  <tr className="border-b border-border">
+                    <th className="p-5 text-left text-sm font-semibold text-muted-foreground"></th>
+                    <th className="p-5 text-center text-sm font-semibold text-muted-foreground">Herramientas tradicionales</th>
                     <th className="p-5 text-center text-sm font-semibold text-accent">Hipervinculo Ads</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonRows.map(([label, traditional, ours]) => (
-                    <tr key={label} className="border-b border-primary-foreground/5">
-                      <td className="p-5 text-sm font-medium text-primary-foreground">{label}</td>
-                      <td className="p-5 text-center text-sm text-primary-foreground/58">
+                    <tr key={label} className="border-b border-border">
+                      <td className="p-5 text-sm font-medium text-foreground">{label}</td>
+                      <td className="p-5 text-center text-sm text-muted-foreground">
                         <span className="inline-flex items-center gap-2">
-                          <X className="h-4 w-4 text-primary-foreground/42" />
+                          <X className="h-4 w-4 text-muted-foreground" />
                           {traditional}
                         </span>
                       </td>
-                      <td className="p-5 text-center text-sm text-primary-foreground">
+                      <td className="p-5 text-center text-sm text-foreground">
                         <span className="inline-flex items-center gap-2">
                           <CheckCircle2 className="h-4 w-4 text-accent" />
                           {ours}
@@ -502,7 +502,7 @@ export default function HipervinculoAds() {
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Métricas</p>
-            <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl md:text-5xl">Números reales</h2>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">Números reales</h2>
           </FadeIn>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
@@ -512,7 +512,7 @@ export default function HipervinculoAds() {
                   <div className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent">
                     <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix || ''} />
                   </div>
-                  <p className="text-sm leading-relaxed text-primary-foreground/70">{stat.label}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{stat.label}</p>
                 </BrandCard>
               </FadeIn>
             ))}
@@ -527,12 +527,12 @@ export default function HipervinculoAds() {
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               El objetivo final
             </div>
-            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
               El objetivo no es tener buen ACoS.
               <br />
               <span className="text-accent">Es llegar a posición orgánica #1.</span>
             </h2>
-            <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/72">
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Cuando tu producto domina orgánicamente, las ventas naturales toman el control, el PPC se reduce, y cada dólar invertido en publicidad fue una inversión que compró posición permanente.
             </p>
           </FadeIn>
@@ -542,7 +542,7 @@ export default function HipervinculoAds() {
               <img
                 src={rankingImage}
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
-                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                className="w-full rounded-[20px] border border-border object-cover"
               />
             </BrandCard>
           </FadeIn>
