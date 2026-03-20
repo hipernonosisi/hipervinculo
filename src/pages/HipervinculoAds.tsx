@@ -205,7 +205,7 @@ export default function HipervinculoAds() {
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
           <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
-          <div className="hidden items-center gap-8 text-sm text-primary-foreground/70 md:flex">
+          <div className="hidden items-center gap-8 text-sm text-primary/70 md:flex">
             <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
             <a href="#estrategias" className="transition-colors hover:text-accent">Estrategias</a>
             <a href="#features" className="transition-colors hover:text-accent">Características</a>
