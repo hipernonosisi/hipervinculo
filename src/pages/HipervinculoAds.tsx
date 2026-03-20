@@ -574,20 +574,18 @@ export default function HipervinculoAds() {
         </FadeIn>
       </section>
 
-      <footer className="border-t border-primary-foreground/10 px-6 py-10">
+      <footer className="border-t border-primary/10 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
-            <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
-          </div>
+          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
 
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/65">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="transition-colors hover:text-accent">Inicio</a>
-            <a href="#como-funciona" className="transition-colors hover:text-accent">Cómo Funciona</a>
-            <a href="#features" className="transition-colors hover:text-accent">Características</a>
-            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">hipervinculo.net</a>
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary/65">
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-primary transition-colors hover:text-accent">Inicio</a>
+            <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">Cómo Funciona</a>
+            <a href="#features" className="text-primary transition-colors hover:text-accent">Características</a>
+            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="text-primary transition-colors hover:text-accent">hipervinculo.net</a>
           </nav>
 
-          <p className="text-xs text-primary-foreground/45">© 2026 Hipervínculo. Todos los derechos reservados.</p>
+          <p className="text-xs text-primary/45">© 2026 Hipervínculo. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
