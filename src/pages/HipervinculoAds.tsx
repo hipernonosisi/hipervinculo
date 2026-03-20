@@ -222,7 +222,7 @@ export default function HipervinculoAds() {
         </div>
       </nav>
 
-      <section className="relative flex min-h-[90vh] items-center px-6 pt-28">
+      <section className="relative flex min-h-[90vh] items-center bg-[#f8f9f5] px-6 pt-28">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -305,7 +305,7 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
+      <section className="bg-[#f5f5f5] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">El problema</p>
@@ -366,7 +366,7 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section id="estrategias" className="px-6 py-24">
+      <section id="estrategias" className="bg-[#f8f9f5] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Dos estrategias</p>
@@ -456,7 +456,7 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
+      <section className="bg-[#f5f5f5] px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Comparativa</p>
@@ -498,7 +498,7 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
+      <section className="bg-[#f8f9f5] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Métricas</p>
@@ -520,31 +520,31 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section className="px-6 py-28">
+      <section className="bg-primary px-6 py-28 text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
           <FadeIn>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-accent">
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               El objetivo final
             </div>
-            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="mb-8 text-3xl font-extrabold leading-[1.08] text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl">
               El objetivo no es tener buen ACoS.
               <br />
               <span className="text-accent">Es llegar a posición orgánica #1.</span>
             </h2>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/72">
               Cuando tu producto domina orgánicamente, las ventas naturales toman el control, el PPC se reduce, y cada dólar invertido en publicidad fue una inversión que compró posición permanente.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <BrandCard className="p-3">
+            <div className="rounded-[24px] border border-primary-foreground/10 p-3">
               <img
                 src={rankingImage}
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
-                className="w-full rounded-[20px] border border-border object-cover"
+                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
               />
-            </BrandCard>
+            </div>
           </FadeIn>
         </div>
       </section>
