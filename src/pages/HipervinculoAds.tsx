@@ -182,7 +182,7 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
 
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-[24px] border border-primary-foreground/10 bg-primary-foreground/[0.04] p-6 shadow-2xl backdrop-blur-sm ${className}`}>
+    <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
       {children}
     </div>
   );
