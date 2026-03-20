@@ -27,6 +27,7 @@ import Portfolio from "./pages/Portfolio";
 import CaseStudy from "./pages/CaseStudy";
 import Book from "./pages/Book";
 import AmazonCallback from "./pages/AmazonCallback";
+import HipervinculoAds from "./pages/HipervinculoAds";
 
 const queryClient = new QueryClient();
 
