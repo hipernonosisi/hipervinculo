@@ -180,6 +180,36 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
   );
 }
 
+function ParallaxSection({ children, className = '', speed = 0.15 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 100, speed * -100]);
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+function ParallaxImage({ src, alt, className = '', speed = 0.12 }: { src: string; alt: string; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 120, speed * -120]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.08]);
+  return (
+    <div ref={ref} className="overflow-hidden rounded-[20px]">
+      <motion.img
+        src={src}
+        alt={alt}
+        style={{ y, scale }}
+        className={`w-full object-cover ${className}`}
+      />
+    </div>
+  );
+}
+
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
