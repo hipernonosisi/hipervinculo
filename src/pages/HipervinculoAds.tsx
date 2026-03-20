@@ -475,10 +475,10 @@ export default function HipervinculoAds() {
 
             <FadeIn className="hidden lg:block">
               <BrandCard className="h-full p-3">
-                <img
+                <ParallaxImage
                   src={botImage}
                   alt="Bot de reportes de Hipervínculo para Amazon PPC"
-                  className="h-full w-full rounded-[20px] border border-border object-cover"
+                  speed={0.18}
                 />
               </BrandCard>
             </FadeIn>
