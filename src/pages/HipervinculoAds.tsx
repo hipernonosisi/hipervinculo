@@ -366,7 +366,7 @@ export default function HipervinculoAds() {
         </div>
       </section>
 
-      <section id="estrategias" className="px-6 py-24">
+      <section id="estrategias" className="bg-[#f8f9f5] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Dos estrategias</p>
