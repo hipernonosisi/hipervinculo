@@ -532,7 +532,7 @@ export default function HipervinculoAds() {
               <br />
               <span className="text-accent">Es llegar a posición orgánica #1.</span>
             </h2>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-2xl text-lg leading-relaxed text-primary-foreground/72">
               Cuando tu producto domina orgánicamente, las ventas naturales toman el control, el PPC se reduce, y cada dólar invertido en publicidad fue una inversión que compró posición permanente.
             </p>
           </FadeIn>
