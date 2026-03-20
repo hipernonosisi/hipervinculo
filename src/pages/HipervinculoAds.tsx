@@ -201,7 +201,7 @@ export default function HipervinculoAds() {
         url="https://hipervinculo.net/ads"
       />
 
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-primary/90 backdrop-blur-xl">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary/10 bg-white backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
           <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
             <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
