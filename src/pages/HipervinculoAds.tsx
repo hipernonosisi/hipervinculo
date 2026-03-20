@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import {
   Search,
   Rocket,
@@ -180,6 +180,36 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
   );
 }
 
+function ParallaxSection({ children, className = '', speed = 0.15 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 100, speed * -100]);
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+function ParallaxImage({ src, alt, className = '', speed = 0.12 }: { src: string; alt: string; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 120, speed * -120]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.08]);
+  return (
+    <div ref={ref} className="overflow-hidden rounded-[20px]">
+      <motion.img
+        src={src}
+        alt={alt}
+        style={{ y, scale }}
+        className={`w-full object-cover ${className}`}
+      />
+    </div>
+  );
+}
+
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
@@ -193,6 +223,11 @@ export default function HipervinculoAds() {
     document.getElementById('como-funciona')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const { scrollY } = useScroll();
+  const navBg = useTransform(scrollY, [0, 100], ['rgba(255,255,255,0.6)', 'rgba(255,255,255,0.98)']);
+  const navShadow = useTransform(scrollY, [0, 100], ['0 0 0 transparent', '0 4px 20px rgba(0,0,0,0.06)']);
+  const heroParallaxY = useTransform(scrollY, [0, 600], [0, -80]);
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SEO
@@ -201,7 +236,10 @@ export default function HipervinculoAds() {
         url="https://hipervinculo.net/ads"
       />
 
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-primary/10 bg-white backdrop-blur-xl">
+      <motion.nav
+        className="fixed inset-x-0 top-0 z-50 border-b border-primary/10 backdrop-blur-xl"
+        style={{ backgroundColor: navBg, boxShadow: navShadow }}
+      >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
           <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
@@ -220,7 +258,7 @@ export default function HipervinculoAds() {
             Agenda una Demo
           </a>
         </div>
-      </nav>
+      </motion.nav>
 
       <section className="relative flex min-h-[90vh] items-center bg-[#f8f9f5] px-6 pt-28">
         <div
@@ -231,7 +269,7 @@ export default function HipervinculoAds() {
         />
         <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <motion.div style={{ y: heroParallaxY }} className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-primary">
               <Clock className="h-4 w-4" />
@@ -295,14 +333,14 @@ export default function HipervinculoAds() {
             className="hidden lg:block"
           >
             <BrandCard className="p-3">
-              <img
+              <ParallaxImage
                 src={dashboardImage}
                 alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
-                className="w-full rounded-[20px] border border-border object-cover"
+                speed={0.1}
               />
             </BrandCard>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="bg-[#f5f5f5] px-6 py-24">
@@ -338,10 +376,10 @@ export default function HipervinculoAds() {
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <FadeIn>
               <BrandCard className="p-3">
-                <img
+                <ParallaxImage
                   src={flowImage}
                   alt="Diagrama del sistema de automatización de Amazon PPC de Hipervínculo"
-                  className="w-full rounded-[20px] border border-border object-cover"
+                  speed={0.15}
                 />
               </BrandCard>
             </FadeIn>
@@ -445,10 +483,10 @@ export default function HipervinculoAds() {
 
             <FadeIn className="hidden lg:block">
               <BrandCard className="h-full p-3">
-                <img
+                <ParallaxImage
                   src={botImage}
                   alt="Bot de reportes de Hipervínculo para Amazon PPC"
-                  className="h-full w-full rounded-[20px] border border-border object-cover"
+                  speed={0.18}
                 />
               </BrandCard>
             </FadeIn>
@@ -553,11 +591,11 @@ export default function HipervinculoAds() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="rounded-[24px] border border-primary-foreground/10 p-3">
-              <img
+            <div className="rounded-[24px] border border-primary-foreground/10 p-3 overflow-hidden">
+              <ParallaxImage
                 src={rankingImage}
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
-                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
+                speed={0.12}
               />
             </div>
           </FadeIn>
