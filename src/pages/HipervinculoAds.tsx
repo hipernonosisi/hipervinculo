@@ -233,12 +233,12 @@ export default function HipervinculoAds() {
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-primary">
               <Clock className="h-4 w-4" />
               Ajustes cada 60 minutos
             </div>
 
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-primary-foreground/10 bg-primary-foreground/5 px-4 py-2 text-sm text-primary-foreground/80">
+            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-border bg-muted px-4 py-2 text-sm text-muted-foreground">
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               Hipervínculo presenta su sistema de Amazon PPC Automation
             </div>
