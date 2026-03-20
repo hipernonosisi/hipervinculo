@@ -340,7 +340,7 @@ export default function HipervinculoAds() {
               />
             </BrandCard>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="bg-[#f5f5f5] px-6 py-24">
