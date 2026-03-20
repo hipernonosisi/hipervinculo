@@ -463,38 +463,53 @@ export default function HipervinculoAds() {
             <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">No es otro dashboard</h2>
           </FadeIn>
 
-          <FadeIn>
-            <div className="overflow-x-auto rounded-[28px] border border-border bg-muted">
-              <table className="w-full min-w-[680px]">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="p-5 text-left text-sm font-semibold text-muted-foreground"></th>
-                    <th className="p-5 text-center text-sm font-semibold text-muted-foreground">Herramientas tradicionales</th>
-                    <th className="p-5 text-center text-sm font-semibold text-accent">Hipervinculo Ads</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonRows.map(([label, traditional, ours]) => (
-                    <tr key={label} className="border-b border-border">
-                      <td className="p-5 text-sm font-medium text-foreground">{label}</td>
-                      <td className="p-5 text-center text-sm text-muted-foreground">
-                        <span className="inline-flex items-center gap-2">
-                          <X className="h-4 w-4 text-muted-foreground" />
-                          {traditional}
-                        </span>
-                      </td>
-                      <td className="p-5 text-center text-sm text-foreground">
-                        <span className="inline-flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent" />
-                          {ours}
-                        </span>
-                      </td>
-                    </tr>
+          <div className="grid gap-5 md:grid-cols-2">
+            {/* Traditional Column */}
+            <FadeIn>
+              <div className="rounded-[24px] border border-border bg-white p-6 shadow-sm">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-50">
+                    <X className="h-5 w-5 text-red-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-foreground">Herramientas tradicionales</h3>
+                </div>
+                <div className="space-y-4">
+                  {comparisonRows.map(([label, traditional]) => (
+                    <div key={label} className="flex items-start gap-3 rounded-2xl bg-[#fafafa] p-4">
+                      <X className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-300" />
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+                        <p className="mt-1 text-sm text-foreground">{traditional}</p>
+                      </div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </FadeIn>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Hipervinculo Column */}
+            <FadeIn delay={0.1}>
+              <div className="rounded-[24px] border-2 border-accent/30 bg-white p-6 shadow-md ring-1 ring-accent/10">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15">
+                    <CheckCircle2 className="h-5 w-5 text-accent" />
+                  </div>
+                  <h3 className="text-lg font-bold text-primary">Hipervinculo Ads</h3>
+                </div>
+                <div className="space-y-4">
+                  {comparisonRows.map(([label, , ours]) => (
+                    <div key={label} className="flex items-start gap-3 rounded-2xl bg-accent/[0.06] p-4">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+                        <p className="mt-1 text-sm font-medium text-foreground">{ours}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
