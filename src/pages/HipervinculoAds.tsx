@@ -194,7 +194,7 @@ export default function HipervinculoAds() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-primary text-primary-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SEO
         title="Hipervinculo Ads | Amazon PPC en Piloto Automático"
         description="Automatiza tu PPC en Amazon con el estilo y metodología de Hipervínculo: discovery, campañas STC, ajustes horarios y escalamiento inteligente."
