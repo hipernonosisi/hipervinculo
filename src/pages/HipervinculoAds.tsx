@@ -280,7 +280,7 @@ export default function HipervinculoAds() {
               </a>
               <button
                 onClick={scrollToHow}
-                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 px-6 py-4 text-primary-foreground/78 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-4 text-muted-foreground transition-colors hover:text-accent"
               >
                 Ver cómo funciona
                 <ArrowDown className="h-4 w-4" />
