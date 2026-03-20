@@ -258,7 +258,7 @@ export default function HipervinculoAds() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="mb-10 max-w-2xl text-lg leading-relaxed text-primary-foreground/72"
+              className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             >
               Hipervinculo Ads descubre keywords, lanza campañas, ajusta bids cada hora, y escala tu presupuesto con resultados reales. Sin intervención humana.
             </motion.p>
