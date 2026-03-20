@@ -538,11 +538,11 @@ export default function HipervinculoAds() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <BrandCard className="p-3">
+            <div className="rounded-[24px] border border-primary-foreground/10 p-3">
               <img
                 src={rankingImage}
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
-                className="w-full rounded-[20px] border border-border object-cover"
+                className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
               />
             </BrandCard>
           </FadeIn>
