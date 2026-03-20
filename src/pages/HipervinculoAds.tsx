@@ -544,7 +544,7 @@ export default function HipervinculoAds() {
                 alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
                 className="w-full rounded-[20px] border border-primary-foreground/10 object-cover"
               />
-            </BrandCard>
+            </div>
           </FadeIn>
         </div>
       </section>
