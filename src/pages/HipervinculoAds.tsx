@@ -1134,8 +1134,6 @@ export default function HipervinculoAds() {
     </div>
   );
 }
-          <div className="grid gap-6 md:grid-cols-2">
-            <FadeIn>
               <ScaleOnHover>
                 <div className="h-full rounded-[28px] border border-border bg-muted p-8">
                   <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
