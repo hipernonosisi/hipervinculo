@@ -373,32 +373,108 @@ export default function HipervinculoAds() {
             <p className="text-lg text-muted-foreground">5 sistemas conectados que trabajan las 24 horas</p>
           </FadeIn>
 
-          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <FadeIn>
-              <BrandCard className="p-3">
-                <ParallaxImage
-                  src={flowImage}
-                  alt="Diagrama del sistema de automatización de Amazon PPC de Hipervínculo"
-                  speed={0.15}
-                />
-              </BrandCard>
-            </FadeIn>
-
-            <div className="space-y-5">
-              {workflowSteps.map((step, index) => (
-                <FadeIn key={step.title} delay={index * 0.08}>
-                  <div className="flex gap-4 rounded-[22px] border border-border bg-muted p-5">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
-                      <step.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-accent">Paso {index + 1}</p>
-                      <h3 className="mb-2 text-lg font-bold text-foreground">{step.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
-                    </div>
+          {/* Circular workflow — desktop: ring layout, mobile: vertical with connector line */}
+          <div className="relative mx-auto max-w-4xl">
+            {/* Desktop circular layout */}
+            <div className="hidden md:block">
+              <div className="relative mx-auto" style={{ width: '700px', height: '700px' }}>
+                {/* Central image */}
+                <FadeIn className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+                  <div className="h-[220px] w-[220px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
+                    <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
                   </div>
                 </FadeIn>
-              ))}
+
+                {/* SVG ring connector */}
+                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 700 700" fill="none">
+                  <circle cx="350" cy="350" r="260" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
+                  {/* Animated rotating dot */}
+                  <circle r="5" fill="hsl(var(--accent))" opacity="0.6">
+                    <animateMotion dur="12s" repeatCount="indefinite" path="M 610 350 A 260 260 0 1 1 609.99 350" />
+                  </circle>
+                </svg>
+
+                {/* Steps positioned around the circle */}
+                {workflowSteps.map((step, index) => {
+                  const angle = (index * (360 / 5) - 90) * (Math.PI / 180);
+                  const radius = 260;
+                  const cx = 350 + radius * Math.cos(angle);
+                  const cy = 350 + radius * Math.sin(angle);
+                  return (
+                    <FadeIn
+                      key={step.title}
+                      delay={index * 0.12}
+                      className="absolute"
+                      style={{ left: `${cx}px`, top: `${cy}px`, transform: 'translate(-50%, -50%)' }}
+                    >
+                      <div className="group w-[190px] rounded-[20px] border border-border bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+                        <div className="mb-2 flex items-center gap-2">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/12 text-accent">
+                            <step.icon className="h-4 w-4" />
+                          </div>
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Paso {index + 1}</span>
+                        </div>
+                        <h3 className="mb-1 text-sm font-bold text-foreground">{step.title}</h3>
+                        <p className="text-[12px] leading-snug text-muted-foreground">{step.desc}</p>
+                      </div>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile: vertical loop with connecting line */}
+            <div className="md:hidden">
+              <FadeIn className="mb-8 flex justify-center">
+                <div className="h-[160px] w-[160px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
+                  <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
+                </div>
+              </FadeIn>
+
+              <div className="relative pl-8">
+                {/* Vertical connector line */}
+                <div className="absolute bottom-0 left-[22px] top-0 w-[2px] bg-accent/20" />
+                {/* Loop-back arrow at bottom */}
+                <div className="absolute -bottom-6 left-[14px]">
+                  <svg width="18" height="24" viewBox="0 0 18 24" fill="none">
+                    <path d="M9 24 L9 4 M9 4 C9 4 2 8 2 14 C2 18 5 20 9 20" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 3" opacity="0.4" />
+                    <path d="M5 8 L9 2 L13 8" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+                  </svg>
+                </div>
+
+                <div className="space-y-5 pb-8">
+                  {workflowSteps.map((step, index) => (
+                    <FadeIn key={step.title} delay={index * 0.08}>
+                      <div className="relative">
+                        {/* Node dot on the line */}
+                        <div className="absolute -left-8 top-5 flex h-[11px] w-[11px] items-center justify-center">
+                          <div className="h-[11px] w-[11px] rounded-full border-2 border-accent bg-white" />
+                        </div>
+                        <div className="rounded-[18px] border border-border bg-white p-5">
+                          <div className="mb-2 flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/12 text-accent">
+                              <step.icon className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Paso {index + 1}</p>
+                              <h3 className="text-base font-bold text-foreground">{step.title}</h3>
+                            </div>
+                          </div>
+                          <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                        </div>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+
+                {/* "Repite" label */}
+                <FadeIn delay={0.5}>
+                  <div className="ml-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
+                    <RefreshCw className="h-3 w-3" />
+                    Ciclo continuo 24/7
+                  </div>
+                </FadeIn>
+              </div>
             </div>
           </div>
         </div>
