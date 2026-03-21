@@ -1068,7 +1068,7 @@ export default function HipervinculoAds() {
           <motion.div
             whileHover={{ scale: 1.01 }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="relative mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12"
+            className="relative mx-auto max-w-4xl px-8 py-10 text-center sm:px-12"
           >
             <motion.div
               initial={{ scale: 0, rotate: -10 }}
