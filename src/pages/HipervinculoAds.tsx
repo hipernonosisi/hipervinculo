@@ -849,13 +849,21 @@ export default function HipervinculoAds() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((stat, index) => (
-              <FadeIn key={t.metrics.items[index]} delay={index * 0.08}>
-                <BrandCard className="h-full text-center">
-                  <div className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent">
-                    <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix} />
-                  </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t.metrics.items[index]}</p>
-                </BrandCard>
+              <FadeIn key={t.metrics.items[index]} delay={index * 0.12}>
+                <ScaleOnHover>
+                  <BrandCard className="h-full text-center">
+                    <motion.div
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
+                      className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent"
+                    >
+                      <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix} />
+                    </motion.div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{t.metrics.items[index]}</p>
+                  </BrandCard>
+                </ScaleOnHover>
               </FadeIn>
             ))}
           </div>
