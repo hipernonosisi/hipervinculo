@@ -522,12 +522,13 @@ export default function HipervinculoAds() {
             {/* Desktop circular layout */}
             <div className="hidden lg:block">
               <div className="relative mx-auto" style={{ width: '1100px', height: '1100px' }}>
-                <FadeIn className="absolute z-10" style={{ left: '550px', top: '550px', transform: 'translate(-50%, -50%)' }}>
-
-                  <div className="h-[180px] w-[180px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
-                    <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
-                  </div>
-                </FadeIn>
+                <div className="absolute z-10" style={{ left: '550px', top: '550px', transform: 'translate(-50%, -50%)' }}>
+                  <FadeIn>
+                    <div className="h-[180px] w-[180px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
+                      <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
+                    </div>
+                  </FadeIn>
+                </div>
 
                 <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1100 1100" fill="none">
                   <ellipse cx="550" cy="550" rx="400" ry="400" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
