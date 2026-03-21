@@ -48,7 +48,7 @@ const workflowSteps = [
   {
     icon: Search,
     title: 'Descubrimiento',
-    desc: 'Cruza Amazon Autocomplete, keywords sugeridos, y DataForSEO para encontrar oportunidades con volumen real. +3,800 keywords calificados por producto.',
+    desc: 'Cruza Amazon Autocomplete, keywords sugeridos y múltiples fuentes de datos para encontrar oportunidades con volumen real. +3,800 keywords calificados por producto.',
   },
   {
     icon: Rocket,
