@@ -426,7 +426,7 @@ export default function HipervinculoAds() {
             </div>
 
             {/* Mobile: vertical loop with connecting line */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <FadeIn className="mb-8 flex justify-center">
                 <div className="h-[160px] w-[160px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
                   <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
