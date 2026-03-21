@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Globe } from 'lucide-react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import {
   Search,
   Rocket,
