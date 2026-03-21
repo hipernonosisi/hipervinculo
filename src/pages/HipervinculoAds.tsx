@@ -402,23 +402,24 @@ export default function HipervinculoAds() {
                   const cx = 350 + radius * Math.cos(angle);
                   const cy = 350 + radius * Math.sin(angle);
                   return (
-                    <FadeIn
+                    <div
                       key={step.title}
-                      delay={index * 0.12}
                       className="absolute"
                       style={{ left: `${cx}px`, top: `${cy}px`, transform: 'translate(-50%, -50%)' }}
                     >
-                      <div className="group w-[190px] rounded-[20px] border border-border bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
-                        <div className="mb-2 flex items-center gap-2">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/12 text-accent">
-                            <step.icon className="h-4 w-4" />
+                      <FadeIn delay={index * 0.12}>
+                        <div className="group w-[190px] rounded-[20px] border border-border bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+                          <div className="mb-2 flex items-center gap-2">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/12 text-accent">
+                              <step.icon className="h-4 w-4" />
+                            </div>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Paso {index + 1}</span>
                           </div>
-                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Paso {index + 1}</span>
+                          <h3 className="mb-1 text-sm font-bold text-foreground">{step.title}</h3>
+                          <p className="text-[12px] leading-snug text-muted-foreground">{step.desc}</p>
                         </div>
-                        <h3 className="mb-1 text-sm font-bold text-foreground">{step.title}</h3>
-                        <p className="text-[12px] leading-snug text-muted-foreground">{step.desc}</p>
-                      </div>
-                    </FadeIn>
+                      </FadeIn>
+                    </div>
                   );
                 })}
               </div>
