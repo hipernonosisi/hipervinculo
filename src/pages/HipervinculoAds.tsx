@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Globe } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import {
   Search,
@@ -335,7 +336,17 @@ function BrandCard({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 export default function HipervinculoAds() {
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+
+  // Default to English on this page
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (!langParam) {
+      setLanguage('en');
+    }
+  }, []);
+
   const t = content[language];
 
   const scrollToHow = () => {
@@ -368,14 +379,23 @@ export default function HipervinculoAds() {
             <a href="#features" className="text-primary transition-colors hover:text-accent">{t.nav.features}</a>
           </div>
 
-          <a
-            href="https://calendly.com/hipervinculo_usa/30-minutes-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-          >
-            {t.nav.cta}
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+              className="flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-semibold text-primary transition-colors hover:bg-muted"
+            >
+              <Globe className="h-3.5 w-3.5" />
+              {language === 'en' ? 'ES' : 'EN'}
+            </button>
+            <a
+              href="https://calendly.com/hipervinculo_usa/30-minutes-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              {t.nav.cta}
+            </a>
+          </div>
         </div>
       </motion.nav>
 
