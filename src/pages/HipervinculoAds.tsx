@@ -446,6 +446,12 @@ export default function HipervinculoAds() {
           }}
         />
         <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
+        <FloatingElement className="absolute right-[10%] top-32 hidden lg:block" amplitude={18} duration={5}>
+          <div className="h-16 w-16 rounded-2xl bg-accent/8 backdrop-blur-sm" />
+        </FloatingElement>
+        <FloatingElement className="absolute left-[8%] bottom-24 hidden lg:block" amplitude={14} duration={6}>
+          <div className="h-10 w-10 rotate-45 rounded-lg bg-accent/10" />
+        </FloatingElement>
 
         <motion.div style={{ y: heroParallaxY }} className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
