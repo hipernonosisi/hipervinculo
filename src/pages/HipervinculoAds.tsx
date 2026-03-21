@@ -685,37 +685,55 @@ export default function HipervinculoAds() {
 
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn>
-              <div className="h-full rounded-[28px] border border-border bg-muted p-8">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
-                  <DollarSign className="h-4 w-4" />
-                  {t.strategies.sales.label}
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-border bg-muted p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+                    <DollarSign className="h-4 w-4" />
+                    {t.strategies.sales.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.sales.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.08, duration: 0.4 }}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-4 text-foreground">
-                  {t.strategies.sales.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </ScaleOnHover>
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
-                  <Target className="h-4 w-4" />
-                  {t.strategies.ranking.label}
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
+                    <Target className="h-4 w-4" />
+                    {t.strategies.ranking.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.ranking.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.08, duration: 0.4 }}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-4 text-foreground">
-                  {t.strategies.ranking.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </ScaleOnHover>
             </FadeIn>
           </div>
         </div>
