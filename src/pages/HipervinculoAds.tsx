@@ -590,16 +590,16 @@ export default function HipervinculoAds() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, delay: 0.35 }}
+            initial={{ opacity: 0, x: 60, rotate: 3, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, x: 0, rotate: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="hidden lg:block"
           >
             <BrandCard className="p-3">
               <ParallaxImage
                 src={dashboardImage}
                 alt="Dashboard de Hipervínculo para automatización de Amazon PPC"
-                speed={0.1}
+                speed={0.15}
               />
             </BrandCard>
           </motion.div>
