@@ -310,6 +310,59 @@ function FadeIn({ children, className = '', delay = 0 }: { children: React.React
   );
 }
 
+function SlideIn({ children, className = '', delay = 0, direction = 'left' }: { children: React.ReactNode; className?: string; delay?: number; direction?: 'left' | 'right' }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: direction === 'left' ? -80 : 80 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function TextReveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function RotateIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.6, delay, type: 'spring', stiffness: 120, damping: 14 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ParallaxBg({ className = '', speed = 0.15 }: { className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 200, speed * -200]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, speed * 30]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.1, 0.9]);
+  return (
+    <motion.div ref={ref} style={{ y, rotate, scale }} className={`pointer-events-none absolute ${className}`} />
+  );
+}
+
 function ParallaxImage({ src, alt, className = '', speed = 0.12 }: { src: string; alt: string; className?: string; speed?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
