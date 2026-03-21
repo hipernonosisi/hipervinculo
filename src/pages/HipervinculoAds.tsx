@@ -375,32 +375,32 @@ export default function HipervinculoAds() {
           </FadeIn>
 
           {/* Circular workflow — desktop: ring layout, mobile: vertical with connector line */}
-          <div className="relative mx-auto max-w-4xl">
+          <div className="relative mx-auto max-w-6xl">
             {/* Desktop circular layout */}
-            <div className="hidden md:block">
-              <div className="relative mx-auto" style={{ width: '700px', height: '700px' }}>
+            <div className="hidden lg:block">
+              <div className="relative mx-auto" style={{ width: '1000px', height: '900px' }}>
                 {/* Central image */}
                 <FadeIn className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                  <div className="h-[220px] w-[220px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
+                  <div className="h-[200px] w-[200px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
                     <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
                   </div>
                 </FadeIn>
 
                 {/* SVG ring connector */}
-                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 700 700" fill="none">
-                  <circle cx="350" cy="350" r="260" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
-                  {/* Animated rotating dot */}
+                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 900" fill="none">
+                  <ellipse cx="500" cy="450" rx="340" ry="310" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
                   <circle r="5" fill="hsl(var(--accent))" opacity="0.6">
-                    <animateMotion dur="12s" repeatCount="indefinite" path="M 610 350 A 260 260 0 1 1 609.99 350" />
+                    <animateMotion dur="12s" repeatCount="indefinite" path="M 840 450 A 340 310 0 1 1 839.99 450" />
                   </circle>
                 </svg>
 
-                {/* Steps positioned around the circle */}
+                {/* Steps positioned around the ellipse */}
                 {workflowSteps.map((step, index) => {
                   const angle = (index * (360 / 5) - 90) * (Math.PI / 180);
-                  const radius = 260;
-                  const cx = 350 + radius * Math.cos(angle);
-                  const cy = 350 + radius * Math.sin(angle);
+                  const rx = 340;
+                  const ry = 310;
+                  const cx = 500 + rx * Math.cos(angle);
+                  const cy = 450 + ry * Math.sin(angle);
                   return (
                     <div
                       key={step.title}
@@ -408,7 +408,7 @@ export default function HipervinculoAds() {
                       style={{ left: `${cx}px`, top: `${cy}px`, transform: 'translate(-50%, -50%)' }}
                     >
                       <FadeIn delay={index * 0.12}>
-                        <div className="group w-[190px] rounded-[20px] border border-border bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+                        <div className="group w-[210px] rounded-[20px] border border-border bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
                           <div className="mb-2 flex items-center gap-2">
                             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/12 text-accent">
                               <step.icon className="h-4 w-4" />
@@ -426,7 +426,7 @@ export default function HipervinculoAds() {
             </div>
 
             {/* Mobile: vertical loop with connecting line */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <FadeIn className="mb-8 flex justify-center">
                 <div className="h-[160px] w-[160px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
                   <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
