@@ -1134,10 +1134,6 @@ export default function HipervinculoAds() {
     </div>
   );
 }
-              <ScaleOnHover>
-                <div className="h-full rounded-[28px] border border-border bg-muted p-8">
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
-                    <DollarSign className="h-4 w-4" />
                     {t.strategies.sales.label}
                   </div>
                   <ul className="space-y-4 text-foreground">
