@@ -336,7 +336,17 @@ function BrandCard({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 export default function HipervinculoAds() {
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+
+  // Default to English on this page
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (!langParam) {
+      setLanguage('en');
+    }
+  }, []);
+
   const t = content[language];
 
   const scrollToHow = () => {
