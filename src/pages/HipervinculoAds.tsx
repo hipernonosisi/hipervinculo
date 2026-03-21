@@ -491,57 +491,83 @@ export default function HipervinculoAds() {
       </motion.nav>
 
       {/* HERO */}
-      <section className="relative flex min-h-[90vh] items-center bg-[#f8f9f5] px-6 pt-28">
+      <section className="relative flex min-h-[90vh] items-center bg-[#f8f9f5] px-6 pt-28 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage: `repeating-linear-gradient(-55deg, transparent, transparent 54px, hsl(var(--primary) / 0.08) 54px, hsl(var(--primary) / 0.08) 55px)`,
           }}
         />
-        <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
+        <ParallaxBg className="left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" speed={0.1} />
+        <ParallaxBg className="right-[5%] top-[15%] h-40 w-40 rounded-full bg-accent/8 blur-2xl" speed={0.2} />
+        <ParallaxBg className="left-[3%] bottom-[20%] h-32 w-32 rounded-full bg-accent/6 blur-2xl" speed={-0.12} />
         <FloatingElement className="absolute right-[10%] top-32 hidden lg:block" amplitude={18} duration={5}>
           <div className="h-16 w-16 rounded-2xl bg-accent/8 backdrop-blur-sm" />
         </FloatingElement>
         <FloatingElement className="absolute left-[8%] bottom-24 hidden lg:block" amplitude={14} duration={6}>
           <div className="h-10 w-10 rotate-45 rounded-lg bg-accent/10" />
         </FloatingElement>
+        <FloatingElement className="absolute right-[25%] bottom-16 hidden lg:block" amplitude={10} duration={8}>
+          <div className="h-6 w-6 rounded-full bg-accent/12" />
+        </FloatingElement>
 
         <motion.div style={{ y: heroParallaxY }} className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-primary">
+            <motion.div
+              initial={{ opacity: 0, x: -30, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-medium text-primary"
+            >
               <Clock className="h-4 w-4" />
               {t.hero.badge}
-            </div>
+            </motion.div>
 
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-border bg-muted px-4 py-2 text-sm text-muted-foreground">
-              <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+            <motion.div
+              initial={{ opacity: 0, x: -30, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.6, delay: 0.12 }}
+              className="mb-5 inline-flex items-center gap-3 rounded-full border border-border bg-muted px-4 py-2 text-sm text-muted-foreground"
+            >
+              <motion.span
+                animate={{ scale: [1, 1.4, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="h-2.5 w-2.5 rounded-full bg-accent"
+              />
               {t.hero.subbadge}
-            </div>
+            </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
+              initial={{ opacity: 0, y: 40, filter: 'blur(12px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="mb-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl"
             >
               {t.hero.h1a}
               <br />
-              <span className="text-accent">{t.hero.h1b}</span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-accent"
+              >
+                {t.hero.h1b}
+              </motion.span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
               className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             >
               {t.hero.sub}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
+              transition={{ duration: 0.7, delay: 0.55 }}
               className="flex flex-col gap-4 sm:flex-row sm:items-center"
             >
               <a
