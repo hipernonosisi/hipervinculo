@@ -17,6 +17,7 @@ import {
   X,
   ArrowDown,
   ChevronRight,
+  RefreshCw,
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 import logoFull from '@/assets/logo-hipervinculo.png';
