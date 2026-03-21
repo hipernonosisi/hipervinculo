@@ -501,27 +501,27 @@ export default function HipervinculoAds() {
           <div className="relative mx-auto max-w-6xl">
             {/* Desktop circular layout */}
             <div className="hidden lg:block">
-              <div className="relative mx-auto" style={{ width: '1000px', height: '900px' }}>
+              <div className="relative mx-auto" style={{ width: '1100px', height: '1050px' }}>
                 <FadeIn className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                  <div className="h-[200px] w-[200px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
+                  <div className="h-[180px] w-[180px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
                     <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
                   </div>
                 </FadeIn>
 
-                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 900" fill="none">
-                  <ellipse cx="500" cy="450" rx="340" ry="310" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
+                <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1100 1050" fill="none">
+                  <ellipse cx="550" cy="525" rx="420" ry="380" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="8 6" opacity="0.35" />
                   <circle r="5" fill="hsl(var(--accent))" opacity="0.6">
-                    <animateMotion dur="12s" repeatCount="indefinite" path="M 840 450 A 340 310 0 1 1 839.99 450" />
+                    <animateMotion dur="12s" repeatCount="indefinite" path="M 970 525 A 420 380 0 1 1 969.99 525" />
                   </circle>
                 </svg>
 
                 {t.solution.steps.map((step, index) => {
                   const Icon = stepIcons[index];
                   const angle = (index * (360 / 5) - 90) * (Math.PI / 180);
-                  const rx = 340;
-                  const ry = 310;
-                  const cx = 500 + rx * Math.cos(angle);
-                  const cy = 450 + ry * Math.sin(angle);
+                  const rx = 420;
+                  const ry = 380;
+                  const cx = 550 + rx * Math.cos(angle);
+                  const cy = 525 + ry * Math.sin(angle);
                   return (
                     <div
                       key={step.title}
