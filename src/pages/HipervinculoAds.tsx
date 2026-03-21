@@ -607,19 +607,27 @@ export default function HipervinculoAds() {
       </section>
 
       {/* PROBLEM */}
-      <section className="bg-[#f5f5f5] px-6 py-24">
-        <ParallaxSection className="mx-auto max-w-6xl" speed={0.04}>
-          <FadeIn className="mb-16 text-center">
+      <section className="relative bg-[#f5f5f5] px-6 py-28 overflow-hidden">
+        <ParallaxBg className="right-[-5%] top-[10%] h-64 w-64 rounded-full bg-accent/5 blur-3xl" speed={0.18} />
+        <ParallaxBg className="left-[-3%] bottom-[15%] h-48 w-48 rounded-full bg-primary/3 blur-3xl" speed={-0.1} />
+        <ParallaxSection className="mx-auto max-w-6xl" speed={0.05}>
+          <TextReveal className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.problem.label}</p>
             <h2 className="mb-4 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.problem.title}</h2>
-            <div className="mx-auto h-1 w-20 rounded-full bg-accent" />
-          </FadeIn>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+              className="mx-auto h-1 w-20 origin-left rounded-full bg-accent"
+            />
+          </TextReveal>
 
           <div className="grid gap-6 md:grid-cols-3">
             {t.problem.cards.map((card, index) => {
               const Icon = problemIcons[index];
               return (
-                <FadeIn key={card.title} delay={index * 0.12}>
+                <RotateIn key={card.title} delay={index * 0.15}>
                   <ScaleOnHover>
                     <BrandCard className="h-full">
                       <motion.div
@@ -633,7 +641,7 @@ export default function HipervinculoAds() {
                       <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
                     </BrandCard>
                   </ScaleOnHover>
-                </FadeIn>
+                </RotateIn>
               );
             })}
           </div>
