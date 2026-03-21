@@ -529,7 +529,7 @@ export default function HipervinculoAds() {
 
       {/* PROBLEM */}
       <section className="bg-[#f5f5f5] px-6 py-24">
-        <div className="mx-auto max-w-6xl">
+        <ParallaxSection className="mx-auto max-w-6xl" speed={0.04}>
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.problem.label}</p>
             <h2 className="mb-4 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.problem.title}</h2>
@@ -540,17 +540,25 @@ export default function HipervinculoAds() {
             {t.problem.cards.map((card, index) => {
               const Icon = problemIcons[index];
               return (
-                <FadeIn key={card.title} delay={index * 0.1}>
-                  <BrandCard className="h-full">
-                    <Icon className="mb-4 h-10 w-10 text-accent" />
-                    <h3 className="mb-3 text-xl font-bold text-foreground">{card.title}</h3>
-                    <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
-                  </BrandCard>
+                <FadeIn key={card.title} delay={index * 0.12}>
+                  <ScaleOnHover>
+                    <BrandCard className="h-full">
+                      <motion.div
+                        initial={{ rotate: 0 }}
+                        whileHover={{ rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Icon className="mb-4 h-10 w-10 text-accent" />
+                      </motion.div>
+                      <h3 className="mb-3 text-xl font-bold text-foreground">{card.title}</h3>
+                      <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
+                    </BrandCard>
+                  </ScaleOnHover>
                 </FadeIn>
               );
             })}
           </div>
-        </div>
+        </ParallaxSection>
       </section>
 
       {/* HOW IT WORKS — CIRCULAR */}
