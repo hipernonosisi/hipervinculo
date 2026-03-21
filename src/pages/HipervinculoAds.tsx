@@ -327,6 +327,44 @@ function ParallaxImage({ src, alt, className = '', speed = 0.12 }: { src: string
   );
 }
 
+function ParallaxSection({ children, className = '', speed = 0.06 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 100, speed * -100]);
+  return (
+    <div ref={ref} className={className}>
+      <motion.div style={{ y }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+function FloatingElement({ children, className = '', amplitude = 12, duration = 4 }: { children: React.ReactNode; className?: string; amplitude?: number; duration?: number }) {
+  return (
+    <motion.div
+      animate={{ y: [-amplitude, amplitude, -amplitude] }}
+      transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ScaleOnHover({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.04, y: -4 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
