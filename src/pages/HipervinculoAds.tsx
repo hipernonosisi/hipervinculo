@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Globe } from 'lucide-react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import {
   Search,
   Rocket,
@@ -327,6 +327,44 @@ function ParallaxImage({ src, alt, className = '', speed = 0.12 }: { src: string
   );
 }
 
+function ParallaxSection({ children, className = '', speed = 0.06 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 100, speed * -100]);
+  return (
+    <div ref={ref} className={className}>
+      <motion.div style={{ y }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+function FloatingElement({ children, className = '', amplitude = 12, duration = 4 }: { children: React.ReactNode; className?: string; amplitude?: number; duration?: number }) {
+  return (
+    <motion.div
+      animate={{ y: [-amplitude, amplitude, -amplitude] }}
+      transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ScaleOnHover({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.04, y: -4 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function BrandCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`rounded-[24px] border border-border bg-card p-6 shadow-md ${className}`}>
@@ -408,6 +446,12 @@ export default function HipervinculoAds() {
           }}
         />
         <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
+        <FloatingElement className="absolute right-[10%] top-32 hidden lg:block" amplitude={18} duration={5}>
+          <div className="h-16 w-16 rounded-2xl bg-accent/8 backdrop-blur-sm" />
+        </FloatingElement>
+        <FloatingElement className="absolute left-[8%] bottom-24 hidden lg:block" amplitude={14} duration={6}>
+          <div className="h-10 w-10 rotate-45 rounded-lg bg-accent/10" />
+        </FloatingElement>
 
         <motion.div style={{ y: heroParallaxY }} className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
@@ -485,7 +529,7 @@ export default function HipervinculoAds() {
 
       {/* PROBLEM */}
       <section className="bg-[#f5f5f5] px-6 py-24">
-        <div className="mx-auto max-w-6xl">
+        <ParallaxSection className="mx-auto max-w-6xl" speed={0.04}>
           <FadeIn className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.problem.label}</p>
             <h2 className="mb-4 text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.problem.title}</h2>
@@ -496,17 +540,25 @@ export default function HipervinculoAds() {
             {t.problem.cards.map((card, index) => {
               const Icon = problemIcons[index];
               return (
-                <FadeIn key={card.title} delay={index * 0.1}>
-                  <BrandCard className="h-full">
-                    <Icon className="mb-4 h-10 w-10 text-accent" />
-                    <h3 className="mb-3 text-xl font-bold text-foreground">{card.title}</h3>
-                    <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
-                  </BrandCard>
+                <FadeIn key={card.title} delay={index * 0.12}>
+                  <ScaleOnHover>
+                    <BrandCard className="h-full">
+                      <motion.div
+                        initial={{ rotate: 0 }}
+                        whileHover={{ rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Icon className="mb-4 h-10 w-10 text-accent" />
+                      </motion.div>
+                      <h3 className="mb-3 text-xl font-bold text-foreground">{card.title}</h3>
+                      <p className="leading-relaxed text-muted-foreground">{card.desc}</p>
+                    </BrandCard>
+                  </ScaleOnHover>
                 </FadeIn>
               );
             })}
           </div>
-        </div>
+        </ParallaxSection>
       </section>
 
       {/* HOW IT WORKS — CIRCULAR */}
@@ -633,37 +685,55 @@ export default function HipervinculoAds() {
 
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn>
-              <div className="h-full rounded-[28px] border border-border bg-muted p-8">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
-                  <DollarSign className="h-4 w-4" />
-                  {t.strategies.sales.label}
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-border bg-muted p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+                    <DollarSign className="h-4 w-4" />
+                    {t.strategies.sales.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.sales.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.08, duration: 0.4 }}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-4 text-foreground">
-                  {t.strategies.sales.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </ScaleOnHover>
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
-                  <Target className="h-4 w-4" />
-                  {t.strategies.ranking.label}
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
+                    <Target className="h-4 w-4" />
+                    {t.strategies.ranking.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.ranking.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.08, duration: 0.4 }}
+                        className="flex items-start gap-3"
+                      >
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-4 text-foreground">
-                  {t.strategies.ranking.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </ScaleOnHover>
             </FadeIn>
           </div>
         </div>
@@ -682,12 +752,19 @@ export default function HipervinculoAds() {
               {t.features.cards.map((feature, index) => {
                 const Icon = featureIcons[index];
                 return (
-                  <FadeIn key={feature.title} delay={(index % 3) * 0.08}>
-                    <BrandCard className="h-full">
-                      <Icon className="mb-4 h-8 w-8 text-accent" />
-                      <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
-                    </BrandCard>
+                  <FadeIn key={feature.title} delay={(index % 3) * 0.1}>
+                    <ScaleOnHover>
+                      <BrandCard className="h-full">
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 5 }}
+                          transition={{ type: 'spring', stiffness: 400 }}
+                        >
+                          <Icon className="mb-4 h-8 w-8 text-accent" />
+                        </motion.div>
+                        <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
+                      </BrandCard>
+                    </ScaleOnHover>
                   </FadeIn>
                 );
               })}
@@ -772,13 +849,21 @@ export default function HipervinculoAds() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((stat, index) => (
-              <FadeIn key={t.metrics.items[index]} delay={index * 0.08}>
-                <BrandCard className="h-full text-center">
-                  <div className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent">
-                    <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix} />
-                  </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t.metrics.items[index]}</p>
-                </BrandCard>
+              <FadeIn key={t.metrics.items[index]} delay={index * 0.12}>
+                <ScaleOnHover>
+                  <BrandCard className="h-full text-center">
+                    <motion.div
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
+                      className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent"
+                    >
+                      <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix} />
+                    </motion.div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{t.metrics.items[index]}</p>
+                  </BrandCard>
+                </ScaleOnHover>
               </FadeIn>
             ))}
           </div>
@@ -816,28 +901,46 @@ export default function HipervinculoAds() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-24 pt-8">
+      <section className="relative px-6 pb-24 pt-8 overflow-hidden">
+        <FloatingElement className="absolute left-[5%] top-12 hidden lg:block" amplitude={20} duration={7}>
+          <div className="h-20 w-20 rounded-full bg-accent/5 blur-xl" />
+        </FloatingElement>
+        <FloatingElement className="absolute right-[8%] bottom-16 hidden lg:block" amplitude={15} duration={5}>
+          <div className="h-14 w-14 rotate-12 rounded-2xl bg-accent/8 blur-lg" />
+        </FloatingElement>
         <FadeIn>
-          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12">
-            <div className="mb-8 inline-flex rounded-2xl px-5 py-4">
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+              className="mb-8 inline-flex rounded-2xl px-5 py-4"
+            >
               <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
-            </div>
+            </motion.div>
             <h2 className="mb-5 text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
               {t.cta.title}
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary/70">
               {t.cta.sub}
             </p>
-            <a
+            <motion.a
               href="https://calendly.com/hipervinculo_usa/30-minutes-call"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-10 py-5 text-lg font-semibold text-accent-foreground transition-opacity hover:opacity-90"
             >
               {t.cta.button}
               <ChevronRight className="h-5 w-5" />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </FadeIn>
       </section>
 
