@@ -752,12 +752,19 @@ export default function HipervinculoAds() {
               {t.features.cards.map((feature, index) => {
                 const Icon = featureIcons[index];
                 return (
-                  <FadeIn key={feature.title} delay={(index % 3) * 0.08}>
-                    <BrandCard className="h-full">
-                      <Icon className="mb-4 h-8 w-8 text-accent" />
-                      <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
-                    </BrandCard>
+                  <FadeIn key={feature.title} delay={(index % 3) * 0.1}>
+                    <ScaleOnHover>
+                      <BrandCard className="h-full">
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 5 }}
+                          transition={{ type: 'spring', stiffness: 400 }}
+                        >
+                          <Icon className="mb-4 h-8 w-8 text-accent" />
+                        </motion.div>
+                        <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
+                      </BrandCard>
+                    </ScaleOnHover>
                   </FadeIn>
                 );
               })}
