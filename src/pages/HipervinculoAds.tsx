@@ -901,28 +901,46 @@ export default function HipervinculoAds() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-24 pt-8">
+      <section className="relative px-6 pb-24 pt-8 overflow-hidden">
+        <FloatingElement className="absolute left-[5%] top-12 hidden lg:block" amplitude={20} duration={7}>
+          <div className="h-20 w-20 rounded-full bg-accent/5 blur-xl" />
+        </FloatingElement>
+        <FloatingElement className="absolute right-[8%] bottom-16 hidden lg:block" amplitude={15} duration={5}>
+          <div className="h-14 w-14 rotate-12 rounded-2xl bg-accent/8 blur-lg" />
+        </FloatingElement>
         <FadeIn>
-          <div className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12">
-            <div className="mb-8 inline-flex rounded-2xl px-5 py-4">
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+              className="mb-8 inline-flex rounded-2xl px-5 py-4"
+            >
               <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
-            </div>
+            </motion.div>
             <h2 className="mb-5 text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
               {t.cta.title}
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary/70">
               {t.cta.sub}
             </p>
-            <a
+            <motion.a
               href="https://calendly.com/hipervinculo_usa/30-minutes-call"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-10 py-5 text-lg font-semibold text-accent-foreground transition-opacity hover:opacity-90"
             >
               {t.cta.button}
               <ChevronRight className="h-5 w-5" />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </FadeIn>
       </section>
 
