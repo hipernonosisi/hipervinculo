@@ -763,13 +763,377 @@ export default function HipervinculoAds() {
       </section>
 
       {/* STRATEGIES */}
-      <section id="estrategias" className="bg-[#f8f9f5] px-6 py-24">
-        <div className="mx-auto max-w-6xl">
-          <FadeIn className="mb-16 text-center">
+      <section id="estrategias" className="relative bg-[#f8f9f5] px-6 py-28 overflow-hidden">
+        <ParallaxBg className="left-[-8%] top-[20%] h-56 w-56 rounded-full bg-accent/6 blur-3xl" speed={0.15} />
+        <ParallaxBg className="right-[-5%] bottom-[10%] h-44 w-44 rounded-full bg-primary/4 blur-3xl" speed={-0.12} />
+        <div className="relative mx-auto max-w-6xl">
+          <TextReveal className="mb-16 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.strategies.label}</p>
             <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.strategies.title}</h2>
-          </FadeIn>
+          </TextReveal>
 
+          <div className="grid gap-6 md:grid-cols-2">
+            <SlideIn direction="left">
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-border bg-muted p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-sm font-bold text-accent">
+                    <DollarSign className="h-4 w-4" />
+                    {t.strategies.sales.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.sales.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex items-start gap-3"
+                      >
+                        <motion.div whileInView={{ scale: [0, 1.3, 1] }} viewport={{ once: true }} transition={{ delay: i * 0.1 + 0.2 }}>
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        </motion.div>
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </ScaleOnHover>
+            </SlideIn>
+
+            <SlideIn direction="right" delay={0.1}>
+              <ScaleOnHover>
+                <div className="h-full rounded-[28px] border border-accent/25 bg-accent/10 p-8">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">
+                    <Target className="h-4 w-4" />
+                    {t.strategies.ranking.label}
+                  </div>
+                  <ul className="space-y-4 text-foreground">
+                    {t.strategies.ranking.items.map((item, i) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex items-start gap-3"
+                      >
+                        <motion.div whileInView={{ scale: [0, 1.3, 1] }} viewport={{ once: true }} transition={{ delay: i * 0.1 + 0.2 }}>
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
+                        </motion.div>
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </ScaleOnHover>
+            </SlideIn>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className="relative px-6 py-28 overflow-hidden">
+        <ParallaxBg className="right-[-3%] top-[5%] h-52 w-52 rounded-full bg-accent/5 blur-3xl" speed={0.2} />
+        <ParallaxBg className="left-[10%] bottom-[8%] h-36 w-36 rounded-full bg-accent/8 blur-2xl" speed={-0.15} />
+        <div className="relative mx-auto max-w-6xl">
+          <TextReveal className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.features.label}</p>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.features.title}</h2>
+          </TextReveal>
+
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {t.features.cards.map((feature, index) => {
+                const Icon = featureIcons[index];
+                return (
+                  <RotateIn key={feature.title} delay={(index % 3) * 0.12}>
+                    <ScaleOnHover>
+                      <BrandCard className="h-full">
+                        <motion.div
+                          whileHover={{ scale: 1.3, rotate: 8 }}
+                          transition={{ type: 'spring', stiffness: 400 }}
+                        >
+                          <Icon className="mb-4 h-8 w-8 text-accent" />
+                        </motion.div>
+                        <h3 className="mb-2 text-base font-bold text-foreground">{feature.title}</h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
+                      </BrandCard>
+                    </ScaleOnHover>
+                  </RotateIn>
+                );
+              })}
+            </div>
+
+            <SlideIn direction="right" className="hidden lg:block">
+              <BrandCard className="h-full p-3">
+                <ParallaxImage
+                  src={botImage}
+                  alt="Bot de reportes de Hipervínculo para Amazon PPC"
+                  speed={0.22}
+                />
+              </BrandCard>
+            </SlideIn>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPARISON */}
+      <section className="relative bg-[#f5f5f5] px-6 py-28 overflow-hidden">
+        <ParallaxBg className="left-[50%] top-[-5%] h-72 w-72 -translate-x-1/2 rounded-full bg-accent/4 blur-3xl" speed={0.1} />
+        <div className="relative mx-auto max-w-5xl">
+          <TextReveal className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.comparison.label}</p>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.comparison.title}</h2>
+          </TextReveal>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            <SlideIn direction="left">
+              <div className="rounded-[24px] border border-border bg-white p-6 shadow-sm">
+                <div className="mb-6 flex items-center gap-3">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10"
+                  >
+                    <X className="h-5 w-5 text-destructive" />
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-foreground">{t.comparison.traditional}</h3>
+                </div>
+                <div className="space-y-4">
+                  {t.comparison.rows.map(([label, traditional], i) => (
+                    <motion.div
+                      key={label}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.08, duration: 0.4 }}
+                      className="flex items-start gap-3 rounded-2xl bg-muted p-4"
+                    >
+                      <X className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive/60" />
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+                        <p className="mt-1 text-sm text-foreground">{traditional}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </SlideIn>
+
+            <SlideIn direction="right" delay={0.1}>
+              <div className="rounded-[24px] border-2 border-accent/30 bg-white p-6 shadow-md ring-1 ring-accent/10">
+                <div className="mb-6 flex items-center gap-3">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15"
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-accent" />
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-primary">Hipervinculo Ads</h3>
+                </div>
+                <div className="space-y-4">
+                  {t.comparison.rows.map(([label, , ours], i) => (
+                    <motion.div
+                      key={label}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.08, duration: 0.4 }}
+                      className="flex items-start gap-3 rounded-2xl bg-accent/[0.06] p-4"
+                    >
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+                        <p className="mt-1 text-sm font-medium text-foreground">{ours}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </SlideIn>
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS */}
+      <section className="relative bg-[#f8f9f5] px-6 py-28 overflow-hidden">
+        <ParallaxBg className="right-[10%] top-[10%] h-40 w-40 rounded-full bg-accent/6 blur-3xl" speed={0.18} />
+        <div className="relative mx-auto max-w-6xl">
+          <TextReveal className="mb-16 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent">{t.metrics.label}</p>
+            <h2 className="text-3xl font-extrabold text-foreground sm:text-4xl md:text-5xl">{t.metrics.title}</h2>
+          </TextReveal>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {stats.map((stat, index) => (
+              <RotateIn key={t.metrics.items[index]} delay={index * 0.12}>
+                <ScaleOnHover>
+                  <BrandCard className="h-full text-center">
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.12 + 0.15, type: 'spring', stiffness: 180, damping: 12 }}
+                      className="mb-3 text-4xl font-extrabold tracking-[-0.03em] text-accent"
+                    >
+                      <AnimatedCounter end={stat.num} suffix={stat.suffix} prefix={stat.prefix} />
+                    </motion.div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{t.metrics.items[index]}</p>
+                  </BrandCard>
+                </ScaleOnHover>
+              </RotateIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OBJECTIVE */}
+      <section className="relative bg-primary px-6 py-32 text-primary-foreground overflow-hidden">
+        <ParallaxBg className="left-[10%] top-[-10%] h-80 w-80 rounded-full bg-accent/8 blur-3xl" speed={0.2} />
+        <ParallaxBg className="right-[5%] bottom-[-5%] h-60 w-60 rounded-full bg-primary-foreground/5 blur-3xl" speed={-0.15} />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
+          <SlideIn direction="left">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-accent"
+            >
+              <motion.span
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="h-2.5 w-2.5 rounded-full bg-accent"
+              />
+              {t.objective.badge}
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-8 text-3xl font-extrabold leading-[1.08] text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+            >
+              {t.objective.h2a}
+              <br />
+              <motion.span
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="text-accent"
+              >
+                {t.objective.h2b}
+              </motion.span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="max-w-2xl text-lg leading-relaxed text-primary-foreground/70"
+            >
+              {t.objective.desc}
+            </motion.p>
+          </SlideIn>
+
+          <SlideIn direction="right" delay={0.15}>
+            <div className="overflow-hidden rounded-[24px] border border-primary-foreground/10 p-3">
+              <ParallaxImage
+                src={rankingImage}
+                alt="Visualización del crecimiento de ranking orgánico con Hipervínculo"
+                speed={0.16}
+              />
+            </div>
+          </SlideIn>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative px-6 pb-24 pt-8 overflow-hidden">
+        <ParallaxBg className="left-[15%] top-[20%] h-48 w-48 rounded-full bg-accent/5 blur-3xl" speed={0.15} />
+        <ParallaxBg className="right-[10%] bottom-[10%] h-36 w-36 rounded-full bg-accent/8 blur-2xl" speed={-0.1} />
+        <FloatingElement className="absolute left-[5%] top-12 hidden lg:block" amplitude={20} duration={7}>
+          <div className="h-20 w-20 rounded-full bg-accent/5 blur-xl" />
+        </FloatingElement>
+        <FloatingElement className="absolute right-[8%] bottom-16 hidden lg:block" amplitude={15} duration={5}>
+          <div className="h-14 w-14 rotate-12 rounded-2xl bg-accent/8 blur-lg" />
+        </FloatingElement>
+        <TextReveal>
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="relative mx-auto max-w-4xl rounded-[32px] border border-primary/10 bg-white px-8 py-10 text-center shadow-2xl sm:px-12"
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: -10 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+              className="mb-8 inline-flex rounded-2xl px-5 py-4"
+            >
+              <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mb-5 text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl"
+            >
+              {t.cta.title}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-primary/70"
+            >
+              {t.cta.sub}
+            </motion.p>
+            <motion.a
+              href="https://calendly.com/hipervinculo_usa/30-minutes-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-10 py-5 text-lg font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              {t.cta.button}
+              <ChevronRight className="h-5 w-5" />
+            </motion.a>
+          </motion.div>
+        </TextReveal>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-primary/10 bg-white px-6 py-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
+          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
+
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary/65">
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-primary transition-colors hover:text-accent">{t.footer.home}</a>
+            <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">{t.footer.howItWorks}</a>
+            <a href="#features" className="text-primary transition-colors hover:text-accent">{t.footer.features}</a>
+            <a href="https://hipervinculo.net" target="_blank" rel="noopener noreferrer" className="text-primary transition-colors hover:text-accent">hipervinculo.net</a>
+          </nav>
+
+          <p className="text-xs text-primary/45">{t.footer.rights}</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn>
               <ScaleOnHover>
