@@ -232,7 +232,7 @@ export const orbitalSunglassesProposalContent = {
       },
       {
         title: 'Pago — Setup',
-        description: 'La inversión inicial de $7,500 por el desarrollo de Shopify se paga 100% por adelantado antes del inicio del proyecto.',
+        description: 'La inversión base de $2,500 (dirección visual, fotografía IA, revisión de assets y web) se paga 100% por adelantado. Si se incluye el desarrollo Shopify, el total es de $7,500 pagadero por adelantado.',
         icon: 'dollar',
       },
       {
