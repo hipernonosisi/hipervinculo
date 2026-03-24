@@ -202,14 +202,28 @@ export function OrbitalSunglassesProposal() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Servicio 2</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.adsService.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.adsService.headline}</p>
-              <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
-                <div>
+              <div className="rounded-2xl px-8 py-6 mb-6" style={{ backgroundColor: '#2d4a2d' }}>
+                <div className="flex items-center justify-between mb-3">
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Gestión Continua</div>
-                  <div className="text-white/40 text-xs mt-1">Retainer $3,000/mes mín. ó 10% del Profit Neto</div>
+                  <div className="text-right">
+                    <span className="text-2xl font-extrabold text-white">$3,000</span>
+                    <span className="text-white/50 text-sm ml-1">/mes mín.</span>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-2xl font-extrabold text-white">$3,000</span>
-                  <span className="text-white/50 text-sm ml-1">/mes mín.</span>
+                <div className="border-t border-white/10 pt-3">
+                  <p className="text-white/70 text-[13px] leading-relaxed">
+                    <span className="font-semibold text-white/90">¿Cómo funciona?</span> Se cobra un retainer mensual de <span className="font-bold text-white">$3,000</span> como cuota mínima. Paralelamente, se calcula una comisión del <span className="font-bold text-white">10% sobre el Profit Neto</span>. <span className="font-semibold text-white/90">Siempre se cobra el mayor de los dos montos.</span>
+                  </p>
+                  <div className="flex gap-4 mt-3">
+                    <div className="flex-1 rounded-xl px-4 py-2.5" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+                      <p className="text-white/40 text-[10px] uppercase tracking-wider font-bold">Si Profit Neto {'<'} $30K</p>
+                      <p className="text-white text-sm font-bold mt-0.5">Se cobra $3,000 <span className="text-white/40 font-normal">(retainer)</span></p>
+                    </div>
+                    <div className="flex-1 rounded-xl px-4 py-2.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                      <p className="text-white/40 text-[10px] uppercase tracking-wider font-bold">Si Profit Neto {'>'} $30K</p>
+                      <p className="text-white text-sm font-bold mt-0.5" style={{ color: '#8BC34A' }}>Se cobra 10% <span className="font-normal" style={{ color: 'rgba(139,195,74,0.6)' }}>(comisión)</span></p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.adsService.description}</p>
@@ -304,35 +318,40 @@ export function OrbitalSunglassesProposal() {
 
                 {/* Ongoing */}
                 <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
-                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}>
-                    <tbody>
-                      <tr>
-                        <td className="py-2 pr-4 align-top">
-                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.retainer.label}</p>
-                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.retainer.basis}</p>
-                        </td>
-                        <td className="py-2 text-right align-top whitespace-nowrap">
-                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.retainer.amount}</span>
-                          <span className="text-sm text-gray-400 ml-1">/mes</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan={2} className="py-1"><div className="border-t border-gray-100" /></td>
-                      </tr>
-                      <tr>
-                        <td className="py-2 pr-4 align-top">
-                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
-                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
-                        </td>
-                        <td className="py-2 text-right align-top whitespace-nowrap">
-                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="border-t border-gray-200 pt-4 mt-4">
-                    <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.retainer.description}</p>
+                  <h3 className="font-bold text-[16px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
+                  
+                  {/* Retainer */}
+                  <div className="rounded-xl p-4 mb-3" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-[14px] text-gray-700 font-bold">Retainer Mensual</p>
+                      <div className="text-right">
+                        <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>$3,000</span>
+                        <span className="text-sm text-gray-400 ml-1">/mes</span>
+                      </div>
+                    </div>
+                    <p className="text-[12px] text-gray-500">Cuota mínima mensual garantizada</p>
+                  </div>
+
+                  {/* Divider with "ó" */}
+                  <div className="flex items-center gap-3 my-2">
+                    <div className="flex-1 border-t border-gray-200" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Se cobra el mayor</span>
+                    <div className="flex-1 border-t border-gray-200" />
+                  </div>
+
+                  {/* Commission */}
+                  <div className="rounded-xl p-4 mt-3" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-[14px] text-gray-700 font-bold">Comisión sobre Profit</p>
+                      <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>10%</span>
+                    </div>
+                    <p className="text-[12px] text-gray-500">{content.investment.ongoing.commission.basis}</p>
+                  </div>
+
+                  <div className="border-t border-gray-200 pt-3 mt-4">
+                    <p className="text-[11px] text-gray-500 leading-relaxed">
+                      <span className="font-semibold text-gray-700">Regla simple:</span> {content.investment.ongoing.retainer.description}
+                    </p>
                   </div>
                 </div>
               </div>
