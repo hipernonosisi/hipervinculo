@@ -344,9 +344,14 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: green, flexShrink: 0 }}>{item.price}</Text>
               </View>
             ))}
-            <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 12, marginTop: 4, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Text style={{ fontSize: 11, fontWeight: 'bold', color: green }}>Total Setup</Text>
-              <Text style={{ fontSize: 24, fontWeight: 'bold', color: lime }}>{content.investment.setup.total}</Text>
+            <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 12, marginTop: 4 }}>
+              <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 4 }}>Total Setup</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 6 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: lime }}>$2,500</Text>
+                <Text style={{ fontSize: 10, color: grayLight }}>—</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: lime }}>$7,500</Text>
+              </View>
+              <Text style={{ fontSize: 7, color: grayLight, marginTop: 3 }}>Dependiendo si incluye desarrollo Shopify</Text>
             </View>
           </View>
           {/* Ongoing */}
