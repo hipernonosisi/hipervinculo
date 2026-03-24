@@ -166,31 +166,60 @@ export function OrbitalSunglassesProposal() {
             </div>
           </Page>
 
-          {/* PAGE 4: Shopify Development */}
+          {/* PAGE 4: Setup Inicial & Dirección Visual */}
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px` }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Servicio 1</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.shopifyService.title}</h2>
-              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.shopifyService.headline}</p>
-              <div className="rounded-2xl px-8 py-5 mb-8 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
-                <div><div className="text-white/50 text-xs font-bold uppercase tracking-widest">Inversión</div></div>
-                <div className="text-right">
-                  <span className="text-4xl font-extrabold text-white">{content.shopifyService.price}</span>
-                  <span className="text-white/50 text-sm ml-2">{content.shopifyService.priceLabel}</span>
+              <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.shopifyService.headline}</p>
+
+              {/* Two pricing options */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#2d4a2d' }}>
+                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">Setup Base</div>
+                  <span className="text-3xl font-extrabold text-white">{content.shopifyService.basePrice}</span>
+                  <p className="text-white/50 text-[11px] mt-1">Dirección visual + Fotografía IA + Revisión</p>
+                </div>
+                <div className="rounded-2xl px-6 py-5 border-2" style={{ borderColor: '#8BC34A', backgroundColor: 'rgba(139,195,74,0.05)' }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: '#8BC34A' }}>Con Shopify (Opcional)</div>
+                  <span className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.shopifyService.fullPrice}</span>
+                  <p className="text-[11px] text-gray-400 mt-1">Incluye desarrollo completo de tienda Shopify</p>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.shopifyService.description}</p>
-              <div className="space-y-2.5 flex-1">
-                {content.shopifyService.includes.map((item, i) => (
+
+              <p className="text-gray-600 leading-relaxed mb-5 text-[14px]">{content.shopifyService.description}</p>
+
+              <h3 className="font-extrabold text-[15px] mb-3" style={{ color: '#2d4a2d' }}>Incluido en Setup Base ($2,500)</h3>
+              <div className="space-y-2 mb-5">
+                {content.shopifyService.baseIncludes.map((item, i) => (
                   <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
                     <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                     <div>
-                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
-                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                      <h3 className="font-bold text-[13px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="rounded-2xl p-5 border" style={{ borderColor: 'rgba(139,195,74,0.3)', backgroundColor: 'rgba(139,195,74,0.04)' }}>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-extrabold text-[15px]" style={{ color: '#2d4a2d' }}>{content.shopifyService.shopifyAddon.title}</h3>
+                  <span className="font-extrabold text-lg" style={{ color: '#8BC34A' }}>{content.shopifyService.shopifyAddon.price}</span>
+                </div>
+                <p className="text-[12px] text-gray-500 mb-3">{content.shopifyService.shopifyAddon.description}</p>
+                <div className="space-y-1.5">
+                  {content.shopifyService.shopifyAddon.includes.map((item, i) => (
+                    <div key={i} className="flex gap-2 items-start">
+                      <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
+                      <div>
+                        <span className="font-bold text-[12px]" style={{ color: '#2d4a2d' }}>{item.title}</span>
+                        <span className="text-[11px] text-gray-400 ml-1">— {item.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Page>

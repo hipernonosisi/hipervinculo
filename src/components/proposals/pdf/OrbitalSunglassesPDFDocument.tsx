@@ -193,29 +193,53 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Eclipse + Hipervínculo</Text>
       </Page>
 
-      {/* PAGE 4: Shopify Development */}
+      {/* PAGE 4: Setup Inicial & Dirección Visual */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICIO 1</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.shopifyService.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.shopifyService.headline}</Text>
-        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INVERSIÓN</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-            <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'white' }}>{content.shopifyService.price}</Text>
-            <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', marginLeft: 8 }}>{content.shopifyService.priceLabel}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.shopifyService.headline}</Text>
+
+        {/* Two pricing options side by side */}
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
+          <View style={{ flex: 1, backgroundColor: green, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 14 }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2, marginBottom: 4 }}>SETUP BASE</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>{content.shopifyService.basePrice}</Text>
+            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)', marginTop: 3 }}>Dirección visual + Fotografía IA + Revisión</Text>
+          </View>
+          <View style={{ flex: 1, borderWidth: 1.5, borderColor: lime, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 14, backgroundColor: 'rgba(139,195,74,0.04)' }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 2, marginBottom: 4 }}>CON SHOPIFY (OPCIONAL)</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: green }}>{content.shopifyService.fullPrice}</Text>
+            <Text style={{ fontSize: 7, color: grayLight, marginTop: 3 }}>Incluye desarrollo completo de tienda</Text>
           </View>
         </View>
-        <Text style={{ fontSize: 9.5, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.shopifyService.description}</Text>
-        {content.shopifyService.includes.map((item, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
+
+        <Text style={{ fontSize: 9, color: gray, lineHeight: 1.6, marginBottom: 10 }}>{content.shopifyService.description}</Text>
+
+        <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 6 }}>Incluido en Setup Base ($2,500)</Text>
+        {content.shopifyService.baseIncludes.map((item, i) => (
+          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 4, flexDirection: 'row', gap: 10 }}>
             <View style={{ paddingTop: 1 }}><CheckIcon size={12} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
-              <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
+              <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
             </View>
           </View>
         ))}
+
+        <View style={{ borderWidth: 1, borderColor: 'rgba(139,195,74,0.3)', borderRadius: 12, padding: 12, marginTop: 6, backgroundColor: 'rgba(139,195,74,0.03)' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{content.shopifyService.shopifyAddon.title}</Text>
+            <Text style={{ fontSize: 12, fontWeight: 'bold', color: lime }}>{content.shopifyService.shopifyAddon.price}</Text>
+          </View>
+          <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.5, marginBottom: 6 }}>{content.shopifyService.shopifyAddon.description}</Text>
+          {content.shopifyService.shopifyAddon.includes.map((item, i) => (
+            <View key={i} style={{ flexDirection: 'row', gap: 6, marginBottom: 3 }}>
+              <View style={{ paddingTop: 1 }}><CheckIcon size={10} /></View>
+              <Text style={{ fontSize: 7.5, color: gray, flex: 1 }}><Text style={{ fontWeight: 'bold', color: green }}>{item.title}</Text> — {item.description}</Text>
+            </View>
+          ))}
+        </View>
         <Text style={s.footer}>Eclipse + Hipervínculo</Text>
       </Page>
 
