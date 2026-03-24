@@ -221,8 +221,8 @@ export const orbitalSunglassesProposalContent = {
         icon: 'dollar',
       },
       {
-        title: 'Pago — Comisión',
-        description: 'La comisión del 10% sobre el profit neto se factura mensualmente y es pagadera dentro de los 10 días de recibida la factura.',
+        title: 'Pago — Retainer / Comisión',
+        description: 'Se cobra un retainer mensual de $3,000 como cuota mínima. Cuando la comisión del 10% sobre el profit neto supere los $3,000, se cobra la comisión en su lugar. Se factura mensualmente y es pagadera dentro de los 10 días de recibida la factura.',
         icon: 'dollar',
       },
       {
