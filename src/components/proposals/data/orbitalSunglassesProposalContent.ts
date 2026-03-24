@@ -172,9 +172,10 @@ export const orbitalSunglassesProposalContent = {
     setup: {
       title: 'Inversión Inicial Única',
       items: [
-        { name: 'Desarrollo Shopify', detail: 'Hasta 25 productos configurados', price: '$7,500' },
+        { name: 'Setup Base (Dirección Visual + Fotografía IA + Revisión)', detail: 'Dirección gráfica, fotografía IA, revisión de assets y web', price: '$2,500' },
+        { name: 'Desarrollo Shopify (Opcional)', detail: 'Hasta 25 productos configurados', price: '+$5,000' },
       ],
-      total: '$7,500',
+      total: '$2,500 — $7,500',
     },
     ongoing: {
       title: 'Servicios Mensuales',
