@@ -164,16 +164,22 @@ export const orbitalSunglassesProposalContent = {
     },
     ongoing: {
       title: 'Servicios Mensuales',
+      retainer: {
+        label: 'Retainer Mensual de Agencia',
+        amount: '$3,000',
+        basis: 'Cuota mínima mensual',
+        description: 'Se cobra un retainer mensual de $3,000 como cuota mínima para la gestión continua. Si la comisión del 10% sobre el profit neto supera los $3,000 en un mes dado, se pasa al esquema comisional y se cobra la comisión en lugar del retainer. En otras palabras, siempre se paga el mayor de los dos montos.',
+      },
       commission: {
         label: 'Comisión de Gestión',
         rate: '10%',
         basis: 'del Profit Neto en Shopify',
-        description: 'Se calcula sobre la rentabilidad neta de las ventas en Shopify: ingresos brutos menos devoluciones, costos publicitarios, costos de producto (COGS), y fees de plataforma. Si no hay profit neto en un mes dado, no se cobra comisión. Los cálculos se obtienen directamente de los reportes de Shopify.',
+        description: 'Se calcula sobre la rentabilidad neta de las ventas en Shopify: ingresos brutos menos devoluciones, costos publicitarios, costos de producto (COGS), y fees de plataforma. Cuando la comisión supere los $3,000, se cobra la comisión completa en lugar del retainer.',
       },
     },
     example: {
-      title: 'Ejemplo de Comisión',
-      subtitle: 'Cómo funciona — basado en datos de Shopify',
+      title: 'Ejemplo de Retainer vs. Comisión',
+      subtitle: 'Siempre se paga el mayor de los dos montos',
       rows: [
         { label: 'Ingresos Brutos (Ventas Shopify)', value: '$100,000', type: 'revenue' as const },
         { label: 'Costo de Producto puesto en USA (COGS landed)', value: '−$15,000', type: 'deduction' as const },
@@ -182,8 +188,16 @@ export const orbitalSunglassesProposalContent = {
         { label: 'Fees de Shopify & Procesamiento', value: '−$5,000', type: 'deduction' as const },
       ],
       netProfit: { label: 'Profit Neto', value: '$47,000' },
-      commission: { label: 'Comisión Eclipse + Hipervínculo (10%)', value: '$4,700' },
-      note: 'Todas las cifras se obtienen de los reportes de ventas de Shopify. El costo de producto (COGS landed) incluye producto, importación, flete y almacenamiento en USA. El profit neto es la cifra definitiva utilizada para calcular la comisión del 10% cada mes.',
+      commission: { label: 'Comisión 10%', value: '$4,700' },
+      retainerComparison: {
+        retainerLabel: 'Retainer Mensual',
+        retainerValue: '$3,000',
+        commissionLabel: 'Comisión 10%',
+        commissionValue: '$4,700',
+        resultLabel: 'Se cobra (el mayor)',
+        resultValue: '$4,700',
+      },
+      note: 'En este ejemplo, la comisión del 10% ($4,700) supera el retainer ($3,000), por lo que se cobra $4,700. Si el profit neto fuera menor a $30,000, la comisión sería menor a $3,000 y se cobraría el retainer de $3,000 como mínimo.',
     },
     timeline: {
       title: 'Línea de Tiempo',
