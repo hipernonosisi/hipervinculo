@@ -312,15 +312,27 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
           {/* Ongoing */}
           <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 22 }}>
             <Text style={{ fontSize: 12, fontWeight: 'bold', color: green, marginBottom: 16 }}>{content.investment.ongoing.title}</Text>
+            {/* Retainer */}
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
+              <View style={{ flex: 1, paddingRight: 8 }}>
+                <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.retainer.label}</Text>
+                <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{content.investment.ongoing.retainer.basis}</Text>
+              </View>
+              <View style={{ flexShrink: 0, alignItems: 'flex-end' }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime }}>{content.investment.ongoing.retainer.amount}</Text>
+                <Text style={{ fontSize: 7, color: grayLight }}>/mes</Text>
+              </View>
+            </View>
+            {/* Commission */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, paddingBottom: 12, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
               <View style={{ flex: 1, paddingRight: 8 }}>
                 <Text style={{ fontSize: 10, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.commission.label}</Text>
                 <Text style={{ fontSize: 8, color: grayLight, marginTop: 2 }}>{content.investment.ongoing.commission.basis}</Text>
               </View>
-              <Text style={{ fontSize: 28, fontWeight: 'bold', color: lime, flexShrink: 0 }}>{content.investment.ongoing.commission.rate}</Text>
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime, flexShrink: 0 }}>{content.investment.ongoing.commission.rate}</Text>
             </View>
             <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 10 }}>
-              <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.commission.description}</Text>
+              <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.retainer.description}</Text>
             </View>
           </View>
         </View>
