@@ -203,15 +203,15 @@ export function OrbitalSunglassesProposal() {
                 ))}
               </div>
 
-              <div className="rounded-2xl p-5 border" style={{ borderColor: 'rgba(139,195,74,0.3)', backgroundColor: 'rgba(139,195,74,0.04)' }}>
-                <div className="flex items-center justify-between mb-3">
+              <div className="rounded-2xl p-6 border" style={{ borderColor: 'rgba(139,195,74,0.3)', backgroundColor: 'rgba(139,195,74,0.04)' }}>
+                <div className="flex items-center justify-between mb-4">
                   <h3 className="font-extrabold text-[15px]" style={{ color: '#2d4a2d' }}>{content.shopifyService.shopifyAddon.title}</h3>
                   <span className="font-extrabold text-lg" style={{ color: '#8BC34A' }}>{content.shopifyService.shopifyAddon.price}</span>
                 </div>
-                <p className="text-[12px] text-gray-500 mb-3">{content.shopifyService.shopifyAddon.description}</p>
-                <div className="space-y-1.5">
+                <p className="text-[12px] text-gray-500 mb-5">{content.shopifyService.shopifyAddon.description}</p>
+                <div className="space-y-4">
                   {content.shopifyService.shopifyAddon.includes.map((item, i) => (
-                    <div key={i} className="flex gap-2 items-start">
+                    <div key={i} className="flex gap-3 items-start">
                       <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                       <div>
                         <span className="font-bold text-[12px]" style={{ color: '#2d4a2d' }}>{item.title}</span>
