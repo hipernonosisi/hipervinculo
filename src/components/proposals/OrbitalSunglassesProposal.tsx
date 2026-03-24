@@ -204,10 +204,13 @@ export function OrbitalSunglassesProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.adsService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Incluido en Gestión Continua</div>
-                  <div className="text-white/40 text-xs mt-1">Parte de la Comisión del 10% sobre Profit Neto</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Gestión Continua</div>
+                  <div className="text-white/40 text-xs mt-1">Retainer $3,000/mes mín. ó 10% del Profit Neto</div>
                 </div>
-                <span className="text-2xl font-extrabold text-white">10%</span>
+                <div className="text-right">
+                  <span className="text-2xl font-extrabold text-white">$3,000</span>
+                  <span className="text-white/50 text-sm ml-1">/mes mín.</span>
+                </div>
               </div>
               <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.adsService.description}</p>
 
