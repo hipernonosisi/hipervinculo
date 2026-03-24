@@ -318,35 +318,40 @@ export function OrbitalSunglassesProposal() {
 
                 {/* Ongoing */}
                 <div className="bg-white rounded-2xl p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[16px] mb-6" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
-                  <table className="w-full" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}>
-                    <tbody>
-                      <tr>
-                        <td className="py-2 pr-4 align-top">
-                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.retainer.label}</p>
-                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.retainer.basis}</p>
-                        </td>
-                        <td className="py-2 text-right align-top whitespace-nowrap">
-                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.retainer.amount}</span>
-                          <span className="text-sm text-gray-400 ml-1">/mes</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan={2} className="py-1"><div className="border-t border-gray-100" /></td>
-                      </tr>
-                      <tr>
-                        <td className="py-2 pr-4 align-top">
-                          <p className="text-[14px] text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
-                          <p className="text-xs text-gray-400 mt-0.5">{content.investment.ongoing.commission.basis}</p>
-                        </td>
-                        <td className="py-2 text-right align-top whitespace-nowrap">
-                          <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.commission.rate}</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="border-t border-gray-200 pt-4 mt-4">
-                    <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.retainer.description}</p>
+                  <h3 className="font-bold text-[16px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.title}</h3>
+                  
+                  {/* Retainer */}
+                  <div className="rounded-xl p-4 mb-3" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-[14px] text-gray-700 font-bold">Retainer Mensual</p>
+                      <div className="text-right">
+                        <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>$3,000</span>
+                        <span className="text-sm text-gray-400 ml-1">/mes</span>
+                      </div>
+                    </div>
+                    <p className="text-[12px] text-gray-500">Cuota mínima mensual garantizada</p>
+                  </div>
+
+                  {/* Divider with "ó" */}
+                  <div className="flex items-center gap-3 my-2">
+                    <div className="flex-1 border-t border-gray-200" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Se cobra el mayor</span>
+                    <div className="flex-1 border-t border-gray-200" />
+                  </div>
+
+                  {/* Commission */}
+                  <div className="rounded-xl p-4 mt-3" style={{ backgroundColor: '#f8f9f5' }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-[14px] text-gray-700 font-bold">Comisión sobre Profit</p>
+                      <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>10%</span>
+                    </div>
+                    <p className="text-[12px] text-gray-500">{content.investment.ongoing.commission.basis}</p>
+                  </div>
+
+                  <div className="border-t border-gray-200 pt-3 mt-4">
+                    <p className="text-[11px] text-gray-500 leading-relaxed">
+                      <span className="font-semibold text-gray-700">Regla simple:</span> {content.investment.ongoing.retainer.description}
+                    </p>
                   </div>
                 </div>
               </div>
