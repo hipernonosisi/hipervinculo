@@ -227,10 +227,13 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.adsService.headline}</Text>
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 14, marginBottom: 12, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
-            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INCLUIDO EN GESTIÓN CONTINUA</Text>
-            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Parte de la Comisión del 10% sobre Profit Neto</Text>
+            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>GESTIÓN CONTINUA</Text>
+            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Retainer $3,000/mes mín. ó 10% del Profit Neto</Text>
           </View>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>10%</Text>
+          <View style={{ alignItems: 'flex-end' }}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>$3,000</Text>
+            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>mínimo / mes</Text>
+          </View>
         </View>
         <Text style={{ fontSize: 9, color: gray, lineHeight: 1.6, marginBottom: 10 }}>{content.adsService.description}</Text>
 
