@@ -249,8 +249,9 @@ export const orbitalSunglassesProposalContent = {
         heading: 'Método de Pago y Servicios',
         items: [
           'El fee inicial de $7,500 por desarrollo de Shopify se paga en su totalidad antes del inicio del proyecto.',
-          'La comisión del 10% sobre el profit neto se factura mensualmente. "Profit neto" se define como ingresos totales de Shopify menos devoluciones, costos publicitarios, costos de producto (COGS), y fees de plataforma.',
-          'Si el profit neto es cero o negativo en un mes dado, no se cobra comisión para ese período.',
+          'Se cobra un retainer mensual de $3,000 como cuota mínima de gestión. Cuando la comisión del 10% sobre el profit neto supere los $3,000, se cobra la comisión completa en lugar del retainer.',
+          '"Profit neto" se define como ingresos totales de Shopify menos devoluciones, costos publicitarios, costos de producto (COGS), y fees de plataforma.',
+          'Si el profit neto es cero o negativo en un mes dado, se cobra el retainer de $3,000.',
           'Todos los presupuestos publicitarios son pagados directamente por el cliente a través de Google Ads y Meta Ads.',
           'Los pagos de impuestos y otros asuntos contables son responsabilidad del cliente.',
           'Los pagos de comisión se deben dentro de los 10 días de recibida la factura.',
