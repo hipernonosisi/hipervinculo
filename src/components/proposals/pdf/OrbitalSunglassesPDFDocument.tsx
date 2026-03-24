@@ -347,13 +347,24 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
               <Text style={{ fontSize: 8, fontWeight: 'bold', color: row.type === 'deduction' ? '#ef4444' : green }}>{row.value}</Text>
             </View>
           ))}
-          <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', marginTop: 4, paddingTop: 6, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
+          <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', marginTop: 4, paddingTop: 6, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
             <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{content.investment.example.netProfit.label}</Text>
             <Text style={{ fontSize: 14, fontWeight: 'bold', color: lime }}>{content.investment.example.netProfit.value}</Text>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
-            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{content.investment.example.commission.label}</Text>
-            <Text style={{ fontSize: 14, fontWeight: 'bold', color: green }}>{content.investment.example.commission.value}</Text>
+          {/* Retainer vs Commission comparison */}
+          <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', borderTopStyle: 'dashed', paddingTop: 6, marginBottom: 2 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+              <Text style={{ fontSize: 8, color: grayLight }}>{content.investment.example.retainerComparison.retainerLabel}</Text>
+              <Text style={{ fontSize: 8, color: grayLight }}>{content.investment.example.retainerComparison.retainerValue}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+              <Text style={{ fontSize: 8, color: gray }}>{content.investment.example.retainerComparison.commissionLabel}</Text>
+              <Text style={{ fontSize: 8, fontWeight: 'bold', color: green }}>{content.investment.example.retainerComparison.commissionValue}</Text>
+            </View>
+          </View>
+          <View style={{ borderTopWidth: 0.5, borderTopColor: '#e5e7eb', paddingTop: 6, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
+            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{content.investment.example.retainerComparison.resultLabel}</Text>
+            <Text style={{ fontSize: 14, fontWeight: 'bold', color: green }}>{content.investment.example.retainerComparison.resultValue}</Text>
           </View>
           <Text style={{ fontSize: 6.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.example.note}</Text>
         </View>
