@@ -263,7 +263,8 @@ export const orbitalSunglassesProposalContent = {
       {
         heading: 'Método de Pago y Servicios',
         items: [
-          'El fee inicial de $7,500 por desarrollo de Shopify se paga en su totalidad antes del inicio del proyecto.',
+          'El fee base de $2,500 por dirección visual, fotografía IA y revisión de assets se paga en su totalidad antes del inicio. Si se incluye el desarrollo Shopify, el total es de $7,500.',
+          'El desarrollo de Shopify es opcional. El cliente puede optar por desarrollar la tienda con otro proveedor.',
           'Se cobra un retainer mensual de $3,000 como cuota mínima de gestión. Cuando la comisión del 10% sobre el profit neto supere los $3,000, se cobra la comisión completa en lugar del retainer.',
           '"Profit neto" se define como ingresos totales de Shopify menos devoluciones, costos publicitarios, costos de producto (COGS), y fees de plataforma.',
           'Si el profit neto es cero o negativo en un mes dado, se cobra el retainer de $3,000.',
