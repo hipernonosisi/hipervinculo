@@ -47,46 +47,60 @@ export const orbitalSunglassesProposalContent = {
     ],
   },
   shopifyService: {
-    title: 'Desarrollo Shopify',
-    headline: 'Tienda Profesional Optimizada para Conversión',
-    price: '$7,500',
-    priceLabel: 'Inversión Única',
+    title: 'Setup Inicial & Dirección Visual',
+    headline: 'Dirección Creativa y Assets Profesionales para tu Marca',
+    basePrice: '$2,500',
+    basePriceLabel: 'Setup Base',
+    fullPrice: '$7,500',
+    fullPriceLabel: 'Con Desarrollo Shopify',
     description:
-      'Desarrollaremos la tienda completa de Orbital Sunglasses en Shopify con un enfoque profesional. Incluye selección y configuración del template, dirección gráfica alineada a la marca, optimización del flujo de compra, y revisión de calidad de todos los assets visuales. Hasta 25 productos configurados. Productos adicionales se cotizan por separado.',
-    includes: [
+      'El setup inicial incluye la dirección visual y gráfica de la marca, fotografía de producto con IA, revisión de assets visuales y revisión general de la web. Opcionalmente, podemos desarrollar la tienda completa en Shopify por un costo adicional.',
+    baseIncludes: [
       {
-        title: 'Diseño y Configuración del Template',
-        description: 'Selección, personalización e implementación del template de Shopify más adecuado para maximizar la experiencia del usuario y la conversión.',
-      },
-      {
-        title: 'Dirección Gráfica y Visual',
-        description: 'Identidad visual coherente con la marca Orbital — paleta de colores, tipografía, imagery y estilo fotográfico profesional.',
-      },
-      {
-        title: 'Configuración de Productos',
-        description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios. Productos adicionales más allá de los 25 incluidos se cotizan por separado.',
-      },
-      {
-        title: 'Optimización UX/UI del Funnel',
-        description: 'Revisión y optimización del flujo de compra completo — desde la landing hasta el checkout — para maximizar la tasa de conversión.',
-      },
-      {
-        title: 'Integraciones Esenciales',
-        description: 'Configuración de Google Analytics, Meta Pixel, Google Merchant Center, y herramientas de email marketing (Klaviyo) para tracking completo.',
+        title: 'Dirección Visual y Gráfica',
+        description: 'Definición de la identidad visual coherente con la marca Orbital — paleta de colores, tipografía, imagery y estilo fotográfico profesional para todos los canales.',
       },
       {
         title: 'Fotografía de Producto con IA',
-        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial para alcanzar los estándares de calidad visual que exige el mercado americano. Incluye fotografía de producto en fondo blanco, lifestyle shots y ambientaciones. No incluye contenido en video.',
+        description: 'Generación de imágenes profesionales de producto utilizando inteligencia artificial: fondo blanco, lifestyle shots y ambientaciones. No incluye contenido en video.',
       },
       {
         title: 'Revisión de Assets Visuales',
         description: 'Evaluación de imágenes y videos existentes para asegurar estándares de calidad. Complemento con assets generados por IA donde sea necesario.',
       },
       {
-        title: 'Responsive & Mobile-First',
-        description: 'Diseño optimizado para dispositivos móviles, donde se genera la mayoría del tráfico de eCommerce.',
+        title: 'Revisión General de la Web',
+        description: 'Auditoría completa de la presencia web actual: UX/UI, flujo de compra, optimización mobile, velocidad de carga y recomendaciones de mejora.',
       },
     ],
+    shopifyAddon: {
+      title: 'Desarrollo Shopify (Opcional)',
+      price: '+$5,000',
+      totalWithShopify: '$7,500',
+      description: 'Si deseas que desarrollemos la tienda completa en Shopify, el costo total del setup sería de $7,500. El desarrollo puede realizarse con otro proveedor si así lo prefieres.',
+      includes: [
+        {
+          title: 'Diseño y Configuración del Template',
+          description: 'Selección, personalización e implementación del template de Shopify más adecuado para maximizar la experiencia del usuario y la conversión.',
+        },
+        {
+          title: 'Configuración de Productos',
+          description: 'Hasta 25 productos configurados con descripciones optimizadas, variantes (tallas, colores), imágenes profesionales y precios.',
+        },
+        {
+          title: 'Optimización UX/UI del Funnel',
+          description: 'Revisión y optimización del flujo de compra completo — desde la landing hasta el checkout — para maximizar la tasa de conversión.',
+        },
+        {
+          title: 'Integraciones Esenciales',
+          description: 'Configuración de Google Analytics, Meta Pixel, Google Merchant Center, y herramientas de email marketing (Klaviyo) para tracking completo.',
+        },
+        {
+          title: 'Responsive & Mobile-First',
+          description: 'Diseño optimizado para dispositivos móviles, donde se genera la mayoría del tráfico de eCommerce.',
+        },
+      ],
+    },
   },
   adsService: {
     title: 'Gestión de Publicidad Digital',
