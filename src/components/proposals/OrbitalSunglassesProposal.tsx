@@ -351,8 +351,14 @@ export function OrbitalSunglassesProposal() {
                   <div className="col-span-2 border-t border-gray-200 my-1" />
                   <span className="text-[14px] font-bold" style={{ color: '#2d4a2d' }}>{content.investment.example.netProfit.label}</span>
                   <span className="text-xl font-extrabold text-right" style={{ color: '#8BC34A' }}>{content.investment.example.netProfit.value}</span>
-                  <span className="text-[14px] font-bold" style={{ color: '#2d4a2d' }}>{content.investment.example.commission.label}</span>
-                  <span className="text-xl font-extrabold text-right" style={{ color: '#2d4a2d' }}>{content.investment.example.commission.value}</span>
+                  <div className="col-span-2 border-t border-dashed border-gray-200 my-1" />
+                  <span className="text-[13px] text-gray-500">{content.investment.example.retainerComparison.retainerLabel}</span>
+                  <span className="text-[13px] font-semibold text-right text-gray-500">{content.investment.example.retainerComparison.retainerValue}</span>
+                  <span className="text-[13px] text-gray-500">{content.investment.example.retainerComparison.commissionLabel}</span>
+                  <span className="text-[13px] font-semibold text-right" style={{ color: '#2d4a2d' }}>{content.investment.example.retainerComparison.commissionValue}</span>
+                  <div className="col-span-2 border-t border-gray-200 my-1" />
+                  <span className="text-[14px] font-bold" style={{ color: '#2d4a2d' }}>{content.investment.example.retainerComparison.resultLabel}</span>
+                  <span className="text-xl font-extrabold text-right" style={{ color: '#2d4a2d' }}>{content.investment.example.retainerComparison.resultValue}</span>
                 </div>
                 <p className="text-[10px] text-gray-400 mt-3 leading-relaxed">{content.investment.example.note}</p>
               </div>
