@@ -202,14 +202,28 @@ export function OrbitalSunglassesProposal() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Servicio 2</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.adsService.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.adsService.headline}</p>
-              <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
-                <div>
+              <div className="rounded-2xl px-8 py-6 mb-6" style={{ backgroundColor: '#2d4a2d' }}>
+                <div className="flex items-center justify-between mb-3">
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Gestión Continua</div>
-                  <div className="text-white/40 text-xs mt-1">Retainer $3,000/mes mín. ó 10% del Profit Neto</div>
+                  <div className="text-right">
+                    <span className="text-2xl font-extrabold text-white">$3,000</span>
+                    <span className="text-white/50 text-sm ml-1">/mes mín.</span>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-2xl font-extrabold text-white">$3,000</span>
-                  <span className="text-white/50 text-sm ml-1">/mes mín.</span>
+                <div className="border-t border-white/10 pt-3">
+                  <p className="text-white/70 text-[13px] leading-relaxed">
+                    <span className="font-semibold text-white/90">¿Cómo funciona?</span> Se cobra un retainer mensual de <span className="font-bold text-white">$3,000</span> como cuota mínima. Paralelamente, se calcula una comisión del <span className="font-bold text-white">10% sobre el Profit Neto</span>. <span className="font-semibold text-white/90">Siempre se cobra el mayor de los dos montos.</span>
+                  </p>
+                  <div className="flex gap-4 mt-3">
+                    <div className="flex-1 rounded-xl px-4 py-2.5" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+                      <p className="text-white/40 text-[10px] uppercase tracking-wider font-bold">Si Profit Neto {'<'} $30K</p>
+                      <p className="text-white text-sm font-bold mt-0.5">Se cobra $3,000 <span className="text-white/40 font-normal">(retainer)</span></p>
+                    </div>
+                    <div className="flex-1 rounded-xl px-4 py-2.5" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                      <p className="text-white/40 text-[10px] uppercase tracking-wider font-bold">Si Profit Neto {'>'} $30K</p>
+                      <p className="text-white text-sm font-bold mt-0.5" style={{ color: '#8BC34A' }}>Se cobra 10% <span className="font-normal" style={{ color: 'rgba(139,195,74,0.6)' }}>(comisión)</span></p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.adsService.description}</p>
