@@ -339,9 +339,14 @@ export function OrbitalSunglassesProposal() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="border-t border-gray-200 pt-5 mt-4 flex items-center justify-between">
-                    <span className="font-bold text-sm" style={{ color: '#2d4a2d' }}>Total Setup</span>
-                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.setup.total}</span>
+                  <div className="border-t border-gray-200 pt-5 mt-4">
+                    <span className="font-bold text-sm block mb-2" style={{ color: '#2d4a2d' }}>Total Setup</span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>$2,500</span>
+                      <span className="text-sm text-gray-400">—</span>
+                      <span className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>$7,500</span>
+                    </div>
+                    <p className="text-[11px] text-gray-400 mt-1">Dependiendo si incluye desarrollo Shopify</p>
                   </div>
                 </div>
 
