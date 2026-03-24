@@ -225,14 +225,30 @@ export function OrbitalSunglassesPDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICIO 2</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.adsService.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.adsService.headline}</Text>
-        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 14, marginBottom: 12, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View>
-            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>GESTIÓN CONTINUA</Text>
-            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Retainer $3,000/mes mín. ó 10% del Profit Neto</Text>
+        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 14, marginBottom: 12 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <View>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>GESTIÓN CONTINUA</Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Retainer $3,000/mes mín. ó 10% del Profit Neto</Text>
+            </View>
+            <View style={{ alignItems: 'flex-end' }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>$3,000</Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>mínimo / mes</Text>
+            </View>
           </View>
-          <View style={{ alignItems: 'flex-end' }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>$3,000</Text>
-            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>mínimo / mes</Text>
+          <View style={{ borderTopWidth: 0.5, borderTopColor: 'rgba(255,255,255,0.2)', paddingTop: 8 }}>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, marginBottom: 4 }}>¿Cómo funciona?</Text>
+            <View style={{ flexDirection: 'row', gap: 10 }}>
+              <View style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 8, padding: 8 }}>
+                <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'white', marginBottom: 2 }}>Si Profit Neto {'<'} $30,000</Text>
+                <Text style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.6)' }}>Se cobra el retainer de $3,000</Text>
+              </View>
+              <View style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 8, padding: 8 }}>
+                <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'white', marginBottom: 2 }}>Si Profit Neto {'>'} $30,000</Text>
+                <Text style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.6)' }}>Se cobra el 10% (comisión mayor)</Text>
+              </View>
+            </View>
+            <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>Siempre se cobra el monto mayor entre el retainer y la comisión.</Text>
           </View>
         </View>
         <Text style={{ fontSize: 9, color: gray, lineHeight: 1.6, marginBottom: 10 }}>{content.adsService.description}</Text>
