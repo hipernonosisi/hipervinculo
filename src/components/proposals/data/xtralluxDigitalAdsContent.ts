@@ -192,7 +192,7 @@ export const xtralluxDigitalAdsContent = {
         label: 'Performance Commission',
         rate: '5%',
         basis: 'of Shopify Net Sales',
-        description: 'Calculated on Shopify Net Sales as reported by Triple Whale. Shopify Net Sales = Gross Revenue minus returns, discounts, and refunds. Product costs (COGS) are NOT deducted for this calculation. The Triple Whale figure is the definitive and binding source for all commission calculations.',
+        description: 'Calculated directly on Shopify Net Sales from your Shopify account. Shopify Net Sales = Gross Revenue minus returns, discounts, and refunds. Product costs (COGS) are NOT deducted for this calculation.',
       },
       clientPays: {
         title: 'Paid Directly by Client',
