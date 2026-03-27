@@ -92,11 +92,19 @@ const MapPinIcon = ({ size = 14 }: { size?: number }) => (
   </Svg>
 );
 
+const ShieldIcon = ({ size = 14 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke={lime} strokeWidth="2" />
+    <Path d="M9 12l2 2 4-4" fill="none" stroke={lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
 const iconMap: Record<string, React.FC<{ size?: number }>> = {
   files: FileIcon,
   calendar: CalendarIcon,
   dollar: DollarIcon,
   clock: ClockIcon,
+  shield: ShieldIcon,
 };
 
 interface Props {
@@ -339,6 +347,34 @@ export function XtralluxDigitalAdsPDFDocument({ logoBase64 }: Props) {
             <Text style={{ fontSize: 14, fontWeight: 'bold', color: green }}>{content.investment.example.commission.value}</Text>
           </View>
           <Text style={{ fontSize: 6.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.example.note}</Text>
+        </View>
+
+        {/* ROAS Guarantee Banner */}
+        <View style={{ backgroundColor: green, borderRadius: 14, padding: 18, marginBottom: 12, flexDirection: 'row', gap: 14, alignItems: 'flex-start' }}>
+          <View style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <ShieldIcon size={20} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, letterSpacing: 2, marginBottom: 3 }}>PERFORMANCE GUARANTEE</Text>
+            <Text style={{ fontSize: 14, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>Net ROAS 2.0x Guarantee</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, marginBottom: 8 }}>
+              If in any given month the Net ROAS (Shopify Total Net Sales ÷ Total Ad Spend across all channels) does not reach a minimum of 2.0x, Hipervínculo will waive its 5% commission for that month entirely.
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>Minimum Net ROAS</Text>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: lime }}>2.0x</Text>
+              </View>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>If Not Met</Text>
+                <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white' }}>$0 Commission</Text>
+              </View>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6, flex: 1 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>Formula</Text>
+                <Text style={{ fontSize: 8, fontWeight: 'bold', color: 'white' }}>Shopify Net Sales ÷ Total Ad Spend</Text>
+              </View>
+            </View>
+          </View>
         </View>
 
         {/* Timeline */}
