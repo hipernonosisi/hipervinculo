@@ -356,6 +356,38 @@ export function XtralluxDigitalAdsProposal() {
                 <p className="text-[10px] text-gray-400 mt-3 leading-relaxed">{content.investment.example.note}</p>
               </div>
 
+              {/* ROAS Guarantee — highlighted banner */}
+              <div className="rounded-2xl p-6 mb-5 relative overflow-hidden" style={{ backgroundColor: '#2d4a2d', boxShadow: '0 4px 20px rgba(45,74,45,0.3)' }}>
+                <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10" style={{ backgroundColor: '#8BC34A', transform: 'translate(30%, -30%)' }} />
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(139,195,74,0.2)' }}>
+                    <ShieldCheck className="w-7 h-7" style={{ color: '#8BC34A' }} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] mb-1" style={{ color: '#8BC34A' }}>Performance Guarantee</p>
+                    <h3 className="text-xl font-extrabold text-white mb-2">Net ROAS 2.0x Guarantee</h3>
+                    <p className="text-white/70 text-[13px] leading-relaxed mb-3">
+                      If in any given month the <span className="text-white font-semibold">Net ROAS</span> (Shopify Total Net Sales ÷ Total Ad Spend across all channels) does not reach a minimum of <span className="text-white font-extrabold text-[15px]">2.0x</span>, Hipervínculo will <span className="font-bold" style={{ color: '#8BC34A' }}>waive its 5% commission for that month entirely</span>.
+                    </p>
+                    <div className="flex items-center gap-3 mt-3">
+                      <div className="px-4 py-2 rounded-xl" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                        <span className="text-xs text-white/50">Minimum Net ROAS</span>
+                        <span className="block text-2xl font-extrabold" style={{ color: '#8BC34A' }}>2.0x</span>
+                      </div>
+                      <div className="px-4 py-2 rounded-xl" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                        <span className="text-xs text-white/50">If Not Met</span>
+                        <span className="block text-lg font-extrabold text-white">$0 Commission</span>
+                      </div>
+                      <div className="px-4 py-2 rounded-xl flex-1" style={{ backgroundColor: 'rgba(139,195,74,0.15)' }}>
+                        <span className="text-xs text-white/50">Formula</span>
+                        <span className="block text-[13px] font-bold text-white">Shopify Net Sales ÷ Total Ad Spend</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
               {/* Timeline */}
               <div className="bg-white rounded-2xl p-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                 <div className="flex items-center justify-between">
