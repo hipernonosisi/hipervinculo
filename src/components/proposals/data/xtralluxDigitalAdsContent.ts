@@ -214,7 +214,7 @@ export const xtralluxDigitalAdsContent = {
       ],
       netSales: { label: 'Shopify Net Sales', value: '$92,000' },
       commission: { label: 'Hipervínculo Commission (5%)', value: '$4,600' },
-      note: 'All figures are sourced directly from Triple Whale\'s Shopify integration. The Net Sales number displayed in Triple Whale is the definitive figure used to calculate our 5% commission each month. Product costs (COGS) are NOT deducted from this calculation.',
+      note: 'All figures are sourced directly from your Shopify account. Shopify Net Sales is the definitive figure used to calculate our 5% commission each month. Product costs (COGS) are NOT deducted from this calculation.',
     },
     timeline: {
       title: 'Onboarding Timeline',
