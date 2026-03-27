@@ -41,7 +41,7 @@ export const xtralluxDigitalAdsContent = {
       },
       {
         title: 'Analytics & Attribution',
-        description: 'Configuration and ongoing monitoring of Google Analytics, Google Search Console, and Triple Whale to provide complete visibility into campaign performance and multi-touch attribution.',
+        description: 'Configuration and ongoing monitoring of Google Analytics and Google Search Console to provide complete visibility into campaign performance and conversion tracking.',
       },
       {
         title: 'Creative Strategy & Direction',
