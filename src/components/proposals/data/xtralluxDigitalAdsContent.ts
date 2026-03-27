@@ -98,6 +98,16 @@ export const xtralluxDigitalAdsContent = {
         description: 'Access to audience lists and segments for syncing with Meta and Google ad campaigns, enabling precise retargeting and lookalike audience creation based on email engagement data.',
         role: 'Analyst Access',
       },
+      {
+        title: 'Shopify Admin',
+        description: 'Access to verify sales data, orders, refunds, and conversion tracking configuration. Essential since commission is calculated directly on Shopify Net Sales.',
+        role: 'Staff Access',
+      },
+      {
+        title: 'Google Tag Manager',
+        description: 'Centralized management of all tracking pixels and tags (Meta Pixel, Google Ads tags, Conversions API) without depending on Shopify development resources.',
+        role: 'Publish Access',
+      },
     ],
   },
   metaAdsService: {
