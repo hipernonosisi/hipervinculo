@@ -92,11 +92,19 @@ const MapPinIcon = ({ size = 14 }: { size?: number }) => (
   </Svg>
 );
 
+const ShieldIcon = ({ size = 14 }: { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24">
+    <Path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke={lime} strokeWidth="2" />
+    <Path d="M9 12l2 2 4-4" fill="none" stroke={lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
 const iconMap: Record<string, React.FC<{ size?: number }>> = {
   files: FileIcon,
   calendar: CalendarIcon,
   dollar: DollarIcon,
   clock: ClockIcon,
+  shield: ShieldIcon,
 };
 
 interface Props {
