@@ -267,6 +267,11 @@ export const xtralluxDigitalAdsContent = {
         description: 'Up to 2 online meetings per month for performance review, strategy discussion, and reporting. Meetings are conducted via Zoom or Google Meet.',
         icon: 'calendar',
       },
+      {
+        title: 'Net ROAS Guarantee',
+        description: 'If in any given month the Net ROAS (Shopify Total Net Sales ÷ Total Ad Spend across all channels) does not reach a minimum of 2.0x, Hipervínculo will waive its 5% commission for that month entirely. This guarantee reflects our commitment to delivering profitable results.',
+        icon: 'shield',
+      },
     ],
   },
   legalTerms: {
@@ -281,6 +286,7 @@ export const xtralluxDigitalAdsContent = {
           'All advertising budgets are paid directly by the client through Meta Ads Manager and Google Ads.',
           'Triple Whale and Shopify Plus subscriptions are paid directly by the client to each respective provider.',
           'Tax payments and other accounting matters are the responsibility of the client.',
+          'Net ROAS Guarantee: If the Net ROAS (Shopify Total Net Sales ÷ Total Ad Spend) does not reach 2.0x in any given month, the 5% commission for that month is waived entirely.',
         ],
       },
       {
