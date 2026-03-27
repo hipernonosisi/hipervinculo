@@ -376,7 +376,6 @@ export function XtralluxDigitalAdsPDFDocument({ logoBase64 }: Props) {
             </View>
           </View>
         </View>
-        </View>
 
         {/* Timeline */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
