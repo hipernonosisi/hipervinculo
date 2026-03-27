@@ -22,6 +22,7 @@ import { ValoresInmobiliariosProposal } from '@/components/proposals/ValoresInmo
 import { FutureAlkalineProposal } from '@/components/proposals/FutureAlkalineProposal';
 import { RasettaInnovationsProposal } from '@/components/proposals/RasettaInnovationsProposal';
 import { XtralluxProposal } from '@/components/proposals/XtralluxProposal';
+import { XtralluxDigitalAdsProposal } from '@/components/proposals/XtralluxDigitalAdsProposal';
 import { TailyProposal } from '@/components/proposals/TailyProposal';
 import { OrbitalSunglassesProposal } from '@/components/proposals/OrbitalSunglassesProposal';
 
