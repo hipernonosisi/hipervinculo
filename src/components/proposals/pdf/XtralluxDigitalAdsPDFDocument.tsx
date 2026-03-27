@@ -349,6 +349,35 @@ export function XtralluxDigitalAdsPDFDocument({ logoBase64 }: Props) {
           <Text style={{ fontSize: 6.5, color: grayLight, lineHeight: 1.5 }}>{content.investment.example.note}</Text>
         </View>
 
+        {/* ROAS Guarantee Banner */}
+        <View style={{ backgroundColor: green, borderRadius: 14, padding: 18, marginBottom: 12, flexDirection: 'row', gap: 14, alignItems: 'flex-start' }}>
+          <View style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <ShieldIcon size={20} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, letterSpacing: 2, marginBottom: 3 }}>PERFORMANCE GUARANTEE</Text>
+            <Text style={{ fontSize: 14, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>Net ROAS 2.0x Guarantee</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, marginBottom: 8 }}>
+              If in any given month the Net ROAS (Shopify Total Net Sales ÷ Total Ad Spend across all channels) does not reach a minimum of 2.0x, Hipervínculo will waive its 5% commission for that month entirely.
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>Minimum Net ROAS</Text>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: lime }}>2.0x</Text>
+              </View>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>If Not Met</Text>
+                <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white' }}>$0 Commission</Text>
+              </View>
+              <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6, flex: 1 }}>
+                <Text style={{ fontSize: 6, color: 'rgba(255,255,255,0.5)' }}>Formula</Text>
+                <Text style={{ fontSize: 8, fontWeight: 'bold', color: 'white' }}>Shopify Net Sales ÷ Total Ad Spend</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        </View>
+
         {/* Timeline */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View style={{ flex: 1, paddingRight: 16 }}>
