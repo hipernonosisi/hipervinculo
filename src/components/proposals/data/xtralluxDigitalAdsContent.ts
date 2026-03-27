@@ -271,7 +271,7 @@ export const xtralluxDigitalAdsContent = {
         heading: 'Payment Method & Services',
         items: [
           'There is no setup fee. Services begin immediately upon agreement execution and platform access.',
-          'The 5% commission is calculated on Shopify Net Sales (gross revenue minus returns, discounts, and refunds) as tracked and reported by Triple Whale. Product costs (COGS) are NOT deducted. The Triple Whale figure is the definitive and binding source for all commission calculations.',
+          'The 5% commission is calculated on Shopify Net Sales (gross revenue minus returns, discounts, and refunds) as reported directly by Shopify. Product costs (COGS) are NOT deducted.',
           'Commission payments are due within 10 days of invoice receipt.',
           'All advertising budgets are paid directly by the client through Meta Ads Manager and Google Ads.',
           'Triple Whale and Shopify Plus subscriptions are paid directly by the client to each respective provider.',
