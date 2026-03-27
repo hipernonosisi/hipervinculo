@@ -161,17 +161,17 @@ export const xtralluxDigitalAdsContent = {
   },
   tripleWhaleService: {
     title: 'Triple Whale Integration',
-    headline: 'Attribution, Analytics & Financial Transparency',
+    headline: 'Channel Attribution & Budget Allocation',
     description:
-      'Triple Whale serves as the single source of truth for all revenue attribution and commission calculations. We will ensure proper configuration and use the platform\'s Shopify Net Sales data as the definitive metric for our performance commission.',
+      'Triple Whale is used exclusively as an attribution and allocation verification tool. It helps us understand which channels are driving results so we can optimize budget distribution. Commission calculations are based directly on Shopify Net Sales data from your Shopify account.',
     features: [
       {
-        title: 'Revenue Attribution',
+        title: 'Channel Attribution',
         description: 'Multi-touch attribution across all paid channels (Meta, Google) to understand true campaign performance and ROAS.',
       },
       {
-        title: 'Shopify Net Sales Tracking',
-        description: 'Real-time tracking of Shopify Net Sales (gross revenue minus returns, discounts, and refunds) — the definitive figure for commission calculations.',
+        title: 'Budget Allocation Insights',
+        description: 'Data-driven insights on how to distribute ad spend across Meta and Google for maximum return.',
       },
       {
         title: 'Creative Analytics',
@@ -180,10 +180,6 @@ export const xtralluxDigitalAdsContent = {
       {
         title: 'Channel Performance',
         description: 'Side-by-side comparison of Meta vs Google performance to optimize budget allocation across channels.',
-      },
-      {
-        title: 'Commission Tracking',
-        description: 'Transparent tracking of Shopify Net Sales from which our 5% performance commission will be calculated. The Triple Whale figure is the definitive source for invoicing.',
       },
     ],
   },
