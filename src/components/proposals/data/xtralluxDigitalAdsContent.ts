@@ -286,6 +286,7 @@ export const xtralluxDigitalAdsContent = {
           'All advertising budgets are paid directly by the client through Meta Ads Manager and Google Ads.',
           'Triple Whale and Shopify Plus subscriptions are paid directly by the client to each respective provider.',
           'Tax payments and other accounting matters are the responsibility of the client.',
+          'Net ROAS Guarantee: If the Net ROAS (Shopify Total Net Sales ÷ Total Ad Spend) does not reach 2.0x in any given month, the 5% commission for that month is waived entirely.',
         ],
       },
       {
