@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, BarChart3, Lock, TrendingUp, Monitor } from 'lucide-react';
+import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, BarChart3, Lock, TrendingUp, Monitor, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { xtralluxDigitalAdsContent } from './data/xtralluxDigitalAdsContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
@@ -17,6 +17,7 @@ const iconMap: Record<string, React.ElementType> = {
   calendar: Calendar,
   dollar: DollarSign,
   clock: Clock,
+  shield: ShieldCheck,
 };
 
 function Page({ children, bg = '#ffffff' }: { children: React.ReactNode; bg?: string }) {
