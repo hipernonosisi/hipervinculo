@@ -93,6 +93,11 @@ export const xtralluxDigitalAdsContent = {
         description: 'Access to monitor organic search performance, indexation status, and identify SEO opportunities that complement paid efforts.',
         role: 'Full User Access',
       },
+      {
+        title: 'Klaviyo',
+        description: 'Access to audience lists and segments for syncing with Meta and Google ad campaigns, enabling precise retargeting and lookalike audience creation based on email engagement data.',
+        role: 'Analyst Access',
+      },
     ],
   },
   metaAdsService: {
