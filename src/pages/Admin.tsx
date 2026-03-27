@@ -949,6 +949,15 @@ export default function Admin() {
                   <Globe className="w-4 h-4" />
                   Orbital Sunglasses
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('xtrallux-ads')}
+                  className={`gap-2 ${activeProposal === 'xtrallux-ads' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Megaphone className="w-4 h-4" />
+                  XTRALLUX (Digital Ads)
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
@@ -960,6 +969,7 @@ export default function Admin() {
                   {activeProposal === 'xtrallux' && <XtralluxProposal />}
                   {activeProposal === 'taily' && <TailyProposal />}
                   {activeProposal === 'orbital' && <OrbitalSunglassesProposal />}
+                  {activeProposal === 'xtrallux-ads' && <XtralluxDigitalAdsProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
