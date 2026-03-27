@@ -65,7 +65,7 @@ export const xtralluxDigitalAdsContent = {
     platforms: [
       {
         title: 'Triple Whale',
-        description: 'Our single source of truth for attribution, revenue tracking, and commission calculations. We will use Triple Whale\'s Net Sales data as the definitive figure for our 5% commission.',
+        description: 'Attribution and channel allocation tool used to verify which advertising channels are driving results. Helps optimize budget distribution across Meta and Google campaigns.',
         role: 'Admin Access',
       },
       {
