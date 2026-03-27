@@ -41,7 +41,7 @@ export const xtralluxDigitalAdsContent = {
       },
       {
         title: 'Analytics & Attribution',
-        description: 'Configuration and ongoing monitoring of Google Analytics, Google Search Console, and Triple Whale to provide complete visibility into campaign performance and multi-touch attribution.',
+        description: 'Configuration and ongoing monitoring of Google Analytics and Google Search Console to provide complete visibility into campaign performance and conversion tracking.',
       },
       {
         title: 'Creative Strategy & Direction',
@@ -65,7 +65,7 @@ export const xtralluxDigitalAdsContent = {
     platforms: [
       {
         title: 'Triple Whale',
-        description: 'Our single source of truth for attribution, revenue tracking, and commission calculations. We will use Triple Whale\'s Net Sales data as the definitive figure for our 5% commission.',
+        description: 'Attribution and channel allocation tool used to verify which advertising channels are driving results. Helps optimize budget distribution across Meta and Google campaigns.',
         role: 'Admin Access',
       },
       {
@@ -161,17 +161,17 @@ export const xtralluxDigitalAdsContent = {
   },
   tripleWhaleService: {
     title: 'Triple Whale Integration',
-    headline: 'Attribution, Analytics & Financial Transparency',
+    headline: 'Channel Attribution & Budget Allocation',
     description:
-      'Triple Whale serves as the single source of truth for all revenue attribution and commission calculations. We will ensure proper configuration and use the platform\'s Shopify Net Sales data as the definitive metric for our performance commission.',
+      'Triple Whale is used exclusively as an attribution and allocation verification tool. It helps us understand which channels are driving results so we can optimize budget distribution. Commission calculations are based directly on Shopify Net Sales data from your Shopify account.',
     features: [
       {
-        title: 'Revenue Attribution',
+        title: 'Channel Attribution',
         description: 'Multi-touch attribution across all paid channels (Meta, Google) to understand true campaign performance and ROAS.',
       },
       {
-        title: 'Shopify Net Sales Tracking',
-        description: 'Real-time tracking of Shopify Net Sales (gross revenue minus returns, discounts, and refunds) — the definitive figure for commission calculations.',
+        title: 'Budget Allocation Insights',
+        description: 'Data-driven insights on how to distribute ad spend across Meta and Google for maximum return.',
       },
       {
         title: 'Creative Analytics',
@@ -180,10 +180,6 @@ export const xtralluxDigitalAdsContent = {
       {
         title: 'Channel Performance',
         description: 'Side-by-side comparison of Meta vs Google performance to optimize budget allocation across channels.',
-      },
-      {
-        title: 'Commission Tracking',
-        description: 'Transparent tracking of Shopify Net Sales from which our 5% performance commission will be calculated. The Triple Whale figure is the definitive source for invoicing.',
       },
     ],
   },
@@ -196,7 +192,7 @@ export const xtralluxDigitalAdsContent = {
         label: 'Performance Commission',
         rate: '5%',
         basis: 'of Shopify Net Sales',
-        description: 'Calculated on Shopify Net Sales as reported by Triple Whale. Shopify Net Sales = Gross Revenue minus returns, discounts, and refunds. Product costs (COGS) are NOT deducted for this calculation. The Triple Whale figure is the definitive and binding source for all commission calculations.',
+        description: 'Calculated directly on Shopify Net Sales from your Shopify account. Shopify Net Sales = Gross Revenue minus returns, discounts, and refunds. Product costs (COGS) are NOT deducted for this calculation.',
       },
       clientPays: {
         title: 'Paid Directly by Client',
@@ -210,7 +206,7 @@ export const xtralluxDigitalAdsContent = {
     },
     example: {
       title: 'Commission Example',
-      subtitle: 'How it works — based on Triple Whale data',
+      subtitle: 'How it works — based on Shopify Net Sales',
       rows: [
         { label: 'Shopify Gross Revenue', value: '$100,000', type: 'revenue' as const },
         { label: 'Returns & Refunds', value: '−$5,000', type: 'deduction' as const },
@@ -218,13 +214,13 @@ export const xtralluxDigitalAdsContent = {
       ],
       netSales: { label: 'Shopify Net Sales', value: '$92,000' },
       commission: { label: 'Hipervínculo Commission (5%)', value: '$4,600' },
-      note: 'All figures are sourced directly from Triple Whale\'s Shopify integration. The Net Sales number displayed in Triple Whale is the definitive figure used to calculate our 5% commission each month. Product costs (COGS) are NOT deducted from this calculation.',
+      note: 'All figures are sourced directly from your Shopify account. Shopify Net Sales is the definitive figure used to calculate our 5% commission each month. Product costs (COGS) are NOT deducted from this calculation.',
     },
     timeline: {
       title: 'Onboarding Timeline',
       duration: '14',
       durationUnit: 'Days',
-      description: 'The onboarding phase includes platform access setup, Triple Whale configuration, pixel/tracking verification, campaign strategy development, and initial campaign launch. After 14 days, ongoing management and optimization begins.',
+      description: 'The onboarding phase includes platform access setup, pixel/tracking verification, Triple Whale attribution configuration, campaign strategy development, and initial campaign launch. After 14 days, ongoing management and optimization begins.',
     },
   },
   terms: {
@@ -238,7 +234,7 @@ export const xtralluxDigitalAdsContent = {
       },
       {
         title: 'Payment Terms — Commission',
-        description: 'The 5% Shopify Net Sales commission is invoiced monthly based on Triple Whale data and is payable within 10 days of invoice receipt. The Triple Whale figure is the definitive source for all calculations.',
+        description: 'The 5% commission is invoiced monthly based on Shopify Net Sales from your Shopify account and is payable within 10 days of invoice receipt.',
         icon: 'dollar',
       },
       {
@@ -275,7 +271,7 @@ export const xtralluxDigitalAdsContent = {
         heading: 'Payment Method & Services',
         items: [
           'There is no setup fee. Services begin immediately upon agreement execution and platform access.',
-          'The 5% commission is calculated on Shopify Net Sales (gross revenue minus returns, discounts, and refunds) as tracked and reported by Triple Whale. Product costs (COGS) are NOT deducted. The Triple Whale figure is the definitive and binding source for all commission calculations.',
+          'The 5% commission is calculated on Shopify Net Sales (gross revenue minus returns, discounts, and refunds) as reported directly by Shopify. Product costs (COGS) are NOT deducted.',
           'Commission payments are due within 10 days of invoice receipt.',
           'All advertising budgets are paid directly by the client through Meta Ads Manager and Google Ads.',
           'Triple Whale and Shopify Plus subscriptions are paid directly by the client to each respective provider.',
