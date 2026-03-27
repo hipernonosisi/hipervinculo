@@ -386,7 +386,6 @@ export function XtralluxDigitalAdsProposal() {
                   </div>
                 </div>
               </div>
-              </div>
 
               {/* Timeline */}
               <div className="bg-white rounded-2xl p-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
