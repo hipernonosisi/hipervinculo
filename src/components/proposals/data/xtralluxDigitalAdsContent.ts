@@ -220,7 +220,7 @@ export const xtralluxDigitalAdsContent = {
       title: 'Onboarding Timeline',
       duration: '14',
       durationUnit: 'Days',
-      description: 'The onboarding phase includes platform access setup, Triple Whale configuration, pixel/tracking verification, campaign strategy development, and initial campaign launch. After 14 days, ongoing management and optimization begins.',
+      description: 'The onboarding phase includes platform access setup, pixel/tracking verification, Triple Whale attribution configuration, campaign strategy development, and initial campaign launch. After 14 days, ongoing management and optimization begins.',
     },
   },
   terms: {
