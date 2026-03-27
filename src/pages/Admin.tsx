@@ -93,7 +93,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital'>('skyscraper');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
