@@ -206,7 +206,7 @@ export const xtralluxDigitalAdsContent = {
     },
     example: {
       title: 'Commission Example',
-      subtitle: 'How it works — based on Triple Whale data',
+      subtitle: 'How it works — based on Shopify Net Sales',
       rows: [
         { label: 'Shopify Gross Revenue', value: '$100,000', type: 'revenue' as const },
         { label: 'Returns & Refunds', value: '−$5,000', type: 'deduction' as const },
