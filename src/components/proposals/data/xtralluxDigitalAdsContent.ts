@@ -234,7 +234,7 @@ export const xtralluxDigitalAdsContent = {
       },
       {
         title: 'Payment Terms — Commission',
-        description: 'The 5% Shopify Net Sales commission is invoiced monthly based on Triple Whale data and is payable within 10 days of invoice receipt. The Triple Whale figure is the definitive source for all calculations.',
+        description: 'The 5% commission is invoiced monthly based on Shopify Net Sales from your Shopify account and is payable within 10 days of invoice receipt.',
         icon: 'dollar',
       },
       {
