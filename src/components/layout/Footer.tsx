@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
@@ -88,6 +88,9 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 </a>
                 <a href="https://x.com/hipervinculo_ca" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   <Twitter className="h-5 w-5" />
+                </a>
+                <a href="https://www.facebook.com/hipervinculo.net" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Facebook className="h-5 w-5" />
                 </a>
               </div>
             </div>
