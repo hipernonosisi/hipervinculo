@@ -80,7 +80,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 {t.footer.tagline}
               </p>
               <div className="flex items-center gap-4">
-                <a href="https://www.instagram.com/hipervinculo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://www.instagram.com/hipervinculo_" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a href="https://www.linkedin.com/company/hipervinculo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
