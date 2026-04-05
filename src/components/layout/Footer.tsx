@@ -86,6 +86,9 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 <a href="https://www.linkedin.com/company/hipervinculo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   <Linkedin className="h-5 w-5" />
                 </a>
+                <a href="https://x.com/hipervinculo_ca" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Twitter className="h-5 w-5" />
+                </a>
               </div>
             </div>
 
