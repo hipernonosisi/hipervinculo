@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
