@@ -29,6 +29,11 @@
 */
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 147 25% 25%;
