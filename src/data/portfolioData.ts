@@ -105,7 +105,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A high-precision industrial product with zero digital presence — no way for buyers to discover or evaluate the technology online.', es: 'Un producto industrial de alta precisión sin presencia digital — sin forma de que los compradores descubran o evalúen la tecnología en línea.' },
     solution: { en: 'A technical landing page with detailed specs, AI chatbot for product questions, and a rapid contact flow — launched in just 2 days.', es: 'Una landing técnica con especificaciones detalladas, chatbot IA para preguntas del producto y flujo de contacto rápido — lanzada en solo 2 días.' },
   },
-  // 4. Pulverizadores Industriales (Reduction)
+  // 5. Pulverizadores Industriales (Reduction)
   {
     slug: 'pulverizadores-industriales',
     name: 'Pulverizadores Industriales',
@@ -126,7 +126,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'Specialized equipment for the Spanish-speaking market with no digital channel to generate qualified inquiries.', es: 'Equipos especializados para el mercado hispanohablante sin canal digital para generar consultas calificadas.' },
     solution: { en: 'A product site with video integration, detailed specs, AI-powered assistant, and streamlined quote flow — generating 50+ qualified leads per year.', es: 'Un sitio de producto con integración de video, specs detalladas, asistente con IA y flujo de cotización optimizado — generando 50+ leads calificados al año.' },
   },
-  // 5. Stillwater Day Spa
+  // 6. Stillwater Day Spa
   {
     slug: 'stillwater-day-spa',
     name: 'Stillwater Day Spa',
@@ -147,7 +147,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'Fully dependent on referrals with no digital channel to generate calls — missing out on high-intent local searches.', es: 'Dependencia total de referidos sin canal digital para generar llamadas — perdiendo búsquedas locales de alta intención.' },
     solution: { en: 'A booking-focused site with call scheduling, first-visit specials, and membership enrollment — growing from 2-3 to 20+ calls per day.', es: 'Un sitio enfocado en booking de llamadas, especiales de primera visita y membresías — pasando de 2-3 a 20+ llamadas por día.' },
   },
-  // 6. Rasetta Innovations
+  // 7. Rasetta Innovations
   {
     slug: 'rasetta-innovations',
     name: 'Rasetta Innovations',
@@ -168,7 +168,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A website that didn\'t reflect the premium quality of their work and failed to attract high-quality leads.', es: 'Un sitio que no reflejaba la calidad premium de su trabajo y no atraía leads de alta calidad.' },
     solution: { en: 'An elegant visual identity optimized to attract and convert high-quality leads — achieving +180% in consultation requests.', es: 'Una identidad visual elegante optimizada para atraer y convertir leads de alta calidad — logrando +180% en solicitudes de consulta.' },
   },
-  // 7. Lajex LLC
+  // 8. Lajex LLC
   {
     slug: 'lajex-llc',
     name: 'Lajex LLC',
@@ -189,7 +189,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A local plumbing company in South Florida with no digital visibility to attract qualified clients.', es: 'Una empresa de plomería local en el sur de Florida sin visibilidad digital para atraer clientes calificados.' },
     solution: { en: 'A bilingual site with AI chat and county-based targeting — focused on high-quality leads, growing from 1-2 to 7-8 clients per week.', es: 'Un sitio bilingüe con chat IA y segmentación por condado — enfocado en leads de calidad, pasando de 1-2 a 7-8 clientes por semana.' },
   },
-  // 8. Délios Home
+  // 9. Délios Home
   {
     slug: 'delios-home',
     name: 'Délios Home',
