@@ -70,7 +70,7 @@ export const portfolioProjects: PortfolioProject[] = [
     url: 'https://lbccold.com/',
     image: '/portfolio/lbc-cold-hero.png',
     imageMobile: '/portfolio/lbc-cold-mobile.png',
-    extraImages: [],
+    extraImages: ['/portfolio/lbc-cold-catalog.png', '/portfolio/lbc-cold-products.png', '/portfolio/lbc-cold-solutions.png', '/portfolio/lbc-cold-accessories.png'],
     description: { en: 'Premium cold chain solutions with 50+ years of excellence in temperature-controlled logistics.', es: 'Soluciones premium de cadena de frío con más de 50 años de excelencia en logística de temperatura controlada.' },
     industry: { en: 'Cold Chain Logistics', es: 'Logística de Cadena de Frío' },
     tagline: { en: 'A bilingual digital platform for a cold chain logistics leader.', es: 'Una plataforma digital bilingüe para un líder en logística de cadena de frío.' },
