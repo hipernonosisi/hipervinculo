@@ -63,7 +63,28 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A global leader in recycling machinery with no Spanish-language digital presence to penetrate the LATAM market.', es: 'Líder mundial en maquinaria de reciclaje sin presencia digital en español para penetrar el mercado LATAM.' },
     solution: { en: 'A 16+ year partnership: bilingual platform with full product catalog, quote request system, and SEO — achieving +200% quote requests and 3x LATAM reach.', es: 'Una alianza de +16 años: plataforma bilingüe con catálogo completo, sistema de cotización y SEO — logrando +200% en cotizaciones y 3x alcance LATAM.' },
   },
-  // 3. Filtro Láser
+  // 3. LBC Cold Supply & Logistics
+  {
+    slug: 'lbc-cold',
+    name: 'LBC Cold Supply & Logistics',
+    url: 'https://lbccold.com/',
+    image: '/portfolio/lbc-cold-hero.png',
+    imageMobile: '/portfolio/lbc-cold-mobile.png',
+    extraImages: [],
+    description: { en: 'Premium cold chain solutions with 50+ years of excellence in temperature-controlled logistics.', es: 'Soluciones premium de cadena de frío con más de 50 años de excelencia en logística de temperatura controlada.' },
+    industry: { en: 'Cold Chain Logistics', es: 'Logística de Cadena de Frío' },
+    tagline: { en: 'A bilingual digital platform for a cold chain logistics leader.', es: 'Una plataforma digital bilingüe para un líder en logística de cadena de frío.' },
+    overview: { en: 'LBC Cold Supply & Logistics needed a modern, bilingual website to showcase their 50+ years of expertise in temperature-controlled containers, insulated packaging, and cold chain logistics solutions. We built a conversion-optimized platform with a comprehensive product catalog, AI-powered chat for instant support, quote request system, and a bilingual experience to serve both English and Spanish-speaking clients across the Americas.', es: 'LBC Cold Supply & Logistics necesitaba un sitio web moderno y bilingüe para mostrar sus más de 50 años de experiencia en contenedores de temperatura controlada, embalaje aislado y soluciones de logística de cadena de frío. Construimos una plataforma optimizada para conversión con catálogo de productos completo, chat con IA para soporte instantáneo, sistema de solicitud de cotización y experiencia bilingüe para servir clientes de habla inglesa y española en las Américas.' },
+    servicesUsed: { en: ['Website Development', 'AI Chatbot', 'Lead Generation', 'Bilingual SEO'], es: ['Desarrollo Web', 'Chatbot con IA', 'Generación de Leads', 'SEO Bilingüe'] },
+    outcomes: [
+      { metric: '+185%', label: { en: 'Increase in quote requests', es: 'Aumento en solicitudes de cotización' } },
+      { metric: '3x', label: { en: 'Online lead generation', es: 'Generación de leads en línea' } },
+      { metric: '+120%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
+    ],
+    challenge: { en: 'A 50+ year industry leader with an outdated website that didn\'t reflect their expertise or generate qualified leads online.', es: 'Un líder de la industria con más de 50 años y un sitio web obsoleto que no reflejaba su experiencia ni generaba leads calificados en línea.' },
+    solution: { en: 'A modern bilingual platform with product catalog, AI chat, and quote system — positioning LBC as the go-to cold chain partner across the Americas.', es: 'Una plataforma moderna bilingüe con catálogo de productos, chat IA y sistema de cotización — posicionando a LBC como el socio de cadena de frío líder en las Américas.' },
+  },
+  // 4. Filtro Láser
   {
     slug: 'filtro-laser',
     name: 'Filtro Láser para Plástico',
@@ -84,7 +105,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A high-precision industrial product with zero digital presence — no way for buyers to discover or evaluate the technology online.', es: 'Un producto industrial de alta precisión sin presencia digital — sin forma de que los compradores descubran o evalúen la tecnología en línea.' },
     solution: { en: 'A technical landing page with detailed specs, AI chatbot for product questions, and a rapid contact flow — launched in just 2 days.', es: 'Una landing técnica con especificaciones detalladas, chatbot IA para preguntas del producto y flujo de contacto rápido — lanzada en solo 2 días.' },
   },
-  // 4. Pulverizadores Industriales (Reduction)
+  // 5. Pulverizadores Industriales (Reduction)
   {
     slug: 'pulverizadores-industriales',
     name: 'Pulverizadores Industriales',
@@ -105,7 +126,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'Specialized equipment for the Spanish-speaking market with no digital channel to generate qualified inquiries.', es: 'Equipos especializados para el mercado hispanohablante sin canal digital para generar consultas calificadas.' },
     solution: { en: 'A product site with video integration, detailed specs, AI-powered assistant, and streamlined quote flow — generating 50+ qualified leads per year.', es: 'Un sitio de producto con integración de video, specs detalladas, asistente con IA y flujo de cotización optimizado — generando 50+ leads calificados al año.' },
   },
-  // 5. Stillwater Day Spa
+  // 6. Stillwater Day Spa
   {
     slug: 'stillwater-day-spa',
     name: 'Stillwater Day Spa',
@@ -126,7 +147,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'Fully dependent on referrals with no digital channel to generate calls — missing out on high-intent local searches.', es: 'Dependencia total de referidos sin canal digital para generar llamadas — perdiendo búsquedas locales de alta intención.' },
     solution: { en: 'A booking-focused site with call scheduling, first-visit specials, and membership enrollment — growing from 2-3 to 20+ calls per day.', es: 'Un sitio enfocado en booking de llamadas, especiales de primera visita y membresías — pasando de 2-3 a 20+ llamadas por día.' },
   },
-  // 6. Rasetta Innovations
+  // 7. Rasetta Innovations
   {
     slug: 'rasetta-innovations',
     name: 'Rasetta Innovations',
@@ -147,7 +168,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A website that didn\'t reflect the premium quality of their work and failed to attract high-quality leads.', es: 'Un sitio que no reflejaba la calidad premium de su trabajo y no atraía leads de alta calidad.' },
     solution: { en: 'An elegant visual identity optimized to attract and convert high-quality leads — achieving +180% in consultation requests.', es: 'Una identidad visual elegante optimizada para atraer y convertir leads de alta calidad — logrando +180% en solicitudes de consulta.' },
   },
-  // 7. Lajex LLC
+  // 8. Lajex LLC
   {
     slug: 'lajex-llc',
     name: 'Lajex LLC',
@@ -168,7 +189,7 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A local plumbing company in South Florida with no digital visibility to attract qualified clients.', es: 'Una empresa de plomería local en el sur de Florida sin visibilidad digital para atraer clientes calificados.' },
     solution: { en: 'A bilingual site with AI chat and county-based targeting — focused on high-quality leads, growing from 1-2 to 7-8 clients per week.', es: 'Un sitio bilingüe con chat IA y segmentación por condado — enfocado en leads de calidad, pasando de 1-2 a 7-8 clientes por semana.' },
   },
-  // 8. Délios Home
+  // 9. Délios Home
   {
     slug: 'delios-home',
     name: 'Délios Home',
