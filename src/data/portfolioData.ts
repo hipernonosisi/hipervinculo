@@ -63,7 +63,28 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge: { en: 'A global leader in recycling machinery with no Spanish-language digital presence to penetrate the LATAM market.', es: 'Líder mundial en maquinaria de reciclaje sin presencia digital en español para penetrar el mercado LATAM.' },
     solution: { en: 'A 16+ year partnership: bilingual platform with full product catalog, quote request system, and SEO — achieving +200% quote requests and 3x LATAM reach.', es: 'Una alianza de +16 años: plataforma bilingüe con catálogo completo, sistema de cotización y SEO — logrando +200% en cotizaciones y 3x alcance LATAM.' },
   },
-  // 3. Filtro Láser
+  // 3. LBC Cold Supply & Logistics
+  {
+    slug: 'lbc-cold',
+    name: 'LBC Cold Supply & Logistics',
+    url: 'https://lbccold.com/',
+    image: '/portfolio/lbc-cold-hero.png',
+    imageMobile: '/portfolio/lbc-cold-mobile.png',
+    extraImages: [],
+    description: { en: 'Premium cold chain solutions with 50+ years of excellence in temperature-controlled logistics.', es: 'Soluciones premium de cadena de frío con más de 50 años de excelencia en logística de temperatura controlada.' },
+    industry: { en: 'Cold Chain Logistics', es: 'Logística de Cadena de Frío' },
+    tagline: { en: 'A bilingual digital platform for a cold chain logistics leader.', es: 'Una plataforma digital bilingüe para un líder en logística de cadena de frío.' },
+    overview: { en: 'LBC Cold Supply & Logistics needed a modern, bilingual website to showcase their 50+ years of expertise in temperature-controlled containers, insulated packaging, and cold chain logistics solutions. We built a conversion-optimized platform with a comprehensive product catalog, AI-powered chat for instant support, quote request system, and a bilingual experience to serve both English and Spanish-speaking clients across the Americas.', es: 'LBC Cold Supply & Logistics necesitaba un sitio web moderno y bilingüe para mostrar sus más de 50 años de experiencia en contenedores de temperatura controlada, embalaje aislado y soluciones de logística de cadena de frío. Construimos una plataforma optimizada para conversión con catálogo de productos completo, chat con IA para soporte instantáneo, sistema de solicitud de cotización y experiencia bilingüe para servir clientes de habla inglesa y española en las Américas.' },
+    servicesUsed: { en: ['Website Development', 'AI Chatbot', 'Lead Generation', 'Bilingual SEO'], es: ['Desarrollo Web', 'Chatbot con IA', 'Generación de Leads', 'SEO Bilingüe'] },
+    outcomes: [
+      { metric: '+185%', label: { en: 'Increase in quote requests', es: 'Aumento en solicitudes de cotización' } },
+      { metric: '3x', label: { en: 'Online lead generation', es: 'Generación de leads en línea' } },
+      { metric: '+120%', label: { en: 'Organic traffic growth', es: 'Crecimiento de tráfico orgánico' } },
+    ],
+    challenge: { en: 'A 50+ year industry leader with an outdated website that didn\'t reflect their expertise or generate qualified leads online.', es: 'Un líder de la industria con más de 50 años y un sitio web obsoleto que no reflejaba su experiencia ni generaba leads calificados en línea.' },
+    solution: { en: 'A modern bilingual platform with product catalog, AI chat, and quote system — positioning LBC as the go-to cold chain partner across the Americas.', es: 'Una plataforma moderna bilingüe con catálogo de productos, chat IA y sistema de cotización — posicionando a LBC como el socio de cadena de frío líder en las Américas.' },
+  },
+  // 4. Filtro Láser
   {
     slug: 'filtro-laser',
     name: 'Filtro Láser para Plástico',
