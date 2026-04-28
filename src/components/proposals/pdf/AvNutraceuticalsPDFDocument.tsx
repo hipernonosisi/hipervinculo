@@ -1,5 +1,6 @@
 import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Circle } from '@react-pdf/renderer';
 import { avNutraceuticalsProposalContent } from '../data/avNutraceuticalsProposalContent';
+import type { ProposalLang } from '../data/avNutraceuticalsProposalContent';
 
 const green = '#2d4a2d';
 const lime = '#8BC34A';
@@ -86,10 +87,12 @@ const iconMap: Record<string, React.FC<{ size?: number }>> = {
 
 interface Props {
   logoBase64: string;
+  lang?: ProposalLang;
 }
 
-export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
-  const content = avNutraceuticalsProposalContent;
+export function AvNutraceuticalsPDFDocument({ logoBase64, lang = 'en' }: Props) {
+  const content = avNutraceuticalsProposalContent[lang];
+  const u = content.ui;
 
   return (
     <Document>
