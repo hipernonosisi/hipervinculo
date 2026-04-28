@@ -246,8 +246,8 @@ export const avNutraceuticalsProposalContent = {
       title: 'Ongoing Monthly Services',
       retainer: {
         label: 'Monthly Management Fee',
-        price: '$2,500/mo',
-        description: 'Covers ongoing listing optimization, advertising management, account health, case management, and monthly reporting.',
+        price: '$5,500/mo',
+        description: 'Calculated as $500 per ASIN × 11 active ASINs. Covers ongoing listing optimization, advertising management, account health, case management, and monthly reporting.',
       },
       commission: {
         label: 'Performance Commission',
