@@ -254,7 +254,7 @@ export function AvNutraceuticalsProposal() {
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Ongoing Management</div>
-                  <div className="text-white/40 text-xs mt-1">Part of the $2,500/mo fee + 10% Net Profit commission</div>
+                  <div className="text-white/40 text-xs mt-1">Part of the $5,500/mo fee ($500 × 11 ASINs) + 10% Net Profit commission</div>
                 </div>
                 <span className="text-2xl font-extrabold text-white">10%</span>
               </div>

@@ -239,7 +239,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INCLUDED IN ONGOING MANAGEMENT</Text>
-            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Part of $2,500/mo fee + 10% Net Profit commission</Text>
+            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Part of $5,500/mo fee ($500 × 11 ASINs) + 10% Net Profit commission</Text>
           </View>
           <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'white' }}>10%</Text>
         </View>
