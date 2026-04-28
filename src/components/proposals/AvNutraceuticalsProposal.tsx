@@ -2,6 +2,7 @@ import { useRef, useState, useCallback } from 'react';
 import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, BarChart3, Shield, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { avNutraceuticalsProposalContent } from './data/avNutraceuticalsProposalContent';
+import type { ProposalLang } from './data/avNutraceuticalsProposalContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
 import { useToast } from '@/hooks/use-toast';
 import { pdf } from '@react-pdf/renderer';
@@ -56,43 +57,64 @@ export function AvNutraceuticalsProposal() {
   const documentRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const [isExporting, setIsExporting] = useState(false);
-  const content = avNutraceuticalsProposalContent;
+  const [lang, setLang] = useState<ProposalLang>('en');
+  const content = avNutraceuticalsProposalContent[lang];
+  const u = content.ui;
 
   const handleDownloadPDF = useCallback(async () => {
     setIsExporting(true);
-    toast({ title: 'Generating PDF...', description: 'Please wait while we prepare your document.' });
+    toast({ title: lang === 'es' ? 'Generando PDF...' : 'Generating PDF...', description: lang === 'es' ? 'Por favor espera mientras preparamos el documento.' : 'Please wait while we prepare your document.' });
 
     try {
       const logoBase64 = await imageToBase64(logoHipervinculo);
-      const blob = await pdf(<AvNutraceuticalsPDFDocument logoBase64={logoBase64} />).toBlob();
+      const blob = await pdf(<AvNutraceuticalsPDFDocument logoBase64={logoBase64} lang={lang} />).toBlob();
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Proposal-AV-Nutraceuticals-Amazon.pdf';
+      link.download = lang === 'es' ? 'Propuesta-AV-Nutraceuticals-Amazon.pdf' : 'Proposal-AV-Nutraceuticals-Amazon.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-      toast({ title: 'PDF Downloaded!', description: 'Your proposal has been saved.' });
+      toast({ title: lang === 'es' ? '¡PDF Descargado!' : 'PDF Downloaded!', description: lang === 'es' ? 'Tu propuesta ha sido guardada.' : 'Your proposal has been saved.' });
     } catch (error) {
       console.error('PDF export error:', error);
-      toast({ title: 'Error', description: 'Error generating PDF.', variant: 'destructive' });
+      toast({ title: 'Error', description: lang === 'es' ? 'Error generando PDF.' : 'Error generating PDF.', variant: 'destructive' });
     } finally {
       setIsExporting(false);
     }
-  }, [toast]);
+  }, [toast, lang]);
 
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-b sticky top-0 z-10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-b sticky top-0 z-10 gap-3 flex-wrap">
         <h2 className="text-sm sm:text-lg font-bold" style={{ color: '#2d4a2d' }}>
-          Proposal — AV Nutraceuticals (Amazon Launch)
+          {u.proposalTitle}
         </h2>
-        <Button onClick={handleDownloadPDF} size="sm" className="gap-2" style={{ backgroundColor: '#8BC34A' }} disabled={isExporting}>
-          <Download className="w-4 h-4" />
-          Download PDF
-        </Button>
+        <div className="flex items-center gap-2">
+          {/* Language toggle */}
+          <div className="inline-flex rounded-lg border overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setLang('en')}
+              className={`px-3 py-1.5 text-xs font-bold transition ${lang === 'en' ? 'bg-[#2d4a2d] text-white' : 'bg-white text-[#2d4a2d] hover:bg-gray-50'}`}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang('es')}
+              className={`px-3 py-1.5 text-xs font-bold transition ${lang === 'es' ? 'bg-[#2d4a2d] text-white' : 'bg-white text-[#2d4a2d] hover:bg-gray-50'}`}
+            >
+              ES
+            </button>
+          </div>
+          <Button onClick={handleDownloadPDF} size="sm" className="gap-2" style={{ backgroundColor: '#8BC34A' }} disabled={isExporting}>
+            <Download className="w-4 h-4" />
+            {u.downloadPdf}
+          </Button>
+        </div>
       </div>
 
       {/* Scrollable Pages */}
@@ -116,7 +138,7 @@ export function AvNutraceuticalsProposal() {
                 <div className="w-20 h-1 rounded-full" style={{ backgroundColor: '#8BC34A' }} />
               </div>
               <div className="px-16 py-6 flex items-center justify-between bg-white">
-                <p className="text-xs text-gray-400 tracking-wider uppercase">Confidential</p>
+                <p className="text-xs text-gray-400 tracking-wider uppercase">{u.confidential}</p>
                 <p className="text-xs text-gray-400">hipervinculo.net</p>
               </div>
             </div>
@@ -126,7 +148,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>About Us</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.aboutUs}</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.about.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.about.headline}</p>
               <p className="text-gray-600 leading-relaxed mb-10 text-[15px]">{content.about.description}</p>
@@ -152,7 +174,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Scope of Work</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.scopeOfWork}</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.objective.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.objective.headline}</p>
               <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.objective.description}</p>
@@ -174,7 +196,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 1</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.service} 1</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.setupService.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.setupService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-8 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
@@ -200,14 +222,14 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 2</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.service} 2</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.listingService.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.listingService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6" style={{ backgroundColor: '#2d4a2d' }}>
                 <div className="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
                   <div>
                     <div className="text-white/50 text-xs font-bold uppercase tracking-widest">{content.listingService.parentLabel}</div>
-                    <div className="text-white/40 text-xs mt-1">{content.listingService.parentCount} parents · includes A+ Content</div>
+                    <div className="text-white/40 text-xs mt-1">{content.listingService.parentCount} {u.parentsIncludeAplus}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-extrabold text-white">{content.listingService.parentPrice}</div>
@@ -217,7 +239,7 @@ export function AvNutraceuticalsProposal() {
                 <div className="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
                   <div>
                     <div className="text-white/50 text-xs font-bold uppercase tracking-widest">{content.listingService.variationLabel}</div>
-                    <div className="text-white/40 text-xs mt-1">{content.listingService.variationCount} variations</div>
+                    <div className="text-white/40 text-xs mt-1">{content.listingService.variationCount} {u.variations}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-extrabold text-white">{content.listingService.variationPrice}</div>
@@ -248,13 +270,13 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 3</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.service} 3</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.advertisingService.title}</h2>
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.advertisingService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Ongoing Management</div>
-                  <div className="text-white/40 text-xs mt-1">Part of the $5,500/mo fee ($500 × 11 ASINs) + 10% Net Profit commission</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">{u.includedInOngoing}</div>
+                  <div className="text-white/40 text-xs mt-1">{u.partOfFee}</div>
                 </div>
                 <span className="text-2xl font-extrabold text-white">10%</span>
               </div>
@@ -277,7 +299,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service 4</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.service} 4</p>
               <h2 className="text-2xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.ongoingService.title}</h2>
               <p className="font-medium text-sm mb-3" style={{ color: '#8BC34A' }}>{content.ongoingService.headline}</p>
               <p className="text-gray-600 leading-relaxed mb-3 text-[13px]">{content.ongoingService.description}</p>
@@ -295,12 +317,12 @@ export function AvNutraceuticalsProposal() {
 
               {/* Sellerise */}
               <div className="w-10 h-1 rounded-full mb-3" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Tooling</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.tooling}</p>
               <h2 className="text-xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.selleriseService.title}</h2>
               <p className="font-medium text-sm mb-3" style={{ color: '#8BC34A' }}>{content.selleriseService.headline}</p>
               <div className="rounded-2xl px-6 py-3 mb-3 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest">Sellerise Subscription</div>
+                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest">Sellerise</div>
                   <div className="text-white/40 text-[10px] mt-0.5">{content.selleriseService.monthlyCostLabel}</div>
                 </div>
                 <span className="text-xl font-extrabold text-white">{content.selleriseService.monthlyCost}</span>
@@ -319,7 +341,7 @@ export function AvNutraceuticalsProposal() {
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-[13px]" style={{ color: '#2d4a2d' }}>{tier.title}</h3>
                         {tier.included ? (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: '#8BC34A' }}>Included</span>
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: '#8BC34A' }}>{u.included}</span>
                         ) : (
                           <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(255,193,7,0.2)', color: '#F57F17' }}>{tier.price}</span>
                         )}
@@ -336,7 +358,7 @@ export function AvNutraceuticalsProposal() {
           <Page bg="#f8f9f5">
             <div className="px-12 py-10 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.investment}</p>
               <h2 className="text-2xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-5 text-sm" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
@@ -356,7 +378,7 @@ export function AvNutraceuticalsProposal() {
                     ))}
                   </div>
                   <div className="border-t border-gray-200 pt-4 mt-3 flex items-center justify-between">
-                    <span className="font-bold text-xs" style={{ color: '#2d4a2d' }}>Total Setup</span>
+                    <span className="font-bold text-xs" style={{ color: '#2d4a2d' }}>{u.totalSetup}</span>
                     <span className="text-2xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.setup.total}</span>
                   </div>
                 </div>
@@ -367,11 +389,11 @@ export function AvNutraceuticalsProposal() {
                   <div className="flex justify-between items-start gap-3 pb-3 border-b border-gray-100">
                     <div className="flex-1 min-w-0">
                       <p className="text-[12px] text-gray-700 font-medium">{content.investment.ongoing.retainer.label}</p>
-                      <p className="text-[10px] text-gray-400 mt-0.5">Charged every month</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">{u.chargedEveryMonth}</p>
                     </div>
                     <span className="text-xl font-extrabold flex-shrink-0" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.retainer.price}</span>
                   </div>
-                  <div className="text-center text-[9px] font-bold uppercase tracking-widest py-2" style={{ color: '#8BC34A' }}>+ Plus</div>
+                  <div className="text-center text-[9px] font-bold uppercase tracking-widest py-2" style={{ color: '#8BC34A' }}>{u.plus}</div>
                   <div className="flex justify-between items-start gap-3 pb-3 border-b border-gray-100">
                     <div className="flex-1 min-w-0">
                       <p className="text-[12px] text-gray-700 font-medium">{content.investment.ongoing.commission.label}</p>
@@ -444,7 +466,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Terms</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.terms}</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.terms.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.terms.headline}</p>
               <div className="space-y-2.5">
@@ -470,7 +492,7 @@ export function AvNutraceuticalsProposal() {
           <Page bg="#f8f9f5">
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Agreement</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.agreement}</p>
               <h2 className="text-3xl font-extrabold mb-6" style={{ color: '#2d4a2d' }}>{content.legalTerms.title}</h2>
               <div className="space-y-4">
                 {content.legalTerms.sections.map((section, i) => (
@@ -491,7 +513,7 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Signatures</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>{u.signatures}</p>
               <h2 className="text-3xl font-extrabold mb-2" style={{ color: '#2d4a2d' }}>{content.signature.title}</h2>
               <p className="font-medium mb-8" style={{ color: '#8BC34A' }}>{content.signature.headline}</p>
               <p className="text-gray-600 leading-relaxed mb-12 text-[14px]">{content.signature.intro}</p>
@@ -503,7 +525,7 @@ export function AvNutraceuticalsProposal() {
                     <p className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{sig.name}</p>
                     <p className="text-[12px] text-gray-500">{sig.company}</p>
                     <div className="mt-6">
-                      <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Date</p>
+                      <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">{u.date}</p>
                       <div className="border-b border-gray-300" style={{ height: '24px' }} />
                     </div>
                   </div>
@@ -516,27 +538,27 @@ export function AvNutraceuticalsProposal() {
           <Page>
             <div className="flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
               <div className="px-16 py-14 flex-1" style={{ backgroundColor: '#2d4a2d' }}>
-                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: '#8BC34A' }}>Contact Us</p>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: '#8BC34A' }}>{u.contactUs}</p>
                 <h2 className="text-3xl font-extrabold text-white mb-3">{content.contact.title}</h2>
                 <p className="text-white/60 mb-10 text-[15px]">{content.contact.description}</p>
                 <div className="grid grid-cols-2 gap-8 text-white/80">
                   <div className="space-y-6">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Email</p>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>{u.email}</p>
                       <p className="text-lg font-medium">{content.contact.email}</p>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Phone</p>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>{u.phone}</p>
                       <p className="text-lg font-medium">{content.contact.phone}</p>
                     </div>
                   </div>
                   <div className="space-y-6">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Location</p>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>{u.location}</p>
                       <p className="text-lg font-medium whitespace-pre-line">{content.contact.address}</p>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>Web</p>
+                      <p className="text-xs uppercase tracking-[0.15em] mb-1.5" style={{ color: 'rgba(139,195,74,0.5)' }}>{u.web}</p>
                       <p className="text-lg font-medium">{content.contact.website}</p>
                     </div>
                   </div>
@@ -546,7 +568,7 @@ export function AvNutraceuticalsProposal() {
                 <img src={logoHipervinculo} alt="Hipervinculo" className="h-12 mb-5" />
                 <div className="w-12 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
                 <p className="text-center text-gray-400 text-sm max-w-sm">
-                  Results-driven growth systems for businesses ready to scale.
+                  {u.tagline}
                 </p>
               </div>
             </div>

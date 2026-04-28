@@ -1,5 +1,6 @@
 import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Circle } from '@react-pdf/renderer';
 import { avNutraceuticalsProposalContent } from '../data/avNutraceuticalsProposalContent';
+import type { ProposalLang } from '../data/avNutraceuticalsProposalContent';
 
 const green = '#2d4a2d';
 const lime = '#8BC34A';
@@ -86,10 +87,12 @@ const iconMap: Record<string, React.FC<{ size?: number }>> = {
 
 interface Props {
   logoBase64: string;
+  lang?: ProposalLang;
 }
 
-export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
-  const content = avNutraceuticalsProposalContent;
+export function AvNutraceuticalsPDFDocument({ logoBase64, lang = 'en' }: Props) {
+  const content = avNutraceuticalsProposalContent[lang];
+  const u = content.ui;
 
   return (
     <Document>
@@ -111,7 +114,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
           <View style={{ width: 50, height: 3, backgroundColor: lime }} />
         </View>
         <View style={{ padding: '16 40', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 2 }}>CONFIDENTIAL</Text>
+          <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 2 }}>{u.confidential.toUpperCase()}</Text>
           <Text style={{ fontSize: 8, color: grayLight }}>hipervinculo.net</Text>
         </View>
       </Page>
@@ -119,7 +122,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 2: About */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>ABOUT US</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.aboutUs.toUpperCase()}</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.about.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.about.headline}</Text>
         <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 24 }}>{content.about.description}</Text>
@@ -144,7 +147,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 3: Objective & Scope */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SCOPE OF WORK</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.scopeOfWork.toUpperCase()}</Text>
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.objective.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.objective.headline}</Text>
         <Text style={{ fontSize: 9.5, color: gray, lineHeight: 1.55, marginBottom: 12 }}>{content.objective.description}</Text>
@@ -163,7 +166,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 4: Setup Service */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE 1</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{`${u.service.toUpperCase()} 1`}</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.setupService.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.setupService.headline}</Text>
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -186,7 +189,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 5: Listing Service */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE 2</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{`${u.service.toUpperCase()} 2`}</Text>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.listingService.title}</Text>
         <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.listingService.headline}</Text>
 
@@ -194,7 +197,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: 'rgba(255,255,255,0.15)' }}>
             <View>
               <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>{content.listingService.parentLabel.toUpperCase()}</Text>
-              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{content.listingService.parentCount} parents · includes A+ Content</Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{`${content.listingService.parentCount} ${u.parentsIncludeAplus}`}</Text>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'white' }}>{content.listingService.parentPrice}</Text>
@@ -204,7 +207,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: 'rgba(255,255,255,0.15)' }}>
             <View>
               <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>{content.listingService.variationLabel.toUpperCase()}</Text>
-              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{content.listingService.variationCount} variations</Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{`${content.listingService.variationCount} ${u.variations}`}</Text>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'white' }}>{content.listingService.variationPrice}</Text>
@@ -233,13 +236,13 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 6: Advertising */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE 3</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{`${u.service.toUpperCase()} 3`}</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.advertisingService.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.advertisingService.headline}</Text>
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
-            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INCLUDED IN ONGOING MANAGEMENT</Text>
-            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Part of $5,500/mo fee ($500 × 11 ASINs) + 10% Net Profit commission</Text>
+            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>{u.includedInOngoing.toUpperCase()}</Text>
+            <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{u.partOfFee}</Text>
           </View>
           <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'white' }}>10%</Text>
         </View>
@@ -259,7 +262,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 7: Ongoing + Sellerise + Cases */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE 4</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{`${u.service.toUpperCase()} 4`}</Text>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.ongoingService.title}</Text>
         <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 8 }}>{content.ongoingService.headline}</Text>
         <Text style={{ fontSize: 9, color: gray, lineHeight: 1.5, marginBottom: 8 }}>{content.ongoingService.description}</Text>
@@ -274,11 +277,11 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
         ))}
 
         <View style={{ width: 40, height: 3, backgroundColor: lime, marginTop: 12, marginBottom: 8 }} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 4 }}>TOOLING</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 4 }}>{u.tooling.toUpperCase()}</Text>
         <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.selleriseService.title}</Text>
         <View style={{ backgroundColor: green, borderRadius: 10, paddingHorizontal: 18, paddingVertical: 8, marginTop: 4, marginBottom: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
-            <Text style={{ fontSize: 8, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5 }}>SELLERISE SUBSCRIPTION</Text>
+            <Text style={{ fontSize: 8, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5 }}>SELLERISE</Text>
             <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{content.selleriseService.monthlyCostLabel}</Text>
           </View>
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>{content.selleriseService.monthlyCost}</Text>
@@ -294,7 +297,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
                 <Text style={{ fontSize: 9, fontWeight: 'bold', color: green }}>{tier.title}</Text>
                 {tier.included ? (
                   <View style={{ backgroundColor: lime, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
-                    <Text style={{ fontSize: 6, fontWeight: 'bold', color: 'white' }}>Included</Text>
+                    <Text style={{ fontSize: 6, fontWeight: 'bold', color: 'white' }}>{u.included}</Text>
                   </View>
                 ) : (
                   <View style={{ backgroundColor: 'rgba(255,193,7,0.2)', borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
@@ -312,7 +315,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 8: Investment Summary */}
       <Page size="A4" style={{ ...s.pageBg, padding: 40 }}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.investment.toUpperCase()}</Text>
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
         <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 16 }}>{content.investment.headline}</Text>
 
@@ -330,7 +333,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
               </View>
             ))}
             <View style={{ borderTopWidth: 1, borderTopColor: '#e5e7eb', paddingTop: 10, marginTop: 4, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>Total Setup</Text>
+              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{u.totalSetup}</Text>
               <Text style={{ fontSize: 20, fontWeight: 'bold', color: lime }}>{content.investment.setup.total}</Text>
             </View>
           </View>
@@ -341,11 +344,11 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
               <View style={{ flex: 1, paddingRight: 8 }}>
                 <Text style={{ fontSize: 9, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.retainer.label}</Text>
-                <Text style={{ fontSize: 7, color: grayLight, marginTop: 2 }}>Charged every month</Text>
+                <Text style={{ fontSize: 7, color: grayLight, marginTop: 2 }}>{u.chargedEveryMonth}</Text>
               </View>
               <Text style={{ fontSize: 14, fontWeight: 'bold', color: green, flexShrink: 0 }}>{content.investment.ongoing.retainer.price}</Text>
             </View>
-            <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 1.5, textAlign: 'center', marginVertical: 4 }}>+ PLUS</Text>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 1.5, textAlign: 'center', marginVertical: 4 }}>{u.plus.toUpperCase()}</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
               <View style={{ flex: 1, paddingRight: 8 }}>
                 <Text style={{ fontSize: 9, color: '#374151', fontWeight: 'medium' }}>{content.investment.ongoing.commission.label}</Text>
@@ -415,7 +418,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 9: Terms */}
       <Page size="A4" style={{ ...s.page, padding: 40 }}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>TERMS</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.terms.toUpperCase()}</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.terms.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.terms.headline}</Text>
         {content.terms.sections.map((section, i) => {
@@ -438,7 +441,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 10: Agreement Details */}
       <Page size="A4" style={{ ...s.pageBg, padding: 40 }}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>AGREEMENT</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.agreement.toUpperCase()}</Text>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 14 }}>{content.legalTerms.title}</Text>
         {content.legalTerms.sections.map((section, i) => (
           <View key={i} style={{ marginBottom: 10 }}>
@@ -457,7 +460,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 11: Signature */}
       <Page size="A4" style={s.page}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SIGNATURES</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>{u.signatures.toUpperCase()}</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.signature.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.signature.headline}</Text>
         <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 40 }}>{content.signature.intro}</Text>
@@ -469,7 +472,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
               <Text style={{ fontSize: 11, fontWeight: 'bold', color: green }}>{sig.name}</Text>
               <Text style={{ fontSize: 9, color: gray }}>{sig.company}</Text>
               <View style={{ marginTop: 24 }}>
-                <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 1.5, marginBottom: 4 }}>DATE</Text>
+                <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 1.5, marginBottom: 4 }}>{u.date.toUpperCase()}</Text>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: '#cccccc', height: 18 }} />
               </View>
             </View>
@@ -481,7 +484,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 12: Contact */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
         <View style={{ backgroundColor: green, padding: 40, flex: 1 }}>
-          <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 8 }}>CONTACT US</Text>
+          <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 8 }}>{u.contactUs.toUpperCase()}</Text>
           <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'white', marginBottom: 6 }}>{content.contact.title}</Text>
           <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)', marginBottom: 28, lineHeight: 1.5 }}>{content.contact.description}</Text>
           <View style={{ flexDirection: 'row', gap: 40 }}>
@@ -489,14 +492,14 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
               <View style={{ marginBottom: 20 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
                   <MailIcon size={16} />
-                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>Email</Text>
+                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>{u.email}</Text>
                 </View>
                 <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold', paddingLeft: 26 }}>{content.contact.email}</Text>
               </View>
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
                   <PhoneIcon size={16} />
-                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>Phone</Text>
+                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>{u.phone}</Text>
                 </View>
                 <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold', paddingLeft: 26 }}>{content.contact.phone}</Text>
               </View>
@@ -505,14 +508,14 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
               <View style={{ marginBottom: 20 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
                   <MapPinIcon size={16} />
-                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>Location</Text>
+                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>{u.location}</Text>
                 </View>
                 <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold', paddingLeft: 26 }}>{content.contact.address}</Text>
               </View>
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
                   <GlobeIcon size={16} />
-                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>Web</Text>
+                  <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)' }}>{u.web}</Text>
                 </View>
                 <Text style={{ fontSize: 12, color: 'white', fontWeight: 'bold', paddingLeft: 26 }}>{content.contact.website}</Text>
               </View>
@@ -525,7 +528,7 @@ export function AvNutraceuticalsPDFDocument({ logoBase64 }: Props) {
           </View>
           <View style={{ width: 30, height: 2, backgroundColor: lime, marginBottom: 10 }} />
           <Text style={{ fontSize: 9, color: grayLight, textAlign: 'center' }}>
-            Results-driven growth systems for businesses ready to scale.
+            {u.tagline}
           </Text>
         </View>
       </Page>
