@@ -1,4 +1,34 @@
-export const avNutraceuticalsProposalContent = {
+export type ProposalLang = 'en' | 'es';
+
+const en = {
+  ui: {
+    confidential: 'Confidential',
+    aboutUs: 'About Us',
+    scopeOfWork: 'Scope of Work',
+    service: 'Service',
+    tooling: 'Tooling',
+    investment: 'Investment',
+    terms: 'Terms',
+    agreement: 'Agreement',
+    signatures: 'Signatures',
+    contactUs: 'Contact Us',
+    email: 'Email',
+    phone: 'Phone',
+    location: 'Location',
+    web: 'Web',
+    date: 'Date',
+    totalSetup: 'Total Setup',
+    plus: '+ Plus',
+    chargedEveryMonth: 'Charged every month',
+    included: 'Included',
+    includedInOngoing: 'Included in Ongoing Management',
+    partOfFee: 'Part of the $5,500/mo fee ($500 × 11 ASINs) + 10% Net Profit commission',
+    parentsIncludeAplus: 'parents · includes A+ Content',
+    variations: 'variations',
+    tagline: 'Results-driven growth systems for businesses ready to scale.',
+    downloadPdf: 'Download PDF',
+    proposalTitle: 'Proposal — AV Nutraceuticals (Amazon Launch)',
+  },
   cover: {
     title: 'Service Proposal',
     subtitle: 'Amazon Seller Account\nLaunch & Management for AV Nutraceuticals',
@@ -27,30 +57,12 @@ export const avNutraceuticalsProposalContent = {
     description:
       'Our goal is to take AV Nutraceuticals from zero to a fully operational, compliant, and profitable Amazon Seller account. We will own the entire launch process — account setup, Brand Registry, listing creation, A+ Content, photography, copywriting, and advertising — and then manage and optimize the account on an ongoing basis to drive sustainable, profitable growth.',
     scope: [
-      {
-        title: 'Amazon Account Setup',
-        description: 'Full opening of the Amazon Seller Central account, including business verification, tax interview, banking and payment configuration, and category approval requests for the supplements category.',
-      },
-      {
-        title: 'Brand Registry Enrollment',
-        description: 'Complete enrollment of AV Nutraceuticals in Amazon Brand Registry, unlocking A+ Content, Brand Store, Sponsored Brands, and brand protection tools. Requires an active USPTO trademark.',
-      },
-      {
-        title: 'Listing Creation (6 Parents · 11 SKUs)',
-        description: 'Ground-up creation of 6 parent listings and 5 child variations (11 total SKUs), including SEO-optimized copy, compliance-aware claims, AI-generated photography, and full image suites.',
-      },
-      {
-        title: 'A+ Content (1 per Parent Listing)',
-        description: 'One custom A+ Content design per parent listing (6 total), with brand storytelling modules, comparison charts, and supplement-specific compliance considerations.',
-      },
-      {
-        title: 'Advertising Campaigns',
-        description: 'Strategic launch and ongoing optimization of Sponsored Products, Sponsored Brands, and Sponsored Display campaigns to drive ranking, sales velocity, and reviews from day one.',
-      },
-      {
-        title: 'Ongoing Optimization & Management',
-        description: 'Continuous optimization of listings, A+ Content, and advertising campaigns, plus account health monitoring, case management, and monthly performance reporting.',
-      },
+      { title: 'Amazon Account Setup', description: 'Full opening of the Amazon Seller Central account, including business verification, tax interview, banking and payment configuration, and category approval requests for the supplements category.' },
+      { title: 'Brand Registry Enrollment', description: 'Complete enrollment of AV Nutraceuticals in Amazon Brand Registry, unlocking A+ Content, Brand Store, Sponsored Brands, and brand protection tools. Requires an active USPTO trademark.' },
+      { title: 'Listing Creation (6 Parents · 11 SKUs)', description: 'Ground-up creation of 6 parent listings and 5 child variations (11 total SKUs), including SEO-optimized copy, compliance-aware claims, AI-generated photography, and full image suites.' },
+      { title: 'A+ Content (1 per Parent Listing)', description: 'One custom A+ Content design per parent listing (6 total), with brand storytelling modules, comparison charts, and supplement-specific compliance considerations.' },
+      { title: 'Advertising Campaigns', description: 'Strategic launch and ongoing optimization of Sponsored Products, Sponsored Brands, and Sponsored Display campaigns to drive ranking, sales velocity, and reviews from day one.' },
+      { title: 'Ongoing Optimization & Management', description: 'Continuous optimization of listings, A+ Content, and advertising campaigns, plus account health monitoring, case management, and monthly performance reporting.' },
     ],
     exclusions: {
       title: 'Out of Scope',
@@ -62,25 +74,12 @@ export const avNutraceuticalsProposalContent = {
     headline: 'Everything Needed to Get You Live on Amazon',
     price: '$3,500',
     priceLabel: 'One-Time Setup',
-    description:
-      'We handle the full process of opening your Amazon Seller Central account and enrolling AV Nutraceuticals in Brand Registry. This includes business verification, tax setup, banking configuration, supplements category approval (gated category), and trademark verification through Brand Registry.',
+    description: 'We handle the full process of opening your Amazon Seller Central account and enrolling AV Nutraceuticals in Brand Registry. This includes business verification, tax setup, banking configuration, supplements category approval (gated category), and trademark verification through Brand Registry.',
     includes: [
-      {
-        title: 'Seller Central Account Opening',
-        description: 'Business verification, tax interview (W-9/W-8BEN), bank and payment method configuration, and account profile setup.',
-      },
-      {
-        title: 'Supplements Category Approval',
-        description: 'Submission of the application to sell in the gated dietary supplements category, including required documentation and compliance attestations.',
-      },
-      {
-        title: 'Brand Registry Enrollment',
-        description: 'Full enrollment process based on your active USPTO trademark, unlocking A+ Content, Brand Store, Sponsored Brands, and the Brand Protection toolkit.',
-      },
-      {
-        title: 'Account Health & Compliance Configuration',
-        description: 'Initial configuration of account health monitoring, notifications, user permissions, and the foundational compliance settings required for nutraceutical sellers.',
-      },
+      { title: 'Seller Central Account Opening', description: 'Business verification, tax interview (W-9/W-8BEN), bank and payment method configuration, and account profile setup.' },
+      { title: 'Supplements Category Approval', description: 'Submission of the application to sell in the gated dietary supplements category, including required documentation and compliance attestations.' },
+      { title: 'Brand Registry Enrollment', description: 'Full enrollment process based on your active USPTO trademark, unlocking A+ Content, Brand Store, Sponsored Brands, and the Brand Protection toolkit.' },
+      { title: 'Account Health & Compliance Configuration', description: 'Initial configuration of account health monitoring, notifications, user permissions, and the foundational compliance settings required for nutraceutical sellers.' },
     ],
   },
   listingService: {
@@ -96,93 +95,39 @@ export const avNutraceuticalsProposalContent = {
     variationSubtotal: '$5,000',
     totalLabel: 'Total Listing Investment',
     totalPrice: '$20,000',
-    description:
-      'Listings for dietary supplements require an elevated standard of work: regulatory review of every claim, FDA-compliant disclaimers, careful copy that converts without crossing compliance lines, and A+ Content that reinforces trust. Each parent listing is priced at $2,500 (which includes one A+ Content module per parent), and each additional variation under a parent is priced at $1,000. Your catalog of 6 parents and 5 additional variations totals $20,000.',
+    description: 'Listings for dietary supplements require an elevated standard of work: regulatory review of every claim, FDA-compliant disclaimers, careful copy that converts without crossing compliance lines, and A+ Content that reinforces trust. Each parent listing is priced at $2,500 (which includes one A+ Content module per parent), and each additional variation under a parent is priced at $1,000. Your catalog of 6 parents and 5 additional variations totals $20,000.',
     includes: [
-      {
-        title: 'Compliance & Regulatory Review',
-        description: 'Every title, bullet, description, and image is reviewed against Amazon\'s supplement policies and FDA guidance. Structure/function claims are calibrated to maximize conversion while staying compliant.',
-      },
-      {
-        title: 'SEO-Optimized Copywriting',
-        description: 'Titles, bullet points, descriptions, and backend search terms built from keyword research using Helium 10 and Amazon search data, focused on intent-driven supplement keywords.',
-      },
-      {
-        title: 'AI-Generated Product Photography',
-        description: 'Professional product images generated with AI from reference photos you provide — including main image, lifestyle shots, ingredient highlights, benefit infographics, and comparison images.',
-      },
-      {
-        title: 'A+ Content (1 per Parent Listing)',
-        description: 'One custom A+ Content layout per parent (6 total) with brand story modules, ingredient breakdowns, comparison charts, and FAQ modules — all aligned to AV Nutraceuticals\' brand identity.',
-      },
-      {
-        title: 'Variation Family Setup',
-        description: 'Proper parent-child variation structure (e.g., size, flavor, count) so customers see all options on a single product page, maximizing conversion and review consolidation.',
-      },
-      {
-        title: 'Backend Search Term Optimization',
-        description: 'Comprehensive backend keyword work to maximize organic indexation and visibility for high-intent supplement searches.',
-      },
+      { title: 'Compliance & Regulatory Review', description: 'Every title, bullet, description, and image is reviewed against Amazon\'s supplement policies and FDA guidance. Structure/function claims are calibrated to maximize conversion while staying compliant.' },
+      { title: 'SEO-Optimized Copywriting', description: 'Titles, bullet points, descriptions, and backend search terms built from keyword research using Helium 10 and Amazon search data, focused on intent-driven supplement keywords.' },
+      { title: 'AI-Generated Product Photography', description: 'Professional product images generated with AI from reference photos you provide — including main image, lifestyle shots, ingredient highlights, benefit infographics, and comparison images.' },
+      { title: 'A+ Content (1 per Parent Listing)', description: 'One custom A+ Content layout per parent (6 total) with brand story modules, ingredient breakdowns, comparison charts, and FAQ modules — all aligned to AV Nutraceuticals\' brand identity.' },
+      { title: 'Variation Family Setup', description: 'Proper parent-child variation structure (e.g., size, flavor, count) so customers see all options on a single product page, maximizing conversion and review consolidation.' },
+      { title: 'Backend Search Term Optimization', description: 'Comprehensive backend keyword work to maximize organic indexation and visibility for high-intent supplement searches.' },
     ],
   },
   advertisingService: {
     title: 'Amazon Advertising Management',
     headline: 'Sponsored Campaigns Built for a Profitable Launch',
-    description:
-      'We will build, launch, and continuously optimize the full Amazon advertising stack for AV Nutraceuticals. The strategy prioritizes a strong launch (driving ranking, velocity, and reviews) followed by efficient long-term scaling, targeting healthy TACOS levels (15–25%) and a healthy net profit margin of 12–20%.',
+    description: 'We will build, launch, and continuously optimize the full Amazon advertising stack for AV Nutraceuticals. The strategy prioritizes a strong launch (driving ranking, velocity, and reviews) followed by efficient long-term scaling, targeting healthy TACOS levels (15–25%) and a healthy net profit margin of 12–20%.',
     includes: [
-      {
-        title: 'Sponsored Products Campaigns',
-        description: 'Keyword-targeted and product-targeted campaigns built to capture high-intent supplement shoppers and drive profitable sales.',
-      },
-      {
-        title: 'Sponsored Brands Campaigns',
-        description: 'Brand-level campaigns with custom headlines and creatives to build awareness for AV Nutraceuticals and drive Brand Store traffic.',
-      },
-      {
-        title: 'Sponsored Display & Retargeting',
-        description: 'Audience-based targeting and retargeting to recapture interested shoppers and defend against competitors on your own product pages.',
-      },
-      {
-        title: 'Bid Optimization & Budget Management',
-        description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 15–25% target range.',
-      },
-      {
-        title: 'Keyword Research & Harvesting',
-        description: 'Ongoing keyword discovery, search term analysis, and negative keyword management to refine targeting and reduce wasted spend.',
-      },
-      {
-        title: 'Weekly Performance Reports',
-        description: 'Detailed weekly reports covering sales metrics, advertising spend, TACOS, ACOS, and strategic recommendations.',
-      },
+      { title: 'Sponsored Products Campaigns', description: 'Keyword-targeted and product-targeted campaigns built to capture high-intent supplement shoppers and drive profitable sales.' },
+      { title: 'Sponsored Brands Campaigns', description: 'Brand-level campaigns with custom headlines and creatives to build awareness for AV Nutraceuticals and drive Brand Store traffic.' },
+      { title: 'Sponsored Display & Retargeting', description: 'Audience-based targeting and retargeting to recapture interested shoppers and defend against competitors on your own product pages.' },
+      { title: 'Bid Optimization & Budget Management', description: 'Daily monitoring and adjustment of bids, budgets, and placements to maximize ROAS while keeping TACOS within the 15–25% target range.' },
+      { title: 'Keyword Research & Harvesting', description: 'Ongoing keyword discovery, search term analysis, and negative keyword management to refine targeting and reduce wasted spend.' },
+      { title: 'Weekly Performance Reports', description: 'Detailed weekly reports covering sales metrics, advertising spend, TACOS, ACOS, and strategic recommendations.' },
     ],
   },
   ongoingService: {
     title: 'Ongoing Account Optimization',
     headline: 'Listing & Advertising Optimization, Every Month',
-    description:
-      'Beyond launch, we operate AV Nutraceuticals\' Amazon account as if it were our own. The monthly fee covers the day-to-day operation and continuous improvement of the account; the performance commission aligns our incentives directly with your bottom line.',
+    description: 'Beyond launch, we operate AV Nutraceuticals\' Amazon account as if it were our own. The monthly fee covers the day-to-day operation and continuous improvement of the account; the performance commission aligns our incentives directly with your bottom line.',
     includes: [
-      {
-        title: 'Listing Optimization',
-        description: 'Continuous A/B testing of titles, images, bullets, and A+ Content based on conversion data to keep improving listing performance.',
-      },
-      {
-        title: 'Advertising Optimization',
-        description: 'Ongoing campaign optimization, new campaign launches, keyword harvesting, and budget reallocation across the ad portfolio.',
-      },
-      {
-        title: 'Account Health Monitoring',
-        description: 'Daily monitoring of account health, listing suppressions, policy notifications, and proactive resolution of issues before they escalate.',
-      },
-      {
-        title: 'Case Management',
-        description: 'Handling of routine Seller Support cases — catalog issues, inventory discrepancies, listing suppressions, and Brand Registry questions.',
-      },
-      {
-        title: 'Monthly Performance Reports',
-        description: 'Comprehensive monthly report covering sales, advertising performance, profitability, and strategic recommendations for the next period.',
-      },
+      { title: 'Listing Optimization', description: 'Continuous A/B testing of titles, images, bullets, and A+ Content based on conversion data to keep improving listing performance.' },
+      { title: 'Advertising Optimization', description: 'Ongoing campaign optimization, new campaign launches, keyword harvesting, and budget reallocation across the ad portfolio.' },
+      { title: 'Account Health Monitoring', description: 'Daily monitoring of account health, listing suppressions, policy notifications, and proactive resolution of issues before they escalate.' },
+      { title: 'Case Management', description: 'Handling of routine Seller Support cases — catalog issues, inventory discrepancies, listing suppressions, and Brand Registry questions.' },
+      { title: 'Monthly Performance Reports', description: 'Comprehensive monthly report covering sales, advertising performance, profitability, and strategic recommendations for the next period.' },
     ],
   },
   selleriseService: {
@@ -190,44 +135,21 @@ export const avNutraceuticalsProposalContent = {
     headline: 'Complete Financial Transparency & Automation',
     monthlyCost: '$100/mo',
     monthlyCostLabel: 'Paid Directly by Client to Sellerise',
-    description:
-      'We will install and configure Sellerise on your Amazon account to provide a complete financial picture of the business. This tool serves as the single source of truth for calculating our performance commission, tracking profitability, monitoring inventory, and automating review requests.',
+    description: 'We will install and configure Sellerise on your Amazon account to provide a complete financial picture of the business. This tool serves as the single source of truth for calculating our performance commission, tracking profitability, monitoring inventory, and automating review requests.',
     features: [
-      {
-        title: 'Financial Dashboard',
-        description: 'Real-time P&L tracking including Amazon fees, ad spend, COGS, returns, and net profit per product and overall.',
-      },
-      {
-        title: 'Inventory Management',
-        description: 'Stock level monitoring, reorder alerts, and sales velocity tracking to prevent stockouts and overstock situations.',
-      },
-      {
-        title: 'Automated Review Requests',
-        description: 'Automated review solicitation system to increase product review volume and improve social proof.',
-      },
-      {
-        title: 'Commission Tracking',
-        description: 'Transparent tracking of net profitability from which our 10% performance commission is calculated. The Sellerise number is the definitive figure used for invoicing.',
-      },
+      { title: 'Financial Dashboard', description: 'Real-time P&L tracking including Amazon fees, ad spend, COGS, returns, and net profit per product and overall.' },
+      { title: 'Inventory Management', description: 'Stock level monitoring, reorder alerts, and sales velocity tracking to prevent stockouts and overstock situations.' },
+      { title: 'Automated Review Requests', description: 'Automated review solicitation system to increase product review volume and improve social proof.' },
+      { title: 'Commission Tracking', description: 'Transparent tracking of net profitability from which our 10% performance commission is calculated. The Sellerise number is the definitive figure used for invoicing.' },
     ],
   },
   caseManagement: {
     title: 'Case Management',
     headline: 'Amazon Support & Escalation Protocol',
-    description:
-      'We handle all routine support cases with Amazon Seller Support as part of our ongoing management. For complex escalations, we have a protocol in place.',
+    description: 'We handle all routine support cases with Amazon Seller Support as part of our ongoing management. For complex escalations, we have a protocol in place.',
     tiers: [
-      {
-        title: 'General Support Cases',
-        description: 'Included in our management. We handle catalog issues, inventory discrepancies, listing suppressions, brand registry questions, and routine account inquiries.',
-        included: true,
-      },
-      {
-        title: 'Escalated / Legal Cases',
-        description: 'For severe cases such as ASIN suspensions, account-level restrictions, intellectual property disputes, supplement compliance disputes, or Plan of Action submissions, our external legal team specializes in Amazon seller defense. These cases are quoted separately at approximately $1,200 per case.',
-        included: false,
-        price: '~$1,200/case',
-      },
+      { title: 'General Support Cases', description: 'Included in our management. We handle catalog issues, inventory discrepancies, listing suppressions, brand registry questions, and routine account inquiries.', included: true, price: '' },
+      { title: 'Escalated / Legal Cases', description: 'For severe cases such as ASIN suspensions, account-level restrictions, intellectual property disputes, supplement compliance disputes, or Plan of Action submissions, our external legal team specializes in Amazon seller defense. These cases are quoted separately at approximately $1,200 per case.', included: false, price: '~$1,200/case' },
     ],
   },
   investment: {
@@ -244,22 +166,9 @@ export const avNutraceuticalsProposalContent = {
     },
     ongoing: {
       title: 'Ongoing Monthly Services',
-      retainer: {
-        label: 'Monthly Management Fee',
-        price: '$5,500/mo',
-        description: 'Calculated as $500 per ASIN × 11 active ASINs. Covers ongoing listing optimization, advertising management, account health, case management, and monthly reporting.',
-      },
-      commission: {
-        label: 'Performance Commission',
-        rate: '10%',
-        basis: 'of Net Profit',
-        description: 'Calculated on net profitability as reported by Sellerise, after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). The Sellerise figure is the definitive and binding source for all commission calculations. If there is no net profit in a given month, no commission is charged — only the monthly fee.',
-      },
-      sellerise: {
-        label: 'Sellerise Subscription',
-        price: '$100/mo',
-        detail: 'Paid directly by client to Sellerise',
-      },
+      retainer: { label: 'Monthly Management Fee', price: '$5,500/mo', description: 'Calculated as $500 per ASIN × 11 active ASINs. Covers ongoing listing optimization, advertising management, account health, case management, and monthly reporting.' },
+      commission: { label: 'Performance Commission', rate: '10%', basis: 'of Net Profit', description: 'Calculated on net profitability as reported by Sellerise, after deducting all costs: Amazon fees, returns, advertising spend, and product costs (COGS). The Sellerise figure is the definitive and binding source for all commission calculations. If there is no net profit in a given month, no commission is charged — only the monthly fee.' },
+      sellerise: { label: 'Sellerise Subscription', price: '$100/mo', detail: 'Paid directly by client to Sellerise' },
       note: 'The hybrid model is BOTH amounts together: the $5,500 monthly fee ($500 × 11 ASINs) is charged every month, and the 10% commission is charged only when there is positive net profit.',
     },
     example: {
@@ -291,113 +200,56 @@ export const avNutraceuticalsProposalContent = {
     title: 'Terms & Conditions',
     headline: 'What You Need to Know',
     sections: [
-      {
-        title: 'Minimum Agreement Duration',
-        description: 'This agreement has a minimum duration of 6 months from the start date of ongoing services. After the initial 6-month period, the agreement renews on a monthly basis unless either party provides 30 days written notice.',
-        icon: 'calendar',
-      },
-      {
-        title: 'Payment Terms — Setup',
-        description: 'The one-time setup investment of $23,500 is due 100% in advance before any work begins. This covers account setup, Brand Registry, all 11 SKUs (6 parents + 5 variations), and 6 A+ Content modules.',
-        icon: 'dollar',
-      },
-      {
-        title: 'Payment Terms — Monthly Fee',
-        description: 'The monthly management fee is calculated as $500 per active ASIN. Based on the initial catalog of 11 ASINs, the monthly fee is $5,500. It is invoiced at the beginning of each month and is due 100% upfront before that month\'s services are delivered. The fee scales automatically as ASINs are added or removed.',
-        icon: 'dollar',
-      },
-      {
-        title: 'Payment Terms — Commission',
-        description: 'The 10% net profit commission is invoiced monthly based on Sellerise data and is payable within 10 days of invoice receipt. Commissions are due only after Amazon disbursement. The Sellerise figure is the definitive source for all calculations.',
-        icon: 'dollar',
-      },
-      {
-        title: 'Advertising Budget',
-        description: 'The advertising budget is paid directly by the client through Amazon Advertising. We will recommend budget levels based on competitive analysis and will optimize spend allocation continuously.',
-        icon: 'files',
-      },
-      {
-        title: 'Compliance Disclaimer',
-        description: 'Hipervínculo will craft listing copy and A+ Content with reasonable care to align with Amazon and FDA guidelines for dietary supplements. However, the client is solely responsible for FDA registration of facilities and products, GMP compliance, scientific substantiation of any claims, and overall regulatory compliance of the products themselves.',
-        icon: 'files',
-      },
-      {
-        title: 'Exclusions',
-        description: 'This proposal does not include logistics, fulfillment (FBA/FBM preparation), product sourcing, manufacturing, inventory purchasing, FDA registration, or any administrative or accounting functions of the Amazon account. These responsibilities remain entirely with the client.',
-        icon: 'files',
-      },
-      {
-        title: 'Campaign Ownership',
-        description: 'If either party terminates the agreement, all advertising campaigns created by the agency will be deleted from the account as they are the intellectual property of Hipervínculo LLC.',
-        icon: 'clock',
-      },
-      {
-        title: 'Monthly Meetings',
-        description: 'Up to 2 online meetings per month for performance review, strategy discussion, and reporting. Meetings are conducted via Zoom or Google Meet.',
-        icon: 'calendar',
-      },
+      { title: 'Minimum Agreement Duration', description: 'This agreement has a minimum duration of 6 months from the start date of ongoing services. After the initial 6-month period, the agreement renews on a monthly basis unless either party provides 30 days written notice.', icon: 'calendar' },
+      { title: 'Payment Terms — Setup', description: 'The one-time setup investment of $23,500 is due 100% in advance before any work begins. This covers account setup, Brand Registry, all 11 SKUs (6 parents + 5 variations), and 6 A+ Content modules.', icon: 'dollar' },
+      { title: 'Payment Terms — Monthly Fee', description: 'The monthly management fee is calculated as $500 per active ASIN. Based on the initial catalog of 11 ASINs, the monthly fee is $5,500. It is invoiced at the beginning of each month and is due 100% upfront before that month\'s services are delivered. The fee scales automatically as ASINs are added or removed.', icon: 'dollar' },
+      { title: 'Payment Terms — Commission', description: 'The 10% net profit commission is invoiced monthly based on Sellerise data and is payable within 10 days of invoice receipt. Commissions are due only after Amazon disbursement. The Sellerise figure is the definitive source for all calculations.', icon: 'dollar' },
+      { title: 'Advertising Budget', description: 'The advertising budget is paid directly by the client through Amazon Advertising. We will recommend budget levels based on competitive analysis and will optimize spend allocation continuously.', icon: 'files' },
+      { title: 'Compliance Disclaimer', description: 'Hipervínculo will craft listing copy and A+ Content with reasonable care to align with Amazon and FDA guidelines for dietary supplements. However, the client is solely responsible for FDA registration of facilities and products, GMP compliance, scientific substantiation of any claims, and overall regulatory compliance of the products themselves.', icon: 'files' },
+      { title: 'Exclusions', description: 'This proposal does not include logistics, fulfillment (FBA/FBM preparation), product sourcing, manufacturing, inventory purchasing, FDA registration, or any administrative or accounting functions of the Amazon account. These responsibilities remain entirely with the client.', icon: 'files' },
+      { title: 'Campaign Ownership', description: 'If either party terminates the agreement, all advertising campaigns created by the agency will be deleted from the account as they are the intellectual property of Hipervínculo LLC.', icon: 'clock' },
+      { title: 'Monthly Meetings', description: 'Up to 2 online meetings per month for performance review, strategy discussion, and reporting. Meetings are conducted via Zoom or Google Meet.', icon: 'calendar' },
     ],
   },
   legalTerms: {
     title: 'Agreement Details',
     sections: [
-      {
-        heading: 'Payment Method & Services',
-        items: [
-          'The one-time setup fee of $23,500 is due in full before work begins. This covers account opening, Brand Registry enrollment, the 6 parent listings (with one A+ Content module each), and the 5 additional variations.',
-          'The $2,500 monthly management fee is due 100% upfront at the beginning of each month, before that month\'s services are delivered.',
-          'The 10% net profit commission is invoiced monthly. "Net profit" is defined as total Amazon revenue minus returns, Amazon fees, advertising spend, and product costs (COGS), as tracked and reported by Sellerise. The Sellerise figure is the definitive and binding source for all commission calculations.',
-          'If net profit is zero or negative in any given month, no commission is charged for that period — but the $5,500 monthly fee ($500 × 11 ASINs) still applies.',
-          'The Sellerise subscription ($100/month) is paid directly by the client to Sellerise.',
-          'All advertising budgets are paid directly by the client through Amazon Advertising.',
-          'Tax payments and other accounting matters are the responsibility of the client.',
-          'Commission payments are due within 10 days of invoice receipt and are only due after Amazon has disbursed payment.',
-        ],
-      },
-      {
-        heading: 'Scope Exclusions',
-        items: [
-          'Hipervínculo LLC is not responsible for logistics, fulfillment (FBA/FBM preparation, shipment creation, or warehouse operations), product sourcing, manufacturing, inventory purchasing, FDA registration of facilities or products, GMP compliance, scientific substantiation of health claims, or any administrative, accounting, or tax-related functions of the Amazon Seller account.',
-          'These operational and regulatory responsibilities remain entirely with the client at all times.',
-        ],
-      },
-      {
-        heading: 'Compliance Responsibility',
-        items: [
-          'AV Nutraceuticals warrants that all products sold on the Amazon account comply with all applicable FDA, FTC, and Amazon supplement category regulations.',
-          'Hipervínculo will craft listing content with reasonable care to follow current Amazon and FDA labeling guidance, but final responsibility for regulatory compliance of products and claims rests with the client.',
-        ],
-      },
-      {
-        heading: 'Agency Independence',
-        items: [
-          'The agency will act at all times during the term of this agreement as an independent contractor.',
-          'Nothing contained in this agreement shall be construed to create the relationship of principal and agent, or employer and employee, between client and agency.',
-        ],
-      },
-      {
-        heading: 'Agency Duties',
-        items: [
-          'The duties of the agency are those set out in this proposal. Once accepted by the client, the described services will dictate the scope of the service agreement. Additional services will only be established with mutual agreement and may require fee adjustments.',
-        ],
-      },
-      {
-        heading: 'Confidentiality',
-        items: [
-          'Both parties agree to maintain confidentiality of any proprietary information, business strategies, campaign data, financial data, formulations, and trade secrets shared during the course of this engagement.',
-          'This obligation survives the termination of this agreement.',
-        ],
-      },
-      {
-        heading: 'Contract Termination',
-        items: [
-          'The minimum agreement duration is 6 months from the start date of ongoing services.',
-          'After the initial 6 months, the agreement renews on a monthly basis. Either party may terminate with 30 days written notice.',
-          'In case of early termination by the client before the 6-month minimum is fulfilled, Hipervínculo LLC is not obligated to refund any previously received amounts and the client must settle the remaining months of the minimum term.',
-          'Upon termination, all advertising campaigns created by the agency shall be deleted as they remain the intellectual property of Hipervínculo LLC.',
-          'All due payments up to the termination date must be settled within 10 days.',
-        ],
-      },
+      { heading: 'Payment Method & Services', items: [
+        'The one-time setup fee of $23,500 is due in full before work begins. This covers account opening, Brand Registry enrollment, the 6 parent listings (with one A+ Content module each), and the 5 additional variations.',
+        'The $5,500 monthly management fee ($500 × 11 ASINs) is due 100% upfront at the beginning of each month, before that month\'s services are delivered.',
+        'The 10% net profit commission is invoiced monthly. "Net profit" is defined as total Amazon revenue minus returns, Amazon fees, advertising spend, and product costs (COGS), as tracked and reported by Sellerise. The Sellerise figure is the definitive and binding source for all commission calculations.',
+        'If net profit is zero or negative in any given month, no commission is charged for that period — but the $5,500 monthly fee ($500 × 11 ASINs) still applies.',
+        'The Sellerise subscription ($100/month) is paid directly by the client to Sellerise.',
+        'All advertising budgets are paid directly by the client through Amazon Advertising.',
+        'Tax payments and other accounting matters are the responsibility of the client.',
+        'Commission payments are due within 10 days of invoice receipt and are only due after Amazon has disbursed payment.',
+      ]},
+      { heading: 'Scope Exclusions', items: [
+        'Hipervínculo LLC is not responsible for logistics, fulfillment (FBA/FBM preparation, shipment creation, or warehouse operations), product sourcing, manufacturing, inventory purchasing, FDA registration of facilities or products, GMP compliance, scientific substantiation of health claims, or any administrative, accounting, or tax-related functions of the Amazon Seller account.',
+        'These operational and regulatory responsibilities remain entirely with the client at all times.',
+      ]},
+      { heading: 'Compliance Responsibility', items: [
+        'AV Nutraceuticals warrants that all products sold on the Amazon account comply with all applicable FDA, FTC, and Amazon supplement category regulations.',
+        'Hipervínculo will craft listing content with reasonable care to follow current Amazon and FDA labeling guidance, but final responsibility for regulatory compliance of products and claims rests with the client.',
+      ]},
+      { heading: 'Agency Independence', items: [
+        'The agency will act at all times during the term of this agreement as an independent contractor.',
+        'Nothing contained in this agreement shall be construed to create the relationship of principal and agent, or employer and employee, between client and agency.',
+      ]},
+      { heading: 'Agency Duties', items: [
+        'The duties of the agency are those set out in this proposal. Once accepted by the client, the described services will dictate the scope of the service agreement. Additional services will only be established with mutual agreement and may require fee adjustments.',
+      ]},
+      { heading: 'Confidentiality', items: [
+        'Both parties agree to maintain confidentiality of any proprietary information, business strategies, campaign data, financial data, formulations, and trade secrets shared during the course of this engagement.',
+        'This obligation survives the termination of this agreement.',
+      ]},
+      { heading: 'Contract Termination', items: [
+        'The minimum agreement duration is 6 months from the start date of ongoing services.',
+        'After the initial 6 months, the agreement renews on a monthly basis. Either party may terminate with 30 days written notice.',
+        'In case of early termination by the client before the 6-month minimum is fulfilled, Hipervínculo LLC is not obligated to refund any previously received amounts and the client must settle the remaining months of the minimum term.',
+        'Upon termination, all advertising campaigns created by the agency shall be deleted as they remain the intellectual property of Hipervínculo LLC.',
+        'All due payments up to the termination date must be settled within 10 days.',
+      ]},
     ],
   },
   signature: {
@@ -410,8 +262,7 @@ export const avNutraceuticalsProposalContent = {
   contact: {
     title: "Let's Build Together",
     headline: 'Ready to Launch on Amazon?',
-    description:
-      'Contact us to begin AV Nutraceuticals\' Amazon journey. We are ready to help you build a compliant, profitable, and scalable supplement business on the world\'s largest marketplace.',
+    description: 'Contact us to begin AV Nutraceuticals\' Amazon journey. We are ready to help you build a compliant, profitable, and scalable supplement business on the world\'s largest marketplace.',
     email: 'info@hipervinculo.net',
     phone: '+1 (786) 529-0679',
     address: '2645 Executive Park Dr, Suite 146\nWeston, FL 33331',
@@ -419,3 +270,281 @@ export const avNutraceuticalsProposalContent = {
     cta: 'Get Started',
   },
 };
+
+const es: typeof en = {
+  ui: {
+    confidential: 'Confidencial',
+    aboutUs: 'Sobre Nosotros',
+    scopeOfWork: 'Alcance del Trabajo',
+    service: 'Servicio',
+    tooling: 'Herramientas',
+    investment: 'Inversión',
+    terms: 'Términos',
+    agreement: 'Acuerdo',
+    signatures: 'Firmas',
+    contactUs: 'Contáctanos',
+    email: 'Correo',
+    phone: 'Teléfono',
+    location: 'Ubicación',
+    web: 'Web',
+    date: 'Fecha',
+    totalSetup: 'Total Setup',
+    plus: '+ Más',
+    chargedEveryMonth: 'Cobrado cada mes',
+    included: 'Incluido',
+    includedInOngoing: 'Incluido en la Gestión Mensual',
+    partOfFee: 'Parte del fee de $5,500/mes ($500 × 11 ASINs) + 10% de comisión sobre Utilidad Neta',
+    parentsIncludeAplus: 'padres · incluye A+ Content',
+    variations: 'variaciones',
+    tagline: 'Sistemas de crecimiento orientados a resultados para empresas listas para escalar.',
+    downloadPdf: 'Descargar PDF',
+    proposalTitle: 'Propuesta — AV Nutraceuticals (Lanzamiento Amazon)',
+  },
+  cover: {
+    title: 'Propuesta de Servicios',
+    subtitle: 'Cuenta de Amazon Seller\nLanzamiento y Gestión para AV Nutraceuticals',
+    tagline: 'Atención: Victor Alvarez',
+  },
+  about: {
+    title: 'Sobre Hipervínculo',
+    headline: 'Sistemas de Crecimiento Orientados a Resultados',
+    description:
+      'Hipervínculo es una agencia de marketing digital orientada a resultados, especializada en crecimiento eCommerce, gestión de medios pagos y servicios de Amazon Seller. Con más de 20 años de experiencia, ayudamos a marcas ambiciosas — incluyendo compañías de suplementos dietéticos y nutracéuticos — a lanzarse y escalar de forma rentable en Amazon a través de listings que cumplen normativas, contenido enfocado en conversión y publicidad basada en datos.',
+    stats: [
+      { value: '20+', label: 'Años de Experiencia' },
+      { value: '200+', label: 'Proyectos Entregados' },
+      { value: '95%', label: 'Retención de Clientes' },
+    ],
+    credentials: [
+      'Amazon Ads Certified',
+      'Google Ads Certified Partner',
+      'Helium 10 Partner',
+      'Sellerise Partner',
+    ],
+  },
+  objective: {
+    title: 'Objetivo',
+    headline: 'Lanzar a AV Nutraceuticals en Amazon — De la Forma Correcta',
+    description:
+      'Nuestro objetivo es llevar a AV Nutraceuticals desde cero hasta una cuenta de Amazon Seller totalmente operativa, en cumplimiento normativo y rentable. Nos haremos cargo de todo el proceso de lanzamiento — apertura de cuenta, Brand Registry, creación de listings, A+ Content, fotografía, copywriting y publicidad — y luego gestionaremos y optimizaremos la cuenta de forma continua para impulsar un crecimiento sostenible y rentable.',
+    scope: [
+      { title: 'Apertura de Cuenta de Amazon', description: 'Apertura completa de la cuenta de Amazon Seller Central, incluyendo verificación de empresa, entrevista fiscal, configuración bancaria y de pagos, y solicitud de aprobación de la categoría de suplementos.' },
+      { title: 'Inscripción en Brand Registry', description: 'Inscripción completa de AV Nutraceuticals en Amazon Brand Registry, desbloqueando A+ Content, Brand Store, Sponsored Brands y herramientas de protección de marca. Requiere una marca registrada activa en USPTO.' },
+      { title: 'Creación de Listings (6 Padres · 11 SKUs)', description: 'Creación desde cero de 6 listings padres y 5 variaciones hijas (11 SKUs en total), incluyendo copy SEO, claims que cumplen normativas, fotografía generada con IA y suite de imágenes completa.' },
+      { title: 'A+ Content (1 por cada Listing Padre)', description: 'Un diseño de A+ Content personalizado por cada listing padre (6 en total), con módulos de storytelling de marca, comparativos y consideraciones de cumplimiento específicas para suplementos.' },
+      { title: 'Campañas de Publicidad', description: 'Lanzamiento estratégico y optimización continua de campañas Sponsored Products, Sponsored Brands y Sponsored Display para impulsar ranking, velocidad de venta y reseñas desde el día uno.' },
+      { title: 'Optimización y Gestión Continua', description: 'Optimización continua de listings, A+ Content y campañas publicitarias, además de monitoreo de salud de cuenta, gestión de casos y reportes de desempeño mensuales.' },
+    ],
+    exclusions: {
+      title: 'Fuera de Alcance',
+      description: 'Hipervínculo NO será responsable de logística, fulfillment (preparación FBA/FBM), abastecimiento de producto, manufactura, compra de inventario, registro FDA de instalaciones/productos, sustentación científica de claims de salud, ni de funciones administrativas o contables relacionadas con la cuenta de Amazon. Estas responsabilidades quedan enteramente a cargo del cliente.',
+    },
+  },
+  setupService: {
+    title: 'Apertura de Cuenta y Brand Registry',
+    headline: 'Todo lo Necesario para Estar en Vivo en Amazon',
+    price: '$3,500',
+    priceLabel: 'Setup Único',
+    description: 'Manejamos todo el proceso de apertura de tu cuenta de Amazon Seller Central e inscribimos a AV Nutraceuticals en Brand Registry. Esto incluye verificación de empresa, configuración fiscal, configuración bancaria, aprobación de la categoría de suplementos (categoría restringida) y verificación de marca a través de Brand Registry.',
+    includes: [
+      { title: 'Apertura de Cuenta Seller Central', description: 'Verificación de empresa, entrevista fiscal (W-9/W-8BEN), configuración bancaria y de método de pago, y configuración del perfil de cuenta.' },
+      { title: 'Aprobación de Categoría de Suplementos', description: 'Presentación de la solicitud para vender en la categoría restringida de suplementos dietéticos, incluyendo documentación requerida y declaraciones de cumplimiento.' },
+      { title: 'Inscripción en Brand Registry', description: 'Proceso completo de inscripción basado en tu marca activa en USPTO, desbloqueando A+ Content, Brand Store, Sponsored Brands y el toolkit de protección de marca.' },
+      { title: 'Configuración de Salud de Cuenta y Cumplimiento', description: 'Configuración inicial de monitoreo de salud de cuenta, notificaciones, permisos de usuario y los ajustes fundamentales de cumplimiento que requieren los sellers de nutracéuticos.' },
+    ],
+  },
+  listingService: {
+    title: 'Creación de Listings — 6 Padres · 11 SKUs',
+    headline: 'Listings Compliant y Enfocados a Conversión para Nutracéuticos',
+    parentPrice: '$2,500',
+    parentLabel: 'Por Listing Padre',
+    parentCount: '6',
+    parentSubtotal: '$15,000',
+    variationPrice: '$1,000',
+    variationLabel: 'Por Variación Adicional',
+    variationCount: '5',
+    variationSubtotal: '$5,000',
+    totalLabel: 'Inversión Total en Listings',
+    totalPrice: '$20,000',
+    description: 'Los listings de suplementos dietéticos requieren un estándar elevado: revisión normativa de cada claim, disclaimers conformes a FDA, copy cuidadoso que convierta sin cruzar líneas de cumplimiento, y A+ Content que refuerce la confianza. Cada listing padre tiene un costo de $2,500 (que incluye un módulo de A+ Content por padre), y cada variación adicional bajo un padre tiene un costo de $1,000. Tu catálogo de 6 padres y 5 variaciones adicionales suma $20,000.',
+    includes: [
+      { title: 'Revisión de Cumplimiento y Normativa', description: 'Cada título, bullet, descripción e imagen es revisada contra las políticas de suplementos de Amazon y las guías FDA. Los structure/function claims se calibran para maximizar conversión sin perder cumplimiento.' },
+      { title: 'Copywriting Optimizado para SEO', description: 'Títulos, bullets, descripciones y backend search terms construidos a partir de keyword research con Helium 10 y datos de búsqueda de Amazon, enfocados en keywords de alta intención para suplementos.' },
+      { title: 'Fotografía de Producto con IA', description: 'Imágenes profesionales de producto generadas con IA a partir de fotos de referencia que tú nos proporcionas — incluyendo imagen principal, lifestyle, ingredientes destacados, infografías de beneficios e imágenes comparativas.' },
+      { title: 'A+ Content (1 por cada Listing Padre)', description: 'Un diseño de A+ Content personalizado por padre (6 en total) con módulos de historia de marca, desglose de ingredientes, tablas comparativas y módulos de FAQ — todos alineados con la identidad de marca de AV Nutraceuticals.' },
+      { title: 'Configuración de Familia de Variaciones', description: 'Estructura correcta padre-hijo de variaciones (ej. tamaño, sabor, conteo) para que los clientes vean todas las opciones en una misma página de producto, maximizando conversión y consolidando reseñas.' },
+      { title: 'Optimización de Backend Search Terms', description: 'Trabajo integral de keywords de backend para maximizar la indexación orgánica y la visibilidad en búsquedas de alta intención de suplementos.' },
+    ],
+  },
+  advertisingService: {
+    title: 'Gestión de Publicidad en Amazon',
+    headline: 'Campañas Sponsored Diseñadas para un Lanzamiento Rentable',
+    description: 'Construiremos, lanzaremos y optimizaremos continuamente todo el stack de publicidad de Amazon para AV Nutraceuticals. La estrategia prioriza un lanzamiento fuerte (impulsando ranking, velocidad y reseñas) seguido de un escalamiento eficiente a largo plazo, apuntando a niveles saludables de TACOS (15–25%) y un margen neto saludable de 12–20%.',
+    includes: [
+      { title: 'Campañas Sponsored Products', description: 'Campañas con keyword targeting y product targeting diseñadas para capturar compradores de suplementos de alta intención y generar ventas rentables.' },
+      { title: 'Campañas Sponsored Brands', description: 'Campañas a nivel marca con headlines y creatividades personalizadas para construir awareness para AV Nutraceuticals e impulsar tráfico al Brand Store.' },
+      { title: 'Sponsored Display y Retargeting', description: 'Targeting basado en audiencias y retargeting para recapturar compradores interesados y defender frente a competidores en tus propias páginas de producto.' },
+      { title: 'Optimización de Bids y Manejo de Presupuesto', description: 'Monitoreo y ajuste diario de bids, presupuestos y placements para maximizar ROAS manteniendo el TACOS dentro del rango objetivo de 15–25%.' },
+      { title: 'Investigación y Cosecha de Keywords', description: 'Descubrimiento continuo de keywords, análisis de search terms y manejo de keywords negativas para refinar el targeting y reducir gasto desperdiciado.' },
+      { title: 'Reportes Semanales de Desempeño', description: 'Reportes semanales detallados con métricas de ventas, gasto publicitario, TACOS, ACOS y recomendaciones estratégicas.' },
+    ],
+  },
+  ongoingService: {
+    title: 'Optimización Continua de la Cuenta',
+    headline: 'Optimización de Listings y Publicidad, Cada Mes',
+    description: 'Más allá del lanzamiento, operamos la cuenta de Amazon de AV Nutraceuticals como si fuera nuestra. El fee mensual cubre la operación día a día y la mejora continua de la cuenta; la comisión por desempeño alinea nuestros incentivos directamente con tu utilidad.',
+    includes: [
+      { title: 'Optimización de Listings', description: 'Pruebas A/B continuas de títulos, imágenes, bullets y A+ Content basadas en datos de conversión para seguir mejorando el desempeño.' },
+      { title: 'Optimización de Publicidad', description: 'Optimización continua de campañas, lanzamientos de nuevas campañas, cosecha de keywords y reasignación de presupuesto en todo el portafolio.' },
+      { title: 'Monitoreo de Salud de Cuenta', description: 'Monitoreo diario de la salud de la cuenta, supresiones de listings, notificaciones de políticas y resolución proactiva de incidentes antes de que escalen.' },
+      { title: 'Gestión de Casos', description: 'Manejo de casos rutinarios con Seller Support — incidencias de catálogo, discrepancias de inventario, supresiones de listings y consultas de Brand Registry.' },
+      { title: 'Reportes Mensuales de Desempeño', description: 'Reporte mensual integral con ventas, desempeño publicitario, rentabilidad y recomendaciones estratégicas para el siguiente periodo.' },
+    ],
+  },
+  selleriseService: {
+    title: 'Integración con Sellerise',
+    headline: 'Transparencia Financiera Total y Automatización',
+    monthlyCost: '$100/mes',
+    monthlyCostLabel: 'Pagado directamente por el cliente a Sellerise',
+    description: 'Instalaremos y configuraremos Sellerise en tu cuenta de Amazon para tener una imagen financiera completa del negocio. Esta herramienta es la única fuente de verdad para calcular nuestra comisión por desempeño, hacer seguimiento de rentabilidad, monitorear inventario y automatizar solicitudes de reseñas.',
+    features: [
+      { title: 'Dashboard Financiero', description: 'Seguimiento de P&L en tiempo real incluyendo fees de Amazon, gasto publicitario, COGS, devoluciones y utilidad neta por producto y total.' },
+      { title: 'Manejo de Inventario', description: 'Monitoreo de niveles de stock, alertas de reabastecimiento y seguimiento de velocidad de venta para evitar quiebres y sobrestock.' },
+      { title: 'Solicitudes Automáticas de Reseñas', description: 'Sistema automatizado de solicitud de reseñas para incrementar el volumen de reseñas y mejorar la prueba social.' },
+      { title: 'Seguimiento de Comisión', description: 'Seguimiento transparente de la rentabilidad neta sobre la cual se calcula nuestra comisión del 10%. La cifra de Sellerise es la cifra definitiva utilizada para facturar.' },
+    ],
+  },
+  caseManagement: {
+    title: 'Gestión de Casos',
+    headline: 'Soporte Amazon y Protocolo de Escalamiento',
+    description: 'Manejamos todos los casos rutinarios con Amazon Seller Support como parte de nuestra gestión continua. Para escalamientos complejos tenemos un protocolo en marcha.',
+    tiers: [
+      { title: 'Casos Generales de Soporte', description: 'Incluidos en nuestra gestión. Manejamos incidencias de catálogo, discrepancias de inventario, supresiones de listings, preguntas de Brand Registry y consultas rutinarias de cuenta.', included: true, price: '' },
+      { title: 'Casos Escalados / Legales', description: 'Para casos severos como suspensiones de ASIN, restricciones a nivel cuenta, disputas de propiedad intelectual, disputas de cumplimiento de suplementos o submissions de Plan of Action, nuestro equipo legal externo se especializa en defensa de sellers de Amazon. Estos casos se cotizan por separado en aproximadamente $1,200 por caso.', included: false, price: '~$1,200/caso' },
+    ],
+  },
+  investment: {
+    title: 'Resumen de Inversión',
+    headline: 'Tu Paquete Completo de Lanzamiento y Crecimiento en Amazon',
+    setup: {
+      title: 'Inversión Única de Setup',
+      items: [
+        { name: 'Apertura de Cuenta + Brand Registry', detail: 'Seller Central + aprobación suplementos + Brand Registry', price: '$3,500' },
+        { name: 'Listings Padres', detail: '6 Padres × $2,500 (incluye 1 A+ Content c/u)', price: '$15,000' },
+        { name: 'Variaciones Adicionales', detail: '5 Variaciones × $1,000', price: '$5,000' },
+      ],
+      total: '$23,500',
+    },
+    ongoing: {
+      title: 'Servicios Mensuales Continuos',
+      retainer: { label: 'Fee Mensual de Gestión', price: '$5,500/mes', description: 'Calculado como $500 por ASIN × 11 ASINs activos. Cubre optimización continua de listings, gestión publicitaria, salud de cuenta, gestión de casos y reportería mensual.' },
+      commission: { label: 'Comisión por Desempeño', rate: '10%', basis: 'sobre la Utilidad Neta', description: 'Calculada sobre la rentabilidad neta reportada por Sellerise, después de deducir todos los costos: fees de Amazon, devoluciones, gasto publicitario y costo de producto (COGS). La cifra de Sellerise es la fuente definitiva y vinculante para todos los cálculos. Si no hay utilidad neta en un mes, no se cobra comisión — solo el fee mensual.' },
+      sellerise: { label: 'Suscripción Sellerise', price: '$100/mes', detail: 'Pagado directamente por el cliente a Sellerise' },
+      note: 'El modelo híbrido es AMBOS montos juntos: el fee mensual de $5,500 ($500 × 11 ASINs) se cobra cada mes, y la comisión del 10% se cobra solo cuando hay utilidad neta positiva.',
+    },
+    example: {
+      title: 'Ejemplo de Compensación Híbrida',
+      subtitle: 'Cómo funciona — basado en datos de Sellerise',
+      rows: [
+        { label: 'Ingresos Brutos (Ventas Amazon)', value: '$50,000', type: 'revenue' as const },
+        { label: 'Fees Amazon (Referral + FBA)', value: '−$12,500', type: 'deduction' as const },
+        { label: 'Gasto Publicitario', value: '−$5,000', type: 'deduction' as const },
+        { label: 'Devoluciones y Reembolsos', value: '−$2,500', type: 'deduction' as const },
+        { label: 'Costo de Producto (COGS)', value: '−$15,000', type: 'deduction' as const },
+      ],
+      netProfit: { label: 'Utilidad Neta', value: '$15,000' },
+      monthlyFee: { label: 'Fee Mensual de Gestión ($500 × 11 ASINs)', value: '$5,500' },
+      commission: { label: 'Comisión por Desempeño (10%)', value: '$1,500' },
+      total: { label: 'Compensación Total Hipervínculo', value: '$7,000' },
+      note: 'Todas las cifras vienen directamente de Sellerise. La utilidad neta mostrada en Sellerise es la cifra definitiva utilizada para calcular el 10% de comisión cada mes, encima del fee fijo mensual de $5,500 ($500 por ASIN × 11 ASINs).',
+      tacos: { label: 'TACOS en este ejemplo', value: '10%', target: 'Objetivo: 15–25%' },
+      profitMargin: { label: 'Margen de Utilidad Neta', value: '30%', target: 'Saludable: 12–20%' },
+    },
+    timeline: {
+      title: 'Timeline de Setup',
+      duration: '45',
+      durationUnit: 'Días',
+      description: 'La fase de lanzamiento incluye apertura de cuenta, aprobación de categoría de suplementos, inscripción en Brand Registry, creación de listings (11 SKUs), 6 módulos de A+ Content, fotografía con IA, configuración de Sellerise y lanzamiento de campañas. Después de ~45 días, comienza la gestión y optimización continua.',
+    },
+  },
+  terms: {
+    title: 'Términos y Condiciones',
+    headline: 'Lo Que Necesitas Saber',
+    sections: [
+      { title: 'Duración Mínima del Acuerdo', description: 'Este acuerdo tiene una duración mínima de 6 meses desde la fecha de inicio de los servicios continuos. Después del periodo inicial de 6 meses, el acuerdo se renueva mensualmente salvo que cualquiera de las partes notifique por escrito con 30 días de anticipación.', icon: 'calendar' },
+      { title: 'Términos de Pago — Setup', description: 'La inversión única de setup de $23,500 se paga 100% por adelantado antes de comenzar cualquier trabajo. Esto cubre apertura de cuenta, Brand Registry, los 11 SKUs (6 padres + 5 variaciones) y los 6 módulos de A+ Content.', icon: 'dollar' },
+      { title: 'Términos de Pago — Fee Mensual', description: 'El fee mensual de gestión se calcula como $500 por ASIN activo. Con base en el catálogo inicial de 11 ASINs, el fee mensual es de $5,500. Se factura al inicio de cada mes y se paga 100% por adelantado antes de la entrega del servicio del mes. El fee escala automáticamente al añadir o eliminar ASINs.', icon: 'dollar' },
+      { title: 'Términos de Pago — Comisión', description: 'La comisión del 10% sobre utilidad neta se factura mensualmente con base en los datos de Sellerise y se paga dentro de los 10 días posteriores a la recepción de la factura. Las comisiones se pagan solo después del desembolso de Amazon. La cifra de Sellerise es la fuente definitiva para todos los cálculos.', icon: 'dollar' },
+      { title: 'Presupuesto Publicitario', description: 'El presupuesto publicitario lo paga directamente el cliente a través de Amazon Advertising. Recomendaremos niveles de presupuesto basados en análisis competitivo y optimizaremos la asignación de gasto continuamente.', icon: 'files' },
+      { title: 'Aviso de Cumplimiento', description: 'Hipervínculo elaborará el copy de los listings y A+ Content con el cuidado razonable para alinearse con las guías de Amazon y FDA para suplementos dietéticos. Sin embargo, el cliente es el único responsable del registro FDA de instalaciones y productos, cumplimiento GMP, sustentación científica de cualquier claim, y cumplimiento regulatorio general de los productos.', icon: 'files' },
+      { title: 'Exclusiones', description: 'Esta propuesta no incluye logística, fulfillment (preparación FBA/FBM), abastecimiento de producto, manufactura, compra de inventario, registro FDA, ni funciones administrativas o contables de la cuenta de Amazon. Estas responsabilidades quedan enteramente a cargo del cliente.', icon: 'files' },
+      { title: 'Propiedad de Campañas', description: 'Si cualquiera de las partes termina el acuerdo, todas las campañas publicitarias creadas por la agencia serán eliminadas de la cuenta ya que son propiedad intelectual de Hipervínculo LLC.', icon: 'clock' },
+      { title: 'Reuniones Mensuales', description: 'Hasta 2 reuniones online por mes para revisión de desempeño, discusión estratégica y reportería. Las reuniones se realizan vía Zoom o Google Meet.', icon: 'calendar' },
+    ],
+  },
+  legalTerms: {
+    title: 'Detalles del Acuerdo',
+    sections: [
+      { heading: 'Método de Pago y Servicios', items: [
+        'El fee único de setup de $23,500 se paga en su totalidad antes de comenzar el trabajo. Esto cubre apertura de cuenta, inscripción en Brand Registry, los 6 listings padres (con un módulo de A+ Content cada uno) y las 5 variaciones adicionales.',
+        'El fee mensual de gestión de $5,500 ($500 × 11 ASINs) se paga 100% por adelantado al inicio de cada mes, antes de la entrega del servicio.',
+        'La comisión del 10% sobre utilidad neta se factura mensualmente. "Utilidad neta" se define como los ingresos totales de Amazon menos devoluciones, fees de Amazon, gasto publicitario y costo de producto (COGS), según lo registrado y reportado por Sellerise. La cifra de Sellerise es la fuente definitiva y vinculante para todos los cálculos.',
+        'Si la utilidad neta es cero o negativa en un mes, no se cobra comisión por ese periodo — pero el fee mensual de $5,500 ($500 × 11 ASINs) sigue aplicando.',
+        'La suscripción a Sellerise ($100/mes) la paga directamente el cliente a Sellerise.',
+        'Todos los presupuestos publicitarios los paga directamente el cliente a través de Amazon Advertising.',
+        'El pago de impuestos y otros temas contables son responsabilidad del cliente.',
+        'Los pagos de comisión se realizan dentro de los 10 días posteriores a la recepción de la factura y solo son exigibles después de que Amazon haya hecho el desembolso.',
+      ]},
+      { heading: 'Exclusiones de Alcance', items: [
+        'Hipervínculo LLC no es responsable de logística, fulfillment (preparación FBA/FBM, creación de envíos u operaciones de bodega), abastecimiento de producto, manufactura, compra de inventario, registro FDA de instalaciones o productos, cumplimiento GMP, sustentación científica de claims de salud, ni de funciones administrativas, contables o tributarias de la cuenta de Amazon.',
+        'Estas responsabilidades operativas y regulatorias permanecen enteramente a cargo del cliente en todo momento.',
+      ]},
+      { heading: 'Responsabilidad de Cumplimiento', items: [
+        'AV Nutraceuticals garantiza que todos los productos vendidos en la cuenta de Amazon cumplen con las regulaciones aplicables de FDA, FTC y la categoría de suplementos de Amazon.',
+        'Hipervínculo elaborará el contenido de los listings con el cuidado razonable para seguir las guías vigentes de etiquetado de Amazon y FDA, pero la responsabilidad final del cumplimiento regulatorio de productos y claims recae en el cliente.',
+      ]},
+      { heading: 'Independencia de la Agencia', items: [
+        'La agencia actuará en todo momento durante la vigencia de este acuerdo como un contratista independiente.',
+        'Nada de lo contenido en este acuerdo se interpretará como creación de una relación de mandante y agente, o de empleador y empleado, entre el cliente y la agencia.',
+      ]},
+      { heading: 'Deberes de la Agencia', items: [
+        'Los deberes de la agencia son los establecidos en esta propuesta. Una vez aceptados por el cliente, los servicios descritos definirán el alcance del acuerdo de servicios. Servicios adicionales solo se establecerán por mutuo acuerdo y pueden requerir ajustes en los fees.',
+      ]},
+      { heading: 'Confidencialidad', items: [
+        'Ambas partes acuerdan mantener la confidencialidad de cualquier información propietaria, estrategias de negocio, datos de campañas, datos financieros, formulaciones y secretos comerciales compartidos durante el desarrollo de este acuerdo.',
+        'Esta obligación sobrevive a la terminación del acuerdo.',
+      ]},
+      { heading: 'Terminación del Contrato', items: [
+        'La duración mínima del acuerdo es de 6 meses desde la fecha de inicio de los servicios continuos.',
+        'Después de los 6 meses iniciales, el acuerdo se renueva mensualmente. Cualquiera de las partes puede terminar con notificación por escrito de 30 días.',
+        'En caso de terminación anticipada por parte del cliente antes de cumplir el mínimo de 6 meses, Hipervínculo LLC no está obligado a reembolsar montos previamente recibidos y el cliente debe pagar los meses restantes del término mínimo.',
+        'Al terminar, todas las campañas publicitarias creadas por la agencia serán eliminadas ya que permanecen como propiedad intelectual de Hipervínculo LLC.',
+        'Todos los pagos pendientes hasta la fecha de terminación deben ser saldados dentro de 10 días.',
+      ]},
+    ],
+  },
+  signature: {
+    title: 'Firmas del Acuerdo',
+    headline: 'Aceptación de la Propuesta',
+    intro: 'Al firmar a continuación, ambas partes aceptan el alcance del trabajo, la inversión y los términos detallados en esta propuesta.',
+    client: { role: 'El Cliente', name: 'Victor Alvarez', company: 'AV Nutraceuticals' },
+    agency: { role: 'La Agencia', name: 'Miguel Camacho', company: 'Hipervínculo LLC' },
+  },
+  contact: {
+    title: 'Construyamos Juntos',
+    headline: '¿Listo para Lanzar en Amazon?',
+    description: 'Contáctanos para iniciar el viaje de AV Nutraceuticals en Amazon. Estamos listos para ayudarte a construir un negocio de suplementos compliant, rentable y escalable en el marketplace más grande del mundo.',
+    email: 'info@hipervinculo.net',
+    phone: '+1 (786) 529-0679',
+    address: '2645 Executive Park Dr, Suite 146\nWeston, FL 33331',
+    website: 'hipervinculo.net',
+    cta: 'Comencemos',
+  },
+};
+
+export const avNutraceuticalsProposalContent = { en, es };
+
+export type AvNutraceuticalsProposalContent = typeof en;
+
+// Backward compatibility default export of EN content shape (in case anything imports the old shape)
+export default avNutraceuticalsProposalContent;
