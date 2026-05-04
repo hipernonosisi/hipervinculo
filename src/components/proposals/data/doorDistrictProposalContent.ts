@@ -56,7 +56,6 @@ export const doorDistrictProposalContent = {
     items: [
       'Sesiones fotográficas físicas con fotógrafo en sitio (la fotografía principal se generará con IA; el resto reutiliza material existente).',
       'Producción de video y edición de contenido audiovisual nuevo.',
-      'Gestión de campañas de Google Ads o Meta Ads (la web queda configurada con tracking; la gestión publicitaria es un servicio aparte).',
       'Redacción extensiva de blog o contenido editorial nuevo más allá de los textos necesarios para las páginas del sitio.',
       'Costos de hosting, dominio, herramientas SaaS o licencias de terceros.',
     ],
