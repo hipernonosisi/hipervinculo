@@ -177,7 +177,7 @@ export function DoorDistrictProposal() {
               <div className="rounded-2xl px-8 py-6 mb-5 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">{c.investment.priceLabel}</div>
-                  <div className="text-white/40 text-xs mt-1">100% upfront · Square</div>
+                  <div className="text-white/40 text-xs mt-1">Pago al finalizar · Square</div>
                 </div>
                 <span className="text-5xl font-extrabold text-white">{c.investment.price}</span>
               </div>
