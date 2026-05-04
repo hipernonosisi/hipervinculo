@@ -26,6 +26,7 @@ import { XtralluxDigitalAdsProposal } from '@/components/proposals/XtralluxDigit
 import { TailyProposal } from '@/components/proposals/TailyProposal';
 import { OrbitalSunglassesProposal } from '@/components/proposals/OrbitalSunglassesProposal';
 import { AvNutraceuticalsProposal } from '@/components/proposals/AvNutraceuticalsProposal';
+import { DoorDistrictProposal } from '@/components/proposals/DoorDistrictProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
@@ -94,7 +95,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals'>('skyscraper');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district'>('skyscraper');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -968,6 +969,15 @@ export default function Admin() {
                   <Building className="w-4 h-4" />
                   AV Nutraceuticals
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProposal('door-district')}
+                  className={`gap-2 ${activeProposal === 'door-district' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Building className="w-4 h-4" />
+                  The Door District
+                </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
                 <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
@@ -981,6 +991,7 @@ export default function Admin() {
                   {activeProposal === 'orbital' && <OrbitalSunglassesProposal />}
                   {activeProposal === 'xtrallux-ads' && <XtralluxDigitalAdsProposal />}
                   {activeProposal === 'av-nutraceuticals' && <AvNutraceuticalsProposal />}
+                  {activeProposal === 'door-district' && <DoorDistrictProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
