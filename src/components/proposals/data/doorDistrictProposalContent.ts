@@ -89,7 +89,7 @@ export const doorDistrictProposalContent = {
     title: 'Términos y Condiciones',
     headline: 'Lo Que Debes Saber',
     sections: [
-      { title: 'Forma de Pago', description: 'La inversión total de $3,000 se cobra 100% por adelantado, antes de iniciar cualquier trabajo. Pago vía Square (link enviado al momento de la aprobación de la propuesta).', icon: 'dollar' },
+      { title: 'Forma de Pago', description: 'La inversión total de $3,000 se cobra al finalizar el trabajo, al momento de la entrega del sitio. Pago vía Square (link enviado al momento de la entrega). Condición especial otorgada por la relación de confianza con el cliente.', icon: 'dollar' },
       { title: 'Plazo de Entrega', description: 'El proyecto se entrega en 3 días desde el arranque, condicionado a la entrega oportuna por parte del cliente de los accesos (dominio, hosting, cuentas de Google y Meta) y del material de la web actual.', icon: 'clock' },
       { title: 'Propiedad y Entrega', description: 'Una vez completado y recibido el pago, el sitio web, el código y todas las configuraciones (GA4, Search Console, Pixel, tags) son propiedad del cliente.', icon: 'files' },
       { title: 'Responsabilidades del Cliente', description: 'El cliente proveerá: accesos al hosting/dominio, accesos a Google Ads y Meta Business Manager si aplica, material multimedia actual de la web, y aprobación oportuna de los entregables para no afectar el plazo de 3 días.', icon: 'files' },
