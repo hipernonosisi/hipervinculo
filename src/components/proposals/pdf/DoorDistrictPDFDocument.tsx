@@ -166,7 +166,7 @@ export function DoorDistrictPDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 18, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>{c.investment.priceLabel.toUpperCase()}</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>100% upfront · Square</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>Pago al finalizar · Square</Text>
           </View>
           <Text style={{ fontSize: 32, fontWeight: 'bold', color: 'white' }}>{c.investment.price}</Text>
         </View>
