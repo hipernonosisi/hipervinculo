@@ -62,6 +62,24 @@ export default function ServiceDetail() {
   const { service, type } = serviceInfo;
   const ServiceIcon = serviceIconMap[type];
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title || service.heroTitle,
+    description: service.heroSubtitle,
+    url: `https://hipervinculo.net/services/${slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Hipervínculo',
+      url: 'https://hipervinculo.net',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Mexico' },
+      { '@type': 'Country', name: 'Colombia' },
+    ],
+  };
+
   if (type === 'leadGen') {
     return (
       <Layout>
