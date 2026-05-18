@@ -88,6 +88,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -335,6 +336,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -615,6 +617,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -889,6 +892,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 
@@ -1155,6 +1159,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 
@@ -1421,6 +1426,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -1722,6 +1728,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 
