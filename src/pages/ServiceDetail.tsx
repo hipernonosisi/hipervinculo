@@ -62,6 +62,24 @@ export default function ServiceDetail() {
   const { service, type } = serviceInfo;
   const ServiceIcon = serviceIconMap[type];
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title || service.heroTitle,
+    description: service.heroSubtitle,
+    url: `https://hipervinculo.net/services/${slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Hipervínculo',
+      url: 'https://hipervinculo.net',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Mexico' },
+      { '@type': 'Country', name: 'Colombia' },
+    ],
+  };
+
   if (type === 'leadGen') {
     return (
       <Layout>
@@ -70,6 +88,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -317,6 +336,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -597,6 +617,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -871,6 +892,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 
@@ -1137,6 +1159,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 
@@ -1403,6 +1426,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         <section 
           className="relative py-28 md:py-36 overflow-hidden"
@@ -1704,6 +1728,7 @@ export default function ServiceDetail() {
           description={service.heroSubtitle}
           url={`https://hipervinculo.net/services/${slug}`}
           type="service"
+        structuredData={serviceSchema}
         />
         {/* Hero Section */}
         <section 

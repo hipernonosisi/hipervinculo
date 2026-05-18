@@ -54,12 +54,29 @@ export default function CaseStudy() {
 
   const c = t[language];
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${project.name} — ${language === 'en' ? 'Case Study' : 'Caso de Éxito'}`,
+    description: project.overview[language].slice(0, 200),
+    image: project.image ? `https://hipervinculo.net${project.image.startsWith('/') ? '' : '/'}${project.image}` : 'https://hipervinculo.net/og-image.png',
+    author: { '@type': 'Organization', name: 'Hipervínculo' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Hipervínculo',
+      logo: { '@type': 'ImageObject', url: 'https://hipervinculo.net/favicon.png' },
+    },
+    mainEntityOfPage: `https://hipervinculo.net/portfolio/${project.slug}`,
+  };
+
   return (
     <Layout>
       <SEO
         title={`${project.name} — ${language === 'en' ? 'Case Study' : 'Caso de Éxito'}`}
         description={project.overview[language].slice(0, 155)}
         url={`https://hipervinculo.net/portfolio/${project.slug}`}
+        type="article"
+        structuredData={articleSchema}
       />
 
       {/* Hero */}
