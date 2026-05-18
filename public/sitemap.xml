@@ -123,5 +123,38 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
+
+  <!-- Portfolio -->
+  <url>
+    <loc>https://hipervinculo.net/portfolio</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://hipervinculo.net/portfolio/step-solution-usa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/zerma-latin-america</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/lbc-cold</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/filtro-laser</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/pulverizadores-industriales</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/stillwater-day-spa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/rasetta-innovations</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/lajex-llc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hipervinculo.net/portfolio/delios-home</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Book a call -->
+  <url>
+    <loc>https://hipervinculo.net/book</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Amazon Ads landing -->
+  <url>
+    <loc>https://hipervinculo.net/amazon-ads</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

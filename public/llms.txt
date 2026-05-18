@@ -47,9 +47,18 @@ Professional brand identity systems: logo design, color palettes, typography, an
 - Location: Miami, FL, USA
 - Free audit: https://hipervinculo.net/audit
 
-## Links
-- Services: https://hipervinculo.net/services
-- About Us: https://hipervinculo.net/about
-- Pricing: https://hipervinculo.net/pricing
-- FAQs: https://hipervinculo.net/faqs
-- Contact: https://hipervinculo.net/contact
+## Pages
+- [Home](https://hipervinculo.net/): Digital growth agency overview.
+- [About](https://hipervinculo.net/about): Who we are, 20+ years of experience.
+- [Services](https://hipervinculo.net/services): Full list of growth services.
+- [Pricing](https://hipervinculo.net/pricing): Transparent pricing for web, ads, and management.
+- [Portfolio](https://hipervinculo.net/portfolio): Selected case studies and results.
+- [FAQs](https://hipervinculo.net/faqs): Common questions about our process.
+- [Contact](https://hipervinculo.net/contact): Get in touch.
+- [Free Audit](https://hipervinculo.net/audit): Request a free growth audit.
+- [Book a Call](https://hipervinculo.net/book): Schedule a discovery call.
+
+## Optional
+- [Privacy Policy](https://hipervinculo.net/privacy): Privacy practices.
+- [Amazon Ads](https://hipervinculo.net/amazon-ads): Amazon advertising services.
+
