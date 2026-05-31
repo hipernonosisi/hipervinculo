@@ -154,13 +154,13 @@ export function RumbasEventRentalsProposal() {
 
           {/* PAGE 3: Web Service */}
           <Page bg="#ffffff">
-            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
-              <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
+            <div className="px-16 py-10 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, height: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Servicio 1</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.webService.title}</h2>
-              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
+              <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.webService.headline}</p>
 
-              <div className="rounded-2xl px-8 py-5 mb-8 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
+              <div className="rounded-2xl px-8 py-4 mb-4 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Componente del Paquete</div>
                 </div>
@@ -169,10 +169,10 @@ export function RumbasEventRentalsProposal() {
                 </div>
               </div>
 
-              <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{content.webService.description}</p>
-              <div className="space-y-2.5 flex-1">
+              <p className="text-gray-600 leading-relaxed mb-4 text-[14px]">{content.webService.description}</p>
+              <div className="space-y-2 flex-1">
                 {content.webService.includes.map((item, i) => (
-                  <div key={i} className="flex gap-3 p-4 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                  <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
                     <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
                     <div>
                       <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
@@ -183,6 +183,7 @@ export function RumbasEventRentalsProposal() {
               </div>
             </div>
           </Page>
+
 
           {/* PAGE 4: AI Photography Service */}
           <Page>
