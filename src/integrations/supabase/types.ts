@@ -192,6 +192,7 @@ export type Database = {
           email_sent_at: string | null
           expires_at: string
           id: string
+          marketing_opt_in: boolean
           max_downloads: number
           name: string
           paid_at: string | null
@@ -211,6 +212,7 @@ export type Database = {
           email_sent_at?: string | null
           expires_at?: string
           id?: string
+          marketing_opt_in?: boolean
           max_downloads?: number
           name: string
           paid_at?: string | null
@@ -230,6 +232,7 @@ export type Database = {
           email_sent_at?: string | null
           expires_at?: string
           id?: string
+          marketing_opt_in?: boolean
           max_downloads?: number
           name?: string
           paid_at?: string | null
