@@ -682,22 +682,34 @@ export default function HiperInfluencers() {
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.15}>
-              <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+              <div className="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
                 <div className="bg-white rounded-2xl p-8">
-                  <p className="text-[14px] uppercase tracking-wider font-semibold text-muted-foreground mb-2">
+                  <p className="text-[13px] uppercase tracking-wider font-bold text-muted-foreground mb-3">
                     {c.revenueChipCreator}
                   </p>
-                  <p className="text-[64px] font-extrabold leading-none" style={{ color: '#8BC34A' }}>
-                    25%
+                  <p className="text-[22px] md:text-[24px] font-extrabold mb-2" style={{ color: '#2d4a2d' }}>
+                    {language === 'en' ? 'Earn from every sale' : 'Gana en cada venta'}
+                  </p>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    {c.revenueChipCreatorDesc}
                   </p>
                 </div>
                 <div className="rounded-2xl p-8 border-2 border-white/30">
-                  <p className="text-[14px] uppercase tracking-wider font-semibold text-white/70 mb-2">
+                  <p className="text-[13px] uppercase tracking-wider font-bold text-white/70 mb-3">
                     {c.revenueChipAgency}
                   </p>
-                  <p className="text-[64px] font-extrabold text-white leading-none">75%</p>
+                  <p className="text-[22px] md:text-[24px] font-extrabold text-white mb-2">
+                    {language === 'en' ? 'We build, run & invest' : 'Construimos, operamos e invertimos'}
+                  </p>
+                  <p className="text-[15px] text-white/75 leading-relaxed">
+                    {c.revenueChipAgencyDesc}
+                  </p>
                 </div>
               </div>
+              <p className="text-[14px] md:text-[15px] text-white/65 mt-8 max-w-2xl mx-auto">
+                {c.revenueNote}
+              </p>
+            </AnimatedSection>
             </AnimatedSection>
           </div>
         </div>
