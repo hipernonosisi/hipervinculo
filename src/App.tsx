@@ -29,6 +29,8 @@ import Book from "./pages/Book";
 import AmazonCallback from "./pages/AmazonCallback";
 import HipervinculoAds from "./pages/HipervinculoAds";
 import HiperInfluencers from "./pages/HiperInfluencers";
+import AmazonFbaEbook from "./pages/AmazonFbaEbook";
+import AmazonFbaEbookSuccess from "./pages/AmazonFbaEbookSuccess";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +66,8 @@ const App = () => (
             <Route path="/amazon/callback" element={<AmazonCallback />} />
             <Route path="/amazon-ads" element={<HipervinculoAds />} />
             <Route path="/hiper-influencers" element={<HiperInfluencers />} />
+            <Route path="/amazon-fba-ebook" element={<AmazonFbaEbook />} />
+            <Route path="/amazon-fba-ebook/gracias" element={<AmazonFbaEbookSuccess />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
