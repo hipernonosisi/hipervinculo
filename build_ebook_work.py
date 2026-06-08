@@ -1140,21 +1140,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.40, (PW-40*mm)*0.30, (PW-40*mm)*0.30]
 table_x = 20*mm
-c.setFillColor(DARK); c.rect(table_x, y-22, sum(col_w), 22, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 10)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-15, col); cx += col_w[i]
-y -= 22
-for ri, row in enumerate(rows):
-    c.setFillColor(white if ri%2==0 else LIGHT)
-    c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK if i==0 else (LIME if i==2 else TEXT))
-        c.setFont(FB if i==0 else F, 9)
-        c.drawString(cx+8, y-14, cell); cx += col_w[i]
-    y -= 20
+y = draw_table(table_x, y, col_w, cols, rows, font_size=8.2, row_h=21, header_h=22)
 
 # PAGE 37: Cap 12 - flow operativo
 newpage(title="Cap 12", chapter="Fulfillment hibrido")
@@ -1195,23 +1181,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.45, (PW-40*mm)*0.27, (PW-40*mm)*0.28]
 table_x = 20*mm
-c.setFillColor(DARK); c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 10)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-14, col); cx += col_w[i]
-y -= 20
-for ri, row in enumerate(rows):
-    is_total = "Margen" in row[0]
-    if is_total: c.setFillColor(LIME)
-    else: c.setFillColor(white if ri%2==0 else LIGHT)
-    c.rect(table_x, y-18, sum(col_w), 18, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK)
-        c.setFont(FB if is_total or i==0 else F, 9)
-        c.drawString(cx+8, y-13, cell); cx += col_w[i]
-    y -= 18
+y = draw_table(table_x, y, col_w, cols, rows, font_size=8.1, row_h=18, header_h=20, highlights={7,9})
 
 # PAGE 39: Cap 13 chart
 newpage(title="Cap 13", chapter="Margenes")
@@ -1352,21 +1322,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.28, (PW-40*mm)*0.22, (PW-40*mm)*0.22, (PW-40*mm)*0.28]
 table_x = 20*mm
-c.setFillColor(DARK); c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 9)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-14, col); cx += col_w[i]
-y -= 20
-for ri, row in enumerate(rows):
-    c.setFillColor(white if ri%2==0 else LIGHT)
-    c.rect(table_x, y-18, sum(col_w), 18, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK if i==0 else (LIME if i in (1,2) else TEXT))
-        c.setFont(FB if i==0 else F, 9)
-        c.drawString(cx+8, y-13, cell); cx += col_w[i]
-    y -= 18
+y = draw_table(table_x, y, col_w, cols, rows, font_size=7.6, row_h=19, header_h=20)
 y -= 16
 c.setFillColor(LIGHT); c.roundRect(20*mm, y-50, PW-40*mm, 40, 8, fill=1, stroke=0)
 c.setFillColor(DARK); c.setFont(FB, 11); c.drawString(28*mm, y-20, "Revision semanal obligatoria")
