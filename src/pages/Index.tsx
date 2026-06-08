@@ -303,8 +303,8 @@ export default function Index() {
                   </h2>
                   <p className="text-[17px] md:text-[19px] text-white/85 leading-relaxed mb-8 max-w-2xl">
                     {language === 'en'
-                      ? 'Turn your audience into a scalable digital business — without investing upfront. We build the funnel, run the Meta Ads, and share 25% of every sale with you.'
-                      : 'Convierte tu audiencia en un negocio digital escalable — sin invertir por adelantado. Construimos el funnel, operamos los Meta Ads y compartimos el 25% de cada venta contigo.'}
+                      ? 'Turn your audience into a scalable digital business — without investing upfront. We build the funnel, run the Meta Ads, and share revenue with you on every sale.'
+                      : 'Convierte tu audiencia en un negocio digital escalable — sin invertir por adelantado. Construimos el funnel, operamos los Meta Ads y compartimos revenue contigo en cada venta.'}
                   </p>
                   <div className="flex flex-wrap gap-3 mb-8">
                     {(language === 'en'
@@ -344,16 +344,26 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="hidden lg:flex items-center justify-center">
-                  <div className="bg-white rounded-2xl p-8 w-full text-center shadow-2xl">
-                    <p className="text-[13px] uppercase tracking-wider font-bold text-muted-foreground mb-3">
-                      {language === 'en' ? 'Revenue Share' : 'Revenue Share'}
+                  <div className="bg-white rounded-2xl p-8 w-full shadow-2xl">
+                    <p className="text-[13px] uppercase tracking-wider font-bold text-muted-foreground mb-4">
+                      {language === 'en' ? 'How it works' : 'Cómo funciona'}
                     </p>
-                    <p className="text-[88px] font-extrabold leading-none mb-2" style={{ color: '#8BC34A' }}>
-                      25%
-                    </p>
-                    <p className="text-[15px] font-semibold" style={{ color: '#2d4a2d' }}>
-                      {language === 'en' ? 'to the creator, on every sale' : 'al creador, en cada venta'}
-                    </p>
+                    <ul className="space-y-3">
+                      {(language === 'en'
+                        ? ['You bring the audience', 'We build the funnel', 'We run & fund the ads', 'You earn on every sale']
+                        : ['Tú aportas la audiencia', 'Nosotros construimos el funnel', 'Operamos y financiamos los ads', 'Ganas en cada venta']
+                      ).map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <span
+                            className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: '#8BC34A' }}
+                          />
+                          <span className="text-[15px] font-semibold" style={{ color: '#2d4a2d' }}>
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>

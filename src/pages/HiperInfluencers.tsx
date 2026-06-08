@@ -82,7 +82,7 @@ const copy = {
       { title: 'Digital Product Strategy', desc: 'We define the right offer, positioning and price point.' },
       { title: 'Landing Page & Funnel Development', desc: 'We build the entire commercial infrastructure.' },
       { title: 'Campaign Launch', desc: 'Hipervinculo funds and runs the initial Meta Ads investment.' },
-      { title: 'Revenue Sharing', desc: 'You earn 25% of every sale generated through the program.' },
+      { title: 'Revenue Sharing', desc: 'You earn a share of every sale. Terms are defined together based on your audience and product.' },
     ],
 
     sellTitle: 'What You Can Sell',
@@ -124,9 +124,12 @@ const copy = {
 
     revenueTitle: 'You Earn Every Time Your Product Sells',
     revenueText:
-      'Creators receive 25% of every sale generated through the Hiper Influencers program. Hipervinculo handles the operational execution, advertising management, technology, optimization, and infrastructure.',
-    revenueChipCreator: 'Creator',
+      'Creators receive a share of every sale generated through the Hiper Influencers program. Hipervinculo handles the operational execution, advertising management, technology, optimization, and infrastructure.',
+    revenueNote: 'Revenue share terms are defined per creator on an introductory call, based on audience, niche and product.',
+    revenueChipCreator: 'You',
+    revenueChipCreatorDesc: 'Bring the audience, expertise and content.',
     revenueChipAgency: 'Hipervinculo',
+    revenueChipAgencyDesc: 'Builds the funnel, runs the ads, covers the initial investment.',
 
     finalTitle: 'Ready to Monetize Your Audience?',
     finalText:
@@ -201,7 +204,7 @@ const copy = {
       { title: 'Estrategia de Producto Digital', desc: 'Definimos la oferta, posicionamiento y precio correctos.' },
       { title: 'Landing Page y Funnel', desc: 'Construimos toda la infraestructura comercial.' },
       { title: 'Lanzamiento de Campaña', desc: 'Hipervinculo financia y opera la inversión inicial en Meta Ads.' },
-      { title: 'Revenue Share', desc: 'Recibes el 25% de cada venta generada por el programa.' },
+      { title: 'Revenue Share', desc: 'Recibes una participación de cada venta. Los términos se definen juntos según tu audiencia y producto.' },
     ],
 
     sellTitle: 'Qué Puedes Vender',
@@ -243,9 +246,12 @@ const copy = {
 
     revenueTitle: 'Ganas Cada Vez Que Tu Producto Se Vende',
     revenueText:
-      'Los creadores reciben el 25% de cada venta generada a través del programa Hiper Influencers. Hipervinculo se encarga de la ejecución operativa, gestión publicitaria, tecnología, optimización e infraestructura.',
-    revenueChipCreator: 'Creador',
+      'Los creadores reciben una participación de cada venta generada a través del programa Hiper Influencers. Hipervinculo se encarga de la ejecución operativa, gestión publicitaria, tecnología, optimización e infraestructura.',
+    revenueNote: 'Los términos del revenue share se definen por creador en una llamada inicial, según audiencia, nicho y producto.',
+    revenueChipCreator: 'Tú',
+    revenueChipCreatorDesc: 'Aportas audiencia, expertise y contenido.',
     revenueChipAgency: 'Hipervinculo',
+    revenueChipAgencyDesc: 'Construye el funnel, opera los ads y cubre la inversión inicial.',
 
     finalTitle: '¿Listo para Monetizar Tu Audiencia?',
     finalText:
@@ -676,22 +682,33 @@ export default function HiperInfluencers() {
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.15}>
-              <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+              <div className="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
                 <div className="bg-white rounded-2xl p-8">
-                  <p className="text-[14px] uppercase tracking-wider font-semibold text-muted-foreground mb-2">
+                  <p className="text-[13px] uppercase tracking-wider font-bold text-muted-foreground mb-3">
                     {c.revenueChipCreator}
                   </p>
-                  <p className="text-[64px] font-extrabold leading-none" style={{ color: '#8BC34A' }}>
-                    25%
+                  <p className="text-[22px] md:text-[24px] font-extrabold mb-2" style={{ color: '#2d4a2d' }}>
+                    {language === 'en' ? 'Earn from every sale' : 'Gana en cada venta'}
+                  </p>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    {c.revenueChipCreatorDesc}
                   </p>
                 </div>
                 <div className="rounded-2xl p-8 border-2 border-white/30">
-                  <p className="text-[14px] uppercase tracking-wider font-semibold text-white/70 mb-2">
+                  <p className="text-[13px] uppercase tracking-wider font-bold text-white/70 mb-3">
                     {c.revenueChipAgency}
                   </p>
-                  <p className="text-[64px] font-extrabold text-white leading-none">75%</p>
+                  <p className="text-[22px] md:text-[24px] font-extrabold text-white mb-2">
+                    {language === 'en' ? 'We build, run & invest' : 'Construimos, operamos e invertimos'}
+                  </p>
+                  <p className="text-[15px] text-white/75 leading-relaxed">
+                    {c.revenueChipAgencyDesc}
+                  </p>
                 </div>
               </div>
+              <p className="text-[14px] md:text-[15px] text-white/65 mt-8 max-w-2xl mx-auto">
+                {c.revenueNote}
+              </p>
             </AnimatedSection>
           </div>
         </div>

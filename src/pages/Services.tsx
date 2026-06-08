@@ -76,8 +76,8 @@ export default function Services() {
         ? 'Turn your audience into a scalable digital business without investing upfront. We build the funnel, run the ads, and share revenue with you.'
         : 'Convierte tu audiencia en un negocio digital escalable sin invertir por adelantado. Construimos el funnel, operamos los ads y compartimos los ingresos contigo.',
       features: language === 'en'
-        ? ['Landing pages & sales funnels', 'Meta Ads management & budget', 'Checkout & conversion tracking', '25% revenue share to the creator']
-        : ['Landing pages y funnels de venta', 'Gestión y presupuesto de Meta Ads', 'Checkout y tracking de conversiones', '25% revenue share para el creador'],
+        ? ['Landing pages & sales funnels', 'Meta Ads management & budget', 'Checkout & conversion tracking', 'Performance-based revenue share']
+        : ['Landing pages y funnels de venta', 'Gestión y presupuesto de Meta Ads', 'Checkout y tracking de conversiones', 'Revenue share basado en performance'],
       note: language === 'en'
         ? 'Best for: influencers, educators, coaches and experts with engaged audiences.'
         : 'Ideal para: influencers, educadores, coaches y expertos con audiencias comprometidas.',
