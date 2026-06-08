@@ -49,14 +49,14 @@ const faqs = [
 export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "", confirmEmail: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.confirmEmail.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -65,6 +65,11 @@ export default function AmazonFbaEbook() {
       toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
       return;
     }
+    if (form.email.trim() !== form.confirmEmail.trim()) {
+      toast.error("Los correos electrónicos no coinciden. Verifica ambos campos.");
+      return;
+    }
+
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
