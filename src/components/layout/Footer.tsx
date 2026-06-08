@@ -9,6 +9,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
   const location = useLocation();
   const currentYear = new Date().getFullYear();
   const isOnPreview = location.pathname === '/preview';
+  const isOnEbook = location.pathname.startsWith('/amazon-fba-ebook');
 
   const quickLinks = [
     { href: '/about', label: t.nav.aboutUs },
@@ -18,23 +19,40 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
     { href: '/contact', label: t.nav.getInTouch },
   ];
 
+  const ebookPerks = language === 'en'
+    ? ['Instant PDF download', 'Step-by-step guide', 'No inventory required']
+    : ['Descarga PDF inmediata', 'Guía paso a paso', 'Sin manejar inventario'];
+
+  const defaultPerks = language === 'en'
+    ? ['No contracts required', 'Results in 30 days', 'Dedicated growth partner']
+    : ['Sin contratos', 'Resultados en 30 días', 'Socio de crecimiento dedicado'];
+
   return (
     <footer>
       {/* CTA Banner */}
       {!hideBottomCta && <div className="py-16 md:py-24" style={{ backgroundColor: '#8BCB43' }}>
         <div className="container text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-            {language === 'en'
-              ? 'Your Growth System Starts Here'
-              : 'Tu Sistema de Crecimiento Empieza Aquí'}
+            {isOnEbook
+              ? (language === 'en'
+                  ? 'Start Selling on Amazon Today'
+                  : 'Empieza a Vender en Amazon Hoy')
+              : (language === 'en'
+                  ? 'Your Growth System Starts Here'
+                  : 'Tu Sistema de Crecimiento Empieza Aquí')}
           </h2>
+
+          {isOnEbook && (
+            <p className="text-white/95 text-base md:text-lg max-w-2xl mx-auto">
+              {language === 'en'
+                ? 'Get our complete Amazon FBA guide — the exact system to launch your store without managing inventory.'
+                : 'Obtén nuestra guía completa de Amazon FBA — el sistema exacto para lanzar tu tienda sin manejar inventario.'}
+            </p>
+          )}
 
           {/* Perks */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-            {(language === 'en'
-              ? ['No contracts required', 'Results in 30 days', 'Dedicated growth partner']
-              : ['Sin contratos', 'Resultados en 30 días', 'Socio de crecimiento dedicado']
-            ).map((perk, i) => (
+            {(isOnEbook ? ebookPerks : defaultPerks).map((perk, i) => (
               <div key={i} className="flex items-center gap-2 text-white/90">
                 <CheckCircle className="h-5 w-5 text-white" />
                 <span className="text-sm md:text-base font-semibold">{perk}</span>
@@ -43,25 +61,43 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            {!isOnPreview && (
-              <Link to="/preview">
+            {isOnEbook ? (
+              <button
+                onClick={() => {
+                  const el = document.getElementById('comprar');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  else window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
                 <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
-                  {language === 'en' ? 'Get Your Free Preview' : 'Obtén Tu Vista Previa Gratis'}
+                  {language === 'en' ? 'Get the Guide Now' : 'Obtén la Guía Ahora'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </button>
+            ) : (
+              <>
+                {!isOnPreview && (
+                  <Link to="/preview">
+                    <Button className="bg-white hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold" style={{ color: '#203B2C' }}>
+                      {language === 'en' ? 'Get Your Free Preview' : 'Obtén Tu Vista Previa Gratis'}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                )}
+                <Link to="/contact">
+                  <Button variant="outline" className="border-2 border-white rounded-full px-8 py-6 text-base font-semibold transition-colors" style={{ color: '#203B2C', backgroundColor: 'white' }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.color = '#203B2C'; }}
+                  >
+                    {language === 'en' ? 'Talk to Us' : 'Habla con Nosotros'}
+                  </Button>
+                </Link>
+              </>
             )}
-            <Link to="/contact">
-              <Button variant="outline" className="border-2 border-white rounded-full px-8 py-6 text-base font-semibold transition-colors" style={{ color: '#203B2C', backgroundColor: 'white' }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.color = '#203B2C'; }}
-              >
-                {language === 'en' ? 'Talk to Us' : 'Habla con Nosotros'}
-              </Button>
-            </Link>
           </div>
         </div>
       </div>}
+
 
       {/* Main Footer - White */}
       <div className="bg-white border-t border-border">
