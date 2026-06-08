@@ -253,10 +253,16 @@ export default function AmazonFbaEbook() {
               </div>
             </div>
             <div>
+              <Label htmlFor="confirmEmail">Confirmar email</Label>
+              <Input id="confirmEmail" type="email" value={form.confirmEmail} onChange={(e) => setForm({ ...form, confirmEmail: e.target.value })}
+                placeholder="tu@email.com" required maxLength={255} className="mt-1.5" />
+            </div>
+            <div>
               <Label htmlFor="phone">Teléfono (WhatsApp)</Label>
               <Input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder="+1 234 567 8900" required maxLength={30} className="mt-1.5" />
             </div>
+
 
             <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-[#f7faf6] cursor-pointer hover:border-[#8BC34A] transition">
               <input
