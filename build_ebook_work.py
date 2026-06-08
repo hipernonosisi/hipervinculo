@@ -193,7 +193,7 @@ def draw_image_box(path, x, y, w, h, radius=8):
 
 def chart_to_img(fig, w=None, h=None):
     buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=160, bbox_inches="tight", facecolor="#F8F9F5")
+    fig.savefig(buf, format="png", dpi=170, bbox_inches="tight", facecolor="#FFFFFF", pad_inches=0.2)
     plt.close(fig); buf.seek(0)
     return ImageReader(buf)
 
