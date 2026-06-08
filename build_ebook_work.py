@@ -214,51 +214,37 @@ plt.rcParams.update({
     "axes.grid": True, "grid.color":"#E5E7DE", "grid.linewidth":0.6,
 })
 
-# ================== PAGE 1: COVER (redesign) ==================
+# ================== PAGE 1: COVER — web look & feel ==================
 page_num[0] = 1
-page_bg(CREAM)
-# top dark band
-c.setFillColor(DARK); c.rect(0, PH-80*mm, PW, 80*mm, fill=1, stroke=0)
-# lime accent strip
-c.setFillColor(LIME); c.rect(0, PH-84*mm, PW, 4*mm, fill=1, stroke=0)
-# Logo on white plate (brand rule: logo must be on white)
-c.setFillColor(white); c.roundRect(16*mm, PH-34*mm, 52*mm, 18*mm, 4, fill=1, stroke=0)
-try: c.drawImage(f"{ASSETS}/logo.png", 20*mm, PH-32*mm, width=44*mm, height=14*mm, mask='auto', preserveAspectRatio=True, anchor='w')
+page_bg(white)
+hero_bottom = 64*mm
+c.setFillColor(DARK); c.rect(0, hero_bottom, PW, PH-hero_bottom, fill=1, stroke=0)
+c.setFillColor(LIME); c.rect(0, hero_bottom-7*mm, PW, 7*mm, fill=1, stroke=0)
+# Logo on white plate only
+c.setFillColor(white); c.roundRect(MARGIN, PH-30*mm, 54*mm, 16*mm, 3.5, fill=1, stroke=0)
+try: c.drawImage(f"{ASSETS}/logo.png", MARGIN+4*mm, PH-27.5*mm, width=46*mm, height=11*mm, mask='auto', preserveAspectRatio=True, anchor='w')
 except: pass
-# Top-right chip
-chip_label = "GUIA PRACTICA  ·  2026"
-cw = pdfmetrics.stringWidth(chip_label, FB, 8) + 18
-c.setFillColor(LIME); c.roundRect(PW-20*mm-cw, PH-28*mm, cw, 9*mm, 4.5*mm, fill=1, stroke=0)
-c.setFillColor(DARK); c.setFont(FB, 8)
-c.drawCentredString(PW-20*mm-cw/2, PH-22.5*mm, chip_label)
-# Kicker
-c.setFillColor(LIME); c.setFont(FB, 10)
-c.drawString(20*mm, PH-50*mm, "EDICION HIPERVINCULO")
-# Title (big, brand)
-c.setFillColor(white); c.setFont(FEB, 38)
-c.drawString(20*mm, PH-65*mm, "Amazon FBA")
-c.setFillColor(LIME); c.setFont(FEB, 38)
-c.drawString(20*mm, PH-78*mm, "Sin Inventario")
-# Hero image (bottom area on cream)
-try: c.drawImage(f"{ASSETS}/hero.png", 20*mm, 70*mm, width=PW-40*mm, height=110*mm, mask='auto', preserveAspectRatio=True, anchor='c')
-except: pass
-# Subtitle (cream area)
-c.setFillColor(DARK); c.setFont(FB, 14)
-c.drawString(20*mm, 58*mm, "El sistema dropshipping legal en Amazon 2026")
-c.setFillColor(MUTED); c.setFont(F, 10)
-c.drawString(20*mm, 50*mm, "Proveedores verificados  ·  Fulfillment hibrido  ·  Plantillas listas")
-# Bottom bar with 3 micro-credentials
-y_bar = 28*mm
-c.setStrokeColor(LIGHT); c.setLineWidth(0.5); c.line(20*mm, y_bar+12, PW-20*mm, y_bar+12)
-creds = [("50", "paginas"), ("32", "criterios"), ("3", "plantillas")]
-seg = (PW-40*mm) / 3
-for i,(big,small) in enumerate(creds):
-    cx = 20*mm + seg*i + seg/2
-    c.setFillColor(DARK); c.setFont(FEB, 18); c.drawCentredString(cx, y_bar, big)
-    c.setFillColor(MUTED); c.setFont(F, 8); c.drawCentredString(cx, y_bar-10, small.upper())
-# Footer URL
-c.setFillColor(DARK); c.setFont(FB, 9)
-c.drawCentredString(PW/2, 12*mm, "www.hipervinculo.net")
+# Guide chip, centered like the supplied reference
+chip_label = "GUIA PRACTICA · 2026"
+cw = pdfmetrics.stringWidth(chip_label, F, 13) + 38*mm
+cy = PH-58*mm
+c.setFillColor(LIME); c.roundRect((PW-cw)/2, cy, cw, 16*mm, 8*mm, fill=1, stroke=0)
+c.setFillColor(DARK); c.setFont(F, 13)
+c.drawCentredString(PW/2, cy+5.3*mm, chip_label)
+# Kicker and title — same dark/lime typographic hero language as the web
+c.setFillColor(LIME); c.setFont(F, 16)
+c.drawString(MARGIN, PH-96*mm, "EDICION HIPERVINCULO")
+c.setFillColor(white); c.setFont(F, 47)
+c.drawString(MARGIN, PH-122*mm, "Amazon FBA")
+c.setFillColor(LIME); c.setFont(F, 46)
+c.drawString(MARGIN, PH-146*mm, "Sin Inventario")
+c.setFillColor(DARK); c.setFont(F, 15)
+c.drawString(MARGIN, 43*mm, "El sistema dropshipping legal en Amazon 2026")
+c.setFillColor(MUTED); c.setFont(F, 10.5)
+c.drawString(MARGIN, 34*mm, "Proveedores verificados  ·  Fulfillment hibrido  ·  Plantillas listas")
+draw_website_stat_row(20*mm, [("50", "paginas"), ("32", "criterios"), ("3", "plantillas")])
+c.setFillColor(DARK); c.setFont(F, 8.5)
+c.drawCentredString(PW/2, 8*mm, "www.hipervinculo.net")
 
 # ================== PAGE 2: COPYRIGHT ==================
 newpage()
