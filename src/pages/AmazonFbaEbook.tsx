@@ -48,6 +48,7 @@ export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [marketingOptIn, setMarketingOptIn] = useState(true);
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
@@ -65,7 +66,7 @@ export default function AmazonFbaEbook() {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
-        body: { ...form, variant },
+        body: { ...form, variant, marketing_opt_in: marketingOptIn },
       });
       if (error) throw error;
       if (data?.url) {
@@ -79,6 +80,7 @@ export default function AmazonFbaEbook() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-white text-foreground">
@@ -249,10 +251,26 @@ export default function AmazonFbaEbook() {
                 placeholder="+1 234 567 8900" required maxLength={30} className="mt-1.5" />
             </div>
 
+            <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-[#f7faf6] cursor-pointer hover:border-[#8BC34A] transition">
+              <input
+                type="checkbox"
+                checked={marketingOptIn}
+                onChange={(e) => setMarketingOptIn(e.target.checked)}
+                className="mt-1 w-4 h-4 accent-[#2F4F3E] cursor-pointer flex-shrink-0"
+              />
+              <span className="text-xs text-[#2F4F3E] leading-relaxed">
+                <strong>Sí, quiero recibir información de Hipervínculo</strong> sobre futuros productos, guías y servicios.
+                <span className="block text-muted-foreground mt-1 font-normal">
+                  Máximo 1 email al mes con contenido informativo. No enviamos spam ni comercializamos tus datos con terceros. Puedes darte de baja cuando quieras.
+                </span>
+              </span>
+            </label>
+
             <Button type="submit" disabled={loading} size="lg"
               className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-bold text-base py-6">
               {loading ? "Procesando..." : `Pagar $${PRICE_USD} y descargar →`}
             </Button>
+
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground pt-2">
               <div className="flex items-center gap-1"><Lock className="w-3 h-3" /> Pago cifrado</div>

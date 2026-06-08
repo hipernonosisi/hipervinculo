@@ -49,8 +49,11 @@ async function sendCustomerEmail(to: string, name: string, downloadUrl: string) 
   });
 }
 
-async function sendAdminEmail(p: { name: string; email: string; phone: string | null; amount_cents: number; currency: string; session_id: string; variant: string }) {
+async function sendAdminEmail(p: { name: string; email: string; phone: string | null; amount_cents: number; currency: string; session_id: string; variant: string; marketing_opt_in: boolean }) {
   const amt = `$${(p.amount_cents / 100).toFixed(2)} ${p.currency.toUpperCase()}`;
+  const optBadge = p.marketing_opt_in
+    ? '<span style="color:#2F4F3E;font-weight:700;">✅ SÍ acepta marketing (1 email/mes)</span>'
+    : '<span style="color:#9ca3af;">❌ No acepta marketing</span>';
   const html = `<!doctype html><html><body style="margin:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;padding:32px 0;"><tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
@@ -67,8 +70,10 @@ async function sendAdminEmail(p: { name: string; email: string; phone: string | 
           <tr><td style="color:#666;">Teléfono</td><td style="color:#1a1a1a;font-weight:600;">${p.phone || "—"}</td></tr>
           <tr style="background:#f9fafb;"><td style="color:#666;">Monto</td><td style="color:#2F4F3E;font-weight:800;">${amt}</td></tr>
           <tr><td style="color:#666;">Variante</td><td style="color:#1a1a1a;">${p.variant}</td></tr>
-          <tr style="background:#f9fafb;"><td style="color:#666;">Stripe Session</td><td style="color:#1a1a1a;font-family:monospace;font-size:11px;word-break:break-all;">${p.session_id}</td></tr>
+          <tr style="background:#f9fafb;"><td style="color:#666;">Marketing</td><td>${optBadge}</td></tr>
+          <tr><td style="color:#666;">Stripe Session</td><td style="color:#1a1a1a;font-family:monospace;font-size:11px;word-break:break-all;">${p.session_id}</td></tr>
         </table>
+
         <p style="margin:20px 0 0;font-size:13px;color:#666;">Email de descarga enviado automáticamente al cliente.</p>
       </td></tr>
     </table>
@@ -123,6 +128,7 @@ serve(async (req) => {
     const name = md.name || session.customer_details?.name || "Cliente";
     const phone = md.phone || session.customer_details?.phone || null;
     const variant = md.variant || "default";
+    const marketingOptIn = md.marketing_opt_in === "1";
     const token = genToken();
 
     const { data: inserted, error: insertErr } = await supabase
@@ -134,8 +140,10 @@ serve(async (req) => {
         currency: session.currency ?? "usd",
         price_variant: variant,
         download_token: token,
+        marketing_opt_in: marketingOptIn,
         paid_at: new Date().toISOString(),
       }).select().single();
+
 
     if (insertErr) throw insertErr;
 
@@ -150,8 +158,10 @@ serve(async (req) => {
         amount_cents: session.amount_total ?? 4999,
         currency: session.currency ?? "usd",
         session_id: session.id, variant,
+        marketing_opt_in: marketingOptIn,
       });
     } catch (e) { console.error("Admin email error", e); }
+
 
     return new Response(JSON.stringify({
       status: "ok", name, email, download_url: downloadUrl,
