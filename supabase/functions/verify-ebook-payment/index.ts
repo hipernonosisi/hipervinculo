@@ -123,6 +123,7 @@ serve(async (req) => {
     const name = md.name || session.customer_details?.name || "Cliente";
     const phone = md.phone || session.customer_details?.phone || null;
     const variant = md.variant || "default";
+    const marketingOptIn = md.marketing_opt_in === "1";
     const token = genToken();
 
     const { data: inserted, error: insertErr } = await supabase
@@ -134,8 +135,10 @@ serve(async (req) => {
         currency: session.currency ?? "usd",
         price_variant: variant,
         download_token: token,
+        marketing_opt_in: marketingOptIn,
         paid_at: new Date().toISOString(),
       }).select().single();
+
 
     if (insertErr) throw insertErr;
 
