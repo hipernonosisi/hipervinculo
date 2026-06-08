@@ -186,7 +186,7 @@ export default function Services() {
                               {service.note}
                             </p>
                           )}
-                          {service.detailSlug && (
+                          {(service.detailSlug || (service as any).detailPath) && (
                             <div className="mt-6">
                               <Button 
                                 asChild 
@@ -194,7 +194,7 @@ export default function Services() {
                                 className="rounded-full px-6 border-2 hover:bg-accent/10"
                                 style={{ borderColor: '#8BC34A', color: '#2d4a2d' }}
                               >
-                                <Link to={`/services/${service.detailSlug}`}>
+                                <Link to={(service as any).detailPath ?? `/services/${service.detailSlug}`}>
                                   {t.homepage.serviceDetail.viewDetails}
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
