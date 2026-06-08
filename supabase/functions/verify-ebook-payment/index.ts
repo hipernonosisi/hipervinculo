@@ -177,7 +177,18 @@ serve(async (req) => {
       await sendEmail(email, name, downloadUrl);
       await supabase.from("ebook_purchases").update({ email_sent_at: new Date().toISOString() }).eq("id", inserted.id);
     } catch (e) {
-      console.error("Email send failure", e);
+      console.error("Customer email send failure", e);
+    }
+    try {
+      await sendAdminEmail({
+        name, email, phone,
+        amount_cents: session.amount_total ?? 4999,
+        currency: session.currency ?? "usd",
+        session_id: session.id,
+        variant,
+      });
+    } catch (e) {
+      console.error("Admin email send failure", e);
     }
 
     return new Response(JSON.stringify({
