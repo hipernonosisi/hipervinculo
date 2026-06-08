@@ -1,13 +1,10 @@
 project_id = "fshfuwinreztcqlumjzp"
 
-[functions.generate-service-description]
+[functions.create-ebook-checkout]
 verify_jwt = false
 
-[functions.meta-ads]
+[functions.verify-ebook-payment]
 verify_jwt = false
 
-[functions.meta-ads-top-creatives]
-verify_jwt = false
-
-[functions.geolocate]
+[functions.download-ebook]
 verify_jwt = false
