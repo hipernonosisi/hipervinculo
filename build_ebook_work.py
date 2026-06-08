@@ -197,19 +197,21 @@ def chart_to_img(fig, w=None, h=None):
     plt.close(fig); buf.seek(0)
     return ImageReader(buf)
 
-# matplotlib style — use Plus Jakarta Sans
+# matplotlib style — match website typography
 try:
     import matplotlib.font_manager as fm
-    for fp in ["/tmp/fonts/PJS-Regular-static.ttf","/tmp/fonts/PJS-Bold-static.ttf","/tmp/fonts/PJS-SemiBold-static.ttf"]:
+    for fp in ["/tmp/inter-fonts/extras/ttf/Inter-Regular.ttf","/tmp/inter-fonts/extras/ttf/Inter-Bold.ttf","/tmp/inter-fonts/extras/ttf/Inter-SemiBold.ttf"]:
         fm.fontManager.addfont(fp)
-    _mpl_font = "Plus Jakarta Sans"
+    _mpl_font = "Inter"
 except Exception:
     _mpl_font = "DejaVu Sans"
 plt.rcParams.update({
-    "font.family": _mpl_font, "font.size": 10,
+    "font.family": _mpl_font, "font.size": 9,
+    "figure.facecolor":"#FFFFFF", "axes.facecolor":"#FFFFFF",
     "axes.edgecolor":"#2F4F3E","axes.labelcolor":"#2F4F3E",
     "xtick.color":"#2F4F3E","ytick.color":"#2F4F3E",
     "axes.spines.top":False,"axes.spines.right":False,
+    "axes.grid": True, "grid.color":"#E5E7DE", "grid.linewidth":0.6,
 })
 
 # ================== PAGE 1: COVER (redesign) ==================
