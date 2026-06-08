@@ -1145,9 +1145,9 @@ y = draw_table(table_x, y, col_w, cols, rows, font_size=8.2, row_h=21, header_h=
 # PAGE 37: Cap 12 - flow operativo
 newpage(title="Cap 12", chapter="Fulfillment hibrido")
 y = PH - 40*mm
-draw_h2("Flujo operativo de una orden", 20*mm, y, size=18); y -= 24
+draw_h2("Flujo operativo de una orden", 20*mm, y, size=18); y -= 38
 c.setFillColor(DARK); c.setFont(FB, 11); c.drawString(MARGIN, y, "De compra a entrega: flujo automatizado")
-y -= 40
+y -= 34
 draw_flow_boxes(MARGIN, y-6, CONTENT_W, ["Cliente compra", "ERP confirma", "Stock 3PL?", "3PL envia"], [LIME, DARK, DARK, LIME], box_h=20*mm, gap=7*mm)
 y -= 38*mm
 draw_flow_boxes(MARGIN+CONTENT_W*0.25, y, CONTENT_W*0.62, ["Trigger dropship", "Tracking automatico", "Cliente recibe + review"], [LIME, DARK, LIME], box_h=20*mm, gap=7*mm)
