@@ -72,9 +72,11 @@ export default function AmazonFbaEbook() {
 
     setLoading(true);
     try {
+      const { name, email, phone } = form;
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
-        body: { ...form, variant, marketing_opt_in: marketingOptIn },
+        body: { name, email, phone, variant, marketing_opt_in: marketingOptIn },
       });
+
       if (error) throw error;
       if (data?.url) {
         window.location.href = data.url;
