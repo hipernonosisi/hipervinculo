@@ -48,6 +48,7 @@ export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [marketingOptIn, setMarketingOptIn] = useState(true);
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
@@ -65,7 +66,7 @@ export default function AmazonFbaEbook() {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
-        body: { ...form, variant },
+        body: { ...form, variant, marketing_opt_in: marketingOptIn },
       });
       if (error) throw error;
       if (data?.url) {
@@ -79,6 +80,7 @@ export default function AmazonFbaEbook() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-white text-foreground">
