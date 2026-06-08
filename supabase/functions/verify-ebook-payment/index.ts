@@ -16,6 +16,53 @@ function genToken() {
   return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+async function sendAdminEmail(p: { name: string; email: string; phone: string | null; amount_cents: number; currency: string; session_id: string; variant: string }) {
+  const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!RESEND_API_KEY || !LOVABLE_API_KEY) return;
+  const amt = `$${(p.amount_cents / 100).toFixed(2)} ${p.currency.toUpperCase()}`;
+  const html = `<!doctype html><html><body style="margin:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;padding:32px 0;"><tr><td align="center">
+    <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+      <tr><td style="background:#ffffff;padding:20px;text-align:center;border-bottom:1px solid #f0f0f0;">
+        <img src="https://hipervinculo.net/logo-hipervinculo.png" alt="Hipervínculo" width="140" style="display:block;margin:0 auto;background:#ffffff;" />
+      </td></tr>
+      <tr><td style="padding:28px;">
+        <div style="display:inline-block;background:#8BC34A;color:#1a2e22;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;">NUEVA VENTA</div>
+        <h1 style="margin:0 0 8px;color:#2F4F3E;font-size:22px;font-weight:800;">Pago recibido: ${amt}</h1>
+        <p style="margin:0 0 20px;color:#666;font-size:14px;">Producto: Amazon FBA Sin Inventario (eBook PDF)</p>
+        <table width="100%" cellpadding="8" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;font-size:14px;">
+          <tr><td style="color:#666;width:35%;">Nombre</td><td style="color:#1a1a1a;font-weight:600;">${p.name}</td></tr>
+          <tr style="background:#f9fafb;"><td style="color:#666;">Email</td><td style="color:#1a1a1a;font-weight:600;">${p.email}</td></tr>
+          <tr><td style="color:#666;">Teléfono</td><td style="color:#1a1a1a;font-weight:600;">${p.phone || "—"}</td></tr>
+          <tr style="background:#f9fafb;"><td style="color:#666;">Monto</td><td style="color:#2F4F3E;font-weight:800;">${amt}</td></tr>
+          <tr><td style="color:#666;">Variante de precio</td><td style="color:#1a1a1a;">${p.variant}</td></tr>
+          <tr style="background:#f9fafb;"><td style="color:#666;">Stripe Session</td><td style="color:#1a1a1a;font-family:monospace;font-size:11px;word-break:break-all;">${p.session_id}</td></tr>
+        </table>
+        <p style="margin:20px 0 0;font-size:13px;color:#666;">Email de descarga enviado automáticamente al cliente.</p>
+      </td></tr>
+      <tr><td style="background:#f9fafb;padding:16px;text-align:center;font-size:12px;color:#666;border-top:1px solid #f0f0f0;">
+        Notificación interna · Hipervínculo
+      </td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+  const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${LOVABLE_API_KEY}`,
+      "X-Connection-Api-Key": RESEND_API_KEY,
+    },
+    body: JSON.stringify({
+      from: "Hipervínculo Ventas <noreply@hipervinculo.net>",
+      to: ["info@hipervinculo.net"],
+      subject: `💰 Nueva venta eBook: ${amt} · ${p.name}`,
+      html,
+    }),
+  });
+  if (!res.ok) console.error("Admin email error", res.status, await res.text());
+}
+
 async function sendEmail(to: string, name: string, downloadUrl: string) {
   const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
