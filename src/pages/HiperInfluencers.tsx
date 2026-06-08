@@ -710,7 +710,6 @@ export default function HiperInfluencers() {
                 {c.revenueNote}
               </p>
             </AnimatedSection>
-            </AnimatedSection>
           </div>
         </div>
       </section>
