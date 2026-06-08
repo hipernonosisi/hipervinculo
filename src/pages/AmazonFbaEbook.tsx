@@ -49,14 +49,14 @@ const faqs = [
 export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "", confirmEmail: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.confirmEmail.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -65,11 +65,18 @@ export default function AmazonFbaEbook() {
       toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
       return;
     }
+    if (form.email.trim() !== form.confirmEmail.trim()) {
+      toast.error("Los correos electrónicos no coinciden. Verifica ambos campos.");
+      return;
+    }
+
     setLoading(true);
     try {
+      const { name, email, phone } = form;
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
-        body: { ...form, variant, marketing_opt_in: marketingOptIn },
+        body: { name, email, phone, variant, marketing_opt_in: marketingOptIn },
       });
+
       if (error) throw error;
       if (data?.url) {
         window.location.href = data.url;
@@ -248,10 +255,16 @@ export default function AmazonFbaEbook() {
               </div>
             </div>
             <div>
+              <Label htmlFor="confirmEmail">Confirmar email</Label>
+              <Input id="confirmEmail" type="email" value={form.confirmEmail} onChange={(e) => setForm({ ...form, confirmEmail: e.target.value })}
+                placeholder="tu@email.com" required maxLength={255} className="mt-1.5" />
+            </div>
+            <div>
               <Label htmlFor="phone">Teléfono (WhatsApp)</Label>
               <Input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder="+1 234 567 8900" required maxLength={30} className="mt-1.5" />
             </div>
+
 
             <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-[#f7faf6] cursor-pointer hover:border-[#8BC34A] transition">
               <input
