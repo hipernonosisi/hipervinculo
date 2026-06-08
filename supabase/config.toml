@@ -1,10 +1,1 @@
 project_id = "fshfuwinreztcqlumjzp"
-
-[functions.create-ebook-checkout]
-verify_jwt = false
-
-[functions.verify-ebook-payment]
-verify_jwt = false
-
-[functions.download-ebook]
-verify_jwt = false
