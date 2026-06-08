@@ -1,11 +1,14 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const SAMPLE_DOWNLOAD = "https://hipervinculo.net/sample-download-link-aqui-iria-el-token-unico-del-cliente";
+const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const SAMPLE_DOWNLOAD = "https://fshfuwinreztcqlumjzp.supabase.co/functions/v1/download-ebook?token=ej3mp10t0k3nseguro1234567890abcdef1234567890abcdef1234567890ab";
 const SAMPLE_NAME = "María González";
 const SAMPLE_EMAIL = "nonosisi@gmail.com";
 const SAMPLE_PHONE = "+52 55 1234 5678";
@@ -17,7 +20,7 @@ function customerHtml(name: string, downloadUrl: string) {
     <tr><td align="center">
       <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
         <tr><td style="background:#ffffff;padding:24px;text-align:center;border-bottom:1px solid #f0f0f0;">
-          <img src="https://hipervinculo.net/logo-hipervinculo.png" alt="Hipervínculo" width="160" style="display:block;margin:0 auto;background:#ffffff;" />
+          <img src="https://fshfuwinreztcqlumjzp.supabase.co/storage/v1/object/public/email-assets/logo.png?v=1" alt="Hipervínculo" width="160" style="display:block;margin:0 auto;background:#ffffff;" />
         </td></tr>
         <tr><td style="padding:32px 28px;">
           <div style="display:inline-block;background:#8BC34A;color:#1a2e22;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;">[MUESTRA]</div>
@@ -42,7 +45,7 @@ function adminHtml(p: { name: string; email: string; phone: string; amount_cents
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;padding:32px 0;"><tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
       <tr><td style="background:#ffffff;padding:20px;text-align:center;border-bottom:1px solid #f0f0f0;">
-        <img src="https://hipervinculo.net/logo-hipervinculo.png" alt="Hipervínculo" width="140" style="display:block;margin:0 auto;background:#ffffff;" />
+        <img src="https://fshfuwinreztcqlumjzp.supabase.co/storage/v1/object/public/email-assets/logo.png?v=1" alt="Hipervínculo" width="140" style="display:block;margin:0 auto;background:#ffffff;" />
       </td></tr>
       <tr><td style="padding:28px;">
         <div style="display:inline-block;background:#8BC34A;color:#1a2e22;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;">[MUESTRA] NUEVA VENTA</div>
@@ -65,34 +68,18 @@ function adminHtml(p: { name: string; email: string; phone: string; amount_cents
   </td></tr></table></body></html>`;
 }
 
-async function send(payload: any) {
-  const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
-  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY")!;
-  const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${LOVABLE_API_KEY}`,
-      "X-Connection-Api-Key": RESEND_API_KEY,
-    },
-    body: JSON.stringify(payload),
-  });
-  const text = await res.text();
-  return { status: res.status, body: text };
-}
-
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
-  const customer = await send({
-    from: "Hipervínculo <noreply@hipervinculo.net>",
+  const customer = await resend.emails.send({
+    from: "Hipervínculo <info@hipervinculo.net>",
     to: [SAMPLE_EMAIL],
     subject: "[MUESTRA] Tu guía Amazon FBA Sin Inventario está lista 📘",
     html: customerHtml(SAMPLE_NAME, SAMPLE_DOWNLOAD),
   });
 
-  const admin = await send({
-    from: "Hipervínculo Ventas <noreply@hipervinculo.net>",
+  const admin = await resend.emails.send({
+    from: "Hipervínculo Ventas <info@hipervinculo.net>",
     to: ["info@hipervinculo.net"],
     subject: `[MUESTRA] 💰 Nueva venta eBook: $49.99 USD · ${SAMPLE_NAME}`,
     html: adminHtml({
