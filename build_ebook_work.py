@@ -184,6 +184,32 @@ def draw_table(x, y, col_w, cols, rows, font_size=8.2, row_h=22, header_h=22, fi
         y -= row_h
     return y
 
+def draw_centered_wrapped(text, x, y, w, h, font=FB, size=8.5, color=white, leading=10):
+    lines = wrap_text(text, font, size, w-8)
+    if len(lines) * leading > h-6:
+        size = max(6.2, size - 1.2)
+        leading = max(8, leading - 1)
+        lines = wrap_text(text, font, size, w-8)
+    start_y = y + h/2 + ((len(lines)-1)*leading)/2 - size/3
+    c.setFillColor(color); c.setFont(font, size)
+    for line in lines[:3]:
+        c.drawCentredString(x+w/2, start_y, line)
+        start_y -= leading
+
+def draw_flow_boxes(x, y, w, labels, colors=None, box_h=22, gap=8):
+    colors = colors or [DARK] * len(labels)
+    box_w = (w - gap*(len(labels)-1)) / len(labels)
+    for i, label in enumerate(labels):
+        bx = x + i*(box_w+gap)
+        c.setFillColor(colors[i]); c.roundRect(bx, y, box_w, box_h, 5, fill=1, stroke=0)
+        draw_centered_wrapped(label, bx, y, box_w, box_h, font=FB, size=8.5, color=(DARK if colors[i] == LIME else white), leading=9)
+        if i < len(labels)-1:
+            c.setStrokeColor(LIME); c.setLineWidth(1.5)
+            c.line(bx+box_w+1.5, y+box_h/2, bx+box_w+gap-1.5, y+box_h/2)
+            p = c.beginPath(); p.moveTo(bx+box_w+gap-1.5, y+box_h/2); p.lineTo(bx+box_w+gap-5, y+box_h/2+3); p.lineTo(bx+box_w+gap-5, y+box_h/2-3); p.close()
+            c.setFillColor(LIME); c.drawPath(p, fill=1, stroke=0)
+    return y - box_h
+
 def draw_image_box(path, x, y, w, h, radius=8):
     """Image cropped into rounded rect (visual rect, image drawn inside)."""
     c.setFillColor(LIGHT); c.roundRect(x, y, w, h, radius, fill=1, stroke=0)
