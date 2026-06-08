@@ -57,6 +57,11 @@ export default function AmazonFbaEbook() {
       toast.error("Completa todos los campos");
       return;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email.trim())) {
+      toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
+      return;
+    }
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
