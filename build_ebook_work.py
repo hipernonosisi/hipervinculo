@@ -804,22 +804,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.28]*4
 table_x = 20*mm
-c.setFillColor(DARK); c.rect(table_x, y-22, sum(col_w), 22, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 10)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-15, col); cx += col_w[i]
-y -= 22
-for ri, row in enumerate(rows):
-    if ri % 2 == 0: c.setFillColor(white)
-    else: c.setFillColor(LIGHT)
-    c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK if i==0 else TEXT)
-        c.setFont(FB if i==0 else F, 9)
-        c.drawString(cx+8, y-14, cell); cx += col_w[i]
-    y -= 20
+y = draw_table(table_x, y, col_w, cols, rows, font_size=7.5, row_h=21, header_h=22)
 y -= 14
 c.setFillColor(LIGHT); c.roundRect(20*mm, y-50, PW-40*mm, 40, 8, fill=1, stroke=0)
 c.setFillColor(DARK); c.setFont(FB, 10); c.drawString(28*mm, y-20, "Nuestro stack recomendado para empezar:")
@@ -844,24 +829,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.32, (PW-40*mm)*0.12, (PW-40*mm)*0.18, (PW-40*mm)*0.18, (PW-40*mm)*0.20]
 table_x = 20*mm
-c.setFillColor(DARK); c.rect(table_x, y-22, sum(col_w), 22, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 10)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-15, col); cx += col_w[i]
-y -= 22
-for ri, row in enumerate(rows):
-    is_total = row[0]=="TOTAL"
-    if is_total: c.setFillColor(LIME)
-    elif ri % 2 == 0: c.setFillColor(white)
-    else: c.setFillColor(LIGHT)
-    c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK)
-        c.setFont(FB if i==0 or is_total else F, 10)
-        c.drawString(cx+8, y-14, cell); cx += col_w[i]
-    y -= 20
+y = draw_table(table_x, y, col_w, cols, rows, font_size=8, row_h=21, header_h=22, highlights={7})
 
 # ================== PARTE III ==================
 # PAGE 25: divider
