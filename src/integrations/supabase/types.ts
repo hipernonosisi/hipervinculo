@@ -181,6 +181,66 @@ export type Database = {
         }
         Relationships: []
       }
+      ebook_purchases: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          currency: string
+          download_count: number
+          download_token: string
+          email: string
+          email_sent_at: string | null
+          expires_at: string
+          id: string
+          max_downloads: number
+          name: string
+          paid_at: string | null
+          phone: string | null
+          price_variant: string | null
+          stripe_payment_intent: string | null
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_token: string
+          email: string
+          email_sent_at?: string | null
+          expires_at?: string
+          id?: string
+          max_downloads?: number
+          name: string
+          paid_at?: string | null
+          phone?: string | null
+          price_variant?: string | null
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          download_count?: number
+          download_token?: string
+          email?: string
+          email_sent_at?: string | null
+          expires_at?: string
+          id?: string
+          max_downloads?: number
+          name?: string
+          paid_at?: string | null
+          phone?: string | null
+          price_variant?: string | null
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       incomplete_leads: {
         Row: {
           completed: boolean
