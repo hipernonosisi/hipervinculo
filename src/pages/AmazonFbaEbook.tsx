@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import {
   CheckCircle2, Package, TrendingUp, Shield, Clock, Star, Lock,
   FileText, Zap, BookOpen, DollarSign, Truck, BarChart3, Users,
+  AlertTriangle,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -54,6 +55,11 @@ export default function AmazonFbaEbook() {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email.trim())) {
+      toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
       return;
     }
     setLoading(true);
@@ -230,7 +236,12 @@ export default function AmazonFbaEbook() {
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="tu@email.com" required maxLength={255} className="mt-1.5" />
-              <p className="text-xs text-muted-foreground mt-1">Aquí recibirás tu guía PDF</p>
+              <div className="flex items-start gap-2 mt-2 p-2.5 rounded-lg bg-[#8BC34A]/10 border border-[#8BC34A]/30">
+                <AlertTriangle className="w-4 h-4 text-[#2F4F3E] flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-[#2F4F3E] font-medium leading-relaxed">
+                  Asegúrate de escribir tu correo correctamente. El enlace de descarga de tu guía PDF se envía exclusivamente a esta dirección. Si hay un error, no podrás recibir tu compra.
+                </p>
+              </div>
             </div>
             <div>
               <Label htmlFor="phone">Teléfono (WhatsApp)</Label>
