@@ -95,7 +95,7 @@ export function Header() {
                       {serviceLinks.map((s) => (
                         <Link
                           key={s.slug}
-                          to={`/services/${s.slug}`}
+                          to={s.path ?? `/services/${s.slug}`}
                           className="block px-4 py-2 text-[13px] text-muted-foreground hover:text-accent hover:bg-muted/50 transition-colors"
                         >
                           {s[language]}
@@ -182,7 +182,7 @@ export function Header() {
                         {serviceLinks.map((s) => (
                           <Link
                             key={s.slug}
-                            to={`/services/${s.slug}`}
+                            to={s.path ?? `/services/${s.slug}`}
                             onClick={() => setIsMenuOpen(false)}
                             className="block text-[13px] text-muted-foreground hover:text-accent py-1.5"
                           >
