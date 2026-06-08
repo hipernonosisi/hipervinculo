@@ -301,16 +301,8 @@ export default function AmazonFbaEbook() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#1a2e22] text-white/80 py-10">
-        <div className="container mx-auto px-4 text-center text-sm space-y-2">
-          <div className="bg-white p-2 rounded inline-block">
-            <img src={logo} alt="Hipervínculo" className="h-7" />
-          </div>
-          <p>© {new Date().getFullYear()} Hipervínculo · info@hipervinculo.net</p>
-          <p className="text-xs text-white/50">Producto digital. No reembolsable una vez descargado.</p>
-        </div>
-      </footer>
+      <Footer />
+
     </div>
   );
 }
