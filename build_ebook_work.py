@@ -13,30 +13,33 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Brand
+# Brand — matched to the live website
 DARK = HexColor("#2F4F3E")
 LIME = HexColor("#8BC34A")
-CREAM = HexColor("#F8F9F5")
+CREAM = HexColor("#FFFFFF")
 TEXT = HexColor("#2A2A2A")
 MUTED = HexColor("#6B7280")
-LIGHT = HexColor("#E8EFE3")
+LIGHT = HexColor("#F5F6F2")
+LINE = HexColor("#E5E7DE")
+MARGIN = 20*mm
+CONTENT_W = A4[0] - 2*MARGIN
 
 ASSETS = "/mnt/documents/ebook-assets"
 OUT = "/mnt/documents/Amazon_FBA_Sin_Inventario_Hipervinculo.pdf"
 PW, PH = A4
 
-# Font: Plus Jakarta Sans (brand)
+# Font: Inter — exact family used by the website
 try:
-    pdfmetrics.registerFont(TTFont("PJS", "/tmp/fonts/PJS-Regular-static.ttf"))
-    pdfmetrics.registerFont(TTFont("PJS-SB", "/tmp/fonts/PJS-SemiBold-static.ttf"))
-    pdfmetrics.registerFont(TTFont("PJS-B", "/tmp/fonts/PJS-Bold-static.ttf"))
-    pdfmetrics.registerFont(TTFont("PJS-EB", "/tmp/fonts/PJS-ExtraBold-static.ttf"))
+    pdfmetrics.registerFont(TTFont("Inter", "/tmp/inter-fonts/extras/ttf/Inter-Regular.ttf"))
+    pdfmetrics.registerFont(TTFont("Inter-SB", "/tmp/inter-fonts/extras/ttf/Inter-SemiBold.ttf"))
+    pdfmetrics.registerFont(TTFont("Inter-B", "/tmp/inter-fonts/extras/ttf/Inter-Bold.ttf"))
+    pdfmetrics.registerFont(TTFont("Inter-EB", "/tmp/inter-fonts/extras/ttf/Inter-ExtraBold.ttf"))
     from reportlab.pdfbase.pdfmetrics import registerFontFamily
-    registerFontFamily("PJS", normal="PJS", bold="PJS-B")
-    F, FB, FEB = "PJS", "PJS-B", "PJS-EB"
+    registerFontFamily("Inter", normal="Inter", bold="Inter-B")
+    F, FSB, FB, FEB = "Inter", "Inter-SB", "Inter-B", "Inter-EB"
 except Exception as e:
     print("Font load failed:", e)
-    F, FB, FEB = "Helvetica", "Helvetica-Bold", "Helvetica-Bold"
+    F, FSB, FB, FEB = "Helvetica", "Helvetica-Bold", "Helvetica-Bold", "Helvetica-Bold"
 
 c = canvas_mod.Canvas(OUT, pagesize=A4)
 page_num = [0]
@@ -49,20 +52,20 @@ def page_bg(color=CREAM):
 def header_bar(title=None, chapter=None):
     c.setFillColor(LIME); c.rect(0, PH-8, PW, 8, fill=1, stroke=0)
     if title:
-        c.setFillColor(MUTED); c.setFont(F, 8)
-        c.drawString(20*mm, PH-22, title.upper())
+        c.setFillColor(MUTED); c.setFont(F, 7.5)
+        c.drawString(MARGIN, PH-22, title.upper())
     if chapter:
-        c.setFillColor(DARK); c.setFont(FB, 8)
-        c.drawRightString(PW-20*mm, PH-22, chapter.upper())
+        c.setFillColor(DARK); c.setFont(FB, 7.5)
+        c.drawRightString(PW-MARGIN, PH-22, chapter.upper())
 
 def footer():
     n = page_num[0]
     if n == 0: return
-    c.setFillColor(MUTED); c.setFont(F, 8)
-    c.drawString(20*mm, 12*mm, "HIPERVINCULO  ·  AMAZON FBA SIN INVENTARIO 2026")
-    c.drawRightString(PW-20*mm, 12*mm, f"{n} / {total_pages}")
-    c.setStrokeColor(LIGHT); c.setLineWidth(0.5)
-    c.line(20*mm, 16*mm, PW-20*mm, 16*mm)
+    c.setFillColor(MUTED); c.setFont(F, 7.5)
+    c.drawString(MARGIN, 12*mm, "HIPERVINCULO  ·  AMAZON FBA SIN INVENTARIO 2026")
+    c.drawRightString(PW-MARGIN, 12*mm, f"{n} / {total_pages}")
+    c.setStrokeColor(LINE); c.setLineWidth(0.5)
+    c.line(MARGIN, 16*mm, PW-MARGIN, 16*mm)
 
 
 
