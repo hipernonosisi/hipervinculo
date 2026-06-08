@@ -153,8 +153,10 @@ serve(async (req) => {
         amount_cents: session.amount_total ?? 4999,
         currency: session.currency ?? "usd",
         session_id: session.id, variant,
+        marketing_opt_in: marketingOptIn,
       });
     } catch (e) { console.error("Admin email error", e); }
+
 
     return new Response(JSON.stringify({
       status: "ok", name, email, download_url: downloadUrl,
