@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Magnet, Globe, Search, Activity, ShoppingCart, Package, Code, Palette } from 'lucide-react';
+import { ArrowRight, CheckCircle, Magnet, Globe, Search, Activity, ShoppingCart, Package, Code, Palette, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Layout } from '@/components/layout/Layout';
@@ -68,6 +68,20 @@ export default function Services() {
       description: t.servicesPage.brandIdentity.description,
       features: t.servicesPage.brandIdentity.features,
       detailSlug: 'brand-identity-manual',
+    },
+    {
+      icon: Rocket,
+      title: 'Hiper Influencers',
+      description: language === 'en'
+        ? 'Turn your audience into a scalable digital business without investing upfront. We build the funnel, run the ads, and share revenue with you.'
+        : 'Convierte tu audiencia en un negocio digital escalable sin invertir por adelantado. Construimos el funnel, operamos los ads y compartimos los ingresos contigo.',
+      features: language === 'en'
+        ? ['Landing pages & sales funnels', 'Meta Ads management & budget', 'Checkout & conversion tracking', '25% revenue share to the creator'],
+        : ['Landing pages y funnels de venta', 'Gestión y presupuesto de Meta Ads', 'Checkout y tracking de conversiones', '25% revenue share para el creador'],
+      note: language === 'en'
+        ? 'Best for: influencers, educators, coaches and experts with engaged audiences.'
+        : 'Ideal para: influencers, educadores, coaches y expertos con audiencias comprometidas.',
+      detailPath: '/hiper-influencers',
     },
   ];
 
