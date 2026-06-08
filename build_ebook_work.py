@@ -690,7 +690,6 @@ for t, d in filters:
 newpage(title="Cap 06", chapter="Seleccion de nicho")
 y = PH - 40*mm
 draw_h2("Categorias ganadoras 2026", 20*mm, y, size=18); y -= 20
-y -= 110
 # Chart of categories
 fig, ax = plt.subplots(figsize=(7,3.2))
 cats = ["Pet","Kitchen","Home","Beauty","Fitness","Office","Auto","Baby"]
@@ -1160,7 +1159,6 @@ draw_title("Fulfillment hibrido paso a paso", 20*mm, y, size=22); y -= 14
 y -= 20
 y = draw_para("El modelo hibrido combina lo mejor del dropshipping (sin stock) con lo mejor de FBA (velocidad Prime). Tres capas trabajando en paralelo:", 20*mm, y, PW-40*mm, size=11, leading=16)
 y -= 14
-y -= 105
 layers = [
     ("Capa 1  ·  3PL en US","Almacena 30-60 unidades en warehouse Texas/Pennsylvania. Envia en 2-3 dias. Cubre el 70% de demanda."),
     ("Capa 2  ·  Dropship proveedor","Para picos: el proveedor envia directo via DHL Express en 5-7 dias. Cubre el 25% de demanda."),
@@ -1228,7 +1226,6 @@ y = PH - 40*mm
 draw_chip("CAPITULO 13", 20*mm, y, fill=LIME, txt=DARK); y -= 18
 draw_title("Margenes, pricing y simulaciones", 20*mm, y, size=22); y -= 14
 y -= 14
-y -= 90
 y = draw_para("Calcular el margen real (no el teorico) es lo que separa al seller que sobrevive del que quiebra al sexto mes.", 20*mm, y, PW-40*mm, size=11, leading=16)
 y -= 18
 # Cost breakdown
@@ -1373,7 +1370,6 @@ y = PH - 40*mm
 draw_chip("CAPITULO 15", 20*mm, y, fill=LIME, txt=DARK); y -= 18
 draw_title("Lanzamiento y primeras ventas", 20*mm, y, size=22); y -= 14
 y -= 14
-y -= 90
 y = draw_para("Las primeras 25 ventas y reviews son las mas dificiles y las que mas marcan el destino del listing. Estrategia de los primeros 30 dias:", 20*mm, y, PW-40*mm, size=11, leading=16)
 y -= 16
 phases = [
