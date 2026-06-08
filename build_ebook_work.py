@@ -611,23 +611,9 @@ y -= 20
 y = draw_para("El sistema completo tiene 6 capas. Cada una resuelve un problema especifico y se conecta con la siguiente. Esta es la vista de pajaro:", 20*mm, y, PW-40*mm, size=11, leading=16)
 y -= 20
 
-# Flow diagram via matplotlib
-fig, ax = plt.subplots(figsize=(8,4))
-steps = ["Nicho","Producto","Proveedor","Listing","Fulfillment","Venta"]
-for i, s in enumerate(steps):
-    x = i * 1.4
-    rect = plt.Rectangle((x, 0.4), 1.1, 0.6, facecolor="#2F4F3E", edgecolor="none")
-    ax.add_patch(rect)
-    ax.text(x+0.55, 0.7, s, color="white", ha="center", va="center", fontsize=11, fontweight="bold")
-    if i < len(steps)-1:
-        ax.annotate("", xy=(x+1.35, 0.7), xytext=(x+1.15, 0.7),
-                    arrowprops=dict(arrowstyle="->", color="#8BC34A", lw=2.5))
-ax.set_xlim(-0.2, len(steps)*1.4)
-ax.set_ylim(0, 1.4)
-ax.axis("off")
-img = chart_to_img(fig)
-c.drawImage(img, 20*mm, y-100, width=PW-40*mm, height=90, preserveAspectRatio=True, anchor='c')
-y -= 120
+# Flow diagram drawn natively for crisp, non-overlapping PDF text
+draw_flow_boxes(MARGIN, y-62, CONTENT_W, ["Nicho", "Producto", "Proveedor", "Listing", "Fulfillment", "Venta"], [DARK, DARK, DARK, DARK, DARK, LIME], box_h=22*mm, gap=5*mm)
+y -= 90
 # detail boxes
 detail = [
     ("Nicho","Categoria con demanda probada y baja saturacion"),
@@ -1225,28 +1211,12 @@ for ri, row in enumerate(rows):
 newpage(title="Cap 12", chapter="Fulfillment hibrido")
 y = PH - 40*mm
 draw_h2("Flujo operativo de una orden", 20*mm, y, size=18); y -= 24
-fig, ax = plt.subplots(figsize=(8,4.5))
-ax.set_xlim(0, 10); ax.set_ylim(0, 6); ax.axis("off")
-nodes = [
-    (1, 4, "Cliente compra\nen Amazon", "#8BC34A"),
-    (3.5, 4, "Webhook a ERP\n(< 5 min)", "#2F4F3E"),
-    (6, 5, "Stock en 3PL?", "#2F4F3E"),
-    (8.5, 5.5, "3PL envia\n2-3 dias", "#8BC34A"),
-    (8.5, 4.5, "Trigger\ndropship", "#8BC34A"),
-    (6, 2.5, "Tracking\nautomatico", "#2F4F3E"),
-    (8.5, 2.5, "Cliente recibe\n+ review", "#8BC34A"),
-]
-for x, ye, t, col in nodes:
-    rect = plt.Rectangle((x-0.7, ye-0.35), 1.5, 0.7, facecolor=col, edgecolor="none")
-    ax.add_patch(rect)
-    ax.text(x+0.05, ye, t, ha="center", va="center", color="white", fontsize=8, fontweight="bold")
-arrows = [(1.8,4,2.8,4),(4.3,4,5.3,4.9),(6.8,5.1,7.8,5.5),(6.8,4.9,7.8,4.5),(6,4.6,6,2.9),(6.8,2.5,7.8,2.5)]
-for x1,y1,x2,y2 in arrows:
-    ax.annotate("", xy=(x2,y2), xytext=(x1,y1), arrowprops=dict(arrowstyle="->", color="#2F4F3E", lw=2))
-ax.set_title("De compra a entrega: flujo automatizado", color="#2F4F3E", fontweight="bold", fontsize=12)
-img = chart_to_img(fig)
-c.drawImage(img, 20*mm, y-180, width=PW-40*mm, height=175, preserveAspectRatio=True, anchor='c')
-y -= 200
+c.setFillColor(DARK); c.setFont(FB, 11); c.drawString(MARGIN, y, "De compra a entrega: flujo automatizado")
+y -= 40
+draw_flow_boxes(MARGIN, y-6, CONTENT_W, ["Cliente compra", "ERP confirma", "Stock 3PL?", "3PL envia"], [LIME, DARK, DARK, LIME], box_h=20*mm, gap=7*mm)
+y -= 38*mm
+draw_flow_boxes(MARGIN+CONTENT_W*0.25, y, CONTENT_W*0.62, ["Trigger dropship", "Tracking automatico", "Cliente recibe + review"], [LIME, DARK, LIME], box_h=20*mm, gap=7*mm)
+y -= 78
 c.setFillColor(LIGHT); c.roundRect(20*mm, y-60, PW-40*mm, 50, 8, fill=1, stroke=0)
 c.setFillColor(DARK); c.setFont(FB, 11); c.drawString(28*mm, y-22, "Tiempo total maximo de respuesta")
 draw_para("Compra a tracking visible: < 24 horas. Es lo que Amazon mide como Order Defect Rate. Mantener este KPI < 1% es la clave para sobrevivir.", 28*mm, y-38, PW-56*mm, size=10, leading=13)
