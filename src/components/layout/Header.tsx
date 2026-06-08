@@ -7,7 +7,9 @@ import { cn } from '@/lib/utils';
 import logoFull from '@/assets/logo-hipervinculo.png';
 import logoSymbol from '@/assets/symbol-hipervinculo.png';
 
-const serviceLinks = [
+type ServiceLink = { slug: string; en: string; es: string; path?: string };
+
+const serviceLinks: ServiceLink[] = [
   { slug: 'lead-generation-systems', en: 'Lead Generation Systems', es: 'Sistemas de Generación de Leads' },
   { slug: 'ecommerce-growth-partners', en: 'E-Commerce Growth', es: 'Crecimiento E-Commerce' },
   { slug: 'conversion-website-development', en: 'Website Development', es: 'Desarrollo Web' },
@@ -16,6 +18,7 @@ const serviceLinks = [
   { slug: 'tracking-attribution', en: 'Tracking & Attribution', es: 'Tracking & Atribución' },
   { slug: 'custom-enterprise-applications', en: 'Custom Applications', es: 'Aplicaciones a Medida' },
   { slug: 'brand-identity-manual', en: 'Brand Identity Manual', es: 'Manual de Identidad de Marca' },
+  { slug: 'hiper-influencers', en: 'Hiper Influencers', es: 'Hiper Influencers', path: '/hiper-influencers' },
 ];
 
 export function Header() {
@@ -92,7 +95,7 @@ export function Header() {
                       {serviceLinks.map((s) => (
                         <Link
                           key={s.slug}
-                          to={`/services/${s.slug}`}
+                          to={s.path ?? `/services/${s.slug}`}
                           className="block px-4 py-2 text-[13px] text-muted-foreground hover:text-accent hover:bg-muted/50 transition-colors"
                         >
                           {s[language]}
@@ -179,7 +182,7 @@ export function Header() {
                         {serviceLinks.map((s) => (
                           <Link
                             key={s.slug}
-                            to={`/services/${s.slug}`}
+                            to={s.path ?? `/services/${s.slug}`}
                             onClick={() => setIsMenuOpen(false)}
                             className="block text-[13px] text-muted-foreground hover:text-accent py-1.5"
                           >

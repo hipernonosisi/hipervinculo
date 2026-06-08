@@ -273,6 +273,95 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Hiper Influencers Promo */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="container">
+          <AnimatedSection>
+            <div
+              className="relative overflow-hidden rounded-3xl max-w-6xl mx-auto"
+              style={{ backgroundColor: '#2d4a2d' }}
+            >
+              <div
+                className="absolute inset-0 opacity-[0.06]"
+                style={{
+                  backgroundImage: `repeating-linear-gradient(45deg, #ffffff 0px, #ffffff 1px, transparent 1px, transparent 14px)`,
+                }}
+              />
+              <div className="relative grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-12 p-8 md:p-12 lg:p-16 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }}>
+                    <Star className="h-3.5 w-3.5 text-white" />
+                    <span className="text-[12px] font-bold text-white uppercase tracking-wider">
+                      {language === 'en' ? 'New Program' : 'Nuevo Programa'}
+                    </span>
+                  </div>
+                  <h2
+                    className="text-[34px] md:text-[44px] lg:text-[52px] text-white leading-[1.08] tracking-[-0.02em] mb-5"
+                    style={{ fontWeight: 800 }}
+                  >
+                    {language === 'en' ? 'Hiper Influencers' : 'Hiper Influencers'}
+                  </h2>
+                  <p className="text-[17px] md:text-[19px] text-white/85 leading-relaxed mb-8 max-w-2xl">
+                    {language === 'en'
+                      ? 'Turn your audience into a scalable digital business — without investing upfront. We build the funnel, run the Meta Ads, and share 25% of every sale with you.'
+                      : 'Convierte tu audiencia en un negocio digital escalable — sin invertir por adelantado. Construimos el funnel, operamos los Meta Ads y compartimos el 25% de cada venta contigo.'}
+                  </p>
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {(language === 'en'
+                      ? ['No upfront cost', 'We fund the ads', 'Performance-based']
+                      : ['Sin costo inicial', 'Financiamos los ads', 'Basado en resultados']
+                    ).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-4 py-1.5 rounded-full text-[13px] font-semibold text-white border border-white/25"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="rounded-full h-13 px-7 text-[15px] font-semibold"
+                      style={{ backgroundColor: '#8BC34A', color: 'white' }}
+                    >
+                      <Link to="/hiper-influencers">
+                        {language === 'en' ? 'Apply Now' : 'Aplicar Ahora'}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="lg"
+                      className="rounded-full h-13 px-7 text-[15px] font-semibold bg-transparent border-2 border-white text-white hover:bg-white hover:text-foreground"
+                    >
+                      <Link to="/hiper-influencers">
+                        {language === 'en' ? 'Learn More' : 'Conoce Más'}
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="hidden lg:flex items-center justify-center">
+                  <div className="bg-white rounded-2xl p-8 w-full text-center shadow-2xl">
+                    <p className="text-[13px] uppercase tracking-wider font-bold text-muted-foreground mb-3">
+                      {language === 'en' ? 'Revenue Share' : 'Revenue Share'}
+                    </p>
+                    <p className="text-[88px] font-extrabold leading-none mb-2" style={{ color: '#8BC34A' }}>
+                      25%
+                    </p>
+                    <p className="text-[15px] font-semibold" style={{ color: '#2d4a2d' }}>
+                      {language === 'en' ? 'to the creator, on every sale' : 'al creador, en cada venta'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* What Makes Us Different */}
       <section className="py-24 md:py-32 bg-accent">
         <div className="container">
