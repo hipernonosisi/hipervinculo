@@ -111,6 +111,11 @@ def wrap_text(text, font, size, max_w):
     if cur: lines.append(cur)
     return lines
 
+def fit_text(text, font, size, max_w, min_size=5.8):
+    while size > min_size and c.stringWidth(text, font, size) > max_w:
+        size -= 0.2
+    return size
+
 def draw_para(text, x, y, max_w, font=F, size=10, leading=14, color=TEXT, align="left"):
     c.setFillColor(color); c.setFont(font, size)
     lines = wrap_text(text, font, size, max_w)
@@ -130,16 +135,54 @@ def draw_title(text, x, y, size=28, color=DARK, font=FB):
 def draw_h2(text, x, y, size=18, color=DARK):
     c.setFillColor(color); c.setFont(FB, size)
     c.drawString(x, y, text)
-    # accent bar below descenders
-    c.setFillColor(LIME); c.rect(x, y-int(size*0.35), 40, 3, fill=1, stroke=0)
-    return y - 12
+    # Website-style accent placed with clear separation from text descenders
+    c.setFillColor(LIME); c.rect(x, y-size*0.72, 34*mm, 2.2, fill=1, stroke=0)
+    return y - size - 12
 
 def draw_chip(text, x, y, fill=LIME, txt=white):
-    w = c.stringWidth(text, FB, 8) + 16
+    w = c.stringWidth(text, FSB, 8) + 16
     c.setFillColor(fill); c.roundRect(x, y, w, 14, 7, fill=1, stroke=0)
-    c.setFillColor(txt); c.setFont(FB, 8)
-    c.drawString(x+8, y+4, text)
+    c.setFillColor(txt); c.setFont(FSB, 8)
+    c.drawString(x+8, y+4.2, text)
     return w
+
+def draw_website_stat_row(y, stats, top_line=True):
+    if top_line:
+        c.setStrokeColor(LINE); c.setLineWidth(0.5)
+        c.line(MARGIN, y+16, PW-MARGIN, y+16)
+    seg = CONTENT_W / len(stats)
+    for i, (big, small) in enumerate(stats):
+        cx = MARGIN + seg*i + seg/2
+        c.setFillColor(DARK); c.setFont(F, 22)
+        c.drawCentredString(cx, y, big)
+        c.setFillColor(MUTED); c.setFont(F, 9)
+        c.drawCentredString(cx, y-12, small.upper())
+
+def draw_table(x, y, col_w, cols, rows, font_size=8.2, row_h=22, header_h=22, first_bold=True, highlights=None):
+    highlights = highlights or set()
+    c.setFillColor(DARK); c.rect(x, y-header_h, sum(col_w), header_h, fill=1, stroke=0)
+    c.setFillColor(white); c.setFont(FB, font_size)
+    cx = x
+    for i, col in enumerate(cols):
+        fs = fit_text(col, FB, font_size, col_w[i]-10)
+        c.setFont(FB, fs); c.drawString(cx+6, y-header_h+7, col); cx += col_w[i]
+    y -= header_h
+    for ri, row in enumerate(rows):
+        is_hi = ri in highlights or (row and str(row[0]).upper() == "TOTAL") or (row and "Margen" in str(row[0]))
+        c.setFillColor(LIME if is_hi else (white if ri%2==0 else LIGHT))
+        c.rect(x, y-row_h, sum(col_w), row_h, fill=1, stroke=0)
+        c.setStrokeColor(LINE); c.setLineWidth(0.35)
+        c.line(x, y-row_h, x+sum(col_w), y-row_h)
+        cx = x
+        for i, cell in enumerate(row):
+            font = FB if (first_bold and i == 0) or is_hi else F
+            fs = fit_text(str(cell), font, font_size, col_w[i]-10)
+            c.setFillColor(DARK if (i == 0 or is_hi) else TEXT)
+            c.setFont(font, fs)
+            c.drawString(cx+6, y-row_h+7, str(cell))
+            cx += col_w[i]
+        y -= row_h
+    return y
 
 def draw_image_box(path, x, y, w, h, radius=8):
     """Image cropped into rounded rect (visual rect, image drawn inside)."""
