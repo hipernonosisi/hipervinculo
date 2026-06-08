@@ -124,7 +124,7 @@ export default function AmazonFbaEbook() {
               <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
                 <Zap className="w-3 h-3" /> NUEVA EDICIÓN 2026
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
                 Vende en Amazon <span className="text-[#8BC34A]">sin manejar inventario</span>
               </h1>
               <p className="text-lg md:text-xl text-white/85 mb-8 leading-relaxed">
