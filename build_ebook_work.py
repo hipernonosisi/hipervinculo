@@ -497,24 +497,7 @@ rows = [
 ]
 col_w = [(PW-40*mm)*0.28, (PW-40*mm)*0.24, (PW-40*mm)*0.24, (PW-40*mm)*0.24]
 table_x = 20*mm
-# header
-c.setFillColor(DARK); c.rect(table_x, y-22, sum(col_w), 22, fill=1, stroke=0)
-c.setFillColor(white); c.setFont(FB, 10)
-cx = table_x
-for i, col in enumerate(cols):
-    c.drawString(cx+8, y-15, col); cx += col_w[i]
-y -= 22
-for ri, row in enumerate(rows):
-    if ri % 2 == 0:
-        c.setFillColor(white); c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-    else:
-        c.setFillColor(LIGHT); c.rect(table_x, y-20, sum(col_w), 20, fill=1, stroke=0)
-    cx = table_x
-    for i, cell in enumerate(row):
-        c.setFillColor(DARK if i==0 else TEXT)
-        c.setFont(FB if i==0 else F, 9)
-        c.drawString(cx+8, y-14, cell); cx += col_w[i]
-    y -= 20
+y = draw_table(table_x, y, col_w, cols, rows, font_size=7.8, row_h=20, header_h=22)
 
 # PAGE 11: Cap 3 cont
 newpage(title="Cap 03", chapter="FBA vs FBM vs Dropshipping")
