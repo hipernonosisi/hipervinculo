@@ -286,6 +286,12 @@ export default function AmazonFbaEbook() {
               {loading ? "Procesando..." : `Pagar $${PRICE_USD} y descargar →`}
             </Button>
 
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground flex items-center justify-center gap-1.5">
+                <Lock className="w-3 h-3" />
+                Pago seguro procesado por Stripe. Tu información está protegida con cifrado SSL.
+              </p>
+            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground pt-2">
               <div className="flex items-center gap-1"><Lock className="w-3 h-3" /> Pago cifrado</div>
