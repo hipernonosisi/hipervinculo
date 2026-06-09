@@ -357,7 +357,7 @@ export default function AmazonFbaEbook() {
                 {/* Glow */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8BC34A]/30 to-[#8BC34A]/10 rounded-3xl blur-xl pointer-events-none" />
 
-                <form onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl">
+                <form id="buy-form" onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl scroll-mt-24">
                   {/* Header buy box */}
                   <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-border">
                     <div className="min-w-0">
