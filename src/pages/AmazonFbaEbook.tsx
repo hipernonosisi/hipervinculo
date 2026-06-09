@@ -398,6 +398,44 @@ export default function AmazonFbaEbook() {
 
       <Footer />
 
+      {/* MOBILE STICKY BUY BAR */}
+      <AnimatePresence>
+        {showStickyBar && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+            className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#8BC34A] shadow-[0_-8px_24px_rgba(0,0,0,0.15)]"
+            style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+          >
+            <div className="flex items-center gap-3 px-3 py-2.5">
+              <div className="flex-shrink-0">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xl font-extrabold text-[#2F4F3E]">${PRICE_USD}</span>
+                  <span className="text-xs line-through text-muted-foreground">${ORIG_USD}</span>
+                </div>
+                <div className="text-[10px] text-[#2F4F3E] font-mono flex items-center gap-1">
+                  <Flame className="w-3 h-3 text-[#8BC34A]" /> {mm}:{ss}
+                </div>
+              </div>
+              <a href="#comprar" className="flex-1">
+                <motion.div
+                  animate={{ boxShadow: ["0 0 0 0 rgba(139,195,74,0.7)", "0 0 0 10px rgba(139,195,74,0)", "0 0 0 0 rgba(139,195,74,0)"] }}
+                  transition={{ duration: 1.8, repeat: Infinity }}
+                  className="rounded-xl"
+                >
+                  <Button className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base h-12">
+                    Comprar ahora →
+                  </Button>
+                </motion.div>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
+
   );
 }
