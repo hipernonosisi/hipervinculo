@@ -167,6 +167,9 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({
       status: "ok", name, email, download_url: downloadUrl,
+      amount_cents: session.amount_total ?? 4999,
+      currency: session.currency ?? "usd",
+      session_id: session.id, already_processed: false,
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     console.error("verify-ebook-payment error", e);
