@@ -181,9 +181,53 @@ export type Database = {
         }
         Relationships: []
       }
+      ebook_download_logs: {
+        Row: {
+          city: string | null
+          client_ip: string | null
+          country: string | null
+          downloaded_at: string
+          id: string
+          purchase_id: string
+          region: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
+          downloaded_at?: string
+          id?: string
+          purchase_id: string
+          region?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
+          downloaded_at?: string
+          id?: string
+          purchase_id?: string
+          region?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ebook_download_logs_purchase_id_fkey"
+            columns: ["purchase_id"]
+            isOneToOne: false
+            referencedRelation: "ebook_purchases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ebook_purchases: {
         Row: {
           amount_cents: number
+          city: string | null
+          client_ip: string | null
+          country: string | null
           created_at: string
           currency: string
           download_count: number
@@ -191,19 +235,34 @@ export type Database = {
           email: string
           email_sent_at: string | null
           expires_at: string
+          fbc: string | null
+          fbp: string | null
+          first_downloaded_at: string | null
           id: string
+          last_downloaded_at: string | null
           marketing_opt_in: boolean
           max_downloads: number
           name: string
           paid_at: string | null
           phone: string | null
           price_variant: string | null
+          referrer: string | null
+          region: string | null
           stripe_payment_intent: string | null
           stripe_session_id: string | null
           updated_at: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
         }
         Insert: {
           amount_cents: number
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
           created_at?: string
           currency?: string
           download_count?: number
@@ -211,19 +270,34 @@ export type Database = {
           email: string
           email_sent_at?: string | null
           expires_at?: string
+          fbc?: string | null
+          fbp?: string | null
+          first_downloaded_at?: string | null
           id?: string
+          last_downloaded_at?: string | null
           marketing_opt_in?: boolean
           max_downloads?: number
           name: string
           paid_at?: string | null
           phone?: string | null
           price_variant?: string | null
+          referrer?: string | null
+          region?: string | null
           stripe_payment_intent?: string | null
           stripe_session_id?: string | null
           updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Update: {
           amount_cents?: number
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
           created_at?: string
           currency?: string
           download_count?: number
@@ -231,16 +305,28 @@ export type Database = {
           email?: string
           email_sent_at?: string | null
           expires_at?: string
+          fbc?: string | null
+          fbp?: string | null
+          first_downloaded_at?: string | null
           id?: string
+          last_downloaded_at?: string | null
           marketing_opt_in?: boolean
           max_downloads?: number
           name?: string
           paid_at?: string | null
           phone?: string | null
           price_variant?: string | null
+          referrer?: string | null
+          region?: string | null
           stripe_payment_intent?: string | null
           stripe_session_id?: string | null
           updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }
