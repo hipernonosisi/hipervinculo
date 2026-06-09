@@ -158,7 +158,7 @@ export default function AmazonFbaEbook() {
                 <div className="flex items-center gap-1 text-[#8BC34A]">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
-                <span className="text-sm text-white/70">50 páginas · 32 criterios · 3 plantillas</span>
+                <span className="text-sm text-white/70">32 criterios · 3 plantillas</span>
               </div>
 
               {/* Urgency banner */}
@@ -206,7 +206,7 @@ export default function AmazonFbaEbook() {
                       <p className="text-xs text-white/70">Valida tu producto antes de comprar inventario — y escala solo lo que ya funciona.</p>
                     </div>
                     <div className="text-[10px] text-white/50 border-t border-white/20 pt-2">
-                      50 páginas · 32 criterios · 3 plantillas
+                      32 criterios · 3 plantillas
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function AmazonFbaEbook() {
           <div className="text-center mb-12">
             <BookOpen className="w-10 h-10 text-[#2F4F3E] mx-auto mb-4" />
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Contenido de la guía</h2>
-            <p className="text-muted-foreground text-lg">50+ páginas · 8 capítulos · descarga inmediata en PDF</p>
+            <p className="text-muted-foreground text-lg">8 capítulos · descarga inmediata en PDF</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {chapters.map((c, i) => (
@@ -289,7 +289,7 @@ export default function AmazonFbaEbook() {
                 <p className="text-xs uppercase tracking-wider text-white/60 font-semibold mb-4">Esto es lo que recibes hoy</p>
                 <div className="space-y-2.5">
                   {[
-                    { t: "Guía PDF de 50 páginas", v: "$67" },
+                    { t: "Guía PDF", v: "$67" },
                     { t: "32 criterios de producto ganador", v: "$27" },
                     { t: "3 plantillas (listado, PPC, KPIs)", v: "incluido" },
                     { t: "Checklist de proveedores white-label EE.UU.", v: "incluido" },
