@@ -263,7 +263,7 @@ export default function AmazonFbaEbook() {
           backgroundImage: "radial-gradient(circle at 15% 30%, #8BC34A 0, transparent 35%), radial-gradient(circle at 85% 70%, #8BC34A 0, transparent 35%)"
         }} />
         <div className="container mx-auto px-4 relative">
-          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 max-w-6xl mx-auto items-start">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-14 max-w-6xl mx-auto items-start">
 
             {/* ───── LEFT: Persuasive copy ───── */}
             <motion.div
@@ -271,51 +271,53 @@ export default function AmazonFbaEbook() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:pt-4"
             >
-              <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-5">
+              <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
                 <Flame className="w-3 h-3" /> ÚLTIMA OPORTUNIDAD A ESTE PRECIO
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5 text-white">
-                Deja de arriesgar miles en inventario que <span className="text-[#8BC34A]">quizás no se venda</span>.
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-[1.1] mb-6 text-white">
+                Deja de arriesgar miles en inventario que <span className="underline decoration-[#8BC34A] decoration-4 underline-offset-4">quizás no se venda</span>.
               </h2>
 
-              <p className="text-lg text-white/85 leading-relaxed mb-7">
-                En las próximas 2 horas puedes tener en tus manos el mismo sistema que usamos con <strong className="text-white">200+ clientes</strong> para validar productos en Amazon <strong className="text-[#8BC34A]">sin comprar stock</strong> — y escalar solo lo que ya está vendiendo.
+              <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8">
+                En las próximas 2 horas puedes tener el mismo sistema que usamos con <strong className="text-white">200+ clientes</strong> para validar productos en Amazon <strong className="text-[#8BC34A]">sin comprar stock</strong> — y escalar solo lo que ya está vendiendo.
               </p>
 
               {/* Stack visible de lo que recibes */}
-              <div className="space-y-3 mb-7">
-                {[
-                  { t: "Guía PDF 50 páginas", v: "$67" },
-                  { t: "32 criterios de producto ganador", v: "$27" },
-                  { t: "3 plantillas (listado, PPC, KPIs)", v: "incluido" },
-                  { t: "Checklist de proveedores white-label EE.UU.", v: "incluido" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <CheckCircle2 className="w-5 h-5 text-[#8BC34A] flex-shrink-0" />
-                      <span className="text-white/95">{item.t}</span>
-                    </div>
-                    <span className="text-xs text-white/50 font-mono shrink-0">{item.v}</span>
-                  </motion.div>
-                ))}
-                <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/15">
-                  <span className="text-sm text-white/70">Valor total</span>
-                  <span className="text-lg line-through text-white/50">${ORIG_USD}</span>
+              <div className="rounded-2xl bg-black/20 border border-white/10 p-5 mb-6">
+                <p className="text-xs uppercase tracking-wider text-white/60 font-semibold mb-4">Esto es lo que recibes hoy</p>
+                <div className="space-y-2.5">
+                  {[
+                    { t: "Guía PDF de 50 páginas", v: "$67" },
+                    { t: "32 criterios de producto ganador", v: "$27" },
+                    { t: "3 plantillas (listado, PPC, KPIs)", v: "incluido" },
+                    { t: "Checklist de proveedores white-label EE.UU.", v: "incluido" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex items-center justify-between gap-3"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <CheckCircle2 className="w-4 h-4 text-[#8BC34A] flex-shrink-0" />
+                        <span className="text-white/90 text-sm">{item.t}</span>
+                      </div>
+                      <span className="text-xs text-white/45 font-mono shrink-0">{item.v}</span>
+                    </motion.div>
+                  ))}
                 </div>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-lg font-bold text-white">Tu precio hoy</span>
+                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-sm text-white/60">Valor total</span>
+                  <span className="text-base line-through text-white/40">${ORIG_USD}</span>
+                </div>
+                <div className="mt-1 flex items-end justify-between">
+                  <span className="text-base font-bold text-white">Tu precio hoy</span>
                   <motion.span
-                    className="text-3xl font-extrabold text-[#8BC34A]"
+                    className="text-3xl font-extrabold text-[#8BC34A] leading-none"
                     animate={{ scale: [1, 1.06, 1] }}
                     transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                   >
@@ -325,18 +327,18 @@ export default function AmazonFbaEbook() {
               </div>
 
               {/* Testimonio mini */}
-              <div className="bg-white/5 border-l-4 border-[#8BC34A] rounded-r-lg p-4 mb-6">
+              <div className="bg-white/[0.04] border-l-2 border-[#8BC34A] rounded-r-lg p-4 mb-6">
                 <div className="flex items-center gap-1 text-[#8BC34A] mb-2">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
                 </div>
-                <p className="text-white/90 text-sm leading-relaxed mb-2">
-                  "Lancé 3 productos en 90 días sin tocar inventario. Solo escalé el que ya vendía. Mejor inversión del año."
+                <p className="text-white/90 text-sm leading-relaxed mb-1.5">
+                  "Lancé 3 productos en 90 días sin tocar inventario. Solo escalé el que ya vendía."
                 </p>
-                <p className="text-xs text-white/60">— Cliente Hipervínculo · 2025</p>
+                <p className="text-xs text-white/55">— Cliente Hipervínculo · 2025</p>
               </div>
 
               {/* Trust bar */}
-              <div className="flex flex-wrap items-center gap-4 text-xs text-white/70">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-white/70">
                 <div className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#8BC34A]" /> Garantía 7 días</div>
                 <div className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-[#8BC34A]" /> Pago cifrado SSL</div>
                 <div className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-[#8BC34A]" /> Descarga en 2 min</div>
