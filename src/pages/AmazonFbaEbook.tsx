@@ -201,7 +201,7 @@ export default function AmazonFbaEbook() {
                     </div>
                     <div>
                       <div className="inline-block bg-[#8BC34A] text-[#1a2e22] text-[10px] font-bold px-2 py-1 rounded mb-3">GUÍA PRÁCTICA · 2026</div>
-                      <h2 className="text-2xl font-extrabold leading-tight mb-2">Vende en Amazon</h2>
+                      <h2 className="text-2xl font-extrabold leading-tight mb-2 text-white">Vende en Amazon</h2>
                       <h3 className="text-xl font-bold text-[#8BC34A] leading-tight mb-3">Sin Quemar tu Dinero</h3>
                       <p className="text-xs text-white/70">Valida tu producto antes de comprar inventario — y escala solo lo que ya funciona.</p>
                     </div>
