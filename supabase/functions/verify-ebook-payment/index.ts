@@ -120,6 +120,8 @@ serve(async (req) => {
       return new Response(JSON.stringify({
         status: "ok", name: existing.name, email: existing.email,
         download_url: buildLink(existing.download_token),
+        amount_cents: existing.amount_cents, currency: existing.currency,
+        session_id: existing.stripe_session_id, already_processed: true,
       }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
@@ -165,6 +167,9 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({
       status: "ok", name, email, download_url: downloadUrl,
+      amount_cents: session.amount_total ?? 4999,
+      currency: session.currency ?? "usd",
+      session_id: session.id, already_processed: false,
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     console.error("verify-ebook-payment error", e);
