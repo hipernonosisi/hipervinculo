@@ -57,9 +57,36 @@ serve(async (req) => {
       return errPage("Error", "No pudimos generar el archivo. Intenta de nuevo en unos minutos.", 500);
     }
 
+    // Capture download metadata
+    const client_ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim()
+      || req.headers.get("cf-connecting-ip")
+      || req.headers.get("x-real-ip")
+      || null;
+    const user_agent = req.headers.get("user-agent") || null;
+
+    let geo = { country: null as string | null, city: null as string | null, region: null as string | null };
+    if (client_ip && client_ip !== "127.0.0.1" && client_ip !== "::1") {
+      try {
+        const r = await fetch(`http://ip-api.com/json/${client_ip}?fields=status,country,regionName,city`);
+        const j = await r.json();
+        if (j.status === "success") geo = { country: j.country || null, city: j.city || null, region: j.regionName || null };
+      } catch (e) { console.warn("geo lookup failed", e); }
+    }
+
+    const now = new Date().toISOString();
     await supabase.from("ebook_purchases")
-      .update({ download_count: purchase.download_count + 1 })
+      .update({
+        download_count: purchase.download_count + 1,
+        last_downloaded_at: now,
+        first_downloaded_at: purchase.first_downloaded_at || now,
+      })
       .eq("id", purchase.id);
+
+    await supabase.from("ebook_download_logs").insert({
+      purchase_id: purchase.id,
+      client_ip, user_agent,
+      country: geo.country, city: geo.city, region: geo.region,
+    });
 
     return Response.redirect(signed.signedUrl, 302);
   } catch (e) {
