@@ -520,7 +520,7 @@ export default function AmazonFbaEbook() {
                   <Flame className="w-3 h-3 text-[#8BC34A]" /> {mm}:{ss}
                 </div>
               </div>
-              <a href="#comprar" className="flex-1">
+              <a href="#buy-form" className="flex-1">
                 <motion.div
                   animate={{ boxShadow: ["0 0 0 0 rgba(139,195,74,0.7)", "0 0 0 10px rgba(139,195,74,0)", "0 0 0 0 rgba(139,195,74,0)"] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
