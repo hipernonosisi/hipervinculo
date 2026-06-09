@@ -6,6 +6,13 @@ import { SEO } from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo-hipervinculo.png";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
 export default function AmazonFbaEbookSuccess() {
   const [params] = useSearchParams();
   const sessionId = params.get("session_id");
@@ -23,6 +30,40 @@ export default function AmazonFbaEbookSuccess() {
         if (data?.status === "ok") {
           setData(data);
           setState("ok");
+
+          // Fire conversion events once per session_id (dedupe via localStorage)
+          const key = `purchase_fired_${data.session_id || sessionId}`;
+          if (typeof window !== "undefined" && !localStorage.getItem(key)) {
+            const value = (data.amount_cents ?? 4999) / 100;
+            const currency = (data.currency ?? "usd").toUpperCase();
+            try {
+              window.fbq?.("track", "Purchase", {
+                value,
+                currency,
+                content_name: "Amazon FBA Sin Inventario",
+                content_type: "product",
+                content_ids: ["amazon-fba-ebook"],
+              }, { eventID: data.session_id || sessionId });
+            } catch (e) { console.warn("fbq Purchase error", e); }
+            try {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({
+                event: "purchase",
+                ecommerce: {
+                  transaction_id: data.session_id || sessionId,
+                  value,
+                  currency,
+                  items: [{
+                    item_id: "amazon-fba-ebook",
+                    item_name: "Amazon FBA Sin Inventario",
+                    price: value,
+                    quantity: 1,
+                  }],
+                },
+              });
+            } catch (e) { console.warn("dataLayer purchase error", e); }
+            localStorage.setItem(key, "1");
+          }
         } else if (data?.status === "pending") {
           setState("pending");
         } else {
