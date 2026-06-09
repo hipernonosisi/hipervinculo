@@ -152,7 +152,7 @@ export default function AmazonFbaEbook() {
                 Vende en Amazon <span className="text-[#8BC34A]">sin quemar tu dinero</span>
               </h1>
               <p className="text-lg md:text-xl text-white/85 mb-6 leading-relaxed">
-                Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF de 50 páginas con 32 criterios de producto ganador y 3 plantillas listas para usar.
+                Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF con 32 criterios de producto ganador y 3 plantillas listas para usar.
               </p>
               <div className="flex flex-wrap items-center gap-4 mb-5">
                 <div className="flex items-center gap-1 text-[#8BC34A]">
