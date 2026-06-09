@@ -128,13 +128,13 @@ export default function AmazonFbaEbook() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-white border-b border-border/40">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="bg-white p-1.5 rounded">
-            <img src={logo} alt="Hipervínculo" className="h-8 md:h-10" />
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="bg-white p-1.5 rounded shrink-0">
+            <img src={logo} alt="Hipervínculo" className="h-7 md:h-10" />
           </div>
-          <a href="#comprar" className="hidden sm:inline-flex">
-            <Button size="sm" className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90 text-white">
-              Comprar guía · ${PRICE_USD}
+          <a href="#comprar" className="inline-flex shrink-0">
+            <Button size="sm" className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90 text-white text-xs sm:text-sm h-9 px-3 sm:px-4">
+              <span className="hidden sm:inline">Comprar guía · </span>${PRICE_USD}
             </Button>
           </a>
         </div>
@@ -145,7 +145,7 @@ export default function AmazonFbaEbook() {
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
         }} />
-        <div className="container mx-auto px-4 py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 py-12 md:py-20 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
@@ -154,17 +154,32 @@ export default function AmazonFbaEbook() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
                 Vende en Amazon <span className="text-[#8BC34A]">sin quemar tu dinero</span>
               </h1>
-              <p className="text-lg md:text-xl text-white/85 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-white/85 mb-6 leading-relaxed">
                 Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF de 50 páginas con 32 criterios de producto ganador y 3 plantillas listas para usar.
               </p>
-              <div className="flex flex-wrap items-center gap-4 mb-8">
+              <div className="flex flex-wrap items-center gap-4 mb-5">
                 <div className="flex items-center gap-1 text-[#8BC34A]">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
                 <span className="text-sm text-white/70">50 páginas · 32 criterios · 3 plantillas</span>
               </div>
+
+              {/* Urgency banner */}
+              <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 border border-[#8BC34A]/40 rounded-lg px-3 py-2 mb-5">
+                <Flame className="w-4 h-4 text-[#8BC34A] animate-pulse" />
+                <span className="text-sm text-white">
+                  Descuento -48% termina en <strong className="font-mono text-[#8BC34A]">{mm}:{ss}</strong>
+                </span>
+              </div>
+
               <div className="flex flex-wrap gap-4 items-baseline mb-6">
-                <span className="text-5xl font-extrabold">${PRICE_USD}</span>
+                <motion.span
+                  className="text-5xl font-extrabold"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  ${PRICE_USD}
+                </motion.span>
                 <span className="text-xl line-through text-white/50">${ORIG_USD}</span>
                 <span className="bg-[#8BC34A] text-[#1a2e22] text-xs font-bold px-2 py-1 rounded">-48%</span>
               </div>
