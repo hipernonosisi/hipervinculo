@@ -357,7 +357,7 @@ export default function AmazonFbaEbook() {
                 {/* Glow */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8BC34A]/30 to-[#8BC34A]/10 rounded-3xl blur-xl pointer-events-none" />
 
-                <form onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl">
+                <form id="buy-form" onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl scroll-mt-24">
                   {/* Header buy box */}
                   <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-border">
                     <div className="min-w-0">
@@ -520,7 +520,7 @@ export default function AmazonFbaEbook() {
                   <Flame className="w-3 h-3 text-[#8BC34A]" /> {mm}:{ss}
                 </div>
               </div>
-              <a href="#comprar" className="flex-1">
+              <a href="#buy-form" className="flex-1">
                 <motion.div
                   animate={{ boxShadow: ["0 0 0 0 rgba(139,195,74,0.7)", "0 0 0 10px rgba(139,195,74,0)", "0 0 0 0 rgba(139,195,74,0)"] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
