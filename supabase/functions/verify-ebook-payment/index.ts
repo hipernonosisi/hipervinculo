@@ -211,6 +211,16 @@ serve(async (req) => {
     const marketingOptIn = md.marketing_opt_in === "1";
     const token = genToken();
 
+    // Geolocate the purchase IP (best effort)
+    let geo = { country: null as string | null, city: null as string | null, region: null as string | null };
+    if (client_ip) {
+      try {
+        const r = await fetch(`http://ip-api.com/json/${client_ip}?fields=status,country,regionName,city`);
+        const j = await r.json();
+        if (j.status === "success") geo = { country: j.country || null, city: j.city || null, region: j.regionName || null };
+      } catch (e) { console.warn("geo lookup failed", e); }
+    }
+
     const { data: inserted, error: insertErr } = await supabase
       .from("ebook_purchases").insert({
         email, name, phone,
@@ -222,6 +232,16 @@ serve(async (req) => {
         download_token: token,
         marketing_opt_in: marketingOptIn,
         paid_at: new Date().toISOString(),
+        client_ip, user_agent: ua,
+        country: geo.country, city: geo.city, region: geo.region,
+        utm_source: md.utm_source || null,
+        utm_medium: md.utm_medium || null,
+        utm_campaign: md.utm_campaign || null,
+        utm_term: md.utm_term || null,
+        utm_content: md.utm_content || null,
+        referrer: md.referrer || null,
+        fbp: md.fbp || fbp || null,
+        fbc: md.fbc || fbc || null,
       }).select().single();
 
 
