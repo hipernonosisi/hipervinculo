@@ -106,7 +106,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
               {/* Trust strip */}
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/55 mt-6">
                 <div className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 h-3.5 text-[#8BC34A]" /> {language === 'en' ? '7-day guarantee' : 'Garantía 7 días'}</div>
-                <div className="flex items-center gap-1.5"><FileText className="h-3.5 w-3.5 text-[#8BC34A]" /> {language === 'en' ? '50-page PDF' : 'PDF de 50 páginas'}</div>
+                <div className="flex items-center gap-1.5"><FileText className="h-3.5 w-3.5 text-[#8BC34A]" /> {language === 'en' ? 'Complete PDF guide' : 'Guía PDF completa'}</div>
                 <div className="flex items-center gap-1.5"><Download className="h-3.5 w-3.5 text-[#8BC34A]" /> {language === 'en' ? 'Instant access' : 'Acceso inmediato'}</div>
               </div>
             </div>
