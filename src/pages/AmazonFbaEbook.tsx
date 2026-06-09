@@ -222,8 +222,11 @@ export default function AmazonFbaEbook() {
       <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-4">
+              <DollarSign className="w-3 h-3" /> PRODUCTO DE PAGO · NO ES GRATIS
+            </div>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Compra tu guía ahora</h2>
-            <p className="text-white/80 text-lg">Llena tus datos y procede al pago seguro con tarjeta.</p>
+            <p className="text-white/80 text-lg">Esta es una guía profesional de pago — <strong>no un lead magnet gratuito</strong>. Llena tus datos y procede al pago seguro con tarjeta para recibir tu PDF.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="bg-white text-foreground rounded-2xl p-6 md:p-8 shadow-2xl space-y-5">
