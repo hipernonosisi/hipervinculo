@@ -12,7 +12,7 @@ const SAMPLE_DOWNLOAD = "https://fshfuwinreztcqlumjzp.supabase.co/functions/v1/d
 const SAMPLE_NAME = "María González";
 const SAMPLE_EMAIL = "nonosisi@gmail.com";
 const SAMPLE_PHONE = "+52 55 1234 5678";
-const SAMPLE_AMOUNT = 4999;
+const SAMPLE_AMOUNT = 4700;
 
 function customerHtml(name: string, downloadUrl: string) {
   return `<!doctype html><html><body style="margin:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
