@@ -120,6 +120,8 @@ serve(async (req) => {
       return new Response(JSON.stringify({
         status: "ok", name: existing.name, email: existing.email,
         download_url: buildLink(existing.download_token),
+        amount_cents: existing.amount_cents, currency: existing.currency,
+        session_id: existing.stripe_session_id, already_processed: true,
       }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
