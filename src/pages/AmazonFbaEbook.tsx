@@ -256,123 +256,225 @@ export default function AmazonFbaEbook() {
         </div>
       </section>
 
-      {/* CHECKOUT FORM */}
-      <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-4">
-              <DollarSign className="w-3 h-3" /> PRODUCTO DE PAGO · NO ES GRATIS
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Compra tu guía ahora</h2>
-            <p className="text-white/80 text-lg">Esta es una guía profesional de pago — <strong>no un lead magnet gratuito</strong>. Llena tus datos y procede al pago seguro con tarjeta para recibir tu PDF.</p>
-          </div>
+      {/* CHECKOUT — 2 columnas: copy persuasivo + buy box compacto */}
+      <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{
+          backgroundImage: "radial-gradient(circle at 15% 30%, #8BC34A 0, transparent 35%), radial-gradient(circle at 85% 70%, #8BC34A 0, transparent 35%)"
+        }} />
+        <div className="container mx-auto px-4 relative">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 max-w-6xl mx-auto items-start">
 
-          {/* Live social proof */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-5 text-sm">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8BC34A] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8BC34A]" />
-              </span>
-              <Eye className="w-3.5 h-3.5 text-white/80" />
-              <span className="text-white/90"><strong>{viewers}</strong> viendo esta página</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
-              <Flame className="w-3.5 h-3.5 text-[#8BC34A]" />
-              <span className="text-white/90">Oferta termina en <strong className="font-mono">{mm}:{ss}</strong></span>
-            </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="bg-white text-foreground rounded-2xl p-6 md:p-8 shadow-2xl space-y-5">
-            <div className="flex justify-between items-baseline pb-4 border-b border-border">
-              <div>
-                <div className="font-bold text-[#2F4F3E]">Amazon FBA Sin Inventario</div>
-                <div className="text-xs text-muted-foreground">Guía PDF · descarga inmediata</div>
+            {/* ───── LEFT: Persuasive copy ───── */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:pt-4"
+            >
+              <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-5">
+                <Flame className="w-3 h-3" /> ÚLTIMA OPORTUNIDAD A ESTE PRECIO
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-extrabold text-[#2F4F3E]">${PRICE_USD}</div>
-                <div className="text-xs line-through text-muted-foreground">${ORIG_USD}</div>
-              </div>
-            </div>
 
-            {/* Guarantee strip */}
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-[#8BC34A]/10 border border-[#8BC34A]/30">
-              <ShieldCheck className="w-8 h-8 text-[#2F4F3E] flex-shrink-0" />
-              <div>
-                <div className="font-bold text-sm text-[#2F4F3E]">Garantía de 7 días o devolución del 100%</div>
-                <div className="text-xs text-muted-foreground">Si la guía no es lo que esperabas, te devolvemos tu dinero sin preguntas.</div>
-              </div>
-            </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
+                Deja de <span className="line-through text-white/40">arriesgar miles</span> en inventario que <span className="text-[#8BC34A]">quizás no se venda</span>.
+              </h2>
 
-
-            <div>
-              <Label htmlFor="name">Nombre completo</Label>
-              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Tu nombre" required maxLength={120} className="mt-1.5" />
-            </div>
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="tu@email.com" required maxLength={255} className="mt-1.5" />
-              <div className="flex items-start gap-2 mt-2 p-2.5 rounded-lg bg-[#8BC34A]/10 border border-[#8BC34A]/30">
-                <AlertTriangle className="w-4 h-4 text-[#2F4F3E] flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-[#2F4F3E] font-medium leading-relaxed">
-                  Asegúrate de escribir tu correo correctamente. El enlace de descarga de tu guía PDF se envía exclusivamente a esta dirección. Si hay un error, no podrás recibir tu compra.
-                </p>
-              </div>
-            </div>
-            <div>
-              <Label htmlFor="confirmEmail">Confirmar email</Label>
-              <Input id="confirmEmail" type="email" value={form.confirmEmail} onChange={(e) => setForm({ ...form, confirmEmail: e.target.value })}
-                placeholder="tu@email.com" required maxLength={255} className="mt-1.5" />
-            </div>
-            <div>
-              <Label htmlFor="phone">Teléfono (WhatsApp)</Label>
-              <Input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                placeholder="+1 234 567 8900" required maxLength={30} className="mt-1.5" />
-            </div>
-
-
-            <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-[#f7faf6] cursor-pointer hover:border-[#8BC34A] transition">
-              <input
-                type="checkbox"
-                checked={marketingOptIn}
-                onChange={(e) => setMarketingOptIn(e.target.checked)}
-                className="mt-1 w-4 h-4 accent-[#2F4F3E] cursor-pointer flex-shrink-0"
-              />
-              <span className="text-xs text-[#2F4F3E] leading-relaxed">
-                <strong>Sí, quiero recibir información de Hipervínculo</strong> sobre futuros productos, guías y servicios.
-                <span className="block text-muted-foreground mt-1 font-normal">
-                  Máximo 1 email al mes con contenido informativo. No enviamos spam ni comercializamos tus datos con terceros. Puedes darte de baja cuando quieras.
-                </span>
-              </span>
-            </label>
-
-            <Button type="submit" disabled={loading} size="lg"
-              className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-bold text-base py-6">
-              {loading ? "Procesando..." : `Pagar $${PRICE_USD} y descargar →`}
-            </Button>
-
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground flex items-center justify-center gap-1.5 flex-wrap">
-                <Lock className="w-3 h-3" />
-                <span>Pago seguro procesado por</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25" className="h-4 w-auto inline-block" aria-label="Stripe">
-                  <path fill="#635BFF" fillRule="evenodd" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a8.33 8.33 0 0 1-4.56 1.1c-4.01 0-6.83-2.5-6.83-7.48 0-4.19 2.39-7.52 6.3-7.52 3.92 0 5.96 3.28 5.96 7.5 0 .4-.04 1.26-.06 1.48zm-5.92-5.62c-1.03 0-2.17.73-2.17 2.58h4.25c0-1.85-1.07-2.58-2.08-2.58zM40.95 20.3c-1.44 0-2.32-.6-2.9-1.04l-.02 4.63-4.12.87V5.57h3.76l.08 1.02a4.7 4.7 0 0 1 3.23-1.29c2.9 0 5.62 2.6 5.62 7.4 0 5.23-2.7 7.6-5.65 7.6zM40 9.04c-.95 0-1.54.34-1.97.81l.02 6.12c.4.44.98.78 1.95.78 1.52 0 2.54-1.65 2.54-3.87 0-2.15-1.04-3.84-2.54-3.84zM28.24 5.57h4.13v14.44h-4.13V5.57zm0-4.7L32.37 0v3.36l-4.13.88V.88zm-4.32 9.35v9.79H19.8V5.57h3.7l.12 1.22c1-1.77 3.07-1.41 3.62-1.22v3.79c-.52-.17-2.29-.43-3.32.86zm-8.55 4.72c0 2.43 2.6 1.68 3.12 1.46v3.36c-.55.3-1.54.54-2.89.54a4.15 4.15 0 0 1-4.27-4.24l.01-13.17 4.02-.86v3.54h3.14V9.1h-3.13v5.85zm-4.91.7c0 2.97-2.31 4.66-5.73 4.66a11.2 11.2 0 0 1-4.46-.93v-3.93c1.38.75 3.1 1.31 4.46 1.31.92 0 1.58-.24 1.58-1C6.31 14 0 14.55 0 9.95 0 7.04 2.28 5.3 5.62 5.3c1.36 0 2.72.2 4.09.75v3.88a9.23 9.23 0 0 0-4.1-1.06c-.86 0-1.39.25-1.39.9 0 1.85 6.35 1.6 6.35 5.88z" clipRule="evenodd"/>
-                </svg>
-                <span>. Tu información está protegida con cifrado SSL.</span>
+              <p className="text-lg text-white/85 leading-relaxed mb-7">
+                En las próximas 2 horas puedes tener en tus manos el mismo sistema que usamos con <strong className="text-white">200+ clientes</strong> para validar productos en Amazon <strong className="text-[#8BC34A]">sin comprar stock</strong> — y escalar solo lo que ya está vendiendo.
               </p>
+
+              {/* Stack visible de lo que recibes */}
+              <div className="space-y-3 mb-7">
+                {[
+                  { t: "Guía PDF 50 páginas", v: "$67" },
+                  { t: "32 criterios de producto ganador", v: "$27" },
+                  { t: "3 plantillas (listado, PPC, KPIs)", v: "incluido" },
+                  { t: "Checklist de proveedores white-label EE.UU.", v: "incluido" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <CheckCircle2 className="w-5 h-5 text-[#8BC34A] flex-shrink-0" />
+                      <span className="text-white/95">{item.t}</span>
+                    </div>
+                    <span className="text-xs text-white/50 font-mono shrink-0">{item.v}</span>
+                  </motion.div>
+                ))}
+                <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/15">
+                  <span className="text-sm text-white/70">Valor total</span>
+                  <span className="text-lg line-through text-white/50">${ORIG_USD}</span>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-lg font-bold text-white">Tu precio hoy</span>
+                  <motion.span
+                    className="text-3xl font-extrabold text-[#8BC34A]"
+                    animate={{ scale: [1, 1.06, 1] }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    ${PRICE_USD}
+                  </motion.span>
+                </div>
+              </div>
+
+              {/* Testimonio mini */}
+              <div className="bg-white/5 border-l-4 border-[#8BC34A] rounded-r-lg p-4 mb-6">
+                <div className="flex items-center gap-1 text-[#8BC34A] mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+                </div>
+                <p className="text-white/90 text-sm leading-relaxed mb-2">
+                  "Lancé 3 productos en 90 días sin tocar inventario. Solo escalé el que ya vendía. Mejor inversión del año."
+                </p>
+                <p className="text-xs text-white/60">— Cliente Hipervínculo · 2025</p>
+              </div>
+
+              {/* Trust bar */}
+              <div className="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                <div className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#8BC34A]" /> Garantía 7 días</div>
+                <div className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-[#8BC34A]" /> Pago cifrado SSL</div>
+                <div className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-[#8BC34A]" /> Descarga en 2 min</div>
+              </div>
+            </motion.div>
+
+            {/* ───── RIGHT: Sticky Buy Box ───── */}
+            <div className="lg:sticky lg:top-24">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                {/* Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#8BC34A]/30 to-[#8BC34A]/10 rounded-3xl blur-xl pointer-events-none" />
+
+                <form onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl">
+                  {/* Header buy box */}
+                  <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-border">
+                    <div className="min-w-0">
+                      <div className="inline-flex items-center gap-1.5 bg-[#8BC34A]/15 text-[#2F4F3E] text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded mb-1.5">
+                        <Zap className="w-3 h-3" /> Acceso inmediato
+                      </div>
+                      <div className="font-extrabold text-[#2F4F3E] text-base leading-tight">Amazon FBA Sin Inventario</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="flex items-baseline gap-1.5 justify-end">
+                        <span className="text-2xl font-extrabold text-[#2F4F3E]">${PRICE_USD}</span>
+                      </div>
+                      <div className="text-[11px] line-through text-muted-foreground">${ORIG_USD}</div>
+                    </div>
+                  </div>
+
+                  {/* Countdown urgencia */}
+                  <div className="flex items-center justify-between gap-2 bg-[#2F4F3E] rounded-lg px-3 py-2.5 mb-4">
+                    <div className="flex items-center gap-2 text-white/90 text-xs">
+                      <Flame className="w-4 h-4 text-[#8BC34A] animate-pulse" />
+                      <span>Precio sube en</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-[#8BC34A] font-mono font-bold text-lg tabular-nums">
+                      {mm}<span className="text-white/40 animate-pulse">:</span>{ss}
+                    </div>
+                  </div>
+
+                  {/* Fields — condensados */}
+                  <div className="space-y-3">
+                    <FloatingField
+                      id="name"
+                      label="Nombre"
+                      value={form.name}
+                      onChange={(v) => setForm({ ...form, name: v })}
+                      type="text"
+                      maxLength={120}
+                    />
+                    <FloatingField
+                      id="email"
+                      label="Tu email (recibirás el PDF aquí)"
+                      value={form.email}
+                      onChange={(v) => setForm({ ...form, email: v })}
+                      type="email"
+                      maxLength={255}
+                      validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}
+                    />
+                    <FloatingField
+                      id="phone"
+                      label="WhatsApp"
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      type="tel"
+                      maxLength={30}
+                      placeholder="+1 234 567 8900"
+                    />
+                  </div>
+
+                  {/* Marketing checkbox compacto */}
+                  <label className="flex items-start gap-2 mt-4 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={marketingOptIn}
+                      onChange={(e) => setMarketingOptIn(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 accent-[#2F4F3E] cursor-pointer flex-shrink-0"
+                    />
+                    <span className="text-[11px] text-muted-foreground leading-snug group-hover:text-[#2F4F3E] transition">
+                      Quiero recibir 1 email/mes de Hipervínculo con guías y novedades. Sin spam.
+                    </span>
+                  </label>
+
+                  {/* Submit con halo pulsante */}
+                  <motion.div
+                    animate={{ boxShadow: ["0 0 0 0 rgba(139,195,74,0.6)", "0 0 0 12px rgba(139,195,74,0)", "0 0 0 0 rgba(139,195,74,0)"] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="rounded-xl mt-5"
+                  >
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      size="lg"
+                      className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base py-6 group"
+                    >
+                      {loading ? "Procesando..." : (
+                        <>
+                          Pagar ${PRICE_USD} y descargar
+                          <motion.span
+                            animate={{ x: [0, 4, 0] }}
+                            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                            className="inline-block ml-1"
+                          >→</motion.span>
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
+
+                  {/* Live viewers + Stripe */}
+                  <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-border">
+                    <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8BC34A] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8BC34A]" />
+                      </span>
+                      <strong className="text-[#2F4F3E]">{viewers}</strong> viendo ahora
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                      <Lock className="w-3 h-3" />
+                      <span>Procesado por</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25" className="h-3 w-auto inline-block" aria-label="Stripe">
+                        <path fill="#635BFF" fillRule="evenodd" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a8.33 8.33 0 0 1-4.56 1.1c-4.01 0-6.83-2.5-6.83-7.48 0-4.19 2.39-7.52 6.3-7.52 3.92 0 5.96 3.28 5.96 7.5 0 .4-.04 1.26-.06 1.48zm-5.92-5.62c-1.03 0-2.17.73-2.17 2.58h4.25c0-1.85-1.07-2.58-2.08-2.58zM40.95 20.3c-1.44 0-2.32-.6-2.9-1.04l-.02 4.63-4.12.87V5.57h3.76l.08 1.02a4.7 4.7 0 0 1 3.23-1.29c2.9 0 5.62 2.6 5.62 7.4 0 5.23-2.7 7.6-5.65 7.6zM40 9.04c-.95 0-1.54.34-1.97.81l.02 6.12c.4.44.98.78 1.95.78 1.52 0 2.54-1.65 2.54-3.87 0-2.15-1.04-3.84-2.54-3.84zM28.24 5.57h4.13v14.44h-4.13V5.57zm0-4.7L32.37 0v3.36l-4.13.88V.88zm-4.32 9.35v9.79H19.8V5.57h3.7l.12 1.22c1-1.77 3.07-1.41 3.62-1.22v3.79c-.52-.17-2.29-.43-3.32.86zm-8.55 4.72c0 2.43 2.6 1.68 3.12 1.46v3.36c-.55.3-1.54.54-2.89.54a4.15 4.15 0 0 1-4.27-4.24l.01-13.17 4.02-.86v3.54h3.14V9.1h-3.13v5.85zm-4.91.7c0 2.97-2.31 4.66-5.73 4.66a11.2 11.2 0 0 1-4.46-.93v-3.93c1.38.75 3.1 1.31 4.46 1.31.92 0 1.58-.24 1.58-1C6.31 14 0 14.55 0 9.95 0 7.04 2.28 5.3 5.62 5.3c1.36 0 2.72.2 4.09.75v3.88a9.23 9.23 0 0 0-4.1-1.06c-.86 0-1.39.25-1.39.9 0 1.85 6.35 1.6 6.35 5.88z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                  </div>
+                </form>
+              </motion.div>
             </div>
 
-
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground pt-2">
-              <div className="flex items-center gap-1"><Lock className="w-3 h-3" /> Pago cifrado</div>
-              <div className="flex items-center gap-1"><FileText className="w-3 h-3" /> PDF inmediato</div>
-              <div className="flex items-center gap-1"><Shield className="w-3 h-3" /> Garantía 7 días</div>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
+
 
       {/* FAQ */}
       <section className="py-16 md:py-24 bg-white">
