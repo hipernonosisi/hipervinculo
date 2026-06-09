@@ -20,12 +20,12 @@ const PRICE_USD = 49.99;
 const ORIG_USD = 97;
 
 const benefits = [
-  { icon: Package, title: "Sin inventario propio", desc: "Aprende el modelo dropshipping + FBA sin invertir miles en stock." },
-  { icon: TrendingUp, title: "Estrategias 2026", desc: "Tácticas actualizadas que funcionan hoy en el marketplace de Amazon." },
-  { icon: DollarSign, title: "Listado de proveedores", desc: "Fuentes verificadas en US, Asia y LATAM para empezar rápido." },
-  { icon: Truck, title: "Logística sin dolor", desc: "Cómo coordinar envíos directos al FBA desde el proveedor." },
-  { icon: BarChart3, title: "Métricas que importan", desc: "KPIs reales para escalar con rentabilidad, no por intuición." },
-  { icon: Shield, title: "Cumple políticas Amazon", desc: "Evita suspensiones siguiendo las reglas del marketplace." },
+  { icon: Package, title: "Validar sin comprar inventario", desc: "Prueba si un producto se vende en Amazon antes de gastar un dólar en stock." },
+  { icon: BarChart3, title: "Decidir con datos, no con fe", desc: "Sabe con datos reales cuándo conviene invertir en inventario y cuándo no." },
+  { icon: Truck, title: "Proveedores white-label en EE.UU.", desc: "Consigue quién te lo envíe con tu marca, desde Estados Unidos, en días." },
+  { icon: Shield, title: "Cumple la política de Amazon", desc: "Vende sin arriesgar tu cuenta siguiendo las reglas vigentes del marketplace." },
+  { icon: Clock, title: "Plan claro de 90 días", desc: "Plantillas, checklists y KPIs listos para ejecutar paso a paso." },
+  { icon: DollarSign, title: "Escala solo lo que funciona", desc: "Reduce hasta 85% el capital de validación con el modelo en dos fases." },
 ];
 
 const chapters = [
@@ -125,16 +125,16 @@ export default function AmazonFbaEbook() {
                 <Zap className="w-3 h-3" /> NUEVA EDICIÓN 2026
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
-                Vende en Amazon <span className="text-[#8BC34A]">sin manejar inventario</span>
+                Vende en Amazon <span className="text-[#8BC34A]">sin quemar tu dinero</span>
               </h1>
               <p className="text-lg md:text-xl text-white/85 mb-8 leading-relaxed">
-                Guía PDF de 50+ páginas con el modelo exacto que usamos en Hipervínculo para lanzar productos en Amazon FBA sin comprar stock por adelantado ni almacenar nada en casa.
+                Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF de 50 páginas con 32 criterios de producto ganador y 3 plantillas listas para usar.
               </p>
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <div className="flex items-center gap-1 text-[#8BC34A]">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
-                <span className="text-sm text-white/70">200+ clientes · 20+ años de experiencia</span>
+                <span className="text-sm text-white/70">50 páginas · 32 criterios · 3 plantillas</span>
               </div>
               <div className="flex flex-wrap gap-4 items-baseline mb-6">
                 <span className="text-5xl font-extrabold">${PRICE_USD}</span>
@@ -161,13 +161,13 @@ export default function AmazonFbaEbook() {
                       <img src={logo} alt="Hipervínculo" className="h-6" />
                     </div>
                     <div>
-                      <div className="inline-block bg-[#8BC34A] text-[#1a2e22] text-[10px] font-bold px-2 py-1 rounded mb-3">GUÍA 2026</div>
-                      <h2 className="text-2xl font-extrabold leading-tight mb-2">Amazon FBA</h2>
-                      <h3 className="text-xl font-bold text-[#8BC34A] leading-tight mb-3">Sin Inventario</h3>
-                      <p className="text-xs text-white/70">El modelo completo para vender sin comprar stock por adelantado.</p>
+                      <div className="inline-block bg-[#8BC34A] text-[#1a2e22] text-[10px] font-bold px-2 py-1 rounded mb-3">GUÍA PRÁCTICA · 2026</div>
+                      <h2 className="text-2xl font-extrabold leading-tight mb-2">Vende en Amazon</h2>
+                      <h3 className="text-xl font-bold text-[#8BC34A] leading-tight mb-3">Sin Quemar tu Dinero</h3>
+                      <p className="text-xs text-white/70">Valida tu producto antes de comprar inventario — y escala solo lo que ya funciona.</p>
                     </div>
                     <div className="text-[10px] text-white/50 border-t border-white/20 pt-2">
-                      50+ páginas · PDF · Hipervínculo
+                      50 páginas · 32 criterios · 3 plantillas
                     </div>
                   </div>
                 </div>
@@ -181,8 +181,8 @@ export default function AmazonFbaEbook() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que vas a aprender</h2>
-            <p className="text-muted-foreground text-lg">Estrategias reales, no teoría reciclada. Cada capítulo viene del trabajo con nuestros 200+ clientes.</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que vas a lograr</h2>
+            <p className="text-muted-foreground text-lg">El modelo en dos fases: validar sin inventario y escalar con inventario. Basado en operaciones reales con nuestros 200+ clientes.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b, i) => (
