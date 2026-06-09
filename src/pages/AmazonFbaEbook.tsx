@@ -83,17 +83,13 @@ export default function AmazonFbaEbook() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.confirmEmail.trim() || !form.phone.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(form.email.trim())) {
       toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
-      return;
-    }
-    if (form.email.trim() !== form.confirmEmail.trim()) {
-      toast.error("Los correos electrónicos no coinciden. Verifica ambos campos.");
       return;
     }
 
