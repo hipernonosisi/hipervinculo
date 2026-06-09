@@ -7,7 +7,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const PRICE_ID = "price_1TgCM6LvqyfYabJSTXg9FD9V";
+const PRICE_ID = "price_1TgYZJLvqyfYabJSEaUNMhHp";
 
 const BodySchema = z.object({
   email: z.string().trim().email().max(255),

@@ -81,7 +81,7 @@ serve(async (req) => {
   const admin = await resend.emails.send({
     from: "Hipervínculo Ventas <info@hipervinculo.net>",
     to: ["info@hipervinculo.net"],
-    subject: `[MUESTRA] 💰 Nueva venta eBook: $49.99 USD · ${SAMPLE_NAME}`,
+    subject: `[MUESTRA] 💰 Nueva venta eBook: $47.00 USD · ${SAMPLE_NAME}`,
     html: adminHtml({
       name: SAMPLE_NAME, email: SAMPLE_EMAIL, phone: SAMPLE_PHONE,
       amount_cents: SAMPLE_AMOUNT, session_id: "cs_test_SAMPLE_a1b2c3d4e5f6g7h8i9j0",
