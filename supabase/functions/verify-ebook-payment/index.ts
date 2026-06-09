@@ -242,6 +242,22 @@ serve(async (req) => {
       });
     } catch (e) { console.error("Admin email error", e); }
 
+    // Meta Conversions API (server-side, deduplicated with browser pixel via event_id)
+    try {
+      await sendMetaCapiPurchase({
+        event_id: session.id,
+        email, name, phone,
+        value: (session.amount_total ?? 4999) / 100,
+        currency: session.currency ?? "usd",
+        client_ip,
+        user_agent: ua,
+        fbp: fbp || null,
+        fbc: fbc || null,
+        event_source_url: "https://hipervinculo.net/amazon-fba-ebook/success",
+      });
+    } catch (e) { console.error("Meta CAPI error", e); }
+
+
 
     return new Response(JSON.stringify({
       status: "ok", name, email, download_url: downloadUrl,
