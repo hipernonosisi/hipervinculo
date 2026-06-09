@@ -1022,6 +1022,11 @@ export default function Admin() {
               </Card>
             </TabsContent>
 
+            {/* eBook Sales Tab */}
+            <TabsContent value="ebook" className="mt-0">
+              <EbookSalesDashboard />
+            </TabsContent>
+
             {/* Analytics Tab */}
             <TabsContent value="analytics" className="mt-0">
               <PreviewAnalyticsDashboard />
