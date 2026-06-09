@@ -30,7 +30,7 @@ const benefits = [
 
 const chapters = [
   "Cómo elegir productos ganadores sin gastar en muestras",
-  "Negociación con proveedores en China y EE.UU.",
+  "Negociación con proveedores white-label en EE.UU.",
   "Setup paso a paso de tu cuenta de Seller Central",
   "Cómo enviar inventario al FBA desde el proveedor (sin tocarlo)",
   "Plantillas de listados que convierten",
