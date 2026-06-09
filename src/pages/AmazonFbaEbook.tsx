@@ -51,8 +51,35 @@ export default function AmazonFbaEbook() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", confirmEmail: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const [viewers, setViewers] = useState(17);
+  const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
+
+  // Show sticky CTA bar after scrolling past hero
+  useEffect(() => {
+    const onScroll = () => setShowStickyBar(window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Live viewers ticker
+  useEffect(() => {
+    const id = setInterval(() => {
+      setViewers((v) => Math.max(9, Math.min(34, v + Math.round((Math.random() - 0.5) * 4))));
+    }, 4500);
+    return () => clearInterval(id);
+  }, []);
+
+  // Countdown timer
+  useEffect(() => {
+    const id = setInterval(() => setSecondsLeft((s) => (s > 0 ? s - 1 : 0)), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
+  const ss = String(secondsLeft % 60).padStart(2, "0");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
