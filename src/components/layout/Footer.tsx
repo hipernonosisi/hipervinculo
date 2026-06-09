@@ -81,8 +81,8 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
               <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/[0.05] border border-white/15 rounded-2xl p-3 sm:p-4 sm:pl-6">
                 <div className="text-left">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-extrabold text-white">$49.99</span>
-                    <span className="text-base line-through text-white/40">$97</span>
+                    <span className="text-3xl font-extrabold text-white">$47</span>
+                    <span className="text-base line-through text-white/40">$90</span>
                     <span className="text-xs font-bold text-[#8BC34A] bg-[#8BC34A]/15 px-2 py-0.5 rounded">-48%</span>
                   </div>
                   <div className="text-xs text-white/60 mt-0.5">

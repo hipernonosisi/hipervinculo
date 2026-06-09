@@ -12,7 +12,7 @@ const SAMPLE_DOWNLOAD = "https://fshfuwinreztcqlumjzp.supabase.co/functions/v1/d
 const SAMPLE_NAME = "María González";
 const SAMPLE_EMAIL = "nonosisi@gmail.com";
 const SAMPLE_PHONE = "+52 55 1234 5678";
-const SAMPLE_AMOUNT = 4999;
+const SAMPLE_AMOUNT = 4700;
 
 function customerHtml(name: string, downloadUrl: string) {
   return `<!doctype html><html><body style="margin:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
@@ -81,7 +81,7 @@ serve(async (req) => {
   const admin = await resend.emails.send({
     from: "Hipervínculo Ventas <info@hipervinculo.net>",
     to: ["info@hipervinculo.net"],
-    subject: `[MUESTRA] 💰 Nueva venta eBook: $49.99 USD · ${SAMPLE_NAME}`,
+    subject: `[MUESTRA] 💰 Nueva venta eBook: $47.00 USD · ${SAMPLE_NAME}`,
     html: adminHtml({
       name: SAMPLE_NAME, email: SAMPLE_EMAIL, phone: SAMPLE_PHONE,
       amount_cents: SAMPLE_AMOUNT, session_id: "cs_test_SAMPLE_a1b2c3d4e5f6g7h8i9j0",

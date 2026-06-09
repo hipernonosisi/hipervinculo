@@ -20,8 +20,8 @@ import { usePageTracking } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 
 
-const PRICE_USD = 49.99;
-const ORIG_USD = 97;
+const PRICE_USD = 47;
+const ORIG_USD = 90;
 
 const benefits = [
   { icon: Package, title: "Validar sin comprar inventario", desc: "Prueba si un producto se vende en Amazon antes de gastar un dólar en stock." },
