@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2, Package, TrendingUp, Shield, Clock, Star, Lock,
   FileText, Zap, BookOpen, DollarSign, Truck, BarChart3, Users,
-  AlertTriangle,
+  AlertTriangle, ShieldCheck, Flame, Eye,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -51,8 +51,35 @@ export default function AmazonFbaEbook() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", confirmEmail: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const [viewers, setViewers] = useState(17);
+  const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
+
+  // Show sticky CTA bar after scrolling past hero
+  useEffect(() => {
+    const onScroll = () => setShowStickyBar(window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Live viewers ticker
+  useEffect(() => {
+    const id = setInterval(() => {
+      setViewers((v) => Math.max(9, Math.min(34, v + Math.round((Math.random() - 0.5) * 4))));
+    }, 4500);
+    return () => clearInterval(id);
+  }, []);
+
+  // Countdown timer
+  useEffect(() => {
+    const id = setInterval(() => setSecondsLeft((s) => (s > 0 ? s - 1 : 0)), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
+  const ss = String(secondsLeft % 60).padStart(2, "0");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,13 +128,13 @@ export default function AmazonFbaEbook() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-white border-b border-border/40">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="bg-white p-1.5 rounded">
-            <img src={logo} alt="Hipervínculo" className="h-8 md:h-10" />
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="bg-white p-1.5 rounded shrink-0">
+            <img src={logo} alt="Hipervínculo" className="h-7 md:h-10" />
           </div>
-          <a href="#comprar" className="hidden sm:inline-flex">
-            <Button size="sm" className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90 text-white">
-              Comprar guía · ${PRICE_USD}
+          <a href="#comprar" className="inline-flex shrink-0">
+            <Button size="sm" className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90 text-white text-xs sm:text-sm h-9 px-3 sm:px-4">
+              <span className="hidden sm:inline">Comprar guía · </span>${PRICE_USD}
             </Button>
           </a>
         </div>
@@ -118,7 +145,7 @@ export default function AmazonFbaEbook() {
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
         }} />
-        <div className="container mx-auto px-4 py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 py-12 md:py-20 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
@@ -127,17 +154,32 @@ export default function AmazonFbaEbook() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
                 Vende en Amazon <span className="text-[#8BC34A]">sin quemar tu dinero</span>
               </h1>
-              <p className="text-lg md:text-xl text-white/85 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-white/85 mb-6 leading-relaxed">
                 Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF de 50 páginas con 32 criterios de producto ganador y 3 plantillas listas para usar.
               </p>
-              <div className="flex flex-wrap items-center gap-4 mb-8">
+              <div className="flex flex-wrap items-center gap-4 mb-5">
                 <div className="flex items-center gap-1 text-[#8BC34A]">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
                 <span className="text-sm text-white/70">50 páginas · 32 criterios · 3 plantillas</span>
               </div>
+
+              {/* Urgency banner */}
+              <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 border border-[#8BC34A]/40 rounded-lg px-3 py-2 mb-5">
+                <Flame className="w-4 h-4 text-[#8BC34A] animate-pulse" />
+                <span className="text-sm text-white">
+                  Descuento -48% termina en <strong className="font-mono text-[#8BC34A]">{mm}:{ss}</strong>
+                </span>
+              </div>
+
               <div className="flex flex-wrap gap-4 items-baseline mb-6">
-                <span className="text-5xl font-extrabold">${PRICE_USD}</span>
+                <motion.span
+                  className="text-5xl font-extrabold"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  ${PRICE_USD}
+                </motion.span>
                 <span className="text-xl line-through text-white/50">${ORIG_USD}</span>
                 <span className="bg-[#8BC34A] text-[#1a2e22] text-xs font-bold px-2 py-1 rounded">-48%</span>
               </div>
@@ -221,12 +263,28 @@ export default function AmazonFbaEbook() {
       {/* CHECKOUT FORM */}
       <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white">
         <div className="container mx-auto px-4 max-w-2xl">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-4">
               <DollarSign className="w-3 h-3" /> PRODUCTO DE PAGO · NO ES GRATIS
             </div>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Compra tu guía ahora</h2>
             <p className="text-white/80 text-lg">Esta es una guía profesional de pago — <strong>no un lead magnet gratuito</strong>. Llena tus datos y procede al pago seguro con tarjeta para recibir tu PDF.</p>
+          </div>
+
+          {/* Live social proof */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-5 text-sm">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8BC34A] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8BC34A]" />
+              </span>
+              <Eye className="w-3.5 h-3.5 text-white/80" />
+              <span className="text-white/90"><strong>{viewers}</strong> viendo esta página</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
+              <Flame className="w-3.5 h-3.5 text-[#8BC34A]" />
+              <span className="text-white/90">Oferta termina en <strong className="font-mono">{mm}:{ss}</strong></span>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="bg-white text-foreground rounded-2xl p-6 md:p-8 shadow-2xl space-y-5">
@@ -240,6 +298,16 @@ export default function AmazonFbaEbook() {
                 <div className="text-xs line-through text-muted-foreground">${ORIG_USD}</div>
               </div>
             </div>
+
+            {/* Guarantee strip */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-[#8BC34A]/10 border border-[#8BC34A]/30">
+              <ShieldCheck className="w-8 h-8 text-[#2F4F3E] flex-shrink-0" />
+              <div>
+                <div className="font-bold text-sm text-[#2F4F3E]">Garantía de 7 días o devolución del 100%</div>
+                <div className="text-xs text-muted-foreground">Si la guía no es lo que esperabas, te devolvemos tu dinero sin preguntas.</div>
+              </div>
+            </div>
+
 
             <div>
               <Label htmlFor="name">Nombre completo</Label>
@@ -330,6 +398,44 @@ export default function AmazonFbaEbook() {
 
       <Footer />
 
+      {/* MOBILE STICKY BUY BAR */}
+      <AnimatePresence>
+        {showStickyBar && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+            className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#8BC34A] shadow-[0_-8px_24px_rgba(0,0,0,0.15)]"
+            style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+          >
+            <div className="flex items-center gap-3 px-3 py-2.5">
+              <div className="flex-shrink-0">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xl font-extrabold text-[#2F4F3E]">${PRICE_USD}</span>
+                  <span className="text-xs line-through text-muted-foreground">${ORIG_USD}</span>
+                </div>
+                <div className="text-[10px] text-[#2F4F3E] font-mono flex items-center gap-1">
+                  <Flame className="w-3 h-3 text-[#8BC34A]" /> {mm}:{ss}
+                </div>
+              </div>
+              <a href="#comprar" className="flex-1">
+                <motion.div
+                  animate={{ boxShadow: ["0 0 0 0 rgba(139,195,74,0.7)", "0 0 0 10px rgba(139,195,74,0)", "0 0 0 0 rgba(139,195,74,0)"] }}
+                  transition={{ duration: 1.8, repeat: Infinity }}
+                  className="rounded-xl"
+                >
+                  <Button className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base h-12">
+                    Comprar ahora →
+                  </Button>
+                </motion.div>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
+
   );
 }
