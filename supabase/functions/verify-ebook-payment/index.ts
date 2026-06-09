@@ -171,7 +171,9 @@ serve(async (req) => {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const { session_id } = parsed.data;
+    const { session_id, fbp, fbc, user_agent } = parsed.data;
+    const client_ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || null;
+    const ua = user_agent || req.headers.get("user-agent") || null;
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", { apiVersion: "2025-08-27.basil" });
     const supabase = createClient(
