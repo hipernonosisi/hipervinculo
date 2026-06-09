@@ -15,6 +15,9 @@ import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingField } from "@/components/ebook/FloatingField";
+import { VSLPlayer } from "@/components/VSLPlayer";
+import { usePageTracking } from "@/hooks/usePageTracking";
+import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 
 
 const PRICE_USD = 49.99;
@@ -50,6 +53,7 @@ const faqs = [
 export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  usePageTracking("/amazon-fba-ebook");
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
@@ -214,28 +218,17 @@ export default function AmazonFbaEbook() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }} className="flex justify-center">
-              {/* PDF MOCKUP */}
-              <div className="relative">
-                <div className="absolute -inset-4 bg-[#8BC34A]/20 blur-2xl rounded-full" />
-                <div className="relative w-64 md:w-80 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-white">
-                  <div className="h-full bg-[#2F4F3E] flex flex-col justify-between p-6 text-white">
-                    <div className="bg-white p-2 rounded inline-block self-start">
-                      <img src={logo} alt="Hipervínculo" className="h-6" />
-                    </div>
-                    <div>
-                      <div className="inline-block bg-[#8BC34A] text-[#1a2e22] text-[10px] font-bold px-2 py-1 rounded mb-3">GUÍA PRÁCTICA · 2026</div>
-                      <h2 className="text-2xl font-extrabold leading-tight mb-2 text-white">Vende en Amazon</h2>
-                      <h3 className="text-xl font-bold text-[#8BC34A] leading-tight mb-3">Sin Quemar tu Dinero</h3>
-                      <p className="text-xs text-white/70">Valida tu producto antes de comprar inventario — y escala solo lo que ya funciona.</p>
-                    </div>
-                    <div className="text-[10px] text-white/50 border-t border-white/20 pt-2">
-                      32 criterios · 3 plantillas
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex justify-center relative">
+              <div className="absolute -inset-4 bg-[#8BC34A]/20 blur-2xl rounded-full pointer-events-none" />
+              <VSLPlayer
+                videoUrls={[vslEbookAsset.url]}
+                ctaUrl="#comprar"
+                ctaLabel={`Comprar guía · $${PRICE_USD}`}
+                tapToWatchLabel="Toca para ver con sonido"
+                pageUrl="/amazon-fba-ebook"
+                className="relative"
+              />
+            </div>
           </div>
         </div>
       </section>
