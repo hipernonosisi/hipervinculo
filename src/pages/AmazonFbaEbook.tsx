@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2, Package, TrendingUp, Shield, Clock, Star, Lock,
   FileText, Zap, BookOpen, DollarSign, Truck, BarChart3, Users,
-  AlertTriangle,
+  AlertTriangle, ShieldCheck, Flame, Eye,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
