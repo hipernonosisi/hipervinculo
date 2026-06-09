@@ -97,8 +97,32 @@ export default function AmazonFbaEbook() {
     setLoading(true);
     try {
       const { name, email, phone } = form;
+      // Capture attribution
+      const params = new URLSearchParams(window.location.search);
+      const getCookie = (n: string) => {
+        const m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)"));
+        return m ? decodeURIComponent(m[1]) : undefined;
+      };
+      // Persist UTMs across sessions
+      const stored = (() => { try { return JSON.parse(localStorage.getItem("hv_attribution") || "{}"); } catch { return {}; } })();
+      const utm_source = params.get("utm_source") || stored.utm_source;
+      const utm_medium = params.get("utm_medium") || stored.utm_medium;
+      const utm_campaign = params.get("utm_campaign") || stored.utm_campaign;
+      const utm_term = params.get("utm_term") || stored.utm_term;
+      const utm_content = params.get("utm_content") || stored.utm_content;
+      const referrer = stored.referrer || document.referrer || undefined;
+      try {
+        localStorage.setItem("hv_attribution", JSON.stringify({
+          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referrer,
+        }));
+      } catch {}
+
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
-        body: { name, email, phone, variant, marketing_opt_in: marketingOptIn },
+        body: {
+          name, email, phone, variant, marketing_opt_in: marketingOptIn,
+          utm_source, utm_medium, utm_campaign, utm_term, utm_content, referrer,
+          fbp: getCookie("_fbp"), fbc: getCookie("_fbc"),
+        },
       });
 
       if (error) throw error;
