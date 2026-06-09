@@ -49,7 +49,7 @@ const faqs = [
 export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", confirmEmail: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
