@@ -12,7 +12,83 @@ const corsHeaders = {
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const LOGO = "https://fshfuwinreztcqlumjzp.supabase.co/storage/v1/object/public/email-assets/logo.png?v=1";
 
-const Body = z.object({ session_id: z.string().trim().min(5).max(200) });
+const Body = z.object({
+  session_id: z.string().trim().min(5).max(200),
+  fbp: z.string().optional(),
+  fbc: z.string().optional(),
+  user_agent: z.string().optional(),
+});
+
+const META_PIXEL_ID = "1488250718116666";
+
+async function sha256Hex(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s.trim().toLowerCase()));
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function sendMetaCapiPurchase(p: {
+  event_id: string;
+  email: string;
+  name: string;
+  phone: string | null;
+  value: number;
+  currency: string;
+  client_ip: string | null;
+  user_agent: string | null;
+  fbp: string | null;
+  fbc: string | null;
+  event_source_url: string;
+}) {
+  const token = Deno.env.get("META_CAPI_ACCESS_TOKEN");
+  if (!token) { console.warn("META_CAPI_ACCESS_TOKEN missing, skipping CAPI"); return; }
+
+  const [firstName, ...rest] = (p.name || "").trim().split(/\s+/);
+  const lastName = rest.join(" ");
+  const phoneDigits = (p.phone || "").replace(/\D/g, "");
+
+  const user_data: Record<string, string | string[]> = {};
+  if (p.email) user_data.em = [await sha256Hex(p.email)];
+  if (phoneDigits) user_data.ph = [await sha256Hex(phoneDigits)];
+  if (firstName) user_data.fn = [await sha256Hex(firstName)];
+  if (lastName) user_data.ln = [await sha256Hex(lastName)];
+  if (p.client_ip) user_data.client_ip_address = p.client_ip;
+  if (p.user_agent) user_data.client_user_agent = p.user_agent;
+  if (p.fbp) user_data.fbp = p.fbp;
+  if (p.fbc) user_data.fbc = p.fbc;
+
+  const payload: Record<string, unknown> = {
+    data: [{
+      event_name: "Purchase",
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: p.event_id,
+      action_source: "website",
+      event_source_url: p.event_source_url,
+      user_data,
+      custom_data: {
+        currency: p.currency.toUpperCase(),
+        value: p.value,
+        content_name: "Amazon FBA Sin Inventario",
+        content_type: "product",
+        content_ids: ["amazon-fba-ebook"],
+        num_items: 1,
+      },
+    }],
+  };
+  const testCode = Deno.env.get("META_TEST_EVENT_CODE");
+  if (testCode) (payload as { test_event_code?: string }).test_event_code = testCode;
+
+  try {
+    const res = await fetch(`https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${token}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const text = await res.text();
+    if (!res.ok) console.error("Meta CAPI error", res.status, text);
+    else console.log("Meta CAPI ok", text);
+  } catch (e) { console.error("Meta CAPI fetch error", e); }
+}
+
 
 function genToken() {
   const bytes = new Uint8Array(32);
@@ -95,7 +171,9 @@ serve(async (req) => {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const { session_id } = parsed.data;
+    const { session_id, fbp, fbc, user_agent } = parsed.data;
+    const client_ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || null;
+    const ua = user_agent || req.headers.get("user-agent") || null;
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", { apiVersion: "2025-08-27.basil" });
     const supabase = createClient(
@@ -163,6 +241,22 @@ serve(async (req) => {
         marketing_opt_in: marketingOptIn,
       });
     } catch (e) { console.error("Admin email error", e); }
+
+    // Meta Conversions API (server-side, deduplicated with browser pixel via event_id)
+    try {
+      await sendMetaCapiPurchase({
+        event_id: session.id,
+        email, name, phone,
+        value: (session.amount_total ?? 4999) / 100,
+        currency: session.currency ?? "usd",
+        client_ip,
+        user_agent: ua,
+        fbp: fbp || null,
+        fbc: fbc || null,
+        event_source_url: "https://hipervinculo.net/amazon-fba-ebook/success",
+      });
+    } catch (e) { console.error("Meta CAPI error", e); }
+
 
 
     return new Response(JSON.stringify({

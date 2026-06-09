@@ -23,8 +23,18 @@ export default function AmazonFbaEbookSuccess() {
     if (!sessionId) { setState("error"); return; }
     (async () => {
       try {
+        // Read Meta cookies for better CAPI match rate
+        const getCookie = (name: string) => {
+          const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+          return m ? decodeURIComponent(m[1]) : undefined;
+        };
         const { data, error } = await supabase.functions.invoke("verify-ebook-payment", {
-          body: { session_id: sessionId },
+          body: {
+            session_id: sessionId,
+            fbp: getCookie("_fbp"),
+            fbc: getCookie("_fbc"),
+            user_agent: navigator.userAgent,
+          },
         });
         if (error) throw error;
         if (data?.status === "ok") {
