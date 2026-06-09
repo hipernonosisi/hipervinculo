@@ -64,7 +64,7 @@ export function VSLPlayer({
     if (!isInView || !videoRef.current) return;
     const v = videoRef.current;
     v.muted = true;
-    v.playbackRate = 1.25;
+    v.playbackRate = 1;
     v.play().catch(() => {});
   }, [isInView, videoSrcIndex]);
 
@@ -147,11 +147,11 @@ export function VSLPlayer({
     if (!v) return;
     if (state === 'preview') {
       v.muted = false;
-      v.playbackRate = 1.25;
+      v.playbackRate = 1;
       v.currentTime = 0;
       v.play().catch(() => {});
       setMuted(false);
-      setSpeed(1.25);
+      setSpeed(1);
       setState('playing');
       if (!videoPlayTracked.current) {
         videoPlayTracked.current = true;
