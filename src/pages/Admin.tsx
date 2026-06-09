@@ -328,12 +328,13 @@ export default function Admin() {
         {/* Tabs */}
         <AnimatedSection delay={0.1}>
           <Tabs defaultValue="contact" className="w-full">
-            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex overflow-x-auto sm:grid sm:grid-cols-9 h-auto gap-1 no-scrollbar">
+            <TabsList className="mb-6 bg-white shadow-sm rounded-xl p-1 w-full flex overflow-x-auto sm:grid sm:grid-cols-10 h-auto gap-1 no-scrollbar">
               {[
                 { value: 'contact', label: 'Contact', shortLabel: 'Contact', Icon: Mail, count: contactSubmissions.length },
                 { value: 'audit', label: 'Audits', shortLabel: 'Audits', Icon: FileText, count: auditRequests.length },
                 { value: 'chat', label: 'Chats', shortLabel: 'Chats', Icon: MessageCircle, count: chatConversations.length },
                 { value: 'preview', label: 'Preview', shortLabel: 'Preview', Icon: Magnet, count: previewLeads.length },
+                { value: 'ebook', label: 'eBook', shortLabel: 'eBook', Icon: BookOpen },
                 { value: 'presentations', label: 'Presentations', shortLabel: 'Present.', Icon: Presentation },
                 { value: 'reports', label: 'Reports', shortLabel: 'Reports', Icon: BarChart3 },
                 { value: 'proposals', label: 'Proposals', shortLabel: 'Proposals', Icon: ScrollText },
