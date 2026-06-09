@@ -281,7 +281,7 @@ export default function AmazonFbaEbook() {
               </h2>
 
               <p className="text-base md:text-lg text-white/85 leading-relaxed mb-8">
-                En las próximas 2 horas puedes tener el mismo sistema que usamos con <strong className="text-white">200+ clientes</strong> para validar productos en Amazon <strong className="text-[#8BC34A]">sin comprar stock</strong> — y escalar solo lo que ya está vendiendo.
+                En las próximas 2 horas puedes tener el sistema completo para validar productos en Amazon <strong className="text-[#8BC34A]">sin comprar stock</strong> — y escalar solo lo que ya está vendiendo.
               </p>
 
               {/* Stack visible de lo que recibes */}
