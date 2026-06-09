@@ -277,7 +277,7 @@ export default function AmazonFbaEbook() {
                 <Flame className="w-3 h-3" /> ÚLTIMA OPORTUNIDAD A ESTE PRECIO
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5 text-white">
                 Deja de arriesgar miles en inventario que <span className="text-[#8BC34A]">quizás no se venda</span>.
               </h2>
 
