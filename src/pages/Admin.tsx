@@ -38,6 +38,7 @@ import { IncompleteLeadsSection } from '@/components/admin/IncompletLeadsSection
 import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
 import { PreviewAnalyticsDashboard } from '@/components/admin/PreviewAnalyticsDashboard';
+import { EbookSalesDashboard } from '@/components/admin/EbookSalesDashboard';
 
 interface ContactSubmission {
   id: string;
