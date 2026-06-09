@@ -15,6 +15,14 @@ const BodySchema = z.object({
   phone: z.string().trim().min(5).max(30),
   variant: z.string().trim().max(40).optional().default("default"),
   marketing_opt_in: z.boolean().optional().default(false),
+  utm_source: z.string().trim().max(120).optional(),
+  utm_medium: z.string().trim().max(120).optional(),
+  utm_campaign: z.string().trim().max(120).optional(),
+  utm_term: z.string().trim().max(120).optional(),
+  utm_content: z.string().trim().max(120).optional(),
+  referrer: z.string().trim().max(500).optional(),
+  fbp: z.string().trim().max(200).optional(),
+  fbc: z.string().trim().max(300).optional(),
 });
 
 serve(async (req) => {
@@ -27,28 +35,39 @@ serve(async (req) => {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const { email, name, phone, variant, marketing_opt_in } = parsed.data;
+    const d = parsed.data;
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2025-08-27.basil",
     });
 
     const origin = req.headers.get("origin") || "https://hipervinculo.net";
-    const optStr = marketing_opt_in ? "1" : "0";
+    const optStr = d.marketing_opt_in ? "1" : "0";
+
+    // Build metadata (Stripe values must be strings, max 500 chars, max 50 keys)
+    const md: Record<string, string> = {
+      name: d.name, phone: d.phone, variant: d.variant,
+      marketing_opt_in: optStr, product: "amazon-fba-sin-inventario",
+    };
+    if (d.utm_source) md.utm_source = d.utm_source.slice(0, 500);
+    if (d.utm_medium) md.utm_medium = d.utm_medium.slice(0, 500);
+    if (d.utm_campaign) md.utm_campaign = d.utm_campaign.slice(0, 500);
+    if (d.utm_term) md.utm_term = d.utm_term.slice(0, 500);
+    if (d.utm_content) md.utm_content = d.utm_content.slice(0, 500);
+    if (d.referrer) md.referrer = d.referrer.slice(0, 500);
+    if (d.fbp) md.fbp = d.fbp.slice(0, 500);
+    if (d.fbc) md.fbc = d.fbc.slice(0, 500);
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: email,
+      customer_email: d.email,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
       payment_method_types: ["card"],
       success_url: `${origin}/amazon-fba-ebook/gracias?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/amazon-fba-ebook?canceled=1`,
-      metadata: { name, phone, variant, marketing_opt_in: optStr, product: "amazon-fba-sin-inventario" },
-      payment_intent_data: {
-        metadata: { name, phone, variant, marketing_opt_in: optStr, product: "amazon-fba-sin-inventario", email },
-      },
+      metadata: md,
+      payment_intent_data: { metadata: { ...md, email: d.email } },
     });
-
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200,
