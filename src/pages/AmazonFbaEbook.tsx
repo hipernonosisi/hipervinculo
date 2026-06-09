@@ -263,12 +263,28 @@ export default function AmazonFbaEbook() {
       {/* CHECKOUT FORM */}
       <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white">
         <div className="container mx-auto px-4 max-w-2xl">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-4">
               <DollarSign className="w-3 h-3" /> PRODUCTO DE PAGO · NO ES GRATIS
             </div>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Compra tu guía ahora</h2>
             <p className="text-white/80 text-lg">Esta es una guía profesional de pago — <strong>no un lead magnet gratuito</strong>. Llena tus datos y procede al pago seguro con tarjeta para recibir tu PDF.</p>
+          </div>
+
+          {/* Live social proof */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-5 text-sm">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8BC34A] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8BC34A]" />
+              </span>
+              <Eye className="w-3.5 h-3.5 text-white/80" />
+              <span className="text-white/90"><strong>{viewers}</strong> viendo esta página</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
+              <Flame className="w-3.5 h-3.5 text-[#8BC34A]" />
+              <span className="text-white/90">Oferta termina en <strong className="font-mono">{mm}:{ss}</strong></span>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="bg-white text-foreground rounded-2xl p-6 md:p-8 shadow-2xl space-y-5">
@@ -282,6 +298,16 @@ export default function AmazonFbaEbook() {
                 <div className="text-xs line-through text-muted-foreground">${ORIG_USD}</div>
               </div>
             </div>
+
+            {/* Guarantee strip */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-[#8BC34A]/10 border border-[#8BC34A]/30">
+              <ShieldCheck className="w-8 h-8 text-[#2F4F3E] flex-shrink-0" />
+              <div>
+                <div className="font-bold text-sm text-[#2F4F3E]">Garantía de 7 días o devolución del 100%</div>
+                <div className="text-xs text-muted-foreground">Si la guía no es lo que esperabas, te devolvemos tu dinero sin preguntas.</div>
+              </div>
+            </div>
+
 
             <div>
               <Label htmlFor="name">Nombre completo</Label>
