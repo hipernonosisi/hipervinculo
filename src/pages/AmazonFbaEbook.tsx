@@ -139,12 +139,16 @@ export default function AmazonFbaEbook() {
 
       if (error) throw error;
       if (data?.url) {
+        trackEvent('checkout_session_created', { variant, lead_id: data?.lead_id }, '/amazon-fba-ebook');
+        trackEvent('checkout_redirect', { variant }, '/amazon-fba-ebook');
         window.location.href = data.url;
       } else {
         throw new Error("No se pudo iniciar el pago");
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      const msg = err?.message || String(err);
+      trackEvent('checkout_error', { variant, error: msg.slice(0, 200) }, '/amazon-fba-ebook');
       toast.error("Error al iniciar el pago. Intenta de nuevo.");
       setLoading(false);
     }

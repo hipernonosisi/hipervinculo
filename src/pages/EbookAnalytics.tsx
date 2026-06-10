@@ -65,6 +65,14 @@ export default function EbookAnalytics() {
     const videoUnmutes = new Set(events.filter((e) => e.event_type === 'video_unmute').map(e => e.session_id)).size;
     const formStarts = new Set(events.filter((e) => e.event_type === 'form_start').map(e => e.session_id)).size;
     const formSubmits = new Set(events.filter((e) => e.event_type === 'form_submit').map(e => e.session_id)).size;
+    const checkoutSessions = new Set(events.filter((e) => e.event_type === 'checkout_session_created').map(e => e.session_id)).size;
+    const checkoutRedirects = new Set(events.filter((e) => e.event_type === 'checkout_redirect').map(e => e.session_id)).size;
+    const checkoutErrors = events.filter((e) => e.event_type === 'checkout_error');
+    const checkoutErrorSessions = new Set(checkoutErrors.map(e => e.session_id)).size;
+    const recentErrors = checkoutErrors.slice(0, 5).map((e) => ({
+      when: e.created_at,
+      error: e.event_data?.error || 'Unknown',
+    }));
 
     const watchEvents = events.filter((e) => e.event_type === 'video_watch_duration');
     const avgWatchSeconds = watchEvents.length > 0
@@ -136,7 +144,8 @@ export default function EbookAnalytics() {
 
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
-      formStarts, formSubmits, avgTime, avgWatchSeconds, avgWatchPercent, maxWatchSeconds,
+      formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
+      avgTime, avgWatchSeconds, avgWatchPercent, maxWatchSeconds,
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
@@ -152,6 +161,7 @@ export default function EbookAnalytics() {
     { name: 'Play vídeo', value: stats.videoPlays, color: '#A855F7' },
     { name: 'Empezó form', value: stats.formStarts, color: '#F59E0B' },
     { name: 'Envió form', value: stats.formSubmits, color: '#FF6B35' },
+    { name: 'Llegó a Stripe', value: stats.checkoutRedirects, color: '#0EA5E9' },
     { name: 'Compró', value: purchases, color: '#2F4F3E' },
   ];
 
@@ -210,6 +220,7 @@ export default function EbookAnalytics() {
             { icon: Volume2, label: 'Desmutearon', value: stats.videoUnmutes, color: '#EC4899' },
             { icon: FileEdit, label: 'Empezó form', value: stats.formStarts, color: '#F59E0B' },
             { icon: CheckCircle2, label: 'Envió form', value: stats.formSubmits, color: '#FF6B35' },
+            { icon: DollarSign, label: 'Llegó a Stripe', value: stats.checkoutRedirects, color: '#0EA5E9' },
             { icon: MousePointerClick, label: 'Clicks CTA', value: stats.ctaClicks, color: '#6366F1' },
             { icon: DollarSign, label: 'Compras', value: purchases, color: '#2F4F3E' },
           ].map(({ icon: Icon, label, value, color }) => (
@@ -267,6 +278,46 @@ export default function EbookAnalytics() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Checkout health / errors */}
+        {(stats.checkoutErrorSessions > 0 || stats.formSubmits > stats.checkoutRedirects) && (
+          <Card className="border-0 shadow-sm rounded-xl border-l-4 border-l-red-500">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-bold text-red-700">⚠️ Salud del checkout</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-[11px]">
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#2F4F3E]">{stats.formSubmits}</p>
+                  <p className="text-muted-foreground">enviaron form</p>
+                </div>
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#0EA5E9]">{stats.checkoutRedirects}</p>
+                  <p className="text-muted-foreground">llegaron a Stripe</p>
+                </div>
+                <div className="p-2 bg-red-50 rounded">
+                  <p className="font-bold text-red-600">{stats.checkoutErrorSessions}</p>
+                  <p className="text-muted-foreground">con error</p>
+                </div>
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#2F4F3E]">{stats.formSubmits - stats.checkoutRedirects - stats.checkoutErrorSessions}</p>
+                  <p className="text-muted-foreground">sin respuesta</p>
+                </div>
+              </div>
+              {stats.recentErrors.length > 0 && (
+                <div className="text-xs space-y-1">
+                  <p className="font-semibold text-[#2F4F3E] mb-1">Últimos errores:</p>
+                  {stats.recentErrors.map((e, i) => (
+                    <div key={i} className="p-2 bg-red-50 rounded font-mono text-[10px] break-all">
+                      <span className="text-muted-foreground">{format(new Date(e.when), 'd MMM HH:mm')}</span> — {e.error}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
 
         {/* Daily views & scroll */}
         <div className="grid md:grid-cols-2 gap-4">
