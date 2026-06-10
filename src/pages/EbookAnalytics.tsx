@@ -144,7 +144,8 @@ export default function EbookAnalytics() {
 
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
-      formStarts, formSubmits, avgTime, avgWatchSeconds, avgWatchPercent, maxWatchSeconds,
+      formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
+      avgTime, avgWatchSeconds, avgWatchPercent, maxWatchSeconds,
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
