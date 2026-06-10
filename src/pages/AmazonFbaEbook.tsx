@@ -235,6 +235,7 @@ export default function AmazonFbaEbook() {
               <div className="absolute -inset-4 bg-[#8BC34A]/20 blur-2xl rounded-full pointer-events-none" />
               <VSLPlayer
                 videoUrls={[vslEbookAsset.url]}
+                poster={vslPosterAsset.url}
                 ctaUrl="#comprar"
                 ctaLabel={`Comprar guía · $${PRICE_USD}`}
                 tapToWatchLabel="Toca para ver con sonido"
