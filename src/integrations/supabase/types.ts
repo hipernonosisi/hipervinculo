@@ -222,6 +222,87 @@ export type Database = {
           },
         ]
       }
+      ebook_leads: {
+        Row: {
+          checkout_error: string | null
+          checkout_status: string
+          city: string | null
+          client_ip: string | null
+          country: string | null
+          created_at: string
+          email: string
+          fbc: string | null
+          fbp: string | null
+          id: string
+          marketing_opt_in: boolean
+          name: string
+          phone: string | null
+          referrer: string | null
+          region: string | null
+          stripe_session_id: string | null
+          updated_at: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          variant: string | null
+        }
+        Insert: {
+          checkout_error?: string | null
+          checkout_status?: string
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
+          created_at?: string
+          email: string
+          fbc?: string | null
+          fbp?: string | null
+          id?: string
+          marketing_opt_in?: boolean
+          name: string
+          phone?: string | null
+          referrer?: string | null
+          region?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Update: {
+          checkout_error?: string | null
+          checkout_status?: string
+          city?: string | null
+          client_ip?: string | null
+          country?: string | null
+          created_at?: string
+          email?: string
+          fbc?: string | null
+          fbp?: string | null
+          id?: string
+          marketing_opt_in?: boolean
+          name?: string
+          phone?: string | null
+          referrer?: string | null
+          region?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Relationships: []
+      }
       ebook_purchases: {
         Row: {
           amount_cents: number
