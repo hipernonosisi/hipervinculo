@@ -435,15 +435,6 @@ export default function AmazonFbaEbook() {
                       maxLength={255}
                       validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}
                     />
-                    <FloatingField
-                      id="phone"
-                      label="WhatsApp"
-                      value={form.phone}
-                      onChange={(v) => setForm({ ...form, phone: v })}
-                      type="tel"
-                      maxLength={30}
-                      placeholder="+1 234 567 8900"
-                    />
                   </div>
 
                   {/* Marketing checkbox compacto */}

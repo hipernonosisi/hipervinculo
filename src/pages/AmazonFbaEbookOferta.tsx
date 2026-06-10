@@ -242,13 +242,6 @@ export default function AmazonFbaEbookOferta() {
                   value={form.email}
                   onChange={(v) => setForm({ ...form, email: v })}
                 />
-                <FloatingField
-                  id="phone"
-                  label="WhatsApp (con código de país)"
-                  type="tel"
-                  value={form.phone}
-                  onChange={(v) => setForm({ ...form, phone: v })}
-                />
               </div>
 
               <Button
