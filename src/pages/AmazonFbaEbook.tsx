@@ -18,6 +18,7 @@ import { FloatingField } from "@/components/ebook/FloatingField";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
+import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 
 
 const PRICE_USD = 47;
@@ -234,6 +235,7 @@ export default function AmazonFbaEbook() {
               <div className="absolute -inset-4 bg-[#8BC34A]/20 blur-2xl rounded-full pointer-events-none" />
               <VSLPlayer
                 videoUrls={[vslEbookAsset.url]}
+                poster={vslPosterAsset.url}
                 ctaUrl="#comprar"
                 ctaLabel={`Comprar guía · $${PRICE_USD}`}
                 tapToWatchLabel="Toca para ver con sonido"
