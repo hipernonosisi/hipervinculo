@@ -132,7 +132,7 @@ export default function AmazonFbaEbook() {
 
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
         body: {
-          name, email, phone, variant, marketing_opt_in: marketingOptIn,
+          name, email, variant, marketing_opt_in: marketingOptIn,
           utm_source, utm_medium, utm_campaign, utm_term, utm_content, referrer,
           fbp: getCookie("_fbp"), fbc: getCookie("_fbc"),
         },
