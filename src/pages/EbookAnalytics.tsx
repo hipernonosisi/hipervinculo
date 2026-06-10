@@ -279,6 +279,46 @@ export default function EbookAnalytics() {
           </CardContent>
         </Card>
 
+        {/* Checkout health / errors */}
+        {(stats.checkoutErrorSessions > 0 || stats.formSubmits > stats.checkoutRedirects) && (
+          <Card className="border-0 shadow-sm rounded-xl border-l-4 border-l-red-500">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-bold text-red-700">⚠️ Salud del checkout</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-[11px]">
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#2F4F3E]">{stats.formSubmits}</p>
+                  <p className="text-muted-foreground">enviaron form</p>
+                </div>
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#0EA5E9]">{stats.checkoutRedirects}</p>
+                  <p className="text-muted-foreground">llegaron a Stripe</p>
+                </div>
+                <div className="p-2 bg-red-50 rounded">
+                  <p className="font-bold text-red-600">{stats.checkoutErrorSessions}</p>
+                  <p className="text-muted-foreground">con error</p>
+                </div>
+                <div className="p-2 bg-gray-50 rounded">
+                  <p className="font-bold text-[#2F4F3E]">{stats.formSubmits - stats.checkoutRedirects - stats.checkoutErrorSessions}</p>
+                  <p className="text-muted-foreground">sin respuesta</p>
+                </div>
+              </div>
+              {stats.recentErrors.length > 0 && (
+                <div className="text-xs space-y-1">
+                  <p className="font-semibold text-[#2F4F3E] mb-1">Últimos errores:</p>
+                  {stats.recentErrors.map((e, i) => (
+                    <div key={i} className="p-2 bg-red-50 rounded font-mono text-[10px] break-all">
+                      <span className="text-muted-foreground">{format(new Date(e.when), 'd MMM HH:mm')}</span> — {e.error}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+
         {/* Daily views & scroll */}
         <div className="grid md:grid-cols-2 gap-4">
           <Card className="border-0 shadow-sm rounded-xl">
