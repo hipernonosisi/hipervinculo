@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,7 +16,7 @@ import logo from "@/assets/logo-hipervinculo.png";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingField } from "@/components/ebook/FloatingField";
 import { VSLPlayer } from "@/components/VSLPlayer";
-import { usePageTracking } from "@/hooks/usePageTracking";
+import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 
 
@@ -59,6 +59,13 @@ export default function AmazonFbaEbook() {
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
+  const formStartTracked = useRef(false);
+
+  const trackFormStart = () => {
+    if (formStartTracked.current) return;
+    formStartTracked.current = true;
+    trackEvent('form_start', {}, '/amazon-fba-ebook');
+  };
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
@@ -99,6 +106,7 @@ export default function AmazonFbaEbook() {
     }
 
     setLoading(true);
+    trackEvent('form_submit', { variant }, '/amazon-fba-ebook');
     try {
       const { name, email, phone } = form;
       // Capture attribution
@@ -374,7 +382,7 @@ export default function AmazonFbaEbook() {
                 {/* Glow */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#8BC34A]/30 to-[#8BC34A]/10 rounded-3xl blur-xl pointer-events-none" />
 
-                <form id="buy-form" onSubmit={handleSubmit} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl scroll-mt-24">
+                <form id="buy-form" onSubmit={handleSubmit} onFocus={trackFormStart} className="relative bg-white text-foreground rounded-2xl p-5 sm:p-7 shadow-2xl scroll-mt-24">
                   {/* Header buy box */}
                   <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-border">
                     <div className="min-w-0">

@@ -31,6 +31,7 @@ import HipervinculoAds from "./pages/HipervinculoAds";
 import HiperInfluencers from "./pages/HiperInfluencers";
 import AmazonFbaEbook from "./pages/AmazonFbaEbook";
 import AmazonFbaEbookSuccess from "./pages/AmazonFbaEbookSuccess";
+import EbookAnalytics from "./pages/EbookAnalytics";
 import PersonajesStatus from "./pages/PersonajesStatus";
 
 const queryClient = new QueryClient();
@@ -69,6 +70,7 @@ const App = () => (
             <Route path="/hiper-influencers" element={<HiperInfluencers />} />
             <Route path="/amazon-fba-ebook" element={<AmazonFbaEbook />} />
             <Route path="/amazon-fba-ebook/gracias" element={<AmazonFbaEbookSuccess />} />
+            <Route path="/amazon-fba-ebook/analytics" element={<EbookAnalytics />} />
             <Route path="/personajes-status" element={<PersonajesStatus />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
