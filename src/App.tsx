@@ -31,6 +31,7 @@ import HipervinculoAds from "./pages/HipervinculoAds";
 import HiperInfluencers from "./pages/HiperInfluencers";
 import AmazonFbaEbook from "./pages/AmazonFbaEbook";
 import AmazonFbaEbookSuccess from "./pages/AmazonFbaEbookSuccess";
+import EbookAnalytics from "./pages/EbookAnalytics";
 import PersonajesStatus from "./pages/PersonajesStatus";
 
 const queryClient = new QueryClient();
