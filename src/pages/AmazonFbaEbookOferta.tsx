@@ -134,7 +134,7 @@ export default function AmazonFbaEbookOferta() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAF9] text-foreground font-['Plus_Jakarta_Sans']">
+    <div className="min-h-screen bg-[#F8FAF9] text-foreground">
       <SEO
         title="Última oportunidad · Guía Amazon FBA $47"
         description="Acceso inmediato a la Guía Amazon FBA Sin Inventario. Oferta especial $47 (antes $90). Descarga al instante."
