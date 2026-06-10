@@ -65,6 +65,14 @@ export default function EbookAnalytics() {
     const videoUnmutes = new Set(events.filter((e) => e.event_type === 'video_unmute').map(e => e.session_id)).size;
     const formStarts = new Set(events.filter((e) => e.event_type === 'form_start').map(e => e.session_id)).size;
     const formSubmits = new Set(events.filter((e) => e.event_type === 'form_submit').map(e => e.session_id)).size;
+    const checkoutSessions = new Set(events.filter((e) => e.event_type === 'checkout_session_created').map(e => e.session_id)).size;
+    const checkoutRedirects = new Set(events.filter((e) => e.event_type === 'checkout_redirect').map(e => e.session_id)).size;
+    const checkoutErrors = events.filter((e) => e.event_type === 'checkout_error');
+    const checkoutErrorSessions = new Set(checkoutErrors.map(e => e.session_id)).size;
+    const recentErrors = checkoutErrors.slice(0, 5).map((e) => ({
+      when: e.created_at,
+      error: e.event_data?.error || 'Unknown',
+    }));
 
     const watchEvents = events.filter((e) => e.event_type === 'video_watch_duration');
     const avgWatchSeconds = watchEvents.length > 0
