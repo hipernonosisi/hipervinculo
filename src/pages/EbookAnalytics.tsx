@@ -220,6 +220,7 @@ export default function EbookAnalytics() {
             { icon: Volume2, label: 'Desmutearon', value: stats.videoUnmutes, color: '#EC4899' },
             { icon: FileEdit, label: 'Empezó form', value: stats.formStarts, color: '#F59E0B' },
             { icon: CheckCircle2, label: 'Envió form', value: stats.formSubmits, color: '#FF6B35' },
+            { icon: DollarSign, label: 'Llegó a Stripe', value: stats.checkoutRedirects, color: '#0EA5E9' },
             { icon: MousePointerClick, label: 'Clicks CTA', value: stats.ctaClicks, color: '#6366F1' },
             { icon: DollarSign, label: 'Compras', value: purchases, color: '#2F4F3E' },
           ].map(({ icon: Icon, label, value, color }) => (
