@@ -199,12 +199,8 @@ export default function AmazonFbaEbookOferta() {
               Acceso inmediato · Descarga al pagar · Garantía 7 días
             </p>
 
-            <div className="pt-2 flex items-center justify-center lg:justify-start gap-4">
-              <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#8BC34A]/40 to-[#2F4F3E]/40" />
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#2F4F3E]/40 to-[#8BC34A]/40" />
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#8BC34A]/60 to-[#2F4F3E]/60" />
-              </div>
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-2">
+              <CheckCircle2 className="h-4 w-4 text-[#8BC34A]" />
               <p className="text-sm font-semibold text-[#2F4F3E]/60">
                 +200 marcas confían en Hipervínculo
               </p>
