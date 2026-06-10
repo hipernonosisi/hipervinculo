@@ -55,7 +55,7 @@ export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   usePageTracking("/amazon-fba-ebook");
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
@@ -96,7 +96,7 @@ export default function AmazonFbaEbook() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
+    if (!form.name.trim() || !form.email.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -109,7 +109,7 @@ export default function AmazonFbaEbook() {
     setLoading(true);
     trackEvent('form_submit', { variant }, '/amazon-fba-ebook');
     try {
-      const { name, email, phone } = form;
+      const { name, email } = form;
       // Capture attribution
       const params = new URLSearchParams(window.location.search);
       const getCookie = (n: string) => {
@@ -132,7 +132,7 @@ export default function AmazonFbaEbook() {
 
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
         body: {
-          name, email, phone, variant, marketing_opt_in: marketingOptIn,
+          name, email, variant, marketing_opt_in: marketingOptIn,
           utm_source, utm_medium, utm_campaign, utm_term, utm_content, referrer,
           fbp: getCookie("_fbp"), fbc: getCookie("_fbc"),
         },
@@ -434,15 +434,6 @@ export default function AmazonFbaEbook() {
                       type="email"
                       maxLength={255}
                       validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}
-                    />
-                    <FloatingField
-                      id="phone"
-                      label="WhatsApp"
-                      value={form.phone}
-                      onChange={(v) => setForm({ ...form, phone: v })}
-                      type="tel"
-                      maxLength={30}
-                      placeholder="+1 234 567 8900"
                     />
                   </div>
 
