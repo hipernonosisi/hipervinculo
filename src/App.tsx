@@ -70,6 +70,7 @@ const App = () => (
             <Route path="/hiper-influencers" element={<HiperInfluencers />} />
             <Route path="/amazon-fba-ebook" element={<AmazonFbaEbook />} />
             <Route path="/amazon-fba-ebook/gracias" element={<AmazonFbaEbookSuccess />} />
+            <Route path="/amazon-fba-ebook/analytics" element={<EbookAnalytics />} />
             <Route path="/personajes-status" element={<PersonajesStatus />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
