@@ -106,6 +106,7 @@ export default function AmazonFbaEbook() {
     }
 
     setLoading(true);
+    trackEvent('form_submit', { variant }, '/amazon-fba-ebook');
     try {
       const { name, email, phone } = form;
       // Capture attribution
