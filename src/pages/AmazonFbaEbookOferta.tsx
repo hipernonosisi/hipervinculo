@@ -18,7 +18,7 @@ const PAGE = "/amazon-fba-ebook/oferta";
 export default function AmazonFbaEbookOferta() {
   usePageTracking(PAGE);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [secondsLeft, setSecondsLeft] = useState(15 * 60); // 15 min urgency
   const formStartTracked = useRef(false);
 
@@ -44,7 +44,7 @@ export default function AmazonFbaEbookOferta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
+    if (!form.name.trim() || !form.email.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -57,7 +57,7 @@ export default function AmazonFbaEbookOferta() {
     setLoading(true);
     trackEvent("form_submit", { variant }, PAGE);
     try {
-      const { name, email, phone } = form;
+      const { name, email } = form;
       const params = new URLSearchParams(window.location.search);
       const getCookie = (n: string) => {
         const m = document.cookie.match(
