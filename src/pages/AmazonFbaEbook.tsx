@@ -59,6 +59,13 @@ export default function AmazonFbaEbook() {
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
+  const formStartTracked = useRef(false);
+
+  const trackFormStart = () => {
+    if (formStartTracked.current) return;
+    formStartTracked.current = true;
+    trackEvent('form_start', {}, '/amazon-fba-ebook');
+  };
 
   const variant = new URLSearchParams(window.location.search).get("v") || "default";
 
