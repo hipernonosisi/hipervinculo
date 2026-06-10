@@ -140,7 +140,7 @@ export default function AmazonFbaEbookOferta() {
         title="Última oportunidad · Guía Amazon FBA $47"
         description="Acceso inmediato a la Guía Amazon FBA Sin Inventario. Oferta especial $47 (antes $90). Descarga al instante."
         url="https://hipervinculo.net/amazon-fba-ebook/oferta"
-        noindex
+        noIndex
       />
 
       {/* MINIMAL HEADER */}
