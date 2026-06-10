@@ -229,37 +229,28 @@ export default function AmazonFbaEbookOferta() {
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-3">
-              <FloatingField
-                id="name"
-                label="Nombre completo"
-                value={form.name}
-                onChange={(v) => setForm({ ...form, name: v })}
-                onFocus={trackFormStart}
-                autoComplete="name"
-                required
-              />
-              <FloatingField
-                id="email"
-                label="Correo electrónico"
-                type="email"
-                value={form.email}
-                onChange={(v) => setForm({ ...form, email: v })}
-                onFocus={trackFormStart}
-                autoComplete="email"
-                inputMode="email"
-                required
-              />
-              <FloatingField
-                id="phone"
-                label="WhatsApp (con código de país)"
-                type="tel"
-                value={form.phone}
-                onChange={(v) => setForm({ ...form, phone: v })}
-                onFocus={trackFormStart}
-                autoComplete="tel"
-                inputMode="tel"
-                required
-              />
+              <div onFocusCapture={trackFormStart} className="space-y-3">
+                <FloatingField
+                  id="name"
+                  label="Nombre completo"
+                  value={form.name}
+                  onChange={(v) => setForm({ ...form, name: v })}
+                />
+                <FloatingField
+                  id="email"
+                  label="Correo electrónico"
+                  type="email"
+                  value={form.email}
+                  onChange={(v) => setForm({ ...form, email: v })}
+                />
+                <FloatingField
+                  id="phone"
+                  label="WhatsApp (con código de país)"
+                  type="tel"
+                  value={form.phone}
+                  onChange={(v) => setForm({ ...form, phone: v })}
+                />
+              </div>
 
               <Button
                 type="submit"
