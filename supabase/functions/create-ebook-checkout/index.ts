@@ -15,7 +15,7 @@ const ADMIN_EMAIL = "info@hipervinculo.net";
 const BodySchema = z.object({
   email: z.string().trim().email().max(255),
   name: z.string().trim().min(1).max(120),
-  phone: z.string().trim().min(5).max(30),
+  phone: z.string().trim().min(5).max(30).optional(),
   variant: z.string().trim().max(40).optional().default("default"),
   marketing_opt_in: z.boolean().optional().default(false),
   utm_source: z.string().trim().max(120).optional(),
