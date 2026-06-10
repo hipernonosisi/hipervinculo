@@ -161,6 +161,7 @@ export default function EbookAnalytics() {
     { name: 'Play vídeo', value: stats.videoPlays, color: '#A855F7' },
     { name: 'Empezó form', value: stats.formStarts, color: '#F59E0B' },
     { name: 'Envió form', value: stats.formSubmits, color: '#FF6B35' },
+    { name: 'Llegó a Stripe', value: stats.checkoutRedirects, color: '#0EA5E9' },
     { name: 'Compró', value: purchases, color: '#2F4F3E' },
   ];
 
