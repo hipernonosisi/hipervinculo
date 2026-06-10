@@ -134,7 +134,7 @@ export default function AmazonFbaEbookOferta() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-foreground">
+    <div className="min-h-screen bg-[#F8FAF9] text-foreground font-['Plus_Jakarta_Sans']">
       <SEO
         title="Última oportunidad · Guía Amazon FBA $47"
         description="Acceso inmediato a la Guía Amazon FBA Sin Inventario. Oferta especial $47 (antes $90). Descarga al instante."
@@ -158,129 +158,170 @@ export default function AmazonFbaEbookOferta() {
       </header>
 
       {/* URGENCY BANNER */}
-      <div className="bg-[#2F4F3E] text-white py-2 px-4">
-        <div className="container mx-auto flex items-center justify-center gap-2 text-sm font-semibold">
-          <Flame className="h-4 w-4 text-[#8BC34A]" />
-          <span>
-            Oferta especial expira en{" "}
-            <span className="font-mono text-[#8BC34A]">
-              {mm}:{ss}
-            </span>
+      <div className="w-full bg-[#2F4F3E] text-white py-3 px-4 flex justify-center items-center gap-3 sm:gap-4 text-sm font-semibold tracking-wide">
+        <div className="flex items-center gap-2">
+          <Clock className="h-4 w-4 text-[#8BC34A]" />
+          <span className="uppercase opacity-90 text-xs sm:text-sm">
+            Oferta especial expira en
           </span>
         </div>
+        <span className="bg-white/10 px-3 py-1 rounded-sm font-mono text-[#8BC34A] text-base sm:text-lg tabular-nums">
+          {mm}:{ss}
+        </span>
       </div>
 
-      {/* HERO + CHECKOUT */}
-      <section className="py-8 md:py-12">
-        <div className="container mx-auto px-4 max-w-2xl">
+      {/* SPLIT HERO + CHECKOUT */}
+      <section className="flex-1 flex items-center justify-center w-full px-4 py-10 sm:p-6 lg:p-12">
+        <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+
+          {/* LEFT — Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-center mb-6"
+            className="text-center lg:text-left space-y-6 lg:space-y-8"
           >
-            <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 text-[#2F4F3E] px-3 py-1.5 rounded-full text-xs font-bold mb-4">
-              <Flame className="h-3.5 w-3.5" />
-              ÚLTIMA OPORTUNIDAD
+            <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 text-[#2F4F3E] px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2F4F3E] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2F4F3E]"></span>
+              </span>
+              Última Oportunidad
             </div>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-[#2F4F3E] leading-tight mb-3">
-              Asegura tu Guía Amazon FBA por solo{" "}
-              <span className="text-[#8BC34A]">${PRICE_USD}</span>
+
+            <h1 className="text-4xl lg:text-6xl font-extrabold text-[#2F4F3E] leading-[1.1] tracking-tight">
+              Asegura tu Guía <br className="hidden lg:block" />
+              Amazon FBA por <br className="hidden lg:block" />
+              solo <span className="text-[#8BC34A]">${PRICE_USD}</span>
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground">
+
+            <p className="text-base lg:text-lg text-[#2F4F3E]/70 font-medium max-w-lg mx-auto lg:mx-0">
               Acceso inmediato · Descarga al pagar · Garantía 7 días
             </p>
+
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-4">
+              <div className="flex -space-x-2">
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#8BC34A]/40 to-[#2F4F3E]/40" />
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#2F4F3E]/40 to-[#8BC34A]/40" />
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-[#8BC34A]/60 to-[#2F4F3E]/60" />
+              </div>
+              <p className="text-sm font-semibold text-[#2F4F3E]/60">
+                +200 marcas confían en Hipervínculo
+              </p>
+            </div>
           </motion.div>
 
-          {/* PRICE BOX */}
+          {/* RIGHT — Checkout Card */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-gradient-to-br from-[#2F4F3E] to-[#1f3a2c] text-white rounded-2xl p-6 md:p-8 shadow-xl mb-6"
+            className="w-full max-w-md mx-auto"
           >
-            <div className="flex items-baseline justify-center gap-3 mb-2">
-              <span className="text-white/50 text-2xl line-through">
-                ${ORIG_USD}
-              </span>
-              <span className="text-5xl md:text-6xl font-extrabold text-[#8BC34A]">
-                ${PRICE_USD}
-              </span>
-              <span className="text-white/70 text-sm">USD</span>
-            </div>
-            <div className="text-center text-[#8BC34A] font-bold text-sm mb-5">
-              Ahorras ${ORIG_USD - PRICE_USD} hoy
-            </div>
+            <div className="bg-[#2F4F3E] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+              {/* Subtle texture overlay */}
+              <div
+                className="absolute inset-0 opacity-5 pointer-events-none"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
 
-            <ul className="space-y-2 mb-6 text-sm">
-              {[
-                "PDF descargable (140+ páginas)",
-                "Plantillas y checklists incluidos",
-                "Acceso inmediato a tu correo",
-                "Garantía de devolución 7 días",
-              ].map((b) => (
-                <li key={b} className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-[#8BC34A] shrink-0 mt-0.5" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+              <div className="relative z-10">
+                {/* Price header */}
+                <div className="flex justify-between items-end mb-7">
+                  <div>
+                    <span className="block text-[#8BC34A] text-xs font-extrabold uppercase tracking-widest mb-1">
+                      Precio Oferta
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-white text-5xl font-extrabold">
+                        ${PRICE_USD}
+                      </span>
+                      <span className="text-white/40 text-lg line-through">
+                        ${ORIG_USD}
+                      </span>
+                      <span className="text-white text-sm font-semibold">
+                        USD
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-[#8BC34A] text-[#2F4F3E] text-[10px] font-bold px-3 py-1 rounded-md uppercase">
+                    Ahorras ${ORIG_USD - PRICE_USD}
+                  </div>
+                </div>
 
-            {/* FORM */}
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div onFocusCapture={trackFormStart} className="space-y-3">
-                <FloatingField
-                  id="name"
-                  label="Nombre completo"
-                  value={form.name}
-                  onChange={(v) => setForm({ ...form, name: v })}
-                />
-                <FloatingField
-                  id="email"
-                  label="Correo electrónico"
-                  type="email"
-                  value={form.email}
-                  onChange={(v) => setForm({ ...form, email: v })}
-                />
+                {/* Features */}
+                <ul className="space-y-3.5 mb-8">
+                  {[
+                    "PDF descargable (140+ páginas de valor)",
+                    "Plantillas y checklists operativos incluidos",
+                    "Acceso inmediato a tu correo",
+                    "Garantía de devolución total de 7 días",
+                  ].map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-start gap-3 text-white/90 text-sm"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#8BC34A]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#8BC34A]" />
+                      </div>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* FORM */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div onFocusCapture={trackFormStart} className="space-y-4">
+                    <FloatingField
+                      id="name"
+                      label="Nombre completo"
+                      value={form.name}
+                      onChange={(v) => setForm({ ...form, name: v })}
+                    />
+                    <FloatingField
+                      id="email"
+                      label="Correo electrónico"
+                      type="email"
+                      value={form.email}
+                      onChange={(v) => setForm({ ...form, email: v })}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    size="lg"
+                    className="relative w-full bg-[#8BC34A] hover:bg-[#99d651] text-[#2F4F3E] font-extrabold text-base md:text-lg h-14 rounded-xl shadow-xl shadow-black/20 mt-2 active:scale-[0.98] overflow-hidden"
+                  >
+                    <span className="absolute inset-0 pointer-events-none shine-flash" />
+                    {loading ? (
+                      "Procesando…"
+                    ) : (
+                      <>
+                        <Lock className="h-4 w-4 mr-2" />
+                        PAGAR ${PRICE_USD} Y DESCARGAR
+                      </>
+                    )}
+                  </Button>
+
+                  <div className="flex items-center justify-center gap-2 pt-3 opacity-60">
+                    <Shield className="h-4 w-4 text-white" />
+                    <span className="text-[10px] text-white font-bold uppercase tracking-[2px]">
+                      Pago Seguro SSL · Garantía 7 días
+                    </span>
+                  </div>
+                </form>
               </div>
+            </div>
 
-              <Button
-                type="submit"
-                disabled={loading}
-                size="lg"
-                className="relative w-full bg-[#8BC34A] hover:bg-[#7baf3e] text-[#2F4F3E] font-extrabold text-base md:text-lg h-14 rounded-xl shadow-lg overflow-hidden"
-              >
-                <span className="absolute inset-0 pointer-events-none shine-flash" />
-                {loading ? (
-                  "Procesando…"
-                ) : (
-                  <>
-                    <Lock className="h-4 w-4 mr-2" />
-                    PAGAR ${PRICE_USD} Y DESCARGAR
-                  </>
-                )}
-              </Button>
-
-              <div className="flex items-center justify-center gap-3 text-xs text-white/70 pt-1">
-                <span className="flex items-center gap-1">
-                  <Lock className="h-3 w-3" /> Pago seguro
-                </span>
-                <span>·</span>
-                <span className="flex items-center gap-1">
-                  <Shield className="h-3 w-3" /> Garantía 7 días
-                </span>
-              </div>
-            </form>
-          </motion.div>
-
-          {/* TRUST FOOTER */}
-          <div className="text-center text-xs text-muted-foreground flex items-center justify-center gap-3 flex-wrap">
-            <span className="flex items-center gap-1">
+            <p className="text-center text-xs text-[#2F4F3E]/50 mt-4 flex items-center justify-center gap-1.5">
               <Clock className="h-3 w-3" /> Entrega en menos de 2 minutos
-            </span>
-            <span>·</span>
-            <span>+200 marcas confían en Hipervínculo</span>
-          </div>
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
