@@ -18,6 +18,7 @@ import { FloatingField } from "@/components/ebook/FloatingField";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
+import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 
 
 const PRICE_USD = 47;
