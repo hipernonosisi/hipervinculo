@@ -248,8 +248,9 @@ export default function AmazonFbaEbookOferta() {
                 type="submit"
                 disabled={loading}
                 size="lg"
-                className="w-full bg-[#8BC34A] hover:bg-[#7baf3e] text-[#2F4F3E] font-extrabold text-base md:text-lg h-14 rounded-xl shadow-lg"
+                className="relative w-full bg-[#8BC34A] hover:bg-[#7baf3e] text-[#2F4F3E] font-extrabold text-base md:text-lg h-14 rounded-xl shadow-lg overflow-hidden"
               >
+                <span className="absolute inset-0 pointer-events-none shine-flash" />
                 {loading ? (
                   "Procesando…"
                 ) : (
