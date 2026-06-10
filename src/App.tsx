@@ -76,6 +76,7 @@ const App = () => (
               <Route path="/amazon-ads" element={<HipervinculoAds />} />
               <Route path="/hiper-influencers" element={<HiperInfluencers />} />
               <Route path="/amazon-fba-ebook" element={<AmazonFbaEbook />} />
+              <Route path="/amazon-fba-ebook/oferta" element={<AmazonFbaEbookOferta />} />
               <Route path="/amazon-fba-ebook/gracias" element={<AmazonFbaEbookSuccess />} />
               <Route path="/amazon-fba-ebook/analytics" element={<EbookAnalytics />} />
               <Route path="/personajes-status" element={<PersonajesStatus />} />
