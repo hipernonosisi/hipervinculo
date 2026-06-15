@@ -431,6 +431,9 @@ export default function AmazonFbaEbook() {
               <div className="flex items-center gap-2 mt-6 text-sm text-white/70">
                 <Lock className="w-4 h-4" /> Pago seguro · Descarga inmediata por email
               </div>
+              <div className="mt-3">
+                <PaymentBadges variant="dark" />
+              </div>
             </motion.div>
 
             <div className="flex justify-center relative">
