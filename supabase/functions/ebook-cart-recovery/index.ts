@@ -16,7 +16,18 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY") || "");
 
 const OFFER_URL = "https://hipervinculo.net/amazon-fba-ebook/oferta";
 
-function recoveryHtml(name: string) {
+function buildRecoveryUrl(lead: { name?: string; email?: string; phone?: string | null }) {
+  const u = new URL(OFFER_URL);
+  u.searchParams.set("utm_source", "email");
+  u.searchParams.set("utm_medium", "recovery");
+  u.searchParams.set("utm_campaign", "ebook_cart_recovery");
+  if (lead.name) u.searchParams.set("name", lead.name);
+  if (lead.email) u.searchParams.set("email", lead.email);
+  if (lead.phone) u.searchParams.set("phone", lead.phone);
+  return u.toString();
+}
+
+function recoveryHtml(name: string, ctaUrl: string) {
   const firstName = (name || "").split(" ")[0] || "hola";
   return `
   <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1a1a1a;">
@@ -29,10 +40,10 @@ function recoveryHtml(name: string) {
     </p>
     <p style="font-size: 15px; line-height: 1.6; margin: 0 0 16px;">
       Para que no te quedes fuera, te dejamos un acceso directo con el precio especial de <strong>$47 USD</strong> (en lugar de $90).
-      Recibirás el PDF en tu correo en menos de 2 minutos después de pagar.
+      Ya rellenamos tus datos por ti — solo tienes que pagar. Recibirás el PDF en tu correo en menos de 2 minutos.
     </p>
     <div style="text-align:center; margin: 28px 0;">
-      <a href="${OFFER_URL}?utm_source=email&utm_medium=recovery&utm_campaign=ebook_cart_recovery"
+      <a href="${ctaUrl}"
          style="display:inline-block; background:#8BC34A; color:#2F4F3E; text-decoration:none; font-weight:800; padding:14px 28px; border-radius:10px; font-size:16px;">
         Completar mi compra ($47)
       </a>
@@ -61,7 +72,7 @@ serve(async (req) => {
 
     const { data: leads, error } = await supabase
       .from("ebook_leads")
-      .select("id, name, email")
+      .select("id, name, email, phone")
       .eq("checkout_status", "redirected")
       .is("recovery_email_sent_at", null)
       .gte("created_at", since)
@@ -96,7 +107,7 @@ serve(async (req) => {
           from: "Hipervínculo <info@hipervinculo.net>",
           to: [lead.email],
           subject: "¿Tuviste algún problema con tu compra? Tu acceso sigue activo",
-          html: recoveryHtml(lead.name),
+          html: recoveryHtml(lead.name, buildRecoveryUrl(lead)),
         });
         await supabase
           .from("ebook_leads")

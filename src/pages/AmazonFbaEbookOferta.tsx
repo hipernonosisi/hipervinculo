@@ -10,7 +10,14 @@ import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
 
 const PRICE_USD = 47;
 const ORIG_USD = 90;
@@ -40,6 +47,22 @@ export default function AmazonFbaEbookOferta() {
     return () => clearInterval(id);
   }, []);
 
+  // Autofill from recovery email link (?name=&email=&phone=)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nameP = params.get("name") || "";
+    const emailP = params.get("email") || "";
+    const phoneP = params.get("phone") || "";
+    if (nameP || emailP || phoneP) {
+      setForm((f) => ({
+        name: nameP || f.name,
+        email: emailP || f.email,
+        phone: phoneP || f.phone,
+      }));
+      trackEvent("form_autofilled_from_recovery", { source: params.get("utm_source") || "unknown" }, PAGE);
+    }
+  }, []);
+
   const mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
   const ss = String(secondsLeft % 60).padStart(2, "0");
 
@@ -62,6 +85,15 @@ export default function AmazonFbaEbookOferta() {
 
     setLoading(true);
     trackEvent("form_submit", { variant }, PAGE);
+    // Meta Pixel InitiateCheckout
+    try {
+      window.fbq?.("track", "InitiateCheckout", {
+        value: PRICE_USD,
+        currency: "USD",
+        content_name: "Amazon FBA eBook (oferta)",
+        content_category: "ebook",
+      });
+    } catch (e) { console.warn("fbq InitiateCheckout error", e); }
     try {
       const { name, email, phone } = form;
       const params = new URLSearchParams(window.location.search);
@@ -316,12 +348,10 @@ export default function AmazonFbaEbookOferta() {
                     )}
                   </Button>
 
-                  <div className="flex items-center justify-center gap-2 pt-3 opacity-60">
-                    <Shield className="h-4 w-4 text-white" />
-                    <span className="text-[10px] text-white font-bold uppercase tracking-[2px]">
-                      Pago Seguro SSL · Garantía 7 días
-                    </span>
+                  <div className="pt-4">
+                    <PaymentBadges variant="dark" />
                   </div>
+
                 </form>
               </div>
             </div>
