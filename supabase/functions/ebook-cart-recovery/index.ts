@@ -107,7 +107,7 @@ serve(async (req) => {
           from: "Hipervínculo <info@hipervinculo.net>",
           to: [lead.email],
           subject: "¿Tuviste algún problema con tu compra? Tu acceso sigue activo",
-          html: recoveryHtml(lead.name),
+          html: recoveryHtml(lead.name, buildRecoveryUrl(lead)),
         });
         await supabase
           .from("ebook_leads")
