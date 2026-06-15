@@ -19,7 +19,7 @@ const PAGE = "/amazon-fba-ebook/oferta";
 export default function AmazonFbaEbookOferta() {
   usePageTracking(PAGE);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [secondsLeft, setSecondsLeft] = useState(15 * 60); // 15 min urgency
   const formStartTracked = useRef(false);
 
