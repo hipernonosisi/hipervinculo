@@ -10,7 +10,14 @@ import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
 
 const PRICE_USD = 47;
 const ORIG_USD = 90;
