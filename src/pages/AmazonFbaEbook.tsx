@@ -298,7 +298,75 @@ export default function AmazonFbaEbook() {
         )}
       </AnimatePresence>
 
+      {/* EXIT-INTENT MODAL */}
+      <AnimatePresence>
+        {showExitModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowExitModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto relative"
+            >
+              <button
+                onClick={() => setShowExitModal(false)}
+                aria-label="Cerrar"
+                className="absolute top-3 right-3 w-8 h-8 rounded-full text-muted-foreground hover:bg-muted flex items-center justify-center text-lg"
+              >×</button>
+              <div className="w-14 h-14 rounded-full bg-[#8BC34A] flex items-center justify-center mb-4 mx-auto">
+                <Flame className="w-7 h-7 text-[#1a2e22]" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2F4F3E] text-center mb-2">
+                ¡Espera! No te vayas sin tu guía
+              </h3>
+              <p className="text-sm text-muted-foreground text-center mb-5">
+                Tenemos un cupón <strong className="text-[#2F4F3E]">-15% adicional</strong> para que la guía te salga aún más barata. Úsalo al pagar.
+              </p>
+              <div className="bg-[#8BC34A]/15 border-2 border-dashed border-[#8BC34A] rounded-xl px-4 py-3 text-center mb-5">
+                <div className="text-[10px] uppercase font-bold text-[#2F4F3E]/70 tracking-widest">Cupón</div>
+                <div className="text-2xl font-extrabold text-[#2F4F3E] tracking-widest font-mono">QUEDATE15</div>
+              </div>
+              <div className="space-y-3">
+                <button
+                  onClick={() => {
+                    setShowExitModal(false);
+                    trackEvent('exit_intent_cta_click', { action: 'scroll_to_form' }, '/amazon-fba-ebook');
+                    document.getElementById("buy-form")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold py-3.5 rounded-xl transition"
+                >
+                  Quiero el descuento →
+                </button>
+                <a
+                  href={`https://wa.me/19542059049?text=${encodeURIComponent("Hola, tengo una duda antes de comprar la Guía Amazon FBA.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('exit_intent_cta_click', { action: 'whatsapp' }, '/amazon-fba-ebook')}
+                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-3.5 rounded-xl transition"
+                >
+                  💬 Tengo una duda — Hablar por WhatsApp
+                </a>
+                <button
+                  onClick={() => setShowExitModal(false)}
+                  className="w-full text-xs text-muted-foreground hover:text-foreground py-2"
+                >
+                  No, gracias
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* HEADER */}
+
       <header className="sticky top-0 z-50 bg-white border-b border-border/40">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <div className="bg-white p-1.5 rounded shrink-0">
