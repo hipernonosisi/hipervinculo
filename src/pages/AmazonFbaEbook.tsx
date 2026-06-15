@@ -441,6 +441,11 @@ export default function AmazonFbaEbook() {
                       maxLength={255}
                       validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}
                     />
+                    <PhoneInput
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      placeholder="WhatsApp (por si hay algún problema)"
+                    />
                   </div>
 
                   {/* Marketing checkbox compacto */}
