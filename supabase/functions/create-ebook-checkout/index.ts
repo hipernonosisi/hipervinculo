@@ -128,7 +128,9 @@ serve(async (req) => {
       mode: "payment",
       customer_email: d.email,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
-      payment_method_types: ["card"],
+      // Let Stripe auto-detect best methods for the user's region (card, link, cashapp, etc.)
+      automatic_payment_methods: { enabled: true },
+      allow_promotion_codes: true,
       success_url: `${origin}/amazon-fba-ebook/gracias?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/amazon-fba-ebook?canceled=1`,
       metadata: md,
@@ -144,18 +146,24 @@ serve(async (req) => {
     }
 
     // 4) Notify admin: new lead reached Stripe checkout
+    const waDigits = (d.phone || "").replace(/\D/g, "");
+    const waMsg = encodeURIComponent(
+      `Hola ${d.name.split(" ")[0]}, soy Miguel de Hipervínculo. Vi que estabas comprando la Guía Amazon FBA pero no llegó el pago. ¿Te ayudo a completarla?`
+    );
+    const waLink = waDigits ? `https://wa.me/${waDigits}?text=${waMsg}` : null;
     notifyAdmin(
       `🟢 Nuevo lead eBook redirigido a Stripe: ${d.name}`,
       `<h2>Nuevo lead — Guía Amazon FBA</h2>
        <p><strong>Nombre:</strong> ${d.name}</p>
        <p><strong>Email:</strong> ${d.email}</p>
        <p><strong>Teléfono:</strong> ${d.phone}</p>
+       ${waLink ? `<p style="margin:20px 0;"><a href="${waLink}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:8px;font-family:sans-serif;">💬 Contactar por WhatsApp</a></p>` : ""}
        <p><strong>Variante:</strong> ${d.variant}</p>
        <p><strong>Marketing opt-in:</strong> ${d.marketing_opt_in ? "Sí" : "No"}</p>
        <p><strong>Origen:</strong> ${d.utm_source || "directo"} / ${d.utm_campaign || "—"}</p>
        <p><strong>Referrer:</strong> ${d.referrer || "—"}</p>
        <hr>
-       <p>El lead fue enviado a Stripe Checkout. Si NO completa el pago en los próximos minutos, contáctalo por WhatsApp para cerrar la venta.</p>`
+       <p>El lead fue enviado a Checkout. Si NO completa el pago en los próximos minutos, contáctalo por WhatsApp con el botón de arriba para cerrar la venta.</p>`
     );
 
     return new Response(JSON.stringify({ url: session.url, lead_id: leadId }), {
