@@ -180,6 +180,63 @@ export default function AmazonFbaEbook() {
         url="https://hipervinculo.net/amazon-fba-ebook"
       />
 
+      {/* ABANDONED CART MODAL */}
+      <AnimatePresence>
+        {showCanceledModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowCanceledModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#8BC34A]/20 flex items-center justify-center mb-4 mx-auto">
+                <AlertTriangle className="w-7 h-7 text-[#2F4F3E]" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2F4F3E] text-center mb-2">
+                ¿Tuviste algún problema con el pago?
+              </h3>
+              <p className="text-sm text-muted-foreground text-center mb-5">
+                Estamos aquí para ayudarte. Escríbenos por WhatsApp y completamos tu compra juntos en menos de 2 minutos.
+              </p>
+              <div className="space-y-3">
+                <a
+                  href={`https://wa.me/19542059049?text=${encodeURIComponent("Hola, intenté comprar la Guía Amazon FBA pero tuve un problema con el pago. ¿Me ayudas?")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('checkout_canceled_wa_click', {}, '/amazon-fba-ebook')}
+                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-3.5 rounded-xl transition"
+                >
+                  💬 Hablar por WhatsApp
+                </a>
+                <button
+                  onClick={() => {
+                    setShowCanceledModal(false);
+                    document.getElementById("comprar")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full bg-[#2F4F3E] hover:bg-[#2F4F3E]/90 text-white font-bold py-3.5 rounded-xl transition"
+                >
+                  Intentar el pago otra vez
+                </button>
+                <button
+                  onClick={() => setShowCanceledModal(false)}
+                  className="w-full text-xs text-muted-foreground hover:text-foreground py-2"
+                >
+                  No, gracias
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-white border-b border-border/40">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
