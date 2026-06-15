@@ -45,7 +45,7 @@ export default function AmazonFbaEbookOferta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -54,11 +54,16 @@ export default function AmazonFbaEbookOferta() {
       toast.error("El correo electrónico no parece válido.");
       return;
     }
+    const phoneDigits = form.phone.replace(/\D/g, "");
+    if (phoneDigits.length < 7) {
+      toast.error("El teléfono no parece válido.");
+      return;
+    }
 
     setLoading(true);
     trackEvent("form_submit", { variant }, PAGE);
     try {
-      const { name, email } = form;
+      const { name, email, phone } = form;
       const params = new URLSearchParams(window.location.search);
       const getCookie = (n: string) => {
         const m = document.cookie.match(
