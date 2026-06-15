@@ -176,6 +176,15 @@ export default function AmazonFbaEbook() {
 
     setLoading(true);
     trackEvent('form_submit', { variant }, '/amazon-fba-ebook');
+    // Meta Pixel InitiateCheckout — critical for ad optimization
+    try {
+      window.fbq?.('track', 'InitiateCheckout', {
+        value: PRICE_USD,
+        currency: 'USD',
+        content_name: 'Amazon FBA eBook',
+        content_category: 'ebook',
+      });
+    } catch (e) { console.warn('fbq InitiateCheckout error', e); }
     try {
       const { name, email, phone } = form;
       // Capture attribution
