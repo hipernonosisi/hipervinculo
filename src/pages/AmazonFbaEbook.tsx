@@ -69,15 +69,60 @@ export default function AmazonFbaEbook() {
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
   const [showCanceledModal, setShowCanceledModal] = useState(false);
+  const [showExitModal, setShowExitModal] = useState(false);
   const formStartTracked = useRef(false);
+  const exitShownRef = useRef(false);
 
-  // Detect Stripe-canceled return
+  // Detect Stripe-canceled return + autofill from recovery email
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("canceled") === "1") {
       setShowCanceledModal(true);
       trackEvent('checkout_canceled', {}, '/amazon-fba-ebook');
     }
+    // Prefill from recovery email link (?name=&email=&phone=)
+    const nameP = params.get("name") || "";
+    const emailP = params.get("email") || "";
+    const phoneP = params.get("phone") || "";
+    if (nameP || emailP || phoneP) {
+      setForm((f) => ({
+        name: nameP || f.name,
+        email: emailP || f.email,
+        phone: phoneP || f.phone,
+      }));
+      trackEvent('form_autofilled_from_recovery', { source: params.get('utm_source') || 'unknown' }, '/amazon-fba-ebook');
+    }
+  }, []);
+
+  // Exit-intent: desktop mouseleave to top + mobile back-button
+  useEffect(() => {
+    if (sessionStorage.getItem("hv_exit_shown") === "1") return;
+
+    const trigger = (source: string) => {
+      if (exitShownRef.current) return;
+      exitShownRef.current = true;
+      sessionStorage.setItem("hv_exit_shown", "1");
+      setShowExitModal(true);
+      trackEvent('exit_intent_shown', { source }, '/amazon-fba-ebook');
+    };
+
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) trigger('desktop_mouse');
+    };
+    // Mobile back-button trap
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+      window.history.pushState({ hv: 1 }, "");
+      const onPop = () => trigger('mobile_back');
+      window.addEventListener("popstate", onPop);
+      document.addEventListener("mouseleave", onMouseLeave);
+      return () => {
+        window.removeEventListener("popstate", onPop);
+        document.removeEventListener("mouseleave", onMouseLeave);
+      };
+    }
+    document.addEventListener("mouseleave", onMouseLeave);
+    return () => document.removeEventListener("mouseleave", onMouseLeave);
   }, []);
 
   const trackFormStart = () => {
