@@ -61,7 +61,17 @@ export default function AmazonFbaEbook() {
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
+  const [showCanceledModal, setShowCanceledModal] = useState(false);
   const formStartTracked = useRef(false);
+
+  // Detect Stripe-canceled return
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("canceled") === "1") {
+      setShowCanceledModal(true);
+      trackEvent('checkout_canceled', {}, '/amazon-fba-ebook');
+    }
+  }, []);
 
   const trackFormStart = () => {
     if (formStartTracked.current) return;
