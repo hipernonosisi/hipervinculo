@@ -57,7 +57,6 @@ export function PaymentBadges({ variant = "light" }: PaymentBadgesProps) {
         <div className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${textColor}`}>
           <Lock className="w-3 h-3" /> SSL
         </div>
-      </div>
     </div>
   );
 }
