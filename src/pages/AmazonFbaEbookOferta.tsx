@@ -85,6 +85,15 @@ export default function AmazonFbaEbookOferta() {
 
     setLoading(true);
     trackEvent("form_submit", { variant }, PAGE);
+    // Meta Pixel InitiateCheckout
+    try {
+      window.fbq?.("track", "InitiateCheckout", {
+        value: PRICE_USD,
+        currency: "USD",
+        content_name: "Amazon FBA eBook (oferta)",
+        content_category: "ebook",
+      });
+    } catch (e) { console.warn("fbq InitiateCheckout error", e); }
     try {
       const { name, email, phone } = form;
       const params = new URLSearchParams(window.location.search);
