@@ -292,6 +292,11 @@ export default function AmazonFbaEbookOferta() {
                       value={form.email}
                       onChange={(v) => setForm({ ...form, email: v })}
                     />
+                    <PhoneInput
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      placeholder="WhatsApp"
+                    />
                   </div>
 
                   <Button
