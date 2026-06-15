@@ -1,0 +1,1 @@
+ALTER TABLE public.ebook_leads ADD COLUMN IF NOT EXISTS recovery_email_sent_at TIMESTAMPTZ; CREATE INDEX IF NOT EXISTS idx_ebook_leads_recovery ON public.ebook_leads (checkout_status, recovery_email_sent_at, created_at);

@@ -237,6 +237,7 @@ export type Database = {
           marketing_opt_in: boolean
           name: string
           phone: string | null
+          recovery_email_sent_at: string | null
           referrer: string | null
           region: string | null
           stripe_session_id: string | null
@@ -263,6 +264,7 @@ export type Database = {
           marketing_opt_in?: boolean
           name: string
           phone?: string | null
+          recovery_email_sent_at?: string | null
           referrer?: string | null
           region?: string | null
           stripe_session_id?: string | null
@@ -289,6 +291,7 @@ export type Database = {
           marketing_opt_in?: boolean
           name?: string
           phone?: string | null
+          recovery_email_sent_at?: string | null
           referrer?: string | null
           region?: string | null
           stripe_session_id?: string | null
