@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { FloatingField } from "@/components/ebook/FloatingField";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 
 const PRICE_USD = 47;
@@ -18,7 +19,7 @@ const PAGE = "/amazon-fba-ebook/oferta";
 export default function AmazonFbaEbookOferta() {
   usePageTracking(PAGE);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [secondsLeft, setSecondsLeft] = useState(15 * 60); // 15 min urgency
   const formStartTracked = useRef(false);
 
@@ -44,7 +45,7 @@ export default function AmazonFbaEbookOferta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -53,11 +54,16 @@ export default function AmazonFbaEbookOferta() {
       toast.error("El correo electrónico no parece válido.");
       return;
     }
+    const phoneDigits = form.phone.replace(/\D/g, "");
+    if (phoneDigits.length < 7) {
+      toast.error("El teléfono no parece válido.");
+      return;
+    }
 
     setLoading(true);
     trackEvent("form_submit", { variant }, PAGE);
     try {
-      const { name, email } = form;
+      const { name, email, phone } = form;
       const params = new URLSearchParams(window.location.search);
       const getCookie = (n: string) => {
         const m = document.cookie.match(
@@ -98,6 +104,7 @@ export default function AmazonFbaEbookOferta() {
           body: {
             name,
             email,
+            phone,
             variant,
             marketing_opt_in: true,
             utm_source,
@@ -284,6 +291,11 @@ export default function AmazonFbaEbookOferta() {
                       type="email"
                       value={form.email}
                       onChange={(v) => setForm({ ...form, email: v })}
+                    />
+                    <PhoneInput
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      placeholder="WhatsApp"
                     />
                   </div>
 

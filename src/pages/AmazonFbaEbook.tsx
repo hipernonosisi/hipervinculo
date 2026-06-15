@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingField } from "@/components/ebook/FloatingField";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
@@ -55,7 +56,7 @@ export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   usePageTracking("/amazon-fba-ebook");
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [viewers, setViewers] = useState(17);
@@ -96,7 +97,7 @@ export default function AmazonFbaEbook() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Completa todos los campos");
       return;
     }
@@ -105,11 +106,16 @@ export default function AmazonFbaEbook() {
       toast.error("El correo electrónico no parece válido. Revísalo antes de continuar.");
       return;
     }
+    const phoneDigits = form.phone.replace(/\D/g, "");
+    if (phoneDigits.length < 7) {
+      toast.error("El teléfono no parece válido. Necesitamos contactarte por WhatsApp si hay algún problema.");
+      return;
+    }
 
     setLoading(true);
     trackEvent('form_submit', { variant }, '/amazon-fba-ebook');
     try {
-      const { name, email } = form;
+      const { name, email, phone } = form;
       // Capture attribution
       const params = new URLSearchParams(window.location.search);
       const getCookie = (n: string) => {
@@ -132,7 +138,7 @@ export default function AmazonFbaEbook() {
 
       const { data, error } = await supabase.functions.invoke("create-ebook-checkout", {
         body: {
-          name, email, variant, marketing_opt_in: marketingOptIn,
+          name, email, phone, variant, marketing_opt_in: marketingOptIn,
           utm_source, utm_medium, utm_campaign, utm_term, utm_content, referrer,
           fbp: getCookie("_fbp"), fbc: getCookie("_fbc"),
         },
@@ -434,6 +440,11 @@ export default function AmazonFbaEbook() {
                       type="email"
                       maxLength={255}
                       validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}
+                    />
+                    <PhoneInput
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                      placeholder="WhatsApp (por si hay algún problema)"
                     />
                   </div>
 
