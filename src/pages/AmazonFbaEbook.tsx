@@ -614,6 +614,13 @@ export default function AmazonFbaEbook() {
                     </Button>
                   </motion.div>
 
+                  {/* Guarantee + payment methods — reduce payment fear */}
+                  <div className="mt-4">
+                    <PaymentBadges variant="light" />
+                  </div>
+
+
+
                   {/* Live viewers + Stripe */}
                   <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-border">
                     <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
