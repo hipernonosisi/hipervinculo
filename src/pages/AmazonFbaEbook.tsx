@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingField } from "@/components/ebook/FloatingField";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
