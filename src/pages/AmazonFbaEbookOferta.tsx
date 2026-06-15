@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import logo from "@/assets/logo-hipervinculo.png";
 import { FloatingField } from "@/components/ebook/FloatingField";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 
 const PRICE_USD = 47;
