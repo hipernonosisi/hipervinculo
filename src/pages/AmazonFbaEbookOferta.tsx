@@ -47,6 +47,22 @@ export default function AmazonFbaEbookOferta() {
     return () => clearInterval(id);
   }, []);
 
+  // Autofill from recovery email link (?name=&email=&phone=)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nameP = params.get("name") || "";
+    const emailP = params.get("email") || "";
+    const phoneP = params.get("phone") || "";
+    if (nameP || emailP || phoneP) {
+      setForm((f) => ({
+        name: nameP || f.name,
+        email: emailP || f.email,
+        phone: phoneP || f.phone,
+      }));
+      trackEvent("form_autofilled_from_recovery", { source: params.get("utm_source") || "unknown" }, PAGE);
+    }
+  }, []);
+
   const mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
   const ss = String(secondsLeft % 60).padStart(2, "0");
 
