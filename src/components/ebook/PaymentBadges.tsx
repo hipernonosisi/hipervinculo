@@ -1,39 +1,20 @@
-import { Lock, ShieldCheck } from "lucide-react";
+import { Lock } from "lucide-react";
 
 interface PaymentBadgesProps {
   variant?: "light" | "dark";
-  showGuarantee?: boolean;
 }
 
 /**
- * Trust row: payment methods + SSL + 7-day guarantee.
+ * Trust row: payment methods + SSL.
  * Reduces "fear of payment" near checkout CTAs.
  */
-export function PaymentBadges({ variant = "light", showGuarantee = true }: PaymentBadgesProps) {
+export function PaymentBadges({ variant = "light" }: PaymentBadgesProps) {
   const textColor = variant === "dark" ? "text-white/80" : "text-[#2F4F3E]/80";
-  const subtleColor = variant === "dark" ? "text-white/60" : "text-muted-foreground";
   const borderColor = variant === "dark" ? "border-white/15" : "border-[#2F4F3E]/15";
   const cardBg = variant === "dark" ? "bg-white/95" : "bg-white";
 
   return (
-    <div className="space-y-3">
-      {showGuarantee && (
-        <div className={`flex items-start gap-3 rounded-xl border ${borderColor} ${variant === "dark" ? "bg-white/[0.06]" : "bg-[#8BC34A]/[0.08]"} p-3`}>
-          <div className="w-9 h-9 rounded-full bg-[#8BC34A] flex items-center justify-center flex-shrink-0">
-            <ShieldCheck className="w-5 h-5 text-[#1a2e22]" />
-          </div>
-          <div>
-            <p className={`text-sm font-extrabold ${variant === "dark" ? "text-white" : "text-[#2F4F3E]"} leading-tight`}>
-              Garantía de devolución 7 días
-            </p>
-            <p className={`text-[11px] ${subtleColor} leading-snug mt-0.5`}>
-              Si no te aporta valor, te devolvemos el 100% sin preguntas.
-            </p>
-          </div>
-        </div>
-      )}
-
-      <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5">
           {/* Visa */}
           <div className={`${cardBg} border ${borderColor} rounded px-1.5 py-1 h-7 flex items-center`} aria-label="Visa">

@@ -235,7 +235,7 @@ export default function AmazonFbaEbookOferta() {
             </h1>
 
             <p className="text-base lg:text-lg text-[#2F4F3E]/70 font-medium max-w-lg mx-auto lg:mx-0">
-              Acceso inmediato · Descarga al pagar · Garantía 7 días
+              Acceso inmediato · Descarga al pagar
             </p>
 
             <div className="pt-2 flex items-center justify-center lg:justify-start gap-2">
@@ -294,7 +294,6 @@ export default function AmazonFbaEbookOferta() {
                     "PDF descargable (140+ páginas de valor)",
                     "Plantillas y checklists operativos incluidos",
                     "Acceso inmediato a tu correo",
-                    "Garantía de devolución total de 7 días",
                   ].map((b) => (
                     <li
                       key={b}
