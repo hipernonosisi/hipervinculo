@@ -72,7 +72,7 @@ serve(async (req) => {
 
     const { data: leads, error } = await supabase
       .from("ebook_leads")
-      .select("id, name, email")
+      .select("id, name, email, phone")
       .eq("checkout_status", "redirected")
       .is("recovery_email_sent_at", null)
       .gte("created_at", since)
