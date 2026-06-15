@@ -348,12 +348,10 @@ export default function AmazonFbaEbookOferta() {
                     )}
                   </Button>
 
-                  <div className="flex items-center justify-center gap-2 pt-3 opacity-60">
-                    <Shield className="h-4 w-4 text-white" />
-                    <span className="text-[10px] text-white font-bold uppercase tracking-[2px]">
-                      Pago Seguro SSL · Garantía 7 días
-                    </span>
+                  <div className="pt-4">
+                    <PaymentBadges variant="dark" />
                   </div>
+
                 </form>
               </div>
             </div>
