@@ -104,6 +104,7 @@ export default function AmazonFbaEbookOferta() {
           body: {
             name,
             email,
+            phone,
             variant,
             marketing_opt_in: true,
             utm_source,
