@@ -545,7 +545,7 @@ export default function AmazonFbaEbook() {
                     <PhoneInput
                       value={form.phone}
                       onChange={(v) => setForm({ ...form, phone: v })}
-                      placeholder="WhatsApp (por si hay algún problema)"
+                      placeholder="Teléfono"
                     />
                   </div>
 
