@@ -138,7 +138,7 @@ export default function AmazonFbaEbook() {
     }
     const phoneDigits = form.phone.replace(/\D/g, "");
     if (phoneDigits.length < 7) {
-      toast.error("El teléfono no parece válido. Necesitamos contactarte por WhatsApp si hay algún problema.");
+      toast.error("El teléfono no parece válido. Revísalo antes de continuar.");
       return;
     }
 
