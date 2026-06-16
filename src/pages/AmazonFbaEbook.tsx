@@ -92,36 +92,6 @@ export default function AmazonFbaEbook() {
     }
   }, []);
 
-  // Exit-intent: desktop mouseleave to top + mobile back-button
-  useEffect(() => {
-    if (sessionStorage.getItem("hv_exit_shown") === "1") return;
-
-    const trigger = (source: string) => {
-      if (exitShownRef.current) return;
-      exitShownRef.current = true;
-      sessionStorage.setItem("hv_exit_shown", "1");
-      setShowExitModal(true);
-      trackEvent('exit_intent_shown', { source }, '/amazon-fba-ebook');
-    };
-
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) trigger('desktop_mouse');
-    };
-    // Mobile back-button trap
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) {
-      window.history.pushState({ hv: 1 }, "");
-      const onPop = () => trigger('mobile_back');
-      window.addEventListener("popstate", onPop);
-      document.addEventListener("mouseleave", onMouseLeave);
-      return () => {
-        window.removeEventListener("popstate", onPop);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      };
-    }
-    document.addEventListener("mouseleave", onMouseLeave);
-    return () => document.removeEventListener("mouseleave", onMouseLeave);
-  }, []);
 
   const trackFormStart = () => {
     if (formStartTracked.current) return;
