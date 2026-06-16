@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2, Package, TrendingUp, Shield, Clock, Star, Lock,
   FileText, Zap, BookOpen, DollarSign, Truck, BarChart3, Users,
-  AlertTriangle, ShieldCheck, Flame, Eye,
+  AlertTriangle, ShieldCheck, Flame,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
