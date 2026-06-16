@@ -781,6 +781,8 @@ export const translations = {
       quickLinks: 'Quick Links',
       contact: 'Contact',
       rights: 'All rights reserved.',
+      terms: 'Terms of Service',
+      privacy: 'Privacy Policy',
     },
     // Contact Page
     contact: {
