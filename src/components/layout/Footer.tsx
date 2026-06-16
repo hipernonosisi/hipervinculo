@@ -246,7 +246,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 {t.footer.terms}
               </Link>
               <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                Privacy Policy
+                {t.footer.privacy}
               </Link>
             </div>
           </div>
