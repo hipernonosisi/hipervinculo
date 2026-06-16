@@ -39,6 +39,7 @@ const AmazonFbaEbookSuccess = lazy(() => import("./pages/AmazonFbaEbookSuccess")
 const AmazonFbaEbookOferta = lazy(() => import("./pages/AmazonFbaEbookOferta"));
 const EbookAnalytics = lazy(() => import("./pages/EbookAnalytics"));
 const PersonajesStatus = lazy(() => import("./pages/PersonajesStatus"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 const queryClient = new QueryClient();
 
