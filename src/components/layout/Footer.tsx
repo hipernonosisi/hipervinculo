@@ -188,7 +188,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
 
             {/* Quick Links - Takes 2 columns, starts at column 7 */}
             <div className="lg:col-span-2 lg:col-start-7">
-              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Quick Links</h3>
+              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>{t.footer.quickLinks}</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.href}>
@@ -205,7 +205,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
 
             {/* Contact - Takes 3 columns, starts at column 9 */}
             <div className="lg:col-span-3 lg:col-start-9">
-              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Contact Us</h3>
+              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>{t.footer.contact}</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Mail className="h-4 w-4 flex-shrink-0" />
@@ -243,10 +243,10 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
             </p>
             <div className="flex items-center gap-4">
               <Link to="/terms" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                {language === 'en' ? 'Terms of Service' : 'Términos de Servicio'}
+                {t.footer.terms}
               </Link>
               <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                Privacy Policy
+                {t.footer.privacy}
               </Link>
             </div>
           </div>
