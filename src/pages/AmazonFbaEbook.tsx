@@ -233,18 +233,9 @@ export default function AmazonFbaEbook() {
                 ¿Tuviste algún problema con el pago?
               </h3>
               <p className="text-sm text-muted-foreground text-center mb-5">
-                Estamos aquí para ayudarte. Escríbenos por WhatsApp y completamos tu compra juntos en menos de 2 minutos.
+                No te preocupes. Puedes intentar el pago de nuevo ahora mismo.
               </p>
               <div className="space-y-3">
-                <a
-                  href={`https://wa.me/19542059049?text=${encodeURIComponent("Hola, intenté comprar la Guía Amazon FBA pero tuve un problema con el pago. ¿Me ayudas?")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('checkout_canceled_wa_click', {}, '/amazon-fba-ebook')}
-                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-3.5 rounded-xl transition"
-                >
-                  💬 Hablar por WhatsApp
-                </a>
                 <button
                   onClick={() => {
                     setShowCanceledModal(false);
