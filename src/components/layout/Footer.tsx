@@ -188,7 +188,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
 
             {/* Quick Links - Takes 2 columns, starts at column 7 */}
             <div className="lg:col-span-2 lg:col-start-7">
-              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>Quick Links</h3>
+              <h3 className="font-semibold text-lg mb-4 text-foreground" style={{ fontFamily: 'DM Sans, sans-serif' }}>{t.footer.quickLinks}</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.href}>
