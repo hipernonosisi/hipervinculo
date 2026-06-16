@@ -241,9 +241,14 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
             <p className="text-sm text-primary-foreground/60">
               © {currentYear} - Hipervinculo LLC | Lead Generation & eCommerce Growth Agency
             </p>
-            <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-              Privacy Policy
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link to="/terms" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+                {language === 'en' ? 'Terms of Service' : 'Términos de Servicio'}
+              </Link>
+              <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </div>
