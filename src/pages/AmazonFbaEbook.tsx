@@ -69,9 +69,7 @@ export default function AmazonFbaEbook() {
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
   const [showCanceledModal, setShowCanceledModal] = useState(false);
-  const [showExitModal, setShowExitModal] = useState(false);
   const formStartTracked = useRef(false);
-  const exitShownRef = useRef(false);
 
   // Detect Stripe-canceled return + autofill from recovery email
   useEffect(() => {
