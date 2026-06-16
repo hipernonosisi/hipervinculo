@@ -1953,6 +1953,8 @@ export const translations = {
       quickLinks: 'Enlaces Rápidos',
       contact: 'Contacto',
       rights: 'Todos los derechos reservados.',
+      terms: 'Términos de Servicio',
+      privacy: 'Política de Privacidad',
     },
     // Contact Page
     contact: {
