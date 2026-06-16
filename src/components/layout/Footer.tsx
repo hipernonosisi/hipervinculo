@@ -243,7 +243,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
             </p>
             <div className="flex items-center gap-4">
               <Link to="/terms" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-                {language === 'en' ? 'Terms of Service' : 'Términos de Servicio'}
+                {t.footer.terms}
               </Link>
               <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
                 Privacy Policy
