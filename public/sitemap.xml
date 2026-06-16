@@ -124,6 +124,14 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://hipervinculo.net/terms</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Portfolio -->
   <url>
     <loc>https://hipervinculo.net/portfolio</loc>
