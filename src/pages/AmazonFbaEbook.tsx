@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2, Package, TrendingUp, Shield, Clock, Star, Lock,
   FileText, Zap, BookOpen, DollarSign, Truck, BarChart3, Users,
-  AlertTriangle, ShieldCheck, Flame, Eye,
+  AlertTriangle, ShieldCheck, Flame,
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -69,9 +69,7 @@ export default function AmazonFbaEbook() {
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60); // 45 min flash discount
   const [showCanceledModal, setShowCanceledModal] = useState(false);
-  const [showExitModal, setShowExitModal] = useState(false);
   const formStartTracked = useRef(false);
-  const exitShownRef = useRef(false);
 
   // Detect Stripe-canceled return + autofill from recovery email
   useEffect(() => {
@@ -94,36 +92,6 @@ export default function AmazonFbaEbook() {
     }
   }, []);
 
-  // Exit-intent: desktop mouseleave to top + mobile back-button
-  useEffect(() => {
-    if (sessionStorage.getItem("hv_exit_shown") === "1") return;
-
-    const trigger = (source: string) => {
-      if (exitShownRef.current) return;
-      exitShownRef.current = true;
-      sessionStorage.setItem("hv_exit_shown", "1");
-      setShowExitModal(true);
-      trackEvent('exit_intent_shown', { source }, '/amazon-fba-ebook');
-    };
-
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) trigger('desktop_mouse');
-    };
-    // Mobile back-button trap
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) {
-      window.history.pushState({ hv: 1 }, "");
-      const onPop = () => trigger('mobile_back');
-      window.addEventListener("popstate", onPop);
-      document.addEventListener("mouseleave", onMouseLeave);
-      return () => {
-        window.removeEventListener("popstate", onPop);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      };
-    }
-    document.addEventListener("mouseleave", onMouseLeave);
-    return () => document.removeEventListener("mouseleave", onMouseLeave);
-  }, []);
 
   const trackFormStart = () => {
     if (formStartTracked.current) return;
@@ -170,7 +138,7 @@ export default function AmazonFbaEbook() {
     }
     const phoneDigits = form.phone.replace(/\D/g, "");
     if (phoneDigits.length < 7) {
-      toast.error("El teléfono no parece válido. Necesitamos contactarte por WhatsApp si hay algún problema.");
+      toast.error("El teléfono no parece válido. Revísalo antes de continuar.");
       return;
     }
 
@@ -265,18 +233,9 @@ export default function AmazonFbaEbook() {
                 ¿Tuviste algún problema con el pago?
               </h3>
               <p className="text-sm text-muted-foreground text-center mb-5">
-                Estamos aquí para ayudarte. Escríbenos por WhatsApp y completamos tu compra juntos en menos de 2 minutos.
+                No te preocupes. Puedes intentar el pago de nuevo ahora mismo.
               </p>
               <div className="space-y-3">
-                <a
-                  href={`https://wa.me/19542059049?text=${encodeURIComponent("Hola, intenté comprar la Guía Amazon FBA pero tuve un problema con el pago. ¿Me ayudas?")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('checkout_canceled_wa_click', {}, '/amazon-fba-ebook')}
-                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-3.5 rounded-xl transition"
-                >
-                  💬 Hablar por WhatsApp
-                </a>
                 <button
                   onClick={() => {
                     setShowCanceledModal(false);
@@ -298,72 +257,6 @@ export default function AmazonFbaEbook() {
         )}
       </AnimatePresence>
 
-      {/* EXIT-INTENT MODAL */}
-      <AnimatePresence>
-        {showExitModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setShowExitModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto relative"
-            >
-              <button
-                onClick={() => setShowExitModal(false)}
-                aria-label="Cerrar"
-                className="absolute top-3 right-3 w-8 h-8 rounded-full text-muted-foreground hover:bg-muted flex items-center justify-center text-lg"
-              >×</button>
-              <div className="w-14 h-14 rounded-full bg-[#8BC34A] flex items-center justify-center mb-4 mx-auto">
-                <Flame className="w-7 h-7 text-[#1a2e22]" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2F4F3E] text-center mb-2">
-                ¡Espera! No te vayas sin tu guía
-              </h3>
-              <p className="text-sm text-muted-foreground text-center mb-5">
-                Tenemos un cupón <strong className="text-[#2F4F3E]">-15% adicional</strong> para que la guía te salga aún más barata. Úsalo al pagar.
-              </p>
-              <div className="bg-[#8BC34A]/15 border-2 border-dashed border-[#8BC34A] rounded-xl px-4 py-3 text-center mb-5">
-                <div className="text-[10px] uppercase font-bold text-[#2F4F3E]/70 tracking-widest">Cupón</div>
-                <div className="text-2xl font-extrabold text-[#2F4F3E] tracking-widest font-mono">QUEDATE15</div>
-              </div>
-              <div className="space-y-3">
-                <button
-                  onClick={() => {
-                    setShowExitModal(false);
-                    trackEvent('exit_intent_cta_click', { action: 'scroll_to_form' }, '/amazon-fba-ebook');
-                    document.getElementById("buy-form")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="w-full bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold py-3.5 rounded-xl transition"
-                >
-                  Quiero el descuento →
-                </button>
-                <a
-                  href={`https://wa.me/19542059049?text=${encodeURIComponent("Hola, tengo una duda antes de comprar la Guía Amazon FBA.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('exit_intent_cta_click', { action: 'whatsapp' }, '/amazon-fba-ebook')}
-                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-3.5 rounded-xl transition"
-                >
-                  💬 Tengo una duda — Hablar por WhatsApp
-                </a>
-                <button
-                  onClick={() => setShowExitModal(false)}
-                  className="w-full text-xs text-muted-foreground hover:text-foreground py-2"
-                >
-                  No, gracias
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* HEADER */}
 
@@ -643,7 +536,7 @@ export default function AmazonFbaEbook() {
                     <PhoneInput
                       value={form.phone}
                       onChange={(v) => setForm({ ...form, phone: v })}
-                      placeholder="WhatsApp (por si hay algún problema)"
+                      placeholder="Teléfono"
                     />
                   </div>
 
