@@ -248,9 +248,46 @@ export default function EbookAnalytics() {
               <p className="text-[11px] text-muted-foreground">Tráfico en tiempo real de /amazon-fba-ebook</p>
             </div>
           </div>
-          <Button onClick={fetchData} variant="outline" size="sm" disabled={loading}>
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm" title="Umbrales de alerta">
+                  <Settings className="h-4 w-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Umbrales de alerta</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <div>
+                    <Label htmlFor="t1" className="text-xs">Tiempo activo medio mínimo (segundos)</Label>
+                    <Input id="t1" type="number" min={1} value={thresholds.minAvgTime}
+                      onChange={(e) => saveThresholds({ ...thresholds, minAvgTime: Math.max(1, +e.target.value || 0) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Alerta si el promedio de tiempo activo por sesión cae por debajo.</p>
+                  </div>
+                  <div>
+                    <Label htmlFor="t2" className="text-xs">% mínimo de sesiones con evento final (time_on_page)</Label>
+                    <Input id="t2" type="number" min={1} max={100} value={thresholds.minFinalRate}
+                      onChange={(e) => saveThresholds({ ...thresholds, minFinalRate: Math.min(100, Math.max(1, +e.target.value || 0)) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Detecta sendBeacon bloqueado en in-app browsers.</p>
+                  </div>
+                  <div>
+                    <Label htmlFor="t3" className="text-xs">% mínimo de sesiones con heartbeat</Label>
+                    <Input id="t3" type="number" min={1} max={100} value={thresholds.minHeartbeatRate}
+                      onChange={(e) => saveThresholds({ ...thresholds, minHeartbeatRate: Math.min(100, Math.max(1, +e.target.value || 0)) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Detecta visitas muy cortas o tracking inactivo.</p>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => saveThresholds(DEFAULT_THRESHOLDS)}>
+                    Restaurar valores por defecto
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button onClick={fetchData} variant="outline" size="sm" disabled={loading}>
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            </Button>
+          </div>
         </div>
       </header>
 
