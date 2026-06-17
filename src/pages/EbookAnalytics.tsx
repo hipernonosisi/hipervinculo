@@ -95,8 +95,13 @@ export default function EbookAnalytics() {
     });
 
     const timeEvents = events.filter((e) => e.event_type === 'time_on_page');
+    // Backward compat: new tracker writes `active_seconds`, old wrote `duration_seconds`
+    const timeSec = (e: PageEvent) =>
+      e.event_data?.active_seconds ?? e.event_data?.duration_seconds ?? 0;
     const avgTime = timeEvents.length > 0
-      ? Math.round(timeEvents.reduce((s, e) => s + (e.event_data?.duration_seconds || 0), 0) / timeEvents.length) : 0;
+      ? Math.round(timeEvents.reduce((s, e) => s + timeSec(e), 0) / timeEvents.length) : 0;
+    const heartbeatSessions = new Set(events.filter((e) => e.event_type === 'heartbeat').map(e => e.session_id)).size;
+    const finalEventSessions = new Set(timeEvents.map(e => e.session_id)).size;
 
     const scroll25 = new Set(events.filter((e) => e.event_type === 'scroll_25').map(e => e.session_id)).size;
     const scroll50 = new Set(events.filter((e) => e.event_type === 'scroll_50').map(e => e.session_id)).size;
