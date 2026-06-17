@@ -157,6 +157,7 @@ export default function EbookAnalytics() {
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
+      heartbeatSessions, finalEventSessions,
     };
   }, [events]);
 
