@@ -226,6 +226,12 @@ export function usePageTracking(pageUrl = '/preview') {
       isVisible.current = visible;
       lastTick.current = Date.now();
       lastActivity.current = Date.now();
+      // Always emit a tab_change event so the admin can correlate tab focus loss
+      trackEvent(
+        'tab_change',
+        { state: visible ? 'visible' : 'hidden', active_seconds: Math.round(activeMs.current / 1000) },
+        pageUrl,
+      );
       if (!visible) {
         flushFinal('visibility_hidden');
       }
