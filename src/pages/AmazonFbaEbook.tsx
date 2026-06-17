@@ -347,7 +347,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* BENEFITS */}
-      <section className="py-16 md:py-24 bg-white">
+      <section data-section="benefits" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que vas a lograr</h2>
