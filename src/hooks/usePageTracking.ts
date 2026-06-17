@@ -294,3 +294,105 @@ export function usePageTracking(pageUrl = '/preview') {
 
   return { trackClick, trackCalendarClick, trackVideoPlay, trackVideoUnmute };
 }
+
+/**
+ * Observe `<section data-section="...">` elements on a page and track dwell time per section.
+ * Emits `section_view` events with `{ section, dwell_seconds, max_visible_ratio, reason }`.
+ */
+export function useSectionTracking(pageUrl: string) {
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') return;
+
+    type SectionState = {
+      el: Element;
+      name: string;
+      enteredAt: number | null;
+      dwellMs: number;
+      maxRatio: number;
+      lastSent: number;
+    };
+    const states = new Map<Element, SectionState>();
+    const nodes = Array.from(document.querySelectorAll('[data-section]'));
+    nodes.forEach((el) => {
+      states.set(el, {
+        el,
+        name: (el as HTMLElement).dataset.section || 'unknown',
+        enteredAt: null,
+        dwellMs: 0,
+        maxRatio: 0,
+        lastSent: 0,
+      });
+    });
+    if (states.size === 0) return;
+
+    const flush = (s: SectionState, reason: string) => {
+      if (s.dwellMs < 500) return; // ignore tiny flickers
+      if (s.dwellMs - s.lastSent < 10_000 && reason !== 'final' && reason !== 'unmount') return;
+      s.lastSent = s.dwellMs;
+      trackEvent(
+        'section_view',
+        {
+          section: s.name,
+          dwell_seconds: Math.round(s.dwellMs / 1000),
+          max_visible_ratio: Math.round(s.maxRatio * 100) / 100,
+          reason,
+        },
+        pageUrl,
+      );
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const now = Date.now();
+        entries.forEach((entry) => {
+          const s = states.get(entry.target);
+          if (!s) return;
+          s.maxRatio = Math.max(s.maxRatio, entry.intersectionRatio);
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+            if (s.enteredAt === null) s.enteredAt = now;
+          } else if (s.enteredAt !== null) {
+            s.dwellMs += now - s.enteredAt;
+            s.enteredAt = null;
+            flush(s, 'exit');
+          }
+        });
+      },
+      { threshold: [0, 0.25, 0.4, 0.5, 0.75, 1] },
+    );
+
+    states.forEach((s) => observer.observe(s.el));
+
+    const accumulateAll = () => {
+      const now = Date.now();
+      states.forEach((s) => {
+        if (s.enteredAt !== null) {
+          s.dwellMs += now - s.enteredAt;
+          s.enteredAt = now;
+        }
+      });
+    };
+
+    const interval = window.setInterval(() => {
+      accumulateAll();
+      states.forEach((s) => flush(s, 'tick'));
+    }, 15_000);
+
+    const flushAll = (reason: string) => {
+      accumulateAll();
+      states.forEach((s) => flush(s, reason));
+    };
+    const onHide = () => flushAll('final');
+
+    document.addEventListener('visibilitychange', onHide);
+    window.addEventListener('pagehide', onHide);
+
+    return () => {
+      observer.disconnect();
+      window.clearInterval(interval);
+      flushAll('unmount');
+      document.removeEventListener('visibilitychange', onHide);
+      window.removeEventListener('pagehide', onHide);
+    };
+  }, [pageUrl]);
+}
+
