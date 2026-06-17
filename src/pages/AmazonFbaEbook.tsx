@@ -613,7 +613,7 @@ export default function AmazonFbaEbook() {
 
 
       {/* FAQ */}
-      <section className="py-16 md:py-24 bg-white">
+      <section data-section="faq" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] text-center mb-12">Preguntas frecuentes</h2>
           <div className="space-y-4">
