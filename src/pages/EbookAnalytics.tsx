@@ -198,6 +198,37 @@ export default function EbookAnalytics() {
 
   const ctaData = Object.entries(stats.ctaBreakdown).map(([label, count]) => ({ label, count }));
 
+  // === Health alerts based on configurable thresholds ===
+  const finalRate = stats.uniqueSessions > 0
+    ? Math.round((stats.finalEventSessions / stats.uniqueSessions) * 100) : 0;
+  const heartbeatRate = stats.uniqueSessions > 0
+    ? Math.round((stats.heartbeatSessions / stats.uniqueSessions) * 100) : 0;
+
+  const alerts: { level: 'warn' | 'crit'; title: string; detail: string }[] = [];
+  if (stats.uniqueSessions >= 5) {
+    if (stats.avgTime < thresholds.minAvgTime) {
+      alerts.push({
+        level: stats.avgTime < thresholds.minAvgTime / 2 ? 'crit' : 'warn',
+        title: `Tiempo activo bajo: ${stats.avgTime}s`,
+        detail: `Umbral: ≥ ${thresholds.minAvgTime}s. Los visitantes rebotan rápido o el tracking no captura bien el tiempo.`,
+      });
+    }
+    if (finalRate < thresholds.minFinalRate) {
+      alerts.push({
+        level: finalRate < thresholds.minFinalRate / 2 ? 'crit' : 'warn',
+        title: `Tasa de evento final baja: ${finalRate}%`,
+        detail: `Solo ${stats.finalEventSessions}/${stats.uniqueSessions} sesiones emitieron time_on_page (umbral ≥ ${thresholds.minFinalRate}%). Posible bloqueo de sendBeacon en in-app browsers.`,
+      });
+    }
+    if (heartbeatRate < thresholds.minHeartbeatRate) {
+      alerts.push({
+        level: 'warn',
+        title: `Heartbeats bajos: ${heartbeatRate}%`,
+        detail: `Solo ${stats.heartbeatSessions}/${stats.uniqueSessions} sesiones emitieron heartbeat (umbral ≥ ${thresholds.minHeartbeatRate}%). Las visitas duran <15s activos o el tracking falla.`,
+      });
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#f7f8f7]">
       <SEO
