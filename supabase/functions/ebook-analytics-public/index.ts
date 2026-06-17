@@ -35,9 +35,9 @@ Deno.serve(async (req) => {
     const { count: purchasesCount } = await supabase
       .from('ebook_purchases')
       .select('id', { count: 'exact', head: true })
-      .eq('payment_status', 'paid')
-      .gte('created_at', from)
-      .lte('created_at', to);
+      .not('paid_at', 'is', null)
+      .gte('paid_at', from)
+      .lte('paid_at', to);
 
     return new Response(JSON.stringify({ events: data ?? [], purchases: purchasesCount ?? 0 }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
