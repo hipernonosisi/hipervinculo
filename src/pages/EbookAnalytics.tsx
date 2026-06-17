@@ -31,6 +31,21 @@ const PRESETS = [
   { key: '90d', label: '90d', from: () => subDays(new Date(), 90), to: () => new Date() },
 ];
 
+const DEFAULT_THRESHOLDS = {
+  minAvgTime: 15,        // segundos activos promedio mínimos
+  minFinalRate: 30,      // % de sesiones que emiten time_on_page vs page_view
+  minHeartbeatRate: 40,  // % de sesiones que emiten al menos un heartbeat
+};
+type Thresholds = typeof DEFAULT_THRESHOLDS;
+
+function loadThresholds(): Thresholds {
+  try {
+    const raw = localStorage.getItem('hv_ebook_thresholds');
+    if (raw) return { ...DEFAULT_THRESHOLDS, ...JSON.parse(raw) };
+  } catch {}
+  return DEFAULT_THRESHOLDS;
+}
+
 export default function EbookAnalytics() {
   const [events, setEvents] = useState<PageEvent[]>([]);
   const [purchases, setPurchases] = useState(0);
@@ -38,6 +53,13 @@ export default function EbookAnalytics() {
   const [preset, setPreset] = useState('7d');
   const [dateFrom, setDateFrom] = useState(subDays(new Date(), 7));
   const [dateTo, setDateTo] = useState(new Date());
+  const [thresholds, setThresholds] = useState<Thresholds>(loadThresholds);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const saveThresholds = (t: Thresholds) => {
+    setThresholds(t);
+    localStorage.setItem('hv_ebook_thresholds', JSON.stringify(t));
+  };
 
   const fetchData = async () => {
     setLoading(true);
