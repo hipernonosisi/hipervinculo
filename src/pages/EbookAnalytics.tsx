@@ -5,8 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
   RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Play, Volume2,
-  Film, MapPin, FileEdit, CheckCircle2, DollarSign,
+  Film, MapPin, FileEdit, CheckCircle2, DollarSign, AlertTriangle, Settings,
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   Cell, LineChart, Line,
@@ -28,6 +31,21 @@ const PRESETS = [
   { key: '90d', label: '90d', from: () => subDays(new Date(), 90), to: () => new Date() },
 ];
 
+const DEFAULT_THRESHOLDS = {
+  minAvgTime: 15,        // segundos activos promedio mínimos
+  minFinalRate: 30,      // % de sesiones que emiten time_on_page vs page_view
+  minHeartbeatRate: 40,  // % de sesiones que emiten al menos un heartbeat
+};
+type Thresholds = typeof DEFAULT_THRESHOLDS;
+
+function loadThresholds(): Thresholds {
+  try {
+    const raw = localStorage.getItem('hv_ebook_thresholds');
+    if (raw) return { ...DEFAULT_THRESHOLDS, ...JSON.parse(raw) };
+  } catch {}
+  return DEFAULT_THRESHOLDS;
+}
+
 export default function EbookAnalytics() {
   const [events, setEvents] = useState<PageEvent[]>([]);
   const [purchases, setPurchases] = useState(0);
@@ -35,6 +53,13 @@ export default function EbookAnalytics() {
   const [preset, setPreset] = useState('7d');
   const [dateFrom, setDateFrom] = useState(subDays(new Date(), 7));
   const [dateTo, setDateTo] = useState(new Date());
+  const [thresholds, setThresholds] = useState<Thresholds>(loadThresholds);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const saveThresholds = (t: Thresholds) => {
+    setThresholds(t);
+    localStorage.setItem('hv_ebook_thresholds', JSON.stringify(t));
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -92,8 +117,13 @@ export default function EbookAnalytics() {
     });
 
     const timeEvents = events.filter((e) => e.event_type === 'time_on_page');
+    // Backward compat: new tracker writes `active_seconds`, old wrote `duration_seconds`
+    const timeSec = (e: PageEvent) =>
+      e.event_data?.active_seconds ?? e.event_data?.duration_seconds ?? 0;
     const avgTime = timeEvents.length > 0
-      ? Math.round(timeEvents.reduce((s, e) => s + (e.event_data?.duration_seconds || 0), 0) / timeEvents.length) : 0;
+      ? Math.round(timeEvents.reduce((s, e) => s + timeSec(e), 0) / timeEvents.length) : 0;
+    const heartbeatSessions = new Set(events.filter((e) => e.event_type === 'heartbeat').map(e => e.session_id)).size;
+    const finalEventSessions = new Set(timeEvents.map(e => e.session_id)).size;
 
     const scroll25 = new Set(events.filter((e) => e.event_type === 'scroll_25').map(e => e.session_id)).size;
     const scroll50 = new Set(events.filter((e) => e.event_type === 'scroll_50').map(e => e.session_id)).size;
@@ -149,6 +179,7 @@ export default function EbookAnalytics() {
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
+      heartbeatSessions, finalEventSessions,
     };
   }, [events]);
 
@@ -166,6 +197,37 @@ export default function EbookAnalytics() {
   ];
 
   const ctaData = Object.entries(stats.ctaBreakdown).map(([label, count]) => ({ label, count }));
+
+  // === Health alerts based on configurable thresholds ===
+  const finalRate = stats.uniqueSessions > 0
+    ? Math.round((stats.finalEventSessions / stats.uniqueSessions) * 100) : 0;
+  const heartbeatRate = stats.uniqueSessions > 0
+    ? Math.round((stats.heartbeatSessions / stats.uniqueSessions) * 100) : 0;
+
+  const alerts: { level: 'warn' | 'crit'; title: string; detail: string }[] = [];
+  if (stats.uniqueSessions >= 5) {
+    if (stats.avgTime < thresholds.minAvgTime) {
+      alerts.push({
+        level: stats.avgTime < thresholds.minAvgTime / 2 ? 'crit' : 'warn',
+        title: `Tiempo activo bajo: ${stats.avgTime}s`,
+        detail: `Umbral: ≥ ${thresholds.minAvgTime}s. Los visitantes rebotan rápido o el tracking no captura bien el tiempo.`,
+      });
+    }
+    if (finalRate < thresholds.minFinalRate) {
+      alerts.push({
+        level: finalRate < thresholds.minFinalRate / 2 ? 'crit' : 'warn',
+        title: `Tasa de evento final baja: ${finalRate}%`,
+        detail: `Solo ${stats.finalEventSessions}/${stats.uniqueSessions} sesiones emitieron time_on_page (umbral ≥ ${thresholds.minFinalRate}%). Posible bloqueo de sendBeacon en in-app browsers.`,
+      });
+    }
+    if (heartbeatRate < thresholds.minHeartbeatRate) {
+      alerts.push({
+        level: 'warn',
+        title: `Heartbeats bajos: ${heartbeatRate}%`,
+        detail: `Solo ${stats.heartbeatSessions}/${stats.uniqueSessions} sesiones emitieron heartbeat (umbral ≥ ${thresholds.minHeartbeatRate}%). Las visitas duran <15s activos o el tracking falla.`,
+      });
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#f7f8f7]">
@@ -186,9 +248,46 @@ export default function EbookAnalytics() {
               <p className="text-[11px] text-muted-foreground">Tráfico en tiempo real de /amazon-fba-ebook</p>
             </div>
           </div>
-          <Button onClick={fetchData} variant="outline" size="sm" disabled={loading}>
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm" title="Umbrales de alerta">
+                  <Settings className="h-4 w-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Umbrales de alerta</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-2">
+                  <div>
+                    <Label htmlFor="t1" className="text-xs">Tiempo activo medio mínimo (segundos)</Label>
+                    <Input id="t1" type="number" min={1} value={thresholds.minAvgTime}
+                      onChange={(e) => saveThresholds({ ...thresholds, minAvgTime: Math.max(1, +e.target.value || 0) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Alerta si el promedio de tiempo activo por sesión cae por debajo.</p>
+                  </div>
+                  <div>
+                    <Label htmlFor="t2" className="text-xs">% mínimo de sesiones con evento final (time_on_page)</Label>
+                    <Input id="t2" type="number" min={1} max={100} value={thresholds.minFinalRate}
+                      onChange={(e) => saveThresholds({ ...thresholds, minFinalRate: Math.min(100, Math.max(1, +e.target.value || 0)) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Detecta sendBeacon bloqueado en in-app browsers.</p>
+                  </div>
+                  <div>
+                    <Label htmlFor="t3" className="text-xs">% mínimo de sesiones con heartbeat</Label>
+                    <Input id="t3" type="number" min={1} max={100} value={thresholds.minHeartbeatRate}
+                      onChange={(e) => saveThresholds({ ...thresholds, minHeartbeatRate: Math.min(100, Math.max(1, +e.target.value || 0)) })} />
+                    <p className="text-[11px] text-muted-foreground mt-1">Detecta visitas muy cortas o tracking inactivo.</p>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => saveThresholds(DEFAULT_THRESHOLDS)}>
+                    Restaurar valores por defecto
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button onClick={fetchData} variant="outline" size="sm" disabled={loading}>
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -208,6 +307,33 @@ export default function EbookAnalytics() {
             {format(dateFrom, 'd MMM')} – {format(dateTo, 'd MMM yyyy')}
           </span>
         </div>
+
+        {/* Health alerts */}
+        {alerts.length > 0 && (
+          <Card className={`border-0 shadow-sm rounded-xl border-l-4 ${
+            alerts.some(a => a.level === 'crit') ? 'border-l-red-500 bg-red-50/40' : 'border-l-amber-500 bg-amber-50/40'
+          }`}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-bold flex items-center gap-2 text-[#2F4F3E]">
+                <AlertTriangle className="h-4 w-4" />
+                {alerts.some(a => a.level === 'crit') ? 'Alertas críticas de salud' : 'Alertas de salud'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {alerts.map((a, i) => (
+                <div key={i} className={`p-2 rounded text-xs ${
+                  a.level === 'crit' ? 'bg-red-100 text-red-900' : 'bg-amber-100 text-amber-900'
+                }`}>
+                  <p className="font-bold">{a.title}</p>
+                  <p className="opacity-80">{a.detail}</p>
+                </div>
+              ))}
+              <p className="text-[10px] text-muted-foreground pt-1">
+                Tiempo activo medio: <b>{stats.avgTime}s</b> · Evento final: <b>{finalRate}%</b> ({stats.finalEventSessions}/{stats.uniqueSessions}) · Heartbeat: <b>{heartbeatRate}%</b> ({stats.heartbeatSessions}/{stats.uniqueSessions}) · Ajusta umbrales con ⚙️
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         {/* KPI cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
