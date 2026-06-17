@@ -231,8 +231,12 @@ export function usePageTracking(pageUrl = '/preview') {
       }
     };
 
+    let lastFlushAt = 0;
     const flushFinal = (reason: string) => {
-      if (finalSent.current) return;
+      const now = Date.now();
+      // Debounce: avoid duplicate flushes within 2s (e.g. visibilitychange + pagehide back to back)
+      if (now - lastFlushAt < 2000) return;
+      lastFlushAt = now;
       accumulate();
       const seconds = Math.round(activeMs.current / 1000);
       // Always emit final — even if 0 — so we know the session ended
@@ -241,7 +245,9 @@ export function usePageTracking(pageUrl = '/preview') {
         { active_seconds: seconds, total_seconds: seconds, reason, heartbeats: heartbeatsSent.current },
         pageUrl,
       );
+      stats.finalFlushes += 1;
       finalSent.current = true;
+      logSafeClose(reason);
     };
 
     const handlePageHide = () => flushFinal('pagehide');
