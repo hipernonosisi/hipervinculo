@@ -5,8 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
   RefreshCw, Eye, MousePointerClick, Clock, ArrowDown, Play, Volume2,
-  Film, MapPin, FileEdit, CheckCircle2, DollarSign,
+  Film, MapPin, FileEdit, CheckCircle2, DollarSign, AlertTriangle, Settings,
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   Cell, LineChart, Line,
