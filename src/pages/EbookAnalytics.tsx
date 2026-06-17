@@ -216,6 +216,41 @@ export default function EbookAnalytics() {
       };
     });
 
+    // === Section dwell aggregation ===
+    const sectionAgg: Record<string, { totalSeconds: number; sessions: Set<string>; maxDwell: number }> = {};
+    events.filter((e) => e.event_type === 'section_view').forEach((e) => {
+      const name = e.event_data?.section || 'unknown';
+      const dwell = e.event_data?.dwell_seconds || 0;
+      if (!sectionAgg[name]) sectionAgg[name] = { totalSeconds: 0, sessions: new Set(), maxDwell: 0 };
+      sectionAgg[name].sessions.add(e.session_id);
+      // Take max dwell per session (events are cumulative)
+      // Approximation: just use last dwell per session via max
+      sectionAgg[name].maxDwell = Math.max(sectionAgg[name].maxDwell, dwell);
+    });
+    // Recompute totals as sum of per-session max
+    const sectionPerSessionMax: Record<string, Record<string, number>> = {};
+    events.filter((e) => e.event_type === 'section_view').forEach((e) => {
+      const name = e.event_data?.section || 'unknown';
+      const dwell = e.event_data?.dwell_seconds || 0;
+      sectionPerSessionMax[name] = sectionPerSessionMax[name] || {};
+      sectionPerSessionMax[name][e.session_id] = Math.max(
+        sectionPerSessionMax[name][e.session_id] || 0,
+        dwell,
+      );
+    });
+    const sectionStats = Object.entries(sectionPerSessionMax).map(([section, sessMap]) => {
+      const vals = Object.values(sessMap);
+      const total = vals.reduce((a, b) => a + b, 0);
+      const avg = vals.length > 0 ? Math.round(total / vals.length) : 0;
+      return { section, sessions: vals.length, totalSeconds: total, avgSeconds: avg };
+    }).sort((a, b) => b.totalSeconds - a.totalSeconds);
+
+    // === Tab change aggregation ===
+    const tabChangeEvents = events.filter((e) => e.event_type === 'tab_change');
+    const tabChangeSessions = new Set(tabChangeEvents.map(e => e.session_id)).size;
+    const tabHides = tabChangeEvents.filter(e => e.event_data?.state === 'hidden').length;
+    const tabReturns = tabChangeEvents.filter(e => e.event_data?.state === 'visible').length;
+
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
       formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
@@ -224,6 +259,7 @@ export default function EbookAnalytics() {
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
       heartbeatSessions, finalEventSessions, cohorts, totalIc,
+      sectionStats, tabChangeSessions, tabHides, tabReturns,
     };
   }, [events, purchases]);
 
