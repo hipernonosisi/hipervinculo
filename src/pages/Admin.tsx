@@ -39,6 +39,8 @@ import { User } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
 import { PreviewAnalyticsDashboard } from '@/components/admin/PreviewAnalyticsDashboard';
 import { EbookSalesDashboard } from '@/components/admin/EbookSalesDashboard';
+import { lazy, Suspense } from 'react';
+const EbookAnalytics = lazy(() => import('@/pages/EbookAnalytics'));
 
 interface ContactSubmission {
   id: string;
@@ -1022,9 +1024,46 @@ export default function Admin() {
               </Card>
             </TabsContent>
 
-            {/* eBook Sales Tab */}
+            {/* eBook Tab — Ventas + Estudio del funnel */}
             <TabsContent value="ebook" className="mt-0">
-              <EbookSalesDashboard />
+              <Tabs defaultValue="sales" className="w-full">
+                <TabsList className="mb-4 bg-white shadow-sm rounded-xl p-1 inline-flex h-auto gap-1">
+                  <TabsTrigger
+                    value="sales"
+                    className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1"
+                  >
+                    <DollarSign className="w-3.5 h-3.5" />
+                    Ventas
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="funnel"
+                    className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1"
+                  >
+                    <ChartArea className="w-3.5 h-3.5" />
+                    Estudio del funnel
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="sales" className="mt-0">
+                  <EbookSalesDashboard />
+                </TabsContent>
+                <TabsContent value="funnel" className="mt-0">
+                  <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                    <CardHeader>
+                      <CardTitle>Estudio del funnel · /amazon-fba-ebook</CardTitle>
+                      <CardDescription>
+                        Tráfico, tiempo en página, cohortes, secciones y alertas de salud. Fuente: <code className="text-xs">EbookAnalytics</code>.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <Suspense fallback={<div className="p-12 text-center text-sm text-muted-foreground">Cargando estudio del funnel…</div>}>
+                        <div className="-mx-px">
+                          <EbookAnalytics />
+                        </div>
+                      </Suspense>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
             </TabsContent>
 
             {/* Analytics Tab */}
