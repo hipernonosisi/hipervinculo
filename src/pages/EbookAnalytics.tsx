@@ -172,6 +172,50 @@ export default function EbookAnalytics() {
     });
     const dailyViews = Object.entries(dailyMap).map(([date, views]) => ({ date, views })).reverse();
 
+    // === Cohorts by active time per session ===
+    // Build per-session max active_seconds from heartbeats + final time_on_page
+    const sessionActive: Record<string, number> = {};
+    events.forEach((e) => {
+      if (e.event_type === 'heartbeat' || e.event_type === 'time_on_page') {
+        const s = timeSec(e) || e.event_data?.active_seconds || 0;
+        if (s > 0) sessionActive[e.session_id] = Math.max(sessionActive[e.session_id] || 0, s);
+      }
+    });
+    const icSessions = new Set(
+      events.filter((e) => e.event_type === 'checkout_redirect').map(e => e.session_id),
+    );
+    const cohortDefs: { label: string; min: number; max: number }[] = [
+      { label: '0–15s',  min: 0,   max: 15 },
+      { label: '15–60s', min: 15,  max: 60 },
+      { label: '1–3 min', min: 60, max: 180 },
+      { label: '3–5 min', min: 180, max: 300 },
+      { label: '5+ min', min: 300, max: Infinity },
+      { label: 'Sin medición', min: -1, max: 0 }, // sessions with page_view but no heartbeat/time_on_page
+    ];
+    const totalIc = icSessions.size;
+    const cohorts = cohortDefs.map((c) => {
+      let cohortSessions: string[] = [];
+      if (c.label === 'Sin medición') {
+        cohortSessions = Array.from(sessions).filter((sid) => sessionActive[sid] === undefined);
+      } else {
+        cohortSessions = Array.from(sessions).filter((sid) => {
+          const a = sessionActive[sid];
+          return a !== undefined && a >= c.min && a < c.max;
+        });
+      }
+      const ic = cohortSessions.filter((sid) => icSessions.has(sid)).length;
+      // Estimated purchases attributed proportionally to this cohort's share of IC
+      const estPurchases = totalIc > 0 ? Math.round((ic / totalIc) * (purchases || 0) * 10) / 10 : 0;
+      return {
+        label: c.label,
+        sessions: cohortSessions.length,
+        ic,
+        icRate: cohortSessions.length > 0 ? Math.round((ic / cohortSessions.length) * 100) : 0,
+        estPurchases,
+        purchaseRate: cohortSessions.length > 0 ? Math.round((estPurchases / cohortSessions.length) * 1000) / 10 : 0,
+      };
+    });
+
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
       formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
@@ -179,9 +223,9 @@ export default function EbookAnalytics() {
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
-      heartbeatSessions, finalEventSessions,
+      heartbeatSessions, finalEventSessions, cohorts, totalIc,
     };
-  }, [events]);
+  }, [events, purchases]);
 
   const formatTime = (s: number) => s < 60 ? `${s}s` : `${Math.floor(s/60)}m ${s%60}s`;
   const pct = (n: number, d: number) => d > 0 ? `${Math.round((n/d)*100)}%` : '0%';
