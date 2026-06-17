@@ -308,6 +308,33 @@ export default function EbookAnalytics() {
           </span>
         </div>
 
+        {/* Health alerts */}
+        {alerts.length > 0 && (
+          <Card className={`border-0 shadow-sm rounded-xl border-l-4 ${
+            alerts.some(a => a.level === 'crit') ? 'border-l-red-500 bg-red-50/40' : 'border-l-amber-500 bg-amber-50/40'
+          }`}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-bold flex items-center gap-2 text-[#2F4F3E]">
+                <AlertTriangle className="h-4 w-4" />
+                {alerts.some(a => a.level === 'crit') ? 'Alertas críticas de salud' : 'Alertas de salud'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {alerts.map((a, i) => (
+                <div key={i} className={`p-2 rounded text-xs ${
+                  a.level === 'crit' ? 'bg-red-100 text-red-900' : 'bg-amber-100 text-amber-900'
+                }`}>
+                  <p className="font-bold">{a.title}</p>
+                  <p className="opacity-80">{a.detail}</p>
+                </div>
+              ))}
+              <p className="text-[10px] text-muted-foreground pt-1">
+                Tiempo activo medio: <b>{stats.avgTime}s</b> · Evento final: <b>{finalRate}%</b> ({stats.finalEventSessions}/{stats.uniqueSessions}) · Heartbeat: <b>{heartbeatRate}%</b> ({stats.heartbeatSessions}/{stats.uniqueSessions}) · Ajusta umbrales con ⚙️
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
         {/* KPI cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
           {[
