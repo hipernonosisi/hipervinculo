@@ -275,7 +275,7 @@ export default function AmazonFbaEbook() {
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[#2F4F3E] text-white">
+      <section data-section="hero" className="relative overflow-hidden bg-[#2F4F3E] text-white">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
         }} />
