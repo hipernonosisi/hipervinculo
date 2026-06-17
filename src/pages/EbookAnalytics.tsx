@@ -172,6 +172,50 @@ export default function EbookAnalytics() {
     });
     const dailyViews = Object.entries(dailyMap).map(([date, views]) => ({ date, views })).reverse();
 
+    // === Cohorts by active time per session ===
+    // Build per-session max active_seconds from heartbeats + final time_on_page
+    const sessionActive: Record<string, number> = {};
+    events.forEach((e) => {
+      if (e.event_type === 'heartbeat' || e.event_type === 'time_on_page') {
+        const s = timeSec(e) || e.event_data?.active_seconds || 0;
+        if (s > 0) sessionActive[e.session_id] = Math.max(sessionActive[e.session_id] || 0, s);
+      }
+    });
+    const icSessions = new Set(
+      events.filter((e) => e.event_type === 'checkout_redirect').map(e => e.session_id),
+    );
+    const cohortDefs: { label: string; min: number; max: number }[] = [
+      { label: '0–15s',  min: 0,   max: 15 },
+      { label: '15–60s', min: 15,  max: 60 },
+      { label: '1–3 min', min: 60, max: 180 },
+      { label: '3–5 min', min: 180, max: 300 },
+      { label: '5+ min', min: 300, max: Infinity },
+      { label: 'Sin medición', min: -1, max: 0 }, // sessions with page_view but no heartbeat/time_on_page
+    ];
+    const totalIc = icSessions.size;
+    const cohorts = cohortDefs.map((c) => {
+      let cohortSessions: string[] = [];
+      if (c.label === 'Sin medición') {
+        cohortSessions = Array.from(sessions).filter((sid) => sessionActive[sid] === undefined);
+      } else {
+        cohortSessions = Array.from(sessions).filter((sid) => {
+          const a = sessionActive[sid];
+          return a !== undefined && a >= c.min && a < c.max;
+        });
+      }
+      const ic = cohortSessions.filter((sid) => icSessions.has(sid)).length;
+      // Estimated purchases attributed proportionally to this cohort's share of IC
+      const estPurchases = totalIc > 0 ? Math.round((ic / totalIc) * (purchases || 0) * 10) / 10 : 0;
+      return {
+        label: c.label,
+        sessions: cohortSessions.length,
+        ic,
+        icRate: cohortSessions.length > 0 ? Math.round((ic / cohortSessions.length) * 100) : 0,
+        estPurchases,
+        purchaseRate: cohortSessions.length > 0 ? Math.round((estPurchases / cohortSessions.length) * 1000) / 10 : 0,
+      };
+    });
+
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
       formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
@@ -179,9 +223,9 @@ export default function EbookAnalytics() {
       watchBuckets, watchEventsCount: watchEvents.length,
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
-      heartbeatSessions, finalEventSessions,
+      heartbeatSessions, finalEventSessions, cohorts, totalIc,
     };
-  }, [events]);
+  }, [events, purchases]);
 
   const formatTime = (s: number) => s < 60 ? `${s}s` : `${Math.floor(s/60)}m ${s%60}s`;
   const pct = (n: number, d: number) => d > 0 ? `${Math.round((n/d)*100)}%` : '0%';
@@ -443,6 +487,74 @@ export default function EbookAnalytics() {
             </CardContent>
           </Card>
         )}
+
+        {/* === Cohortes por tiempo activo === */}
+        <Card className="border-0 shadow-sm rounded-xl">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-bold text-[#2F4F3E]">
+              Cohortes por tiempo activo · impacto en InitiateCheckout / Purchase
+            </CardTitle>
+            <p className="text-[11px] text-muted-foreground">
+              Agrupa sesiones por su <b>active_seconds</b> máximo (heartbeats + time_on_page). Las compras se estiman repartiendo el total proporcionalmente al share de InitiateCheckout de cada cohorte.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="text-left border-b">
+                    <th className="py-2 pr-2 font-semibold text-[#2F4F3E]">Cohorte</th>
+                    <th className="py-2 px-2 text-right font-semibold text-[#2F4F3E]">Sesiones</th>
+                    <th className="py-2 px-2 text-right font-semibold text-[#2F4F3E]">IC</th>
+                    <th className="py-2 px-2 text-right font-semibold text-[#2F4F3E]">IC %</th>
+                    <th className="py-2 px-2 text-right font-semibold text-[#2F4F3E]">Purchase est.</th>
+                    <th className="py-2 pl-2 text-right font-semibold text-[#2F4F3E]">CR %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.cohorts.map((c) => {
+                    const maxSessions = Math.max(...stats.cohorts.map((x) => x.sessions), 1);
+                    const widthPct = Math.round((c.sessions / maxSessions) * 100);
+                    return (
+                      <tr key={c.label} className="border-b last:border-0">
+                        <td className="py-2 pr-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium w-20">{c.label}</span>
+                            <div className="flex-1 h-2 bg-gray-100 rounded overflow-hidden min-w-[60px]">
+                              <div className="h-full bg-[#8BC34A]" style={{ width: `${widthPct}%` }} />
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-2 px-2 text-right tabular-nums">{c.sessions}</td>
+                        <td className="py-2 px-2 text-right tabular-nums text-[#0EA5E9] font-semibold">{c.ic}</td>
+                        <td className="py-2 px-2 text-right tabular-nums">{c.icRate}%</td>
+                        <td className="py-2 px-2 text-right tabular-nums text-[#2F4F3E] font-bold">{c.estPurchases}</td>
+                        <td className="py-2 pl-2 text-right tabular-nums">{c.purchaseRate}%</td>
+                      </tr>
+                    );
+                  })}
+                  <tr className="bg-gray-50 font-bold">
+                    <td className="py-2 pr-2">Total</td>
+                    <td className="py-2 px-2 text-right tabular-nums">{stats.uniqueSessions}</td>
+                    <td className="py-2 px-2 text-right tabular-nums text-[#0EA5E9]">{stats.totalIc}</td>
+                    <td className="py-2 px-2 text-right tabular-nums">
+                      {stats.uniqueSessions > 0 ? Math.round((stats.totalIc / stats.uniqueSessions) * 100) : 0}%
+                    </td>
+                    <td className="py-2 px-2 text-right tabular-nums text-[#2F4F3E]">{purchases}</td>
+                    <td className="py-2 pl-2 text-right tabular-nums">
+                      {stats.uniqueSessions > 0 ? Math.round((purchases / stats.uniqueSessions) * 1000) / 10 : 0}%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-3">
+              <b>IC</b> = sesiones con evento <code>checkout_redirect</code> (InitiateCheckout). <b>Purchase est.</b> = compras totales repartidas en proporción al IC de cada cohorte (atribución probabilística, no determinista). <b>Sin medición</b> = sesiones que solo emitieron <code>page_view</code> (probablemente in-app browsers con tracking bloqueado).
+            </p>
+          </CardContent>
+        </Card>
+
+
 
 
         {/* Daily views & scroll */}
