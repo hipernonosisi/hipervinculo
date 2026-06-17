@@ -16,6 +16,40 @@ function getSessionId(): string {
   return sid;
 }
 
+// === Safe-close instrumentation ===
+// Per-tab counters exposed on window.__hvTracking. Inspect from devtools:
+//   > __hvTracking
+type TrackingStats = {
+  beaconAttempts: number;
+  beaconOk: number;
+  beaconFail: number;
+  fetchKeepaliveOk: number;
+  fetchKeepaliveFail: number;
+  fallbackUsed: number;
+  finalFlushes: number;
+  lastFailReason?: string;
+};
+const stats: TrackingStats = {
+  beaconAttempts: 0, beaconOk: 0, beaconFail: 0,
+  fetchKeepaliveOk: 0, fetchKeepaliveFail: 0,
+  fallbackUsed: 0, finalFlushes: 0,
+};
+if (typeof window !== 'undefined') {
+  (window as any).__hvTracking = stats;
+}
+
+function logSafeClose(reason: string) {
+  const sent = stats.beaconOk + stats.fetchKeepaliveOk;
+  const fails = stats.beaconFail + stats.fetchKeepaliveFail;
+  // eslint-disable-next-line no-console
+  console[fails > 0 ? 'warn' : 'log'](
+    `[Tracking][safe-close:${reason}] sent=${sent} ` +
+    `beaconOK=${stats.beaconOk}/${stats.beaconAttempts} ` +
+    `fetchOK=${stats.fetchKeepaliveOk} fails=${fails} flushes=${stats.finalFlushes}` +
+    (stats.lastFailReason ? ` lastFail="${stats.lastFailReason}"` : ''),
+  );
+}
+
 export function trackEvent(eventType: string, eventData: Record<string, any> = {}, pageUrl = '/preview') {
   const sessionId = getSessionId();
   supabase
@@ -28,8 +62,8 @@ export function trackEvent(eventType: string, eventData: Record<string, any> = {
 
 /**
  * Best-effort insert that survives page exits / in-app browsers.
- * Tries sendBeacon (with apikey in URL since headers can't be set), then fetch keepalive,
- * then plain supabase client as last fallback.
+ * Order: sendBeacon → fetch(keepalive) → supabase client fallback.
+ * Tracks per-channel success/failure so you can debug from the console.
  */
 function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl: string) {
   const payload = JSON.stringify({
@@ -44,9 +78,20 @@ function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl:
     const blob = new Blob([payload], { type: 'application/json' });
 
     if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+      stats.beaconAttempts += 1;
       try {
-        if (navigator.sendBeacon(url, blob)) return;
-      } catch { /* fall through */ }
+        if (navigator.sendBeacon(url, blob)) {
+          stats.beaconOk += 1;
+          return;
+        }
+        stats.beaconFail += 1;
+        stats.lastFailReason = 'sendBeacon returned false (queue full or payload too big)';
+        console.warn('[Tracking] sendBeacon rejected payload — falling back');
+      } catch (e) {
+        stats.beaconFail += 1;
+        stats.lastFailReason = `sendBeacon threw: ${(e as Error).message}`;
+        console.warn('[Tracking] sendBeacon threw — falling back', e);
+      }
     }
 
     // fetch keepalive fallback — survives unload in most modern browsers
@@ -56,12 +101,31 @@ function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl:
         keepalive: true,
         headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
         body: payload,
-      }).catch(() => {});
+      })
+        .then((res) => {
+          if (res.ok) {
+            stats.fetchKeepaliveOk += 1;
+          } else {
+            stats.fetchKeepaliveFail += 1;
+            stats.lastFailReason = `fetch keepalive HTTP ${res.status}`;
+            console.warn(`[Tracking] fetch keepalive failed: HTTP ${res.status}`);
+          }
+        })
+        .catch((e) => {
+          stats.fetchKeepaliveFail += 1;
+          stats.lastFailReason = `fetch keepalive: ${e.message}`;
+          console.warn('[Tracking] fetch keepalive rejected', e);
+        });
       return;
-    } catch { /* fall through */ }
+    } catch (e) {
+      stats.fetchKeepaliveFail += 1;
+      stats.lastFailReason = `fetch threw: ${(e as Error).message}`;
+      console.warn('[Tracking] fetch threw — using supabase client fallback', e);
+    }
   }
 
   // Last resort — may not flush on unload
+  stats.fallbackUsed += 1;
   trackEvent(eventType, eventData, pageUrl);
 }
 
@@ -167,8 +231,12 @@ export function usePageTracking(pageUrl = '/preview') {
       }
     };
 
+    let lastFlushAt = 0;
     const flushFinal = (reason: string) => {
-      if (finalSent.current) return;
+      const now = Date.now();
+      // Debounce: avoid duplicate flushes within 2s (e.g. visibilitychange + pagehide back to back)
+      if (now - lastFlushAt < 2000) return;
+      lastFlushAt = now;
       accumulate();
       const seconds = Math.round(activeMs.current / 1000);
       // Always emit final — even if 0 — so we know the session ended
@@ -177,7 +245,9 @@ export function usePageTracking(pageUrl = '/preview') {
         { active_seconds: seconds, total_seconds: seconds, reason, heartbeats: heartbeatsSent.current },
         pageUrl,
       );
+      stats.finalFlushes += 1;
       finalSent.current = true;
+      logSafeClose(reason);
     };
 
     const handlePageHide = () => flushFinal('pagehide');
