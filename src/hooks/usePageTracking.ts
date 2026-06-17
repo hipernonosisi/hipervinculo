@@ -75,31 +75,20 @@ function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl:
 
   if (SUPABASE_URL && SUPABASE_KEY) {
     const url = `${SUPABASE_URL}/rest/v1/page_events?apikey=${encodeURIComponent(SUPABASE_KEY)}`;
-    const blob = new Blob([payload], { type: 'application/json' });
 
-    if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
-      stats.beaconAttempts += 1;
-      try {
-        if (navigator.sendBeacon(url, blob)) {
-          stats.beaconOk += 1;
-          return;
-        }
-        stats.beaconFail += 1;
-        stats.lastFailReason = 'sendBeacon returned false (queue full or payload too big)';
-        console.warn('[Tracking] sendBeacon rejected payload — falling back');
-      } catch (e) {
-        stats.beaconFail += 1;
-        stats.lastFailReason = `sendBeacon threw: ${(e as Error).message}`;
-        console.warn('[Tracking] sendBeacon threw — falling back', e);
-      }
-    }
-
-    // fetch keepalive fallback — survives unload in most modern browsers
+    // PRIMARY: fetch(keepalive) — survives unload AND respects JSON Content-Type.
+    // sendBeacon with application/json Blob triggers a CORS preflight that browsers
+    // silently drop during pagehide → we lose the event. fetch keepalive is reliable
+    // for small payloads (<64KB) in modern browsers (Chrome, Edge, Firefox, Safari 13+).
     try {
       fetch(url, {
         method: 'POST',
         keepalive: true,
-        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        },
         body: payload,
       })
         .then((res) => {
@@ -109,24 +98,48 @@ function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl:
             stats.fetchKeepaliveFail += 1;
             stats.lastFailReason = `fetch keepalive HTTP ${res.status}`;
             console.warn(`[Tracking] fetch keepalive failed: HTTP ${res.status}`);
+            tryBeaconFallback(url, payload);
           }
         })
         .catch((e) => {
           stats.fetchKeepaliveFail += 1;
           stats.lastFailReason = `fetch keepalive: ${e.message}`;
-          console.warn('[Tracking] fetch keepalive rejected', e);
+          console.warn('[Tracking] fetch keepalive rejected — trying sendBeacon', e);
+          tryBeaconFallback(url, payload);
         });
       return;
     } catch (e) {
       stats.fetchKeepaliveFail += 1;
       stats.lastFailReason = `fetch threw: ${(e as Error).message}`;
-      console.warn('[Tracking] fetch threw — using supabase client fallback', e);
+      console.warn('[Tracking] fetch threw — trying sendBeacon', e);
+      if (tryBeaconFallback(url, payload)) return;
     }
   }
 
   // Last resort — may not flush on unload
   stats.fallbackUsed += 1;
   trackEvent(eventType, eventData, pageUrl);
+}
+
+// sendBeacon fallback uses text/plain to avoid the CORS preflight that drops JSON
+// beacons during unload. PostgREST accepts the body as long as it's valid JSON.
+function tryBeaconFallback(url: string, payload: string): boolean {
+  if (typeof navigator === 'undefined' || typeof navigator.sendBeacon !== 'function') return false;
+  stats.beaconAttempts += 1;
+  try {
+    const blob = new Blob([payload], { type: 'text/plain;charset=UTF-8' });
+    if (navigator.sendBeacon(url, blob)) {
+      stats.beaconOk += 1;
+      return true;
+    }
+    stats.beaconFail += 1;
+    stats.lastFailReason = 'sendBeacon returned false';
+    return false;
+  } catch (e) {
+    stats.beaconFail += 1;
+    stats.lastFailReason = `sendBeacon threw: ${(e as Error).message}`;
+    return false;
+  }
 }
 
 async function fetchGeoData(): Promise<Record<string, string>> {
