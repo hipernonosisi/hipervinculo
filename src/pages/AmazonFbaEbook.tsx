@@ -388,7 +388,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* CHECKOUT — 2 columnas: copy persuasivo + buy box compacto */}
-      <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white relative overflow-hidden">
+      <section data-section="checkout" id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{
           backgroundImage: "radial-gradient(circle at 15% 30%, #8BC34A 0, transparent 35%), radial-gradient(circle at 85% 70%, #8BC34A 0, transparent 35%)"
         }} />
