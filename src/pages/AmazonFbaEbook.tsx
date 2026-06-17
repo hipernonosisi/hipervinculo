@@ -369,7 +369,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* CHAPTERS */}
-      <section className="py-16 md:py-24 bg-[#f7faf6]">
+      <section data-section="chapters" className="py-16 md:py-24 bg-[#f7faf6]">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <BookOpen className="w-10 h-10 text-[#2F4F3E] mx-auto mb-4" />
