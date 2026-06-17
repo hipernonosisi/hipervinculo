@@ -1,6 +1,12 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+const HEARTBEAT_INTERVAL_MS = 15_000;       // emit heartbeat every 15s of ACTIVE time
+const IDLE_THRESHOLD_MS = 30_000;           // no input for 30s = idle (don't count)
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+const SUPABASE_KEY = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+  import.meta.env.VITE_SUPABASE_ANON_KEY) as string;
+
 function getSessionId(): string {
   let sid = sessionStorage.getItem('hv_session_id');
   if (!sid) {
@@ -20,6 +26,45 @@ export function trackEvent(eventType: string, eventData: Record<string, any> = {
     });
 }
 
+/**
+ * Best-effort insert that survives page exits / in-app browsers.
+ * Tries sendBeacon (with apikey in URL since headers can't be set), then fetch keepalive,
+ * then plain supabase client as last fallback.
+ */
+function beaconEvent(eventType: string, eventData: Record<string, any>, pageUrl: string) {
+  const payload = JSON.stringify({
+    session_id: getSessionId(),
+    event_type: eventType,
+    event_data: eventData,
+    page_url: pageUrl,
+  });
+
+  if (SUPABASE_URL && SUPABASE_KEY) {
+    const url = `${SUPABASE_URL}/rest/v1/page_events?apikey=${encodeURIComponent(SUPABASE_KEY)}`;
+    const blob = new Blob([payload], { type: 'application/json' });
+
+    if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+      try {
+        if (navigator.sendBeacon(url, blob)) return;
+      } catch { /* fall through */ }
+    }
+
+    // fetch keepalive fallback — survives unload in most modern browsers
+    try {
+      fetch(url, {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+        body: payload,
+      }).catch(() => {});
+      return;
+    } catch { /* fall through */ }
+  }
+
+  // Last resort — may not flush on unload
+  trackEvent(eventType, eventData, pageUrl);
+}
+
 async function fetchGeoData(): Promise<Record<string, string>> {
   try {
     const res = await supabase.functions.invoke('geolocate');
@@ -32,9 +77,17 @@ async function fetchGeoData(): Promise<Record<string, string>> {
 }
 
 export function usePageTracking(pageUrl = '/preview') {
-  const startTime = useRef(Date.now());
   const scrollMilestones = useRef(new Set<number>());
   const tracked = useRef(false);
+
+  // Accumulated ACTIVE time tracking (resilient to in-app browsers)
+  const activeMs = useRef(0);
+  const lastTick = useRef(Date.now());
+  const lastActivity = useRef(Date.now());
+  const isVisible = useRef(typeof document !== 'undefined' ? document.visibilityState === 'visible' : true);
+  const heartbeatsSent = useRef(0);
+  const lastReportedSeconds = useRef(0);
+  const finalSent = useRef(false);
 
   // Track page view once with geo data
   useEffect(() => {
@@ -45,9 +98,10 @@ export function usePageTracking(pageUrl = '/preview') {
     });
   }, [pageUrl]);
 
-  // Track scroll depth milestones
+  // Track scroll depth milestones + count scroll as activity
   useEffect(() => {
     const handler = () => {
+      lastActivity.current = Date.now();
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (docHeight <= 0) return;
@@ -65,43 +119,86 @@ export function usePageTracking(pageUrl = '/preview') {
     return () => window.removeEventListener('scroll', handler);
   }, [pageUrl]);
 
-  // Track time on page when leaving
+  // Activity listeners — feed the active-time accumulator
   useEffect(() => {
-    const handleUnload = () => {
-      const duration = Math.round((Date.now() - startTime.current) / 1000);
-      // Use sendBeacon for reliability on page exit
-      const payload = JSON.stringify({
-        session_id: getSessionId(),
-        event_type: 'time_on_page',
-        event_data: { duration_seconds: duration },
-        page_url: pageUrl,
-      });
-      
-      const url = `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/page_events`;
-      navigator.sendBeacon?.(
-        url,
-        new Blob([payload], { type: 'application/json' })
-      ) || trackEvent('time_on_page', { duration_seconds: duration }, pageUrl);
-    };
+    const bump = () => { lastActivity.current = Date.now(); };
+    const events = ['pointerdown', 'keydown', 'touchstart', 'mousemove'] as const;
+    events.forEach((e) => window.addEventListener(e, bump, { passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, bump));
+  }, []);
 
-    // Also track on visibility change (mobile tab switch)
-    const handleVisibility = () => {
-      if (document.visibilityState === 'hidden') {
-        handleUnload();
+  // Accumulate active time + send heartbeats. Works even if unload never fires.
+  useEffect(() => {
+    const accumulate = () => {
+      const now = Date.now();
+      const delta = now - lastTick.current;
+      lastTick.current = now;
+      const idle = now - lastActivity.current > IDLE_THRESHOLD_MS;
+      if (isVisible.current && !idle && delta < 60_000) {
+        activeMs.current += delta;
       }
     };
 
-    window.addEventListener('beforeunload', handleUnload);
+    const tick = () => {
+      accumulate();
+      const seconds = Math.round(activeMs.current / 1000);
+      // Heartbeat if we accumulated meaningful new time since last report
+      if (seconds - lastReportedSeconds.current >= HEARTBEAT_INTERVAL_MS / 1000) {
+        heartbeatsSent.current += 1;
+        lastReportedSeconds.current = seconds;
+        trackEvent(
+          'heartbeat',
+          { active_seconds: seconds, beat: heartbeatsSent.current },
+          pageUrl,
+        );
+      }
+    };
+
+    const interval = window.setInterval(tick, 5000);
+
+    const handleVisibility = () => {
+      accumulate(); // close the current window
+      const visible = document.visibilityState === 'visible';
+      isVisible.current = visible;
+      lastTick.current = Date.now();
+      lastActivity.current = Date.now();
+      if (!visible) {
+        flushFinal('visibility_hidden');
+      }
+    };
+
+    const flushFinal = (reason: string) => {
+      if (finalSent.current) return;
+      accumulate();
+      const seconds = Math.round(activeMs.current / 1000);
+      // Always emit final — even if 0 — so we know the session ended
+      beaconEvent(
+        'time_on_page',
+        { active_seconds: seconds, total_seconds: seconds, reason, heartbeats: heartbeatsSent.current },
+        pageUrl,
+      );
+      finalSent.current = true;
+    };
+
+    const handlePageHide = () => flushFinal('pagehide');
+    const handleBeforeUnload = () => flushFinal('beforeunload');
+
     document.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
     return () => {
-      window.removeEventListener('beforeunload', handleUnload);
+      window.clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [pageUrl]);
 
   // Return a function to track custom CTA clicks
   const trackClick = useCallback(
     (label: string, extra: Record<string, any> = {}) => {
+      lastActivity.current = Date.now();
       trackEvent('cta_click', { label, ...extra }, pageUrl);
     },
     [pageUrl]
