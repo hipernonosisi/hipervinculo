@@ -216,6 +216,41 @@ export default function EbookAnalytics() {
       };
     });
 
+    // === Section dwell aggregation ===
+    const sectionAgg: Record<string, { totalSeconds: number; sessions: Set<string>; maxDwell: number }> = {};
+    events.filter((e) => e.event_type === 'section_view').forEach((e) => {
+      const name = e.event_data?.section || 'unknown';
+      const dwell = e.event_data?.dwell_seconds || 0;
+      if (!sectionAgg[name]) sectionAgg[name] = { totalSeconds: 0, sessions: new Set(), maxDwell: 0 };
+      sectionAgg[name].sessions.add(e.session_id);
+      // Take max dwell per session (events are cumulative)
+      // Approximation: just use last dwell per session via max
+      sectionAgg[name].maxDwell = Math.max(sectionAgg[name].maxDwell, dwell);
+    });
+    // Recompute totals as sum of per-session max
+    const sectionPerSessionMax: Record<string, Record<string, number>> = {};
+    events.filter((e) => e.event_type === 'section_view').forEach((e) => {
+      const name = e.event_data?.section || 'unknown';
+      const dwell = e.event_data?.dwell_seconds || 0;
+      sectionPerSessionMax[name] = sectionPerSessionMax[name] || {};
+      sectionPerSessionMax[name][e.session_id] = Math.max(
+        sectionPerSessionMax[name][e.session_id] || 0,
+        dwell,
+      );
+    });
+    const sectionStats = Object.entries(sectionPerSessionMax).map(([section, sessMap]) => {
+      const vals = Object.values(sessMap);
+      const total = vals.reduce((a, b) => a + b, 0);
+      const avg = vals.length > 0 ? Math.round(total / vals.length) : 0;
+      return { section, sessions: vals.length, totalSeconds: total, avgSeconds: avg };
+    }).sort((a, b) => b.totalSeconds - a.totalSeconds);
+
+    // === Tab change aggregation ===
+    const tabChangeEvents = events.filter((e) => e.event_type === 'tab_change');
+    const tabChangeSessions = new Set(tabChangeEvents.map(e => e.session_id)).size;
+    const tabHides = tabChangeEvents.filter(e => e.event_data?.state === 'hidden').length;
+    const tabReturns = tabChangeEvents.filter(e => e.event_data?.state === 'visible').length;
+
     return {
       uniqueSessions: sessions.size, pageViews, ctaClicks, videoPlays, videoUnmutes,
       formStarts, formSubmits, checkoutSessions, checkoutRedirects, checkoutErrorSessions, recentErrors,
@@ -224,6 +259,7 @@ export default function EbookAnalytics() {
       scroll25, scroll50, scroll75, scroll100, avgScrollDepth,
       ctaBreakdown, dailyViews, topLocations, topReferrers,
       heartbeatSessions, finalEventSessions, cohorts, totalIc,
+      sectionStats, tabChangeSessions, tabHides, tabReturns,
     };
   }, [events, purchases]);
 
@@ -554,7 +590,77 @@ export default function EbookAnalytics() {
           </CardContent>
         </Card>
 
+        {/* === Distribución de tiempo por sección === */}
+        <Card className="border-0 shadow-sm rounded-xl">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-bold text-[#2F4F3E]">
+              Distribución de tiempo por sección
+            </CardTitle>
+            <p className="text-[11px] text-muted-foreground">
+              Cuánto tiempo permanece cada sección visible (≥40%) por sesión. Útil para detectar dónde se concentra la atención y dónde se pierde.
+            </p>
+          </CardHeader>
+          <CardContent>
+            {stats.sectionStats.length === 0 ? (
+              <p className="text-xs text-muted-foreground py-6 text-center">
+                Aún no hay eventos <code>section_view</code>. Se empezarán a registrar tras esta actualización.
+              </p>
+            ) : (
+              <div className="space-y-2">
+                {(() => {
+                  const maxTotal = Math.max(...stats.sectionStats.map(s => s.totalSeconds), 1);
+                  return stats.sectionStats.map((s) => (
+                    <div key={s.section} className="flex items-center gap-3 text-xs">
+                      <span className="w-24 font-semibold text-[#2F4F3E] capitalize">{s.section}</span>
+                      <div className="flex-1 h-5 bg-gray-100 rounded overflow-hidden relative">
+                        <div
+                          className="h-full bg-[#8BC34A] flex items-center justify-end pr-2 text-[10px] font-bold text-[#1a2e22]"
+                          style={{ width: `${Math.max(8, Math.round((s.totalSeconds / maxTotal) * 100))}%` }}
+                        >
+                          {s.totalSeconds}s
+                        </div>
+                      </div>
+                      <span className="w-16 text-right tabular-nums text-muted-foreground">{s.sessions} ses.</span>
+                      <span className="w-16 text-right tabular-nums">prom {s.avgSeconds}s</span>
+                    </div>
+                  ));
+                })()}
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
+        {/* === Cambios de pestaña === */}
+        <Card className="border-0 shadow-sm rounded-xl">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-bold text-[#2F4F3E]">Cambios de pestaña (TabChange)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+              <div className="p-2 bg-gray-50 rounded">
+                <p className="font-bold text-[#2F4F3E]">{stats.tabChangeSessions}</p>
+                <p className="text-muted-foreground">sesiones con cambio</p>
+              </div>
+              <div className="p-2 bg-gray-50 rounded">
+                <p className="font-bold text-[#F59E0B]">{stats.tabHides}</p>
+                <p className="text-muted-foreground">salidas (hidden)</p>
+              </div>
+              <div className="p-2 bg-gray-50 rounded">
+                <p className="font-bold text-[#8BC34A]">{stats.tabReturns}</p>
+                <p className="text-muted-foreground">regresos (visible)</p>
+              </div>
+              <div className="p-2 bg-gray-50 rounded">
+                <p className="font-bold text-[#2F4F3E]">
+                  {stats.uniqueSessions > 0 ? Math.round((stats.tabChangeSessions / stats.uniqueSessions) * 100) : 0}%
+                </p>
+                <p className="text-muted-foreground">% sesiones que cambian de tab</p>
+              </div>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-3">
+              Una sesión con muchas salidas y pocos regresos suele significar abandono o conversión en otra pestaña (Stripe).
+            </p>
+          </CardContent>
+        </Card>
 
 
         {/* Daily views & scroll */}

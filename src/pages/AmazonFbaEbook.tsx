@@ -18,7 +18,7 @@ import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { VSLPlayer } from "@/components/VSLPlayer";
-import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
+import { usePageTracking, useSectionTracking, trackEvent } from "@/hooks/usePageTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 
@@ -63,6 +63,7 @@ export default function AmazonFbaEbook() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   usePageTracking("/amazon-fba-ebook");
+  useSectionTracking("/amazon-fba-ebook");
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
@@ -274,7 +275,7 @@ export default function AmazonFbaEbook() {
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[#2F4F3E] text-white">
+      <section data-section="hero" className="relative overflow-hidden bg-[#2F4F3E] text-white">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
         }} />
@@ -346,7 +347,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* BENEFITS */}
-      <section className="py-16 md:py-24 bg-white">
+      <section data-section="benefits" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que vas a lograr</h2>
@@ -368,7 +369,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* CHAPTERS */}
-      <section className="py-16 md:py-24 bg-[#f7faf6]">
+      <section data-section="chapters" className="py-16 md:py-24 bg-[#f7faf6]">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <BookOpen className="w-10 h-10 text-[#2F4F3E] mx-auto mb-4" />
@@ -387,7 +388,7 @@ export default function AmazonFbaEbook() {
       </section>
 
       {/* CHECKOUT — 2 columnas: copy persuasivo + buy box compacto */}
-      <section id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white relative overflow-hidden">
+      <section data-section="checkout" id="comprar" className="py-16 md:py-24 bg-[#2F4F3E] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{
           backgroundImage: "radial-gradient(circle at 15% 30%, #8BC34A 0, transparent 35%), radial-gradient(circle at 85% 70%, #8BC34A 0, transparent 35%)"
         }} />
@@ -612,7 +613,7 @@ export default function AmazonFbaEbook() {
 
 
       {/* FAQ */}
-      <section className="py-16 md:py-24 bg-white">
+      <section data-section="faq" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] text-center mb-12">Preguntas frecuentes</h2>
           <div className="space-y-4">
