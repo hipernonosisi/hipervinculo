@@ -128,8 +128,7 @@ serve(async (req) => {
       mode: "payment",
       customer_email: d.email,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
-      // Let Stripe auto-detect best methods for the user's region (card, link, cashapp, etc.)
-      automatic_payment_methods: { enabled: true },
+      // Stripe Checkout auto-detects payment methods enabled in your dashboard
       allow_promotion_codes: true,
       success_url: `${origin}/amazon-fba-ebook/gracias?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/amazon-fba-ebook?canceled=1`,
