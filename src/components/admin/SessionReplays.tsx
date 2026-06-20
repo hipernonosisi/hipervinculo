@@ -17,6 +17,7 @@ import {
   Link2,
   Calendar,
   ExternalLink,
+  MousePointerClick,
 } from "lucide-react";
 import "rrweb-player/dist/style.css";
 
@@ -40,6 +41,7 @@ type SessionSummary = {
   last_at: string;
   event_count: number;
   chunks: number;
+  clicks: number;
 };
 
 function deviceLabel(ua: string | null) {
@@ -99,6 +101,9 @@ export default function SessionReplays() {
     for (const row of (data ?? []) as ChunkRow[]) {
       const cur = map.get(row.session_id);
       const ec = Array.isArray(row.events) ? row.events.length : 0;
+      const clicks = Array.isArray(row.events)
+        ? row.events.filter((e: any) => e?.type === 3 || (e?.data?.type === 3)).length
+        : 0;
       if (!cur) {
         map.set(row.session_id, {
           session_id: row.session_id,
@@ -109,9 +114,11 @@ export default function SessionReplays() {
           last_at: row.created_at,
           event_count: ec,
           chunks: 1,
+          clicks,
         });
       } else {
         cur.event_count += ec;
+        cur.clicks += clicks;
         cur.chunks += 1;
         if (row.created_at < cur.first_at) cur.first_at = row.created_at;
         if (row.created_at > cur.last_at) cur.last_at = row.created_at;
@@ -279,7 +286,9 @@ export default function SessionReplays() {
                   <Badge variant="secondary" className="text-xs">
                     <Clock className="w-3 h-3 mr-1" /> {fmtDuration(dur)}
                   </Badge>
-                  <Badge variant="outline" className="text-xs">{s.event_count} eventos</Badge>
+                  <Badge variant="outline" className="text-xs flex items-center gap-1">
+                    <MousePointerClick className="w-3 h-3" /> {s.clicks} clicks
+                  </Badge>
                   <div className="text-xs text-muted-foreground hidden md:block">
                     {new Date(s.last_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
                   </div>
