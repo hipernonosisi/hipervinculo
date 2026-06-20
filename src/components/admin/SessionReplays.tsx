@@ -4,7 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Loader2, Play, MapPin, Monitor, Smartphone, RefreshCw, Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  Loader2,
+  Play,
+  MapPin,
+  Monitor,
+  Smartphone,
+  RefreshCw,
+  Clock,
+  Search,
+  Link2,
+  Calendar,
+  ExternalLink,
+} from "lucide-react";
 import "rrweb-player/dist/style.css";
 
 type ChunkRow = {
@@ -38,6 +51,14 @@ function deviceLabel(ua: string | null) {
   if (/Windows/.test(ua)) return "Windows";
   return "Otro";
 }
+function browserLabel(ua: string | null) {
+  if (!ua) return "";
+  if (/Edg\//.test(ua)) return "Edge";
+  if (/Chrome\//.test(ua) && !/Edg\//.test(ua)) return "Chrome";
+  if (/Firefox\//.test(ua)) return "Firefox";
+  if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) return "Safari";
+  return "";
+}
 function isMobileUA(ua: string | null) {
   return !!ua && /iPhone|iPod|Android.*Mobile/.test(ua);
 }
@@ -52,9 +73,11 @@ function fmtDuration(ms: number) {
 export default function SessionReplays() {
   const [sessions, setSessions] = useState<SessionSummary[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<SessionSummary | null>(null);
   const [playerEvents, setPlayerEvents] = useState<any[] | null>(null);
   const [loadingReplay, setLoadingReplay] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [deviceFilter, setDeviceFilter] = useState<"all" | "mobile" | "desktop">("all");
   const playerRef = useRef<HTMLDivElement | null>(null);
   const playerInstance = useRef<any>(null);
 
@@ -106,14 +129,14 @@ export default function SessionReplays() {
     fetchSessions();
   }, []);
 
-  const openReplay = async (sessionId: string) => {
-    setSelected(sessionId);
+  const openReplay = async (s: SessionSummary) => {
+    setSelected(s);
     setLoadingReplay(true);
     setPlayerEvents(null);
     const { data, error } = await supabase
       .from("session_replay_chunks")
       .select("events, chunk_index")
-      .eq("session_id", sessionId)
+      .eq("session_id", s.session_id)
       .order("chunk_index", { ascending: true });
     if (error) {
       console.error(error);
@@ -135,14 +158,18 @@ export default function SessionReplays() {
         if (cancelled || !playerRef.current) return;
         playerRef.current.innerHTML = "";
         const Player = mod.default || mod;
+        const containerW = playerRef.current.clientWidth || 1100;
         playerInstance.current = new Player({
           target: playerRef.current,
           props: {
             events: playerEvents,
-            width: Math.min(900, playerRef.current.clientWidth || 800),
-            height: 520,
-            autoPlay: false,
+            width: Math.max(720, Math.min(1200, containerW)),
+            height: 620,
+            autoPlay: true,
             showController: true,
+            speedOption: [1, 2, 4, 8],
+            skipInactive: true,
+            mouseTail: { strokeStyle: "#8BC34A", lineWidth: 3 },
           },
         });
       } catch (e) {
@@ -156,6 +183,16 @@ export default function SessionReplays() {
     };
   }, [playerEvents]);
 
+  const filtered = useMemo(() => {
+    return sessions.filter((s) => {
+      if (deviceFilter === "mobile" && !isMobileUA(s.user_agent)) return false;
+      if (deviceFilter === "desktop" && isMobileUA(s.user_agent)) return false;
+      if (!filter) return true;
+      const hay = `${s.page_url ?? ""} ${s.user_agent ?? ""} ${s.geo?.city ?? ""} ${s.geo?.country ?? ""} ${s.session_id}`.toLowerCase();
+      return hay.includes(filter.toLowerCase());
+    });
+  }, [sessions, filter, deviceFilter]);
+
   const stats = useMemo(() => {
     const total = sessions.length;
     const ebookSessions = sessions.filter((s) => (s.page_url || "").includes("amazon-fba-ebook"));
@@ -165,40 +202,73 @@ export default function SessionReplays() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h3 className="text-lg font-bold text-[#2F4F3E]">Grabaciones de sesión</h3>
           <p className="text-sm text-muted-foreground">
-            Últimas {stats.total} sesiones · {stats.ebookSessions} del eBook · {stats.mobilePct}% mobile
+            {stats.total} sesiones · {stats.ebookSessions} del eBook · {stats.mobilePct}% mobile
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={fetchSessions} disabled={loading}>
-          <RefreshCw className={`w-4 h-4 mr-1 ${loading ? "animate-spin" : ""}`} />
-          Actualizar
-        </Button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="relative">
+            <Search className="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              placeholder="Filtrar por URL, ciudad, dispositivo…"
+              className="pl-8 h-9 w-64"
+            />
+          </div>
+          <div className="flex rounded-md border overflow-hidden">
+            {(["all", "desktop", "mobile"] as const).map((d) => (
+              <button
+                key={d}
+                onClick={() => setDeviceFilter(d)}
+                className={`px-3 h-9 text-xs font-medium ${
+                  deviceFilter === d ? "bg-[#2F4F3E] text-white" : "bg-white text-[#2F4F3E] hover:bg-muted"
+                }`}
+              >
+                {d === "all" ? "Todos" : d === "mobile" ? "Mobile" : "Desktop"}
+              </button>
+            ))}
+          </div>
+          <Button variant="outline" size="sm" onClick={fetchSessions} disabled={loading}>
+            <RefreshCw className={`w-4 h-4 mr-1 ${loading ? "animate-spin" : ""}`} />
+            Actualizar
+          </Button>
+        </div>
       </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-16 text-muted-foreground">
           <Loader2 className="w-5 h-5 animate-spin mr-2" /> Cargando sesiones…
         </div>
-      ) : sessions.length === 0 ? (
+      ) : filtered.length === 0 ? (
         <Card className="p-8 text-center text-muted-foreground">
-          Aún no hay grabaciones. Aparecerán aquí en cuanto los visitantes naveguen el funnel.
+          {sessions.length === 0
+            ? "Aún no hay grabaciones. Aparecerán aquí en cuanto los visitantes naveguen el funnel del eBook."
+            : "Ninguna sesión coincide con los filtros."}
         </Card>
       ) : (
         <div className="grid gap-2">
-          {sessions.map((s) => {
+          {filtered.map((s) => {
             const dur = new Date(s.last_at).getTime() - new Date(s.first_at).getTime();
-            const Icon = isMobileUA(s.user_agent) ? Smartphone : Monitor;
+            const mobile = isMobileUA(s.user_agent);
+            const Icon = mobile ? Smartphone : Monitor;
             const city = s.geo?.city || "—";
             const country = s.geo?.country || "—";
+            const browser = browserLabel(s.user_agent);
             return (
-              <Card key={s.session_id} className="p-3 hover:border-[#8BC34A] transition-colors">
+              <Card
+                key={s.session_id}
+                className="p-3 hover:border-[#8BC34A] hover:shadow-sm transition-all cursor-pointer"
+                onClick={() => openReplay(s)}
+              >
                 <div className="flex items-center gap-3 flex-wrap">
-                  <div className="flex items-center gap-2 text-sm font-medium min-w-[120px]">
-                    <Icon className="w-4 h-4 text-[#2F4F3E]" />
+                  <div className="flex items-center gap-2 text-sm font-semibold min-w-[140px] text-[#2F4F3E]">
+                    <Icon className="w-4 h-4" />
                     {deviceLabel(s.user_agent)}
+                    {browser && <span className="text-xs text-muted-foreground font-normal">· {browser}</span>}
                   </div>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground min-w-[160px]">
                     <MapPin className="w-3 h-3" /> {city}, {country}
@@ -210,11 +280,15 @@ export default function SessionReplays() {
                     <Clock className="w-3 h-3 mr-1" /> {fmtDuration(dur)}
                   </Badge>
                   <Badge variant="outline" className="text-xs">{s.event_count} eventos</Badge>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-xs text-muted-foreground hidden md:block">
                     {new Date(s.last_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
                   </div>
-                  <Button size="sm" onClick={() => openReplay(s.session_id)} className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90">
-                    <Play className="w-3 h-3 mr-1" /> Ver
+                  <Button
+                    size="sm"
+                    onClick={(e) => { e.stopPropagation(); openReplay(s); }}
+                    className="bg-[#2F4F3E] hover:bg-[#2F4F3E]/90"
+                  >
+                    <Play className="w-3 h-3 mr-1" /> Reproducir
                   </Button>
                 </div>
               </Card>
@@ -224,21 +298,66 @@ export default function SessionReplays() {
       )}
 
       <Dialog open={!!selected} onOpenChange={(o) => { if (!o) { setSelected(null); setPlayerEvents(null); } }}>
-        <DialogContent className="max-w-[960px] max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-[#2F4F3E]">Reproduciendo sesión</DialogTitle>
+        <DialogContent className="max-w-[1280px] w-[95vw] max-h-[92vh] overflow-y-auto p-0 bg-[#0f0f10] border-[#2F4F3E]/30">
+          <DialogHeader className="p-4 pb-3 border-b border-white/10 bg-gradient-to-b from-[#1a1a1c] to-[#0f0f10]">
+            <DialogTitle className="text-white flex items-center gap-2 text-base">
+              <Play className="w-4 h-4 text-[#8BC34A]" />
+              Reproducción de sesión
+            </DialogTitle>
+            {selected && (
+              <div className="flex items-center gap-4 flex-wrap text-xs text-white/70 mt-2">
+                <span className="flex items-center gap-1">
+                  {isMobileUA(selected.user_agent) ? <Smartphone className="w-3 h-3" /> : <Monitor className="w-3 h-3" />}
+                  {deviceLabel(selected.user_agent)}
+                  {browserLabel(selected.user_agent) && <span className="text-white/40">· {browserLabel(selected.user_agent)}</span>}
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3" />
+                  {selected.geo?.city || "—"}, {selected.geo?.country || "—"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {fmtDuration(new Date(selected.last_at).getTime() - new Date(selected.first_at).getTime())}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  {new Date(selected.first_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
+                </span>
+                {selected.page_url && (
+                  <a
+                    href={selected.page_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[#8BC34A] hover:underline truncate max-w-[280px]"
+                  >
+                    <Link2 className="w-3 h-3" />
+                    {selected.page_url}
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+                <span className="flex items-center gap-1 text-white/40 font-mono">
+                  #{selected.session_id.slice(-8)}
+                </span>
+              </div>
+            )}
           </DialogHeader>
-          {loadingReplay ? (
-            <div className="flex items-center justify-center py-16 text-muted-foreground">
-              <Loader2 className="w-5 h-5 animate-spin mr-2" /> Cargando eventos…
-            </div>
-          ) : playerEvents && playerEvents.length < 2 ? (
-            <div className="py-10 text-center text-muted-foreground">
-              Esta sesión es demasiado corta para reproducir ({playerEvents.length} evento).
-            </div>
-          ) : (
-            <div ref={playerRef} className="w-full overflow-hidden rounded-lg border" />
-          )}
+          <div className="p-4 bg-[#0f0f10]">
+            {loadingReplay ? (
+              <div className="flex items-center justify-center py-24 text-white/60">
+                <Loader2 className="w-5 h-5 animate-spin mr-2" /> Cargando eventos…
+              </div>
+            ) : playerEvents && playerEvents.length < 2 ? (
+              <div className="py-16 text-center text-white/60">
+                Esta sesión es demasiado corta para reproducir ({playerEvents?.length ?? 0} evento).
+              </div>
+            ) : (
+              <div
+                ref={playerRef}
+                className="w-full mx-auto rounded-lg overflow-hidden bg-white shadow-xl"
+                style={{ maxWidth: 1200 }}
+              />
+            )}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
