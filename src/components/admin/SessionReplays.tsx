@@ -102,16 +102,23 @@ export default function SessionReplays() {
     for (const row of (data ?? []) as ChunkRow[]) {
       const cur = map.get(row.session_id);
       const ec = Array.isArray(row.events) ? row.events.length : 0;
-      // rrweb clicks: type=3 (IncrementalSnapshot), data.source=2 (MouseInteraction), data.type in {0,1,2,4,5,6,7,8,9}
-      // Count only real clicks: MouseUp(6)/Click(2)/TouchEnd(9)
-      const clicks = Array.isArray(row.events)
-        ? row.events.filter((e: any) => {
-            if (e?.type !== 3) return false;
-            if (e?.data?.source !== 2) return false;
-            const t = e?.data?.type;
-            return t === 2 || t === 6 || t === 9;
-          }).length
-        : 0;
+      // rrweb clicks: type=3 (IncrementalSnapshot), data.source=2 (MouseInteraction), data.type ∈ {Click=2, MouseUp=6, TouchEnd=9}
+      let clicks = 0;
+      let minTs = Infinity;
+      let maxTs = 0;
+      if (Array.isArray(row.events)) {
+        for (const e of row.events as any[]) {
+          if (typeof e?.timestamp === "number") {
+            if (e.timestamp < minTs) minTs = e.timestamp;
+            if (e.timestamp > maxTs) maxTs = e.timestamp;
+          }
+          if (e?.type === 3 && e?.data?.source === 2) {
+            const t = e.data.type;
+            if (t === 2 || t === 6 || t === 9) clicks++;
+          }
+        }
+      }
+      const chunkDur = maxTs > minTs ? maxTs - minTs : 0;
       if (!cur) {
         map.set(row.session_id, {
           session_id: row.session_id,
@@ -123,11 +130,13 @@ export default function SessionReplays() {
           event_count: ec,
           chunks: 1,
           clicks,
+          duration_ms: chunkDur,
         });
       } else {
         cur.event_count += ec;
         cur.clicks += clicks;
         cur.chunks += 1;
+        cur.duration_ms += chunkDur;
         if (row.created_at < cur.first_at) cur.first_at = row.created_at;
         if (row.created_at > cur.last_at) cur.last_at = row.created_at;
         if (!cur.page_url && row.page_url) cur.page_url = row.page_url;
