@@ -100,6 +100,9 @@ export default function SessionReplays() {
     for (const row of (data ?? []) as ChunkRow[]) {
       const cur = map.get(row.session_id);
       const ec = Array.isArray(row.events) ? row.events.length : 0;
+      const clicks = Array.isArray(row.events)
+        ? row.events.filter((e: any) => e?.type === 3 || (e?.data?.type === 3)).length
+        : 0;
       if (!cur) {
         map.set(row.session_id, {
           session_id: row.session_id,
@@ -110,9 +113,11 @@ export default function SessionReplays() {
           last_at: row.created_at,
           event_count: ec,
           chunks: 1,
+          clicks,
         });
       } else {
         cur.event_count += ec;
+        cur.clicks += clicks;
         cur.chunks += 1;
         if (row.created_at < cur.first_at) cur.first_at = row.created_at;
         if (row.created_at > cur.last_at) cur.last_at = row.created_at;
