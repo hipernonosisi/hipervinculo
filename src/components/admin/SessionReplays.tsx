@@ -277,7 +277,7 @@ export default function SessionReplays() {
       ) : (
         <div className="grid gap-2">
           {filtered.map((s) => {
-            const dur = new Date(s.last_at).getTime() - new Date(s.first_at).getTime();
+            const dur = s.duration_ms || (new Date(s.last_at).getTime() - new Date(s.first_at).getTime());
             const mobile = isMobileUA(s.user_agent);
             const Icon = mobile ? Smartphone : Monitor;
             const city = s.geo?.city || "—";
