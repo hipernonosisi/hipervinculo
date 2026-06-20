@@ -42,6 +42,7 @@ import { EbookSalesDashboard } from '@/components/admin/EbookSalesDashboard';
 import { lazy, Suspense } from 'react';
 const EbookAnalytics = lazy(() => import('@/pages/EbookAnalytics'));
 const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
+const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 interface ContactSubmission {
   id: string;
