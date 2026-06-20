@@ -40,6 +40,7 @@ type SessionSummary = {
   last_at: string;
   event_count: number;
   chunks: number;
+  clicks: number;
 };
 
 function deviceLabel(ua: string | null) {
