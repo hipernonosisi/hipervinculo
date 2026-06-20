@@ -1051,6 +1051,13 @@ export default function Admin() {
                     <Play className="w-3.5 h-3.5" />
                     Grabaciones
                   </TabsTrigger>
+                  <TabsTrigger
+                    value="daily"
+                    className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1"
+                  >
+                    <ScrollText className="w-3.5 h-3.5" />
+                    Reporte diario
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="sales" className="mt-0">
                   <EbookSalesDashboard />
