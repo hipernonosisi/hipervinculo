@@ -101,8 +101,15 @@ export default function SessionReplays() {
     for (const row of (data ?? []) as ChunkRow[]) {
       const cur = map.get(row.session_id);
       const ec = Array.isArray(row.events) ? row.events.length : 0;
+      // rrweb clicks: type=3 (IncrementalSnapshot), data.source=2 (MouseInteraction), data.type in {0,1,2,4,5,6,7,8,9}
+      // Count only real clicks: MouseUp(6)/Click(2)/TouchEnd(9)
       const clicks = Array.isArray(row.events)
-        ? row.events.filter((e: any) => e?.type === 3 || (e?.data?.type === 3)).length
+        ? row.events.filter((e: any) => {
+            if (e?.type !== 3) return false;
+            if (e?.data?.source !== 2) return false;
+            const t = e?.data?.type;
+            return t === 2 || t === 6 || t === 9;
+          }).length
         : 0;
       if (!cur) {
         map.set(row.session_id, {
