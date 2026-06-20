@@ -19,6 +19,8 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, useSectionTracking, trackEvent } from "@/hooks/usePageTracking";
+import { useSessionRecording } from "@/hooks/useSessionRecording";
+import { useFormFieldTracking } from "@/hooks/useFormFieldTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 
