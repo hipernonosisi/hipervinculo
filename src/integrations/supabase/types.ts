@@ -181,6 +181,33 @@ export type Database = {
         }
         Relationships: []
       }
+      ebook_daily_reports: {
+        Row: {
+          findings: Json
+          generated_at: string
+          id: string
+          report_date: string
+          sessions_analyzed: number
+          summary_md: string
+        }
+        Insert: {
+          findings: Json
+          generated_at?: string
+          id?: string
+          report_date: string
+          sessions_analyzed?: number
+          summary_md: string
+        }
+        Update: {
+          findings?: Json
+          generated_at?: string
+          id?: string
+          report_date?: string
+          sessions_analyzed?: number
+          summary_md?: string
+        }
+        Relationships: []
+      }
       ebook_download_logs: {
         Row: {
           city: string | null

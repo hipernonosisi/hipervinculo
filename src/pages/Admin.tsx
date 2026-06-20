@@ -42,6 +42,7 @@ import { EbookSalesDashboard } from '@/components/admin/EbookSalesDashboard';
 import { lazy, Suspense } from 'react';
 const EbookAnalytics = lazy(() => import('@/pages/EbookAnalytics'));
 const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
+const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 interface ContactSubmission {
   id: string;
@@ -1050,6 +1051,13 @@ export default function Admin() {
                     <Play className="w-3.5 h-3.5" />
                     Grabaciones
                   </TabsTrigger>
+                  <TabsTrigger
+                    value="daily"
+                    className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1"
+                  >
+                    <ScrollText className="w-3.5 h-3.5" />
+                    Reporte diario
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="sales" className="mt-0">
                   <EbookSalesDashboard />
@@ -1082,6 +1090,21 @@ export default function Admin() {
                     <CardContent>
                       <Suspense fallback={<div className="p-12 text-center text-sm text-muted-foreground">Cargando grabaciones…</div>}>
                         <SessionReplays />
+                      </Suspense>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="daily" className="mt-0">
+                  <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                    <CardHeader>
+                      <CardTitle>Reporte diario automático</CardTitle>
+                      <CardDescription>
+                        Hallazgos generados cada día: atascos por campo, tiempos por paso y tasa de abandono. Base: últimas 500 sesiones.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Suspense fallback={<div className="p-12 text-center text-sm text-muted-foreground">Cargando reporte…</div>}>
+                        <EbookDailyReport />
                       </Suspense>
                     </CardContent>
                   </Card>
