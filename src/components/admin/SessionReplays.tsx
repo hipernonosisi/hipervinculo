@@ -280,24 +280,27 @@ export default function SessionReplays() {
                 onClick={() => openReplay(s)}
               >
                 <div className="flex items-center gap-3 flex-wrap">
-                  <div className="flex items-center gap-2 text-sm font-semibold min-w-[140px] text-[#2F4F3E]">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-[#2F4F3E]">
                     <Icon className="w-4 h-4" />
                     {deviceLabel(s.user_agent)}
                     {browser && <span className="text-xs text-muted-foreground font-normal">· {browser}</span>}
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground min-w-[160px]">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin className="w-3 h-3" /> {city}, {country}
-                  </div>
-                  <div className="text-xs text-muted-foreground flex-1 truncate min-w-[160px]" title={s.page_url || ""}>
-                    {s.page_url || "—"}
                   </div>
                   <Badge variant="secondary" className="text-xs">
                     <Clock className="w-3 h-3 mr-1" /> {fmtDuration(dur)}
                   </Badge>
-                  <Badge variant="outline" className="text-xs flex items-center gap-1">
-                    <MousePointerClick className="w-3 h-3" /> {s.clicks} clicks
+                  <Badge
+                    variant="outline"
+                    className={`text-xs flex items-center gap-1 ${s.clicks > 0 ? "border-[#8BC34A] text-[#2F4F3E] bg-[#8BC34A]/10" : ""}`}
+                  >
+                    <MousePointerClick className="w-3 h-3" /> {s.clicks} {s.clicks === 1 ? "click" : "clicks"}
                   </Badge>
-                  <div className="text-xs text-muted-foreground hidden md:block">
+                  <Badge variant="outline" className="text-xs">
+                    {s.event_count} eventos
+                  </Badge>
+                  <div className="text-xs text-muted-foreground ml-auto hidden md:block">
                     {new Date(s.last_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
                   </div>
                   <Button
@@ -307,6 +310,9 @@ export default function SessionReplays() {
                   >
                     <Play className="w-3 h-3 mr-1" /> Reproducir
                   </Button>
+                </div>
+                <div className="text-xs text-muted-foreground truncate mt-2 pl-1" title={s.page_url || ""}>
+                  {s.page_url || "—"}
                 </div>
               </Card>
             );
