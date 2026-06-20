@@ -1043,6 +1043,13 @@ export default function Admin() {
                     <ChartArea className="w-3.5 h-3.5" />
                     Estudio del funnel
                   </TabsTrigger>
+                  <TabsTrigger
+                    value="replays"
+                    className="rounded-lg px-3 py-2 text-xs sm:text-sm data-[state=active]:bg-accent data-[state=active]:text-white gap-1"
+                  >
+                    <Play className="w-3.5 h-3.5" />
+                    Grabaciones
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent value="sales" className="mt-0">
                   <EbookSalesDashboard />
@@ -1060,6 +1067,21 @@ export default function Admin() {
                         <div className="-mx-px">
                           <EbookAnalytics />
                         </div>
+                      </Suspense>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="replays" className="mt-0">
+                  <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                    <CardHeader>
+                      <CardTitle>Grabaciones de sesión · últimas 500</CardTitle>
+                      <CardDescription>
+                        Reproducción visual de cada visitante en el funnel del eBook. Conserva las 500 sesiones más recientes.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Suspense fallback={<div className="p-12 text-center text-sm text-muted-foreground">Cargando grabaciones…</div>}>
+                        <SessionReplays />
                       </Suspense>
                     </CardContent>
                   </Card>
