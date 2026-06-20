@@ -1,1 +1,4 @@
 project_id = "fshfuwinreztcqlumjzp"
+
+[functions.store-session-replay]
+verify_jwt = false
