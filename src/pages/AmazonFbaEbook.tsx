@@ -105,7 +105,7 @@ export default function AmazonFbaEbook() {
     trackEvent('form_start', {}, '/amazon-fba-ebook');
   };
 
-  const variant = new URLSearchParams(window.location.search).get("v") || "default";
+  
 
   // Show sticky CTA bar after scrolling past hero
   useEffect(() => {
