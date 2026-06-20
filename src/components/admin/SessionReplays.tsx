@@ -286,7 +286,9 @@ export default function SessionReplays() {
                   <Badge variant="secondary" className="text-xs">
                     <Clock className="w-3 h-3 mr-1" /> {fmtDuration(dur)}
                   </Badge>
-                  <Badge variant="outline" className="text-xs">{s.event_count} eventos</Badge>
+                  <Badge variant="outline" className="text-xs flex items-center gap-1">
+                    <MousePointerClick className="w-3 h-3" /> {s.clicks} clicks
+                  </Badge>
                   <div className="text-xs text-muted-foreground hidden md:block">
                     {new Date(s.last_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
                   </div>
