@@ -17,6 +17,7 @@ import {
   Link2,
   Calendar,
   ExternalLink,
+  MousePointerClick,
 } from "lucide-react";
 import "rrweb-player/dist/style.css";
 
