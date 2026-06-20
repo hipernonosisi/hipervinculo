@@ -174,6 +174,7 @@ export default function SessionReplays() {
             height: 620,
             autoPlay: true,
             showController: true,
+            speed: 2,
             speedOption: [1, 2, 4, 8],
             skipInactive: true,
             mouseTail: { strokeStyle: "#8BC34A", lineWidth: 3 },
