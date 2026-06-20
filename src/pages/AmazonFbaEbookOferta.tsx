@@ -12,6 +12,8 @@ import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
+import { useSessionRecording } from "@/hooks/useSessionRecording";
+import { useFormFieldTracking } from "@/hooks/useFormFieldTracking";
 
 declare global {
   interface Window {
