@@ -42,6 +42,7 @@ type SessionSummary = {
   event_count: number;
   chunks: number;
   clicks: number;
+  duration_ms: number;
 };
 
 function deviceLabel(ua: string | null) {
@@ -101,9 +102,23 @@ export default function SessionReplays() {
     for (const row of (data ?? []) as ChunkRow[]) {
       const cur = map.get(row.session_id);
       const ec = Array.isArray(row.events) ? row.events.length : 0;
-      const clicks = Array.isArray(row.events)
-        ? row.events.filter((e: any) => e?.type === 3 || (e?.data?.type === 3)).length
-        : 0;
+      // rrweb clicks: type=3 (IncrementalSnapshot), data.source=2 (MouseInteraction), data.type ∈ {Click=2, MouseUp=6, TouchEnd=9}
+      let clicks = 0;
+      let minTs = Infinity;
+      let maxTs = 0;
+      if (Array.isArray(row.events)) {
+        for (const e of row.events as any[]) {
+          if (typeof e?.timestamp === "number") {
+            if (e.timestamp < minTs) minTs = e.timestamp;
+            if (e.timestamp > maxTs) maxTs = e.timestamp;
+          }
+          if (e?.type === 3 && e?.data?.source === 2) {
+            const t = e.data.type;
+            if (t === 2 || t === 6 || t === 9) clicks++;
+          }
+        }
+      }
+      const chunkDur = maxTs > minTs ? maxTs - minTs : 0;
       if (!cur) {
         map.set(row.session_id, {
           session_id: row.session_id,
@@ -115,11 +130,13 @@ export default function SessionReplays() {
           event_count: ec,
           chunks: 1,
           clicks,
+          duration_ms: chunkDur,
         });
       } else {
         cur.event_count += ec;
         cur.clicks += clicks;
         cur.chunks += 1;
+        cur.duration_ms += chunkDur;
         if (row.created_at < cur.first_at) cur.first_at = row.created_at;
         if (row.created_at > cur.last_at) cur.last_at = row.created_at;
         if (!cur.page_url && row.page_url) cur.page_url = row.page_url;
@@ -260,7 +277,7 @@ export default function SessionReplays() {
       ) : (
         <div className="grid gap-2">
           {filtered.map((s) => {
-            const dur = new Date(s.last_at).getTime() - new Date(s.first_at).getTime();
+            const dur = s.duration_ms || (new Date(s.last_at).getTime() - new Date(s.first_at).getTime());
             const mobile = isMobileUA(s.user_agent);
             const Icon = mobile ? Smartphone : Monitor;
             const city = s.geo?.city || "—";
@@ -273,24 +290,27 @@ export default function SessionReplays() {
                 onClick={() => openReplay(s)}
               >
                 <div className="flex items-center gap-3 flex-wrap">
-                  <div className="flex items-center gap-2 text-sm font-semibold min-w-[140px] text-[#2F4F3E]">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-[#2F4F3E]">
                     <Icon className="w-4 h-4" />
                     {deviceLabel(s.user_agent)}
                     {browser && <span className="text-xs text-muted-foreground font-normal">· {browser}</span>}
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground min-w-[160px]">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin className="w-3 h-3" /> {city}, {country}
-                  </div>
-                  <div className="text-xs text-muted-foreground flex-1 truncate min-w-[160px]" title={s.page_url || ""}>
-                    {s.page_url || "—"}
                   </div>
                   <Badge variant="secondary" className="text-xs">
                     <Clock className="w-3 h-3 mr-1" /> {fmtDuration(dur)}
                   </Badge>
-                  <Badge variant="outline" className="text-xs flex items-center gap-1">
-                    <MousePointerClick className="w-3 h-3" /> {s.clicks} clicks
+                  <Badge
+                    variant="outline"
+                    className={`text-xs flex items-center gap-1 ${s.clicks > 0 ? "border-[#8BC34A] text-[#2F4F3E] bg-[#8BC34A]/10" : ""}`}
+                  >
+                    <MousePointerClick className="w-3 h-3" /> {s.clicks} {s.clicks === 1 ? "click" : "clicks"}
                   </Badge>
-                  <div className="text-xs text-muted-foreground hidden md:block">
+                  <Badge variant="outline" className="text-xs">
+                    {s.event_count} eventos
+                  </Badge>
+                  <div className="text-xs text-muted-foreground ml-auto hidden md:block">
                     {new Date(s.last_at).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" })}
                   </div>
                   <Button
@@ -300,6 +320,9 @@ export default function SessionReplays() {
                   >
                     <Play className="w-3 h-3 mr-1" /> Reproducir
                   </Button>
+                </div>
+                <div className="text-xs text-muted-foreground truncate mt-2 pl-1" title={s.page_url || ""}>
+                  {s.page_url || "—"}
                 </div>
               </Card>
             );
@@ -327,7 +350,7 @@ export default function SessionReplays() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3" />
-                  {fmtDuration(new Date(selected.last_at).getTime() - new Date(selected.first_at).getTime())}
+                  {fmtDuration(selected.duration_ms || (new Date(selected.last_at).getTime() - new Date(selected.first_at).getTime()))}
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" />
