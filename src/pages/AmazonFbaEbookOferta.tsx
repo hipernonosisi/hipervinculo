@@ -12,6 +12,8 @@ import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
+import { useSessionRecording } from "@/hooks/useSessionRecording";
+import { useFormFieldTracking } from "@/hooks/useFormFieldTracking";
 
 declare global {
   interface Window {
@@ -25,6 +27,7 @@ const PAGE = "/amazon-fba-ebook/oferta";
 
 export default function AmazonFbaEbookOferta() {
   usePageTracking(PAGE);
+  useSessionRecording(true);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [secondsLeft, setSecondsLeft] = useState(15 * 60); // 15 min urgency
@@ -32,6 +35,8 @@ export default function AmazonFbaEbookOferta() {
 
   const variant =
     new URLSearchParams(window.location.search).get("v") || "remarketing";
+
+  useFormFieldTracking({ pageUrl: PAGE, variant });
 
   const trackFormStart = () => {
     if (formStartTracked.current) return;

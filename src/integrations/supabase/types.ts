@@ -642,6 +642,39 @@ export type Database = {
         }
         Relationships: []
       }
+      session_replay_chunks: {
+        Row: {
+          chunk_index: number
+          created_at: string
+          events: Json
+          geo: Json | null
+          id: string
+          page_url: string | null
+          session_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          chunk_index: number
+          created_at?: string
+          events: Json
+          geo?: Json | null
+          id?: string
+          page_url?: string | null
+          session_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          chunk_index?: number
+          created_at?: string
+          events?: Json
+          geo?: Json | null
+          id?: string
+          page_url?: string | null
+          session_id?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

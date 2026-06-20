@@ -19,6 +19,8 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
 import { VSLPlayer } from "@/components/VSLPlayer";
 import { usePageTracking, useSectionTracking, trackEvent } from "@/hooks/usePageTracking";
+import { useSessionRecording } from "@/hooks/useSessionRecording";
+import { useFormFieldTracking } from "@/hooks/useFormFieldTracking";
 import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
 import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 
@@ -64,6 +66,9 @@ export default function AmazonFbaEbook() {
   const [loading, setLoading] = useState(false);
   usePageTracking("/amazon-fba-ebook");
   useSectionTracking("/amazon-fba-ebook");
+  useSessionRecording(true);
+  const variant = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "").get("v") || "default";
+  useFormFieldTracking({ pageUrl: "/amazon-fba-ebook", variant });
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
@@ -100,7 +105,7 @@ export default function AmazonFbaEbook() {
     trackEvent('form_start', {}, '/amazon-fba-ebook');
   };
 
-  const variant = new URLSearchParams(window.location.search).get("v") || "default";
+  
 
   // Show sticky CTA bar after scrolling past hero
   useEffect(() => {
