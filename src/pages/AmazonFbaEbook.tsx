@@ -66,6 +66,9 @@ export default function AmazonFbaEbook() {
   const [loading, setLoading] = useState(false);
   usePageTracking("/amazon-fba-ebook");
   useSectionTracking("/amazon-fba-ebook");
+  useSessionRecording(true);
+  const variant = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "").get("v") || "default";
+  useFormFieldTracking({ pageUrl: "/amazon-fba-ebook", variant });
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [marketingOptIn, setMarketingOptIn] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
