@@ -1094,6 +1094,21 @@ export default function Admin() {
                     </CardContent>
                   </Card>
                 </TabsContent>
+                <TabsContent value="daily" className="mt-0">
+                  <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
+                    <CardHeader>
+                      <CardTitle>Reporte diario automático</CardTitle>
+                      <CardDescription>
+                        Hallazgos generados cada día: atascos por campo, tiempos por paso y tasa de abandono. Base: últimas 500 sesiones.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Suspense fallback={<div className="p-12 text-center text-sm text-muted-foreground">Cargando reporte…</div>}>
+                        <EbookDailyReport />
+                      </Suspense>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
               </Tabs>
             </TabsContent>
 
