@@ -350,7 +350,7 @@ export default function SessionReplays() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3" />
-                  {fmtDuration(new Date(selected.last_at).getTime() - new Date(selected.first_at).getTime())}
+                  {fmtDuration(selected.duration_ms || (new Date(selected.last_at).getTime() - new Date(selected.first_at).getTime()))}
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" />
