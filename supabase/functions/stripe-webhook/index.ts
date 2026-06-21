@@ -20,12 +20,17 @@ serve(async (req) => {
   }
 
   const signature = req.headers.get("stripe-signature");
-  const webhookSecret = Deno.env.get("STRIPE_WEBHOOK_SECRET");
   const stripeSecret = Deno.env.get("STRIPE_SECRET_KEY");
 
+  // Support multiple webhook endpoints (e.g. hipervinculo + hipervinculo_core)
+  const webhookSecrets = [
+    Deno.env.get("STRIPE_WEBHOOK_SECRET"),
+    Deno.env.get("STRIPE_WEBHOOK_SECRET_CORE"),
+  ].filter((s): s is string => !!s);
+
   if (!signature) return new Response("Missing stripe-signature", { status: 400, headers: corsHeaders });
-  if (!webhookSecret) {
-    console.error("STRIPE_WEBHOOK_SECRET not configured");
+  if (webhookSecrets.length === 0) {
+    console.error("No STRIPE_WEBHOOK_SECRET configured");
     return new Response("Webhook secret not configured", { status: 500, headers: corsHeaders });
   }
   if (!stripeSecret) {
@@ -36,13 +41,19 @@ serve(async (req) => {
   const stripe = new Stripe(stripeSecret, { apiVersion: "2025-08-27.basil" });
   const body = await req.text();
 
-  let event: Stripe.Event;
-  try {
-    // Deno requires the async variant for HMAC verification
-    event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
-  } catch (err) {
-    console.error("Signature verification failed", (err as Error).message);
-    return new Response(`Webhook Error: ${(err as Error).message}`, { status: 400, headers: corsHeaders });
+  let event: Stripe.Event | null = null;
+  let lastErr: string = "";
+  for (const secret of webhookSecrets) {
+    try {
+      event = await stripe.webhooks.constructEventAsync(body, signature, secret);
+      break;
+    } catch (err) {
+      lastErr = (err as Error).message;
+    }
+  }
+  if (!event) {
+    console.error("Signature verification failed against all secrets:", lastErr);
+    return new Response(`Webhook Error: ${lastErr}`, { status: 400, headers: corsHeaders });
   }
 
   console.log("Stripe webhook event:", event.type, event.id);
