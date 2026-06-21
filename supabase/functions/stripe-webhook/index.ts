@@ -15,6 +15,81 @@ const corsHeaders = {
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  const url = new URL(req.url);
+
+  // Healthcheck: GET ?health=1 reports whether secrets are present and dependencies wired,
+  // without actually verifying a Stripe signature (no event is processed).
+  if (req.method === "GET" && url.searchParams.get("health") === "1") {
+    const hasStripeKey = !!Deno.env.get("STRIPE_SECRET_KEY");
+    const hasWebhookSecret = !!Deno.env.get("STRIPE_WEBHOOK_SECRET");
+    const hasWebhookSecretCore = !!Deno.env.get("STRIPE_WEBHOOK_SECRET_CORE");
+    const hasSupabaseUrl = !!Deno.env.get("SUPABASE_URL");
+    const hasServiceRole = !!Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const secretsConfigured = [hasWebhookSecret, hasWebhookSecretCore].filter(Boolean).length;
+
+    // Sanity check: try to construct a Stripe client (catches bad keys at boot time).
+    let stripeClientOk = false;
+    let stripeClientError: string | null = null;
+    try {
+      if (hasStripeKey) {
+        new Stripe(Deno.env.get("STRIPE_SECRET_KEY")!, { apiVersion: "2025-08-27.basil" });
+        stripeClientOk = true;
+      }
+    } catch (e) {
+      stripeClientError = (e as Error).message;
+    }
+
+    // Sanity check: ensure verify-ebook-payment is reachable (HEAD/OPTIONS, no side effects).
+    let downstreamOk = false;
+    let downstreamError: string | null = null;
+    try {
+      if (hasSupabaseUrl) {
+        const res = await fetch(
+          `${Deno.env.get("SUPABASE_URL")}/functions/v1/verify-ebook-payment`,
+          { method: "OPTIONS" },
+        );
+        await res.text();
+        downstreamOk = res.status < 500;
+        if (!downstreamOk) downstreamError = `status ${res.status}`;
+      }
+    } catch (e) {
+      downstreamError = (e as Error).message;
+    }
+
+    const healthy =
+      hasStripeKey &&
+      secretsConfigured >= 1 &&
+      hasSupabaseUrl &&
+      hasServiceRole &&
+      stripeClientOk &&
+      downstreamOk;
+
+    return new Response(
+      JSON.stringify({
+        healthy,
+        checks: {
+          STRIPE_SECRET_KEY: hasStripeKey,
+          STRIPE_WEBHOOK_SECRET: hasWebhookSecret,
+          STRIPE_WEBHOOK_SECRET_CORE: hasWebhookSecretCore,
+          SUPABASE_URL: hasSupabaseUrl,
+          SUPABASE_SERVICE_ROLE_KEY: hasServiceRole,
+          stripe_client: { ok: stripeClientOk, error: stripeClientError },
+          verify_ebook_payment_reachable: { ok: downstreamOk, error: downstreamError },
+        },
+        handled_events: [
+          "checkout.session.completed",
+          "checkout.session.async_payment_succeeded",
+        ],
+        timestamp: new Date().toISOString(),
+      }),
+      {
+        status: healthy ? 200 : 503,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
+
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405, headers: corsHeaders });
   }
