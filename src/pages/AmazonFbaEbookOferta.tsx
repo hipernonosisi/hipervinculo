@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Lock, Shield, Flame, Clock } from "lucide-react";
+import { CheckCircle2, Lock, Shield, Flame, Clock, Package, Truck, BarChart3 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,9 @@ import logo from "@/assets/logo-hipervinculo.png";
 import { FloatingField } from "@/components/ebook/FloatingField";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { PaymentBadges } from "@/components/ebook/PaymentBadges";
+import { VSLPlayer } from "@/components/VSLPlayer";
+import vslEbookAsset from "@/assets/vsl-ebook.mp4.asset.json";
+import vslPosterAsset from "@/assets/vsl-poster.jpg.asset.json";
 import { usePageTracking, trackEvent } from "@/hooks/usePageTracking";
 import { useSessionRecording } from "@/hooks/useSessionRecording";
 import { useFormFieldTracking } from "@/hooks/useFormFieldTracking";
