@@ -221,12 +221,12 @@ export default function AmazonFbaEbookOferta() {
       <section className="flex-1 flex items-center justify-center w-full px-4 py-10 sm:p-6 lg:p-12">
         <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
 
-          {/* LEFT — Text Content */}
+          {/* LEFT — Contexto + VSL + valor (no solo "compra") */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-center lg:text-left space-y-6 lg:space-y-8"
+            className="text-center lg:text-left space-y-5"
           >
             <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 text-[#2F4F3E] px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest">
               <span className="relative flex h-2 w-2">
@@ -236,20 +236,47 @@ export default function AmazonFbaEbookOferta() {
               Última Oportunidad
             </div>
 
-            <h1 className="text-4xl lg:text-6xl font-extrabold text-[#2F4F3E] leading-[1.1] tracking-tight">
-              Asegura tu Guía <br className="hidden lg:block" />
-              Amazon FBA por <br className="hidden lg:block" />
-              solo <span className="text-[#8BC34A]">${PRICE_USD}</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#2F4F3E] leading-[1.1] tracking-tight">
+              Vende en Amazon <span className="text-[#8BC34A]">sin comprar inventario</span>
             </h1>
 
-            <p className="text-base lg:text-lg text-[#2F4F3E]/70 font-medium max-w-lg mx-auto lg:mx-0">
-              Acceso inmediato · Descarga al pagar
+            <p className="text-base lg:text-lg text-[#2F4F3E]/75 font-medium max-w-lg mx-auto lg:mx-0">
+              Mira en 90 segundos cómo validar un producto en Amazon antes de gastar un dólar en stock.
             </p>
 
-            <div className="pt-2 flex items-center justify-center lg:justify-start gap-2">
+            {/* VSL — clave para dar contexto antes del checkout */}
+            <div className="flex justify-center lg:justify-start pt-2">
+              <VSLPlayer
+                videoUrls={[vslEbookAsset.url]}
+                poster={vslPosterAsset.url}
+                ctaUrl="#checkout-form"
+                ctaLabel={`Comprar guía · $${PRICE_USD}`}
+                tapToWatchLabel="Toca para ver con sonido · 90s"
+                pageUrl={PAGE}
+                className="!max-w-[280px] md:!max-w-[320px]"
+              />
+            </div>
+
+            {/* Bullets de valor */}
+            <ul className="space-y-2.5 max-w-lg mx-auto lg:mx-0 pt-1 text-left">
+              {[
+                { Icon: Package, t: "Valida sin comprar stock — riesgo cero" },
+                { Icon: Truck, t: "Proveedores white-label en EE.UU." },
+                { Icon: BarChart3, t: "32 criterios de producto ganador + plantillas" },
+              ].map(({ Icon, t }) => (
+                <li key={t} className="flex items-start gap-2.5 text-sm text-[#2F4F3E]/85">
+                  <div className="w-7 h-7 rounded-lg bg-[#8BC34A]/20 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-4 h-4 text-[#2F4F3E]" />
+                  </div>
+                  <span className="pt-1">{t}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-1 flex items-center justify-center lg:justify-start gap-2">
               <CheckCircle2 className="h-4 w-4 text-[#8BC34A]" />
-              <p className="text-sm font-semibold text-[#2F4F3E]/60">
-                +200 marcas confían en Hipervínculo
+              <p className="text-xs font-semibold text-[#2F4F3E]/60">
+                +200 marcas confían en Hipervínculo · 20+ años en marketing digital
               </p>
             </div>
           </motion.div>
