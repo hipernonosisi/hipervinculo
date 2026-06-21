@@ -279,74 +279,100 @@ export default function AmazonFbaEbook() {
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO — VSL primero en mobile, copy ajustado al promise del ad */}
       <section data-section="hero" className="relative overflow-hidden bg-[#2F4F3E] text-white">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
         }} />
-        <div className="container mx-auto px-4 py-12 md:py-20 relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
-                <Zap className="w-3 h-3" /> NUEVA EDICIÓN 2026
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white">
-                Vende en Amazon <span className="text-[#8BC34A]">sin quemar tu dinero</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/85 mb-6 leading-relaxed">
-                Valida tu producto <strong>antes</strong> de comprar inventario — y escala solo lo que ya funciona. Guía PDF con 32 criterios de producto ganador y 3 plantillas listas para usar.
-              </p>
-              <div className="flex flex-wrap items-center gap-4 mb-5">
-                <div className="flex items-center gap-1 text-[#8BC34A]">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
-                </div>
-                <span className="text-sm text-white/70">32 criterios · 3 plantillas</span>
-              </div>
+        <div className="container mx-auto px-4 pt-6 pb-10 md:py-20 relative">
+          {/* Headline compacto SOBRE el video en mobile, escondido en desktop */}
+          <div className="md:hidden text-center mb-5">
+            <div className="inline-flex items-center gap-1.5 bg-[#8BC34A] text-[#1a2e22] px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-3">
+              <Zap className="w-3 h-3" /> NUEVA EDICIÓN 2026
+            </div>
+            <h1 className="text-[1.75rem] leading-[1.1] font-extrabold text-white">
+              Vende en Amazon <span className="text-[#8BC34A]">sin comprar inventario</span>
+            </h1>
+            <p className="text-sm text-white/80 mt-3 px-2">
+              Cómo validar un producto en Amazon <strong className="text-white">antes</strong> de gastar un dólar en stock. Mira cómo en 90 segundos.
+            </p>
+          </div>
 
-              {/* Urgency banner */}
-              <div className="inline-flex items-center gap-2 bg-[#8BC34A]/15 border border-[#8BC34A]/40 rounded-lg px-3 py-2 mb-5">
-                <Flame className="w-4 h-4 text-[#8BC34A] animate-pulse" />
-                <span className="text-sm text-white">
-                  Descuento -48% termina en <strong className="font-mono text-[#8BC34A]">{mm}:{ss}</strong>
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-4 items-baseline mb-6">
-                <motion.span
-                  className="text-5xl font-extrabold"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  ${PRICE_USD}
-                </motion.span>
-                <span className="text-xl line-through text-white/50">${ORIG_USD}</span>
-                <span className="bg-[#8BC34A] text-[#1a2e22] text-xs font-bold px-2 py-1 rounded">-48%</span>
-              </div>
-              <a href="#comprar">
-                <Button size="lg" className="bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-bold text-base px-8 py-6">
-                  Descargar mi guía ahora →
-                </Button>
-              </a>
-              <div className="flex items-center gap-2 mt-6 text-sm text-white/70">
-                <Lock className="w-4 h-4" /> Pago seguro · Descarga inmediata por email
-              </div>
-              <div className="mt-3">
-                <PaymentBadges variant="dark" />
-              </div>
-            </motion.div>
-
-            <div className="flex justify-center relative">
-              <div className="absolute -inset-4 bg-[#8BC34A]/20 blur-2xl rounded-full pointer-events-none" />
+          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+            {/* VIDEO — primero en mobile (order-1), izquierda en desktop swap */}
+            <div className="flex justify-center relative order-1 md:order-2">
+              <div className="absolute -inset-4 bg-[#8BC34A]/25 blur-3xl rounded-full pointer-events-none" />
               <VSLPlayer
                 videoUrls={[vslEbookAsset.url]}
                 poster={vslPosterAsset.url}
                 ctaUrl="#comprar"
                 ctaLabel={`Comprar guía · $${PRICE_USD}`}
-                tapToWatchLabel="Toca para ver con sonido"
+                tapToWatchLabel="Toca para ver con sonido · 90s"
                 pageUrl="/amazon-fba-ebook"
                 className="relative"
               />
             </div>
+
+            {/* COPY — segundo en mobile (order-2), izquierda en desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="order-2 md:order-1 text-center md:text-left"
+            >
+              {/* Badge + H1 solo desktop (en mobile ya salió arriba del video) */}
+              <div className="hidden md:block">
+                <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
+                  <Zap className="w-3 h-3" /> NUEVA EDICIÓN 2026
+                </div>
+                <h1 className="text-4xl lg:text-6xl font-extrabold leading-[1.05] mb-5 text-white">
+                  Vende en Amazon <span className="text-[#8BC34A]">sin comprar inventario</span>
+                </h1>
+                <p className="text-lg lg:text-xl text-white/85 mb-6 leading-relaxed">
+                  Valida tu producto <strong>antes</strong> de gastar un dólar en stock. Guía PDF con 32 criterios de producto ganador, proveedores white-label en EE.UU. y 3 plantillas listas para usar.
+                </p>
+              </div>
+
+              {/* Bullets de promesa — visibles en ambos */}
+              <ul className="space-y-2 mb-5 mt-2 md:mt-0 text-left max-w-md mx-auto md:mx-0">
+                {[
+                  "Valida sin comprar stock — riesgo cero",
+                  "Proveedores white-label en EE.UU.",
+                  "Plan de 90 días con plantillas y KPIs",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-2.5 text-sm md:text-base text-white/90">
+                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-[#8BC34A] flex-shrink-0 mt-0.5" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Precio + CTA */}
+              <div className="flex flex-wrap gap-3 items-baseline justify-center md:justify-start mb-4">
+                <span className="text-4xl md:text-5xl font-extrabold">${PRICE_USD}</span>
+                <span className="text-lg line-through text-white/50">${ORIG_USD}</span>
+                <span className="bg-[#8BC34A] text-[#1a2e22] text-xs font-bold px-2 py-1 rounded">-48%</span>
+              </div>
+
+              <a href="#comprar" className="inline-block w-full md:w-auto">
+                <Button size="lg" className="w-full md:w-auto bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base px-8 py-6 h-auto">
+                  Descargar mi guía ahora →
+                </Button>
+              </a>
+
+              {/* Urgency sutil debajo del CTA, no antes */}
+              <div className="inline-flex items-center gap-2 mt-4 text-xs text-white/70">
+                <Flame className="w-3.5 h-3.5 text-[#8BC34A]" />
+                <span>Precio promocional termina en <strong className="font-mono text-[#8BC34A]">{mm}:{ss}</strong></span>
+              </div>
+
+              <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-xs text-white/70">
+                <Lock className="w-3.5 h-3.5" /> Pago seguro · Descarga inmediata por email
+              </div>
+              <div className="mt-3 flex justify-center md:justify-start">
+                <PaymentBadges variant="dark" />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
