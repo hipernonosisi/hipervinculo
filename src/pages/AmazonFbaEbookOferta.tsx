@@ -283,10 +283,11 @@ export default function AmazonFbaEbookOferta() {
 
           {/* RIGHT — Checkout Card */}
           <motion.div
+            id="checkout-form"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="w-full max-w-md mx-auto"
+            className="w-full max-w-md mx-auto scroll-mt-20"
           >
             <div className="bg-[#2F4F3E] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
               {/* Subtle texture overlay */}
