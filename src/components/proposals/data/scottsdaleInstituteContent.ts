@@ -317,7 +317,7 @@ export const scottsdaleInstituteContent = {
       {
         title: 'Website Ownership',
         description:
-          'The new website, once fully paid through the monthly fee during the pilot, remains the property of the Scottsdale Institute. Source code and hosting access are handed over on request at any point after the pilot ends.',
+          'Once the one-time website build fee is fully paid, the new website remains the property of the Scottsdale Institute. Source code and hosting access are handed over on request at any point after the pilot ends.',
         icon: 'files',
       },
       {
