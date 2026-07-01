@@ -319,17 +319,52 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 24 }}>{content.investment.headline}</Text>
 
-        <View style={{ flexDirection: 'row', gap: 12, marginBottom: 14 }}>
-          {[content.investment.ongoing.websiteBuild, content.investment.ongoing.management, content.investment.ongoing.performance].map((card, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 16 }}>
-              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green, letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase' }}>{card.label}</Text>
-              <View style={{ marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
-                <Text style={{ fontSize: 24, fontWeight: 'bold', color: lime, marginBottom: 4 }}>{card.rate}</Text>
-                <Text style={{ fontSize: 7, color: grayLight }}>{card.basis}</Text>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
+          {[
+            { ...content.investment.ongoing.websiteBuild, cadence: 'One-time', featured: false },
+            { ...content.investment.ongoing.management, cadence: 'Recurring', featured: true },
+            { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: false },
+          ].map((card, i) => {
+            const dark = card.featured;
+            const cardBg = dark ? green : '#ffffff';
+            const borderColor = dark ? green : '#e6e8df';
+            const eyebrow = dark ? 'rgba(255,255,255,0.6)' : '#9aa39a';
+            const labelC = dark ? '#ffffff' : green;
+            const priceC = dark ? '#c5e86a' : green;
+            const basisC = dark ? 'rgba(255,255,255,0.75)' : '#6b7268';
+            const bodyC = dark ? 'rgba(255,255,255,0.82)' : '#5a635a';
+            const ruleC = dark ? 'rgba(255,255,255,0.2)' : '#eceee6';
+            const chipBg = dark ? 'rgba(197,232,106,0.15)' : '#f4f6ef';
+            const chipTx = dark ? '#c5e86a' : green;
+            const numC = dark ? 'rgba(255,255,255,0.12)' : 'rgba(45,74,45,0.07)';
+            const accentC = dark ? '#c5e86a' : lime;
+            return (
+              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: borderColor, position: 'relative', minHeight: 240 }}>
+                {/* Index watermark */}
+                <Text style={{ position: 'absolute', top: 8, right: 12, fontSize: 28, fontWeight: 'bold', color: numC, letterSpacing: -1 }}>
+                  {String(i + 1).padStart(2, '0')}
+                </Text>
+                {/* Eyebrow */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 10 }}>
+                  <View style={{ width: 12, height: 1, backgroundColor: accentC }} />
+                  <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: eyebrow, letterSpacing: 1.5, textTransform: 'uppercase' }}>{card.cadence}</Text>
+                </View>
+                {/* Label */}
+                <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: labelC, letterSpacing: 1, marginBottom: 14, textTransform: 'uppercase', minHeight: 22 }}>{card.label}</Text>
+                {/* Price */}
+                <Text style={{ fontSize: 28, fontWeight: 'bold', color: priceC, marginBottom: 6, letterSpacing: -0.5 }}>{card.rate}</Text>
+                <Text style={{ fontSize: 7, color: basisC, marginBottom: 12, lineHeight: 1.4 }}>{card.basis}</Text>
+                {/* Rule */}
+                <View style={{ height: 0.5, backgroundColor: ruleC, marginBottom: 10 }} />
+                {/* Description */}
+                <Text style={{ fontSize: 7, color: bodyC, lineHeight: 1.5, marginBottom: 12 }}>{card.description}</Text>
+                {/* Chip */}
+                <View style={{ alignSelf: 'flex-start', backgroundColor: chipBg, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 8 }}>
+                  <Text style={{ fontSize: 6, fontWeight: 'bold', color: chipTx, letterSpacing: 1.2, textTransform: 'uppercase' }}>{card.cadence}</Text>
+                </View>
               </View>
-              <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{card.description}</Text>
-            </View>
-          ))}
+            );
+          })}
         </View>
 
 
