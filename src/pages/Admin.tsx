@@ -1019,6 +1019,7 @@ export default function Admin() {
                   {activeProposal === 'av-nutraceuticals' && <AvNutraceuticalsProposal />}
                   {activeProposal === 'door-district' && <DoorDistrictProposal />}
                   {activeProposal === 'rumbas' && <RumbasEventRentalsProposal />}
+                  {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
