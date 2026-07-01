@@ -221,13 +221,20 @@ export const scottsdaleInstituteContent = {
     title: 'Investment Summary',
     headline: 'A True Growth Partnership — Aligned on Closed Treatments',
     ongoing: {
-      title: 'Monthly Fee + Performance Share',
+      title: 'Website Build + Monthly Fee + Performance Share',
+      websiteBuild: {
+        label: 'New Website Build',
+        rate: '$10,000',
+        basis: 'One-time — new conversion website',
+        description:
+          'One-time fee for the full design and development of the new conversion-focused website: strategy, UX, copy, design, build, tracking setup, on-page SEO foundation and launch. Invoiced 50% at kickoff and 50% at launch.',
+      },
       management: {
         label: 'Monthly Management Fee',
         rate: '$5,000',
-        basis: 'Fixed monthly — website + Google Ads + Meta Ads',
+        basis: 'Fixed monthly — Google Ads + Meta Ads + website maintenance',
         description:
-          'A single monthly fee that covers the new website build (included, no separate one-time charge), ongoing website maintenance, and the full management of Google Ads and Meta Ads campaigns.',
+          'A single monthly fee covering the full management of Google Ads and Meta Ads campaigns, ongoing website maintenance, tracking, reporting and strategy.',
       },
       performance: {
         label: 'Performance Share',
@@ -246,6 +253,7 @@ export const scottsdaleInstituteContent = {
         ],
       },
     },
+
     example: {
       title: 'Performance Share Example',
       subtitle: 'How it works — based on closed treatments from our campaigns',
