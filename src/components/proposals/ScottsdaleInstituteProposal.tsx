@@ -328,33 +328,19 @@ export function ScottsdaleInstituteProposal() {
 
               {/* Three fee cards */}
               <div className="grid grid-cols-3 gap-5 mb-6">
-                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.websiteBuild.label}</h3>
-                  <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
-                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.websiteBuild.basis}</p>
-                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.websiteBuild.rate}</span>
+                {[content.investment.ongoing.websiteBuild, content.investment.ongoing.management, content.investment.ongoing.performance].map((card, idx) => (
+                  <div key={idx} className="bg-white rounded-2xl p-6 flex flex-col" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                    <h3 className="font-bold text-[13px] uppercase tracking-wider mb-4" style={{ color: '#2d4a2d' }}>{card.label}</h3>
+                    <div className="mb-4 pb-4 border-b border-gray-100">
+                      <div className="text-5xl font-extrabold leading-none mb-2" style={{ color: '#8BC34A' }}>{card.rate}</div>
+                      <p className="text-[11px] text-gray-400 leading-snug">{card.basis}</p>
+                    </div>
+                    <p className="text-[11px] text-gray-500 leading-relaxed">{card.description}</p>
                   </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.websiteBuild.description}</p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.management.label}</h3>
-                  <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
-                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.management.basis}</p>
-                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.management.rate}</span>
-                  </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.management.description}</p>
-                </div>
-
-                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.performance.label}</h3>
-                  <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
-                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.performance.basis}</p>
-                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.performance.rate}</span>
-                  </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.performance.description}</p>
-                </div>
+                ))}
               </div>
+
+
 
 
               {/* Client pays */}
