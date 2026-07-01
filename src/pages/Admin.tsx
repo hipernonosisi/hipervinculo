@@ -28,6 +28,7 @@ import { OrbitalSunglassesProposal } from '@/components/proposals/OrbitalSunglas
 import { AvNutraceuticalsProposal } from '@/components/proposals/AvNutraceuticalsProposal';
 import { DoorDistrictProposal } from '@/components/proposals/DoorDistrictProposal';
 import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRentalsProposal';
+import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
