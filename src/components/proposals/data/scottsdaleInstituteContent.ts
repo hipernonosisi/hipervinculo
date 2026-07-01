@@ -280,7 +280,7 @@ export const scottsdaleInstituteContent = {
       {
         title: 'Pilot Period',
         description:
-          '3-month pilot starting on the effective date. At the end of the pilot, both parties evaluate results and renew on a rolling month-to-month basis unless either party provides 30 days written notice.',
+          '6-month pilot starting on the effective date. At the end of the pilot, both parties evaluate results and renew on a rolling month-to-month basis unless either party provides 30 days written notice.',
         icon: 'calendar',
       },
       {
@@ -383,7 +383,7 @@ export const scottsdaleInstituteContent = {
       {
         heading: 'Contract Termination',
         items: [
-          'The minimum agreement duration is a 3-month pilot from the start date of services.',
+          'The minimum agreement duration is a 6-month pilot from the start date of services.',
           'After the pilot, the agreement continues on a month-to-month basis. Either party may terminate with 30 days written notice.',
           'In case of early termination by the clinic during the pilot, Hipervínculo LLC is not obligated to refund any previously received amounts.',
           'Upon termination, the website remains the property of the clinic. Advertising campaigns created by the agency remain the intellectual property of Hipervínculo LLC and may be paused or deleted on termination.',
