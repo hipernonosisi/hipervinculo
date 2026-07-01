@@ -326,18 +326,91 @@ export function ScottsdaleInstituteProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              {/* Three fee cards */}
-              <div className="grid grid-cols-3 gap-5 mb-6">
-                {[content.investment.ongoing.websiteBuild, content.investment.ongoing.management, content.investment.ongoing.performance].map((card, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-6 flex flex-col" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                    <h3 className="font-bold text-[13px] uppercase tracking-wider mb-4" style={{ color: '#2d4a2d' }}>{card.label}</h3>
-                    <div className="mb-4 pb-4 border-b border-gray-100">
-                      <div className="text-5xl font-extrabold leading-none mb-2" style={{ color: '#8BC34A' }}>{card.rate}</div>
-                      <p className="text-[11px] text-gray-400 leading-snug">{card.basis}</p>
+              {/* Three fee cards — editorial */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                {[
+                  { ...content.investment.ongoing.websiteBuild, cadence: 'One-time', featured: false },
+                  { ...content.investment.ongoing.management, cadence: 'Recurring', featured: true },
+                  { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: false },
+                ].map((card, idx) => {
+                  const dark = card.featured;
+                  const bg = dark ? '#2d4a2d' : '#ffffff';
+                  const border = dark ? '#2d4a2d' : '#e6e8df';
+                  const eyebrow = dark ? 'rgba(255,255,255,0.55)' : '#9aa39a';
+                  const label = dark ? '#ffffff' : '#2d4a2d';
+                  const price = dark ? '#c5e86a' : '#2d4a2d';
+                  const basis = dark ? 'rgba(255,255,255,0.75)' : '#6b7268';
+                  const rule = dark ? 'rgba(255,255,255,0.18)' : '#eceee6';
+                  const body = dark ? 'rgba(255,255,255,0.82)' : '#5a635a';
+                  const chipBg = dark ? 'rgba(197,232,106,0.14)' : '#f4f6ef';
+                  const chipTx = dark ? '#c5e86a' : '#2d4a2d';
+                  const num = dark ? 'rgba(255,255,255,0.10)' : 'rgba(45,74,45,0.06)';
+                  return (
+                    <div
+                      key={idx}
+                      className="relative rounded-[20px] p-7 flex flex-col overflow-hidden"
+                      style={{
+                        backgroundColor: bg,
+                        border: `1px solid ${border}`,
+                        boxShadow: dark ? '0 12px 32px -12px rgba(45,74,45,0.45)' : '0 1px 2px rgba(0,0,0,0.03)',
+                        minHeight: '340px',
+                      }}
+                    >
+                      {/* Index watermark */}
+                      <span
+                        className="absolute font-extrabold leading-none select-none pointer-events-none"
+                        style={{ top: '14px', right: '18px', fontSize: '48px', color: num, letterSpacing: '-0.04em' }}
+                      >
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* Eyebrow */}
+                      <div className="flex items-center gap-2 mb-5">
+                        <span className="w-6 h-px" style={{ backgroundColor: dark ? '#c5e86a' : '#8BC34A' }} />
+                        <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: eyebrow }}>
+                          {card.cadence}
+                        </p>
+                      </div>
+
+                      {/* Label */}
+                      <h3
+                        className="text-[13px] font-bold uppercase tracking-[0.14em] mb-6 leading-snug"
+                        style={{ color: label, minHeight: '2.6em' }}
+                      >
+                        {card.label}
+                      </h3>
+
+                      {/* Price */}
+                      <div className="mb-5">
+                        <div
+                          className="font-extrabold leading-[0.9]"
+                          style={{ color: price, fontSize: '52px', letterSpacing: '-0.035em' }}
+                        >
+                          {card.rate}
+                        </div>
+                        <p className="text-[10.5px] mt-3 leading-snug" style={{ color: basis }}>
+                          {card.basis}
+                        </p>
+                      </div>
+
+                      {/* Rule */}
+                      <div className="w-full h-px mb-4" style={{ backgroundColor: rule }} />
+
+                      {/* Description */}
+                      <p className="text-[10.5px] leading-relaxed flex-1" style={{ color: body }}>
+                        {card.description}
+                      </p>
+
+                      {/* Cadence chip */}
+                      <div className="mt-5 inline-flex self-start items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ backgroundColor: chipBg }}>
+                        <span className="w-1 h-1 rounded-full" style={{ backgroundColor: chipTx }} />
+                        <span className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: chipTx }}>
+                          {card.cadence}
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-gray-500 leading-relaxed">{card.description}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
 
