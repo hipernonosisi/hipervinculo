@@ -320,36 +320,18 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 24 }}>{content.investment.headline}</Text>
 
         <View style={{ flexDirection: 'row', gap: 12, marginBottom: 14 }}>
-          {/* Website Build */}
-          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 16 }}>
-            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 10 }}>{content.investment.ongoing.websiteBuild.label}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
-              <Text style={{ fontSize: 7, color: grayLight, flex: 1, paddingRight: 4 }}>{content.investment.ongoing.websiteBuild.basis}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: lime }}>{content.investment.ongoing.websiteBuild.rate}</Text>
+          {[content.investment.ongoing.websiteBuild, content.investment.ongoing.management, content.investment.ongoing.performance].map((card, i) => (
+            <View key={i} style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 16 }}>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green, letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase' }}>{card.label}</Text>
+              <View style={{ marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: lime, marginBottom: 4 }}>{card.rate}</Text>
+                <Text style={{ fontSize: 7, color: grayLight }}>{card.basis}</Text>
+              </View>
+              <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{card.description}</Text>
             </View>
-            <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.websiteBuild.description}</Text>
-          </View>
-
-          {/* Monthly Fee */}
-          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 16 }}>
-            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 10 }}>{content.investment.ongoing.management.label}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
-              <Text style={{ fontSize: 7, color: grayLight, flex: 1, paddingRight: 4 }}>{content.investment.ongoing.management.basis}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: lime }}>{content.investment.ongoing.management.rate}</Text>
-            </View>
-            <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.management.description}</Text>
-          </View>
-
-          {/* Performance Share */}
-          <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 14, padding: 16 }}>
-            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 10 }}>{content.investment.ongoing.performance.label}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 10, paddingBottom: 10, borderBottomWidth: 0.5, borderBottomColor: '#f0f0f0' }}>
-              <Text style={{ fontSize: 7, color: grayLight, flex: 1, paddingRight: 4 }}>{content.investment.ongoing.performance.basis}</Text>
-              <Text style={{ fontSize: 22, fontWeight: 'bold', color: lime }}>{content.investment.ongoing.performance.rate}</Text>
-            </View>
-            <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.5 }}>{content.investment.ongoing.performance.description}</Text>
-          </View>
+          ))}
         </View>
+
 
 
         {/* Client Pays */}
