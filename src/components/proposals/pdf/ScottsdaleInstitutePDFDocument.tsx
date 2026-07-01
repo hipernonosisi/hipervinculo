@@ -352,7 +352,7 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
                 {/* Label */}
                 <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: labelC, letterSpacing: 1, marginBottom: 14, textTransform: 'uppercase', minHeight: 22 }}>{card.label}</Text>
                 {/* Price */}
-                <Text style={{ fontSize: 28, fontWeight: 'bold', color: priceC, marginBottom: 6, letterSpacing: -0.5 }}>{card.rate}</Text>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: priceC, marginBottom: 6, letterSpacing: -0.3 }}>{card.rate}</Text>
                 <Text style={{ fontSize: 7, color: basisC, marginBottom: 12, lineHeight: 1.4 }}>{card.basis}</Text>
                 {/* Rule */}
                 <View style={{ height: 0.5, backgroundColor: ruleC, marginBottom: 10 }} />

@@ -384,7 +384,7 @@ export function ScottsdaleInstituteProposal() {
                       <div className="mb-5">
                         <div
                           className="font-extrabold leading-[0.9]"
-                          style={{ color: price, fontSize: '52px', letterSpacing: '-0.035em' }}
+                          style={{ color: price, fontSize: '40px', letterSpacing: '-0.02em' }}
                         >
                           {card.rate}
                         </div>
