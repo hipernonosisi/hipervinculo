@@ -478,7 +478,7 @@ export function ScottsdaleInstituteProposal() {
               <div className="flex flex-col items-center justify-center py-16 bg-white">
                 <img src={logoHipervinculo} alt="Hipervinculo" className="h-12 mb-5" />
                 <div className="w-12 h-1 rounded-full mb-5" style={{ backgroundColor: '#8BC34A' }} />
-                <p className="text-center text-gray-400 text-sm max-w-sm">
+                <p className="text-center text-gray-400 text-sm whitespace-nowrap">
                   Results-driven growth systems for businesses ready to scale.
                 </p>
               </div>
