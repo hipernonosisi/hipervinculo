@@ -326,26 +326,36 @@ export function ScottsdaleInstituteProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              {/* Two fee cards */}
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.management.label}</h3>
+              {/* Three fee cards */}
+              <div className="grid grid-cols-3 gap-5 mb-6">
+                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.websiteBuild.label}</h3>
                   <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
-                    <p className="text-[12px] text-gray-400 mt-0.5">{content.investment.ongoing.management.basis}</p>
-                    <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.management.rate}</span>
+                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.websiteBuild.basis}</p>
+                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.websiteBuild.rate}</span>
+                  </div>
+                  <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.websiteBuild.description}</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.management.label}</h3>
+                  <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
+                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.management.basis}</p>
+                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.management.rate}</span>
                   </div>
                   <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.management.description}</p>
                 </div>
 
-                <div className="bg-white rounded-2xl p-7" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <h3 className="font-bold text-[15px] mb-5" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.performance.label}</h3>
+                <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <h3 className="font-bold text-[14px] mb-4" style={{ color: '#2d4a2d' }}>{content.investment.ongoing.performance.label}</h3>
                   <div className="flex items-baseline justify-between mb-3 pb-3 border-b border-gray-100">
-                    <p className="text-[12px] text-gray-400 mt-0.5">{content.investment.ongoing.performance.basis}</p>
-                    <span className="text-4xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.performance.rate}</span>
+                    <p className="text-[11px] text-gray-400 mt-0.5">{content.investment.ongoing.performance.basis}</p>
+                    <span className="text-3xl font-extrabold" style={{ color: '#8BC34A' }}>{content.investment.ongoing.performance.rate}</span>
                   </div>
                   <p className="text-[11px] text-gray-500 leading-relaxed">{content.investment.ongoing.performance.description}</p>
                 </div>
               </div>
+
 
               {/* Client pays */}
               <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
