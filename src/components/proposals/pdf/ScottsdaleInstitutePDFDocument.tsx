@@ -339,7 +339,7 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
             const numC = dark ? 'rgba(255,255,255,0.12)' : 'rgba(45,74,45,0.07)';
             const accentC = dark ? '#c5e86a' : lime;
             return (
-              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: borderColor, position: 'relative', minHeight: 240 }}>
+              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 14, padding: 14, borderWidth: 0.5, borderColor: borderColor, position: 'relative', minHeight: 210 }}>
                 {/* Index watermark */}
                 <Text style={{ position: 'absolute', top: 8, right: 12, fontSize: 28, fontWeight: 'bold', color: numC, letterSpacing: -1 }}>
                   {String(i + 1).padStart(2, '0')}
