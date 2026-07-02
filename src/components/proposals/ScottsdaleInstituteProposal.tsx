@@ -324,7 +324,8 @@ export function ScottsdaleInstituteProposal() {
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
-              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+              <p className="font-medium mb-3" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+              <p className="text-[13px] text-gray-600 mb-6 leading-relaxed max-w-2xl">{content.investment.ongoing.subtitle}</p>
 
               {/* Three fee cards — editorial */}
               <div className="grid grid-cols-2 gap-5 mb-6">
