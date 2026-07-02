@@ -313,7 +313,7 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
       </Page>
 
       {/* PAGE 9: Investment Summary */}
-      <Page size="A4" style={{ ...s.pageBg, padding: 50 }}>
+      <Page size="A4" style={{ ...s.pageBg, padding: 36 }}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
@@ -339,7 +339,7 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
             const numC = dark ? 'rgba(255,255,255,0.12)' : 'rgba(45,74,45,0.07)';
             const accentC = dark ? '#c5e86a' : lime;
             return (
-              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: borderColor, position: 'relative', minHeight: 240 }}>
+              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 14, padding: 14, borderWidth: 0.5, borderColor: borderColor, position: 'relative', minHeight: 210 }}>
                 {/* Index watermark */}
                 <Text style={{ position: 'absolute', top: 8, right: 12, fontSize: 28, fontWeight: 'bold', color: numC, letterSpacing: -1 }}>
                   {String(i + 1).padStart(2, '0')}
