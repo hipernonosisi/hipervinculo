@@ -320,10 +320,10 @@ export const scottsdaleInstituteContent = {
         icon: 'dollar',
       },
       {
-        title: 'Monthly Fee',
+        title: 'No Monthly Management Fee',
         description:
-          'The $5,000 monthly fee is invoiced at the start of each month and is payable within 10 days of invoice receipt. It covers the full management of Google Ads and Meta Ads plus ongoing website maintenance.',
-        icon: 'dollar',
+          'There is NO monthly retainer or management fee. Hipervínculo does not charge for the ongoing management of Google Ads, Meta Ads, tracking, reporting or website maintenance during the pilot. Our income comes exclusively from the Performance Share on closed treatments.',
+        icon: 'shield',
       },
       {
         title: 'Performance Share',
@@ -339,9 +339,9 @@ export const scottsdaleInstituteContent = {
         icon: 'shield',
       },
       {
-        title: 'Advertising Budget',
+        title: 'Media Budget',
         description:
-          'All advertising budgets (Google Ads and Meta Ads) are paid directly by the clinic through each platform. We recommend budget levels and optimize spend allocation continuously.',
+          'The clinic funds the ad spend directly through Google Ads and Meta Ads on a scaling plan: $25,000/mo (months 1–2), $30,000/mo (months 3–4), $35,000/mo (months 5–6), split 50/50 between Google and Meta. Total media investment across the 6-month pilot: $180,000, paid directly to the platforms.',
         icon: 'dollar',
       },
       {
