@@ -269,7 +269,7 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.googleAdsService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Monthly Fee</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Managed at No Fixed Fee</div>
                   <div className="text-white/40 text-xs mt-1">Google Ads budget paid directly by clinic</div>
                 </div>
                 <Search className="w-8 h-8 text-white/70" />
