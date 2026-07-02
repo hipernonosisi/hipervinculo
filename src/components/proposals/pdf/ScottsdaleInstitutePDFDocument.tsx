@@ -480,6 +480,94 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
 
+      {/* PAGE 9c: Projections */}
+      <Page size="A4" style={{ ...s.pageBg, padding: 40 }}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>PROJECTIONS</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.projections.title}</Text>
+        <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 8 }}>{content.investment.projections.subtitle}</Text>
+        <Text style={{ fontSize: 8.5, color: gray, lineHeight: 1.5, marginBottom: 10 }}>{content.investment.projections.description}</Text>
+
+        {/* Assumptions */}
+        <View style={{ backgroundColor: 'white', borderRadius: 10, padding: 10, marginBottom: 10, borderWidth: 0.5, borderColor: '#e6e8df', flexDirection: 'row' }}>
+          {content.investment.projections.assumptions.items.map((a, i) => (
+            <View key={i} style={{ flex: 1, paddingHorizontal: 4 }}>
+              <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: '#9aa39a', letterSpacing: 1.2, marginBottom: 2 }}>{a.label.toUpperCase()}</Text>
+              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{a.value}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* Scenarios */}
+        <View style={{ flexDirection: 'row', gap: 8, marginBottom: 10 }}>
+          {content.investment.projections.scenarios.map((sc, i) => {
+            const dark = sc.featured;
+            const cardBg = dark ? green : '#ffffff';
+            const labelC = dark ? '#ffffff' : green;
+            const eyebrowC = dark ? '#c5e86a' : '#9aa39a';
+            const priceC = dark ? '#c5e86a' : green;
+            const rowLabelC = dark ? 'rgba(255,255,255,0.65)' : '#6b7268';
+            const rowValC = dark ? '#ffffff' : green;
+            const ruleC = dark ? 'rgba(255,255,255,0.2)' : '#eceee6';
+            const bodyC = dark ? 'rgba(255,255,255,0.82)' : '#5a635a';
+            const accentC = dark ? '#c5e86a' : lime;
+            const highlightC = dark ? '#c5e86a' : lime;
+            const rows = [
+              { l: 'Cost per Lead', v: sc.costPerLead },
+              { l: 'Qualified Leads', v: sc.qualifiedLeads },
+              { l: 'Booked Consults', v: sc.bookedConsults },
+              { l: 'Closed Treatments', v: sc.closedTreatments },
+              { l: 'Avg. Ticket', v: sc.avgTicket },
+            ];
+            return (
+              <View key={i} style={{ flex: 1, backgroundColor: cardBg, borderRadius: 12, padding: 12, borderWidth: 0.5, borderColor: dark ? green : '#e6e8df' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 6 }}>
+                  <View style={{ width: 8, height: 1, backgroundColor: accentC }} />
+                  <Text style={{ fontSize: 6, fontWeight: 'bold', color: eyebrowC, letterSpacing: 1.4 }}>{sc.tag.toUpperCase()}</Text>
+                </View>
+                <Text style={{ fontSize: 11, fontWeight: 'bold', color: labelC, marginBottom: 8 }}>{sc.label}</Text>
+                {rows.map((r, j) => (
+                  <View key={j} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
+                    <Text style={{ fontSize: 7, color: rowLabelC }}>{r.l}</Text>
+                    <Text style={{ fontSize: 7, fontWeight: 'bold', color: rowValC }}>{r.v}</Text>
+                  </View>
+                ))}
+                <View style={{ height: 0.5, backgroundColor: ruleC, marginVertical: 6 }} />
+                <Text style={{ fontSize: 6, fontWeight: 'bold', color: eyebrowC, letterSpacing: 1.2, marginBottom: 2 }}>GROSS REVENUE</Text>
+                <Text style={{ fontSize: 15, fontWeight: 'bold', color: priceC, letterSpacing: -0.3, marginBottom: 6 }}>{sc.grossRevenue}</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
+                  <Text style={{ fontSize: 7, color: rowLabelC }}>Hipervínculo (50%)</Text>
+                  <Text style={{ fontSize: 7, fontWeight: 'bold', color: rowValC }}>{sc.hipervinculoShare}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
+                  <Text style={{ fontSize: 7, color: rowLabelC }}>Clinic Net Profit</Text>
+                  <Text style={{ fontSize: 7, fontWeight: 'bold', color: highlightC }}>{sc.clinicNet}</Text>
+                </View>
+                <Text style={{ fontSize: 6.5, color: bodyC, lineHeight: 1.5 }}>{sc.note}</Text>
+              </View>
+            );
+          })}
+        </View>
+
+        <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.5, marginBottom: 8 }}>{content.investment.projections.scenarioNote}</Text>
+
+        {/* Summary */}
+        <View style={{ backgroundColor: 'white', borderRadius: 12, padding: 12, borderWidth: 0.5, borderColor: '#e6e8df', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <View style={{ flex: 1, paddingRight: 10 }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 1.5, marginBottom: 3 }}>BOTTOM LINE</Text>
+            <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green }}>{content.investment.projections.summaryLabel}</Text>
+            <Text style={{ fontSize: 7, color: grayLight, marginTop: 3, lineHeight: 1.4 }}>{content.investment.projections.summaryNote}</Text>
+          </View>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, letterSpacing: -0.4 }}>{content.investment.projections.summaryRange}</Text>
+        </View>
+
+        <Text style={{ fontSize: 6.5, color: grayLight, lineHeight: 1.5, fontStyle: 'italic' }}>{content.investment.projections.disclaimer}</Text>
+
+        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+      </Page>
+
+
+
       {/* PAGE 10: Terms */}
       <Page size="A4" style={{ ...s.page, padding: 50 }}>
         <View style={s.accent} />
