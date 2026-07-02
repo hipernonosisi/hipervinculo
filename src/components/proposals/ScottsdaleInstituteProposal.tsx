@@ -240,8 +240,8 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.websiteService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Monthly Fee</div>
-                  <div className="text-white/40 text-xs mt-1">No separate one-time development charge</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">One-Time Build Fee</div>
+                  <div className="text-white/40 text-xs mt-1">$10,000 — invoiced 50% at kickoff, 50% at launch</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
@@ -269,7 +269,7 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.googleAdsService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Monthly Fee</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Managed at No Fixed Fee</div>
                   <div className="text-white/40 text-xs mt-1">Google Ads budget paid directly by clinic</div>
                 </div>
                 <Search className="w-8 h-8 text-white/70" />
@@ -298,7 +298,7 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.metaAdsService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Monthly Fee</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Managed at No Fixed Fee</div>
                   <div className="text-white/40 text-xs mt-1">Meta Ads budget paid directly by clinic</div>
                 </div>
                 <BarChart3 className="w-8 h-8 text-white/70" />
@@ -324,14 +324,14 @@ export function ScottsdaleInstituteProposal() {
               <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
               <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Investment</p>
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
-              <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+              <p className="font-medium mb-3" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
+              <p className="text-[13px] text-gray-600 mb-6 leading-relaxed max-w-2xl">{content.investment.ongoing.subtitle}</p>
 
               {/* Three fee cards — editorial */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-5 mb-6">
                 {[
                   { ...content.investment.ongoing.websiteBuild, cadence: 'One-time', featured: false },
-                  { ...content.investment.ongoing.management, cadence: 'Recurring', featured: true },
-                  { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: false },
+                  { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: true },
                 ].map((card, idx) => {
                   const dark = card.featured;
                   const bg = dark ? '#2d4a2d' : '#ffffff';
@@ -467,6 +467,71 @@ export function ScottsdaleInstituteProposal() {
                     <span className="block text-lg font-bold" style={{ color: '#8BC34A' }}>{content.investment.timeline.durationUnit}</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </Page>
+
+          {/* PAGE 9b: Media Budget Plan */}
+          <Page>
+            <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Media Budget</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.mediaBudget.title}</h2>
+              <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.investment.mediaBudget.subtitle}</p>
+              <p className="text-[13px] text-gray-600 mb-6 leading-relaxed">{content.investment.mediaBudget.description}</p>
+
+              {/* Split label */}
+              <div className="rounded-2xl px-6 py-4 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.22em]" style={{ color: '#c5e86a' }}>Channel Split</div>
+                  <div className="text-white font-bold text-lg mt-0.5">{content.investment.mediaBudget.splitLabel}</div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Search className="w-6 h-6 text-white/80" />
+                  <span className="text-white/40">·</span>
+                  <BarChart3 className="w-6 h-6 text-white/80" />
+                </div>
+              </div>
+
+              {/* Tiers */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                {content.investment.mediaBudget.tiers.map((tier, i) => (
+                  <div key={i} className="relative rounded-[18px] p-6 flex flex-col overflow-hidden" style={{ backgroundColor: '#ffffff', border: '1px solid #e6e8df', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}>
+                    <span className="absolute font-extrabold leading-none select-none pointer-events-none" style={{ top: '12px', right: '16px', fontSize: '40px', color: 'rgba(45,74,45,0.06)', letterSpacing: '-0.04em' }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="w-5 h-px" style={{ backgroundColor: '#8BC34A' }} />
+                      <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: '#9aa39a' }}>Tier {i + 1}</p>
+                    </div>
+                    <h3 className="text-[13px] font-bold uppercase tracking-[0.14em] mb-3" style={{ color: '#2d4a2d' }}>{tier.months}</h3>
+                    <div className="font-extrabold leading-[0.9] mb-1" style={{ color: '#2d4a2d', fontSize: '32px', letterSpacing: '-0.02em' }}>{tier.monthly}</div>
+                    <p className="text-[10.5px] mb-4" style={{ color: '#6b7268' }}>per month</p>
+                    <div className="w-full h-px mb-3" style={{ backgroundColor: '#eceee6' }} />
+                    <div className="flex justify-between text-[11px] mb-1">
+                      <span className="text-gray-500">Google Ads</span>
+                      <span className="font-bold" style={{ color: '#2d4a2d' }}>{tier.google}</span>
+                    </div>
+                    <div className="flex justify-between text-[11px] mb-3">
+                      <span className="text-gray-500">Meta Ads</span>
+                      <span className="font-bold" style={{ color: '#2d4a2d' }}>{tier.meta}</span>
+                    </div>
+                    <p className="text-[10.5px] leading-relaxed flex-1" style={{ color: '#5a635a' }}>{tier.note}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Split note */}
+              <p className="text-[11px] text-gray-500 mb-5 leading-relaxed">{content.investment.mediaBudget.splitNote}</p>
+
+              {/* Total */}
+              <div className="rounded-2xl px-8 py-6 flex items-center justify-between" style={{ backgroundColor: '#f4f6ef', border: '1px solid #e6e8df' }}>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] mb-1" style={{ color: '#8BC34A' }}>6-Month Pilot Total</p>
+                  <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{content.investment.mediaBudget.totalLabel}</h3>
+                  <p className="text-[11px] text-gray-500 mt-1">{content.investment.mediaBudget.totalNote}</p>
+                </div>
+                <div className="font-extrabold" style={{ color: '#2d4a2d', fontSize: '40px', letterSpacing: '-0.02em' }}>{content.investment.mediaBudget.totalValue}</div>
               </div>
             </div>
           </Page>
