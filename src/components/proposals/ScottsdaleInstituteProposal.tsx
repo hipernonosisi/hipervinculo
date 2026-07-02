@@ -536,6 +536,95 @@ export function ScottsdaleInstituteProposal() {
             </div>
           </Page>
 
+          {/* PAGE 9c: Projections */}
+          <Page bg="#f8f9f5">
+            <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Projections</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.projections.title}</h2>
+              <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.investment.projections.subtitle}</p>
+              <p className="text-[13px] text-gray-600 mb-5 leading-relaxed">{content.investment.projections.description}</p>
+
+              {/* Assumptions */}
+              <div className="bg-white rounded-2xl px-6 py-4 mb-5 grid grid-cols-4 gap-4" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.03)', border: '1px solid #e6e8df' }}>
+                {content.investment.projections.assumptions.items.map((a, i) => (
+                  <div key={i}>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.18em] mb-1" style={{ color: '#9aa39a' }}>{a.label}</p>
+                    <p className="text-[13px] font-extrabold" style={{ color: '#2d4a2d' }}>{a.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Scenarios */}
+              <div className="grid grid-cols-3 gap-4 mb-5">
+                {content.investment.projections.scenarios.map((sc, i) => {
+                  const dark = sc.featured;
+                  const bg = dark ? '#2d4a2d' : '#ffffff';
+                  const border = dark ? '#2d4a2d' : '#e6e8df';
+                  const label = dark ? '#ffffff' : '#2d4a2d';
+                  const eyebrow = dark ? '#c5e86a' : '#9aa39a';
+                  const price = dark ? '#c5e86a' : '#2d4a2d';
+                  const body = dark ? 'rgba(255,255,255,0.82)' : '#5a635a';
+                  const rowLabel = dark ? 'rgba(255,255,255,0.65)' : '#6b7268';
+                  const rowVal = dark ? '#ffffff' : '#2d4a2d';
+                  const rule = dark ? 'rgba(255,255,255,0.18)' : '#eceee6';
+                  const rows = [
+                    { l: 'Cost per Lead', v: sc.costPerLead },
+                    { l: 'Qualified Leads', v: sc.qualifiedLeads },
+                    { l: 'Booked Consults', v: sc.bookedConsults },
+                    { l: 'Closed Treatments', v: sc.closedTreatments },
+                    { l: 'Avg. Ticket', v: sc.avgTicket },
+                  ];
+                  return (
+                    <div key={i} className="relative rounded-[18px] p-5 flex flex-col overflow-hidden" style={{ backgroundColor: bg, border: `1px solid ${border}`, boxShadow: dark ? '0 12px 32px -12px rgba(45,74,45,0.45)' : '0 1px 2px rgba(0,0,0,0.03)' }}>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="w-5 h-px" style={{ backgroundColor: dark ? '#c5e86a' : '#8BC34A' }} />
+                        <p className="text-[9px] font-semibold uppercase tracking-[0.22em]" style={{ color: eyebrow }}>{sc.tag}</p>
+                      </div>
+                      <h3 className="text-[15px] font-extrabold mb-3" style={{ color: label }}>{sc.label}</h3>
+                      <div className="space-y-1.5 mb-3">
+                        {rows.map((r, j) => (
+                          <div key={j} className="flex justify-between text-[11px]">
+                            <span style={{ color: rowLabel }}>{r.l}</span>
+                            <span className="font-bold" style={{ color: rowVal }}>{r.v}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="w-full h-px mb-3" style={{ backgroundColor: rule }} />
+                      <p className="text-[9px] font-bold uppercase tracking-[0.18em] mb-1" style={{ color: eyebrow }}>Gross Revenue</p>
+                      <div className="font-extrabold leading-none mb-3" style={{ color: price, fontSize: '24px', letterSpacing: '-0.02em' }}>{sc.grossRevenue}</div>
+                      <div className="flex justify-between text-[10.5px] mb-1">
+                        <span style={{ color: rowLabel }}>Hipervínculo (50%)</span>
+                        <span className="font-bold" style={{ color: rowVal }}>{sc.hipervinculoShare}</span>
+                      </div>
+                      <div className="flex justify-between text-[10.5px] mb-3">
+                        <span style={{ color: rowLabel }}>Clinic Net Profit</span>
+                        <span className="font-bold" style={{ color: dark ? '#c5e86a' : '#8BC34A' }}>{sc.clinicNet}</span>
+                      </div>
+                      <p className="text-[9.5px] leading-relaxed flex-1" style={{ color: body }}>{sc.note}</p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="text-[11px] text-gray-500 mb-4 leading-relaxed">{content.investment.projections.scenarioNote}</p>
+
+              {/* Summary */}
+              <div className="rounded-2xl px-6 py-5 mb-4 flex items-center justify-between" style={{ backgroundColor: '#ffffff', border: '1px solid #e6e8df', boxShadow: '0 1px 2px rgba(0,0,0,0.03)' }}>
+                <div className="flex-1 pr-6">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] mb-1" style={{ color: '#8BC34A' }}>Bottom Line</p>
+                  <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{content.investment.projections.summaryLabel}</h3>
+                  <p className="text-[11px] text-gray-500 mt-1 leading-relaxed">{content.investment.projections.summaryNote}</p>
+                </div>
+                <div className="font-extrabold text-right" style={{ color: '#2d4a2d', fontSize: '28px', letterSpacing: '-0.02em' }}>{content.investment.projections.summaryRange}</div>
+              </div>
+
+              <p className="text-[10px] text-gray-400 leading-relaxed italic">{content.investment.projections.disclaimer}</p>
+            </div>
+          </Page>
+
+
+
           {/* PAGE 10: Terms */}
           <Page>
             <div className="px-16 py-14" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
