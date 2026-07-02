@@ -327,11 +327,10 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-6" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
               {/* Three fee cards — editorial */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-5 mb-6">
                 {[
                   { ...content.investment.ongoing.websiteBuild, cadence: 'One-time', featured: false },
-                  { ...content.investment.ongoing.management, cadence: 'Recurring', featured: true },
-                  { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: false },
+                  { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: true },
                 ].map((card, idx) => {
                   const dark = card.featured;
                   const bg = dark ? '#2d4a2d' : '#ffffff';
