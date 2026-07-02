@@ -421,6 +421,65 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
 
+      {/* PAGE 9b: Media Budget Plan */}
+      <Page size="A4" style={{ ...s.page, padding: 50 }}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>MEDIA BUDGET</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.mediaBudget.title}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 10 }}>{content.investment.mediaBudget.subtitle}</Text>
+        <Text style={{ fontSize: 9, color: gray, lineHeight: 1.6, marginBottom: 14 }}>{content.investment.mediaBudget.description}</Text>
+
+        {/* Split banner */}
+        <View style={{ backgroundColor: green, borderRadius: 12, padding: 14, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: '#c5e86a', letterSpacing: 1.5 }}>CHANNEL SPLIT</Text>
+            <Text style={{ fontSize: 13, fontWeight: 'bold', color: '#ffffff', marginTop: 2 }}>{content.investment.mediaBudget.splitLabel}</Text>
+          </View>
+        </View>
+
+        {/* Tiers */}
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
+          {content.investment.mediaBudget.tiers.map((tier, i) => (
+            <View key={i} style={{ flex: 1, backgroundColor: '#ffffff', borderRadius: 12, padding: 14, borderWidth: 0.5, borderColor: '#e6e8df', position: 'relative', minHeight: 180 }}>
+              <Text style={{ position: 'absolute', top: 6, right: 10, fontSize: 24, fontWeight: 'bold', color: 'rgba(45,74,45,0.07)', letterSpacing: -1 }}>
+                {String(i + 1).padStart(2, '0')}
+              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+                <View style={{ width: 10, height: 1, backgroundColor: lime }} />
+                <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: '#9aa39a', letterSpacing: 1.5 }}>TIER {i + 1}</Text>
+              </View>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green, letterSpacing: 1, marginBottom: 6, textTransform: 'uppercase' }}>{tier.months}</Text>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, letterSpacing: -0.3 }}>{tier.monthly}</Text>
+              <Text style={{ fontSize: 7, color: '#6b7268', marginBottom: 8 }}>per month</Text>
+              <View style={{ height: 0.5, backgroundColor: '#eceee6', marginBottom: 6 }} />
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
+                <Text style={{ fontSize: 7.5, color: gray }}>Google Ads</Text>
+                <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: green }}>{tier.google}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
+                <Text style={{ fontSize: 7.5, color: gray }}>Meta Ads</Text>
+                <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: green }}>{tier.meta}</Text>
+              </View>
+              <Text style={{ fontSize: 6.8, color: '#5a635a', lineHeight: 1.5 }}>{tier.note}</Text>
+            </View>
+          ))}
+        </View>
+
+        <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.6, marginBottom: 10 }}>{content.investment.mediaBudget.splitNote}</Text>
+
+        {/* Total */}
+        <View style={{ backgroundColor: '#f4f6ef', borderRadius: 12, padding: 16, borderWidth: 0.5, borderColor: '#e6e8df', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flex: 1, paddingRight: 12 }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 1.5, marginBottom: 3 }}>6-MONTH PILOT TOTAL</Text>
+            <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{content.investment.mediaBudget.totalLabel}</Text>
+            <Text style={{ fontSize: 7, color: grayLight, marginTop: 3, lineHeight: 1.4 }}>{content.investment.mediaBudget.totalNote}</Text>
+          </View>
+          <Text style={{ fontSize: 26, fontWeight: 'bold', color: green, letterSpacing: -0.4 }}>{content.investment.mediaBudget.totalValue}</Text>
+        </View>
+
+        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+      </Page>
+
       {/* PAGE 10: Terms */}
       <Page size="A4" style={{ ...s.page, padding: 50 }}>
         <View style={s.accent} />
