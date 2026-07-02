@@ -317,13 +317,13 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 24 }}>{content.investment.headline}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 6 }}>{content.investment.headline}</Text>
+        <Text style={{ fontSize: 9, color: gray, lineHeight: 1.5, marginBottom: 20 }}>{content.investment.ongoing.subtitle}</Text>
 
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
+        <View style={{ flexDirection: 'row', gap: 12, marginBottom: 14 }}>
           {[
             { ...content.investment.ongoing.websiteBuild, cadence: 'One-time', featured: false },
-            { ...content.investment.ongoing.management, cadence: 'Recurring', featured: true },
-            { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: false },
+            { ...content.investment.ongoing.performance, cadence: 'Success-based', featured: true },
           ].map((card, i) => {
             const dark = card.featured;
             const cardBg = dark ? green : '#ffffff';
