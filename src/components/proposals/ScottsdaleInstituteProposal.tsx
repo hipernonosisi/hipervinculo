@@ -240,8 +240,8 @@ export function ScottsdaleInstituteProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.websiteService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Included in Monthly Fee</div>
-                  <div className="text-white/40 text-xs mt-1">No separate one-time development charge</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">One-Time Build Fee</div>
+                  <div className="text-white/40 text-xs mt-1">$10,000 — invoiced 50% at kickoff, 50% at launch</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
