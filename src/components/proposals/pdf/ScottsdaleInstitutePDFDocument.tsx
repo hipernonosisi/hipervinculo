@@ -569,21 +569,21 @@ export function ScottsdaleInstitutePDFDocument({ logoBase64 }: Props) {
 
 
       {/* PAGE 10: Terms */}
-      <Page size="A4" style={{ ...s.page, padding: 50 }}>
+      <Page size="A4" style={{ ...s.page, padding: 32 }} wrap={false}>
         <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>TERMS</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.terms.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 16 }}>{content.terms.headline}</Text>
+        <Text style={{ fontSize: 8, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 3 }}>TERMS</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.terms.title}</Text>
+        <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 10 }}>{content.terms.headline}</Text>
         {content.terms.sections.map((section, i) => {
           const Icon = iconMap[section.icon] || FileIcon;
           return (
-            <View key={i} style={{ backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 6, flexDirection: 'row', gap: 12 }}>
-              <View style={{ width: 24, height: 24, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.15)', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon size={12} />
+            <View key={i} style={{ backgroundColor: bg, borderRadius: 8, padding: 7, marginBottom: 3, flexDirection: 'row', gap: 8 }}>
+              <View style={{ width: 18, height: 18, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.15)', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon size={10} />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 2 }}>{section.title}</Text>
-                <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.45 }}>{section.description}</Text>
+                <Text style={{ fontSize: 8, fontWeight: 'bold', color: green, marginBottom: 1 }}>{section.title}</Text>
+                <Text style={{ fontSize: 6.8, color: gray, lineHeight: 1.35 }}>{section.description}</Text>
               </View>
             </View>
           );
