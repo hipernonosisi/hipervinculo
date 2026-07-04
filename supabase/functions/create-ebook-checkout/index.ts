@@ -9,14 +9,26 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const PRICE_ID = "price_1TgYZJLvqyfYabJSEaUNMhHp";
+const PRICE_ID_FBA = "price_1TgYZJLvqyfYabJSEaUNMhHp";
+const PRICE_ID_PPC = "price_1TpWxELvqyfYabJSOVFdoieZ";
 const ADMIN_EMAIL = "info@hipervinculo.net";
+
+const PRODUCTS: Record<string, { price_id: string; slug: string; name: string }> = {
+  "amazon-fba": { price_id: PRICE_ID_FBA, slug: "amazon-fba-ebook", name: "Amazon FBA Sin Inventario" },
+  "amazon-ppc": { price_id: PRICE_ID_PPC, slug: "publicidad-en-amazon", name: "Publicidad en Amazon Sin Quemar tu Dinero" },
+};
+
+function getProduct(d: { product_key?: string }) {
+  const key = d.product_key && PRODUCTS[d.product_key] ? d.product_key : "amazon-fba";
+  return { key, ...PRODUCTS[key] };
+}
 
 const BodySchema = z.object({
   email: z.string().trim().email().max(255),
   name: z.string().trim().min(1).max(120),
   phone: z.string().trim().min(7).max(30),
   variant: z.string().trim().max(40).optional().default("default"),
+  product_key: z.enum(["amazon-fba", "amazon-ppc"]).optional().default("amazon-fba"),
   marketing_opt_in: z.boolean().optional().default(false),
   utm_source: z.string().trim().max(120).optional(),
   utm_medium: z.string().trim().max(120).optional(),
@@ -66,6 +78,7 @@ serve(async (req) => {
     const d = parsed.data;
     parsedEmail = d.email;
     parsedName = d.name;
+    const product = getProduct(d);
 
     // Capture IP / UA
     const xff = req.headers.get("x-forwarded-for") || "";
@@ -80,6 +93,7 @@ serve(async (req) => {
         name: d.name,
         phone: d.phone,
         variant: d.variant,
+        product_key: product.key,
         marketing_opt_in: d.marketing_opt_in,
         checkout_status: "pending",
         client_ip,
@@ -112,7 +126,7 @@ serve(async (req) => {
 
     const md: Record<string, string> = {
       name: d.name, phone: d.phone, variant: d.variant,
-      marketing_opt_in: optStr, product: "amazon-fba-sin-inventario",
+      marketing_opt_in: optStr, product_key: product.key,
     };
     if (d.utm_source) md.utm_source = d.utm_source.slice(0, 500);
     if (d.utm_medium) md.utm_medium = d.utm_medium.slice(0, 500);
@@ -127,11 +141,11 @@ serve(async (req) => {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer_email: d.email,
-      line_items: [{ price: PRICE_ID, quantity: 1 }],
+      line_items: [{ price: product.price_id, quantity: 1 }],
       // Stripe Checkout auto-detects payment methods enabled in your dashboard
       allow_promotion_codes: true,
-      success_url: `${origin}/amazon-fba-ebook/gracias?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/amazon-fba-ebook?canceled=1`,
+      success_url: `${origin}/${product.slug}/gracias?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/${product.slug}?canceled=1`,
       metadata: md,
       payment_intent_data: { metadata: { ...md, email: d.email } },
     });
@@ -147,12 +161,13 @@ serve(async (req) => {
     // 4) Notify admin: new lead reached Stripe checkout
     const waDigits = (d.phone || "").replace(/\D/g, "");
     const waMsg = encodeURIComponent(
-      `Hola ${d.name.split(" ")[0]}, soy Miguel de Hipervínculo. Vi que estabas comprando la Guía Amazon FBA pero no llegó el pago. ¿Te ayudo a completarla?`
+      `Hola ${d.name.split(" ")[0]}, soy Miguel de Hipervínculo. Vi que estabas comprando ${product.name} pero no llegó el pago. ¿Te ayudo a completarla?`
     );
     const waLink = waDigits ? `https://wa.me/${waDigits}?text=${waMsg}` : null;
     notifyAdmin(
       `🟢 Nuevo lead eBook redirigido a Stripe: ${d.name}`,
-      `<h2>Nuevo lead — Guía Amazon FBA</h2>
+      `<h2>Nuevo lead — ${product.name}</h2>
+       <p><strong>Producto:</strong> ${product.name}</p>
        <p><strong>Nombre:</strong> ${d.name}</p>
        <p><strong>Email:</strong> ${d.email}</p>
        <p><strong>Teléfono:</strong> ${d.phone}</p>

@@ -1,73 +1,84 @@
+# Plan: Segundo producto digital — Publicidad en Amazon Sin Quemar tu Dinero
 
+## Propuesta
+Crear una landing de venta tipo VSL + checkout para el ebook de Amazon PPC, reutilizando la infraestructura de pagos, delivery por email y base de datos que ya existe para la guía Amazon FBA Sin Inventario.
 
-## Complete Redesign of /preview as Sales Landing Page + New /book Page
+## Supuestos
+- Precio: **$67 USD, pago único** (antes $97 por ejemplo, -31%).
+- URL propuesta: `/publicidad-en-amazon`.
+- Pago: Stripe Checkout con `mode: payment`, igual que el ebook FBA.
+- Entrega: email automático con link seguro de descarga del PDF.
+- No se pide página de oferta de remarketing ni dashboard de analytics en esta versión.
 
-### Overview
-Replace the current Typeform-style lead funnel on `/preview` with a full sales landing page inspired by creme.digital's clean, dark, premium aesthetic. Also create a new `/book` page with HubSpot calendar embed. All CTAs point to the HubSpot booking link.
+## Decisiones pendientes
+- Slug final de la landing.
+- Si la landing lleva **VSL de ~90 s** o un **hero estático con poster/cover**. El plan incluye ambos activos, pero se puede omitir el video si prefieren reducir alcance.
 
-### Important Note
-The current `/preview` page has a lead capture funnel that saves data to the database (`preview_leads` and `incomplete_leads` tables). This will be completely replaced -- the new page is purely a sales landing page with external booking links. The existing thank-you page at `/thank-you/preview` will no longer be used by this flow.
+## Entregables
 
----
+1. **Landing `/publicidad-en-amazon`**
+   - Hero con VSL (o poster), headline, bullets de promesa, precio tachado + oferta, CTA a checkout.
+   - Sección de beneficios.
+   - Mini-índice / capítulos destacados (del PDF ya entregado).
+   - Plantillas incluidas.
+   - FAQ.
+   - Sticky CTA/header.
+   - Checkout integrado: formulario + redirección a Stripe Checkout.
+   - Rastreo: Meta Pixel `InitiateCheckout`, GA4, eventos de formulario y pageview.
 
-### New Files to Create
+2. **Página de éxito `/publicidad-en-amazon/gracias`**
+   - Confirma pago, dispara Pixel `Purchase`, descarga el PDF desde link firmado.
+   - Reutilizar lógica actual adaptada por producto.
 
-**1. `src/pages/Preview.tsx`** (complete rewrite ~600-800 lines)
-- Self-contained sales landing page with 10 sections
-- Uses dark backgrounds (`#0a0a0a`, `#111`, `#1a1a1a`) with brand accent (`#8BC34A`)
-- Intersection Observer for scroll-triggered fade-in/slide-up animations
-- Does NOT use the standard `<Layout>` wrapper (custom sticky header + custom footer section)
-- All "Book a Call" buttons link to: `https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c20-4ff8-8754-92e138e05f08`
-- "See Our Work" button smooth-scrolls to the case studies section
+3. **Funciones de backend (reutilizadas y extendidas)**
+   - `create-ebook-checkout`: aceptar parámetro `product_key` (`amazon-ppc`) y mapear a nuevo `price_id`.
+   - `verify-ebook-payment`: detectar producto según sesión y enviar email con asunto/copy correcto.
+   - `download-ebook`: servir el nuevo path en bucket `ebooks` según `product_key`.
+   - Agregar/columna `product_key` en tablas `ebook_leads`, `ebook_purchases` y `ebook_download_logs` para segmentar correctamente.
 
-**Sections:**
-1. **Hero** -- Dark bg, large bold headline, subheadline, two CTAs, 3 animated stat counters (200+ Clients, 20+ Years, $30M+ Generated)
-2. **VSL Video** -- 16:9 placeholder with play button overlay, CTA below
-3. **How It Works** -- 3 step cards with icons (Eye, Hammer, Rocket from lucide)
-4. **Results / Case Studies** -- 9 project cards using portfolio screenshots, each with business type, result text, and "Visit Site" link
-5. **Pricing** -- Two side-by-side cards (Website $3,000 one-time / Google Ads $1,250/mo) with feature lists
-6. **Why Hipervinculo** -- 6 feature cards in a 2x3 grid
-7. **Founder Story** -- Photo placeholder + Miguel's quote
-8. **FAQ** -- Accordion with 6 questions using Radix accordion
-9. **Final CTA** -- Dark section with urgency headline + booking button
-10. **Footer** -- Minimal dark footer matching the page aesthetic
+4. **Producto Stripe**
+   - Crear producto + price de $67 USD one-time en Stripe.
+   - Actualizar functions con el nuevo `price_id`.
 
-**2. `src/pages/Book.tsx`** (~80 lines)
-- Dark-themed page with headline, subheadline
-- HubSpot calendar iframe embed (with fallback direct link)
-- Trust badges below (200+ Businesses | 20+ Years | $30M+)
+5. **Storage**
+   - Subir el PDF rellenable al bucket `ebooks` bajo `publicidad-en-amazon/Publicidad_en_Amazon_SQTD_RELLENABLE_Hipervinculo.pdf`.
 
----
+6. **Assets generados**
+   - Poster/cover 3D de la guía.
+   - Si se avanza con VSL: video de ~90 s + thumbnail, generados vía kie.ai (de acuerdo a la regla de media del proyecto) usando el contenido del PDF como guión. Si no, un hero estático con el poster.
 
-### Files to Modify
+7. **Emails**
+   - Actualizar template de cliente y admin para "Publicidad en Amazon Sin Quemar tu Dinero".
 
-**3. `src/App.tsx`**
-- Import new `Book` component
-- Add route: `<Route path="/book" element={<Book />} />`
+## Detalles técnicos
 
----
+### Nuevos archivos
+- `src/pages/AmazonPpcEbook.tsx`
+- `src/pages/AmazonPpcEbookSuccess.tsx`
 
-### Design System Details
+### Archivos a modificar
+- `src/App.tsx`: import + rutas `/publicidad-en-amazon` y `/publicidad-en-amazon/gracias`.
+- `supabase/functions/create-ebook-checkout/index.ts`: mapeo `product_key -> price_id`.
+- `supabase/functions/verify-ebook-payment/index.ts`: lógica de producto, email y CAPI.
+- `supabase/functions/download-ebook/index.ts`: mapeo `product_key -> file_path`.
+- `src/integrations/supabase/types.ts`: agregar `product_key` a `ebook_leads`, `ebook_purchases`, `ebook_download_logs`.
 
-- **Background**: `#0a0a0a` (near-black) for main sections, alternating `#111` and `#0a0a0a`
-- **Text**: White (`#fff`) for headings, `#a1a1a1` for body text
-- **Accent**: Brand lime green `#8BC34A` for CTAs, highlights, icons
-- **Cards**: `#1a1a1a` background, `#2a2a2a` border, rounded-2xl, subtle hover glow
-- **Typography**: Keep Inter font, large bold headings (text-5xl/6xl on desktop)
-- **Animations**: Intersection Observer triggers `opacity-0 translate-y-8` to `opacity-100 translate-y-0` on scroll
-- **Sticky header**: Compact dark header with logo + "Book a Call" button, visible on scroll
+### Base de datos
+- Migration para agregar `product_key text default 'amazon-fba'` en las 3 tablas y actualizar RLS/policies (los `GRANT` ya están en las tablas existentes).
 
-### Case Study Cards Data (hardcoded in component)
-Maps each to existing portfolio images and live URLs:
-- Stillwater Day Spa -> "From 2-3 calls/day to 20+ calls/day"
-- Rasetta Innovations -> "800+ leads/month, 20 properties closed/month"  
-- Delios Home -> "0 to 10 qualified leads/month, 60% close rate in 90 days"
-- And 6 more with the specified result text
+### Pagos
+- Usar `stripe--create_stripe_product_and_price` o la API de Stripe con el secret existente para crear `price_...`.
 
-### Technical Notes
-- No database interaction needed (pure static landing page)
-- The old lead capture logic (Supabase inserts, session tracking) is removed entirely
-- Uses framer-motion (already installed) for counter animations and scroll reveals
-- Mobile-responsive: single column on mobile, grid layouts on desktop
-- The page opts out of the standard Layout component to have full control over header/footer styling
+### Animaciones / UX
+- Replicar animaciones Framer Motion del ebook FBA.
+- VSLPlayer con comportamiento tap-to-watch en mobile y autoplay mute.
 
+### SEO básico
+- Title: "Publicidad en Amazon Sin Quemar tu Dinero · Guía PDF 2026"
+- Description: aprender a rentabilizar Amazon PPC estructurando campañas, negativas y optimización semanal.
+
+### Costos/limites
+- Generación de video/imagen con kie.ai consume créditos del balance existente.
+
+## Próximo paso
+Confirmar slug definitivo y si incluimos VSL o solo poster/cover estático. Una vez aprobado, pasamos a implementación.
