@@ -7,7 +7,21 @@ const corsHeaders = {
 };
 
 const BUCKET = "ebooks";
-const FILE_PATH = "amazon-fba-sin-inventario/Amazon_FBA_Sin_Inventario_Hipervinculo.pdf";
+
+const PRODUCTS: Record<string, { file_path: string; download_name: string }> = {
+  "amazon-fba": {
+    file_path: "amazon-fba-sin-inventario/Amazon_FBA_Sin_Inventario_Hipervinculo.pdf",
+    download_name: "Amazon_FBA_Sin_Inventario_Hipervinculo.pdf",
+  },
+  "amazon-ppc": {
+    file_path: "publicidad-en-amazon/Publicidad_en_Amazon_SQTD_RELLENABLE_Hipervinculo.pdf",
+    download_name: "Publicidad_en_Amazon_SQTD_RELLENABLE_Hipervinculo.pdf",
+  },
+};
+
+function getProductConfig(productKey?: string | null) {
+  return PRODUCTS[productKey || ""] || PRODUCTS["amazon-fba"];
+}
 
 function errPage(title: string, msg: string, status = 403) {
   const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>${title}</title>
@@ -47,10 +61,12 @@ serve(async (req) => {
       return errPage("Límite alcanzado", `Has usado las ${purchase.max_downloads} descargas permitidas. Contáctanos si necesitas otra.`);
     }
 
+    const product = getProductConfig(purchase.product_key);
+
     // Generate short-lived signed URL and redirect
     const { data: signed, error: signErr } = await supabase
-      .storage.from(BUCKET).createSignedUrl(FILE_PATH, 120, {
-        download: "Amazon_FBA_Sin_Inventario_Hipervinculo.pdf",
+      .storage.from(BUCKET).createSignedUrl(product.file_path, 120, {
+        download: product.download_name,
       });
     if (signErr || !signed) {
       console.error("sign error", signErr);
@@ -84,6 +100,7 @@ serve(async (req) => {
 
     await supabase.from("ebook_download_logs").insert({
       purchase_id: purchase.id,
+      product_key: purchase.product_key || "amazon-fba",
       client_ip, user_agent,
       country: geo.country, city: geo.city, region: geo.region,
     });
