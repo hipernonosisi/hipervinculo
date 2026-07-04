@@ -342,7 +342,7 @@ serve(async (req) => {
   }
 });
 
-function productKeyFromSession(session: Stripe.Checkout.Session) {
+function productKeyFromSession(session: any) {
   const md = session.metadata || {};
   return md.product_key || (md.product === "amazon-fba-sin-inventario" ? "amazon-fba" : "amazon-fba");
 }
