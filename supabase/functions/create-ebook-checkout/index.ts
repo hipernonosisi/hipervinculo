@@ -28,6 +28,7 @@ const BodySchema = z.object({
   name: z.string().trim().min(1).max(120),
   phone: z.string().trim().min(7).max(30),
   variant: z.string().trim().max(40).optional().default("default"),
+  product_key: z.enum(["amazon-fba", "amazon-ppc"]).optional().default("amazon-fba"),
   marketing_opt_in: z.boolean().optional().default(false),
   utm_source: z.string().trim().max(120).optional(),
   utm_medium: z.string().trim().max(120).optional(),
