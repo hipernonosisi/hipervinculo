@@ -215,6 +215,7 @@ export type Database = {
           country: string | null
           downloaded_at: string
           id: string
+          product_key: string
           purchase_id: string
           region: string | null
           user_agent: string | null
@@ -225,6 +226,7 @@ export type Database = {
           country?: string | null
           downloaded_at?: string
           id?: string
+          product_key?: string
           purchase_id: string
           region?: string | null
           user_agent?: string | null
@@ -235,6 +237,7 @@ export type Database = {
           country?: string | null
           downloaded_at?: string
           id?: string
+          product_key?: string
           purchase_id?: string
           region?: string | null
           user_agent?: string | null
@@ -264,6 +267,7 @@ export type Database = {
           marketing_opt_in: boolean
           name: string
           phone: string | null
+          product_key: string
           recovery_email_sent_at: string | null
           referrer: string | null
           region: string | null
@@ -291,6 +295,7 @@ export type Database = {
           marketing_opt_in?: boolean
           name: string
           phone?: string | null
+          product_key?: string
           recovery_email_sent_at?: string | null
           referrer?: string | null
           region?: string | null
@@ -318,6 +323,7 @@ export type Database = {
           marketing_opt_in?: boolean
           name?: string
           phone?: string | null
+          product_key?: string
           recovery_email_sent_at?: string | null
           referrer?: string | null
           region?: string | null
@@ -357,6 +363,7 @@ export type Database = {
           paid_at: string | null
           phone: string | null
           price_variant: string | null
+          product_key: string
           referrer: string | null
           region: string | null
           stripe_payment_intent: string | null
@@ -392,6 +399,7 @@ export type Database = {
           paid_at?: string | null
           phone?: string | null
           price_variant?: string | null
+          product_key?: string
           referrer?: string | null
           region?: string | null
           stripe_payment_intent?: string | null
@@ -427,6 +435,7 @@ export type Database = {
           paid_at?: string | null
           phone?: string | null
           price_variant?: string | null
+          product_key?: string
           referrer?: string | null
           region?: string | null
           stripe_payment_intent?: string | null
