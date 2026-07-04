@@ -21,6 +21,43 @@ const Body = z.object({
 
 const META_PIXEL_ID = "1488250718116666";
 
+type ProductConfig = {
+  name: string;
+  content_name: string;
+  content_ids: string[];
+  file_path: string;
+  email_subject: string;
+  email_title: string;
+  admin_label: string;
+};
+
+const PRODUCTS: Record<string, ProductConfig> = {
+  "amazon-fba": {
+    name: "Amazon FBA Sin Inventario",
+    content_name: "Amazon FBA Sin Inventario",
+    content_ids: ["amazon-fba-ebook"],
+    file_path: "amazon-fba-sin-inventario/Amazon_FBA_Sin_Inventario_Hipervinculo.pdf",
+    email_subject: "Tu guía Amazon FBA Sin Inventario está lista 📘",
+    email_title: "Amazon FBA Sin Inventario",
+    admin_label: "Amazon FBA Sin Inventario (eBook PDF)",
+  },
+  "amazon-ppc": {
+    name: "Publicidad en Amazon Sin Quemar tu Dinero",
+    content_name: "Publicidad en Amazon Sin Quemar tu Dinero",
+    content_ids: ["publicidad-en-amazon"],
+    file_path: "publicidad-en-amazon/Publicidad_en_Amazon_SQTD_RELLENABLE_Hipervinculo.pdf",
+    email_subject: "Tu guía Publicidad en Amazon Sin Quemar tu Dinero está lista 📘",
+    email_title: "Publicidad en Amazon Sin Quemar tu Dinero",
+    admin_label: "Publicidad en Amazon Sin Quemar tu Dinero (eBook PDF)",
+  },
+};
+
+function getProduct(md?: Record<string, string>): ProductConfig {
+  const legacy = md?.product;
+  const key = (md?.product_key || (legacy === "amazon-fba-sin-inventario" ? "amazon-fba" : "")) || "amazon-fba";
+  return PRODUCTS[key] || PRODUCTS["amazon-fba"];
+}
+
 async function sha256Hex(s: string): Promise<string> {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s.trim().toLowerCase()));
   return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -38,6 +75,7 @@ async function sendMetaCapiPurchase(p: {
   fbp: string | null;
   fbc: string | null;
   event_source_url: string;
+  product: ProductConfig;
 }) {
   const token = Deno.env.get("META_CAPI_ACCESS_TOKEN");
   if (!token) { console.warn("META_CAPI_ACCESS_TOKEN missing, skipping CAPI"); return; }
@@ -67,9 +105,9 @@ async function sendMetaCapiPurchase(p: {
       custom_data: {
         currency: p.currency.toUpperCase(),
         value: p.value,
-        content_name: "Amazon FBA Sin Inventario",
+        content_name: p.product.content_name,
         content_type: "product",
-        content_ids: ["amazon-fba-ebook"],
+        content_ids: p.product.content_ids,
         num_items: 1,
       },
     }],
@@ -96,7 +134,7 @@ function genToken() {
   return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-async function sendCustomerEmail(to: string, name: string, downloadUrl: string) {
+async function sendCustomerEmail(to: string, name: string, downloadUrl: string, product: ProductConfig) {
   const html = `<!doctype html><html><body style="margin:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;padding:32px 0;"><tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
@@ -105,7 +143,7 @@ async function sendCustomerEmail(to: string, name: string, downloadUrl: string) 
       </td></tr>
       <tr><td style="padding:32px 28px;">
         <h1 style="margin:0 0 12px;color:#2F4F3E;font-size:24px;font-weight:800;">¡Gracias por tu compra, ${name}!</h1>
-        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#333;">Tu guía <strong>"Amazon FBA Sin Inventario"</strong> está lista para descargar.</p>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#333;">Tu guía <strong>"${product.email_title}"</strong> está lista para descargar.</p>
         <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#333;">Haz clic en el botón. El enlace es personal: vence en <strong>7 días</strong> y permite hasta <strong>5 descargas</strong>.</p>
         <table cellpadding="0" cellspacing="0" style="margin:0 auto;"><tr><td style="background:#2F4F3E;border-radius:8px;">
           <a href="${downloadUrl}" style="display:inline-block;padding:14px 28px;color:#ffffff;text-decoration:none;font-weight:700;font-size:16px;">Descargar mi guía PDF</a>
@@ -120,12 +158,12 @@ async function sendCustomerEmail(to: string, name: string, downloadUrl: string) 
   await resend.emails.send({
     from: "Hipervínculo <info@hipervinculo.net>",
     to: [to],
-    subject: "Tu guía Amazon FBA Sin Inventario está lista 📘",
+    subject: product.email_subject,
     html,
   });
 }
 
-async function sendAdminEmail(p: { name: string; email: string; phone: string | null; amount_cents: number; currency: string; session_id: string; variant: string; marketing_opt_in: boolean }) {
+async function sendAdminEmail(p: { name: string; email: string; phone: string | null; amount_cents: number; currency: string; session_id: string; variant: string; marketing_opt_in: boolean; product: ProductConfig }) {
   const amt = `$${(p.amount_cents / 100).toFixed(2)} ${p.currency.toUpperCase()}`;
   const optBadge = p.marketing_opt_in
     ? '<span style="color:#2F4F3E;font-weight:700;">✅ SÍ acepta marketing (1 email/mes)</span>'
@@ -139,7 +177,7 @@ async function sendAdminEmail(p: { name: string; email: string; phone: string | 
       <tr><td style="padding:28px;">
         <div style="display:inline-block;background:#8BC34A;color:#1a2e22;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;">NUEVA VENTA</div>
         <h1 style="margin:0 0 8px;color:#2F4F3E;font-size:22px;font-weight:800;">Pago recibido: ${amt}</h1>
-        <p style="margin:0 0 20px;color:#666;font-size:14px;">Producto: Amazon FBA Sin Inventario (eBook PDF)</p>
+        <p style="margin:0 0 20px;color:#666;font-size:14px;">Producto: ${p.product.admin_label}</p>
         <table width="100%" cellpadding="8" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;font-size:14px;">
           <tr><td style="color:#666;width:35%;">Nombre</td><td style="color:#1a1a1a;font-weight:600;">${p.name}</td></tr>
           <tr style="background:#f9fafb;"><td style="color:#666;">Email</td><td style="color:#1a1a1a;font-weight:600;">${p.email}</td></tr>
@@ -188,6 +226,9 @@ serve(async (req) => {
       });
     }
 
+    const md = session.metadata || {};
+    const product = getProduct(md);
+
     const { data: existing } = await supabase
       .from("ebook_purchases").select("*").eq("stripe_session_id", session_id).maybeSingle();
 
@@ -199,11 +240,12 @@ serve(async (req) => {
         status: "ok", name: existing.name, email: existing.email,
         download_url: buildLink(existing.download_token),
         amount_cents: existing.amount_cents, currency: existing.currency,
+        product_key: existing.product_key || productKeyFromSession(session),
+        content_name: product.content_name,
         session_id: existing.stripe_session_id, already_processed: true,
       }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const md = session.metadata || {};
     const email = session.customer_details?.email || session.customer_email || "";
     const name = md.name || session.customer_details?.name || "Cliente";
     const phone = md.phone || session.customer_details?.phone || null;
@@ -221,9 +263,12 @@ serve(async (req) => {
       } catch (e) { console.warn("geo lookup failed", e); }
     }
 
+    const productKey = md.product_key || (md.product === "amazon-fba-sin-inventario" ? "amazon-fba" : "amazon-fba");
+
     const { data: inserted, error: insertErr } = await supabase
       .from("ebook_purchases").insert({
         email, name, phone,
+        product_key: productKey,
         stripe_session_id: session.id,
         stripe_payment_intent: typeof session.payment_intent === "string" ? session.payment_intent : null,
         amount_cents: session.amount_total ?? 4999,
@@ -249,7 +294,7 @@ serve(async (req) => {
 
     const downloadUrl = buildLink(token);
     try {
-      await sendCustomerEmail(email, name, downloadUrl);
+      await sendCustomerEmail(email, name, downloadUrl, product);
       await supabase.from("ebook_purchases").update({ email_sent_at: new Date().toISOString() }).eq("id", inserted.id);
     } catch (e) { console.error("Customer email error", e); }
     try {
@@ -259,6 +304,7 @@ serve(async (req) => {
         currency: session.currency ?? "usd",
         session_id: session.id, variant,
         marketing_opt_in: marketingOptIn,
+        product,
       });
     } catch (e) { console.error("Admin email error", e); }
 
@@ -273,7 +319,8 @@ serve(async (req) => {
         user_agent: ua,
         fbp: fbp || null,
         fbc: fbc || null,
-        event_source_url: "https://hipervinculo.net/amazon-fba-ebook/success",
+        event_source_url: `https://hipervinculo.net/${productKey === "amazon-ppc" ? "publicidad-en-amazon" : "amazon-fba-ebook"}/gracias`,
+        product,
       });
     } catch (e) { console.error("Meta CAPI error", e); }
 
@@ -283,6 +330,8 @@ serve(async (req) => {
       status: "ok", name, email, download_url: downloadUrl,
       amount_cents: session.amount_total ?? 4999,
       currency: session.currency ?? "usd",
+      product_key: productKey,
+      content_name: product.content_name,
       session_id: session.id, already_processed: false,
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
@@ -292,3 +341,8 @@ serve(async (req) => {
     });
   }
 });
+
+function productKeyFromSession(session: Stripe.Checkout.Session) {
+  const md = session.metadata || {};
+  return md.product_key || (md.product === "amazon-fba-sin-inventario" ? "amazon-fba" : "amazon-fba");
+}
