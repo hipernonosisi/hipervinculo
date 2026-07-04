@@ -9,8 +9,19 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const PRICE_ID = "price_1TgYZJLvqyfYabJSEaUNMhHp";
+const PRICE_ID_FBA = "price_1TgYZJLvqyfYabJSEaUNMhHp";
+const PRICE_ID_PPC = "price_1TpWxELvqyfYabJSOVFdoieZ";
 const ADMIN_EMAIL = "info@hipervinculo.net";
+
+const PRODUCTS: Record<string, { price_id: string; slug: string; name: string }> = {
+  "amazon-fba": { price_id: PRICE_ID_FBA, slug: "amazon-fba-ebook", name: "Amazon FBA Sin Inventario" },
+  "amazon-ppc": { price_id: PRICE_ID_PPC, slug: "publicidad-en-amazon", name: "Publicidad en Amazon Sin Quemar tu Dinero" },
+};
+
+function getProduct(d: { product_key?: string }) {
+  const key = d.product_key && PRODUCTS[d.product_key] ? d.product_key : "amazon-fba";
+  return { key, ...PRODUCTS[key] };
+}
 
 const BodySchema = z.object({
   email: z.string().trim().email().max(255),
