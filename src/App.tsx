@@ -82,6 +82,8 @@ const App = () => (
               <Route path="/amazon-fba-ebook/oferta" element={<AmazonFbaEbookOferta />} />
               <Route path="/amazon-fba-ebook/gracias" element={<AmazonFbaEbookSuccess />} />
               <Route path="/amazon-fba-ebook/analytics" element={<EbookAnalytics />} />
+              <Route path="/publicidad-en-amazon" element={<AmazonPpcEbook />} />
+              <Route path="/publicidad-en-amazon/gracias" element={<AmazonPpcEbookSuccess />} />
               <Route path="/personajes-status" element={<PersonajesStatus />} />
               <Route path="/terms" element={<Terms />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
