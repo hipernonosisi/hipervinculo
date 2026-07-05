@@ -10,6 +10,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 // Eager: home + main paid-traffic landing (fastest possible FCP for ads)
 import Index from "./pages/Index";
 import AmazonFbaEbook from "./pages/AmazonFbaEbook";
+import AmazonPpcEbook from "./pages/AmazonPpcEbook";
 import NotFound from "./pages/NotFound";
 
 // Lazy: everything else (massive bundle size reduction)
