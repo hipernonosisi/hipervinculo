@@ -448,7 +448,7 @@ export default function AmazonPpcEbook() {
             ].map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="rounded-2xl bg-white border border-[#2F4F3E]/10 p-6 sm:p-7 hover:border-[#8BC34A]/60 hover:shadow-lg transition">
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2F4F3E] leading-none tracking-tight mb-3 whitespace-nowrap">{s.big}</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#2F4F3E] leading-none tracking-tight mb-3 whitespace-nowrap">{s.big}</div>
                 <div className="text-sm font-bold text-[#8BC34A] uppercase tracking-wider mb-2">{s.label}</div>
                 <div className="text-sm text-[#2F4F3E]/70 leading-relaxed">{s.sub}</div>
               </motion.div>
