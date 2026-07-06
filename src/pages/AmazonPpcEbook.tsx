@@ -72,7 +72,6 @@ const faqs = [
 ];
 
 export default function AmazonPpcEbook() {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   usePageTracking(PAGE_URL);
   useSectionTracking(PAGE_URL);
