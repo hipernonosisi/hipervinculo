@@ -285,11 +285,11 @@ export default function AmazonPpcEbook() {
               </p>
 
               <ul className="mt-6 space-y-2.5 text-left max-w-md mx-auto lg:mx-0">
-                {[
-                  { k: "Recuperas", v: "hasta $3.000/mes de gasto quemado" },
-                  { k: "Bajas", v: "ACoS 10–20 puntos en 60 días" },
-                  { k: "Ganas", v: "2 horas/semana para operar toda la cuenta" },
-                ].map((it) => (
+                  {[
+                    { k: "Recuperas", v: "$150 a $38.000/mes según tu gasto" },
+                    { k: "Bajas", v: "ACoS 10–20 puntos en 60 días" },
+                    { k: "Ganas", v: "2 horas/semana para operar toda la cuenta" },
+                  ].map((it) => (
                   <li key={it.k} className="flex items-start gap-2.5 text-sm sm:text-base text-[#2F4F3E]">
                     <CheckCircle2 className="w-5 h-5 text-[#8BC34A] flex-shrink-0 mt-0.5" />
                     <span><strong className="font-bold">{it.k}</strong> <span className="text-[#2F4F3E]/80">{it.v}</span></span>
