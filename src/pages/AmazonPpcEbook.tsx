@@ -98,6 +98,8 @@ export default function AmazonPpcEbook() {
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60);
   const [showCanceledModal, setShowCanceledModal] = useState(false);
+  const [scenarioIdx, setScenarioIdx] = useState(2); // default $5K/mes
+  const scenario = scenarios[scenarioIdx];
   const formStartTracked = useRef(false);
 
   useEffect(() => {
