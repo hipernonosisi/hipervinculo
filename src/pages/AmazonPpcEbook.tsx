@@ -31,6 +31,20 @@ const ORIG_USD = 97;
 const PRODUCT_KEY = "amazon-ppc";
 const PAGE_URL = "/publicidad-en-amazon";
 
+const scenarios = [
+  { spend: 500, label: "$500", antes: 55, despues: 30, waste: 150, yearly: 1800 },
+  { spend: 1500, label: "$1.5K", antes: 57, despues: 28, waste: 450, yearly: 5400 },
+  { spend: 5000, label: "$5K", antes: 60, despues: 26, waste: 1700, yearly: 20400 },
+  { spend: 25000, label: "$25K", antes: 62, despues: 25, waste: 9250, yearly: 111000 },
+  { spend: 100000, label: "$100K", antes: 62, despues: 24, waste: 38000, yearly: 456000 },
+];
+
+const fmtMoney = (n: number) =>
+  n >= 1000 ? `$${Math.round(n / 1000)}K` : `$${n}`;
+const fmtMoneyFull = (n: number) =>
+  new Intl.NumberFormat("es-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+
+
 const benefits = [
   { icon: DollarSign, title: "Recupera margen quemado", desc: "Corta el 20–40% de gasto que hoy va a clics que jamás convierten." },
   { icon: Target, title: "Baja tu ACoS 10–20 puntos", desc: "Del rojo al verde en 30–60 días con reglas claras, no intuición." },
