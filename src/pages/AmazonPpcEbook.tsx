@@ -278,7 +278,9 @@ export default function AmazonPpcEbook() {
                 <Zap className="w-3 h-3 text-[#8BC34A]" /> GUÍA PDF · EDICIÓN 2026
               </div>
               <h1 className="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-[#2F4F3E]">
-                Deja de quemar clics que no venden. Sirve si gastas <span className="text-[#8BC34A]">$500 a $100.000/mes</span>.
+                Deja de quemar clics que no venden.<br />
+                Sirve si gastas<br />
+                <span className="text-[#8BC34A]">$500 a $100.000/mes</span>.
               </h1>
               <p className="mt-5 text-base sm:text-lg lg:text-xl text-[#2F4F3E]/75 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 El sistema exacto para bajar tu ACoS del 60% al 25% y convertir tu cuenta de Amazon en una máquina rentable — sin agencia, sin adivinar, sin cursos de 20 horas.
