@@ -323,9 +323,30 @@ export default function AmazonPpcEbook() {
                   backgroundImage: "radial-gradient(circle at 20% 10%, #8BC34A 0, transparent 45%), radial-gradient(circle at 85% 90%, #8BC34A 0, transparent 45%)"
                 }} />
                 <div className="relative">
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-bold text-[#8BC34A] uppercase tracking-widest">Impacto en tu cuenta</h3>
                     <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Mes 1 → Mes 3</span>
+                  </div>
+
+                  {/* Selector de escenario */}
+                  <div className="mb-5">
+                    <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider mb-2">Selecciona tu gasto mensual</div>
+                    <div className="flex flex-wrap gap-2">
+                      {scenarios.map((s, i) => (
+                        <button
+                          key={s.spend}
+                          type="button"
+                          onClick={() => setScenarioIdx(i)}
+                          className={`px-2.5 py-1.5 rounded-lg text-[11px] font-extrabold transition-all ${
+                            i === scenarioIdx
+                              ? "bg-[#8BC34A] text-[#1a2e22] shadow-lg"
+                              : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                          }`}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -336,11 +357,24 @@ export default function AmazonPpcEbook() {
                         <span className="text-red-400 text-[10px] font-bold uppercase">Quemando</span>
                       </div>
                       <div className="flex justify-between items-end mb-2">
-                        <span className="text-3xl sm:text-4xl font-extrabold">62%</span>
-                        <span className="text-xs text-red-300">−$1.850/mes fuga</span>
+                        <motion.span
+                          key={`antes-${scenario.spend}`}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-3xl sm:text-4xl font-extrabold"
+                        >
+                          {scenario.antes}%
+                        </motion.span>
+                        <span className="text-xs text-red-300">−{fmtMoney(scenario.waste)}/mes fuga</span>
                       </div>
                       <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-red-400 h-full" style={{ width: "62%" }} />
+                        <motion.div
+                          key={`bar-antes-${scenario.spend}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${scenario.antes}%` }}
+                          transition={{ duration: 0.5 }}
+                          className="bg-red-400 h-full"
+                        />
                       </div>
                     </div>
 
@@ -351,11 +385,24 @@ export default function AmazonPpcEbook() {
                         <span className="bg-[#8BC34A] text-[#1a2e22] px-1.5 py-0.5 rounded text-[10px] font-bold uppercase">Rentable</span>
                       </div>
                       <div className="flex justify-between items-end mb-2">
-                        <span className="text-3xl sm:text-4xl font-extrabold text-[#8BC34A]">24%</span>
-                        <span className="text-xs text-[#8BC34A]">+$2.400 utilidad neta</span>
+                        <motion.span
+                          key={`dsp-${scenario.spend}`}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-3xl sm:text-4xl font-extrabold text-[#8BC34A]"
+                        >
+                          {scenario.despues}%
+                        </motion.span>
+                        <span className="text-xs text-[#8BC34A]">+{fmtMoney(scenario.waste)} utilidad neta</span>
                       </div>
                       <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-[#8BC34A] h-full" style={{ width: "24%" }} />
+                        <motion.div
+                          key={`bar-dsp-${scenario.spend}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${scenario.despues}%` }}
+                          transition={{ duration: 0.5 }}
+                          className="bg-[#8BC34A] h-full"
+                        />
                       </div>
                     </div>
                   </div>
@@ -363,7 +410,7 @@ export default function AmazonPpcEbook() {
                   <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
                     <div>
                       <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Diferencia mensual</div>
-                      <div className="text-2xl font-extrabold text-[#8BC34A]">+$4.250 <span className="text-xs text-white/60 font-medium">a tu bolsillo</span></div>
+                      <div className="text-2xl font-extrabold text-[#8BC34A]">+{fmtMoneyFull(scenario.waste)} <span className="text-xs text-white/60 font-medium">a tu bolsillo</span></div>
                     </div>
                     <img
                       src={coverAsset.url}
@@ -375,7 +422,7 @@ export default function AmazonPpcEbook() {
                 </div>
               </div>
               <p className="text-[11px] text-[#2F4F3E]/50 mt-3 text-center lg:text-left">
-                * Cifras basadas en cuentas reales gestionadas por Hipervínculo. Tus resultados dependerán de tu categoría y ejecución.
+                * Escenario: {scenario.label}/mes. Cifras basadas en cuentas reales gestionadas por Hipervínculo. Tus resultados dependerán de tu categoría y ejecución.
               </p>
             </motion.div>
           </div>
