@@ -440,7 +440,7 @@ export default function AmazonPpcEbook() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { big: "$2.400", label: "gasto quemado promedio/mes", sub: "En cuentas con ACoS >55% sin negativas activas." },
+              { big: "$150 a $38K", label: "gasto quemado/mes según escala", sub: "Desde cuentas de $500/mes hasta $100.000/mes gestionadas por Hipervínculo." },
               { big: "−47%", label: "reducción de ACoS típica", sub: "Aplicando el ciclo de optimización de 7 días de la guía." },
               { big: "14 días", label: "para recuperar la inversión", sub: "El precio de la guía se paga solo con la primera negativa que apliques." },
             ].map((s, i) => (
