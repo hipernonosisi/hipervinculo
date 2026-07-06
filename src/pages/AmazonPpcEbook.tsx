@@ -32,12 +32,12 @@ const PRODUCT_KEY = "amazon-ppc";
 const PAGE_URL = "/publicidad-en-amazon";
 
 const benefits = [
-  { icon: Target, title: "ACoS de break-even claro", desc: "Calcula tu número real y deja de operar campañas a pérdida." },
-  { icon: Search, title: "Sabe qué anunciar (y qué no)", desc: "Elige productos que aguanten PPC y descarta los que desangran tu margen." },
-  { icon: BarChart3, title: "Estructura que escala", desc: "Arquitectura de campañas SP, SB, SD sin volverse inmanejable." },
-  { icon: SlidersHorizontal, title: "Bidding por ROAS objetivo", desc: "Ajusta pujas con disciplina: down only, up & down y placement multipliers." },
-  { icon: Shield, title: "Negativas desde el día cero", desc: "Bloquea términos que queman dinero antes de que empiecen a gastar." },
-  { icon: Clock, title: "Rutina de 2 horas por semana", desc: "Checklists, KPIs y reglas de pausa para mantener la cuenta sana." },
+  { icon: DollarSign, title: "Recupera margen quemado", desc: "Corta el 20–40% de gasto que hoy va a clics que jamás convierten." },
+  { icon: Target, title: "Baja tu ACoS 10–20 puntos", desc: "Del rojo al verde en 30–60 días con reglas claras, no intuición." },
+  { icon: TrendingUp, title: "Escala sin perder rentabilidad", desc: "Sube presupuesto solo donde el ROAS ya está blindado matemáticamente." },
+  { icon: Shield, title: "Bloquea términos que sangran", desc: "Sistema de negativas desde el día cero: paras la fuga antes de gastarla." },
+  { icon: BarChart3, title: "Sabe qué anunciar (y qué no)", desc: "Filtra productos que aguantan PPC. Deja de subsidiar SKUs perdedores." },
+  { icon: Clock, title: "2 horas/semana, no 20", desc: "Rutina y checklists para operar la cuenta sin vivir dentro de ella." },
 ];
 
 const chapters = [
