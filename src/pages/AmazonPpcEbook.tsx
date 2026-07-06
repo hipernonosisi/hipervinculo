@@ -31,6 +31,20 @@ const ORIG_USD = 97;
 const PRODUCT_KEY = "amazon-ppc";
 const PAGE_URL = "/publicidad-en-amazon";
 
+const scenarios = [
+  { spend: 500, label: "$500", antes: 55, despues: 30, waste: 150, yearly: 1800 },
+  { spend: 1500, label: "$1.5K", antes: 57, despues: 28, waste: 450, yearly: 5400 },
+  { spend: 5000, label: "$5K", antes: 60, despues: 26, waste: 1700, yearly: 20400 },
+  { spend: 25000, label: "$25K", antes: 62, despues: 25, waste: 9250, yearly: 111000 },
+  { spend: 100000, label: "$100K", antes: 62, despues: 24, waste: 38000, yearly: 456000 },
+];
+
+const fmtMoney = (n: number) =>
+  n >= 1000 ? `$${Math.round(n / 1000)}K` : `$${n}`;
+const fmtMoneyFull = (n: number) =>
+  new Intl.NumberFormat("es-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+
+
 const benefits = [
   { icon: DollarSign, title: "Recupera margen quemado", desc: "Corta el 20–40% de gasto que hoy va a clics que jamás convierten." },
   { icon: Target, title: "Baja tu ACoS 10–20 puntos", desc: "Del rojo al verde en 30–60 días con reglas claras, no intuición." },
@@ -84,6 +98,8 @@ export default function AmazonPpcEbook() {
   const [viewers, setViewers] = useState(17);
   const [secondsLeft, setSecondsLeft] = useState(45 * 60);
   const [showCanceledModal, setShowCanceledModal] = useState(false);
+  const [scenarioIdx, setScenarioIdx] = useState(2); // default $5K/mes
+  const scenario = scenarios[scenarioIdx];
   const formStartTracked = useRef(false);
 
   useEffect(() => {
@@ -262,18 +278,18 @@ export default function AmazonPpcEbook() {
                 <Zap className="w-3 h-3 text-[#8BC34A]" /> GUÍA PDF · EDICIÓN 2026
               </div>
               <h1 className="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-[#2F4F3E]">
-                Deja de quemar <span className="text-[#8BC34A]">$500–$3.000/mes</span> en clics que no venden.
+                Deja de quemar clics que no venden. Sirve si gastas <span className="text-[#8BC34A]">$500 o $100.000/mes</span>.
               </h1>
               <p className="mt-5 text-base sm:text-lg lg:text-xl text-[#2F4F3E]/75 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 El sistema exacto para bajar tu ACoS del 60% al 25% y convertir tu cuenta de Amazon en una máquina rentable — sin agencia, sin adivinar, sin cursos de 20 horas.
               </p>
 
               <ul className="mt-6 space-y-2.5 text-left max-w-md mx-auto lg:mx-0">
-                {[
-                  { k: "Recuperas", v: "hasta $3.000/mes de gasto quemado" },
-                  { k: "Bajas", v: "ACoS 10–20 puntos en 60 días" },
-                  { k: "Ganas", v: "2 horas/semana para operar toda la cuenta" },
-                ].map((it) => (
+                  {[
+                    { k: "Recuperas", v: "$150 a $38.000/mes según tu gasto" },
+                    { k: "Bajas", v: "ACoS 10–20 puntos en 60 días" },
+                    { k: "Ganas", v: "2 horas/semana para operar toda la cuenta" },
+                  ].map((it) => (
                   <li key={it.k} className="flex items-start gap-2.5 text-sm sm:text-base text-[#2F4F3E]">
                     <CheckCircle2 className="w-5 h-5 text-[#8BC34A] flex-shrink-0 mt-0.5" />
                     <span><strong className="font-bold">{it.k}</strong> <span className="text-[#2F4F3E]/80">{it.v}</span></span>
@@ -307,9 +323,30 @@ export default function AmazonPpcEbook() {
                   backgroundImage: "radial-gradient(circle at 20% 10%, #8BC34A 0, transparent 45%), radial-gradient(circle at 85% 90%, #8BC34A 0, transparent 45%)"
                 }} />
                 <div className="relative">
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-bold text-[#8BC34A] uppercase tracking-widest">Impacto en tu cuenta</h3>
                     <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Mes 1 → Mes 3</span>
+                  </div>
+
+                  {/* Selector de escenario */}
+                  <div className="mb-5">
+                    <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider mb-2">Selecciona tu gasto mensual</div>
+                    <div className="flex flex-wrap gap-2">
+                      {scenarios.map((s, i) => (
+                        <button
+                          key={s.spend}
+                          type="button"
+                          onClick={() => setScenarioIdx(i)}
+                          className={`px-2.5 py-1.5 rounded-lg text-[11px] font-extrabold transition-all ${
+                            i === scenarioIdx
+                              ? "bg-[#8BC34A] text-[#1a2e22] shadow-lg"
+                              : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                          }`}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -320,11 +357,24 @@ export default function AmazonPpcEbook() {
                         <span className="text-red-400 text-[10px] font-bold uppercase">Quemando</span>
                       </div>
                       <div className="flex justify-between items-end mb-2">
-                        <span className="text-3xl sm:text-4xl font-extrabold">62%</span>
-                        <span className="text-xs text-red-300">−$1.850/mes fuga</span>
+                        <motion.span
+                          key={`antes-${scenario.spend}`}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-3xl sm:text-4xl font-extrabold"
+                        >
+                          {scenario.antes}%
+                        </motion.span>
+                        <span className="text-xs text-red-300">−{fmtMoney(scenario.waste)}/mes fuga</span>
                       </div>
                       <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-red-400 h-full" style={{ width: "62%" }} />
+                        <motion.div
+                          key={`bar-antes-${scenario.spend}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${scenario.antes}%` }}
+                          transition={{ duration: 0.5 }}
+                          className="bg-red-400 h-full"
+                        />
                       </div>
                     </div>
 
@@ -335,11 +385,24 @@ export default function AmazonPpcEbook() {
                         <span className="bg-[#8BC34A] text-[#1a2e22] px-1.5 py-0.5 rounded text-[10px] font-bold uppercase">Rentable</span>
                       </div>
                       <div className="flex justify-between items-end mb-2">
-                        <span className="text-3xl sm:text-4xl font-extrabold text-[#8BC34A]">24%</span>
-                        <span className="text-xs text-[#8BC34A]">+$2.400 utilidad neta</span>
+                        <motion.span
+                          key={`dsp-${scenario.spend}`}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-3xl sm:text-4xl font-extrabold text-[#8BC34A]"
+                        >
+                          {scenario.despues}%
+                        </motion.span>
+                        <span className="text-xs text-[#8BC34A]">+{fmtMoney(scenario.waste)} utilidad neta</span>
                       </div>
                       <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-[#8BC34A] h-full" style={{ width: "24%" }} />
+                        <motion.div
+                          key={`bar-dsp-${scenario.spend}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${scenario.despues}%` }}
+                          transition={{ duration: 0.5 }}
+                          className="bg-[#8BC34A] h-full"
+                        />
                       </div>
                     </div>
                   </div>
@@ -347,7 +410,7 @@ export default function AmazonPpcEbook() {
                   <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
                     <div>
                       <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Diferencia mensual</div>
-                      <div className="text-2xl font-extrabold text-[#8BC34A]">+$4.250 <span className="text-xs text-white/60 font-medium">a tu bolsillo</span></div>
+                      <div className="text-2xl font-extrabold text-[#8BC34A]">+{fmtMoneyFull(scenario.waste)} <span className="text-xs text-white/60 font-medium">a tu bolsillo</span></div>
                     </div>
                     <img
                       src={coverAsset.url}
@@ -359,7 +422,7 @@ export default function AmazonPpcEbook() {
                 </div>
               </div>
               <p className="text-[11px] text-[#2F4F3E]/50 mt-3 text-center lg:text-left">
-                * Cifras basadas en cuentas reales gestionadas por Hipervínculo. Tus resultados dependerán de tu categoría y ejecución.
+                * Escenario: {scenario.label}/mes. Cifras basadas en cuentas reales gestionadas por Hipervínculo. Tus resultados dependerán de tu categoría y ejecución.
               </p>
             </motion.div>
           </div>
@@ -377,7 +440,7 @@ export default function AmazonPpcEbook() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { big: "$2.400", label: "gasto quemado promedio/mes", sub: "En cuentas con ACoS >55% sin negativas activas." },
+              { big: "$150 a $38K", label: "gasto quemado/mes según escala", sub: "Desde cuentas de $500/mes hasta $100.000/mes gestionadas por Hipervínculo." },
               { big: "−47%", label: "reducción de ACoS típica", sub: "Aplicando el ciclo de optimización de 7 días de la guía." },
               { big: "14 días", label: "para recuperar la inversión", sub: "El precio de la guía se paga solo con la primera negativa que apliques." },
             ].map((s, i) => (
