@@ -67,7 +67,7 @@ const templates = [
 const faqs = [
   { q: "¿Necesito experiencia previa con Amazon Ads?", a: "No. La guía explica desde cero hasta una estructura avanzada; funciona para sellers y marketers." },
   { q: "¿Funciona para cualquier marketplace de Amazon?", a: "Sí. Los principios son los mismos para EE.UU., Europa y LATAM, con advertencias cuando un mercado difiere." },
-  { q: "¿Cuánto presupuesto necesito para empezar?", descMissing: true, a: "La guía incluye presupuestos de arranque realistas según tu etapa, desde $10/día hasta estructuras de escala." },
+  { q: "¿Cuánto presupuesto necesito para empezar?", a: "La guía incluye presupuestos de arranque realistas según tu etapa, desde $10/día hasta estructuras de escala." },
   { q: "¿Cómo recibo el PDF?", a: "Te llega por correo en menos de 2 minutos después de pagar, con un enlace de descarga seguro y personal." },
 ];
 
