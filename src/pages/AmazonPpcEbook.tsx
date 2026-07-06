@@ -32,12 +32,12 @@ const PRODUCT_KEY = "amazon-ppc";
 const PAGE_URL = "/publicidad-en-amazon";
 
 const benefits = [
-  { icon: Target, title: "ACoS de break-even claro", desc: "Calcula tu número real y deja de operar campañas a pérdida." },
-  { icon: Search, title: "Sabe qué anunciar (y qué no)", desc: "Elige productos que aguanten PPC y descarta los que desangran tu margen." },
-  { icon: BarChart3, title: "Estructura que escala", desc: "Arquitectura de campañas SP, SB, SD sin volverse inmanejable." },
-  { icon: SlidersHorizontal, title: "Bidding por ROAS objetivo", desc: "Ajusta pujas con disciplina: down only, up & down y placement multipliers." },
-  { icon: Shield, title: "Negativas desde el día cero", desc: "Bloquea términos que queman dinero antes de que empiecen a gastar." },
-  { icon: Clock, title: "Rutina de 2 horas por semana", desc: "Checklists, KPIs y reglas de pausa para mantener la cuenta sana." },
+  { icon: DollarSign, title: "Recupera margen quemado", desc: "Corta el 20–40% de gasto que hoy va a clics que jamás convierten." },
+  { icon: Target, title: "Baja tu ACoS 10–20 puntos", desc: "Del rojo al verde en 30–60 días con reglas claras, no intuición." },
+  { icon: TrendingUp, title: "Escala sin perder rentabilidad", desc: "Sube presupuesto solo donde el ROAS ya está blindado matemáticamente." },
+  { icon: Shield, title: "Bloquea términos que sangran", desc: "Sistema de negativas desde el día cero: paras la fuga antes de gastarla." },
+  { icon: BarChart3, title: "Sabe qué anunciar (y qué no)", desc: "Filtra productos que aguantan PPC. Deja de subsidiar SKUs perdedores." },
+  { icon: Clock, title: "2 horas/semana, no 20", desc: "Rutina y checklists para operar la cuenta sin vivir dentro de ella." },
 ];
 
 const chapters = [
@@ -247,113 +247,173 @@ export default function AmazonPpcEbook() {
         </div>
       </header>
 
-      <section data-section="hero" className="relative overflow-hidden bg-[#2F4F3E] text-white">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: "radial-gradient(circle at 20% 20%, #8BC34A 0, transparent 40%), radial-gradient(circle at 80% 80%, #8BC34A 0, transparent 40%)"
-        }} />
-        <div className="container mx-auto px-4 pt-6 pb-10 md:py-20 relative">
-          <div className="md:hidden text-center mb-5">
-            <div className="inline-flex items-center gap-1.5 bg-[#8BC34A] text-[#1a2e22] px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-3">
-              <Zap className="w-3 h-3" /> EDICIÓN 2026
-            </div>
-            <h1 className="text-[1.75rem] leading-[1.1] font-extrabold text-white">
-              Amazon PPC <span className="text-[#8BC34A]">sin quemar tu dinero</span>
-            </h1>
-            <p className="text-sm text-white/80 mt-3 px-2">
-              Cómo hacer rentable tu publicidad en Amazon <strong className="text-white">en cualquier nicho</strong>.
-            </p>
-          </div>
+      {/* Barra de urgencia superior */}
+      <div className="w-full bg-[#8BC34A] text-[#1a2e22] text-center text-[11px] sm:text-xs font-bold tracking-wide py-2 px-3">
+        OFERTA LANZAMIENTO · AHORRA {Math.round((1 - PRICE_USD / ORIG_USD) * 100)}% HOY · TERMINA EN <span className="font-mono">{mm}:{ss}</span>
+      </div>
 
-          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
-            <div className="flex justify-center relative order-1 md:order-2">
-              <div className="absolute -inset-4 bg-[#8BC34A]/25 blur-3xl rounded-full pointer-events-none" />
-              <motion.img
-                src={coverAsset.url}
-                alt="Publicidad en Amazon Sin Quemar tu Dinero"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="relative rounded-2xl shadow-2xl border-4 border-white/10 max-w-[320px] md:max-w-[420px] w-full"
-                width={1024} height={1024}
-              />
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-              className="order-2 md:order-1 text-center md:text-left"
-            >
-              <div className="hidden md:block">
-                <div className="inline-flex items-center gap-2 bg-[#8BC34A] text-[#1a2e22] px-3 py-1 rounded-full text-xs font-bold mb-6">
-                  <Zap className="w-3 h-3" /> EDICIÓN 2026
-                </div>
-                <h1 className="text-4xl lg:text-6xl font-extrabold leading-[1.05] mb-5 text-white">
-                  Amazon PPC <span className="text-[#8BC34A]">sin quemar tu dinero</span>
-                </h1>
-                <p className="text-lg lg:text-xl text-white/85 mb-6 leading-relaxed">
-                  El sistema para hacer rentable tu publicidad en Amazon en cualquier nicho: ACoS, negativas, bidding por ROAS y rutina de optimización semanal.
-                </p>
+      {/* HERO SPLIT */}
+      <section data-section="hero" className="relative overflow-hidden bg-white">
+        <div className="container mx-auto px-4 pt-10 pb-14 md:pt-20 md:pb-24">
+          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+            {/* Izquierda: promesa */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#2F4F3E]/5 ring-1 ring-inset ring-[#2F4F3E]/10 px-3 py-1 text-[11px] sm:text-xs font-bold text-[#2F4F3E] mb-5">
+                <Zap className="w-3 h-3 text-[#8BC34A]" /> GUÍA PDF · EDICIÓN 2026
               </div>
+              <h1 className="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-[#2F4F3E]">
+                Deja de quemar <span className="text-[#8BC34A]">$500–$3.000/mes</span> en clics que no venden.
+              </h1>
+              <p className="mt-5 text-base sm:text-lg lg:text-xl text-[#2F4F3E]/75 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                El sistema exacto para bajar tu ACoS del 60% al 25% y convertir tu cuenta de Amazon en una máquina rentable — sin agencia, sin adivinar, sin cursos de 20 horas.
+              </p>
 
-              <ul className="space-y-2 mb-5 mt-2 md:mt-0 text-left max-w-md mx-auto md:mx-0">
+              <ul className="mt-6 space-y-2.5 text-left max-w-md mx-auto lg:mx-0">
                 {[
-                  "Calcula tu break-even y deja de perder dinero",
-                  "Estructura de campañas que escala sin caos",
-                  "6 plantillas listas para aplicar",
-                ].map((b) => (
-                  <li key={b} className="flex items-start gap-2.5 text-sm md:text-base text-white/90">
-                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-[#8BC34A] flex-shrink-0 mt-0.5" />
-                    <span>{b}</span>
+                  { k: "Recuperas", v: "hasta $3.000/mes de gasto quemado" },
+                  { k: "Bajas", v: "ACoS 10–20 puntos en 60 días" },
+                  { k: "Ganas", v: "2 horas/semana para operar toda la cuenta" },
+                ].map((it) => (
+                  <li key={it.k} className="flex items-start gap-2.5 text-sm sm:text-base text-[#2F4F3E]">
+                    <CheckCircle2 className="w-5 h-5 text-[#8BC34A] flex-shrink-0 mt-0.5" />
+                    <span><strong className="font-bold">{it.k}</strong> <span className="text-[#2F4F3E]/80">{it.v}</span></span>
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-wrap gap-3 items-baseline justify-center md:justify-start mb-4">
-                <span className="text-4xl md:text-5xl font-extrabold">${PRICE_USD}</span>
-                <span className="text-lg line-through text-white/50">${ORIG_USD}</span>
-                <span className="bg-[#8BC34A] text-[#1a2e22] text-xs font-bold px-2 py-1 rounded">-{Math.round((1 - PRICE_USD / ORIG_USD) * 100)}%</span>
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <a href="#comprar" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base px-8 py-6 h-auto rounded-xl">
+                    Descargar guía por ${PRICE_USD} →
+                  </Button>
+                </a>
+                <div className="flex flex-col text-center sm:text-left">
+                  <span className="text-sm text-[#2F4F3E]/60 line-through">Antes ${ORIG_USD}</span>
+                  <span className="text-xs font-bold text-[#2F4F3E]">PDF · Descarga en 2 min</span>
+                </div>
               </div>
 
-              <a href="#comprar" className="inline-block w-full md:w-auto">
-                <Button size="lg" className="w-full md:w-auto bg-[#8BC34A] hover:bg-[#8BC34A]/90 text-[#1a2e22] font-extrabold text-base px-8 py-6 h-auto">
-                  Descargar mi guía ahora →
-                </Button>
-              </a>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#2F4F3E]/70 justify-center lg:justify-start">
+                <div className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#8BC34A]" /> Garantía 7 días</div>
+                <div className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-[#8BC34A]" /> Pago cifrado</div>
+                <div className="flex items-center gap-1.5"><Star className="w-4 h-4 text-[#8BC34A] fill-current" /> +200 clientes reales</div>
+              </div>
+            </motion.div>
 
-              <div className="inline-flex items-center gap-2 mt-4 text-xs text-white/70">
-                <Flame className="w-3.5 h-3.5 text-[#8BC34A]" />
-                <span>Precio promocional termina en <strong className="font-mono text-[#8BC34A]">{mm}:{ss}</strong></span>
+            {/* Derecha: tarjeta oscura de impacto */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="w-full max-w-md mx-auto lg:max-w-none">
+              <div className="relative rounded-3xl bg-[#2F4F3E] p-6 sm:p-8 text-white shadow-2xl overflow-hidden">
+                <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{
+                  backgroundImage: "radial-gradient(circle at 20% 10%, #8BC34A 0, transparent 45%), radial-gradient(circle at 85% 90%, #8BC34A 0, transparent 45%)"
+                }} />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-5">
+                    <h3 className="text-sm font-bold text-[#8BC34A] uppercase tracking-widest">Impacto en tu cuenta</h3>
+                    <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Mes 1 → Mes 3</span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {/* Antes */}
+                    <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-white/50">Hoy sin sistema</span>
+                        <span className="text-red-400 text-[10px] font-bold uppercase">Quemando</span>
+                      </div>
+                      <div className="flex justify-between items-end mb-2">
+                        <span className="text-3xl sm:text-4xl font-extrabold">62%</span>
+                        <span className="text-xs text-red-300">−$1.850/mes fuga</span>
+                      </div>
+                      <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                        <div className="bg-red-400 h-full" style={{ width: "62%" }} />
+                      </div>
+                    </div>
+
+                    {/* Después */}
+                    <div className="rounded-xl border border-[#8BC34A]/40 bg-[#8BC34A]/10 p-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8BC34A]">Con la guía</span>
+                        <span className="bg-[#8BC34A] text-[#1a2e22] px-1.5 py-0.5 rounded text-[10px] font-bold uppercase">Rentable</span>
+                      </div>
+                      <div className="flex justify-between items-end mb-2">
+                        <span className="text-3xl sm:text-4xl font-extrabold text-[#8BC34A]">24%</span>
+                        <span className="text-xs text-[#8BC34A]">+$2.400 utilidad neta</span>
+                      </div>
+                      <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                        <div className="bg-[#8BC34A] h-full" style={{ width: "24%" }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
+                    <div>
+                      <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Diferencia mensual</div>
+                      <div className="text-2xl font-extrabold text-[#8BC34A]">+$4.250 <span className="text-xs text-white/60 font-medium">a tu bolsillo</span></div>
+                    </div>
+                    <img
+                      src={coverAsset.url}
+                      alt="Publicidad en Amazon Sin Quemar tu Dinero"
+                      className="w-16 sm:w-20 rounded-lg shadow-xl border border-white/20"
+                      width={1024} height={1024}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-xs text-white/70">
-                <Lock className="w-3.5 h-3.5" /> Pago seguro · Descarga inmediata por email
-              </div>
-              <div className="mt-3 flex justify-center md:justify-start">
-                <PaymentBadges variant="dark" />
-              </div>
+              <p className="text-[11px] text-[#2F4F3E]/50 mt-3 text-center lg:text-left">
+                * Cifras basadas en cuentas reales gestionadas por Hipervínculo. Tus resultados dependerán de tu categoría y ejecución.
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section data-section="benefits" className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que vas a lograr</h2>
-            <p className="text-muted-foreground text-lg">Basado en operaciones reales de Amazon Ads en múltiples nichos con nuestros 200+ clientes.</p>
+      {/* BANDA DE AHORRO — 3 NÚMEROS GIGANTES */}
+      <section className="bg-[#f7faf6] border-y border-[#2F4F3E]/10 py-14 md:py-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-block px-3 py-1 rounded-full bg-[#8BC34A]/20 text-[#2F4F3E] text-xs font-bold uppercase tracking-wider mb-4">Cuánto te ahorras</div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] leading-tight">
+              El costo real de <span className="underline decoration-[#8BC34A] decoration-4 underline-offset-4">no tener</span> este sistema.
+            </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((b, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="p-6 rounded-xl border border-border bg-white hover:shadow-lg transition">
-                <div className="w-12 h-12 rounded-lg bg-[#8BC34A]/15 flex items-center justify-center mb-4">
-                  <b.icon className="w-6 h-6 text-[#2F4F3E]" />
-                </div>
-                <h3 className="font-bold text-[#2F4F3E] mb-2">{b.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { big: "$2.400", label: "gasto quemado promedio/mes", sub: "En cuentas con ACoS >55% sin negativas activas." },
+              { big: "−47%", label: "reducción de ACoS típica", sub: "Aplicando el ciclo de optimización de 7 días de la guía." },
+              { big: "14 días", label: "para recuperar la inversión", sub: "El precio de la guía se paga solo con la primera negativa que apliques." },
+            ].map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="rounded-2xl bg-white border border-[#2F4F3E]/10 p-6 sm:p-7 hover:border-[#8BC34A]/60 hover:shadow-lg transition">
+                <div className="text-5xl sm:text-6xl font-extrabold text-[#2F4F3E] leading-none tracking-tight mb-3">{s.big}</div>
+                <div className="text-sm font-bold text-[#8BC34A] uppercase tracking-wider mb-2">{s.label}</div>
+                <div className="text-sm text-[#2F4F3E]/70 leading-relaxed">{s.sub}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* BENEFITS — outcome-first */}
+      <section data-section="benefits" className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#2F4F3E] mb-4">Lo que consigues aplicando la guía</h2>
+            <p className="text-[#2F4F3E]/70 text-lg">Resultados medibles, no teoría. Cada capítulo va directo al dinero.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((b, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="p-6 rounded-2xl border border-[#2F4F3E]/10 bg-white hover:border-[#8BC34A]/60 hover:shadow-lg transition">
+                <div className="w-12 h-12 rounded-xl bg-[#2F4F3E] flex items-center justify-center mb-4">
+                  <b.icon className="w-6 h-6 text-[#8BC34A]" />
+                </div>
+                <h3 className="font-bold text-[#2F4F3E] mb-2 text-lg">{b.title}</h3>
+                <p className="text-sm text-[#2F4F3E]/70 leading-relaxed">{b.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       <section data-section="chapters" className="py-16 md:py-24 bg-[#f7faf6]">
         <div className="container mx-auto px-4 max-w-4xl">
