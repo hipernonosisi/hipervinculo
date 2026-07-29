@@ -29,6 +29,7 @@ import { AvNutraceuticalsProposal } from '@/components/proposals/AvNutraceutical
 import { DoorDistrictProposal } from '@/components/proposals/DoorDistrictProposal';
 import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRentalsProposal';
 import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
+import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
@@ -102,7 +103,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale'>('scottsdale');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods'>('scottsdale');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -899,6 +900,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('lok-foods')}
+                  className={`gap-2 ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Lok Foods USA
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('skyscraper')}
                   className={`gap-2 ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
@@ -1020,6 +1030,7 @@ export default function Admin() {
                   {activeProposal === 'door-district' && <DoorDistrictProposal />}
                   {activeProposal === 'rumbas' && <RumbasEventRentalsProposal />}
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
+                  {activeProposal === 'lok-foods' && <LokFoodsProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
