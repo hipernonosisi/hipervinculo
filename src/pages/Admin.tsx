@@ -29,6 +29,7 @@ import { AvNutraceuticalsProposal } from '@/components/proposals/AvNutraceutical
 import { DoorDistrictProposal } from '@/components/proposals/DoorDistrictProposal';
 import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRentalsProposal';
 import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
+import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
