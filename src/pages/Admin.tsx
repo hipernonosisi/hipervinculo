@@ -900,6 +900,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('lok-foods')}
+                  className={`gap-2 ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Lok Foods USA
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('skyscraper')}
                   className={`gap-2 ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
@@ -1021,6 +1030,7 @@ export default function Admin() {
                   {activeProposal === 'door-district' && <DoorDistrictProposal />}
                   {activeProposal === 'rumbas' && <RumbasEventRentalsProposal />}
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
+                  {activeProposal === 'lok-foods' && <LokFoodsProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
