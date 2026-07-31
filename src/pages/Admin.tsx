@@ -847,7 +847,7 @@ export default function Admin() {
                 </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 520px)', minHeight: '600px' }}>
                   {activePresentation === 'leadgen' && <LeadGenPresentation />}
                   {activePresentation === 'brandidentity' && <BrandIdentityPresentation />}
                   {activePresentation === 'shopifydev' && <ShopifyDevPresentation />}
@@ -893,7 +893,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('scottsdale')}
-                  className={`gap-2 ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Scottsdale Institute
@@ -902,7 +902,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('lok-foods')}
-                  className={`gap-2 ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <ShoppingBag className="w-4 h-4" />
                   Lok Foods USA
@@ -911,7 +911,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('skyscraper')}
-                  className={`gap-2 ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Skyscraper Construction
@@ -920,7 +920,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('costafirme')}
-                  className={`gap-2 ${activeProposal === 'costafirme' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'costafirme' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Almacenadora Costa Firme
@@ -929,7 +929,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('valoresinmobiliarios')}
-                  className={`gap-2 ${activeProposal === 'valoresinmobiliarios' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'valoresinmobiliarios' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Valores Inmobiliarios
@@ -938,7 +938,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('futurealkaline')}
-                  className={`gap-2 ${activeProposal === 'futurealkaline' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'futurealkaline' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Future Alkaline Water
@@ -947,7 +947,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('rasettainnovations')}
-                  className={`gap-2 ${activeProposal === 'rasettainnovations' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'rasettainnovations' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Rasetta Innovations
@@ -956,7 +956,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('xtrallux')}
-                  className={`gap-2 ${activeProposal === 'xtrallux' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'xtrallux' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   XTRALLUX
@@ -965,7 +965,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('taily')}
-                  className={`gap-2 ${activeProposal === 'taily' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'taily' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Taily
@@ -974,7 +974,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('orbital')}
-                  className={`gap-2 ${activeProposal === 'orbital' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'orbital' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Globe className="w-4 h-4" />
                   Orbital Sunglasses
@@ -983,7 +983,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('xtrallux-ads')}
-                  className={`gap-2 ${activeProposal === 'xtrallux-ads' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'xtrallux-ads' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Megaphone className="w-4 h-4" />
                   XTRALLUX (Digital Ads)
@@ -992,7 +992,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('av-nutraceuticals')}
-                  className={`gap-2 ${activeProposal === 'av-nutraceuticals' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'av-nutraceuticals' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   AV Nutraceuticals
@@ -1001,7 +1001,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('door-district')}
-                  className={`gap-2 ${activeProposal === 'door-district' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'door-district' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   The Door District
@@ -1010,14 +1010,14 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('rumbas')}
-                  className={`gap-2 ${activeProposal === 'rumbas' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'rumbas' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Rumbas Event Rentals
                 </Button>
               </div>
               <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-0" style={{ height: 'calc(100vh - 430px)', minHeight: '600px' }}>
+                <CardContent className="p-0" style={{ height: 'calc(100vh - 520px)', minHeight: '600px' }}>
                   {activeProposal === 'skyscraper' && <SkyscraperProposal />}
                   {activeProposal === 'costafirme' && <CostaFirmeProposal />}
                   {activeProposal === 'valoresinmobiliarios' && <ValoresInmobiliariosProposal />}
