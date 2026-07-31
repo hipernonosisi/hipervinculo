@@ -887,7 +887,8 @@ export default function Admin() {
 
             {/* Proposals Tab */}
             <TabsContent value="proposals" className="mt-0 space-y-4">
-              <div className="flex gap-2 px-1 flex-wrap">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 px-1">
+
                 <Button
                   variant="outline"
                   size="sm"
