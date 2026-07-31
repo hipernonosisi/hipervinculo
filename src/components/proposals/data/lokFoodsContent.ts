@@ -317,8 +317,8 @@ export const lokFoodsContent = {
       {
         heading: 'Método de Pago y Servicios',
         items: [
-          'No hay fee de setup. Los servicios comienzan una vez firmado el acuerdo y entregados los accesos.',
-          'El fee mensual es el 25% del Net Profit reportado por Sellerise para la cuenta de Lok Foods.',
+          'No hay fee de setup. Los servicios comienzan el 1 de agosto de 2026, una vez firmado el acuerdo y entregados los accesos.',
+          'El fee mensual es el 20% del Net Profit reportado por Sellerise para la cuenta de Lok Foods.',
           'El Net Profit se define según la métrica reportada por Sellerise, una vez instalado y configurado correctamente.',
           'El fee se factura mensualmente y debe pagarse dentro de los 10 días posteriores a la recepción de la factura.',
           'El pago se realizará mediante tarjeta de crédito a través de Square, salvo acuerdo escrito diferente.',
