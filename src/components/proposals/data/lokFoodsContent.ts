@@ -207,11 +207,11 @@ export const lokFoodsContent = {
     ongoing: {
       title: 'Fee de Gestión',
       commission: {
-        label: '25% del Net Profit',
-        rate: '25%',
+        label: '20% del Net Profit',
+        rate: '20%',
         basis: 'del Net Profit reportado por Sellerise',
         description:
-          'Nuestro fee se calcula únicamente sobre el Net Profit que Sellerise reporte para la cuenta de Lok Foods. Si el mes no genera profit, no hay fee para Hipervínculo.',
+          'Nuestro fee se calcula únicamente sobre el Net Profit que Sellerise reporte para la cuenta de Lok Foods. Si el mes no genera profit, no hay fee para Hipervínculo. Vigente a partir del 1 de agosto de 2026.',
       },
       clientPays: {
         title: 'Pagado directamente por Lok Foods',
@@ -236,12 +236,12 @@ export const lokFoodsContent = {
       subtitle: 'Cálculo sobre el Net Profit reportado por Sellerise',
       rows: [
         { label: 'Net Profit del mes (Sellerise)', value: '$10,000' },
-        { label: 'Fee de Hipervínculo (25%)', value: '$2,500' },
+        { label: 'Fee de Hipervínculo (20%)', value: '$2,000' },
       ],
       netSales: { label: 'Net Profit del mes', value: '$10,000' },
-      commission: { label: 'Fee Hipervínculo (25%)', value: '$2,500' },
+      commission: { label: 'Fee Hipervínculo (20%)', value: '$2,000' },
       note:
-        'El cliente conserva $7,500 netos después del fee. El fee aplica únicamente sobre el Net Profit real reportado por Sellerise; ingresos, gastos de logística, costos de producto y publicidad ya están descontados en la métrica.',
+        'El cliente conserva $8,000 netos después del fee. El fee aplica únicamente sobre el Net Profit real reportado por Sellerise; ingresos, gastos de logística, costos de producto y publicidad ya están descontados en la métrica. Aplicación a partir del 1 de agosto de 2026.',
     },
     timeline: {
       title: 'Onboarding y Lanzamiento',
@@ -256,15 +256,21 @@ export const lokFoodsContent = {
     headline: 'Lo que necesitas saber',
     sections: [
       {
+        title: 'Fecha de Inicio',
+        description:
+          'El acuerdo entra en vigor el 1 de agosto de 2026. El período piloto de 6 meses se cuenta a partir de esa fecha.',
+        icon: 'calendar',
+      },
+      {
         title: 'Período Piloto',
         description:
-          'Acuerdo mínimo de 6 meses a partir de la fecha de inicio. Durante el piloto se establece la línea base, se optimiza la estructura publicitaria y se asesora la mejora de listados.',
+          'Acuerdo mínimo de 6 meses a partir del 1 de agosto de 2026. Durante el piloto se establece la línea base, se optimiza la estructura publicitaria y se asesora la mejora de listados.',
         icon: 'calendar',
       },
       {
         title: 'Fee sobre Net Profit',
         description:
-          'Hipervínculo cobra el 25% del Net Profit reportado por Sellerise cada mes. No hay fee fijo ni mínimo mensual.',
+          'Hipervínculo cobra el 20% del Net Profit reportado por Sellerise cada mes. No hay fee fijo ni mínimo mensual.',
         icon: 'dollar',
       },
       {
@@ -311,8 +317,8 @@ export const lokFoodsContent = {
       {
         heading: 'Método de Pago y Servicios',
         items: [
-          'No hay fee de setup. Los servicios comienzan una vez firmado el acuerdo y entregados los accesos.',
-          'El fee mensual es el 25% del Net Profit reportado por Sellerise para la cuenta de Lok Foods.',
+          'No hay fee de setup. Los servicios comienzan el 1 de agosto de 2026, una vez firmado el acuerdo y entregados los accesos.',
+          'El fee mensual es el 20% del Net Profit reportado por Sellerise para la cuenta de Lok Foods.',
           'El Net Profit se define según la métrica reportada por Sellerise, una vez instalado y configurado correctamente.',
           'El fee se factura mensualmente y debe pagarse dentro de los 10 días posteriores a la recepción de la factura.',
           'El pago se realizará mediante tarjeta de crédito a través de Square, salvo acuerdo escrito diferente.',
