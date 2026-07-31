@@ -340,9 +340,9 @@ export function LokFoodsProposal() {
               >
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Incluido en el Fee</div>
-                  <div className="text-white/40 text-xs mt-1">25% del Net Profit reportado por Sellerise</div>
+                  <div className="text-white/40 text-xs mt-1">20% del Net Profit reportado por Sellerise</div>
                 </div>
-                <span className="text-2xl font-extrabold text-white">25%</span>
+                <span className="text-2xl font-extrabold text-white">20%</span>
               </div>
               <p className="text-gray-600 leading-relaxed mb-5 text-[15px]">
                 {content.amazonAdvertising.description}
