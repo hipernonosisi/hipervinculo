@@ -248,9 +248,9 @@ export function LokFoodsPDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>INCLUIDO EN EL FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>25% del Net Profit reportado por Sellerise</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>20% del Net Profit reportado por Sellerise</Text>
           </View>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>25%</Text>
+          <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>20%</Text>
         </View>
         <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.amazonAdvertising.description}</Text>
         {content.amazonAdvertising.includes.map((item, i) => (
