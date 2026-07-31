@@ -887,13 +887,13 @@ export default function Admin() {
 
             {/* Proposals Tab */}
             <TabsContent value="proposals" className="mt-0 space-y-4">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 px-1">
+              <div className="flex flex-wrap items-stretch gap-2 px-1">
 
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('scottsdale')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <Building className="w-4 h-4" />
                   Scottsdale Institute
@@ -902,7 +902,7 @@ export default function Admin() {
                   variant="outline"
                   size="sm"
                   onClick={() => setActiveProposal('lok-foods')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
                   <ShoppingBag className="w-4 h-4" />
                   Lok Foods USA
