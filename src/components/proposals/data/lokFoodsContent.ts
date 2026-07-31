@@ -256,15 +256,21 @@ export const lokFoodsContent = {
     headline: 'Lo que necesitas saber',
     sections: [
       {
+        title: 'Fecha de Inicio',
+        description:
+          'El acuerdo entra en vigor el 1 de agosto de 2026. El período piloto de 6 meses se cuenta a partir de esa fecha.',
+        icon: 'calendar',
+      },
+      {
         title: 'Período Piloto',
         description:
-          'Acuerdo mínimo de 6 meses a partir de la fecha de inicio. Durante el piloto se establece la línea base, se optimiza la estructura publicitaria y se asesora la mejora de listados.',
+          'Acuerdo mínimo de 6 meses a partir del 1 de agosto de 2026. Durante el piloto se establece la línea base, se optimiza la estructura publicitaria y se asesora la mejora de listados.',
         icon: 'calendar',
       },
       {
         title: 'Fee sobre Net Profit',
         description:
-          'Hipervínculo cobra el 25% del Net Profit reportado por Sellerise cada mes. No hay fee fijo ni mínimo mensual.',
+          'Hipervínculo cobra el 20% del Net Profit reportado por Sellerise cada mes. No hay fee fijo ni mínimo mensual.',
         icon: 'dollar',
       },
       {
