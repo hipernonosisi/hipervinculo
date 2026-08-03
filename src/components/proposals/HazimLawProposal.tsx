@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, ShieldCheck, Monitor, Lock, Globe, Mail, Phone, MapPin, Code } from 'lucide-react';
+import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, ShieldCheck, Monitor, Lock, Globe, Mail, Phone, MapPin, Code, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { hazimLawProposalContent } from './data/hazimLawProposalContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
@@ -241,7 +241,7 @@ export function HazimLawProposal() {
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">One-Time Fixed Fee</div>
-                  <div className="text-white/40 text-xs mt-1">$2,500 — invoiced 50% at kickoff, 50% at launch</div>
+                  <div className="text-white/40 text-xs mt-1">$2,500 — paid once at the start of the engagement</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
@@ -260,6 +260,40 @@ export function HazimLawProposal() {
             </div>
           </Page>
 
+          {/* PAGE 7: Google Ads Management */}
+          <Page>
+            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.googleAdsService.title}</h2>
+              <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.googleAdsService.headline}</p>
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#2d4a2d' }}>
+                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">{content.googleAdsService.retainerLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#c5e86a' }}>{content.googleAdsService.retainer}</div>
+                </div>
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#f8f9f5', border: '1px solid rgba(139,195,74,0.35)' }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest mb-1 text-gray-400">{content.googleAdsService.mediaSpendLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.googleAdsService.mediaSpend}</div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed mb-5 text-[15px]">{content.googleAdsService.description}</p>
+              <div className="grid grid-cols-2 gap-3 flex-1">
+                {content.googleAdsService.includes.map((item, i) => (
+                  <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <TrendingUp className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
+                    <div>
+                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+
+
           {/* PAGE 7: Investment Summary */}
           <Page bg="#f8f9f5">
             <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
@@ -268,27 +302,36 @@ export function HazimLawProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-3" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              {/* Fee card */}
-              <div className="rounded-[20px] p-7 mb-5 flex flex-col overflow-hidden relative" style={{ backgroundColor: '#2d4a2d', border: '1px solid #2d4a2d' }}>
-                <span className="absolute font-extrabold leading-none select-none pointer-events-none" style={{ top: '14px', right: '18px', fontSize: '48px', color: 'rgba(255,255,255,0.10)', letterSpacing: '-0.04em' }}>
-                  01
-                </span>
-                <div className="flex items-center gap-2 mb-5">
-                  <span className="w-6 h-px" style={{ backgroundColor: '#c5e86a' }} />
-                  <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                    One-Time
-                  </p>
-                </div>
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.14em] mb-6 leading-snug text-white">
-                  {content.investment.websiteBuild.label}
-                </h3>
-                <div className="font-extrabold leading-[0.9] mb-5" style={{ color: '#c5e86a', fontSize: '48px', letterSpacing: '-0.02em' }}>
-                  {content.investment.websiteBuild.rate}
-                </div>
-                <p className="text-[10.5px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.82)' }}>
-                  {content.investment.websiteBuild.description}
-                </p>
+              {/* Fee cards */}
+              <div className="grid grid-cols-2 gap-4 mb-5">
+                {[
+                  { num: '01', tag: 'One-Time', data: content.investment.websiteBuild },
+                  { num: '02', tag: 'Monthly', data: content.investment.monthlyManagement },
+                ].map((card) => (
+                  <div key={card.num} className="rounded-[20px] p-6 flex flex-col overflow-hidden relative" style={{ backgroundColor: '#2d4a2d', border: '1px solid #2d4a2d' }}>
+                    <span className="absolute font-extrabold leading-none select-none pointer-events-none" style={{ top: '14px', right: '18px', fontSize: '40px', color: 'rgba(255,255,255,0.10)', letterSpacing: '-0.04em' }}>
+                      {card.num}
+                    </span>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="w-6 h-px" style={{ backgroundColor: '#c5e86a' }} />
+                      <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                        {card.tag}
+                      </p>
+                    </div>
+                    <h3 className="text-[12px] font-bold uppercase tracking-[0.14em] mb-4 leading-snug text-white min-h-[30px]">
+                      {card.data.label}
+                    </h3>
+                    <div className="font-extrabold leading-[0.9] mb-2" style={{ color: '#c5e86a', fontSize: '38px', letterSpacing: '-0.02em' }}>
+                      {card.data.rate}
+                    </div>
+                    <p className="text-[10px] mb-3" style={{ color: 'rgba(255,255,255,0.6)' }}>{card.data.basis}</p>
+                    <p className="text-[10.5px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.82)' }}>
+                      {card.data.description}
+                    </p>
+                  </div>
+                ))}
               </div>
+
 
               {/* Payment terms */}
               <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>

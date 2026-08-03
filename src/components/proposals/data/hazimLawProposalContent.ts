@@ -1,7 +1,7 @@
 export const hazimLawProposalContent = {
   cover: {
     title: 'Website Proposal',
-    subtitle: 'Clean, Modern Website\nfor a Boutique Law Firm',
+    subtitle: 'Website + Google Ads\nfor a Boutique Law Firm',
     tagline: 'For: Hazim Law, PLLC — Antonio Hazim, Founder & Managing Attorney',
   },
   about: {
@@ -36,9 +36,9 @@ export const hazimLawProposalContent = {
   },
   objective: {
     title: 'Objective',
-    headline: 'A Modern Website That Reflects Credibility and Simplifies Contact',
+    headline: 'A Modern Website Plus a Steady Flow of Qualified Cases',
     description:
-      'The goal is to redesign and rebuild the Hazim Law website into a clean, modern, boutique-style experience that communicates professionalism, makes the firm easy to understand, and turns visitors into qualified consultation requests. The new site will be built on a fast, reliable platform, optimized for search visibility, and designed to work beautifully on every device.',
+      'The goal is twofold: first, redesign and rebuild the Hazim Law website into a clean, modern, boutique-style experience that communicates professionalism and converts visitors into consultation requests. Second, drive a consistent flow of qualified leads through professionally managed Google Ads campaigns targeting construction clients actively searching for legal counsel.',
     scope: [
       {
         title: 'Custom Website Design',
@@ -61,16 +61,21 @@ export const hazimLawProposalContent = {
         description: 'Fast load times, proper heading structure, meta tags, structured data, and clean URL architecture for long-term visibility.',
       },
       {
-        title: 'Analytics & Tracking Setup',
-        description: 'Google Analytics 4 and basic event tracking installed so traffic and contact form activity can be measured.',
+        title: 'Google Ads Lead Generation',
+        description: 'Ongoing monthly management of Google Ads campaigns built to capture high-intent searches from construction clients seeking legal representation.',
+      },
+      {
+        title: 'Analytics, Tracking & Reporting',
+        description: 'Google Analytics 4, Google Tag Manager, and conversion tracking installed, plus monthly performance reporting on leads and cost per lead.',
       },
     ],
     exclusions: {
       title: 'Out of Scope',
       description:
-        'This proposal covers website design and development only. It does not include ongoing SEO retainers, paid advertising management, content writing beyond the website pages included, professional photography, custom legal document automation, CRM integration beyond basic contact forms, or ongoing website maintenance after the 30-day post-launch support period.',
+        'This proposal covers website design and development plus monthly Google Ads management. It does not include Meta/social advertising management, ongoing SEO content retainers, content writing beyond the website pages included, professional photography, custom legal document automation, or CRM integration beyond basic contact forms. Google Ads media spend is paid directly to Google by the client.',
     },
   },
+
   platformAccess: {
     title: 'Required Platform Access',
     headline: 'Accounts & Assets We Need Access To',
@@ -144,42 +149,95 @@ export const hazimLawProposalContent = {
       },
     ],
   },
+  googleAdsService: {
+    title: 'Google Ads Management',
+    headline: 'A Consistent Flow of Qualified Construction Law Leads',
+    retainer: '$1,250',
+    retainerLabel: 'Monthly Retainer (Month-to-Month)',
+    mediaSpend: '$50/day',
+    mediaSpendLabel: 'Recommended Media Spend (paid to Google)',
+    description:
+      'We create, manage, and optimize Google Ads campaigns designed to generate qualified consultation requests for Hazim Law, PLLC. Our team handles everything from keyword research and ad copy to landing page optimization and daily campaign management. This is a month-to-month service with no long-term contracts — you can cancel at any time with 30 days written notice.',
+    includes: [
+      {
+        title: 'Campaign Strategy & Setup',
+        description: 'Keyword research, competitor analysis, campaign structure, and ad group organization focused on construction law searches.',
+      },
+      {
+        title: 'Ad Creation & Copywriting',
+        description: 'Professional search ad copy with continuous A/B testing to maximize click-through and consultation request rates.',
+      },
+      {
+        title: 'Landing Page Optimization',
+        description: 'Dedicated landing pages for campaigns, optimized for conversion with clear calls-to-action and intake forms.',
+      },
+      {
+        title: 'Bid & Budget Management',
+        description: 'Ongoing monitoring and adjustment of bids, budgets, and targeting to maximize return on your ad investment.',
+      },
+      {
+        title: 'Negative Keyword Management',
+        description: 'Continuous refinement of negative keywords to eliminate wasted spend and filter out irrelevant, non-construction inquiries.',
+      },
+      {
+        title: 'Call & Form Conversion Tracking',
+        description: 'Every call and form submission tracked so you know exactly which keywords and ads generate real cases.',
+      },
+      {
+        title: 'Monthly Performance Reports',
+        description: 'Detailed reporting on lead volume, cost per lead, conversion rates, and strategic recommendations for growth.',
+      },
+      {
+        title: '2 Monthly Strategy Meetings',
+        description: 'Up to 2 meetings per month to review results, align on goals, and plan next steps for continuous improvement.',
+      },
+    ],
+  },
   investment: {
     title: 'Investment Summary',
-    headline: 'One-Time Website Build',
+    headline: 'Website Build + Monthly Google Ads Management',
     websiteBuild: {
       label: 'Website Design & Development',
       rate: '$2,500',
-      basis: 'One-time fixed fee',
+      basis: 'One-time fee — due at the start of the engagement',
       description:
         'A complete, custom-designed website built for Hazim Law, PLLC. Includes design, development, copy structure, responsive implementation, basic SEO, contact forms, analytics setup, and 30-day post-launch support.',
+    },
+    monthlyManagement: {
+      label: 'Google Ads Lead Generation',
+      rate: '$1,250/mo',
+      basis: 'Month-to-month — no long-term contract',
+      description:
+        'Full management of your Google Ads campaigns: strategy, setup, ad copy, landing pages, bid management, conversion tracking, monthly reporting, and 2 strategy meetings per month. Media spend is separate and paid directly to Google (recommended: $50/day).',
     },
     clientPays: {
       title: 'Paid Directly by Client',
       items: [
+        { name: 'Google Ads Media Spend', detail: 'Recommended $50/day, billed directly by Google' },
         { name: 'Domain Registration / Renewal', detail: 'If a new domain is needed or renewal is due' },
-        { name: 'Website Hosting', detail: 'Hosting is included in the build fee for the first 12 months' },
+        { name: 'Website Hosting', detail: '100% free while active on the Google Ads service' },
         { name: 'Professional Photography', detail: 'Optional — if stock or original imagery is not available' },
-        { name: 'Advanced Integrations', detail: 'CRM, live chat, or custom legal tools beyond the included scope' },
       ],
     },
     paymentTerms: {
       title: 'Payment Terms',
       subtitle: 'Simple and straightforward',
       rows: [
-        { label: 'Deposit at kickoff', value: '50% ($1,250)' },
-        { label: 'Final payment at launch', value: '50% ($1,250)' },
+        { label: 'Website build (one-time)', value: '$2,500 at kickoff' },
+        { label: 'Google Ads management', value: '$1,250/mo in advance' },
+        { label: 'Google Ads media spend', value: 'Paid directly to Google' },
       ],
-      note: 'Payment is due within 10 days of invoice receipt. Work begins once the deposit and required access/assets are received.',
+      note: 'The $2,500 website fee is due in full at the start of the engagement. The monthly retainer is billed at the beginning of each service month and is payable within 10 days of invoice receipt.',
     },
     timeline: {
       title: 'Design & Launch Timeline',
       duration: '2-3',
       durationUnit: 'Weeks',
       description:
-        'The website typically takes 2 to 3 weeks from kickoff to launch, depending on how quickly we receive access, brand assets, and content feedback. The timeline includes design, development, review, revisions, and launch.',
+        'The website typically takes 2 to 3 weeks from kickoff to launch. Google Ads campaigns are built during the same period and launch alongside the new site so lead generation starts from day one.',
     },
   },
+
   terms: {
     title: 'Terms & Conditions',
     headline: 'What You Need to Know',
@@ -187,46 +245,53 @@ export const hazimLawProposalContent = {
       {
         title: 'Project Scope',
         description:
-          'This proposal covers the design and development of a website for Hazim Law, PLLC as described in the Website Build section. Any additional features, pages, or integrations outside the listed scope may require a separate estimate.',
+          'This proposal covers the website described in the Website Build section plus monthly Google Ads management. Additional features, pages, platforms, or integrations outside the listed scope may require a separate estimate.',
         icon: 'files',
       },
       {
         title: 'Payment Terms',
         description:
-          'Total project fee is $2,500. A 50% deposit ($1,250) is due at kickoff, and the remaining 50% ($1,250) is due at launch. Invoices are payable within 10 days of receipt.',
+          'The $2,500 website fee is a one-time payment due at the start of the engagement. The Google Ads management retainer is $1,250 per month, billed at the beginning of each service month. Invoices are payable within 10 days of receipt.',
         icon: 'dollar',
       },
       {
-        title: 'Timeline',
+        title: 'Month-to-Month Service',
         description:
-          'The project is estimated at 2-3 weeks from kickoff to launch, assuming timely access, assets, and feedback. Delays in providing required materials may extend the timeline.',
-        icon: 'clock',
+          'Google Ads management operates on a month-to-month basis. There are no long-term contracts — you may cancel at any time with 30 days written notice.',
+        icon: 'calendar',
       },
       {
-        title: 'Client Responsibilities',
+        title: 'Media Spend',
         description:
-          'The client is responsible for providing timely access to accounts, brand assets, content, and feedback. The client also remains responsible for all domain, email, and legal compliance matters.',
-        icon: 'shield',
+          'Google Ads media spend (recommended $50/day) is paid directly to Google by the client and is separate from the monthly management retainer.',
+        icon: 'dollar',
       },
       {
-        title: 'Revisions',
+        title: 'Free Web Changes While Active',
         description:
-          'The project includes up to two rounds of design revisions after the initial design presentation. Additional rounds or significant scope changes may require additional fees.',
+          'While actively working with us on Google Ads management, all necessary website changes and updates are made at no additional cost.',
         icon: 'refresh',
+      },
+      {
+        title: '100% Free Hosting While Active',
+        description:
+          'While actively working with us on Google Ads management, your website is hosted on our servers at absolutely no cost. If the service ends, you may keep hosting with us free for 1 year or migrate anytime — we provide all files.',
+        icon: 'server',
+      },
+      {
+        title: 'Timeline & Revisions',
+        description:
+          'The website is estimated at 2-3 weeks from kickoff to launch, assuming timely access, assets, and feedback. Two rounds of design revisions are included after the initial design presentation.',
+        icon: 'clock',
       },
       {
         title: 'Website Ownership',
         description:
-          'Once the final payment is received, the completed website and its source code become the property of Hazim Law, PLLC.',
-        icon: 'files',
-      },
-      {
-        title: 'Hosting & Maintenance',
-        description:
-          'Hosting is included for the first 12 months. After that period, ongoing hosting and maintenance can be discussed separately if needed.',
-        icon: 'server',
+          'Once the website fee is paid in full, the completed website and its source code become the property of Hazim Law, PLLC. All ad accounts remain owned by the client at all times.',
+        icon: 'shield',
       },
     ],
+
   },
   legalTerms: {
     title: 'Agreement Details',
@@ -234,20 +299,31 @@ export const hazimLawProposalContent = {
       {
         heading: 'Payment Method & Services',
         items: [
-          'Total project fee: $2,500 USD for website design and development as described in this proposal.',
-          'Payment schedule: 50% ($1,250) at kickoff, 50% ($1,250) at launch.',
-          'Invoices are payable within 10 days of receipt.',
-          'Hosting is included for the first 12 months. Domain renewal and any premium third-party tools are paid directly by the client.',
+          'Website design and development: $2,500 USD, one-time payment due at the start of the engagement, before work begins.',
+          'Google Ads management: $1,250 USD per month, billed at the beginning of each service month, month-to-month with no long-term contract.',
+          'Google Ads media spend (recommended $50/day) is paid directly to Google by the client and is separate from the retainer.',
+          'All invoices are payable within 10 days of receipt. Tax and accounting matters are the responsibility of the client.',
+          'Hosting is 100% free while the Google Ads service is active. Domain renewal and premium third-party tools are paid directly by the client.',
         ],
       },
       {
         heading: 'Scope of Work',
         items: [
-          'The project includes the website pages, features, and services listed in the Website Build section.',
-          'Additional pages, features, copywriting, or integrations outside the agreed scope may require a separate estimate.',
+          'The engagement includes the website pages and features listed in the Website Build section plus the Google Ads management services listed in this proposal.',
+          'Additional pages, features, copywriting, advertising platforms, or integrations outside the agreed scope may require a separate estimate.',
           'The client is responsible for providing all required content, brand assets, and account access in a timely manner.',
         ],
       },
+      {
+        heading: 'Termination & Renewal',
+        items: [
+          'Google Ads management renews automatically each month until cancelled.',
+          'Either party may terminate the Google Ads service with 30 days written notice.',
+          'Upon termination, all website files are delivered to the client and any outstanding invoices must be settled within 10 days.',
+          'If the Google Ads service ends, the client may continue hosting with us free for 1 year or migrate to any server at any time.',
+        ],
+      },
+
       {
         heading: 'Revisions & Approvals',
         items: [
@@ -268,7 +344,7 @@ export const hazimLawProposalContent = {
         items: [
           'Hipervínculo LLC is not responsible for legal advice, compliance, or any regulatory matters related to the firm\'s practice.',
           'The client is responsible for ensuring all website content complies with applicable bar association advertising rules and legal regulations.',
-          'Ongoing SEO, paid advertising, content marketing, and major redesigns are not included in this one-time fee.',
+          'Google Ads results depend on market conditions and competition; no specific volume of leads or cases is guaranteed. Meta/social advertising, ongoing SEO retainers, content marketing, and major redesigns are not included.',
         ],
       },
       {

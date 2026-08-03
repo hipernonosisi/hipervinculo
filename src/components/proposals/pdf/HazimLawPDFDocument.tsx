@@ -234,7 +234,7 @@ export function HazimLawPDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>ONE-TIME FIXED FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$2,500 — invoiced 50% at kickoff, 50% at launch</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$2,500 — paid once at the start of the engagement</Text>
           </View>
           <MonitorIcon size={22} />
         </View>
@@ -253,33 +253,77 @@ export function HazimLawPDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
 
-      {/* PAGE 7: Investment Summary */}
+      {/* PAGE 7: Google Ads Management */}
+      <Page size="A4" style={s.page}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE</Text>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.googleAdsService.title}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.googleAdsService.headline}</Text>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
+          <View style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5, marginBottom: 4 }}>
+              {content.googleAdsService.retainerLabel.toUpperCase()}
+            </Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a' }}>{content.googleAdsService.retainer}</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: bg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: 'rgba(139,195,74,0.4)' }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: grayLight, letterSpacing: 1.5, marginBottom: 4 }}>
+              {content.googleAdsService.mediaSpendLabel.toUpperCase()}
+            </Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: green }}>{content.googleAdsService.mediaSpend}</Text>
+          </View>
+        </View>
+        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.googleAdsService.description}</Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+          {content.googleAdsService.includes.map((item, i) => (
+            <View key={i} style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
+              <View style={{ paddingTop: 1 }}><CheckIcon size={12} /></View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
+                <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+      </Page>
+
+      {/* PAGE 8: Investment Summary */}
+
       <Page size="A4" style={{ ...s.pageBg, padding: 36 }}>
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 6 }}>{content.investment.headline}</Text>
 
-        {/* Fee card */}
-        <View style={{ backgroundColor: green, borderRadius: 14, padding: 18, marginBottom: 14, position: 'relative' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 10 }}>
-            <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
-            <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5, textTransform: 'uppercase' }}>One-Time</Text>
-          </View>
-          <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 14, textTransform: 'uppercase', minHeight: 22 }}>
-            {content.investment.websiteBuild.label}
-          </Text>
-          <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#c5e86a', marginBottom: 6, letterSpacing: -0.3 }}>
-            {content.investment.websiteBuild.rate}
-          </Text>
-          <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 12, lineHeight: 1.4 }}>
-            {content.investment.websiteBuild.basis}
-          </Text>
-          <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 10 }} />
-          <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>
-            {content.investment.websiteBuild.description}
-          </Text>
+        {/* Fee cards */}
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
+          {[
+            { tag: 'One-Time', data: content.investment.websiteBuild },
+            { tag: 'Monthly', data: content.investment.monthlyManagement },
+          ].map((card, i) => (
+            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+                <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
+                <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5, textTransform: 'uppercase' }}>{card.tag}</Text>
+              </View>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase', minHeight: 22 }}>
+                {card.data.label}
+              </Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a', marginBottom: 4, letterSpacing: -0.3 }}>
+                {card.data.rate}
+              </Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 8, lineHeight: 1.4 }}>
+                {card.data.basis}
+              </Text>
+              <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 8 }} />
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>
+                {card.data.description}
+              </Text>
+            </View>
+          ))}
         </View>
+
 
         {/* Payment terms */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 18, marginBottom: 12 }}>
