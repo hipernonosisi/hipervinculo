@@ -80,11 +80,11 @@ export const hazimLawProposalContent = {
     title: 'Required Platform Access',
     headline: 'Accounts & Assets We Need Access To',
     description:
-      'To build and launch the new website, we need access to the following accounts and assets. All accounts remain owned by Hazim Law, PLLC at all times.',
+      'To build and launch the new website, we need access to the following accounts and assets. All accounts remain owned by Hazim Law, PLLC at all times. Hipervínculo will provide the website hosting and will only require DNS access to point the domain to our servers.',
     platforms: [
       {
         title: 'Domain & DNS Registrar',
-        description: 'Access to point hazimlaw.com (or the chosen domain) to the new website hosting and configure any required records.',
+        description: 'Admin access to the domain registrar (or DNS zone) so we can update the A record and point hazimlaw.com (or the chosen domain) to our hosting servers.',
         role: 'Admin Access',
       },
       {
@@ -103,8 +103,8 @@ export const hazimLawProposalContent = {
         role: 'Editor / Full User',
       },
       {
-        title: 'Email / Hosting (if applicable)',
-        description: 'Details about current email hosting so DNS changes do not disrupt communication.',
+        title: 'Email Hosting Details',
+        description: 'Information about the current email provider and any existing MX records. Hipervínculo will not manage email hosting or email accounts; we will only ensure DNS changes do not disrupt existing email delivery.',
         role: 'Information',
       },
     ],
