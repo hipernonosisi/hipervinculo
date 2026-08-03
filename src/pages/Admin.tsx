@@ -911,6 +911,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('hazim-law')}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'hazim-law' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Scale className="w-4 h-4" />
+                  Hazim Law, PLLC
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('skyscraper')}
                   className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
