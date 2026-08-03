@@ -260,6 +260,40 @@ export function HazimLawProposal() {
             </div>
           </Page>
 
+          {/* PAGE 7: Google Ads Management */}
+          <Page>
+            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Service</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.googleAdsService.title}</h2>
+              <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.googleAdsService.headline}</p>
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#2d4a2d' }}>
+                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">{content.googleAdsService.retainerLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#c5e86a' }}>{content.googleAdsService.retainer}</div>
+                </div>
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#f8f9f5', border: '1px solid rgba(139,195,74,0.35)' }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest mb-1 text-gray-400">{content.googleAdsService.mediaSpendLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.googleAdsService.mediaSpend}</div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed mb-5 text-[15px]">{content.googleAdsService.description}</p>
+              <div className="grid grid-cols-2 gap-3 flex-1">
+                {content.googleAdsService.includes.map((item, i) => (
+                  <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <TrendingUp className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
+                    <div>
+                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+
+
           {/* PAGE 7: Investment Summary */}
           <Page bg="#f8f9f5">
             <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
