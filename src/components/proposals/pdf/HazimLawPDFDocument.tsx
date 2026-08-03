@@ -234,7 +234,7 @@ export function HazimLawPDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>ONE-TIME FIXED FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$2,500 — invoiced 50% at kickoff, 50% at launch</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$2,500 — paid once at the start of the engagement</Text>
           </View>
           <MonitorIcon size={22} />
         </View>
