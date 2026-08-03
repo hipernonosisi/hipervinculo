@@ -241,7 +241,7 @@ export function HazimLawProposal() {
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">One-Time Fixed Fee</div>
-                  <div className="text-white/40 text-xs mt-1">$2,500 — invoiced 50% at kickoff, 50% at launch</div>
+                  <div className="text-white/40 text-xs mt-1">$2,500 — paid once at the start of the engagement</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
