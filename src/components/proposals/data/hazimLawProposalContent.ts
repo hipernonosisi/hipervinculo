@@ -36,9 +36,9 @@ export const hazimLawProposalContent = {
   },
   objective: {
     title: 'Objective',
-    headline: 'A Modern Website That Reflects Credibility and Simplifies Contact',
+    headline: 'A Modern Website Plus a Steady Flow of Qualified Cases',
     description:
-      'The goal is to redesign and rebuild the Hazim Law website into a clean, modern, boutique-style experience that communicates professionalism, makes the firm easy to understand, and turns visitors into qualified consultation requests. The new site will be built on a fast, reliable platform, optimized for search visibility, and designed to work beautifully on every device.',
+      'The goal is twofold: first, redesign and rebuild the Hazim Law website into a clean, modern, boutique-style experience that communicates professionalism and converts visitors into consultation requests. Second, drive a consistent flow of qualified leads through professionally managed Google Ads campaigns targeting construction clients actively searching for legal counsel.',
     scope: [
       {
         title: 'Custom Website Design',
@@ -61,16 +61,21 @@ export const hazimLawProposalContent = {
         description: 'Fast load times, proper heading structure, meta tags, structured data, and clean URL architecture for long-term visibility.',
       },
       {
-        title: 'Analytics & Tracking Setup',
-        description: 'Google Analytics 4 and basic event tracking installed so traffic and contact form activity can be measured.',
+        title: 'Google Ads Lead Generation',
+        description: 'Ongoing monthly management of Google Ads campaigns built to capture high-intent searches from construction clients seeking legal representation.',
+      },
+      {
+        title: 'Analytics, Tracking & Reporting',
+        description: 'Google Analytics 4, Google Tag Manager, and conversion tracking installed, plus monthly performance reporting on leads and cost per lead.',
       },
     ],
     exclusions: {
       title: 'Out of Scope',
       description:
-        'This proposal covers website design and development only. It does not include ongoing SEO retainers, paid advertising management, content writing beyond the website pages included, professional photography, custom legal document automation, CRM integration beyond basic contact forms, or ongoing website maintenance after the 30-day post-launch support period.',
+        'This proposal covers website design and development plus monthly Google Ads management. It does not include Meta/social advertising management, ongoing SEO content retainers, content writing beyond the website pages included, professional photography, custom legal document automation, or CRM integration beyond basic contact forms. Google Ads media spend is paid directly to Google by the client.',
     },
   },
+
   platformAccess: {
     title: 'Required Platform Access',
     headline: 'Accounts & Assets We Need Access To',
