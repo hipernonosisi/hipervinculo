@@ -344,7 +344,7 @@ export const hazimLawProposalContent = {
         items: [
           'Hipervínculo LLC is not responsible for legal advice, compliance, or any regulatory matters related to the firm\'s practice.',
           'The client is responsible for ensuring all website content complies with applicable bar association advertising rules and legal regulations.',
-          'Ongoing SEO, paid advertising, content marketing, and major redesigns are not included in this one-time fee.',
+          'Google Ads results depend on market conditions and competition; no specific volume of leads or cases is guaranteed. Meta/social advertising, ongoing SEO retainers, content marketing, and major redesigns are not included.',
         ],
       },
       {
