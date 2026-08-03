@@ -95,6 +95,7 @@ const iconMap: Record<string, React.FC<{ size?: number }>> = {
   dollar: DollarIcon,
   clock: ClockIcon,
   shield: ShieldIcon,
+  globe: GlobeIcon,
 };
 
 interface Props {
