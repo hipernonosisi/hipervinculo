@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, ShieldCheck, Monitor, Lock, Globe, Mail, Phone, MapPin, Code } from 'lucide-react';
+import { Download, CheckCircle, FileText, RefreshCw, Server, Calendar, DollarSign, Clock, ShieldCheck, Monitor, Lock, Globe, Mail, Phone, MapPin, Code, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { hazimLawProposalContent } from './data/hazimLawProposalContent';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
