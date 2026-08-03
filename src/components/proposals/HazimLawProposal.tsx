@@ -302,27 +302,36 @@ export function HazimLawProposal() {
               <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.investment.title}</h2>
               <p className="font-medium mb-3" style={{ color: '#8BC34A' }}>{content.investment.headline}</p>
 
-              {/* Fee card */}
-              <div className="rounded-[20px] p-7 mb-5 flex flex-col overflow-hidden relative" style={{ backgroundColor: '#2d4a2d', border: '1px solid #2d4a2d' }}>
-                <span className="absolute font-extrabold leading-none select-none pointer-events-none" style={{ top: '14px', right: '18px', fontSize: '48px', color: 'rgba(255,255,255,0.10)', letterSpacing: '-0.04em' }}>
-                  01
-                </span>
-                <div className="flex items-center gap-2 mb-5">
-                  <span className="w-6 h-px" style={{ backgroundColor: '#c5e86a' }} />
-                  <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                    One-Time
-                  </p>
-                </div>
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.14em] mb-6 leading-snug text-white">
-                  {content.investment.websiteBuild.label}
-                </h3>
-                <div className="font-extrabold leading-[0.9] mb-5" style={{ color: '#c5e86a', fontSize: '48px', letterSpacing: '-0.02em' }}>
-                  {content.investment.websiteBuild.rate}
-                </div>
-                <p className="text-[10.5px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.82)' }}>
-                  {content.investment.websiteBuild.description}
-                </p>
+              {/* Fee cards */}
+              <div className="grid grid-cols-2 gap-4 mb-5">
+                {[
+                  { num: '01', tag: 'One-Time', data: content.investment.websiteBuild },
+                  { num: '02', tag: 'Monthly', data: content.investment.monthlyManagement },
+                ].map((card) => (
+                  <div key={card.num} className="rounded-[20px] p-6 flex flex-col overflow-hidden relative" style={{ backgroundColor: '#2d4a2d', border: '1px solid #2d4a2d' }}>
+                    <span className="absolute font-extrabold leading-none select-none pointer-events-none" style={{ top: '14px', right: '18px', fontSize: '40px', color: 'rgba(255,255,255,0.10)', letterSpacing: '-0.04em' }}>
+                      {card.num}
+                    </span>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="w-6 h-px" style={{ backgroundColor: '#c5e86a' }} />
+                      <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em]" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                        {card.tag}
+                      </p>
+                    </div>
+                    <h3 className="text-[12px] font-bold uppercase tracking-[0.14em] mb-4 leading-snug text-white min-h-[30px]">
+                      {card.data.label}
+                    </h3>
+                    <div className="font-extrabold leading-[0.9] mb-2" style={{ color: '#c5e86a', fontSize: '38px', letterSpacing: '-0.02em' }}>
+                      {card.data.rate}
+                    </div>
+                    <p className="text-[10px] mb-3" style={{ color: 'rgba(255,255,255,0.6)' }}>{card.data.basis}</p>
+                    <p className="text-[10.5px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.82)' }}>
+                      {card.data.description}
+                    </p>
+                  </div>
+                ))}
               </div>
+
 
               {/* Payment terms */}
               <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
