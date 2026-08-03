@@ -273,9 +273,15 @@ export const hazimLawProposalContent = {
         icon: 'refresh',
       },
       {
+        title: 'Domain & DNS Responsibility',
+        description:
+          'The client retains full ownership of the domain. Hipervínculo needs access to the domain registrar or DNS zone to point the A record to our hosting servers. Hipervínculo does not manage email hosting, email accounts, or email deliverability.',
+        icon: 'globe',
+      },
+      {
         title: '100% Free Hosting While Active',
         description:
-          'While actively working with us on Google Ads management, your website is hosted on our servers at absolutely no cost. If the service ends, you may keep hosting with us free for 1 year or migrate anytime — we provide all files.',
+          'While actively working with us on Google Ads management, your website is hosted on our servers at absolutely no cost. If the service ends, you may keep hosting with us free for 1 year or migrate anytime — we provide all files and DNS guidance.',
         icon: 'server',
       },
       {
