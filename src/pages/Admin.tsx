@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes, Trash2, Download, UserX, ChartArea, Play } from 'lucide-react';
+import { ArrowLeft, Mail, FileText, RefreshCw, Calendar, Building, Globe, DollarSign, Target, LogOut, MessageCircle, Presentation, Palette, ShoppingBag, MousePointerClick, Megaphone, BarChart3, ScrollText, Sparkles, Brush, Search, ShoppingCart, Package, LineChart, Code, Crosshair, Rocket, Zap, LayoutGrid, Magnet, TrendingUp, BarChart, Activity, PieChart, Layers, Database, Cpu, Fingerprint, BookOpen, PenTool, Shapes, Trash2, Download, UserX, ChartArea, Play, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -30,6 +30,7 @@ import { DoorDistrictProposal } from '@/components/proposals/DoorDistrictProposa
 import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRentalsProposal';
 import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
 import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
+import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
@@ -103,7 +104,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods'>('scottsdale');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law'>('hazim-law');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -910,6 +911,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('hazim-law')}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'hazim-law' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Scale className="w-4 h-4" />
+                  Hazim Law, PLLC
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('skyscraper')}
                   className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
@@ -1032,6 +1042,7 @@ export default function Admin() {
                   {activeProposal === 'rumbas' && <RumbasEventRentalsProposal />}
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
                   {activeProposal === 'lok-foods' && <LokFoodsProposal />}
+                  {activeProposal === 'hazim-law' && <HazimLawProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
