@@ -245,46 +245,53 @@ export const hazimLawProposalContent = {
       {
         title: 'Project Scope',
         description:
-          'This proposal covers the design and development of a website for Hazim Law, PLLC as described in the Website Build section. Any additional features, pages, or integrations outside the listed scope may require a separate estimate.',
+          'This proposal covers the website described in the Website Build section plus monthly Google Ads management. Additional features, pages, platforms, or integrations outside the listed scope may require a separate estimate.',
         icon: 'files',
       },
       {
         title: 'Payment Terms',
         description:
-          'Total project fee is $2,500. A 50% deposit ($1,250) is due at kickoff, and the remaining 50% ($1,250) is due at launch. Invoices are payable within 10 days of receipt.',
+          'The $2,500 website fee is a one-time payment due at the start of the engagement. The Google Ads management retainer is $1,250 per month, billed at the beginning of each service month. Invoices are payable within 10 days of receipt.',
         icon: 'dollar',
       },
       {
-        title: 'Timeline',
+        title: 'Month-to-Month Service',
         description:
-          'The project is estimated at 2-3 weeks from kickoff to launch, assuming timely access, assets, and feedback. Delays in providing required materials may extend the timeline.',
-        icon: 'clock',
+          'Google Ads management operates on a month-to-month basis. There are no long-term contracts — you may cancel at any time with 30 days written notice.',
+        icon: 'calendar',
       },
       {
-        title: 'Client Responsibilities',
+        title: 'Media Spend',
         description:
-          'The client is responsible for providing timely access to accounts, brand assets, content, and feedback. The client also remains responsible for all domain, email, and legal compliance matters.',
-        icon: 'shield',
+          'Google Ads media spend (recommended $50/day) is paid directly to Google by the client and is separate from the monthly management retainer.',
+        icon: 'dollar',
       },
       {
-        title: 'Revisions',
+        title: 'Free Web Changes While Active',
         description:
-          'The project includes up to two rounds of design revisions after the initial design presentation. Additional rounds or significant scope changes may require additional fees.',
+          'While actively working with us on Google Ads management, all necessary website changes and updates are made at no additional cost.',
         icon: 'refresh',
+      },
+      {
+        title: '100% Free Hosting While Active',
+        description:
+          'While actively working with us on Google Ads management, your website is hosted on our servers at absolutely no cost. If the service ends, you may keep hosting with us free for 1 year or migrate anytime — we provide all files.',
+        icon: 'server',
+      },
+      {
+        title: 'Timeline & Revisions',
+        description:
+          'The website is estimated at 2-3 weeks from kickoff to launch, assuming timely access, assets, and feedback. Two rounds of design revisions are included after the initial design presentation.',
+        icon: 'clock',
       },
       {
         title: 'Website Ownership',
         description:
-          'Once the final payment is received, the completed website and its source code become the property of Hazim Law, PLLC.',
-        icon: 'files',
-      },
-      {
-        title: 'Hosting & Maintenance',
-        description:
-          'Hosting is included for the first 12 months. After that period, ongoing hosting and maintenance can be discussed separately if needed.',
-        icon: 'server',
+          'Once the website fee is paid in full, the completed website and its source code become the property of Hazim Law, PLLC. All ad accounts remain owned by the client at all times.',
+        icon: 'shield',
       },
     ],
+
   },
   legalTerms: {
     title: 'Agreement Details',
