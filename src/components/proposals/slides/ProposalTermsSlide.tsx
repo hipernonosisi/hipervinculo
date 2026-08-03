@@ -1,5 +1,5 @@
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
-import { FileText, RefreshCw, Server, Calendar, DollarSign, Clock } from 'lucide-react';
+import { FileText, RefreshCw, Server, Calendar, DollarSign, Clock, Globe } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
   files: FileText,
@@ -8,6 +8,7 @@ const iconMap: Record<string, React.ElementType> = {
   calendar: Calendar,
   dollar: DollarSign,
   clock: Clock,
+  globe: Globe,
 };
 
 interface ProposalTermsSlideProps {
