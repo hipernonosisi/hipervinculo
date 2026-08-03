@@ -215,7 +215,7 @@ export const hazimLawProposalContent = {
       items: [
         { name: 'Google Ads Media Spend', detail: 'Recommended $50/day, billed directly by Google' },
         { name: 'Domain Registration / Renewal', detail: 'If a new domain is needed or renewal is due' },
-        { name: 'Website Hosting', detail: '100% free while active on the Google Ads service' },
+        { name: 'Website Hosting', detail: 'Free while on active Google Ads; $1,500/year if not under active campaign' },
         { name: 'Professional Photography', detail: 'Optional — if stock or original imagery is not available' },
       ],
     },
