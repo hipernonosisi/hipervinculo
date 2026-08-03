@@ -1,7 +1,7 @@
 export const hazimLawProposalContent = {
   cover: {
     title: 'Website Proposal',
-    subtitle: 'Clean, Modern Website\nfor a Boutique Law Firm',
+    subtitle: 'Website + Google Ads\nfor a Boutique Law Firm',
     tagline: 'For: Hazim Law, PLLC — Antonio Hazim, Founder & Managing Attorney',
   },
   about: {
