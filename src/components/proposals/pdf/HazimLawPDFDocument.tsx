@@ -296,26 +296,34 @@ export function HazimLawPDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 6 }}>{content.investment.headline}</Text>
 
-        {/* Fee card */}
-        <View style={{ backgroundColor: green, borderRadius: 14, padding: 18, marginBottom: 14, position: 'relative' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 10 }}>
-            <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
-            <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5, textTransform: 'uppercase' }}>One-Time</Text>
-          </View>
-          <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 14, textTransform: 'uppercase', minHeight: 22 }}>
-            {content.investment.websiteBuild.label}
-          </Text>
-          <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#c5e86a', marginBottom: 6, letterSpacing: -0.3 }}>
-            {content.investment.websiteBuild.rate}
-          </Text>
-          <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 12, lineHeight: 1.4 }}>
-            {content.investment.websiteBuild.basis}
-          </Text>
-          <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 10 }} />
-          <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>
-            {content.investment.websiteBuild.description}
-          </Text>
+        {/* Fee cards */}
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
+          {[
+            { tag: 'One-Time', data: content.investment.websiteBuild },
+            { tag: 'Monthly', data: content.investment.monthlyManagement },
+          ].map((card, i) => (
+            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+                <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
+                <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5, textTransform: 'uppercase' }}>{card.tag}</Text>
+              </View>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase', minHeight: 22 }}>
+                {card.data.label}
+              </Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a', marginBottom: 4, letterSpacing: -0.3 }}>
+                {card.data.rate}
+              </Text>
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 8, lineHeight: 1.4 }}>
+                {card.data.basis}
+              </Text>
+              <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 8 }} />
+              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>
+                {card.data.description}
+              </Text>
+            </View>
+          ))}
         </View>
+
 
         {/* Payment terms */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 18, marginBottom: 12 }}>
