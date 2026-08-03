@@ -149,42 +149,95 @@ export const hazimLawProposalContent = {
       },
     ],
   },
+  googleAdsService: {
+    title: 'Google Ads Management',
+    headline: 'A Consistent Flow of Qualified Construction Law Leads',
+    retainer: '$1,250',
+    retainerLabel: 'Monthly Retainer (Month-to-Month)',
+    mediaSpend: '$50/day',
+    mediaSpendLabel: 'Recommended Media Spend (paid to Google)',
+    description:
+      'We create, manage, and optimize Google Ads campaigns designed to generate qualified consultation requests for Hazim Law, PLLC. Our team handles everything from keyword research and ad copy to landing page optimization and daily campaign management. This is a month-to-month service with no long-term contracts — you can cancel at any time with 30 days written notice.',
+    includes: [
+      {
+        title: 'Campaign Strategy & Setup',
+        description: 'Keyword research, competitor analysis, campaign structure, and ad group organization focused on construction law searches.',
+      },
+      {
+        title: 'Ad Creation & Copywriting',
+        description: 'Professional search ad copy with continuous A/B testing to maximize click-through and consultation request rates.',
+      },
+      {
+        title: 'Landing Page Optimization',
+        description: 'Dedicated landing pages for campaigns, optimized for conversion with clear calls-to-action and intake forms.',
+      },
+      {
+        title: 'Bid & Budget Management',
+        description: 'Ongoing monitoring and adjustment of bids, budgets, and targeting to maximize return on your ad investment.',
+      },
+      {
+        title: 'Negative Keyword Management',
+        description: 'Continuous refinement of negative keywords to eliminate wasted spend and filter out irrelevant, non-construction inquiries.',
+      },
+      {
+        title: 'Call & Form Conversion Tracking',
+        description: 'Every call and form submission tracked so you know exactly which keywords and ads generate real cases.',
+      },
+      {
+        title: 'Monthly Performance Reports',
+        description: 'Detailed reporting on lead volume, cost per lead, conversion rates, and strategic recommendations for growth.',
+      },
+      {
+        title: '2 Monthly Strategy Meetings',
+        description: 'Up to 2 meetings per month to review results, align on goals, and plan next steps for continuous improvement.',
+      },
+    ],
+  },
   investment: {
     title: 'Investment Summary',
-    headline: 'One-Time Website Build',
+    headline: 'Website Build + Monthly Google Ads Management',
     websiteBuild: {
       label: 'Website Design & Development',
       rate: '$2,500',
-      basis: 'One-time fixed fee',
+      basis: 'One-time fee — due at the start of the engagement',
       description:
         'A complete, custom-designed website built for Hazim Law, PLLC. Includes design, development, copy structure, responsive implementation, basic SEO, contact forms, analytics setup, and 30-day post-launch support.',
+    },
+    monthlyManagement: {
+      label: 'Google Ads Lead Generation',
+      rate: '$1,250/mo',
+      basis: 'Month-to-month — no long-term contract',
+      description:
+        'Full management of your Google Ads campaigns: strategy, setup, ad copy, landing pages, bid management, conversion tracking, monthly reporting, and 2 strategy meetings per month. Media spend is separate and paid directly to Google (recommended: $50/day).',
     },
     clientPays: {
       title: 'Paid Directly by Client',
       items: [
+        { name: 'Google Ads Media Spend', detail: 'Recommended $50/day, billed directly by Google' },
         { name: 'Domain Registration / Renewal', detail: 'If a new domain is needed or renewal is due' },
-        { name: 'Website Hosting', detail: 'Hosting is included in the build fee for the first 12 months' },
+        { name: 'Website Hosting', detail: '100% free while active on the Google Ads service' },
         { name: 'Professional Photography', detail: 'Optional — if stock or original imagery is not available' },
-        { name: 'Advanced Integrations', detail: 'CRM, live chat, or custom legal tools beyond the included scope' },
       ],
     },
     paymentTerms: {
       title: 'Payment Terms',
       subtitle: 'Simple and straightforward',
       rows: [
-        { label: 'Deposit at kickoff', value: '50% ($1,250)' },
-        { label: 'Final payment at launch', value: '50% ($1,250)' },
+        { label: 'Website build (one-time)', value: '$2,500 at kickoff' },
+        { label: 'Google Ads management', value: '$1,250/mo in advance' },
+        { label: 'Google Ads media spend', value: 'Paid directly to Google' },
       ],
-      note: 'Payment is due within 10 days of invoice receipt. Work begins once the deposit and required access/assets are received.',
+      note: 'The $2,500 website fee is due in full at the start of the engagement. The monthly retainer is billed at the beginning of each service month and is payable within 10 days of invoice receipt.',
     },
     timeline: {
       title: 'Design & Launch Timeline',
       duration: '2-3',
       durationUnit: 'Weeks',
       description:
-        'The website typically takes 2 to 3 weeks from kickoff to launch, depending on how quickly we receive access, brand assets, and content feedback. The timeline includes design, development, review, revisions, and launch.',
+        'The website typically takes 2 to 3 weeks from kickoff to launch. Google Ads campaigns are built during the same period and launch alongside the new site so lead generation starts from day one.',
     },
   },
+
   terms: {
     title: 'Terms & Conditions',
     headline: 'What You Need to Know',
