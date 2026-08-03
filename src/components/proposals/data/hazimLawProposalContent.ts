@@ -318,6 +318,16 @@ export const hazimLawProposalContent = {
           'The engagement includes the website pages and features listed in the Website Build section plus the Google Ads management services listed in this proposal.',
           'Additional pages, features, copywriting, advertising platforms, or integrations outside the agreed scope may require a separate estimate.',
           'The client is responsible for providing all required content, brand assets, and account access in a timely manner.',
+          'The client is responsible for providing domain registrar or DNS access so Hipervínculo can point the A record to its hosting servers.',
+        ],
+      },
+      {
+        heading: 'Domain, DNS & Email Hosting',
+        items: [
+          'The domain remains the property of Hazim Law, PLLC at all times.',
+          'Hipervínculo will provide website hosting at no cost while the Google Ads service is active.',
+          'Hipervínculo will only modify DNS records required to point the domain to the provided hosting servers.',
+          'Hipervínculo does not provide, manage, or support email hosting, email accounts, or email deliverability. The client is responsible for maintaining email services with its current provider.',
         ],
       },
       {
@@ -326,7 +336,7 @@ export const hazimLawProposalContent = {
           'Google Ads management renews automatically each month until cancelled.',
           'Either party may terminate the Google Ads service with 30 days written notice.',
           'Upon termination, all website files are delivered to the client and any outstanding invoices must be settled within 10 days.',
-          'If the Google Ads service ends, the client may continue hosting with us free for 1 year or migrate to any server at any time.',
+          'If the Google Ads service ends, the client may continue hosting with us free for 1 year or migrate to any server at any time. Hipervínculo will provide DNS guidance for migration.',
         ],
       },
 
