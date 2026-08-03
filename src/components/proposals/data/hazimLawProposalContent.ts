@@ -215,7 +215,7 @@ export const hazimLawProposalContent = {
       items: [
         { name: 'Google Ads Media Spend', detail: 'Recommended $50/day, billed directly by Google' },
         { name: 'Domain Registration / Renewal', detail: 'If a new domain is needed or renewal is due' },
-        { name: 'Website Hosting', detail: '100% free while active on the Google Ads service' },
+        { name: 'Website Hosting', detail: 'Free while on active Google Ads; $1,500/year if not under active campaign' },
         { name: 'Professional Photography', detail: 'Optional — if stock or original imagery is not available' },
       ],
     },
@@ -279,9 +279,9 @@ export const hazimLawProposalContent = {
         icon: 'globe',
       },
       {
-        title: '100% Free Hosting While Active',
+        title: 'Hosting Included While Active',
         description:
-          'While actively working with us on Google Ads management, your website is hosted on our servers at absolutely no cost. If the service ends, you may keep hosting with us free for 1 year or migrate anytime — we provide all files and DNS guidance.',
+          'Website hosting is provided at no cost while Hazim Law, PLLC is actively under our Google Ads management. If the Google Ads service ends, hosting continues at $1,500/year unless the client migrates to another provider.',
         icon: 'server',
       },
       {
@@ -309,7 +309,7 @@ export const hazimLawProposalContent = {
           'Google Ads management: $1,250 USD per month, billed at the beginning of each service month, month-to-month with no long-term contract.',
           'Google Ads media spend (recommended $50/day) is paid directly to Google by the client and is separate from the retainer.',
           'All invoices are payable within 10 days of receipt. Tax and accounting matters are the responsibility of the client.',
-          'Hosting is 100% free while the Google Ads service is active. Domain renewal and premium third-party tools are paid directly by the client.',
+          'Hosting is included at no cost while the Google Ads service is active. If the Google Ads service ends, hosting continues at $1,500/year unless the client migrates to another provider.',
         ],
       },
       {
@@ -325,7 +325,7 @@ export const hazimLawProposalContent = {
         heading: 'Domain, DNS & Email Hosting',
         items: [
           'The domain remains the property of Hazim Law, PLLC at all times.',
-          'Hipervínculo will provide website hosting at no cost while the Google Ads service is active.',
+          'Hipervínculo will provide website hosting at no cost while the Google Ads service is active. If the Google Ads service ends, hosting will continue at $1,500/year unless the client migrates to another provider.',
           'Hipervínculo will only modify DNS records required to point the domain to the provided hosting servers.',
           'Hipervínculo does not provide, manage, or support email hosting, email accounts, or email deliverability. The client is responsible for maintaining email services with its current provider.',
         ],
@@ -336,7 +336,7 @@ export const hazimLawProposalContent = {
           'Google Ads management renews automatically each month until cancelled.',
           'Either party may terminate the Google Ads service with 30 days written notice.',
           'Upon termination, all website files are delivered to the client and any outstanding invoices must be settled within 10 days.',
-          'If the Google Ads service ends, the client may continue hosting with us free for 1 year or migrate to any server at any time. Hipervínculo will provide DNS guidance for migration.',
+          'If the Google Ads service ends, hosting will continue at $1,500/year unless the client migrates to another provider at any time. Hipervínculo will provide DNS guidance for migration.',
         ],
       },
 
