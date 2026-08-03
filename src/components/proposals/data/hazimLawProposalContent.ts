@@ -299,20 +299,31 @@ export const hazimLawProposalContent = {
       {
         heading: 'Payment Method & Services',
         items: [
-          'Total project fee: $2,500 USD for website design and development as described in this proposal.',
-          'Payment schedule: 50% ($1,250) at kickoff, 50% ($1,250) at launch.',
-          'Invoices are payable within 10 days of receipt.',
-          'Hosting is included for the first 12 months. Domain renewal and any premium third-party tools are paid directly by the client.',
+          'Website design and development: $2,500 USD, one-time payment due at the start of the engagement, before work begins.',
+          'Google Ads management: $1,250 USD per month, billed at the beginning of each service month, month-to-month with no long-term contract.',
+          'Google Ads media spend (recommended $50/day) is paid directly to Google by the client and is separate from the retainer.',
+          'All invoices are payable within 10 days of receipt. Tax and accounting matters are the responsibility of the client.',
+          'Hosting is 100% free while the Google Ads service is active. Domain renewal and premium third-party tools are paid directly by the client.',
         ],
       },
       {
         heading: 'Scope of Work',
         items: [
-          'The project includes the website pages, features, and services listed in the Website Build section.',
-          'Additional pages, features, copywriting, or integrations outside the agreed scope may require a separate estimate.',
+          'The engagement includes the website pages and features listed in the Website Build section plus the Google Ads management services listed in this proposal.',
+          'Additional pages, features, copywriting, advertising platforms, or integrations outside the agreed scope may require a separate estimate.',
           'The client is responsible for providing all required content, brand assets, and account access in a timely manner.',
         ],
       },
+      {
+        heading: 'Termination & Renewal',
+        items: [
+          'Google Ads management renews automatically each month until cancelled.',
+          'Either party may terminate the Google Ads service with 30 days written notice.',
+          'Upon termination, all website files are delivered to the client and any outstanding invoices must be settled within 10 days.',
+          'If the Google Ads service ends, the client may continue hosting with us free for 1 year or migrate to any server at any time.',
+        ],
+      },
+
       {
         heading: 'Revisions & Approvals',
         items: [
