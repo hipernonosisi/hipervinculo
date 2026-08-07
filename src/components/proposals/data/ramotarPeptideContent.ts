@@ -38,7 +38,7 @@ export const ramotarPeptideContent = {
     title: 'Objective — Phase 1',
     headline: 'Get the Business Fully Operational and Selling',
     description:
-      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, all required legal and compliance documentation published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (telehealth intake, affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed.',
+      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, all required legal and compliance documentation published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. An optional Telehealth & Prescriber Module (medical intake, clinician review and approval-gated fulfillment) is available as a priced add-on and can be built alongside Phase 1. Other advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed.',
     scope: [
       {
         title: 'Custom Storefront Design & Build',
@@ -76,9 +76,49 @@ export const ramotarPeptideContent = {
     exclusions: {
       title: 'Reserved for Later Phases (Out of Phase 1 Scope)',
       description:
-        'Phase 1 does not include: telehealth/prescriber intake or physician network integration, third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
+        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. The Telehealth & Prescriber Module is available as an optional add-on (priced separately in the Investment Summary) and can be built alongside Phase 1 or added after launch. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
     },
   },
+
+  telehealthModule: {
+    title: 'Telehealth & Prescriber Module',
+    headline: 'Optional Add-On: Intake, Prescriber Review & Compliant Fulfillment',
+    price: '$14,500',
+    priceLabel: 'One-time add-on — built alongside Phase 1',
+    monthly: '+$450/mo',
+    monthlyLabel: 'Compliance & Module Maintenance (while active)',
+    description:
+      'This module converts the storefront into a prescription-ready experience: the customer completes a medical intake questionnaire at checkout, the submission is routed to a licensed prescriber or partner telehealth group for review, and the order is only released for fulfillment once it is approved. It removes the legal ambiguity of selling regulated compounds direct-to-consumer and unlocks higher-ticket products and recurring refills. Adds 4-5 weeks to the timeline and can also be added after launch at the same price.',
+    includes: [
+      {
+        title: 'Medical Intake Questionnaire',
+        description: 'Dynamic, conditional-logic health questionnaire captured at checkout with consent capture, ID/age verification, and timestamped audit trail.',
+      },
+      {
+        title: 'Prescriber Review Queue',
+        description: 'Private clinician dashboard to review, approve, deny, or request more information on each intake, with notes and full case history.',
+      },
+      {
+        title: 'Approval-Gated Fulfillment',
+        description: 'Orders are held in an unfulfilled state and only released to shipping once a prescriber approves — payment capture rules configured accordingly.',
+      },
+      {
+        title: 'Prescription Refills & Subscriptions',
+        description: 'Refill limits, expiration windows, and re-intake triggers wired into the subscription engine so recurring orders stay compliant.',
+      },
+      {
+        title: 'Secure Records & Messaging',
+        description: 'Encrypted storage of intake records, HIPAA-aligned access controls and logging, and secure patient-to-prescriber messaging inside the portal.',
+      },
+      {
+        title: 'Telehealth Partner Integration',
+        description: 'Integration with the client\'s chosen prescriber network or telehealth platform via API or a managed hand-off workflow, plus prescriber onboarding and training.',
+      },
+    ],
+    note:
+      'Requires the client to contract a licensed prescriber or telehealth group and any state licensing required. Hipervínculo builds the technology and compliance workflow; clinical services and medical liability remain with the client and its providers.',
+  },
+
 
   platformAccess: {
     title: 'Required Access & Inputs',
@@ -212,13 +252,20 @@ export const ramotarPeptideContent = {
   },
   investment: {
     title: 'Investment Summary',
-    headline: 'Phase 1 Build + Optional Platform Care',
+    headline: 'Phase 1 Build + Telehealth Add-On + Optional Platform Care',
     websiteBuild: {
       label: 'Phase 1 Platform Build',
       rate: '$49,500',
       basis: 'One-time project fee — milestone based',
       description:
         'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
+    },
+    telehealthAddOn: {
+      label: 'Telehealth & Prescriber Module',
+      rate: '$14,500',
+      basis: 'Optional add-on — one-time, adds 4-5 weeks',
+      description:
+        'Medical intake at checkout, prescriber review dashboard, approval-gated fulfillment, compliant refills, encrypted records and secure messaging, and integration with your prescriber network. Maintenance +$450/mo while active.',
     },
     monthlyManagement: {
       label: 'Platform Care & Operations',
@@ -231,6 +278,7 @@ export const ramotarPeptideContent = {
       title: 'Paid Directly by Client',
       items: [
         { name: 'Payment Processing Fees', detail: 'Charged by the processor per transaction (high-risk rates apply)' },
+        { name: 'Prescriber / Telehealth Network', detail: 'Clinician fees and telehealth platform licensing if the Telehealth Module is activated' },
         { name: 'Domain Registration / Renewal', detail: 'Client owns and renews the domain' },
         { name: 'Third-Party Subscriptions', detail: 'Shipping, tax, email, or review tools if selected (typically $150-$400/mo)' },
         { name: 'Legal & Regulatory Counsel', detail: 'Attorney review, licenses, and filings' },
@@ -240,15 +288,17 @@ export const ramotarPeptideContent = {
     },
     paymentTerms: {
       title: 'Payment Terms — Milestones',
-      subtitle: 'Phase 1 total: $49,500 USD',
+      subtitle: 'Phase 1 total: $49,500 USD — with Telehealth Module: $64,000 USD',
       rows: [
         { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$17,500' },
         { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$16,000' },
         { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$16,000' },
+        { label: 'Telehealth & Prescriber Module (optional add-on)', value: '$14,500' },
         { label: 'Platform Care (optional, after launch)', value: '$2,500/mo' },
       ],
-      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
+      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. The Telehealth Module is billed 50% at approval and 50% at module go-live, and adds $450/mo maintenance while active. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
     },
+
     timeline: {
       title: 'Phase 1 Timeline to Launch',
       duration: '12-14',
@@ -265,7 +315,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Phase 1 Scope',
         description:
-          'This proposal covers Phase 1 only, as described in the Phase 1 Build section. Telehealth intake, third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
+          'This proposal covers Phase 1 only, as described in the Phase 1 Build section, plus the optional Telehealth & Prescriber Module ($14,500 one-time + $450/mo). Third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
         icon: 'files',
       },
       {
@@ -273,6 +323,12 @@ export const ramotarPeptideContent = {
         description:
           'Phase 1 is $49,500 USD, invoiced across three milestones ($17,500 / $16,000 / $16,000). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
         icon: 'dollar',
+      },
+      {
+        title: 'Telehealth Module (Optional)',
+        description:
+          'The Telehealth & Prescriber Module is $14,500 one-time (50% at approval, 50% at module go-live) plus $450/mo maintenance while active, and adds 4-5 weeks to the timeline. It requires the client to contract a licensed prescriber or telehealth group; clinical services and medical liability remain with the client and its providers.',
+        icon: 'shield',
       },
       {
         title: 'Compliance & Legal Responsibility',
@@ -332,6 +388,7 @@ export const ramotarPeptideContent = {
         heading: 'Payment Method & Fees',
         items: [
           'Phase 1 Platform Build: $49,500 USD total, invoiced in three milestones — $17,500 at kickoff, $16,000 upon completion of the storefront/catalog/payments stage, and $16,000 upon completion of the portal/compliance/photography stage prior to launch.',
+          'Telehealth & Prescriber Module (optional): $14,500 USD one-time, invoiced 50% upon approval of the add-on and 50% upon module go-live, plus $450 USD per month for compliance and module maintenance while the module is active. Clinician fees, telehealth platform licensing, and state licensing are paid directly by the client.',
           'Platform Care & Operations (optional): $2,500 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
@@ -342,7 +399,7 @@ export const ramotarPeptideContent = {
         heading: 'Scope of Work — Phase 1',
         items: [
           'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
-          'Additional SKUs beyond 40, additional languages, telehealth or prescriber workflows, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
+          'Additional SKUs beyond 40, additional languages, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
           'The client is responsible for providing product data, pricing, certificates of analysis, product samples, brand assets, and account access in a timely manner.',
         ],
       },
