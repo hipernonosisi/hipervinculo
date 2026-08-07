@@ -222,7 +222,7 @@ export const ramotarPeptideContent = {
   googleAdsService: {
     title: 'Platform Care & Operations',
     headline: 'Keeping the Platform Live, Secure, and Selling After Launch',
-    retainer: '$2,500/mo',
+    retainer: '$1,850/mo',
     retainerLabel: 'Monthly Platform Care (Optional, Month-to-Month)',
     mediaSpend: 'Included',
     mediaSpendLabel: 'Hosting & Infrastructure While Active',
@@ -260,7 +260,7 @@ export const ramotarPeptideContent = {
     headline: 'Phase 1 Build + Research-Use Compliance + Optional Platform Care',
     websiteBuild: {
       label: 'Phase 1 Platform Build',
-      rate: '$49,500',
+      rate: '$37,500',
       basis: 'One-time project fee — milestone based',
       description:
         'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full research-use compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
@@ -274,7 +274,7 @@ export const ramotarPeptideContent = {
     },
     monthlyManagement: {
       label: 'Platform Care & Operations',
-      rate: '$2,500/mo',
+      rate: '$1,850/mo',
       basis: 'Optional — starts after the 60-day support period, month-to-month',
       description:
         'Managed hosting and infrastructure, security and updates, product and content changes, subscription/order technical support, conversion optimization, and a monthly performance report. Cancel any time with 30 days written notice.',
@@ -286,18 +286,18 @@ export const ramotarPeptideContent = {
         { name: 'Domain Registration / Renewal', detail: 'Client owns and renews the domain' },
         { name: 'Third-Party Subscriptions', detail: 'Shipping, tax, email, or review tools if selected (typically $150-$400/mo)' },
         { name: 'Legal & Regulatory Counsel', detail: 'Attorney review, licenses, and filings' },
-        { name: 'Hosting After Cancellation', detail: 'Free while Platform Care is active; $3,600/year if not under an active plan' },
+        { name: 'Hosting After Cancellation', detail: 'Free while Platform Care is active; $2,400/year if not under an active plan' },
         { name: 'Paid Media Spend', detail: 'Optional — quoted separately when acquisition begins' },
       ],
     },
     paymentTerms: {
       title: 'Payment Terms — Milestones',
-      subtitle: 'Phase 1 total: $49,500 USD',
+      subtitle: 'Phase 1 total: $37,500 USD',
       rows: [
-        { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$17,500' },
-        { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$16,000' },
-        { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$16,000' },
-        { label: 'Platform Care (optional, after launch)', value: '$2,500/mo' },
+        { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$13,500' },
+        { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$12,000' },
+        { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$12,000' },
+        { label: 'Platform Care (optional, after launch)', value: '$1,850/mo' },
       ],
       note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
     },
@@ -324,7 +324,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Payment Terms',
         description:
-          'Phase 1 is $49,500 USD, invoiced across three milestones ($17,500 / $16,000 / $16,000). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
+          'Phase 1 is $37,500 USD, invoiced across three milestones ($13,500 / $12,000 / $12,000). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
         icon: 'dollar',
       },
       {
@@ -354,7 +354,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Hosting Included While Active',
         description:
-          'Managed hosting and infrastructure are included at no cost during the build, the 60-day support period, and any month with an active Platform Care plan. Without an active plan, hosting continues at $3,600/year or the client may migrate.',
+          'Managed hosting and infrastructure are included at no cost during the build, the 60-day support period, and any month with an active Platform Care plan. Without an active plan, hosting continues at $2,400/year or the client may migrate.',
         icon: 'server',
       },
       {
@@ -396,11 +396,11 @@ export const ramotarPeptideContent = {
       {
         heading: 'Payment Method & Fees',
         items: [
-          'Phase 1 Platform Build: $49,500 USD total, invoiced in three milestones — $17,500 at kickoff, $16,000 upon completion of the storefront/catalog/payments stage, and $16,000 upon completion of the portal/compliance/photography stage prior to launch.',
-          'Platform Care & Operations (optional): $2,500 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
+          'Phase 1 Platform Build: $37,500 USD total, invoiced in three milestones — $13,500 at kickoff, $12,000 upon completion of the storefront/catalog/payments stage, and $12,000 upon completion of the portal/compliance/photography stage prior to launch.',
+          'Platform Care & Operations (optional): $1,850 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
-          'Hosting and infrastructure are included while Platform Care is active. Without an active plan, hosting continues at $3,600/year unless the client migrates to another provider.',
+          'Hosting and infrastructure are included while Platform Care is active. Without an active plan, hosting continues at $2,400/year unless the client migrates to another provider.',
         ],
       },
       {

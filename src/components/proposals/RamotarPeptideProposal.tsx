@@ -241,7 +241,7 @@ export function RamotarPeptideProposal() {
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Phase 1 Project Fee</div>
-                  <div className="text-white/40 text-xs mt-1">$49,500 — invoiced across 3 milestones</div>
+                  <div className="text-white/40 text-xs mt-1">$37,500 — invoiced across 3 milestones</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
