@@ -76,7 +76,7 @@ export const ramotarPeptideContent = {
     exclusions: {
       title: 'Reserved for Later Phases (Out of Phase 1 Scope)',
       description:
-        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. The Telehealth & Prescriber Module is available as an optional add-on (priced separately in the Investment Summary) and can be built alongside Phase 1 or added after launch. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
+        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. Telemedicine, prescriber review, and prescription-gated fulfillment are not included in Phase 1 and are not part of the launch scope. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
     },
   },
 
