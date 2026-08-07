@@ -25,7 +25,7 @@ export const ramotarPeptideContent = {
     title: 'The Client',
     headline: 'Ramotar Peptide Marketplace',
     description:
-      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, clear intended-use language, and a checkout experience that feels as professional as a pharmacy. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with everything required to accept orders, sell subscriptions, and serve customers through a private account area.',
+      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, clear research-only language, and a checkout experience that is professional and compliant. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with the legal disclaimers, age verification, and documentation architecture required to operate as a research-use marketplace — without any telemedicine or prescription component.',
     services: [
       { title: 'Direct-to-Consumer Storefront', description: 'Catalog of peptides and related products sold online with dosage/strength variants and per-product documentation.' },
       { title: 'Subscription & Repeat Purchase', description: 'Recurring-order model designed to maximize customer lifetime value from the first month of operation.' },
