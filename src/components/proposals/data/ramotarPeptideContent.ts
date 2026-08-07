@@ -38,7 +38,7 @@ export const ramotarPeptideContent = {
     title: 'Objective — Phase 1',
     headline: 'Get the Business Fully Operational and Selling',
     description:
-      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, all required legal and compliance documentation published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (telehealth intake, affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed.',
+      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, all required legal and compliance documentation published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. An optional Telehealth & Prescriber Module (medical intake, clinician review and approval-gated fulfillment) is available as a priced add-on and can be built alongside Phase 1. Other advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed.',
     scope: [
       {
         title: 'Custom Storefront Design & Build',
@@ -315,7 +315,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Phase 1 Scope',
         description:
-          'This proposal covers Phase 1 only, as described in the Phase 1 Build section. Telehealth intake, third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
+          'This proposal covers Phase 1 only, as described in the Phase 1 Build section, plus the optional Telehealth & Prescriber Module ($14,500 one-time + $450/mo). Third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
         icon: 'files',
       },
       {
@@ -323,6 +323,12 @@ export const ramotarPeptideContent = {
         description:
           'Phase 1 is $49,500 USD, invoiced across three milestones ($17,500 / $16,000 / $16,000). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
         icon: 'dollar',
+      },
+      {
+        title: 'Telehealth Module (Optional)',
+        description:
+          'The Telehealth & Prescriber Module is $14,500 one-time (50% at approval, 50% at module go-live) plus $450/mo maintenance while active, and adds 4-5 weeks to the timeline. It requires the client to contract a licensed prescriber or telehealth group; clinical services and medical liability remain with the client and its providers.',
+        icon: 'shield',
       },
       {
         title: 'Compliance & Legal Responsibility',
@@ -382,6 +388,7 @@ export const ramotarPeptideContent = {
         heading: 'Payment Method & Fees',
         items: [
           'Phase 1 Platform Build: $49,500 USD total, invoiced in three milestones — $17,500 at kickoff, $16,000 upon completion of the storefront/catalog/payments stage, and $16,000 upon completion of the portal/compliance/photography stage prior to launch.',
+          'Telehealth & Prescriber Module (optional): $14,500 USD one-time, invoiced 50% upon approval of the add-on and 50% upon module go-live, plus $450 USD per month for compliance and module maintenance while the module is active. Clinician fees, telehealth platform licensing, and state licensing are paid directly by the client.',
           'Platform Care & Operations (optional): $2,500 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
@@ -392,7 +399,7 @@ export const ramotarPeptideContent = {
         heading: 'Scope of Work — Phase 1',
         items: [
           'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
-          'Additional SKUs beyond 40, additional languages, telehealth or prescriber workflows, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
+          'Additional SKUs beyond 40, additional languages, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
           'The client is responsible for providing product data, pricing, certificates of analysis, product samples, brand assets, and account access in a timely manner.',
         ],
       },
