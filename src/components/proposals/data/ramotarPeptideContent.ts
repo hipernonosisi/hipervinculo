@@ -311,6 +311,148 @@ export const ramotarPeptideContent = {
     },
   },
 
+  costBreakdown: {
+    title: 'Detailed Cost Breakdown',
+    headline: 'Exactly What Each Part of the Build Costs and Why',
+    description:
+      'This is not a template store. Every line below is a distinct block of engineering, design, or production work with its own deliverables and its own hours. The breakdown shows the standard value of each workstream, followed by the relationship adjustment applied to this project.',
+    workstreams: [
+      {
+        title: '1. Discovery, Compliance Mapping & Design System',
+        value: '$6,900',
+        hours: '~90 hrs',
+        why: 'This category cannot be designed after the fact. The disclaimer logic, age gate, and research-use language have to be mapped before a single screen is built, because they change the checkout flow and every product template.',
+        items: [
+          'Discovery sessions, category benchmarking (Alpha Labs and 4 comparable operators) and conversion teardown',
+          'Compliance content map: where every disclaimer, acknowledgment, and policy must appear across the site',
+          'Brand foundation: logo treatment, palette, typography, iconography and packaging-aligned visual language',
+          'Design system in Figma: components, states, spacing, and 8 fully designed key screens (home, category, PDP, cart, checkout, age gate, portal, admin)',
+        ],
+      },
+      {
+        title: '2. Storefront, Catalog & Content Build',
+        value: '$8,400',
+        hours: '~115 hrs',
+        why: 'Product pages in this category carry far more data than normal e-commerce: strengths, batch numbers, COA files, purity data, FAQs and per-product disclaimers. Each SKU is a structured record, not a paragraph.',
+        items: [
+          'Front-end build of homepage, category pages, product detail template, cart and content pages, fully responsive',
+          'Up to 40 SKUs loaded: variants, strengths, pricing, stock status, batch data and COA file attachments',
+          'COA document library with per-batch downloads and version history',
+          'Technical SEO foundation: structured product data, sitemap, metadata system and Core Web Vitals optimization',
+        ],
+      },
+      {
+        title: '3. Commerce Engine: Checkout, High-Risk Payments & Subscriptions',
+        value: '$7,400',
+        hours: '~100 hrs',
+        why: 'Standard plug-and-play checkout is not available here. Stripe and PayPal prohibit this category, so the integration is built against a high-risk gateway, and the subscription logic (billing cycles, dunning, retries, self-service) has to be built rather than installed.',
+        items: [
+          'Secure checkout with address validation, tax and shipping rules, coupon engine and automated receipts',
+          'High-risk gateway integration (Authorize.net or NMI via a high-risk acquirer) including sandbox and live certification',
+          'Processor application support: documentation package, site compliance review and underwriting follow-up',
+          'Subscription engine: intervals, subscriber pricing, failed-payment dunning, retries, pause / skip / cancel logic',
+        ],
+      },
+      {
+        title: '4. Private Customer Portal & Admin Operations Dashboard',
+        value: '$6,300',
+        hours: '~85 hrs',
+        why: 'Two authenticated applications, not pages: one for customers to run their own subscriptions, one for your team to run the business. This is what removes manual work from day one and reduces support volume.',
+        items: [
+          'Customer portal: account creation, order history, tracking, invoices, saved addresses and cards, one-click reorder',
+          'Customer-side subscription management: change interval, swap product, pause, skip, cancel',
+          'Admin dashboard: orders, fulfillment states, shipping/tracking entry, inventory levels, customer records',
+          'Admin subscription oversight, refunds and failed-payment handling, plus role-based access for staff',
+        ],
+      },
+      {
+        title: '5. Research-Use Compliance Architecture & Documentation Set',
+        value: '$3,800',
+        hours: '~50 hrs',
+        why: 'This is the layer that protects the business and keeps the payment processor comfortable. It is written, built, and logged — not copy-pasted.',
+        items: [
+          'Drafting of the full documentation set: Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, cookie consent and accessibility statement',
+          'Not-a-medical-provider, not-for-human-consumption, research-use-only and FDA disclaimer placement site-wide and per product',
+          '21+ age gate with enforced checkout acknowledgments and blocked-purchase logic',
+          'Order-level audit trail recording age verification, disclaimer and ToS acceptance with timestamps for chargeback and processor review',
+        ],
+      },
+      {
+        title: '6. Product Photography & Graphics Production',
+        value: '$4,600',
+        hours: '~60 hrs + studio',
+        why: 'In this category the photography is the trust signal. Buyers compare vials, labels and documentation before they compare prices. Outsourced separately this alone is typically $5K-$8K for a 40-SKU catalog.',
+        items: [
+          'Studio product photography of the launch catalog: hero, angle and scale shots, retouched and web-optimized',
+          'Packaging and label renders for SKUs without physical stock available at shoot time',
+          'Purity / comparison / batch graphics and educational visuals for product pages',
+          'Marketing-ready asset library exported for site, email and future paid media use',
+        ],
+      },
+      {
+        title: '7. Analytics, QA, Launch, Training & 60-Day Support',
+        value: '$4,900',
+        hours: '~65 hrs',
+        why: 'Launching without measurement means you cannot advertise. This block makes the store provable: every event tracked, every flow tested, and your team trained to operate it without us.',
+        items: [
+          'GA4, full e-commerce event tracking and server-side conversion tracking ready for paid acquisition',
+          'KPI dashboard: revenue, AOV, conversion rate, subscription retention and churn',
+          'Full QA: cross-device, cross-browser, live test transactions, subscription cycle tests, SSL, security hardening and backups',
+          'Supervised go-live, two live training sessions, written operations documentation and 60 days of post-launch support',
+        ],
+      },
+    ],
+    totals: {
+      subtotalLabel: 'Standard value of all workstreams',
+      subtotal: '$42,300',
+      discountLabel: 'Relationship adjustment for this project',
+      discount: '- $4,800',
+      totalLabel: 'Phase 1 investment',
+      total: '$37,500',
+    },
+    note:
+      'The adjustment is applied because of the existing relationship and because Phase 1 is scoped tightly, with later phases (marketplace, wholesale/B2B, mobile app, paid media) reserved for separate agreements. Pricing is valid for 30 days from the date of this proposal.',
+  },
+
+  deliveryStages: {
+    title: 'How Phase 1 Is Delivered',
+    headline: 'Four Stages, Written Approval at Every Gate',
+    description:
+      'You never pay for work you have not seen. Each stage ends with a concrete, reviewable deliverable and written sign-off before the next stage begins. This is what the milestone payments are tied to.',
+    stages: [
+      {
+        stage: 'Stage 1',
+        weeks: 'Weeks 1-3',
+        title: 'Discovery, Compliance Mapping & Design System',
+        payment: '$13,500 at kickoff',
+        deliverables: 'Compliance map, brand foundation, complete design system and 8 approved key screens. You see and approve exactly what the store will look like before any code is written.',
+      },
+      {
+        stage: 'Stage 2',
+        weeks: 'Weeks 4-7',
+        title: 'Storefront, Catalog, Payments & Subscriptions',
+        payment: '$12,000 on completion',
+        deliverables: 'Live staging store with 40 SKUs loaded, working checkout on the high-risk gateway, subscription engine running, and test transactions you can run yourself.',
+      },
+      {
+        stage: 'Stage 3',
+        weeks: 'Weeks 8-10',
+        title: 'Customer Portal, Admin Dashboard & Production',
+        payment: 'Included in Milestone 3',
+        deliverables: 'Customer portal and admin dashboard functional, product photography and graphics delivered and loaded into the catalog.',
+      },
+      {
+        stage: 'Stage 4',
+        weeks: 'Weeks 11-12',
+        title: 'Compliance, Analytics, QA & Launch',
+        payment: '$12,000 prior to launch',
+        deliverables: 'Documentation set published, age gate and audit trail live, analytics verified, full QA passed, supervised go-live and team training completed. Weeks 13-14 are buffer for approvals, processor verification and stabilization.',
+      },
+    ],
+  },
+
+
+
   terms: {
     title: 'Terms & Conditions',
     headline: 'What You Need to Know',
