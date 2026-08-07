@@ -421,6 +421,95 @@ export function RamotarPeptideProposal() {
             </div>
           </Page>
 
+          {/* Cost Breakdown — Part 1 */}
+          {[0, 1].map((part) => {
+            const groups = part === 0 ? content.costBreakdown.workstreams.slice(0, 4) : content.costBreakdown.workstreams.slice(4);
+            return (
+              <Page key={`cb-${part}`}>
+                <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+                  <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Cost Justification</p>
+                  <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>
+                    {content.costBreakdown.title}{part === 1 ? ' (cont.)' : ''}
+                  </h2>
+                  <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.costBreakdown.headline}</p>
+                  {part === 0 && (
+                    <p className="text-gray-600 leading-relaxed mb-5 text-[14px]">{content.costBreakdown.description}</p>
+                  )}
+                  <div className="space-y-3 flex-1">
+                    {groups.map((ws, i) => (
+                      <div key={i} className="p-4 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                        <div className="flex items-start justify-between gap-4 mb-1.5">
+                          <h3 className="font-bold text-[14px] leading-snug" style={{ color: '#2d4a2d' }}>{ws.title}</h3>
+                          <div className="text-right flex-shrink-0">
+                            <div className="font-extrabold text-[16px] leading-none" style={{ color: '#2d4a2d' }}>{ws.value}</div>
+                            <div className="text-[9px] text-gray-400 mt-0.5">{ws.hours}</div>
+                          </div>
+                        </div>
+                        <p className="text-[11px] italic text-gray-500 leading-relaxed mb-2">{ws.why}</p>
+                        <ul className="space-y-1">
+                          {ws.items.map((it, j) => (
+                            <li key={j} className="flex gap-2 text-[11px] text-gray-600 leading-relaxed">
+                              <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: '#8BC34A' }} />
+                              <span>{it}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  {part === 1 && (
+                    <div className="mt-4 rounded-2xl p-6" style={{ backgroundColor: '#2d4a2d' }}>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[12px] text-white/70">{content.costBreakdown.totals.subtotalLabel}</span>
+                        <span className="text-[14px] font-bold text-white">{content.costBreakdown.totals.subtotal}</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/15">
+                        <span className="text-[12px] text-white/70">{content.costBreakdown.totals.discountLabel}</span>
+                        <span className="text-[14px] font-bold" style={{ color: '#c5e86a' }}>{content.costBreakdown.totals.discount}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-bold uppercase tracking-widest text-white">{content.costBreakdown.totals.totalLabel}</span>
+                        <span className="text-3xl font-extrabold" style={{ color: '#c5e86a' }}>{content.costBreakdown.totals.total}</span>
+                      </div>
+                      <p className="text-[10px] text-white/55 leading-relaxed mt-3">{content.costBreakdown.note}</p>
+                    </div>
+                  )}
+                </div>
+              </Page>
+            );
+          })}
+
+          {/* Delivery Stages */}
+          <Page bg="#f8f9f5">
+            <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#f8f9f5' }}>
+              <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Delivery</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.deliveryStages.title}</h2>
+              <p className="font-medium mb-4" style={{ color: '#8BC34A' }}>{content.deliveryStages.headline}</p>
+              <p className="text-gray-600 leading-relaxed mb-6 text-[14px]">{content.deliveryStages.description}</p>
+              <div className="space-y-4 flex-1">
+                {content.deliveryStages.stages.map((st, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-[10px] font-bold px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: '#2d4a2d' }}>
+                          {st.stage}
+                        </span>
+                        <span className="text-[11px] font-semibold text-gray-400">{st.weeks}</span>
+                      </div>
+                      <span className="text-[12px] font-bold" style={{ color: '#8BC34A' }}>{st.payment}</span>
+                    </div>
+                    <h3 className="font-bold text-[15px] mb-1" style={{ color: '#2d4a2d' }}>{st.title}</h3>
+                    <p className="text-[12px] text-gray-500 leading-relaxed">{st.deliverables}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Page>
+
+
+
           {/* PAGE 8: Terms & Conditions */}
           <Page>
             <div className="px-16 py-12 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
