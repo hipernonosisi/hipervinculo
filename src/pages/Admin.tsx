@@ -31,6 +31,7 @@ import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRe
 import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
 import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
+import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
