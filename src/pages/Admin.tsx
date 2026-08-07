@@ -912,6 +912,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('ramotar-peptide')}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'ramotar-peptide' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Package className="w-4 h-4" />
+                  Ramotar Peptide Marketplace
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('hazim-law')}
                   className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'hazim-law' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
