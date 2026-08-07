@@ -235,7 +235,7 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>PHASE 1 PROJECT FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$49,500 — invoiced across 3 milestones</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$37,500 — invoiced across 3 milestones</Text>
           </View>
           <MonitorIcon size={22} />
         </View>
@@ -408,6 +408,90 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
 
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
+
+      {/* Cost Breakdown pages */}
+      {[0, 1].map((part) => {
+        const groups = part === 0 ? content.costBreakdown.workstreams.slice(0, 4) : content.costBreakdown.workstreams.slice(4);
+        return (
+          <Page key={`cb-${part}`} size="A4" style={{ ...s.page, padding: 36 }}>
+            <View style={s.accent} />
+            <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>COST JUSTIFICATION</Text>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 4 }}>
+              {content.costBreakdown.title}{part === 1 ? ' (cont.)' : ''}
+            </Text>
+            <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, marginBottom: 10 }}>{content.costBreakdown.headline}</Text>
+            {part === 0 && (
+              <Text style={{ fontSize: 9, color: gray, lineHeight: 1.5, marginBottom: 10 }}>{content.costBreakdown.description}</Text>
+            )}
+            {groups.map((ws, i) => (
+              <View key={i} wrap={false} style={{ backgroundColor: bg, borderRadius: 10, padding: 11, marginBottom: 7 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, flex: 1, paddingRight: 10 }}>{ws.title}</Text>
+                  <View style={{ alignItems: 'flex-end' }}>
+                    <Text style={{ fontSize: 12, fontWeight: 'bold', color: green }}>{ws.value}</Text>
+                    <Text style={{ fontSize: 6.5, color: grayLight }}>{ws.hours}</Text>
+                  </View>
+                </View>
+                <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.4, marginBottom: 4 }}>{ws.why}</Text>
+                {ws.items.map((it, j) => (
+                  <View key={j} style={{ flexDirection: 'row', gap: 5, marginBottom: 2 }}>
+                    <Text style={{ fontSize: 7.5, color: lime }}>•</Text>
+                    <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.4, flex: 1 }}>{it}</Text>
+                  </View>
+                ))}
+              </View>
+            ))}
+            {part === 1 && (
+              <View style={{ backgroundColor: green, borderRadius: 14, padding: 16, marginTop: 4 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
+                  <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)' }}>{content.costBreakdown.totals.subtotalLabel}</Text>
+                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#ffffff' }}>{content.costBreakdown.totals.subtotal}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)' }}>{content.costBreakdown.totals.discountLabel}</Text>
+                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#c5e86a' }}>{content.costBreakdown.totals.discount}</Text>
+                </View>
+                <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 8 }} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1.5 }}>
+                    {content.costBreakdown.totals.totalLabel.toUpperCase()}
+                  </Text>
+                  <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#c5e86a' }}>{content.costBreakdown.totals.total}</Text>
+                </View>
+                <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.6)', lineHeight: 1.4, marginTop: 8 }}>{content.costBreakdown.note}</Text>
+              </View>
+            )}
+            <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+          </Page>
+        );
+      })}
+
+      {/* Delivery Stages */}
+      <Page size="A4" style={s.pageBg}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>DELIVERY</Text>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.deliveryStages.title}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 10 }}>{content.deliveryStages.headline}</Text>
+        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 14 }}>{content.deliveryStages.description}</Text>
+        {content.deliveryStages.stages.map((st, i) => (
+          <View key={i} wrap={false} style={{ backgroundColor: '#ffffff', borderRadius: 14, padding: 16, marginBottom: 10 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
+                  <Text style={{ fontSize: 7, fontWeight: 'bold', color: green }}>{st.stage.toUpperCase()}</Text>
+                </View>
+                <Text style={{ fontSize: 8, fontWeight: 'bold', color: grayLight }}>{st.weeks}</Text>
+              </View>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime }}>{st.payment}</Text>
+            </View>
+            <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 3 }}>{st.title}</Text>
+            <Text style={{ fontSize: 8.5, color: gray, lineHeight: 1.5 }}>{st.deliverables}</Text>
+          </View>
+        ))}
+        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+      </Page>
+
+
 
       {/* PAGE 8: Terms & Conditions */}
       <Page size="A4" style={s.page}>
