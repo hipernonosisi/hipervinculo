@@ -314,7 +314,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Phase 1 Scope',
         description:
-          'This proposal covers Phase 1 only, as described in the Phase 1 Build section, plus the optional Telehealth & Prescriber Module ($14,500 one-time + $450/mo). Third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
+          'This proposal covers Phase 1 only: the complete launch-ready platform plus the Research-Use Compliance Architecture built into Phase 1. Third-party seller marketplace, affiliate/wholesale portals, mobile apps, custom ERP/3PL integrations, and telemedicine/prescriber models are reserved for later phases and quoted separately.',
         icon: 'files',
       },
       {
@@ -324,9 +324,15 @@ export const ramotarPeptideContent = {
         icon: 'dollar',
       },
       {
-        title: 'Telehealth Module (Optional)',
+        title: 'No Telemedicine Model',
         description:
-          'The Telehealth & Prescriber Module is $14,500 one-time (50% at approval, 50% at module go-live) plus $450/mo maintenance while active, and adds 4-5 weeks to the timeline. It requires the client to contract a licensed prescriber or telehealth group; clinical services and medical liability remain with the client and its providers.',
+          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-only marketplace with disclaimers and age verification.',
+        icon: 'shield',
+      },
+      {
+        title: 'Research-Use Compliance',
+        description:
+          'The site will require customers to verify they are 21+, acknowledge that products are for laboratory research use only and not for human or animal consumption, and agree to the Terms of Service before checkout.',
         icon: 'shield',
       },
       {
