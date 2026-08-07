@@ -80,44 +80,45 @@ export const ramotarPeptideContent = {
     },
   },
 
-  telehealthModule: {
-    title: 'Telehealth & Prescriber Module',
-    headline: 'Optional Add-On: Intake, Prescriber Review & Compliant Fulfillment',
-    price: '$14,500',
-    priceLabel: 'One-time add-on — built alongside Phase 1',
-    monthly: '+$450/mo',
-    monthlyLabel: 'Compliance & Module Maintenance (while active)',
+  complianceLayer: {
+    title: 'Research-Use Compliance Architecture',
+    headline: 'Legal Disclaimers, Age Verification & ToS Built Into the Checkout Flow',
+    price: 'Included',
+    priceLabel: 'Included in Phase 1',
+    monthly: 'N/A',
+    monthlyLabel: 'No monthly fee',
     description:
-      'This module converts the storefront into a prescription-ready experience: the customer completes a medical intake questionnaire at checkout, the submission is routed to a licensed prescriber or partner telehealth group for review, and the order is only released for fulfillment once it is approved. It removes the legal ambiguity of selling regulated compounds direct-to-consumer and unlocks higher-ticket products and recurring refills. Adds 4-5 weeks to the timeline and can also be added after launch at the same price.',
+      'The platform is built as a research-only marketplace, not a medical or telehealth service. Every customer must verify they are 21+, acknowledge that products are sold for laboratory research use only and are not for human or animal consumption, and agree to the Terms of Service before checkout. These acknowledgments are recorded with a timestamped audit trail tied to each order.',
     includes: [
       {
-        title: 'Medical Intake Questionnaire',
-        description: 'Dynamic, conditional-logic health questionnaire captured at checkout with consent capture, ID/age verification, and timestamped audit trail.',
+        title: 'Not a Medical Provider Disclaimer',
+        description: 'Prominent site-wide statements that Ramotar Peptide Marketplace is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
       },
       {
-        title: 'Prescriber Review Queue',
-        description: 'Private clinician dashboard to review, approve, deny, or request more information on each intake, with notes and full case history.',
+        title: 'Research-Only Product Disclaimers',
+        description: 'Every product page displays the intended-use statement: products are sold for laboratory research use only and are not for human or animal consumption.',
       },
       {
-        title: 'Approval-Gated Fulfillment',
-        description: 'Orders are held in an unfulfilled state and only released to shipping once a prescriber approves — payment capture rules configured accordingly.',
+        title: 'Age Gate + Checkout Verification',
+        description: 'Customers must confirm they are 21+ years old and check the required acknowledgment boxes before purchase; stored with the order record.',
       },
       {
-        title: 'Prescription Refills & Subscriptions',
-        description: 'Refill limits, expiration windows, and re-intake triggers wired into the subscription engine so recurring orders stay compliant.',
+        title: 'Terms of Service Acknowledgment',
+        description: 'Mandatory ToS checkbox at checkout, with a timestamped record tied to each order confirming the buyer has read and agreed to the terms.',
       },
       {
-        title: 'Secure Records & Messaging',
-        description: 'Encrypted storage of intake records, HIPAA-aligned access controls and logging, and secure patient-to-prescriber messaging inside the portal.',
+        title: 'No Health Claims Policy',
+        description: 'Product copy and site content will not claim to diagnose, treat, cure, or prevent any disease; all claims are reviewed by client counsel before launch.',
       },
       {
-        title: 'Telehealth Partner Integration',
-        description: 'Integration with the client\'s chosen prescriber network or telehealth platform via API or a managed hand-off workflow, plus prescriber onboarding and training.',
+        title: 'Compliance Audit Trail',
+        description: 'Order-level logs capture disclaimer acknowledgments, age verification, and ToS acceptance for potential dispute, chargeback, or processor review.',
       },
     ],
     note:
-      'Requires the client to contract a licensed prescriber or telehealth group and any state licensing required. Hipervínculo builds the technology and compliance workflow; clinical services and medical liability remain with the client and its providers.',
+      'All legal disclaimers and policies are drafted by Hipervínculo and must be reviewed and approved in writing by the client or their attorney before launch. Hipervínculo is not a law firm and does not provide legal or medical advice.',
   },
+
 
 
   platformAccess: {
