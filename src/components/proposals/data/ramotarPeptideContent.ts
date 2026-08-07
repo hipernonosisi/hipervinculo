@@ -38,7 +38,7 @@ export const ramotarPeptideContent = {
     title: 'Objective — Phase 1',
     headline: 'Get the Business Fully Operational and Selling',
     description:
-      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, research-only compliance documentation and disclaimers published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed. Telemedicine, prescriber review, and prescription-gated fulfillment are explicitly excluded from Phase 1.'
+      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, research-only compliance documentation and disclaimers published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed. Telemedicine, prescriber review, and prescription-gated fulfillment are explicitly excluded from Phase 1.',
     scope: [
       {
         title: 'Custom Storefront Design & Build',
