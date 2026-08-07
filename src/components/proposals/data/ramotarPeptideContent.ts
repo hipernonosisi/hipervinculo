@@ -393,7 +393,6 @@ export const ramotarPeptideContent = {
         heading: 'Payment Method & Fees',
         items: [
           'Phase 1 Platform Build: $49,500 USD total, invoiced in three milestones — $17,500 at kickoff, $16,000 upon completion of the storefront/catalog/payments stage, and $16,000 upon completion of the portal/compliance/photography stage prior to launch.',
-          'Telehealth & Prescriber Module (optional): $14,500 USD one-time, invoiced 50% upon approval of the add-on and 50% upon module go-live, plus $450 USD per month for compliance and module maintenance while the module is active. Clinician fees, telehealth platform licensing, and state licensing are paid directly by the client.',
           'Platform Care & Operations (optional): $2,500 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
@@ -403,9 +402,20 @@ export const ramotarPeptideContent = {
       {
         heading: 'Scope of Work — Phase 1',
         items: [
-          'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
+          'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, research-use compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
+          'Telemedicine, prescriber review, prescription-gated fulfillment, and any medical intake workflow are explicitly outside the scope of Phase 1.',
           'Additional SKUs beyond 40, additional languages, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
           'The client is responsible for providing product data, pricing, certificates of analysis, product samples, brand assets, and account access in a timely manner.',
+        ],
+      },
+      {
+        heading: 'Research-Use Compliance & Disclaimers',
+        items: [
+          'The platform is built and marketed as a research-only marketplace. It is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
+          'Every product page will display the statement that products are sold for laboratory research use only and are not for human or animal consumption.',
+          'Customers must be 21 years of age or older to purchase. The checkout flow will require age verification and a Terms of Service acknowledgment before any order is placed.',
+          'No product or site content will claim to diagnose, treat, cure, or prevent any disease. All claims must be reviewed and approved in writing by the client or its legal counsel before publication.',
+          'Hipervínculo will build an order-level audit trail capturing disclaimer acknowledgments, age verification, and Terms of Service acceptance for each transaction.',
         ],
       },
       {
