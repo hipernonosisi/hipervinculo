@@ -252,13 +252,20 @@ export const ramotarPeptideContent = {
   },
   investment: {
     title: 'Investment Summary',
-    headline: 'Phase 1 Build + Optional Platform Care',
+    headline: 'Phase 1 Build + Telehealth Add-On + Optional Platform Care',
     websiteBuild: {
       label: 'Phase 1 Platform Build',
       rate: '$49,500',
       basis: 'One-time project fee — milestone based',
       description:
         'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
+    },
+    telehealthAddOn: {
+      label: 'Telehealth & Prescriber Module',
+      rate: '$14,500',
+      basis: 'Optional add-on — one-time, adds 4-5 weeks',
+      description:
+        'Medical intake at checkout, prescriber review dashboard, approval-gated fulfillment, compliant refills, encrypted records and secure messaging, and integration with your prescriber network. Maintenance +$450/mo while active.',
     },
     monthlyManagement: {
       label: 'Platform Care & Operations',
@@ -271,6 +278,7 @@ export const ramotarPeptideContent = {
       title: 'Paid Directly by Client',
       items: [
         { name: 'Payment Processing Fees', detail: 'Charged by the processor per transaction (high-risk rates apply)' },
+        { name: 'Prescriber / Telehealth Network', detail: 'Clinician fees and telehealth platform licensing if the Telehealth Module is activated' },
         { name: 'Domain Registration / Renewal', detail: 'Client owns and renews the domain' },
         { name: 'Third-Party Subscriptions', detail: 'Shipping, tax, email, or review tools if selected (typically $150-$400/mo)' },
         { name: 'Legal & Regulatory Counsel', detail: 'Attorney review, licenses, and filings' },
@@ -280,15 +288,17 @@ export const ramotarPeptideContent = {
     },
     paymentTerms: {
       title: 'Payment Terms — Milestones',
-      subtitle: 'Phase 1 total: $49,500 USD',
+      subtitle: 'Phase 1 total: $49,500 USD — with Telehealth Module: $64,000 USD',
       rows: [
         { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$17,500' },
         { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$16,000' },
         { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$16,000' },
+        { label: 'Telehealth & Prescriber Module (optional add-on)', value: '$14,500' },
         { label: 'Platform Care (optional, after launch)', value: '$2,500/mo' },
       ],
-      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
+      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. The Telehealth Module is billed 50% at approval and 50% at module go-live, and adds $450/mo maintenance while active. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
     },
+
     timeline: {
       title: 'Phase 1 Timeline to Launch',
       duration: '12-14',
