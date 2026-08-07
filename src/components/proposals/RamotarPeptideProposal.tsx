@@ -292,6 +292,43 @@ export function RamotarPeptideProposal() {
             </div>
           </Page>
 
+          {/* PAGE 8: Telehealth & Prescriber Module */}
+          <Page>
+            <div className="px-16 py-14 flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+              <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: '#8BC34A' }} />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#8BC34A' }}>Optional Add-On</p>
+              <h2 className="text-3xl font-extrabold mb-1" style={{ color: '#2d4a2d' }}>{content.telehealthModule.title}</h2>
+              <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.telehealthModule.headline}</p>
+              <div className="grid grid-cols-2 gap-4 mb-5">
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#2d4a2d' }}>
+                  <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">{content.telehealthModule.priceLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#c5e86a' }}>{content.telehealthModule.price}</div>
+                </div>
+                <div className="rounded-2xl px-6 py-5" style={{ backgroundColor: '#f8f9f5', border: '1px solid rgba(139,195,74,0.35)' }}>
+                  <div className="text-[10px] font-bold uppercase tracking-widest mb-1 text-gray-400">{content.telehealthModule.monthlyLabel}</div>
+                  <div className="text-3xl font-extrabold" style={{ color: '#2d4a2d' }}>{content.telehealthModule.monthly}</div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed mb-5 text-[15px]">{content.telehealthModule.description}</p>
+              <div className="grid grid-cols-2 gap-3 flex-1">
+                {content.telehealthModule.includes.map((item, i) => (
+                  <div key={i} className="flex gap-3 p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                    <ShieldCheck className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8BC34A' }} />
+                    <div>
+                      <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{item.title}</h3>
+                      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: '#f8f9f5', border: '1px dashed rgba(45,74,45,0.25)' }}>
+                <p className="text-[12px] text-gray-500 leading-relaxed">{content.telehealthModule.note}</p>
+              </div>
+            </div>
+          </Page>
+
+
+
 
 
           {/* PAGE 7: Investment Summary */}
