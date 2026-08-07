@@ -42,7 +42,7 @@ export const ramotarPeptideContent = {
     scope: [
       {
         title: 'Custom Storefront Design & Build',
-        description: 'A premium, clinical-grade design system and a fully responsive storefront: homepage, category pages, product detail pages, cart, and checkout.',
+        description: 'A premium, research-grade design system and a fully responsive storefront: homepage, category pages, product detail pages, cart, and checkout.',
       },
       {
         title: 'Product Catalog & Variants',
@@ -167,7 +167,7 @@ export const ramotarPeptideContent = {
     includes: [
       {
         title: 'Design System & Storefront',
-        description: 'Premium clinical-grade visual identity plus homepage, category, and content pages, fully responsive across all devices.',
+        description: 'Premium research-grade visual identity plus homepage, category, and content pages, fully responsive across all devices.',
       },
       {
         title: 'Product Pages (up to 40 SKUs)',
