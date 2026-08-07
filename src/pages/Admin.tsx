@@ -31,6 +31,7 @@ import { RumbasEventRentalsProposal } from '@/components/proposals/RumbasEventRe
 import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleInstituteProposal';
 import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
+import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
 import { HesacoreReport } from '@/components/reports/HesacoreReport';
@@ -104,7 +105,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law'>('hazim-law');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law' | 'ramotar-peptide'>('ramotar-peptide');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -911,6 +912,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('ramotar-peptide')}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'ramotar-peptide' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Package className="w-4 h-4" />
+                  Ramotar Peptide Marketplace
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('hazim-law')}
                   className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'hazim-law' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
@@ -1043,6 +1053,7 @@ export default function Admin() {
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
                   {activeProposal === 'lok-foods' && <LokFoodsProposal />}
                   {activeProposal === 'hazim-law' && <HazimLawProposal />}
+                  {activeProposal === 'ramotar-peptide' && <RamotarPeptideProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
