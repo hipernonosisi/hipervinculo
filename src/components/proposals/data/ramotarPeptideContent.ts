@@ -187,7 +187,7 @@ export const ramotarPeptideContent = {
       },
       {
         title: 'Compliance Documentation Set',
-        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, intended-use and research-only disclaimers, age gate, cookie consent, and accessibility statement.',
+        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, research-only disclaimers, not-a-medical-provider statements, 21+ age gate, cookie consent, and accessibility statement.',
       },
       {
         title: 'Photography & Graphics',
