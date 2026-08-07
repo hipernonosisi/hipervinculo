@@ -260,7 +260,7 @@ export const ramotarPeptideContent = {
     headline: 'Phase 1 Build + Research-Use Compliance + Optional Platform Care',
     websiteBuild: {
       label: 'Phase 1 Platform Build',
-      rate: '$37,500',
+      rate: '$42,300',
       basis: 'One-time project fee — milestone based',
       description:
         'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full research-use compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
@@ -279,10 +279,21 @@ export const ramotarPeptideContent = {
       description:
         'Managed hosting and infrastructure, security and updates, product and content changes, subscription/order technical support, conversion optimization, and a monthly performance report. Cancel any time with 30 days written notice.',
     },
+    paymentSystem: {
+      title: 'Payment System',
+      subtitle: 'Why this project cannot use Stripe or PayPal',
+      description:
+        'Research peptides are classified as a high-risk category by mainstream processors. Stripe and PayPal explicitly prohibit this product type, so the checkout is built around a high-risk merchant account and gateway instead.',
+      processor: 'High-risk merchant account',
+      recommendedProcessors: 'Payment Cloud or PayKings',
+      gateway: 'Authorize.net or NMI',
+      rate: '5.5% – 7% + per-transaction fee (typical)',
+      note: 'The client is the merchant of record, owns the account, and pays processing fees directly. Hipervínculo prepares the application package, supports underwriting, and completes the technical integration. Final approval is granted by the processor.',
+    },
     clientPays: {
       title: 'Paid Directly by Client',
       items: [
-        { name: 'Payment Processing Fees', detail: 'Charged by the processor per transaction (high-risk rates apply)' },
+        { name: 'Payment Processing Fees', detail: 'High-risk rates apply; typically 5.5%-7% + per transaction (charged by the processor)' },
         { name: 'Domain Registration / Renewal', detail: 'Client owns and renews the domain' },
         { name: 'Third-Party Subscriptions', detail: 'Shipping, tax, email, or review tools if selected (typically $150-$400/mo)' },
         { name: 'Legal & Regulatory Counsel', detail: 'Attorney review, licenses, and filings' },
@@ -292,11 +303,11 @@ export const ramotarPeptideContent = {
     },
     paymentTerms: {
       title: 'Payment Terms — Milestones',
-      subtitle: 'Phase 1 total: $37,500 USD',
+      subtitle: 'Phase 1 total: $42,300 USD',
       rows: [
-        { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$13,500' },
-        { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$12,000' },
-        { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$12,000' },
+        { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$14,500' },
+        { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$14,000' },
+        { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$13,800' },
         { label: 'Platform Care (optional, after launch)', value: '$1,850/mo' },
       ],
       note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
@@ -315,7 +326,7 @@ export const ramotarPeptideContent = {
     title: 'Detailed Cost Breakdown',
     headline: 'Exactly What Each Part of the Build Costs and Why',
     description:
-      'This is not a template store. Every line below is a distinct block of engineering, design, or production work with its own deliverables and its own hours. The breakdown shows the standard value of each workstream, followed by the relationship adjustment applied to this project.',
+      'This is not a template store. Every line below is a distinct block of engineering, design, or production work with its own deliverables and its own hours. The total is the full value of the Phase 1 build.',
     workstreams: [
       {
         title: '1. Discovery, Compliance Mapping & Design System',
@@ -403,15 +414,15 @@ export const ramotarPeptideContent = {
       },
     ],
     totals: {
-      subtotalLabel: 'Standard value of all workstreams',
+      subtotalLabel: 'Total value of all workstreams',
       subtotal: '$42,300',
-      discountLabel: 'Relationship adjustment for this project',
-      discount: '- $4,800',
+      discountLabel: '',
+      discount: '',
       totalLabel: 'Phase 1 investment',
-      total: '$37,500',
+      total: '$42,300',
     },
     note:
-      'The adjustment is applied because of the existing relationship and because Phase 1 is scoped tightly, with later phases (marketplace, wholesale/B2B, mobile app, paid media) reserved for separate agreements. Pricing is valid for 30 days from the date of this proposal.',
+      'Phase 1 is scoped tightly, with later phases (marketplace, wholesale/B2B, mobile app, paid media) reserved for separate agreements. Pricing is valid for 30 days from the date of this proposal.',
   },
 
   deliveryStages: {
@@ -424,14 +435,14 @@ export const ramotarPeptideContent = {
         stage: 'Stage 1',
         weeks: 'Weeks 1-3',
         title: 'Discovery, Compliance Mapping & Design System',
-        payment: '$13,500 at kickoff',
+        payment: '$14,500 at kickoff',
         deliverables: 'Compliance map, brand foundation, complete design system and 8 approved key screens. You see and approve exactly what the store will look like before any code is written.',
       },
       {
         stage: 'Stage 2',
         weeks: 'Weeks 4-7',
         title: 'Storefront, Catalog, Payments & Subscriptions',
-        payment: '$12,000 on completion',
+        payment: '$14,000 on completion',
         deliverables: 'Live staging store with 40 SKUs loaded, working checkout on the high-risk gateway, subscription engine running, and test transactions you can run yourself.',
       },
       {
@@ -445,7 +456,7 @@ export const ramotarPeptideContent = {
         stage: 'Stage 4',
         weeks: 'Weeks 11-12',
         title: 'Compliance, Analytics, QA & Launch',
-        payment: '$12,000 prior to launch',
+        payment: '$13,800 prior to launch',
         deliverables: 'Documentation set published, age gate and audit trail live, analytics verified, full QA passed, supervised go-live and team training completed. Weeks 13-14 are buffer for approvals, processor verification and stabilization.',
       },
     ],
@@ -466,7 +477,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Payment Terms',
         description:
-          'Phase 1 is $37,500 USD, invoiced across three milestones ($13,500 / $12,000 / $12,000). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
+          'Phase 1 is $42,300 USD, invoiced across three milestones ($14,500 / $14,000 / $13,800). Milestone 1 is due at kickoff. All invoices are payable within 10 days of receipt.',
         icon: 'dollar',
       },
       {
@@ -538,7 +549,7 @@ export const ramotarPeptideContent = {
       {
         heading: 'Payment Method & Fees',
         items: [
-          'Phase 1 Platform Build: $37,500 USD total, invoiced in three milestones — $13,500 at kickoff, $12,000 upon completion of the storefront/catalog/payments stage, and $12,000 upon completion of the portal/compliance/photography stage prior to launch.',
+          'Phase 1 Platform Build: $42,300 USD total, invoiced in three milestones — $14,500 at kickoff, $14,000 upon completion of the storefront/catalog/payments stage, and $13,800 upon completion of the portal/compliance/photography stage prior to launch.',
           'Platform Care & Operations (optional): $1,850 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
