@@ -343,7 +343,7 @@ export function RamotarPeptideProposal() {
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
                   { num: '01', tag: 'One-Time', data: content.investment.websiteBuild },
-                  { num: '02', tag: 'Add-On', data: content.investment.telehealthAddOn },
+                  { num: '02', tag: 'Included', data: content.investment.complianceAddOn },
                   { num: '03', tag: 'Monthly', data: content.investment.monthlyManagement },
                 ].map((card) => (
                   <div key={card.num} className="rounded-[20px] p-5 flex flex-col overflow-hidden relative" style={{ backgroundColor: '#2d4a2d', border: '1px solid #2d4a2d' }}>

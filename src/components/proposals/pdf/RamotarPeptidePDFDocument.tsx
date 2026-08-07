@@ -338,11 +338,11 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
 
         {/* Fee cards */}
         <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
-          {[
-            { tag: 'One-Time', data: content.investment.websiteBuild },
-            { tag: 'Add-On', data: content.investment.telehealthAddOn },
-            { tag: 'Monthly', data: content.investment.monthlyManagement },
-          ].map((card, i) => (
+        {[
+          { tag: 'One-Time', data: content.investment.websiteBuild },
+          { tag: 'Included', data: content.investment.complianceAddOn },
+          { tag: 'Monthly', data: content.investment.monthlyManagement },
+        ].map((card, i) => (
             <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 12 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
                 <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
