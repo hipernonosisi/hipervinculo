@@ -111,6 +111,10 @@ export const ramotarPeptideContent = {
         description: 'Product copy and site content will not claim to diagnose, treat, cure, or prevent any disease; all claims are reviewed by client counsel before launch.',
       },
       {
+        title: 'FDA Disclaimer',
+        description: 'Visible site-wide and footer disclaimer stating that any product or health-related statements have not been evaluated by the FDA and that the products are not intended to diagnose, treat, cure, or prevent any disease.',
+      },
+      {
         title: 'Compliance Audit Trail',
         description: 'Order-level logs capture disclaimer acknowledgments, age verification, and ToS acceptance for potential dispute, chargeback, or processor review.',
       },
