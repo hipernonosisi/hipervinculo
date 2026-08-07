@@ -330,13 +330,13 @@ export const ramotarPeptideContent = {
       {
         title: 'No Telemedicine Model',
         description:
-          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-use marketplace with clear disclaimers: Ramotar is not a medical provider, products are not intended for human consumption, and items are sold for research purposes only.'
+          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-use marketplace with clear disclaimers: Ramotar is not a medical provider, products are not intended for human consumption, and items are sold for research purposes only.',
         icon: 'shield',
       },
       {
         title: 'Research-Use Compliance',
         description:
-          'The site will require customers to verify they are 21+, acknowledge that Ramotar is not a medical provider, that products are not intended for human or animal consumption, that they are sold for research purposes only, and agree to the Terms of Service before checkout.'
+          'The site will require customers to verify they are 21+, acknowledge that Ramotar is not a medical provider, that products are not intended for human or animal consumption, that they are sold for research purposes only, and agree to the Terms of Service before checkout.',
         icon: 'shield',
       },
       {
