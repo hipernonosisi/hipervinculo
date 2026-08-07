@@ -301,17 +301,18 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         <View style={{ flexDirection: 'row', gap: 10, marginBottom: 12 }}>
           {[
             { tag: 'One-Time', data: content.investment.websiteBuild },
+            { tag: 'Add-On', data: content.investment.telehealthAddOn },
             { tag: 'Monthly', data: content.investment.monthlyManagement },
           ].map((card, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
+            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 12 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
                 <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
                 <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5, textTransform: 'uppercase' }}>{card.tag}</Text>
               </View>
-              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase', minHeight: 22 }}>
+              <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 0.5, marginBottom: 8, textTransform: 'uppercase', minHeight: 22 }}>
                 {card.data.label}
               </Text>
-              <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a', marginBottom: 4, letterSpacing: -0.3 }}>
+              <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#c5e86a', marginBottom: 4, letterSpacing: -0.3 }}>
                 {card.data.rate}
               </Text>
               <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 8, lineHeight: 1.4 }}>
