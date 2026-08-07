@@ -191,7 +191,7 @@ export const ramotarPeptideContent = {
       },
       {
         title: 'Compliance Documentation Set',
-        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, research-only disclaimers, not-a-medical-provider statements, 21+ age gate, cookie consent, and accessibility statement.',
+        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, not-a-medical-provider statements, not-for-human-consumption disclaimers, research-use statements, 21+ age gate, cookie consent, and accessibility statement.',
       },
       {
         title: 'Photography & Graphics',
@@ -270,7 +270,7 @@ export const ramotarPeptideContent = {
       rate: 'Included',
       basis: 'Built into Phase 1 — no extra fee',
       description:
-        'Not-a-medical-provider disclaimers, research-only product statements, 21+ age gate, mandatory Terms of Service acknowledgment at checkout, no-health-claims policy, and order-level audit trail.',
+        'Not-a-medical-provider disclaimers, not-for-human-consumption statements, research-use product statements, 21+ age gate, mandatory Terms of Service acknowledgment at checkout, no-health-claims policy, and order-level audit trail.',
     },
     monthlyManagement: {
       label: 'Platform Care & Operations',
@@ -330,13 +330,13 @@ export const ramotarPeptideContent = {
       {
         title: 'No Telemedicine Model',
         description:
-          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-only marketplace with disclaimers and age verification.',
+          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-use marketplace with clear disclaimers: Ramotar is not a medical provider, products are not intended for human consumption, and items are sold for research purposes only.'
         icon: 'shield',
       },
       {
         title: 'Research-Use Compliance',
         description:
-          'The site will require customers to verify they are 21+, acknowledge that products are for laboratory research use only and not for human or animal consumption, and agree to the Terms of Service before checkout.',
+          'The site will require customers to verify they are 21+, acknowledge that Ramotar is not a medical provider, that products are not intended for human or animal consumption, that they are sold for research purposes only, and agree to the Terms of Service before checkout.'
         icon: 'shield',
       },
       {
@@ -415,8 +415,8 @@ export const ramotarPeptideContent = {
       {
         heading: 'Research-Use Compliance & Disclaimers',
         items: [
-          'The platform is built and marketed as a research-only marketplace. It is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
-          'Every product page will display the statement that products are sold for laboratory research use only and are not for human or animal consumption.',
+          'The platform is built and marketed as a research-use marketplace. It is not a medical provider, does not sell products intended for human consumption, and does not provide medical advice, diagnosis, or treatment.',
+          'Every product page will display the statement that Ramotar is not a medical provider, products are not intended for human or animal consumption, and products are sold for research purposes only.',
           'Customers must be 21 years of age or older to purchase. The checkout flow will require age verification and a Terms of Service acknowledgment before any order is placed.',
           'No product or site content will claim to diagnose, treat, cure, or prevent any disease. All claims must be reviewed and approved in writing by the client or its legal counsel before publication.',
           'Hipervínculo will build an order-level audit trail capturing disclaimer acknowledgments, age verification, and Terms of Service acceptance for each transaction.',
