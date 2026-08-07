@@ -29,7 +29,7 @@ export const ramotarPeptideContent = {
     services: [
       { title: 'Direct-to-Consumer Storefront', description: 'Catalog of peptides and related products sold online with dosage/strength variants and per-product documentation.' },
       { title: 'Subscription & Repeat Purchase', description: 'Recurring-order model designed to maximize customer lifetime value from the first month of operation.' },
-      { title: 'Documentation-Led Trust', description: 'Certificates of analysis, purity data, storage and handling guidance, and clear compliance messaging on every product.' },
+      { title: 'Research-Only Compliance Layer', description: 'Age gate, Terms of Service acknowledgments, and research-only disclaimers built into the checkout flow and every product page.' },
     ],
     marketNote:
       'Primary market: United States research and wellness buyers who compare vendors on purity documentation, transparency, and delivery reliability before purchasing.',
