@@ -82,21 +82,21 @@ export const ramotarPeptideContent = {
 
   complianceLayer: {
     title: 'Research-Use Compliance Architecture',
-    headline: 'Legal Disclaimers, Age Verification & ToS Built Into the Checkout Flow',
+    headline: 'Not a Medical Provider. Not for Human Consumption. Sold for Research Only.',
     price: 'Included',
     priceLabel: 'Included in Phase 1',
     monthly: 'N/A',
     monthlyLabel: 'No monthly fee',
     description:
-      'The platform is built as a research-only marketplace, not a medical or telehealth service. Every customer must verify they are 21+, acknowledge that products are sold for laboratory research use only and are not for human or animal consumption, and agree to the Terms of Service before checkout. These acknowledgments are recorded with a timestamped audit trail tied to each order.',
+      'The platform is built as a research-use marketplace, not a medical or telehealth service. Public-facing copy and legal disclaimers lead with the same message Lloyd wants: Ramotar is not a medical provider and does not sell products intended for human consumption. Products are sold for research purposes only. Every customer must verify they are 21+, acknowledge the research-use disclaimer and Terms of Service, and agree to the checkout acknowledgments before purchase. These confirmations are recorded with a timestamped audit trail tied to each order.',
     includes: [
       {
         title: 'Not a Medical Provider Disclaimer',
         description: 'Prominent site-wide statements that Ramotar Peptide Marketplace is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
       },
       {
-        title: 'Research-Only Product Disclaimers',
-        description: 'Every product page displays the intended-use statement: products are sold for laboratory research use only and are not for human or animal consumption.',
+        title: 'Not for Human Consumption Disclaimer',
+        description: 'Clear statement on every product page and in the footer that products are not intended for human or animal consumption and are sold for research purposes only.',
       },
       {
         title: 'Age Gate + Checkout Verification',
