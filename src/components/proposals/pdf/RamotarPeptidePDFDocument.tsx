@@ -234,8 +234,8 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.websiteService.headline}</Text>
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
-            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>ONE-TIME FIXED FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$2,500 — paid once at the start of the engagement</Text>
+            <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>PHASE 1 PROJECT FEE</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$49,500 — invoiced across 3 milestones</Text>
           </View>
           <MonitorIcon size={22} />
         </View>
@@ -471,7 +471,7 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
             <Image src={logoBase64} style={{ height: 40, objectFit: 'contain', marginBottom: 16 }} />
             <View style={{ width: 40, height: 2, backgroundColor: lime, marginBottom: 16 }} />
             <Text style={{ fontSize: 8, color: gray, textAlign: 'center', lineHeight: 1.5, maxWidth: 140 }}>
-              Clean, modern websites that build trust and convert visitors into consultations.
+              Regulated e-commerce platforms built to launch fast, sell subscriptions, and scale.
             </Text>
           </View>
         </View>

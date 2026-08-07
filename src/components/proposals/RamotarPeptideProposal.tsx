@@ -71,7 +71,7 @@ export function RamotarPeptideProposal() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Proposal-Hazim-Law-PLLC.pdf';
+      link.download = 'Proposal-Ramotar-Peptide-Marketplace-Phase-1.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -90,7 +90,7 @@ export function RamotarPeptideProposal() {
       {/* Toolbar */}
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b sticky top-0 z-10">
         <h2 className="text-sm sm:text-lg font-bold" style={{ color: '#2d4a2d' }}>
-          Proposal — Hazim Law, PLLC (Website)
+          Proposal — Ramotar Peptide Marketplace (Phase 1)
         </h2>
         <Button onClick={handleDownloadPDF} size="sm" className="gap-2" style={{ backgroundColor: '#8BC34A' }} disabled={isExporting}>
           <Download className="w-4 h-4" />
@@ -240,8 +240,8 @@ export function RamotarPeptideProposal() {
               <p className="font-medium mb-5" style={{ color: '#8BC34A' }}>{content.websiteService.headline}</p>
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
-                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">One-Time Fixed Fee</div>
-                  <div className="text-white/40 text-xs mt-1">$2,500 — paid once at the start of the engagement</div>
+                  <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Phase 1 Project Fee</div>
+                  <div className="text-white/40 text-xs mt-1">$49,500 — invoiced across 3 milestones</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
@@ -486,7 +486,7 @@ export function RamotarPeptideProposal() {
                 <img src={logoHipervinculo} alt="Hipervinculo" className="h-14 mb-4" />
                 <div className="w-12 h-1 mb-4" style={{ backgroundColor: '#8BC34A' }} />
                 <p className="text-center text-xs font-medium max-w-xs leading-relaxed" style={{ color: '#2d4a2d' }}>
-                  Clean, modern websites that build trust and convert visitors into consultations.
+                  Regulated e-commerce platforms built to launch fast, sell subscriptions, and scale.
                 </p>
               </div>
             </div>
