@@ -76,9 +76,49 @@ export const ramotarPeptideContent = {
     exclusions: {
       title: 'Reserved for Later Phases (Out of Phase 1 Scope)',
       description:
-        'Phase 1 does not include: telehealth/prescriber intake or physician network integration, third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
+        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. The Telehealth & Prescriber Module is available as an optional add-on (priced separately in the Investment Summary) and can be built alongside Phase 1 or added after launch. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
     },
   },
+
+  telehealthModule: {
+    title: 'Telehealth & Prescriber Module',
+    headline: 'Optional Add-On: Intake, Prescriber Review & Compliant Fulfillment',
+    price: '$14,500',
+    priceLabel: 'One-time add-on — built alongside Phase 1',
+    monthly: '+$450/mo',
+    monthlyLabel: 'Compliance & Module Maintenance (while active)',
+    description:
+      'This module converts the storefront into a prescription-ready experience: the customer completes a medical intake questionnaire at checkout, the submission is routed to a licensed prescriber or partner telehealth group for review, and the order is only released for fulfillment once it is approved. It removes the legal ambiguity of selling regulated compounds direct-to-consumer and unlocks higher-ticket products and recurring refills. Adds 4-5 weeks to the timeline and can also be added after launch at the same price.',
+    includes: [
+      {
+        title: 'Medical Intake Questionnaire',
+        description: 'Dynamic, conditional-logic health questionnaire captured at checkout with consent capture, ID/age verification, and timestamped audit trail.',
+      },
+      {
+        title: 'Prescriber Review Queue',
+        description: 'Private clinician dashboard to review, approve, deny, or request more information on each intake, with notes and full case history.',
+      },
+      {
+        title: 'Approval-Gated Fulfillment',
+        description: 'Orders are held in an unfulfilled state and only released to shipping once a prescriber approves — payment capture rules configured accordingly.',
+      },
+      {
+        title: 'Prescription Refills & Subscriptions',
+        description: 'Refill limits, expiration windows, and re-intake triggers wired into the subscription engine so recurring orders stay compliant.',
+      },
+      {
+        title: 'Secure Records & Messaging',
+        description: 'Encrypted storage of intake records, HIPAA-aligned access controls and logging, and secure patient-to-prescriber messaging inside the portal.',
+      },
+      {
+        title: 'Telehealth Partner Integration',
+        description: 'Integration with the client\'s chosen prescriber network or telehealth platform via API or a managed hand-off workflow, plus prescriber onboarding and training.',
+      },
+    ],
+    note:
+      'Requires the client to contract a licensed prescriber or telehealth group and any state licensing required. Hipervínculo builds the technology and compliance workflow; clinical services and medical liability remain with the client and its providers.',
+  },
+
 
   platformAccess: {
     title: 'Required Access & Inputs',
