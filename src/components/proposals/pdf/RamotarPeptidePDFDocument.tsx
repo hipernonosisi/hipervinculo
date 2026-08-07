@@ -235,7 +235,7 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
             <Text style={{ fontSize: 9, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>PHASE 1 PROJECT FEE</Text>
-            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$37,500 — invoiced across 3 milestones</Text>
+            <Text style={{ fontSize: 8, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>$42,300 — invoiced across 3 milestones</Text>
           </View>
           <MonitorIcon size={22} />
         </View>
@@ -366,6 +366,32 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         </View>
 
 
+        {/* Payment system */}
+        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 18, marginBottom: 12 }}>
+          <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.investment.paymentSystem.title}</Text>
+          <Text style={{ fontSize: 7, color: grayLight, marginBottom: 8 }}>{content.investment.paymentSystem.subtitle.toUpperCase()}</Text>
+          <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4, marginBottom: 10 }}>{content.investment.paymentSystem.description}</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 8 }}>
+            <View style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10 }}>
+              <Text style={{ fontSize: 6.5, color: grayLight, marginBottom: 2, textTransform: 'uppercase' }}>Recommended processors</Text>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green }}>{content.investment.paymentSystem.recommendedProcessors}</Text>
+            </View>
+            <View style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10 }}>
+              <Text style={{ fontSize: 6.5, color: grayLight, marginBottom: 2, textTransform: 'uppercase' }}>Gateway</Text>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green }}>{content.investment.paymentSystem.gateway}</Text>
+            </View>
+            <View style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10 }}>
+              <Text style={{ fontSize: 6.5, color: grayLight, marginBottom: 2, textTransform: 'uppercase' }}>Typical rate</Text>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green }}>{content.investment.paymentSystem.rate}</Text>
+            </View>
+            <View style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10 }}>
+              <Text style={{ fontSize: 6.5, color: grayLight, marginBottom: 2, textTransform: 'uppercase' }}>Merchant of record</Text>
+              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green }}>{content.investment.paymentSystem.processor}</Text>
+            </View>
+          </View>
+          <Text style={{ fontSize: 7, color: grayLight, lineHeight: 1.4 }}>{content.investment.paymentSystem.note}</Text>
+        </View>
+
         {/* Payment terms */}
         <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 18, marginBottom: 12 }}>
           <Text style={{ fontSize: 11, fontWeight: 'bold', color: green, marginBottom: 10 }}>{content.investment.paymentTerms.title}</Text>
@@ -443,13 +469,9 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
             ))}
             {part === 1 && (
               <View style={{ backgroundColor: green, borderRadius: 14, padding: 16, marginTop: 4 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8, alignItems: 'center' }}>
                   <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)' }}>{content.costBreakdown.totals.subtotalLabel}</Text>
                   <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#ffffff' }}>{content.costBreakdown.totals.subtotal}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <Text style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)' }}>{content.costBreakdown.totals.discountLabel}</Text>
-                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#c5e86a' }}>{content.costBreakdown.totals.discount}</Text>
                 </View>
                 <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 8 }} />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>

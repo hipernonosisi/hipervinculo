@@ -241,7 +241,7 @@ export function RamotarPeptideProposal() {
               <div className="rounded-2xl px-8 py-5 mb-6 flex items-center justify-between" style={{ backgroundColor: '#2d4a2d' }}>
                 <div>
                   <div className="text-white/50 text-xs font-bold uppercase tracking-widest">Phase 1 Project Fee</div>
-                  <div className="text-white/40 text-xs mt-1">$37,500 — invoiced across 3 milestones</div>
+                  <div className="text-white/40 text-xs mt-1">$42,300 — invoiced across 3 milestones</div>
                 </div>
                 <Monitor className="w-8 h-8 text-white/70" />
               </div>
@@ -371,6 +371,37 @@ export function RamotarPeptideProposal() {
               </div>
 
 
+              {/* Payment system */}
+              {content.investment.paymentSystem && (
+                <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <DollarSign className="w-4 h-4" style={{ color: '#8BC34A' }} />
+                    <h3 className="font-bold text-[15px]" style={{ color: '#2d4a2d' }}>{content.investment.paymentSystem.title}</h3>
+                  </div>
+                  <p className="text-xs text-gray-400 mb-3">{content.investment.paymentSystem.subtitle}</p>
+                  <p className="text-[13px] text-gray-600 leading-relaxed mb-4">{content.investment.paymentSystem.description}</p>
+                  <div className="grid grid-cols-2 gap-3 text-[12px]">
+                    <div className="p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                      <span className="block text-gray-400 text-[10px] uppercase tracking-wider mb-1">Recommended processors</span>
+                      <span className="font-semibold" style={{ color: '#2d4a2d' }}>{content.investment.paymentSystem.recommendedProcessors}</span>
+                    </div>
+                    <div className="p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                      <span className="block text-gray-400 text-[10px] uppercase tracking-wider mb-1">Gateway</span>
+                      <span className="font-semibold" style={{ color: '#2d4a2d' }}>{content.investment.paymentSystem.gateway}</span>
+                    </div>
+                    <div className="p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                      <span className="block text-gray-400 text-[10px] uppercase tracking-wider mb-1">Typical rate</span>
+                      <span className="font-semibold" style={{ color: '#2d4a2d' }}>{content.investment.paymentSystem.rate}</span>
+                    </div>
+                    <div className="p-3 rounded-xl" style={{ backgroundColor: '#f8f9f5' }}>
+                      <span className="block text-gray-400 text-[10px] uppercase tracking-wider mb-1">Merchant of record</span>
+                      <span className="font-semibold" style={{ color: '#2d4a2d' }}>{content.investment.paymentSystem.processor}</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-gray-400 mt-3 leading-relaxed">{content.investment.paymentSystem.note}</p>
+                </div>
+              )}
+
               {/* Payment terms */}
               <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
                 <div className="flex items-center gap-2 mb-1">
@@ -460,13 +491,9 @@ export function RamotarPeptideProposal() {
                   </div>
                   {part === 1 && (
                     <div className="mt-4 rounded-2xl p-6" style={{ backgroundColor: '#2d4a2d' }}>
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center justify-between mb-3">
                         <span className="text-[12px] text-white/70">{content.costBreakdown.totals.subtotalLabel}</span>
                         <span className="text-[14px] font-bold text-white">{content.costBreakdown.totals.subtotal}</span>
-                      </div>
-                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/15">
-                        <span className="text-[12px] text-white/70">{content.costBreakdown.totals.discountLabel}</span>
-                        <span className="text-[14px] font-bold" style={{ color: '#c5e86a' }}>{content.costBreakdown.totals.discount}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-[13px] font-bold uppercase tracking-widest text-white">{content.costBreakdown.totals.totalLabel}</span>
