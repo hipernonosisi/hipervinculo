@@ -25,11 +25,11 @@ export const ramotarPeptideContent = {
     title: 'The Client',
     headline: 'Ramotar Peptide Marketplace',
     description:
-      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, clear intended-use language, and a checkout experience that feels as professional as a pharmacy. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with everything required to accept orders, sell subscriptions, and serve customers through a private account area.',
+      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, clear research-only language, and a checkout experience that is professional and compliant. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with the legal disclaimers, age verification, and documentation architecture required to operate as a research-use marketplace — without any telemedicine or prescription component.',
     services: [
       { title: 'Direct-to-Consumer Storefront', description: 'Catalog of peptides and related products sold online with dosage/strength variants and per-product documentation.' },
       { title: 'Subscription & Repeat Purchase', description: 'Recurring-order model designed to maximize customer lifetime value from the first month of operation.' },
-      { title: 'Documentation-Led Trust', description: 'Certificates of analysis, purity data, storage and handling guidance, and clear compliance messaging on every product.' },
+      { title: 'Research-Only Compliance Layer', description: 'Age gate, Terms of Service acknowledgments, and research-only disclaimers built into the checkout flow and every product page.' },
     ],
     marketNote:
       'Primary market: United States research and wellness buyers who compare vendors on purity documentation, transparency, and delivery reliability before purchasing.',
@@ -38,11 +38,11 @@ export const ramotarPeptideContent = {
     title: 'Objective — Phase 1',
     headline: 'Get the Business Fully Operational and Selling',
     description:
-      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, all required legal and compliance documentation published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. An optional Telehealth & Prescriber Module (medical intake, clinician review and approval-gated fulfillment) is available as a priced add-on and can be built alongside Phase 1. Other advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed.',
+      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, research-only compliance documentation and disclaimers published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed. Telemedicine, prescriber review, and prescription-gated fulfillment are explicitly excluded from Phase 1.',
     scope: [
       {
         title: 'Custom Storefront Design & Build',
-        description: 'A premium, clinical-grade design system and a fully responsive storefront: homepage, category pages, product detail pages, cart, and checkout.',
+        description: 'A premium, research-grade design system and a fully responsive storefront: homepage, category pages, product detail pages, cart, and checkout.',
       },
       {
         title: 'Product Catalog & Variants',
@@ -76,48 +76,49 @@ export const ramotarPeptideContent = {
     exclusions: {
       title: 'Reserved for Later Phases (Out of Phase 1 Scope)',
       description:
-        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. The Telehealth & Prescriber Module is available as an optional add-on (priced separately in the Investment Summary) and can be built alongside Phase 1 or added after launch. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
+        'Phase 1 does not include: third-party seller marketplace functionality, affiliate or wholesale/B2B portals, native mobile applications, custom ERP/3PL integrations beyond standard shipping tools, ongoing paid media management, ongoing SEO content retainers, and legal counsel itself. Telemedicine, prescriber review, and prescription-gated fulfillment are not included in Phase 1 and are not part of the launch scope. Regulatory filings, licenses, and entity/legal review are prepared with the client and their attorney — Hipervínculo builds and publishes the documentation and compliance architecture, it does not act as legal counsel.',
     },
   },
 
-  telehealthModule: {
-    title: 'Telehealth & Prescriber Module',
-    headline: 'Optional Add-On: Intake, Prescriber Review & Compliant Fulfillment',
-    price: '$14,500',
-    priceLabel: 'One-time add-on — built alongside Phase 1',
-    monthly: '+$450/mo',
-    monthlyLabel: 'Compliance & Module Maintenance (while active)',
+  complianceLayer: {
+    title: 'Research-Use Compliance Architecture',
+    headline: 'Legal Disclaimers, Age Verification & ToS Built Into the Checkout Flow',
+    price: 'Included',
+    priceLabel: 'Included in Phase 1',
+    monthly: 'N/A',
+    monthlyLabel: 'No monthly fee',
     description:
-      'This module converts the storefront into a prescription-ready experience: the customer completes a medical intake questionnaire at checkout, the submission is routed to a licensed prescriber or partner telehealth group for review, and the order is only released for fulfillment once it is approved. It removes the legal ambiguity of selling regulated compounds direct-to-consumer and unlocks higher-ticket products and recurring refills. Adds 4-5 weeks to the timeline and can also be added after launch at the same price.',
+      'The platform is built as a research-only marketplace, not a medical or telehealth service. Every customer must verify they are 21+, acknowledge that products are sold for laboratory research use only and are not for human or animal consumption, and agree to the Terms of Service before checkout. These acknowledgments are recorded with a timestamped audit trail tied to each order.',
     includes: [
       {
-        title: 'Medical Intake Questionnaire',
-        description: 'Dynamic, conditional-logic health questionnaire captured at checkout with consent capture, ID/age verification, and timestamped audit trail.',
+        title: 'Not a Medical Provider Disclaimer',
+        description: 'Prominent site-wide statements that Ramotar Peptide Marketplace is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
       },
       {
-        title: 'Prescriber Review Queue',
-        description: 'Private clinician dashboard to review, approve, deny, or request more information on each intake, with notes and full case history.',
+        title: 'Research-Only Product Disclaimers',
+        description: 'Every product page displays the intended-use statement: products are sold for laboratory research use only and are not for human or animal consumption.',
       },
       {
-        title: 'Approval-Gated Fulfillment',
-        description: 'Orders are held in an unfulfilled state and only released to shipping once a prescriber approves — payment capture rules configured accordingly.',
+        title: 'Age Gate + Checkout Verification',
+        description: 'Customers must confirm they are 21+ years old and check the required acknowledgment boxes before purchase; stored with the order record.',
       },
       {
-        title: 'Prescription Refills & Subscriptions',
-        description: 'Refill limits, expiration windows, and re-intake triggers wired into the subscription engine so recurring orders stay compliant.',
+        title: 'Terms of Service Acknowledgment',
+        description: 'Mandatory ToS checkbox at checkout, with a timestamped record tied to each order confirming the buyer has read and agreed to the terms.',
       },
       {
-        title: 'Secure Records & Messaging',
-        description: 'Encrypted storage of intake records, HIPAA-aligned access controls and logging, and secure patient-to-prescriber messaging inside the portal.',
+        title: 'No Health Claims Policy',
+        description: 'Product copy and site content will not claim to diagnose, treat, cure, or prevent any disease; all claims are reviewed by client counsel before launch.',
       },
       {
-        title: 'Telehealth Partner Integration',
-        description: 'Integration with the client\'s chosen prescriber network or telehealth platform via API or a managed hand-off workflow, plus prescriber onboarding and training.',
+        title: 'Compliance Audit Trail',
+        description: 'Order-level logs capture disclaimer acknowledgments, age verification, and ToS acceptance for potential dispute, chargeback, or processor review.',
       },
     ],
     note:
-      'Requires the client to contract a licensed prescriber or telehealth group and any state licensing required. Hipervínculo builds the technology and compliance workflow; clinical services and medical liability remain with the client and its providers.',
+      'All legal disclaimers and policies are drafted by Hipervínculo and must be reviewed and approved in writing by the client or their attorney before launch. Hipervínculo is not a law firm and does not provide legal or medical advice.',
   },
+
 
 
   platformAccess: {
@@ -166,7 +167,7 @@ export const ramotarPeptideContent = {
     includes: [
       {
         title: 'Design System & Storefront',
-        description: 'Premium clinical-grade visual identity plus homepage, category, and content pages, fully responsive across all devices.',
+        description: 'Premium research-grade visual identity plus homepage, category, and content pages, fully responsive across all devices.',
       },
       {
         title: 'Product Pages (up to 40 SKUs)',
@@ -186,7 +187,7 @@ export const ramotarPeptideContent = {
       },
       {
         title: 'Compliance Documentation Set',
-        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, intended-use and research-only disclaimers, age gate, cookie consent, and accessibility statement.',
+        description: 'Terms of Service, Privacy Policy, Shipping & Returns, Refund Policy, research-only disclaimers, not-a-medical-provider statements, 21+ age gate, cookie consent, and accessibility statement.',
       },
       {
         title: 'Photography & Graphics',
@@ -252,20 +253,20 @@ export const ramotarPeptideContent = {
   },
   investment: {
     title: 'Investment Summary',
-    headline: 'Phase 1 Build + Telehealth Add-On + Optional Platform Care',
+    headline: 'Phase 1 Build + Research-Use Compliance + Optional Platform Care',
     websiteBuild: {
       label: 'Phase 1 Platform Build',
       rate: '$49,500',
       basis: 'One-time project fee — milestone based',
       description:
-        'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
+        'Complete launch-ready platform: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, full research-use compliance documentation set, product photography and graphics, analytics, QA, launch, team training, and 60 days of post-launch support.',
     },
-    telehealthAddOn: {
-      label: 'Telehealth & Prescriber Module',
-      rate: '$14,500',
-      basis: 'Optional add-on — one-time, adds 4-5 weeks',
+    complianceAddOn: {
+      label: 'Research-Use Compliance Architecture',
+      rate: 'Included',
+      basis: 'Built into Phase 1 — no extra fee',
       description:
-        'Medical intake at checkout, prescriber review dashboard, approval-gated fulfillment, compliant refills, encrypted records and secure messaging, and integration with your prescriber network. Maintenance +$450/mo while active.',
+        'Not-a-medical-provider disclaimers, research-only product statements, 21+ age gate, mandatory Terms of Service acknowledgment at checkout, no-health-claims policy, and order-level audit trail.',
     },
     monthlyManagement: {
       label: 'Platform Care & Operations',
@@ -278,7 +279,6 @@ export const ramotarPeptideContent = {
       title: 'Paid Directly by Client',
       items: [
         { name: 'Payment Processing Fees', detail: 'Charged by the processor per transaction (high-risk rates apply)' },
-        { name: 'Prescriber / Telehealth Network', detail: 'Clinician fees and telehealth platform licensing if the Telehealth Module is activated' },
         { name: 'Domain Registration / Renewal', detail: 'Client owns and renews the domain' },
         { name: 'Third-Party Subscriptions', detail: 'Shipping, tax, email, or review tools if selected (typically $150-$400/mo)' },
         { name: 'Legal & Regulatory Counsel', detail: 'Attorney review, licenses, and filings' },
@@ -288,15 +288,14 @@ export const ramotarPeptideContent = {
     },
     paymentTerms: {
       title: 'Payment Terms — Milestones',
-      subtitle: 'Phase 1 total: $49,500 USD — with Telehealth Module: $64,000 USD',
+      subtitle: 'Phase 1 total: $49,500 USD',
       rows: [
         { label: 'Milestone 1 — Kickoff, discovery & design system', value: '$17,500' },
         { label: 'Milestone 2 — Storefront, catalog & payments built', value: '$16,000' },
         { label: 'Milestone 3 — Portal, compliance, photography & launch', value: '$16,000' },
-        { label: 'Telehealth & Prescriber Module (optional add-on)', value: '$14,500' },
         { label: 'Platform Care (optional, after launch)', value: '$2,500/mo' },
       ],
-      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. The Telehealth Module is billed 50% at approval and 50% at module go-live, and adds $450/mo maintenance while active. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
+      note: 'Milestone 1 is due at kickoff before work begins. Milestones 2 and 3 are invoiced upon completion of each stage and payable within 10 days of receipt. Platform Care is billed monthly in advance starting after the 60-day post-launch support period.',
     },
 
     timeline: {
@@ -315,7 +314,7 @@ export const ramotarPeptideContent = {
       {
         title: 'Phase 1 Scope',
         description:
-          'This proposal covers Phase 1 only, as described in the Phase 1 Build section, plus the optional Telehealth & Prescriber Module ($14,500 one-time + $450/mo). Third-party seller marketplace, affiliate/wholesale portals, mobile apps, and custom ERP/3PL integrations are reserved for later phases and quoted separately.',
+          'This proposal covers Phase 1 only: the complete launch-ready platform plus the Research-Use Compliance Architecture built into Phase 1. Third-party seller marketplace, affiliate/wholesale portals, mobile apps, custom ERP/3PL integrations, and telemedicine/prescriber models are reserved for later phases and quoted separately.',
         icon: 'files',
       },
       {
@@ -325,9 +324,15 @@ export const ramotarPeptideContent = {
         icon: 'dollar',
       },
       {
-        title: 'Telehealth Module (Optional)',
+        title: 'No Telemedicine Model',
         description:
-          'The Telehealth & Prescriber Module is $14,500 one-time (50% at approval, 50% at module go-live) plus $450/mo maintenance while active, and adds 4-5 weeks to the timeline. It requires the client to contract a licensed prescriber or telehealth group; clinical services and medical liability remain with the client and its providers.',
+          'Phase 1 does not include any medical intake, prescriber review, prescription-gated fulfillment, or telehealth integration. The platform is built as a research-only marketplace with disclaimers and age verification.',
+        icon: 'shield',
+      },
+      {
+        title: 'Research-Use Compliance',
+        description:
+          'The site will require customers to verify they are 21+, acknowledge that products are for laboratory research use only and not for human or animal consumption, and agree to the Terms of Service before checkout.',
         icon: 'shield',
       },
       {
@@ -388,7 +393,6 @@ export const ramotarPeptideContent = {
         heading: 'Payment Method & Fees',
         items: [
           'Phase 1 Platform Build: $49,500 USD total, invoiced in three milestones — $17,500 at kickoff, $16,000 upon completion of the storefront/catalog/payments stage, and $16,000 upon completion of the portal/compliance/photography stage prior to launch.',
-          'Telehealth & Prescriber Module (optional): $14,500 USD one-time, invoiced 50% upon approval of the add-on and 50% upon module go-live, plus $450 USD per month for compliance and module maintenance while the module is active. Clinician fees, telehealth platform licensing, and state licensing are paid directly by the client.',
           'Platform Care & Operations (optional): $2,500 USD per month, billed in advance, beginning after the 60-day post-launch support period, month-to-month with no long-term contract.',
           'All invoices are payable within 10 days of receipt. Work may be paused on overdue accounts.',
           'Payment processing fees, third-party tool subscriptions, domain fees, legal counsel, and any paid media spend are paid directly by the client.',
@@ -398,9 +402,20 @@ export const ramotarPeptideContent = {
       {
         heading: 'Scope of Work — Phase 1',
         items: [
-          'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
+          'Phase 1 includes all deliverables listed in the Phase 1 Build section: design system, storefront, up to 40 product pages, payments, subscriptions, private customer portal, admin dashboard, research-use compliance documentation set, product photography and graphics, analytics, SEO foundation, QA, launch, training, and 60 days of post-launch support.',
+          'Telemedicine, prescriber review, prescription-gated fulfillment, and any medical intake workflow are explicitly outside the scope of Phase 1.',
           'Additional SKUs beyond 40, additional languages, third-party seller marketplace features, affiliate or wholesale portals, native mobile apps, and custom ERP/3PL integrations are outside Phase 1 and quoted separately.',
           'The client is responsible for providing product data, pricing, certificates of analysis, product samples, brand assets, and account access in a timely manner.',
+        ],
+      },
+      {
+        heading: 'Research-Use Compliance & Disclaimers',
+        items: [
+          'The platform is built and marketed as a research-only marketplace. It is not a medical provider, does not employ doctors, and does not provide medical advice, diagnosis, or treatment.',
+          'Every product page will display the statement that products are sold for laboratory research use only and are not for human or animal consumption.',
+          'Customers must be 21 years of age or older to purchase. The checkout flow will require age verification and a Terms of Service acknowledgment before any order is placed.',
+          'No product or site content will claim to diagnose, treat, cure, or prevent any disease. All claims must be reviewed and approved in writing by the client or its legal counsel before publication.',
+          'Hipervínculo will build an order-level audit trail capturing disclaimer acknowledgments, age verification, and Terms of Service acceptance for each transaction.',
         ],
       },
       {
