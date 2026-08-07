@@ -1053,6 +1053,7 @@ export default function Admin() {
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
                   {activeProposal === 'lok-foods' && <LokFoodsProposal />}
                   {activeProposal === 'hazim-law' && <HazimLawProposal />}
+                  {activeProposal === 'ramotar-peptide' && <RamotarPeptideProposal />}
                 </CardContent>
               </Card>
             </TabsContent>
