@@ -25,11 +25,11 @@ export const ramotarPeptideContent = {
     title: 'The Client',
     headline: 'Ramotar Peptide Marketplace',
     description:
-      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, clear research-only language, and a checkout experience that is professional and compliant. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with the legal disclaimers, age verification, and documentation architecture required to operate as a research-use marketplace — without any telemedicine or prescription component.',
+      'Ramotar Peptide Marketplace is a new direct-to-consumer online store for research peptides and related products, positioned in the same category as established operators such as Alpha Labs. The category is high-trust and highly scrutinized: buyers expect batch-level transparency, lab documentation, and a checkout experience that is professional and legally protected. Phase 1 of this engagement delivers a fully operational, launch-ready storefront with the legal disclaimers, age verification, and documentation architecture required to operate in this category — clearly stating that Ramotar is not a medical provider, that products are not intended for human consumption, and that they are sold for research purposes only — without any telemedicine or prescription component.',
     services: [
       { title: 'Direct-to-Consumer Storefront', description: 'Catalog of peptides and related products sold online with dosage/strength variants and per-product documentation.' },
       { title: 'Subscription & Repeat Purchase', description: 'Recurring-order model designed to maximize customer lifetime value from the first month of operation.' },
-      { title: 'Research-Only Compliance Layer', description: 'Age gate, Terms of Service acknowledgments, and research-only disclaimers built into the checkout flow and every product page.' },
+      { title: 'Research-Use Compliance Layer', description: 'Age gate, Terms of Service acknowledgments, and disclaimers that state Ramotar is not a medical provider, products are not intended for human consumption, and items are sold for research purposes only.' },
     ],
     marketNote:
       'Primary market: United States research and wellness buyers who compare vendors on purity documentation, transparency, and delivery reliability before purchasing.',
@@ -38,7 +38,7 @@ export const ramotarPeptideContent = {
     title: 'Objective — Phase 1',
     headline: 'Get the Business Fully Operational and Selling',
     description:
-      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, research-only compliance documentation and disclaimers published, product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed. Telemedicine, prescriber review, and prescription-gated fulfillment are explicitly excluded from Phase 1.',
+      'Phase 1 has one purpose: take Ramotar Peptide Marketplace from zero to a live, operational, revenue-generating platform. That means a complete storefront, working payments and subscriptions, a private customer portal, compliance documentation and disclaimers published (clearly stating Ramotar is not a medical provider, products are not intended for human consumption, and they are sold for research purposes only), product photography and graphics produced, and full analytics in place — nothing pending, nothing half-built. Advanced features (affiliate/wholesale portals, mobile apps, marketplace for third-party sellers) are deliberately reserved for later phases so launch is not delayed. Telemedicine, prescriber review, and prescription-gated fulfillment are explicitly excluded from Phase 1.',
     scope: [
       {
         title: 'Custom Storefront Design & Build',
@@ -58,7 +58,7 @@ export const ramotarPeptideContent = {
       },
       {
         title: 'Compliance & Documentation Layer',
-        description: 'Full legal and regulatory documentation set published across the site, plus per-product certificates of analysis and intended-use disclaimers.',
+        description: 'Full legal and regulatory documentation set published across the site, plus per-product certificates of analysis and disclaimers stating Ramotar is not a medical provider and products are not intended for human consumption.',
       },
       {
         title: 'Product Photography & Graphics',
