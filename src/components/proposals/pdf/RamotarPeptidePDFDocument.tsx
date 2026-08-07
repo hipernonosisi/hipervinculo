@@ -289,7 +289,46 @@ export function RamotarPeptidePDFDocument({ logoBase64 }: Props) {
         <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
       </Page>
 
-      {/* PAGE 8: Investment Summary */}
+      {/* PAGE 8: Telehealth & Prescriber Module */}
+      <Page size="A4" style={s.page}>
+        <View style={s.accent} />
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>OPTIONAL ADD-ON</Text>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.telehealthModule.title}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.telehealthModule.headline}</Text>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
+          <View style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5, marginBottom: 4 }}>
+              {content.telehealthModule.priceLabel.toUpperCase()}
+            </Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a' }}>{content.telehealthModule.price}</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: bg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: 'rgba(139,195,74,0.4)' }}>
+            <Text style={{ fontSize: 7, fontWeight: 'bold', color: grayLight, letterSpacing: 1.5, marginBottom: 4 }}>
+              {content.telehealthModule.monthlyLabel.toUpperCase()}
+            </Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: green }}>{content.telehealthModule.monthly}</Text>
+          </View>
+        </View>
+        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.telehealthModule.description}</Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+          {content.telehealthModule.includes.map((item, i) => (
+            <View key={i} style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
+              <View style={{ paddingTop: 1 }}><CheckIcon size={12} /></View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
+                <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+        <View style={{ marginTop: 8, backgroundColor: bg, borderRadius: 10, padding: 10, borderWidth: 0.5, borderColor: 'rgba(45,74,45,0.25)' }}>
+          <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{content.telehealthModule.note}</Text>
+        </View>
+        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+      </Page>
+
+      {/* PAGE 9: Investment Summary */}
+
 
       <Page size="A4" style={{ ...s.pageBg, padding: 36 }}>
         <View style={s.accent} />
