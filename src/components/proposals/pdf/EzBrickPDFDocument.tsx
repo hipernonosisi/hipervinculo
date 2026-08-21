@@ -277,7 +277,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
             const labelColor = highlight ? 'rgba(255,255,255,0.6)' : gray;
             const valueColor = highlight ? '#ffffff' : green;
             return (
-              <View key={i} style={{ flex: 1, backgroundColor: highlight ? green : bg, borderRadius: 14, padding: 14, borderWidth: highlight ? 0 : 0.5, borderColor: 'rgba(139,195,74,0.4)' }}>
+              <View key={i} style={{ flex: 1, backgroundColor: highlight ? green : bg, borderRadius: 14, padding: 14, borderWidth: highlight ? 0.5 : 0.5, borderColor: highlight ? green : 'rgba(139,195,74,0.4)' }}>
                 <Text style={{ fontSize: 7, fontWeight: 'bold', letterSpacing: 1.5, color: highlight ? 'rgba(255,255,255,0.55)' : lime, marginBottom: 3 }}>
                   {sc.label.toUpperCase()}
                 </Text>
