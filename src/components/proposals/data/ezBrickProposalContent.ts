@@ -298,9 +298,9 @@ export const ezBrickProposalContent = {
       {
         heading: 'Media Budget Allocation',
         items: [
-          'Total planned monthly budget: $5,000, consisting of $1,000 retainer and up to $4,000 in media spend.',
-          'Initial allocation: $3,000/mo to Google Search (exact and phrase match, high-relevance commercial keywords) and $500/mo to retargeting split between Google and Meta.',
-          'Retargeting spend scales toward $1,000/mo as sales volume and audience size justify it, subject to client approval.',
+          'Total planned monthly budget: $5,000, consisting of $1,000 retainer and $4,000 in media spend.',
+          'Initial allocation: $3,000/mo to Google Search (exact and phrase match, high-relevance commercial keywords), $500/mo to Google Retargeting, and $500/mo to Meta Retargeting.',
+          'Retargeting split may be adjusted as performance data shows which platform or audience generates better returns, subject to client approval.',
           'Any budget increase beyond $5,000/mo total is optional and requires written client approval.',
         ],
       },
