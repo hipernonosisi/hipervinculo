@@ -149,17 +149,17 @@ export const ezBrickProposalContent = {
   retargetingService: {
     title: 'Retargeting — Google & Meta',
     headline: 'Recovering the Buyers Who Did Not Convert on the First Visit',
-    mediaSpend: '$500/mo',
-    mediaSpendLabel: 'Starting Retargeting Spend (scales to $1,000)',
+    mediaSpend: '$1,000/mo',
+    mediaSpendLabel: 'Retargeting Spend (Google + Meta)',
     description:
       'Most first-time visitors to a building-material site do not buy immediately — they compare, measure, and consult. Retargeting keeps EZ Brick in front of those visitors on Google and Meta until they are ready to order, at a fraction of the cost of new-visitor traffic.',
     includes: [
       { title: 'Audience Architecture', description: 'Segmented audiences: all visitors, product viewers, sample requesters, add-to-cart, and past purchasers for repeat/referral offers.' },
-      { title: 'Google Display & YouTube', description: 'Responsive display and short-form video remarketing across the Google network to stay visible during the consideration window.' },
-      { title: 'Meta Facebook & Instagram', description: 'Feed, Stories, and Reels remarketing using installed-project imagery and short product demonstration creative.' },
+      { title: 'Google Display & YouTube', description: '$500/mo in responsive display and short-form video remarketing across the Google network to stay visible during the consideration window.' },
+      { title: 'Meta Facebook & Instagram', description: '$500/mo across feed, Stories, and Reels using installed-project imagery and short product demonstration creative.' },
       { title: 'Creative Rotation', description: 'Multiple creative angles tested — finished wall inspiration, installation speed, cost vs. traditional masonry, and sample offer.' },
       { title: 'Frequency & Exclusion Control', description: 'Caps and purchaser exclusions so budget is never wasted re-selling to people who already bought.' },
-      { title: 'Progressive Budget Scaling', description: 'Starting at $500/mo split between Google and Meta, scaling toward $1,000/mo as traffic volume and sales justify it.' },
+      { title: 'Budget Split & Scaling', description: 'Starting with $500/mo on Google and $500/mo on Meta. Allocation may be adjusted as performance data shows which platform converts better.' },
     ],
   },
   investment: {
