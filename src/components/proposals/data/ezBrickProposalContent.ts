@@ -93,18 +93,18 @@ export const ezBrickProposalContent = {
     title: 'Media Plan',
     headline: 'How the $5,000 Monthly Budget Is Allocated',
     description:
-      'The total monthly budget is $5,000. Of that, $1,000 is the Hipervínculo management retainer and the remainder is media spend paid directly to Google and Meta. We begin conservatively on retargeting and scale it as the search campaigns prove sales volume.',
+      'The total monthly budget is $5,000. Of that, $1,000 is the Hipervínculo management retainer and $4,000 is media spend paid directly to Google and Meta. Retargeting is split evenly from day one: $500 to Google and $500 to Meta.',
     total: '$5,000',
     totalLabel: 'Total Monthly Budget',
     allocation: [
       { channel: 'Google Search (Exact Match)', amount: '$3,000/mo', share: '60%', note: 'Core of the program. High-intent commercial keywords only, managed toward a 3.0 ROAS target.' },
-      { channel: 'Retargeting — Google & Meta', amount: '$500/mo (start)', share: '10%', note: 'Split between Google (Display/YouTube) and Meta (Facebook/Instagram) to recover non-buyers. Scales toward $1,000/mo as sales volume grows.' },
+      { channel: 'Google Retargeting', amount: '$500/mo', share: '10%', note: 'Display and YouTube remarketing to recover product viewers, cart abandoners, and sample requesters.' },
+      { channel: 'Meta Retargeting', amount: '$500/mo', share: '10%', note: 'Facebook and Instagram remarketing to re-engage visitors who did not convert on the first visit.' },
       { channel: 'Hipervínculo Retainer', amount: '$1,000/mo', share: '20%', note: 'Fixed management fee, charged regardless of performance.' },
-      { channel: 'Scaling Reserve', amount: '$500/mo', share: '10%', note: 'Held back in months 1-2, then deployed into retargeting or top-performing search terms once profitability is confirmed.' },
     ],
     phases: [
-      { phase: 'Months 1-2', focus: 'Validation', detail: '$3,000 Search + $500 retargeting. Build the exact-match structure, clean search terms, establish baseline conversion rate, cost per order, and ROAS.' },
-      { phase: 'Month 3', focus: 'Expansion', detail: 'Retargeting scales toward $1,000/mo across Google and Meta; winning search themes get expanded coverage and additional ad variants.' },
+      { phase: 'Months 1-2', focus: 'Validation', detail: '$3,000 Search + $500 Google Retargeting + $500 Meta Retargeting. Build the exact-match structure, clean search terms, and establish baseline ROAS and cost per order.' },
+      { phase: 'Month 3', focus: 'Expansion', detail: 'If the unit economics hold, retargeting budgets can be scaled on Google and Meta; winning search themes get expanded coverage.' },
       { phase: 'Month 4+', focus: 'Scale on Proof', detail: 'Budget increases are recommended only when ROAS holds at or above target. Any budget above $5,000/mo is optional and at the client\'s discretion.' },
     ],
     note: 'Media spend is billed directly by Google and Meta to the client\'s payment method. Hipervínculo never invoices media spend.',
