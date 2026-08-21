@@ -114,11 +114,11 @@ export const ezBrickProposalContent = {
     headline: 'A 3.0 ROAS Goal With 2.5 ROAS as the Performance Threshold',
     description:
       'We manage the program toward a 3.0 ROAS. The 2.5 ROAS mark is the reference threshold used to evaluate whether the program is performing as forecast. The $1,000 monthly retainer is charged whether or not 2.5 ROAS is reached; the 10% performance commission only produces meaningful compensation when the operation is actually profitable.',
-    spendBasis: 'Based on $3,500/mo in media spend (Search + Retargeting) during the initial phase.',
+    spendBasis: 'Based on $4,000/mo in media spend ($3,000 Search + $1,000 Retargeting) during the initial phase.',
     scenarios: [
-      { label: 'Threshold', roas: '2.5x', revenue: '$8,750', cogs: '−$2,625', fulfillment: '−$1,050', adSpend: '−$3,500', profit: '$1,575', commission: '$158', totalFee: '$1,158' },
-      { label: 'Target', roas: '3.0x', revenue: '$10,500', cogs: '−$3,150', fulfillment: '−$1,260', adSpend: '−$3,500', profit: '$2,590', commission: '$259', totalFee: '$1,259' },
-      { label: 'Upside', roas: '4.0x', revenue: '$14,000', cogs: '−$4,200', fulfillment: '−$1,680', adSpend: '−$3,500', profit: '$4,620', commission: '$462', totalFee: '$1,462' },
+      { label: 'Threshold', roas: '2.5x', revenue: '$10,000', cogs: '−$3,000', fulfillment: '−$1,200', adSpend: '−$4,000', profit: '$1,800', commission: '$180', totalFee: '$1,180' },
+      { label: 'Target', roas: '3.0x', revenue: '$12,000', cogs: '−$3,600', fulfillment: '−$1,440', adSpend: '−$4,000', profit: '$2,960', commission: '$296', totalFee: '$1,296' },
+      { label: 'Upside', roas: '4.0x', revenue: '$16,000', cogs: '−$4,800', fulfillment: '−$1,920', adSpend: '−$4,000', profit: '$5,280', commission: '$528', totalFee: '$1,528' },
     ],
     assumptions: [
       'Illustrative COGS at 30% of revenue and fulfillment/shipping at 12% of revenue. Actual figures will be replaced with EZ Brick\'s real product and fulfillment costs.',
