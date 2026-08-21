@@ -251,7 +251,7 @@ export const ezBrickProposalContent = {
       {
         title: 'Media Spend',
         description:
-          'All media spend ($3,000/mo Search plus $500-$1,000/mo retargeting) is paid directly by EZ Brick to Google and Meta and is separate from Hipervínculo compensation.',
+          'All media spend ($3,000/mo Search plus $500/mo Google Retargeting and $500/mo Meta Retargeting) is paid directly by EZ Brick to Google and Meta and is separate from Hipervínculo compensation.',
         icon: 'dollar',
       },
       {
