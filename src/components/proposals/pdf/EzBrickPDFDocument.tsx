@@ -219,9 +219,9 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 4: Objective & Strategy */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="Strategy" title={content.objective.title} lead={content.objective.headline} />
-        <Text style={{ ...T.body, marginBottom: 18 }}>{content.objective.description}</Text>
+        <Text style={{ ...T.body, fontSize: 9, marginBottom: 14 }}>{content.objective.description}</Text>
         {content.objective.scope.map((item, i) => (
-          <View key={i} wrap={false} style={{ ...s.card, padding: 11, marginBottom: 6, flexDirection: 'row', gap: 12 }}>
+          <View key={i} wrap={false} style={{ ...s.card, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 11 }}>
             <View style={{ paddingTop: 2 }}><CheckIcon size={13} /></View>
             <View style={{ flex: 1 }}>
               <Text style={{ ...T.cardTitle, fontSize: 10.5, marginBottom: 3 }}>{item.title}</Text>
@@ -230,8 +230,8 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           </View>
         ))}
         <View wrap={false} style={{ backgroundColor: '#ffffff', borderRadius: 12, padding: 13, marginTop: 8, borderWidth: 0.75, borderColor: 'rgba(255,193,7,0.45)' }}>
-          <Text style={{ ...T.cardTitle, marginBottom: 5 }}>{content.objective.exclusions.title}</Text>
-          <Text style={T.cardBody}>{content.objective.exclusions.description}</Text>
+          <Text style={{ ...T.cardTitle, fontSize: 10.5, marginBottom: 4 }}>{content.objective.exclusions.title}</Text>
+          <Text style={{ ...T.cardBody, fontSize: 7.8, lineHeight: 1.5 }}>{content.objective.exclusions.description}</Text>
         </View>
         <Footer />
       </Page>
