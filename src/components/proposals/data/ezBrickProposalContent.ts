@@ -2,7 +2,7 @@ export const ezBrickProposalContent = {
   cover: {
     title: 'Performance Marketing Proposal',
     subtitle: 'Google Search + Retargeting\nfor Online Sales Growth',
-    tagline: 'For: EZ Brick — Ricardo Marcotuli',
+    tagline: 'For: EZ Brick — Ricardo Marcotulli',
   },
   about: {
     title: 'About Hipervínculo',
