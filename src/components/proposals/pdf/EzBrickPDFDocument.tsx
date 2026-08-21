@@ -221,7 +221,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         <PageHead eyebrow="Strategy" title={content.objective.title} lead={content.objective.headline} />
         <Text style={{ ...T.body, marginBottom: 18 }}>{content.objective.description}</Text>
         {content.objective.scope.map((item, i) => (
-          <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
+          <View key={i} wrap={false} style={{ ...s.card, padding: 11, marginBottom: 6, flexDirection: 'row', gap: 12 }}>
             <View style={{ paddingTop: 2 }}><CheckIcon size={13} /></View>
             <View style={{ flex: 1 }}>
               <Text style={{ ...T.cardTitle, marginBottom: 4 }}>{item.title}</Text>
@@ -229,7 +229,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
             </View>
           </View>
         ))}
-        <View wrap={false} style={{ backgroundColor: '#ffffff', borderRadius: 12, padding: 16, marginTop: 12, borderWidth: 0.75, borderColor: 'rgba(255,193,7,0.45)' }}>
+        <View wrap={false} style={{ backgroundColor: '#ffffff', borderRadius: 12, padding: 13, marginTop: 8, borderWidth: 0.75, borderColor: 'rgba(255,193,7,0.45)' }}>
           <Text style={{ ...T.cardTitle, marginBottom: 5 }}>{content.objective.exclusions.title}</Text>
           <Text style={T.cardBody}>{content.objective.exclusions.description}</Text>
         </View>
@@ -262,14 +262,14 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 6: Media Plan */}
       <Page size="A4" style={s.pageBg}>
         <PageHead eyebrow="Budget" title={content.mediaPlan.title} lead={content.mediaPlan.headline} />
-        <View style={{ backgroundColor: green, borderRadius: 16, paddingHorizontal: 26, paddingVertical: 24, marginBottom: 22 }}>
+        <View style={{ backgroundColor: green, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 20, marginBottom: 18 }}>
           <Text style={{ ...T.micro, color: 'rgba(255,255,255,0.55)' }}>{content.mediaPlan.totalLabel.toUpperCase()}</Text>
-          <Text style={{ fontSize: 40, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginTop: 8 }}>{content.mediaPlan.total}</Text>
+          <Text style={{ fontSize: 36, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginTop: 6 }}>{content.mediaPlan.total}</Text>
         </View>
         <Text style={{ ...T.body, marginBottom: 18 }}>{content.mediaPlan.description}</Text>
         <Text style={{ ...T.micro, color: grayLight, marginBottom: 10 }}>ALLOCATION</Text>
         {content.mediaPlan.allocation.map((row, i) => (
-          <View key={i} wrap={false} style={{ ...s.cardWhite, marginBottom: 8 }}>
+          <View key={i} wrap={false} style={{ ...s.cardWhite, padding: 12, marginBottom: 7 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
               <Text style={{ ...T.sectionTitle, fontSize: 11.5, flex: 1, paddingRight: 10 }}>{row.channel}</Text>
               <View style={{ alignItems: 'flex-end' }}>
@@ -280,16 +280,16 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
             <Text style={T.cardBody}>{row.note}</Text>
           </View>
         ))}
-        <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
+        <View wrap={false} style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
           {content.mediaPlan.phases.map((p, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: '#ffffff', borderRadius: 12, padding: 14 }}>
+            <View key={i} style={{ flex: 1, backgroundColor: '#ffffff', borderRadius: 12, padding: 12 }}>
               <Text style={{ ...T.micro, color: lime, marginBottom: 6 }}>{p.phase.toUpperCase()}</Text>
               <Text style={{ fontSize: 10, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 5 }}>{p.focus}</Text>
               <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{p.detail}</Text>
             </View>
           ))}
         </View>
-        <Text style={{ ...T.note, marginTop: 16 }}>{content.mediaPlan.note}</Text>
+        <Text style={{ ...T.note, marginTop: 10 }}>{content.mediaPlan.note}</Text>
         <Footer />
       </Page>
 
@@ -474,7 +474,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           {content.terms.sections.map((section, i) => {
             const Icon = iconMap[section.icon] || CheckIcon;
             return (
-              <View key={i} wrap={false} style={{ width: '47.6%', backgroundColor: bg, borderRadius: 12, padding: 14, marginBottom: 10 }}>
+              <View key={i} wrap={false} style={{ width: '47.6%', backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 8 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 8 }}>
                   <View style={{ width: 24, height: 24, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={12} />
