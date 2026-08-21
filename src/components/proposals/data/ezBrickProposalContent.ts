@@ -93,18 +93,18 @@ export const ezBrickProposalContent = {
     title: 'Media Plan',
     headline: 'How the $5,000 Monthly Budget Is Allocated',
     description:
-      'The total monthly budget is $5,000. Of that, $1,000 is the Hipervínculo management retainer and the remainder is media spend paid directly to Google and Meta. We begin conservatively on retargeting and scale it as the search campaigns prove sales volume.',
+      'The total monthly budget is $5,000. Of that, $1,000 is the Hipervínculo management retainer and $4,000 is media spend paid directly to Google and Meta. Retargeting is split evenly from day one: $500 to Google and $500 to Meta.',
     total: '$5,000',
     totalLabel: 'Total Monthly Budget',
     allocation: [
       { channel: 'Google Search (Exact Match)', amount: '$3,000/mo', share: '60%', note: 'Core of the program. High-intent commercial keywords only, managed toward a 3.0 ROAS target.' },
-      { channel: 'Retargeting — Google & Meta', amount: '$500/mo (start)', share: '10%', note: 'Split between Google (Display/YouTube) and Meta (Facebook/Instagram) to recover non-buyers. Scales toward $1,000/mo as sales volume grows.' },
+      { channel: 'Google Retargeting', amount: '$500/mo', share: '10%', note: 'Display and YouTube remarketing to recover product viewers, cart abandoners, and sample requesters.' },
+      { channel: 'Meta Retargeting', amount: '$500/mo', share: '10%', note: 'Facebook and Instagram remarketing to re-engage visitors who did not convert on the first visit.' },
       { channel: 'Hipervínculo Retainer', amount: '$1,000/mo', share: '20%', note: 'Fixed management fee, charged regardless of performance.' },
-      { channel: 'Scaling Reserve', amount: '$500/mo', share: '10%', note: 'Held back in months 1-2, then deployed into retargeting or top-performing search terms once profitability is confirmed.' },
     ],
     phases: [
-      { phase: 'Months 1-2', focus: 'Validation', detail: '$3,000 Search + $500 retargeting. Build the exact-match structure, clean search terms, establish baseline conversion rate, cost per order, and ROAS.' },
-      { phase: 'Month 3', focus: 'Expansion', detail: 'Retargeting scales toward $1,000/mo across Google and Meta; winning search themes get expanded coverage and additional ad variants.' },
+      { phase: 'Months 1-2', focus: 'Validation', detail: '$3,000 Search + $500 Google Retargeting + $500 Meta Retargeting. Build the exact-match structure, clean search terms, and establish baseline ROAS and cost per order.' },
+      { phase: 'Month 3', focus: 'Expansion', detail: 'If the unit economics hold, retargeting budgets can be scaled on Google and Meta; winning search themes get expanded coverage.' },
       { phase: 'Month 4+', focus: 'Scale on Proof', detail: 'Budget increases are recommended only when ROAS holds at or above target. Any budget above $5,000/mo is optional and at the client\'s discretion.' },
     ],
     note: 'Media spend is billed directly by Google and Meta to the client\'s payment method. Hipervínculo never invoices media spend.',
@@ -114,11 +114,11 @@ export const ezBrickProposalContent = {
     headline: 'A 3.0 ROAS Goal With 2.5 ROAS as the Performance Threshold',
     description:
       'We manage the program toward a 3.0 ROAS. The 2.5 ROAS mark is the reference threshold used to evaluate whether the program is performing as forecast. The $1,000 monthly retainer is charged whether or not 2.5 ROAS is reached; the 10% performance commission only produces meaningful compensation when the operation is actually profitable.',
-    spendBasis: 'Based on $3,500/mo in media spend (Search + Retargeting) during the initial phase.',
+    spendBasis: 'Based on $4,000/mo in media spend ($3,000 Search + $1,000 Retargeting) during the initial phase.',
     scenarios: [
-      { label: 'Threshold', roas: '2.5x', revenue: '$8,750', cogs: '−$2,625', fulfillment: '−$1,050', adSpend: '−$3,500', profit: '$1,575', commission: '$158', totalFee: '$1,158' },
-      { label: 'Target', roas: '3.0x', revenue: '$10,500', cogs: '−$3,150', fulfillment: '−$1,260', adSpend: '−$3,500', profit: '$2,590', commission: '$259', totalFee: '$1,259' },
-      { label: 'Upside', roas: '4.0x', revenue: '$14,000', cogs: '−$4,200', fulfillment: '−$1,680', adSpend: '−$3,500', profit: '$4,620', commission: '$462', totalFee: '$1,462' },
+      { label: 'Threshold', roas: '2.5x', revenue: '$10,000', cogs: '−$3,000', fulfillment: '−$1,200', adSpend: '−$4,000', profit: '$1,800', commission: '$180', totalFee: '$1,180' },
+      { label: 'Target', roas: '3.0x', revenue: '$12,000', cogs: '−$3,600', fulfillment: '−$1,440', adSpend: '−$4,000', profit: '$2,960', commission: '$296', totalFee: '$1,296' },
+      { label: 'Upside', roas: '4.0x', revenue: '$16,000', cogs: '−$4,800', fulfillment: '−$1,920', adSpend: '−$4,000', profit: '$5,280', commission: '$528', totalFee: '$1,528' },
     ],
     assumptions: [
       'Illustrative COGS at 30% of revenue and fulfillment/shipping at 12% of revenue. Actual figures will be replaced with EZ Brick\'s real product and fulfillment costs.',
@@ -149,17 +149,17 @@ export const ezBrickProposalContent = {
   retargetingService: {
     title: 'Retargeting — Google & Meta',
     headline: 'Recovering the Buyers Who Did Not Convert on the First Visit',
-    mediaSpend: '$500/mo',
-    mediaSpendLabel: 'Starting Retargeting Spend (scales to $1,000)',
+    mediaSpend: '$1,000/mo',
+    mediaSpendLabel: 'Retargeting Spend (Google + Meta)',
     description:
       'Most first-time visitors to a building-material site do not buy immediately — they compare, measure, and consult. Retargeting keeps EZ Brick in front of those visitors on Google and Meta until they are ready to order, at a fraction of the cost of new-visitor traffic.',
     includes: [
       { title: 'Audience Architecture', description: 'Segmented audiences: all visitors, product viewers, sample requesters, add-to-cart, and past purchasers for repeat/referral offers.' },
-      { title: 'Google Display & YouTube', description: 'Responsive display and short-form video remarketing across the Google network to stay visible during the consideration window.' },
-      { title: 'Meta Facebook & Instagram', description: 'Feed, Stories, and Reels remarketing using installed-project imagery and short product demonstration creative.' },
+      { title: 'Google Display & YouTube', description: '$500/mo in responsive display and short-form video remarketing across the Google network to stay visible during the consideration window.' },
+      { title: 'Meta Facebook & Instagram', description: '$500/mo across feed, Stories, and Reels using installed-project imagery and short product demonstration creative.' },
       { title: 'Creative Rotation', description: 'Multiple creative angles tested — finished wall inspiration, installation speed, cost vs. traditional masonry, and sample offer.' },
       { title: 'Frequency & Exclusion Control', description: 'Caps and purchaser exclusions so budget is never wasted re-selling to people who already bought.' },
-      { title: 'Progressive Budget Scaling', description: 'Starting at $500/mo split between Google and Meta, scaling toward $1,000/mo as traffic volume and sales justify it.' },
+      { title: 'Budget Split & Scaling', description: 'Starting with $500/mo on Google and $500/mo on Meta. Allocation may be adjusted as performance data shows which platform converts better.' },
     ],
   },
   investment: {
@@ -194,7 +194,8 @@ export const ezBrickProposalContent = {
       title: 'Paid Directly by Client',
       items: [
         { name: 'Google Search Media Spend', detail: '$3,000/mo, billed directly by Google' },
-        { name: 'Retargeting Media Spend', detail: '$500/mo starting, scaling to $1,000/mo (Google + Meta)' },
+        { name: 'Google Retargeting Media Spend', detail: '$500/mo, billed directly by Google' },
+        { name: 'Meta Retargeting Media Spend', detail: '$500/mo, billed directly by Meta' },
         { name: 'eCommerce Platform & Apps', detail: 'Store subscription, apps, and payment processing fees' },
         { name: 'Product Photography & Video', detail: 'Optional — if additional creative assets are required' },
       ],
@@ -250,7 +251,7 @@ export const ezBrickProposalContent = {
       {
         title: 'Media Spend',
         description:
-          'All media spend ($3,000/mo Search plus $500-$1,000/mo retargeting) is paid directly by EZ Brick to Google and Meta and is separate from Hipervínculo compensation.',
+          'All media spend ($3,000/mo Search plus $500/mo Google Retargeting and $500/mo Meta Retargeting) is paid directly by EZ Brick to Google and Meta and is separate from Hipervínculo compensation.',
         icon: 'dollar',
       },
       {
@@ -297,9 +298,9 @@ export const ezBrickProposalContent = {
       {
         heading: 'Media Budget Allocation',
         items: [
-          'Total planned monthly budget: $5,000, consisting of $1,000 retainer and up to $4,000 in media spend.',
-          'Initial allocation: $3,000/mo to Google Search (exact and phrase match, high-relevance commercial keywords) and $500/mo to retargeting split between Google and Meta.',
-          'Retargeting spend scales toward $1,000/mo as sales volume and audience size justify it, subject to client approval.',
+          'Total planned monthly budget: $5,000, consisting of $1,000 retainer and $4,000 in media spend.',
+          'Initial allocation: $3,000/mo to Google Search (exact and phrase match, high-relevance commercial keywords), $500/mo to Google Retargeting, and $500/mo to Meta Retargeting.',
+          'Retargeting split may be adjusted as performance data shows which platform or audience generates better returns, subject to client approval.',
           'Any budget increase beyond $5,000/mo total is optional and requires written client approval.',
         ],
       },
