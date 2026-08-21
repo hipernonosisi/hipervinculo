@@ -7,12 +7,56 @@ const bg = '#f8f9f5';
 const gray = '#666666';
 const grayLight = '#999999';
 
+const inkStrong = '#1f2d1f';
+const ink = '#4b5563';
+const rule = 'rgba(45,74,45,0.10)';
+
+const T = {
+  eyebrow: { fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: lime, letterSpacing: 3 },
+  h1: { fontSize: 26, fontFamily: 'Helvetica-Bold', color: green, lineHeight: 1.08 },
+  lead: { fontSize: 11.5, fontFamily: 'Helvetica-Bold', color: '#5c7f43', lineHeight: 1.35 },
+  body: { fontSize: 9.5, color: ink, lineHeight: 1.65 },
+  cardTitle: { fontSize: 11, fontFamily: 'Helvetica-Bold', color: green },
+  cardBody: { fontSize: 8.5, color: ink, lineHeight: 1.6 },
+  micro: { fontSize: 7, fontFamily: 'Helvetica-Bold', letterSpacing: 1.6 },
+  sectionTitle: { fontSize: 13, fontFamily: 'Helvetica-Bold', color: green },
+  rowLabel: { fontSize: 8.5, color: ink },
+  rowValue: { fontSize: 8.5, fontFamily: 'Helvetica-Bold', color: green },
+  note: { fontSize: 7.5, color: grayLight, lineHeight: 1.6 },
+};
+
 const s = StyleSheet.create({
-  page: { padding: 40, backgroundColor: '#ffffff', fontFamily: 'Helvetica' },
-  pageBg: { padding: 40, backgroundColor: bg, fontFamily: 'Helvetica' },
-  accent: { width: 40, height: 3, backgroundColor: lime, marginBottom: 16 },
-  footer: { position: 'absolute', bottom: 30, left: 40, right: 40, textAlign: 'center', fontSize: 7, color: '#999' },
+  page: { paddingTop: 40, paddingBottom: 50, paddingHorizontal: 46, backgroundColor: '#ffffff', fontFamily: 'Helvetica' },
+  pageBg: { paddingTop: 40, paddingBottom: 50, paddingHorizontal: 46, backgroundColor: bg, fontFamily: 'Helvetica' },
+  accent: { width: 34, height: 3, backgroundColor: lime, marginBottom: 14 },
+  footer: { position: 'absolute', bottom: 24, left: 46, right: 46, flexDirection: 'row', justifyContent: 'space-between' },
+  footerText: { fontSize: 7, color: '#b0b0b0', letterSpacing: 1 },
+  card: { backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 7 },
+  cardWhite: { backgroundColor: '#ffffff', borderRadius: 12, padding: 13, marginBottom: 9 },
 });
+
+const PageHead = ({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) => (
+  <View style={{ marginBottom: 16 }}>
+    <View style={s.accent} />
+    <Text style={{ ...T.eyebrow, marginBottom: 8 }}>{eyebrow.toUpperCase()}</Text>
+    <Text style={T.h1}>{title}</Text>
+    {lead ? <Text style={{ ...T.lead, marginTop: 6 }}>{lead}</Text> : null}
+  </View>
+);
+
+const Footer = () => (
+  <View style={s.footer} fixed>
+    <Text style={s.footerText}>HIPERVÍNCULO</Text>
+    <Text style={s.footerText} render={({ pageNumber }) => `${String(pageNumber).padStart(2, '0')} · hipervinculo.net`} />
+  </View>
+);
+
+const Bullet = ({ children }: { children: React.ReactNode }) => (
+  <View style={{ flexDirection: 'row', gap: 8, marginBottom: 5 }}>
+    <View style={{ width: 3, height: 3, borderRadius: 1.5, backgroundColor: lime, marginTop: 5 }} />
+    <Text style={{ flex: 1, ...T.cardBody }}>{children}</Text>
+  </View>
+);
 
 const CheckIcon = ({ size = 14 }: { size?: number }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24">
@@ -110,444 +154,400 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
     <Document>
       {/* PAGE 1: Cover */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
-        <View style={{ padding: 40, paddingBottom: 20, flexDirection: 'row' }}>
+        <View style={{ paddingHorizontal: 48, paddingTop: 46, paddingBottom: 30, flexDirection: 'row' }}>
           <Image src={logoBase64} style={{ height: 30, objectFit: 'contain', objectPositionX: 'left' }} />
         </View>
-        <View style={{ flex: 1, backgroundColor: green, padding: 40, justifyContent: 'center' }}>
-          <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 14 }}>
-            {content.cover.title.toUpperCase()}
-          </Text>
-          <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'white', marginBottom: 10, lineHeight: 1.15 }}>
+        <View style={{ flex: 1, backgroundColor: green, paddingHorizontal: 48, paddingVertical: 56, justifyContent: 'center' }}>
+          <Text style={{ ...T.eyebrow, color: '#c5e86a', marginBottom: 22 }}>{content.cover.title.toUpperCase()}</Text>
+          <Text style={{ fontSize: 38, fontFamily: 'Helvetica-Bold', color: '#ffffff', lineHeight: 1.1, maxWidth: 400 }}>
             {content.cover.subtitle}
           </Text>
-          <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 24 }}>{content.cover.tagline}</Text>
-          <View style={{ width: 50, height: 3, backgroundColor: lime }} />
+          <View style={{ width: 44, height: 3, backgroundColor: lime, marginTop: 26, marginBottom: 22 }} />
+          <Text style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: 340 }}>
+            {content.cover.tagline}
+          </Text>
         </View>
-        <View style={{ padding: '16 40', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 8, color: grayLight, letterSpacing: 2 }}>CONFIDENTIAL</Text>
-          <Text style={{ fontSize: 8, color: grayLight }}>hipervinculo.net</Text>
+        <View style={{ paddingHorizontal: 48, paddingVertical: 22, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ fontSize: 7.5, color: grayLight, letterSpacing: 2.5 }}>CONFIDENTIAL</Text>
+          <Text style={{ fontSize: 7.5, color: grayLight, letterSpacing: 1 }}>hipervinculo.net</Text>
         </View>
       </Page>
 
       {/* PAGE 2: About */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>ABOUT US</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.about.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.about.headline}</Text>
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 24 }}>{content.about.description}</Text>
-        <View style={{ flexDirection: 'row', gap: 14, marginBottom: 24 }}>
+        <PageHead eyebrow="About us" title={content.about.title} lead={content.about.headline} />
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.about.description}</Text>
+        <View style={{ flexDirection: 'row', gap: 14, marginBottom: 30 }}>
           {content.about.stats.map((stat, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: bg, borderRadius: 12, paddingVertical: 16, alignItems: 'center' }}>
-              <Text style={{ fontSize: 26, fontWeight: 'bold', color: lime, marginBottom: 4 }}>{stat.value}</Text>
-              <Text style={{ fontSize: 8, color: gray }}>{stat.label}</Text>
+            <View key={i} style={{ flex: 1, backgroundColor: bg, borderRadius: 14, paddingVertical: 22, alignItems: 'center' }}>
+              <Text style={{ fontSize: 30, fontFamily: 'Helvetica-Bold', color: green }}>{stat.value}</Text>
+              <View style={{ width: 18, height: 2, backgroundColor: lime, marginVertical: 8 }} />
+              <Text style={{ fontSize: 8, color: ink, letterSpacing: 0.5 }}>{stat.label}</Text>
             </View>
           ))}
         </View>
+        <Text style={{ ...T.micro, color: grayLight, marginBottom: 12 }}>CAPABILITIES</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {content.about.credentials.map((cred, i) => (
-            <Text key={i} style={{ fontSize: 9, color: green, backgroundColor: 'rgba(139,195,74,0.1)', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20 }}>
+            <Text key={i} style={{ fontSize: 9, color: green, backgroundColor: 'rgba(139,195,74,0.12)', paddingHorizontal: 14, paddingVertical: 7, borderRadius: 20 }}>
               {cred}
             </Text>
           ))}
         </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 3: Client Overview */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>THE CLIENT</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.clientOverview.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.clientOverview.headline}</Text>
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 14 }}>{content.clientOverview.description}</Text>
+        <PageHead eyebrow="The client" title={content.clientOverview.title} lead={content.clientOverview.headline} />
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.clientOverview.description}</Text>
         {content.clientOverview.services.map((item, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 12, marginBottom: 6, flexDirection: 'row', gap: 10 }}>
-            <View style={{ paddingTop: 1 }}><ShieldIcon size={12} /></View>
+          <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
+            <View style={{ paddingTop: 2 }}><ShieldIcon size={13} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
-              <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              <Text style={{ ...T.cardTitle, marginBottom: 4 }}>{item.title}</Text>
+              <Text style={T.cardBody}>{item.description}</Text>
             </View>
           </View>
         ))}
-        <View style={{ backgroundColor: 'rgba(139,195,74,0.08)', borderRadius: 10, padding: 12, marginTop: 8 }}>
-          <Text style={{ fontSize: 8, color: gray, lineHeight: 1.5 }}>{content.clientOverview.marketNote}</Text>
+        <View style={{ borderLeftWidth: 2, borderLeftColor: lime, paddingLeft: 14, paddingVertical: 4, marginTop: 14 }}>
+          <Text style={{ ...T.cardBody, color: inkStrong }}>{content.clientOverview.marketNote}</Text>
         </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 4: Objective & Strategy */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>STRATEGY</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.objective.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.objective.headline}</Text>
-        <Text style={{ fontSize: 9.5, color: gray, lineHeight: 1.55, marginBottom: 12 }}>{content.objective.description}</Text>
+        <PageHead eyebrow="Strategy" title={content.objective.title} lead={content.objective.headline} />
+        <Text style={{ ...T.body, fontSize: 9, marginBottom: 14 }}>{content.objective.description}</Text>
         {content.objective.scope.map((item, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
-            <View style={{ paddingTop: 1 }}><CheckIcon size={12} /></View>
+          <View key={i} wrap={false} style={{ ...s.card, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 11 }}>
+            <View style={{ paddingTop: 2 }}><CheckIcon size={13} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
-              <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              <Text style={{ ...T.cardTitle, fontSize: 10.5, marginBottom: 3 }}>{item.title}</Text>
+              <Text style={{ ...T.cardBody, fontSize: 8, lineHeight: 1.55 }}>{item.description}</Text>
             </View>
           </View>
         ))}
-        <View style={{ backgroundColor: 'rgba(255,193,7,0.06)', borderRadius: 10, padding: 10, marginTop: 6, borderWidth: 0.5, borderColor: 'rgba(255,193,7,0.3)' }}>
-          <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.objective.exclusions.title}</Text>
-          <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.4 }}>{content.objective.exclusions.description}</Text>
+        <View wrap={false} style={{ backgroundColor: '#ffffff', borderRadius: 12, padding: 13, marginTop: 8, borderWidth: 0.75, borderColor: 'rgba(255,193,7,0.45)' }}>
+          <Text style={{ ...T.cardTitle, fontSize: 10.5, marginBottom: 4 }}>{content.objective.exclusions.title}</Text>
+          <Text style={{ ...T.cardBody, fontSize: 7.8, lineHeight: 1.5 }}>{content.objective.exclusions.description}</Text>
         </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 5: Platform Access */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>REQUIREMENTS</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.platformAccess.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.platformAccess.headline}</Text>
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 14 }}>{content.platformAccess.description}</Text>
+        <PageHead eyebrow="Requirements" title={content.platformAccess.title} lead={content.platformAccess.headline} />
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.platformAccess.description}</Text>
         {content.platformAccess.platforms.map((platform, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 12, marginBottom: 6, flexDirection: 'row', gap: 12 }}>
-            <View style={{ width: 24, height: 24, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.15)', alignItems: 'center', justifyContent: 'center' }}>
-              <LockIcon size={12} />
+          <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 13 }}>
+            <View style={{ width: 26, height: 26, borderRadius: 9, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
+              <LockIcon size={13} />
             </View>
             <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-                <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{platform.title}</Text>
-                <View style={{ backgroundColor: 'rgba(139,195,74,0.15)', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 2 }}>
-                  <Text style={{ fontSize: 7, fontWeight: 'bold', color: green }}>{platform.role}</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                <Text style={T.cardTitle}>{platform.title}</Text>
+                <View style={{ backgroundColor: 'rgba(139,195,74,0.18)', borderRadius: 8, paddingHorizontal: 9, paddingVertical: 3 }}>
+                  <Text style={{ fontSize: 7, fontFamily: 'Helvetica-Bold', color: green, letterSpacing: 0.8 }}>{platform.role}</Text>
                 </View>
               </View>
-              <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{platform.description}</Text>
+              <Text style={T.cardBody}>{platform.description}</Text>
             </View>
           </View>
         ))}
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 6: Media Plan */}
       <Page size="A4" style={s.pageBg}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>BUDGET</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.mediaPlan.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.mediaPlan.headline}</Text>
-        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 16, marginBottom: 12 }}>
-          <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 }}>
-            {content.mediaPlan.totalLabel.toUpperCase()}
-          </Text>
-          <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#c5e86a', marginTop: 4 }}>{content.mediaPlan.total}</Text>
+        <PageHead eyebrow="Budget" title={content.mediaPlan.title} lead={content.mediaPlan.headline} />
+        <View style={{ backgroundColor: green, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 20, marginBottom: 18 }}>
+          <Text style={{ ...T.micro, color: 'rgba(255,255,255,0.55)' }}>{content.mediaPlan.totalLabel.toUpperCase()}</Text>
+          <Text style={{ fontSize: 36, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginTop: 6 }}>{content.mediaPlan.total}</Text>
         </View>
-        <Text style={{ fontSize: 9.5, color: gray, lineHeight: 1.55, marginBottom: 12 }}>{content.mediaPlan.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.mediaPlan.description}</Text>
+        <Text style={{ ...T.micro, color: grayLight, marginBottom: 10 }}>ALLOCATION</Text>
         {content.mediaPlan.allocation.map((row, i) => (
-          <View key={i} style={{ backgroundColor: 'white', borderRadius: 10, padding: 11, marginBottom: 6 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 3 }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green }}>{row.channel}</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: green, backgroundColor: 'rgba(139,195,74,0.15)', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 8 }}>{row.share}</Text>
-                <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime }}>{row.amount}</Text>
+          <View key={i} wrap={false} style={{ ...s.cardWhite, padding: 12, marginBottom: 7 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
+              <Text style={{ ...T.sectionTitle, fontSize: 11.5, flex: 1, paddingRight: 10 }}>{row.channel}</Text>
+              <View style={{ alignItems: 'flex-end' }}>
+                <Text style={{ fontSize: 15, fontFamily: 'Helvetica-Bold', color: green }}>{row.amount}</Text>
+                <Text style={{ fontSize: 7, fontFamily: 'Helvetica-Bold', color: '#7a9a4e', letterSpacing: 0.8, marginTop: 2 }}>{row.share}</Text>
               </View>
             </View>
-            <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{row.note}</Text>
+            <Text style={T.cardBody}>{row.note}</Text>
           </View>
         ))}
-        <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
+        <View wrap={false} style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
           {content.mediaPlan.phases.map((p, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: 'white', borderRadius: 10, padding: 10 }}>
-              <Text style={{ fontSize: 7, fontWeight: 'bold', color: lime, letterSpacing: 1.2, marginBottom: 3 }}>{p.phase.toUpperCase()}</Text>
-              <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 3 }}>{p.focus}</Text>
-              <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.4 }}>{p.detail}</Text>
+            <View key={i} style={{ flex: 1, backgroundColor: '#ffffff', borderRadius: 12, padding: 12 }}>
+              <Text style={{ ...T.micro, color: lime, marginBottom: 6 }}>{p.phase.toUpperCase()}</Text>
+              <Text style={{ fontSize: 10, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 5 }}>{p.focus}</Text>
+              <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{p.detail}</Text>
             </View>
           ))}
         </View>
-        <Text style={{ fontSize: 7.5, color: grayLight, marginTop: 10, lineHeight: 1.4 }}>{content.mediaPlan.note}</Text>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Text style={{ ...T.note, marginTop: 10 }}>{content.mediaPlan.note}</Text>
+        <Footer />
       </Page>
 
-      {/* PAGE 7: Performance Targets */}
+      {/* PAGE 7: Projections */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>PROJECTIONS</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.projections.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.projections.headline}</Text>
-        <Text style={{ fontSize: 9.5, color: gray, lineHeight: 1.55, marginBottom: 8 }}>{content.projections.description}</Text>
-        <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: green, marginBottom: 14 }}>{content.projections.spendBasis}</Text>
-        <View style={{ flexDirection: 'row', gap: 10 }}>
+        <PageHead eyebrow="Projections" title={content.projections.title} lead={content.projections.headline} />
+        <Text style={{ ...T.body, marginBottom: 10 }}>{content.projections.description}</Text>
+        <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 22 }}>{content.projections.spendBasis}</Text>
+        <View style={{ flexDirection: 'row', gap: 11 }}>
           {content.projections.scenarios.map((sc, i) => {
             const highlight = i === 1;
-            const labelColor = highlight ? 'rgba(255,255,255,0.6)' : gray;
+            const labelColor = highlight ? 'rgba(255,255,255,0.6)' : ink;
             const valueColor = highlight ? '#ffffff' : green;
             return (
-              <View key={i} style={{ flex: 1, backgroundColor: highlight ? green : bg, borderRadius: 14, padding: 14, borderWidth: highlight ? 0.5 : 0.5, borderColor: highlight ? green : 'rgba(139,195,74,0.4)' }}>
-                <Text style={{ fontSize: 7, fontWeight: 'bold', letterSpacing: 1.5, color: highlight ? 'rgba(255,255,255,0.55)' : lime, marginBottom: 3 }}>
+              <View key={i} wrap={false} style={{ flex: 1, backgroundColor: highlight ? green : bg, borderRadius: 14, padding: 15, borderWidth: 0.75, borderColor: highlight ? green : 'rgba(139,195,74,0.35)' }}>
+                <Text style={{ ...T.micro, fontSize: 6.5, color: highlight ? 'rgba(255,255,255,0.55)' : '#7a9a4e', marginBottom: 8, minHeight: 16 }}>
                   {sc.label.toUpperCase()}
                 </Text>
-                <Text style={{ fontSize: 24, fontWeight: 'bold', color: highlight ? '#c5e86a' : green, marginBottom: 12 }}>{sc.roas}</Text>
+                <Text style={{ fontSize: 26, fontFamily: 'Helvetica-Bold', color: highlight ? '#c5e86a' : green, marginBottom: 16 }}>{sc.roas}</Text>
                 {[
                   ['Gross sales', sc.revenue],
                   ['Refunds & returns', sc.returns],
                   ['Ad spend', sc.adSpend],
                 ].map(([label, value]) => (
-                  <View key={label} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+                  <View key={label} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
                     <Text style={{ fontSize: 7.5, color: labelColor }}>{label}</Text>
-                    <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: valueColor }}>{value}</Text>
+                    <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor }}>{value}</Text>
                   </View>
                 ))}
-                <View style={{ height: 0.5, backgroundColor: highlight ? 'rgba(255,255,255,0.2)' : 'rgba(45,74,45,0.12)', marginVertical: 8 }} />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+                <View style={{ height: 0.75, backgroundColor: highlight ? 'rgba(255,255,255,0.2)' : rule, marginVertical: 10 }} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                   <Text style={{ fontSize: 7.5, color: labelColor }}>Net sales</Text>
-                  <Text style={{ fontSize: 11, fontWeight: 'bold', color: highlight ? '#c5e86a' : lime }}>{sc.netSales}</Text>
+                  <Text style={{ fontSize: 12, fontFamily: 'Helvetica-Bold', color: highlight ? '#c5e86a' : green }}>{sc.netSales}</Text>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 }}>
                   <Text style={{ fontSize: 7.5, color: labelColor }}>3% commission</Text>
-                  <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: valueColor }}>{sc.commission}</Text>
+                  <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor }}>{sc.commission}</Text>
                 </View>
-                <View style={{ backgroundColor: highlight ? 'rgba(197,232,106,0.15)' : 'rgba(139,195,74,0.12)', borderRadius: 8, padding: 8 }}>
-                  <Text style={{ fontSize: 6.5, fontWeight: 'bold', letterSpacing: 1, color: labelColor, marginBottom: 2 }}>TOTAL HIPERVÍNCULO FEE</Text>
-                  <Text style={{ fontSize: 12, fontWeight: 'bold', color: highlight ? '#c5e86a' : green }}>{sc.totalFee}</Text>
+                <View style={{ backgroundColor: highlight ? 'rgba(197,232,106,0.16)' : 'rgba(139,195,74,0.14)', borderRadius: 10, padding: 10 }}>
+                  <Text style={{ ...T.micro, fontSize: 6, color: labelColor, marginBottom: 4 }}>TOTAL HIPERVÍNCULO FEE</Text>
+                  <Text style={{ fontSize: 14, fontFamily: 'Helvetica-Bold', color: highlight ? '#c5e86a' : green }}>{sc.totalFee}</Text>
                 </View>
               </View>
             );
           })}
         </View>
-        <View style={{ backgroundColor: 'rgba(139,195,74,0.08)', borderRadius: 10, padding: 12, marginTop: 16 }}>
-          {content.projections.assumptions.map((a, i) => (
-            <View key={i} style={{ flexDirection: 'row', gap: 6, marginBottom: 3 }}>
-              <View style={{ width: 3, height: 3, borderRadius: 1.5, backgroundColor: lime, marginTop: 3.5 }} />
-              <Text style={{ flex: 1, fontSize: 7.5, color: gray, lineHeight: 1.45 }}>{a}</Text>
-            </View>
-          ))}
-        </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Text style={{ ...T.micro, color: grayLight, marginTop: 26, marginBottom: 10 }}>ASSUMPTIONS</Text>
+        {content.projections.assumptions.map((a, i) => (
+          <Bullet key={i}>{a}</Bullet>
+        ))}
+        <Footer />
       </Page>
 
       {/* PAGE 8: Google Search */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.searchService.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.searchService.headline}</Text>
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 14 }}>
-          <View style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 16 }}>
-            <Text style={{ fontSize: 7, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5, marginBottom: 4 }}>
-              {content.searchService.mediaSpendLabel.toUpperCase()}
-            </Text>
-            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#c5e86a' }}>{content.searchService.mediaSpend}</Text>
+        <PageHead eyebrow="Service" title={content.searchService.title} lead={content.searchService.headline} />
+        <View style={{ flexDirection: 'row', gap: 12, marginBottom: 22 }}>
+          <View style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 18 }}>
+            <Text style={{ ...T.micro, color: 'rgba(255,255,255,0.55)', marginBottom: 8 }}>{content.searchService.mediaSpendLabel.toUpperCase()}</Text>
+            <Text style={{ fontSize: 28, fontFamily: 'Helvetica-Bold', color: '#c5e86a' }}>{content.searchService.mediaSpend}</Text>
           </View>
-          <View style={{ flex: 1, backgroundColor: bg, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: 'rgba(139,195,74,0.4)' }}>
-            <Text style={{ fontSize: 7, fontWeight: 'bold', color: grayLight, letterSpacing: 1.5, marginBottom: 4 }}>
-              {content.searchService.targetLabel.toUpperCase()}
-            </Text>
-            <Text style={{ fontSize: 24, fontWeight: 'bold', color: green }}>{content.searchService.target}</Text>
+          <View style={{ flex: 1, backgroundColor: bg, borderRadius: 14, padding: 18, borderWidth: 0.75, borderColor: 'rgba(139,195,74,0.35)' }}>
+            <Text style={{ ...T.micro, color: grayLight, marginBottom: 8 }}>{content.searchService.targetLabel.toUpperCase()}</Text>
+            <Text style={{ fontSize: 28, fontFamily: 'Helvetica-Bold', color: green }}>{content.searchService.target}</Text>
           </View>
         </View>
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.searchService.description}</Text>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.searchService.description}</Text>
+        <Text style={{ ...T.micro, color: grayLight, marginBottom: 12 }}>WHAT IS INCLUDED</Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 9 }}>
           {content.searchService.includes.map((item, i) => (
-            <View key={i} style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5, flexDirection: 'row', gap: 10 }}>
-              <View style={{ paddingTop: 1 }}><SearchIcon size={12} /></View>
+            <View key={i} wrap={false} style={{ width: '47.8%', backgroundColor: bg, borderRadius: 12, padding: 14, marginBottom: 9, flexDirection: 'row', gap: 10 }}>
+              <View style={{ paddingTop: 2 }}><SearchIcon size={12} /></View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
-                <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+                <Text style={{ fontSize: 10, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 4 }}>{item.title}</Text>
+                <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{item.description}</Text>
               </View>
             </View>
           ))}
         </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 9: Retargeting */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>SERVICE</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.retargetingService.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.retargetingService.headline}</Text>
-        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 16, marginBottom: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <PageHead eyebrow="Service" title={content.retargetingService.title} lead={content.retargetingService.headline} />
+        <View style={{ backgroundColor: green, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 20, marginBottom: 22, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>
-            <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.5 }}>
-              {content.retargetingService.mediaSpendLabel.toUpperCase()}
-            </Text>
-            <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#c5e86a', marginTop: 4 }}>{content.retargetingService.mediaSpend}</Text>
+            <Text style={{ ...T.micro, color: 'rgba(255,255,255,0.55)' }}>{content.retargetingService.mediaSpendLabel.toUpperCase()}</Text>
+            <Text style={{ fontSize: 30, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginTop: 8 }}>{content.retargetingService.mediaSpend}</Text>
           </View>
-          <TrendIcon size={22} />
+          <TrendIcon size={24} />
         </View>
-        <Text style={{ fontSize: 10, color: gray, lineHeight: 1.6, marginBottom: 12 }}>{content.retargetingService.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.retargetingService.description}</Text>
         {content.retargetingService.includes.map((item, i) => (
-          <View key={i} style={{ backgroundColor: bg, borderRadius: 10, padding: 12, marginBottom: 6, flexDirection: 'row', gap: 10 }}>
-            <View style={{ paddingTop: 1 }}><TrendIcon size={12} /></View>
+          <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
+            <View style={{ paddingTop: 2 }}><TrendIcon size={13} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: green, marginBottom: 2 }}>{item.title}</Text>
-              <Text style={{ fontSize: 8, color: gray, lineHeight: 1.4 }}>{item.description}</Text>
+              <Text style={{ ...T.cardTitle, marginBottom: 4 }}>{item.title}</Text>
+              <Text style={T.cardBody}>{item.description}</Text>
             </View>
           </View>
         ))}
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 10: Investment */}
-      <Page size="A4" style={{ ...s.pageBg, padding: 34 }}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 8 }}>{content.investment.headline}</Text>
-
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+      <Page size="A4" style={s.pageBg}>
+        <PageHead eyebrow="Investment" title={content.investment.title} lead={content.investment.headline} />
+        <View style={{ flexDirection: 'row', gap: 12, marginBottom: 14 }}>
           {[
             { tag: 'Fixed Monthly', data: content.investment.retainer },
             { tag: 'Performance', data: content.investment.commission },
           ].map((card, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 12 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
-                <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
-                <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5 }}>{card.tag.toUpperCase()}</Text>
-              </View>
-              <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#ffffff', letterSpacing: 1, marginBottom: 8, minHeight: 20 }}>
+            <View key={i} wrap={false} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 18 }}>
+              <Text style={{ ...T.micro, fontSize: 6.5, color: 'rgba(255,255,255,0.55)', marginBottom: 10 }}>{card.tag.toUpperCase()}</Text>
+              <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#ffffff', letterSpacing: 0.6, marginBottom: 12, minHeight: 22 }}>
                 {card.data.label.toUpperCase()}
               </Text>
-              <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#c5e86a', marginBottom: 4 }}>{card.data.rate}</Text>
-              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.75)', marginBottom: 6, lineHeight: 1.4 }}>{card.data.basis}</Text>
-              <View style={{ height: 0.5, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 6 }} />
-              <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>{card.data.description}</Text>
+              <Text style={{ fontSize: 26, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginBottom: 8 }}>{card.data.rate}</Text>
+              <Text style={{ fontSize: 7.5, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: 10 }}>{card.data.basis}</Text>
+              <View style={{ height: 0.75, backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: 10 }} />
+              <Text style={{ fontSize: 7.5, color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}>{card.data.description}</Text>
             </View>
           ))}
         </View>
 
-        {/* Profit formula */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
-          <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.profitFormula.title}</Text>
+        <View wrap={false} style={s.cardWhite}>
+          <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.profitFormula.title}</Text>
           {content.investment.profitFormula.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
-              <Text style={{ fontSize: 8, color: gray }}>{row.label}</Text>
-              <Text style={{ fontSize: 8, fontWeight: 'bold', color: green }}>{row.value}</Text>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4, borderBottomWidth: i === content.investment.profitFormula.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
+              <Text style={T.rowLabel}>{row.label}</Text>
+              <Text style={T.rowValue}>{row.value}</Text>
             </View>
           ))}
-          <Text style={{ fontSize: 7, color: grayLight, marginTop: 6, lineHeight: 1.45 }}>{content.investment.profitFormula.note}</Text>
+          <Text style={{ ...T.note, marginTop: 10 }}>{content.investment.profitFormula.note}</Text>
         </View>
 
-        {/* Payment terms */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
-          <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.paymentTerms.title}</Text>
+        <Footer />
+      </Page>
+
+      {/* PAGE 10b: Investment continued */}
+      <Page size="A4" style={s.pageBg}>
+        <PageHead eyebrow="Investment · continued" title="Payment & Responsibilities" />
+        <View wrap={false} style={s.cardWhite}>
+          <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.paymentTerms.title}</Text>
           {content.investment.paymentTerms.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
-              <Text style={{ fontSize: 8, color: gray }}>{row.label}</Text>
-              <Text style={{ fontSize: 8, fontWeight: 'bold', color: green }}>{row.value}</Text>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4, borderBottomWidth: i === content.investment.paymentTerms.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
+              <Text style={T.rowLabel}>{row.label}</Text>
+              <Text style={T.rowValue}>{row.value}</Text>
             </View>
           ))}
-          <Text style={{ fontSize: 7, color: grayLight, marginTop: 6, lineHeight: 1.45 }}>{content.investment.paymentTerms.note}</Text>
+          <Text style={{ ...T.note, marginTop: 10 }}>{content.investment.paymentTerms.note}</Text>
         </View>
 
-        {/* Client pays */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
-          <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.clientPays.title}</Text>
+        <View wrap={false} style={s.cardWhite}>
+          <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.clientPays.title}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             {content.investment.clientPays.items.map((item, i) => (
-              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 8, marginBottom: 4, paddingRight: 6 }}>
-                <View style={{ paddingTop: 1 }}><CheckIcon size={10} /></View>
+              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 9, marginBottom: 8, paddingRight: 10 }}>
+                <View style={{ paddingTop: 2 }}><CheckIcon size={11} /></View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#374151', marginBottom: 1 }}>{item.name}</Text>
-                  <Text style={{ fontSize: 7, color: grayLight }}>{item.detail}</Text>
+                  <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: inkStrong, marginBottom: 2 }}>{item.name}</Text>
+                  <Text style={{ fontSize: 7.5, color: grayLight, lineHeight: 1.5 }}>{item.detail}</Text>
                 </View>
               </View>
             ))}
           </View>
         </View>
 
-        {/* Timeline */}
-        <View wrap={false} style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View style={{ flex: 1, paddingRight: 12 }}>
-            <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.investment.timeline.title}</Text>
-            <Text style={{ fontSize: 7, color: gray, lineHeight: 1.45 }}>{content.investment.timeline.description}</Text>
+        <View wrap={false} style={{ ...s.cardWhite, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flex: 1, paddingRight: 16 }}>
+            <Text style={{ ...T.sectionTitle, marginBottom: 5 }}>{content.investment.timeline.title}</Text>
+            <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{content.investment.timeline.description}</Text>
           </View>
           <View style={{ alignItems: 'flex-end' }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold', color: lime }}>{content.investment.timeline.duration}</Text>
-            <Text style={{ fontSize: 10, fontWeight: 'bold', color: lime }}>{content.investment.timeline.durationUnit}</Text>
+            <Text style={{ fontSize: 28, fontFamily: 'Helvetica-Bold', color: green }}>{content.investment.timeline.duration}</Text>
+            <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#7a9a4e', letterSpacing: 1 }}>{content.investment.timeline.durationUnit.toUpperCase()}</Text>
           </View>
         </View>
 
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 11: Terms */}
       <Page size="A4" style={s.page}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>LEGAL</Text>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.terms.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 14 }}>{content.terms.headline}</Text>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        <PageHead eyebrow="Legal" title={content.terms.title} lead={content.terms.headline} />
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
           {content.terms.sections.map((section, i) => {
             const Icon = iconMap[section.icon] || CheckIcon;
             return (
-              <View key={i} style={{ width: '48%', backgroundColor: bg, borderRadius: 10, padding: 11, marginBottom: 6 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-                  <View style={{ width: 22, height: 22, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.15)', alignItems: 'center', justifyContent: 'center' }}>
-                    <Icon size={11} />
+              <View key={i} wrap={false} style={{ width: '47.6%', backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 8 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 8 }}>
+                  <View style={{ width: 24, height: 24, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon size={12} />
                   </View>
-                  <Text style={{ fontSize: 9.5, fontWeight: 'bold', color: green }}>{section.title}</Text>
+                  <Text style={{ fontSize: 10, fontFamily: 'Helvetica-Bold', color: green, flex: 1 }}>{section.title}</Text>
                 </View>
-                <Text style={{ fontSize: 7.5, color: gray, lineHeight: 1.45 }}>{section.description}</Text>
+                <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{section.description}</Text>
               </View>
             );
           })}
         </View>
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 12: Agreement Details */}
-      <Page size="A4" style={{ ...s.page, padding: 34 }}>
-        <View style={s.accent} />
-        <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>AGREEMENT</Text>
-        <Text style={{ fontSize: 20, fontWeight: 'bold', color: green, marginBottom: 10 }}>{content.legalTerms.title}</Text>
+      <Page size="A4" style={s.page}>
+        <PageHead eyebrow="Agreement" title={content.legalTerms.title} />
         {content.legalTerms.sections.map((section, i) => (
-          <View key={i} wrap={false} style={{ backgroundColor: bg, borderRadius: 8, padding: 8, marginBottom: 4 }}>
-            <Text style={{ fontSize: 9, fontWeight: 'bold', color: green, marginBottom: 3 }}>{section.heading}</Text>
+          <View key={i} wrap={false} style={{ marginBottom: 12 }}>
+            <Text style={{ fontSize: 11, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 3 }}>{section.heading}</Text>
+            <View style={{ width: 20, height: 2, backgroundColor: lime, marginBottom: 8 }} />
             {section.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', gap: 5, marginBottom: 1.5 }}>
-                <View style={{ width: 3, height: 3, borderRadius: 1.5, backgroundColor: lime, marginTop: 3 }} />
-                <Text style={{ flex: 1, fontSize: 7, color: gray, lineHeight: 1.4 }}>{item}</Text>
-              </View>
+              <Bullet key={j}>{item}</Bullet>
             ))}
           </View>
         ))}
-        <Text style={s.footer}>Hipervínculo · hipervinculo.net</Text>
+        <Footer />
       </Page>
 
       {/* PAGE 13: Contact */}
       <Page size="A4" style={{ fontFamily: 'Helvetica', padding: 0 }}>
         <View style={{ flex: 1, flexDirection: 'row' }}>
-          <View style={{ flex: 1, backgroundColor: green, padding: 40, justifyContent: 'center' }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: 4 }}>{content.contact.title}</Text>
-            <Text style={{ fontSize: 12, fontWeight: 'bold', color: lime, marginBottom: 12 }}>{content.contact.headline}</Text>
-            <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 20, maxWidth: 340 }}>
+          <View style={{ flex: 1, backgroundColor: green, paddingHorizontal: 48, paddingVertical: 56, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 30, fontFamily: 'Helvetica-Bold', color: '#ffffff', lineHeight: 1.15 }}>{content.contact.title}</Text>
+            <Text style={{ fontSize: 12.5, fontFamily: 'Helvetica-Bold', color: lime, marginTop: 10, marginBottom: 18 }}>{content.contact.headline}</Text>
+            <Text style={{ fontSize: 10, color: 'rgba(255,255,255,0.78)', lineHeight: 1.75, marginBottom: 30, maxWidth: 330 }}>
               {content.contact.description}
             </Text>
 
-            <View style={{ marginBottom: 20 }}>
+            <View style={{ marginBottom: 30 }}>
               {[
                 { Icon: MailIcon, label: 'Email', value: content.contact.email },
                 { Icon: PhoneIcon, label: 'Phone', value: content.contact.phone },
                 { Icon: MapPinIcon, label: 'Address', value: content.contact.address },
                 { Icon: GlobeIcon, label: 'Website', value: content.contact.website },
               ].map(({ Icon, label, value }) => (
-                <View key={label} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                  <View style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center' }}>
+                <View key={label} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <View style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.2)', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={12} />
                   </View>
                   <View>
-                    <Text style={{ fontSize: 7, color: 'rgba(255,255,255,0.5)' }}>{label}</Text>
-                    <Text style={{ fontSize: 9, color: 'white', maxWidth: 200 }}>{value}</Text>
+                    <Text style={{ fontSize: 6.5, fontFamily: 'Helvetica-Bold', color: 'rgba(255,255,255,0.5)', letterSpacing: 1.4, marginBottom: 2 }}>{label.toUpperCase()}</Text>
+                    <Text style={{ fontSize: 9.5, color: '#ffffff', maxWidth: 210 }}>{value}</Text>
                   </View>
                 </View>
               ))}
             </View>
 
-            <View style={{ backgroundColor: lime, paddingHorizontal: 20, paddingVertical: 8, borderRadius: 20, alignSelf: 'flex-start' }}>
-              <Text style={{ fontSize: 9, fontWeight: 'bold', color: green }}>{content.contact.cta}</Text>
+            <View style={{ backgroundColor: lime, paddingHorizontal: 22, paddingVertical: 10, borderRadius: 22, alignSelf: 'flex-start' }}>
+              <Text style={{ fontSize: 9.5, fontFamily: 'Helvetica-Bold', color: green }}>{content.contact.cta}</Text>
             </View>
           </View>
 
-          <View style={{ width: '35%', backgroundColor: 'white', padding: 40, alignItems: 'center', justifyContent: 'center' }}>
-            <Image src={logoBase64} style={{ height: 40, objectFit: 'contain', marginBottom: 16 }} />
-            <View style={{ width: 40, height: 2, backgroundColor: lime, marginBottom: 16 }} />
-            <Text style={{ fontSize: 8, color: gray, textAlign: 'center', lineHeight: 1.5, maxWidth: 140 }}>
+          <View style={{ width: '34%', backgroundColor: '#ffffff', padding: 34, alignItems: 'center', justifyContent: 'center' }}>
+            <Image src={logoBase64} style={{ height: 40, objectFit: 'contain', marginBottom: 18 }} />
+            <View style={{ width: 34, height: 2, backgroundColor: lime, marginBottom: 18 }} />
+            <Text style={{ fontSize: 8, color: ink, textAlign: 'center', lineHeight: 1.7, maxWidth: 140 }}>
               High-intent search traffic, disciplined budgets, and reporting measured in profit.
             </Text>
           </View>
