@@ -224,8 +224,8 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           <View key={i} wrap={false} style={{ ...s.card, padding: 11, marginBottom: 6, flexDirection: 'row', gap: 12 }}>
             <View style={{ paddingTop: 2 }}><CheckIcon size={13} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={{ ...T.cardTitle, marginBottom: 4 }}>{item.title}</Text>
-              <Text style={T.cardBody}>{item.description}</Text>
+              <Text style={{ ...T.cardTitle, fontSize: 10.5, marginBottom: 3 }}>{item.title}</Text>
+              <Text style={{ ...T.cardBody, fontSize: 8, lineHeight: 1.55 }}>{item.description}</Text>
             </View>
           </View>
         ))}
@@ -427,6 +427,12 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           <Text style={{ ...T.note, marginTop: 10 }}>{content.investment.profitFormula.note}</Text>
         </View>
 
+        <Footer />
+      </Page>
+
+      {/* PAGE 10b: Investment continued */}
+      <Page size="A4" style={s.pageBg}>
+        <PageHead eyebrow="Investment · continued" title="Payment & Responsibilities" />
         <View wrap={false} style={s.cardWhite}>
           <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.paymentTerms.title}</Text>
           {content.investment.paymentTerms.rows.map((row, i) => (
