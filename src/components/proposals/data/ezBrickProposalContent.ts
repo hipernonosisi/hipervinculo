@@ -194,7 +194,8 @@ export const ezBrickProposalContent = {
       title: 'Paid Directly by Client',
       items: [
         { name: 'Google Search Media Spend', detail: '$3,000/mo, billed directly by Google' },
-        { name: 'Retargeting Media Spend', detail: '$500/mo starting, scaling to $1,000/mo (Google + Meta)' },
+        { name: 'Google Retargeting Media Spend', detail: '$500/mo, billed directly by Google' },
+        { name: 'Meta Retargeting Media Spend', detail: '$500/mo, billed directly by Meta' },
         { name: 'eCommerce Platform & Apps', detail: 'Store subscription, apps, and payment processing fees' },
         { name: 'Product Photography & Video', detail: 'Optional — if additional creative assets are required' },
       ],
