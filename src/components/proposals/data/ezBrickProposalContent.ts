@@ -18,7 +18,7 @@ export const ezBrickProposalContent = {
       'Google Ads Certified Partner',
       'Meta Business Partner',
       'eCommerce Conversion Tracking',
-      'Profit-Based Reporting',
+      'Sales-Based Reporting',
     ],
   },
   clientOverview: {
@@ -50,7 +50,7 @@ export const ezBrickProposalContent = {
       },
       {
         title: 'ROAS-Driven Bidding',
-        description: 'Campaigns managed toward a 3.0 ROAS target, with 2.5 ROAS established as the performance threshold for the commission structure.',
+        description: 'Campaigns managed toward a 3.0 ROAS target, with 2.5 ROAS established as the condition that activates the performance commission.',
       },
       {
         title: 'Google & Meta Retargeting',
@@ -65,8 +65,8 @@ export const ezBrickProposalContent = {
         description: 'Ongoing recommendations on product page structure, pricing presentation, shipping clarity, and trust elements that directly affect conversion rate.',
       },
       {
-        title: 'Profit-Based Reporting',
-        description: 'Monthly reporting on revenue, ROAS, cost per order, and operating profit as defined in this agreement — so we are both measured on the same number.',
+        title: 'Sales-Based Reporting',
+        description: 'Monthly reporting on gross and net sales, ROAS, and cost per order as defined in this agreement — so we are both measured on the same number.',
       },
     ],
     exclusions: {
@@ -85,7 +85,7 @@ export const ezBrickProposalContent = {
       { title: 'Meta Business Manager', description: 'Access to the Business Manager, ad account, Facebook Page, and Instagram profile for retargeting campaigns.', role: 'Admin Access' },
       { title: 'Website / eCommerce Platform', description: 'Access to install and validate tracking (GA4, Google Ads tag, Meta Pixel) and to advise on product page conversion improvements.', role: 'Admin / Staff Access' },
       { title: 'Google Analytics 4 & Tag Manager', description: 'Editor access to configure events, purchase values, and audience lists used for retargeting.', role: 'Editor Access' },
-      { title: 'Product & Financial Inputs', description: 'Product cost (COGS) and fulfillment/shipping cost per order, required to calculate operating profit and the performance commission.', role: 'Shared Data' },
+      { title: 'Sales Reporting Access', description: 'Monthly net sales reporting from the eCommerce platform and payment processor (gross sales, refunds, returns, chargebacks), required to calculate the performance commission.', role: 'Shared Data' },
       { title: 'Brand & Product Assets', description: 'Product photography, installed-project photos, packaging art, logo files, and any existing video for use in ads.', role: 'Shared Files' },
     ],
   },
@@ -144,7 +144,7 @@ export const ezBrickProposalContent = {
       { title: 'Bid & ROAS Management', description: 'Target ROAS bidding with manual oversight, device and geographic adjustments, and dayparting where data supports it.' },
       { title: 'Product Page Conversion Feedback', description: 'Specific recommendations on pricing display, shipping clarity, sample offers, and trust signals that lift conversion rate.' },
       { title: 'Full Conversion Tracking', description: 'Purchase, add-to-cart, sample request, and quote request events with revenue values wired into Google Ads and GA4.' },
-      { title: 'Monthly Reporting & Meetings',  description: 'Monthly performance report covering revenue, ROAS, cost per order, and operating profit, plus up to 2 review meetings per month.' },
+      { title: 'Monthly Reporting & Meetings',  description: 'Monthly performance report covering gross and net sales, ROAS, cost per order, and commission status, plus up to 2 review meetings per month.' },
     ],
   },
   retargetingService: {
@@ -206,12 +206,12 @@ export const ezBrickProposalContent = {
       subtitle: 'Simple and transparent',
       rows: [
         { label: 'Management retainer', value: '$1,000/mo in advance' },
-        { label: 'Performance commission', value: '10% of operating profit, billed monthly in arrears' },
+        { label: 'Performance commission', value: '3% of net sales, only in months at 2.5 ROAS or better' },
         { label: 'Initial commitment', value: 'First 90 days committed' },
         { label: 'After 90 days', value: 'Month-to-month, 30 days notice' },
         { label: 'Media spend', value: 'Paid directly to Google and Meta' },
       ],
-      note: 'The retainer is invoiced at the beginning of each service month. The performance commission is invoiced after month-end close, once revenue, COGS, fulfillment cost, and ad spend are confirmed. All invoices are payable within 10 days of receipt.',
+      note: 'The retainer is invoiced at the beginning of each service month. The performance commission is invoiced after month-end close, once net sales and ROAS are confirmed from the platform reports. All invoices are payable within 10 days of receipt.',
     },
     timeline: {
       title: 'Launch Timeline',
@@ -240,13 +240,13 @@ export const ezBrickProposalContent = {
       {
         title: 'Retainer Is Unconditional',
         description:
-          'The $1,000 monthly retainer is charged every month regardless of whether the 2.5 ROAS reference threshold is achieved. It is not contingent on performance.',
+          'The $1,000 monthly retainer is charged every month regardless of whether the 2.5 ROAS condition is achieved. It is not contingent on performance.',
         icon: 'dollar',
       },
       {
         title: 'Performance Commission',
         description:
-          'Hipervínculo earns 10% of operating profit, defined as revenue minus COGS, minus fulfillment cost, minus advertising spend. Other operating and administrative expenses are excluded from the calculation.',
+          'Hipervínculo earns 3% of net sales, and only in months where campaign ROAS reaches 2.5 or better. Net sales = gross sales attributed to the campaigns less refunds, returns, chargebacks, and cancellations, excluding sales tax and shipping. Product cost and fulfillment cost are not part of the calculation.',
         icon: 'dollar',
       },
       {
@@ -258,13 +258,13 @@ export const ezBrickProposalContent = {
       {
         title: 'ROAS Targets Are Goals',
         description:
-          'The 3.0 ROAS target and 2.5 ROAS threshold are performance objectives, not guarantees. Results depend on pricing, margin, shipping cost, product page conversion rate, seasonality, and competition.',
+          'The 3.0 ROAS target is a performance objective and the 2.5 ROAS mark is the commission condition, not a guarantee of results. Results depend on pricing, margin, shipping cost, product page conversion rate, seasonality, and competition.',
         icon: 'files',
       },
       {
         title: 'Data Access & Reporting',
         description:
-          'EZ Brick provides monthly revenue, COGS, and fulfillment cost data so operating profit can be calculated accurately. Hipervínculo provides a monthly report reconciling media spend, revenue, ROAS, and operating profit.',
+          'EZ Brick provides monthly net sales reports from the eCommerce platform and payment processor so the commission can be calculated accurately. Hipervínculo provides a monthly report reconciling media spend, gross and net sales, and ROAS.',
         icon: 'shield',
       },
       {
@@ -288,11 +288,11 @@ export const ezBrickProposalContent = {
         heading: 'Compensation & Payment',
         items: [
           'Management retainer: $1,000 USD per month, invoiced at the beginning of each service month and payable within 10 days of receipt.',
-          'The retainer is charged unconditionally each month, whether or not the 2.5 ROAS reference threshold is reached.',
-          'Performance commission: 10% of monthly operating profit, invoiced after month-end close once figures are confirmed.',
-          '"Operating profit" is defined exclusively as sales revenue attributed to the campaigns, minus product cost (COGS), minus fulfillment cost, minus advertising spend on Google and Meta.',
-          'No other operating, administrative, overhead, payroll, financing, or tax expenses are deducted when calculating the commission base.',
-          'If operating profit is zero or negative in a given month, no commission is charged for that month and only the $1,000 retainer applies.',
+          'The retainer is charged unconditionally each month, whether or not the 2.5 ROAS condition is reached.',
+          'Performance commission: 3% of monthly net sales, payable only in months where campaign ROAS reaches 2.5 or better, invoiced after month-end close once figures are confirmed.',
+          '"Net sales" is defined exclusively as gross sales revenue attributed to the campaigns, less refunds, returns, chargebacks, and cancellations, and excluding sales tax and shipping charged to the customer.',
+          'Product cost (COGS), fulfillment cost, and any other operating, administrative, overhead, payroll, financing, or tax expenses are not deducted when calculating the commission base.',
+          'If campaign ROAS is below 2.5 in a given month, no commission is charged for that month and only the $1,000 retainer applies.',
           'All media spend is paid directly by EZ Brick to Google and Meta. Hipervínculo does not invoice or mark up media spend.',
         ],
       },
@@ -327,7 +327,7 @@ export const ezBrickProposalContent = {
         heading: 'Client Responsibilities',
         items: [
           'Provide timely admin access to Google Ads, Meta Business Manager, the website/eCommerce platform, GA4, and Tag Manager.',
-          'Provide product cost (COGS) and fulfillment cost data monthly so operating profit and commission can be calculated.',
+          'Provide monthly net sales reports (gross sales, refunds, returns, chargebacks) from the eCommerce platform and payment processor so the commission can be calculated.',
           'Maintain adequate inventory, accurate pricing, and functioning checkout so that campaigns can convert.',
           'Provide product and installation imagery, packaging art, and any video assets to be used in advertising.',
           'Ensure all product claims, warranties, and any building-code or compliance statements used in advertising are accurate and legally supportable.',
@@ -336,8 +336,8 @@ export const ezBrickProposalContent = {
       {
         heading: 'Performance Disclaimer',
         items: [
-          'The 3.0 ROAS target and 2.5 ROAS threshold are objectives based on experience and the assumptions stated in this proposal, not guarantees of results.',
-          'Projections shown in the Performance Targets section are illustrative and use assumed COGS and fulfillment percentages that will be replaced with actual client figures.',
+          'The 3.0 ROAS target and the 2.5 ROAS commission condition are objectives based on experience and the assumptions stated in this proposal, not guarantees of results.',
+          'Projections shown in the Performance Targets section are illustrative and use an assumed refund/return rate that will be replaced with actual client figures.',
           'Platform policy changes, auction competition, seasonality, shipping costs, and site performance can materially affect results.',
         ],
       },
