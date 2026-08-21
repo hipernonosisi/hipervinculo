@@ -106,7 +106,7 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law' | 'ramotar-peptide'>('ramotar-peptide');
+  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law' | 'ramotar-peptide' | 'ez-brick'>('ez-brick');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -895,6 +895,15 @@ export default function Admin() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => setActiveProposal('ez-brick')}
+                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'ez-brick' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
+                >
+                  <Building className="w-4 h-4" />
+                  EZ Brick
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => setActiveProposal('scottsdale')}
                   className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
                 >
@@ -1054,6 +1063,7 @@ export default function Admin() {
                   {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
                   {activeProposal === 'lok-foods' && <LokFoodsProposal />}
                   {activeProposal === 'hazim-law' && <HazimLawProposal />}
+                  {activeProposal === 'ez-brick' && <EzBrickProposal />}
                   {activeProposal === 'ramotar-peptide' && <RamotarPeptideProposal />}
                 </CardContent>
               </Card>
