@@ -283,9 +283,8 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
                 </Text>
                 <Text style={{ fontSize: 24, fontWeight: 'bold', color: highlight ? '#c5e86a' : green, marginBottom: 12 }}>{sc.roas}</Text>
                 {[
-                  ['Revenue', sc.revenue],
-                  ['Product cost', sc.cogs],
-                  ['Fulfillment', sc.fulfillment],
+                  ['Gross sales', sc.revenue],
+                  ['Refunds & returns', sc.returns],
                   ['Ad spend', sc.adSpend],
                 ].map(([label, value]) => (
                   <View key={label} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
@@ -295,11 +294,11 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
                 ))}
                 <View style={{ height: 0.5, backgroundColor: highlight ? 'rgba(255,255,255,0.2)' : 'rgba(45,74,45,0.12)', marginVertical: 8 }} />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
-                  <Text style={{ fontSize: 7.5, color: labelColor }}>Operating profit</Text>
-                  <Text style={{ fontSize: 11, fontWeight: 'bold', color: highlight ? '#c5e86a' : lime }}>{sc.profit}</Text>
+                  <Text style={{ fontSize: 7.5, color: labelColor }}>Net sales</Text>
+                  <Text style={{ fontSize: 11, fontWeight: 'bold', color: highlight ? '#c5e86a' : lime }}>{sc.netSales}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                  <Text style={{ fontSize: 7.5, color: labelColor }}>10% commission</Text>
+                  <Text style={{ fontSize: 7.5, color: labelColor }}>3% commission</Text>
                   <Text style={{ fontSize: 7.5, fontWeight: 'bold', color: valueColor }}>{sc.commission}</Text>
                 </View>
                 <View style={{ backgroundColor: highlight ? 'rgba(197,232,106,0.15)' : 'rgba(139,195,74,0.12)', borderRadius: 8, padding: 8 }}>
