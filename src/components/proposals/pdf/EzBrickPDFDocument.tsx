@@ -388,14 +388,14 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         <View style={s.accent} />
         <Text style={{ fontSize: 9, fontWeight: 'bold', color: lime, letterSpacing: 3, marginBottom: 6 }}>INVESTMENT</Text>
         <Text style={{ fontSize: 22, fontWeight: 'bold', color: green, marginBottom: 4 }}>{content.investment.title}</Text>
-        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 10 }}>{content.investment.headline}</Text>
+        <Text style={{ fontSize: 11, fontWeight: 'bold', color: lime, marginBottom: 8 }}>{content.investment.headline}</Text>
 
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 8 }}>
           {[
             { tag: 'Fixed Monthly', data: content.investment.retainer },
             { tag: 'Performance', data: content.investment.commission },
           ].map((card, i) => (
-            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 14 }}>
+            <View key={i} style={{ flex: 1, backgroundColor: green, borderRadius: 14, padding: 12 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 8 }}>
                 <View style={{ width: 12, height: 1, backgroundColor: '#c5e86a' }} />
                 <Text style={{ fontSize: 6.5, fontWeight: 'bold', color: 'rgba(255,255,255,0.6)', letterSpacing: 1.5 }}>{card.tag.toUpperCase()}</Text>
@@ -412,10 +412,10 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         </View>
 
         {/* Profit formula */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 14, marginBottom: 10 }}>
+        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
           <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.profitFormula.title}</Text>
           {content.investment.profitFormula.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
               <Text style={{ fontSize: 8, color: gray }}>{row.label}</Text>
               <Text style={{ fontSize: 8, fontWeight: 'bold', color: green }}>{row.value}</Text>
             </View>
@@ -424,10 +424,10 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         </View>
 
         {/* Payment terms */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 14, marginBottom: 10 }}>
+        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
           <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.paymentTerms.title}</Text>
           {content.investment.paymentTerms.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
               <Text style={{ fontSize: 8, color: gray }}>{row.label}</Text>
               <Text style={{ fontSize: 8, fontWeight: 'bold', color: green }}>{row.value}</Text>
             </View>
@@ -436,11 +436,11 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         </View>
 
         {/* Client pays */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 14, marginBottom: 10 }}>
+        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, marginBottom: 7 }}>
           <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 8 }}>{content.investment.clientPays.title}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             {content.investment.clientPays.items.map((item, i) => (
-              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 8, marginBottom: 6, paddingRight: 6 }}>
+              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 8, marginBottom: 4, paddingRight: 6 }}>
                 <View style={{ paddingTop: 1 }}><CheckIcon size={10} /></View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#374151', marginBottom: 1 }}>{item.name}</Text>
@@ -452,7 +452,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         </View>
 
         {/* Timeline */}
-        <View style={{ backgroundColor: 'white', borderRadius: 14, padding: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <View wrap={false} style={{ backgroundColor: 'white', borderRadius: 14, padding: 11, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View style={{ flex: 1, paddingRight: 12 }}>
             <Text style={{ fontSize: 10.5, fontWeight: 'bold', color: green, marginBottom: 2 }}>{content.investment.timeline.title}</Text>
             <Text style={{ fontSize: 7, color: gray, lineHeight: 1.45 }}>{content.investment.timeline.description}</Text>
