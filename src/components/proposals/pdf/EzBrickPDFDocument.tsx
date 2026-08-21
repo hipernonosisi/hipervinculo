@@ -13,9 +13,9 @@ const rule = 'rgba(45,74,45,0.10)';
 
 const T = {
   eyebrow: { fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: lime, letterSpacing: 3 },
-  h1: { fontSize: 29, fontFamily: 'Helvetica-Bold', color: green, lineHeight: 1.08 },
-  lead: { fontSize: 12.5, fontFamily: 'Helvetica-Bold', color: '#5c7f43', lineHeight: 1.35 },
-  body: { fontSize: 10, color: ink, lineHeight: 1.75 },
+  h1: { fontSize: 26, fontFamily: 'Helvetica-Bold', color: green, lineHeight: 1.08 },
+  lead: { fontSize: 11.5, fontFamily: 'Helvetica-Bold', color: '#5c7f43', lineHeight: 1.35 },
+  body: { fontSize: 9.5, color: ink, lineHeight: 1.65 },
   cardTitle: { fontSize: 11, fontFamily: 'Helvetica-Bold', color: green },
   cardBody: { fontSize: 8.5, color: ink, lineHeight: 1.6 },
   micro: { fontSize: 7, fontFamily: 'Helvetica-Bold', letterSpacing: 1.6 },
@@ -26,21 +26,21 @@ const T = {
 };
 
 const s = StyleSheet.create({
-  page: { paddingTop: 46, paddingBottom: 58, paddingHorizontal: 48, backgroundColor: '#ffffff', fontFamily: 'Helvetica' },
-  pageBg: { paddingTop: 46, paddingBottom: 58, paddingHorizontal: 48, backgroundColor: bg, fontFamily: 'Helvetica' },
-  accent: { width: 34, height: 3, backgroundColor: lime, marginBottom: 18 },
-  footer: { position: 'absolute', bottom: 28, left: 48, right: 48, flexDirection: 'row', justifyContent: 'space-between' },
+  page: { paddingTop: 40, paddingBottom: 50, paddingHorizontal: 46, backgroundColor: '#ffffff', fontFamily: 'Helvetica' },
+  pageBg: { paddingTop: 40, paddingBottom: 50, paddingHorizontal: 46, backgroundColor: bg, fontFamily: 'Helvetica' },
+  accent: { width: 34, height: 3, backgroundColor: lime, marginBottom: 14 },
+  footer: { position: 'absolute', bottom: 24, left: 46, right: 46, flexDirection: 'row', justifyContent: 'space-between' },
   footerText: { fontSize: 7, color: '#b0b0b0', letterSpacing: 1 },
-  card: { backgroundColor: bg, borderRadius: 12, padding: 14, marginBottom: 9 },
-  cardWhite: { backgroundColor: '#ffffff', borderRadius: 12, padding: 16, marginBottom: 12 },
+  card: { backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 7 },
+  cardWhite: { backgroundColor: '#ffffff', borderRadius: 12, padding: 13, marginBottom: 9 },
 });
 
 const PageHead = ({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) => (
-  <View style={{ marginBottom: 22 }}>
+  <View style={{ marginBottom: 16 }}>
     <View style={s.accent} />
-    <Text style={{ ...T.eyebrow, marginBottom: 10 }}>{eyebrow.toUpperCase()}</Text>
+    <Text style={{ ...T.eyebrow, marginBottom: 8 }}>{eyebrow.toUpperCase()}</Text>
     <Text style={T.h1}>{title}</Text>
-    {lead ? <Text style={{ ...T.lead, marginTop: 8 }}>{lead}</Text> : null}
+    {lead ? <Text style={{ ...T.lead, marginTop: 6 }}>{lead}</Text> : null}
   </View>
 );
 
@@ -52,7 +52,7 @@ const Footer = () => (
 );
 
 const Bullet = ({ children }: { children: React.ReactNode }) => (
-  <View style={{ flexDirection: 'row', gap: 8, marginBottom: 6 }}>
+  <View style={{ flexDirection: 'row', gap: 8, marginBottom: 5 }}>
     <View style={{ width: 3, height: 3, borderRadius: 1.5, backgroundColor: lime, marginTop: 5 }} />
     <Text style={{ flex: 1, ...T.cardBody }}>{children}</Text>
   </View>
@@ -176,7 +176,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 2: About */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="About us" title={content.about.title} lead={content.about.headline} />
-        <Text style={{ ...T.body, marginBottom: 30 }}>{content.about.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.about.description}</Text>
         <View style={{ flexDirection: 'row', gap: 14, marginBottom: 30 }}>
           {content.about.stats.map((stat, i) => (
             <View key={i} style={{ flex: 1, backgroundColor: bg, borderRadius: 14, paddingVertical: 22, alignItems: 'center' }}>
@@ -200,7 +200,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 3: Client Overview */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="The client" title={content.clientOverview.title} lead={content.clientOverview.headline} />
-        <Text style={{ ...T.body, marginBottom: 24 }}>{content.clientOverview.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.clientOverview.description}</Text>
         {content.clientOverview.services.map((item, i) => (
           <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
             <View style={{ paddingTop: 2 }}><ShieldIcon size={13} /></View>
@@ -219,7 +219,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 4: Objective & Strategy */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="Strategy" title={content.objective.title} lead={content.objective.headline} />
-        <Text style={{ ...T.body, marginBottom: 24 }}>{content.objective.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.objective.description}</Text>
         {content.objective.scope.map((item, i) => (
           <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
             <View style={{ paddingTop: 2 }}><CheckIcon size={13} /></View>
@@ -239,7 +239,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 5: Platform Access */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="Requirements" title={content.platformAccess.title} lead={content.platformAccess.headline} />
-        <Text style={{ ...T.body, marginBottom: 24 }}>{content.platformAccess.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.platformAccess.description}</Text>
         {content.platformAccess.platforms.map((platform, i) => (
           <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 13 }}>
             <View style={{ width: 26, height: 26, borderRadius: 9, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
@@ -266,7 +266,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           <Text style={{ ...T.micro, color: 'rgba(255,255,255,0.55)' }}>{content.mediaPlan.totalLabel.toUpperCase()}</Text>
           <Text style={{ fontSize: 40, fontFamily: 'Helvetica-Bold', color: '#c5e86a', marginTop: 8 }}>{content.mediaPlan.total}</Text>
         </View>
-        <Text style={{ ...T.body, marginBottom: 22 }}>{content.mediaPlan.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.mediaPlan.description}</Text>
         <Text style={{ ...T.micro, color: grayLight, marginBottom: 10 }}>ALLOCATION</Text>
         {content.mediaPlan.allocation.map((row, i) => (
           <View key={i} wrap={false} style={{ ...s.cardWhite, marginBottom: 8 }}>
@@ -356,7 +356,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
             <Text style={{ fontSize: 28, fontFamily: 'Helvetica-Bold', color: green }}>{content.searchService.target}</Text>
           </View>
         </View>
-        <Text style={{ ...T.body, marginBottom: 24 }}>{content.searchService.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.searchService.description}</Text>
         <Text style={{ ...T.micro, color: grayLight, marginBottom: 12 }}>WHAT IS INCLUDED</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 9 }}>
           {content.searchService.includes.map((item, i) => (
@@ -382,7 +382,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           </View>
           <TrendIcon size={24} />
         </View>
-        <Text style={{ ...T.body, marginBottom: 24 }}>{content.retargetingService.description}</Text>
+        <Text style={{ ...T.body, marginBottom: 18 }}>{content.retargetingService.description}</Text>
         {content.retargetingService.includes.map((item, i) => (
           <View key={i} wrap={false} style={{ ...s.card, flexDirection: 'row', gap: 12 }}>
             <View style={{ paddingTop: 2 }}><TrendIcon size={13} /></View>
@@ -442,7 +442,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
           <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.clientPays.title}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             {content.investment.clientPays.items.map((item, i) => (
-              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 9, marginBottom: 10, paddingRight: 10 }}>
+              <View key={i} style={{ width: '50%', flexDirection: 'row', gap: 9, marginBottom: 8, paddingRight: 10 }}>
                 <View style={{ paddingTop: 2 }}><CheckIcon size={11} /></View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: inkStrong, marginBottom: 2 }}>{item.name}</Text>
@@ -493,7 +493,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="Agreement" title={content.legalTerms.title} />
         {content.legalTerms.sections.map((section, i) => (
-          <View key={i} wrap={false} style={{ marginBottom: 16 }}>
+          <View key={i} wrap={false} style={{ marginBottom: 12 }}>
             <Text style={{ fontSize: 11, fontFamily: 'Helvetica-Bold', color: green, marginBottom: 3 }}>{section.heading}</Text>
             <View style={{ width: 20, height: 2, backgroundColor: lime, marginBottom: 8 }} />
             {section.items.map((item, j) => (
