@@ -287,9 +287,8 @@ export function EzBrickProposal() {
                     <div className="text-4xl font-extrabold mb-4" style={{ color: i === 1 ? '#c5e86a' : '#2d4a2d' }}>{sc.roas}</div>
                     <div className="space-y-1.5 text-[11px]">
                       {[
-                        ['Revenue', sc.revenue],
-                        ['Product cost', sc.cogs],
-                        ['Fulfillment', sc.fulfillment],
+                        ['Gross sales', sc.revenue],
+                        ['Refunds & returns', sc.returns],
                         ['Ad spend', sc.adSpend],
                       ].map(([label, value]) => (
                         <div key={label} className="flex justify-between">
@@ -300,11 +299,11 @@ export function EzBrickProposal() {
                     </div>
                     <div className="my-3 h-px" style={{ backgroundColor: i === 1 ? 'rgba(255,255,255,0.2)' : 'rgba(45,74,45,0.12)' }} />
                     <div className="flex justify-between items-baseline mb-1">
-                      <span className="text-[11px]" style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>Operating profit</span>
-                      <span className="text-[16px] font-extrabold" style={{ color: i === 1 ? '#c5e86a' : '#8BC34A' }}>{sc.profit}</span>
+                      <span className="text-[11px]" style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>Net sales</span>
+                      <span className="text-[16px] font-extrabold" style={{ color: i === 1 ? '#c5e86a' : '#8BC34A' }}>{sc.netSales}</span>
                     </div>
                     <div className="flex justify-between text-[11px]">
-                      <span style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>10% commission</span>
+                      <span style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>3% commission</span>
                       <span className="font-semibold" style={{ color: i === 1 ? '#ffffff' : '#2d4a2d' }}>{sc.commission}</span>
                     </div>
                     <div className="mt-auto pt-3">
