@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { AnimatedSection } from '@/components/ui/motion';
 import { LeadGenPresentation } from '@/components/presentations/LeadGenPresentation';
@@ -48,6 +49,28 @@ import { lazy, Suspense } from 'react';
 const EbookAnalytics = lazy(() => import('@/pages/EbookAnalytics'));
 const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
 const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
+
+const proposalItems = [
+  { id: 'ez-brick', name: 'EZ Brick', category: 'Advertising', Icon: Building, component: EzBrickProposal },
+  { id: 'hazim-law', name: 'Hazim Law, PLLC', category: 'Website + Advertising', Icon: Scale, component: HazimLawProposal },
+  { id: 'ramotar-peptide', name: 'Ramotar Peptide Marketplace', category: 'E-commerce', Icon: Package, component: RamotarPeptideProposal },
+  { id: 'lok-foods', name: 'Lok Foods USA', category: 'Amazon', Icon: ShoppingBag, component: LokFoodsProposal },
+  { id: 'scottsdale', name: 'Scottsdale Institute', category: 'Growth Partnership', Icon: Building, component: ScottsdaleInstituteProposal },
+  { id: 'skyscraper', name: 'Skyscraper Construction', category: 'Website + Advertising', Icon: Building, component: SkyscraperProposal },
+  { id: 'costafirme', name: 'Almacenadora Costa Firme', category: 'Website', Icon: Building, component: CostaFirmeProposal },
+  { id: 'valoresinmobiliarios', name: 'Valores Inmobiliarios', category: 'Website', Icon: Building, component: ValoresInmobiliariosProposal },
+  { id: 'futurealkaline', name: 'Future Alkaline Water', category: 'E-commerce', Icon: ShoppingBag, component: FutureAlkalineProposal },
+  { id: 'rasettainnovations', name: 'Rasetta Innovations', category: 'Website', Icon: Building, component: RasettaInnovationsProposal },
+  { id: 'xtrallux', name: 'XTRALLUX', category: 'Website', Icon: Building, component: XtralluxProposal },
+  { id: 'xtrallux-ads', name: 'XTRALLUX Digital Ads', category: 'Advertising', Icon: Megaphone, component: XtralluxDigitalAdsProposal },
+  { id: 'taily', name: 'Taily', category: 'E-commerce', Icon: ShoppingCart, component: TailyProposal },
+  { id: 'orbital', name: 'Orbital Sunglasses', category: 'E-commerce', Icon: Globe, component: OrbitalSunglassesProposal },
+  { id: 'av-nutraceuticals', name: 'AV Nutraceuticals', category: 'Website', Icon: Building, component: AvNutraceuticalsProposal },
+  { id: 'door-district', name: 'The Door District', category: 'Website', Icon: Building, component: DoorDistrictProposal },
+  { id: 'rumbas', name: 'Rumbas Event Rentals', category: 'Website', Icon: Building, component: RumbasEventRentalsProposal },
+] as const;
+
+type ProposalId = (typeof proposalItems)[number]['id'];
 
 interface ContactSubmission {
   id: string;
@@ -106,7 +129,8 @@ export default function Admin() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [activePresentation, setActivePresentation] = useState<'leadgen' | 'brandidentity' | 'shopifydev' | 'landingpage' | 'metaads' | 'lvtherapy'>('leadgen');
-  const [activeProposal, setActiveProposal] = useState<'skyscraper' | 'costafirme' | 'valoresinmobiliarios' | 'futurealkaline' | 'rasettainnovations' | 'xtrallux' | 'taily' | 'orbital' | 'xtrallux-ads' | 'av-nutraceuticals' | 'door-district' | 'rumbas' | 'scottsdale' | 'lok-foods' | 'hazim-law' | 'ramotar-peptide' | 'ez-brick'>('ez-brick');
+  const [activeProposal, setActiveProposal] = useState<ProposalId>('ez-brick');
+  const [proposalSearch, setProposalSearch] = useState('');
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [activeReport, setActiveReport] = useState<'lalenas' | 'hesacore'>('hesacore');
   const [previewViews7d, setPreviewViews7d] = useState<number>(0);
@@ -252,6 +276,12 @@ export default function Admin() {
       minute: '2-digit'
     });
   };
+
+  const filteredProposals = proposalItems.filter(({ name, category }) =>
+    `${name} ${category}`.toLowerCase().includes(proposalSearch.trim().toLowerCase())
+  );
+  const selectedProposal = proposalItems.find(({ id }) => id === activeProposal) ?? proposalItems[0];
+  const ActiveProposalComponent = selectedProposal.component;
 
   // Show loading while checking auth
   if (authLoading) {
@@ -890,183 +920,68 @@ export default function Admin() {
 
             {/* Proposals Tab */}
             <TabsContent value="proposals" className="mt-0 space-y-4">
-              <div className="flex flex-wrap items-stretch gap-2 px-1">
+              <div className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
+                <aside className="overflow-hidden rounded-xl border bg-card shadow-sm">
+                  <div className="border-b p-4">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <div>
+                        <h2 className="font-bold text-foreground">Proposal Library</h2>
+                        <p className="text-xs text-muted-foreground">{proposalItems.length} proposals</p>
+                      </div>
+                      <ScrollText className="h-5 w-5 text-accent" />
+                    </div>
+                    <div className="relative">
+                      <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        value={proposalSearch}
+                        onChange={(event) => setProposalSearch(event.target.value)}
+                        placeholder="Search proposals..."
+                        aria-label="Search proposals"
+                        className="pl-9"
+                      />
+                    </div>
+                  </div>
+                  <ScrollArea className="h-[300px] lg:h-[calc(100vh-450px)] lg:min-h-[500px]">
+                    <nav className="space-y-1 p-2" aria-label="Proposal library">
+                      {filteredProposals.map(({ id, name, category, Icon }) => (
+                        <Button
+                          key={id}
+                          type="button"
+                          variant="ghost"
+                          onClick={() => setActiveProposal(id)}
+                          className={cn(
+                            'h-auto min-h-14 w-full justify-start gap-3 px-3 py-2 text-left',
+                            activeProposal === id && 'bg-accent text-accent-foreground hover:bg-accent/90 hover:text-accent-foreground'
+                          )}
+                        >
+                          <Icon className="h-4 w-4 shrink-0" />
+                          <span className="min-w-0 flex-1">
+                            <span className="block whitespace-normal text-sm font-semibold leading-tight">{name}</span>
+                            <span className={cn('mt-1 block text-xs font-normal', activeProposal === id ? 'text-accent-foreground/80' : 'text-muted-foreground')}>
+                              {category}
+                            </span>
+                          </span>
+                        </Button>
+                      ))}
+                      {filteredProposals.length === 0 && (
+                        <p className="px-3 py-8 text-center text-sm text-muted-foreground">No proposals found.</p>
+                      )}
+                    </nav>
+                  </ScrollArea>
+                </aside>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('ez-brick')}
-                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'ez-brick' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  EZ Brick
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('scottsdale')}
-                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'scottsdale' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Scottsdale Institute
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('lok-foods')}
-                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'lok-foods' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  Lok Foods USA
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('ramotar-peptide')}
-                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'ramotar-peptide' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Package className="w-4 h-4" />
-                  Ramotar Peptide Marketplace
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('hazim-law')}
-                  className={`h-auto min-h-9 w-auto max-w-full flex-none gap-2 whitespace-normal text-left ${activeProposal === 'hazim-law' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Scale className="w-4 h-4" />
-                  Hazim Law, PLLC
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('skyscraper')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'skyscraper' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Skyscraper Construction
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('costafirme')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'costafirme' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Almacenadora Costa Firme
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('valoresinmobiliarios')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'valoresinmobiliarios' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Valores Inmobiliarios
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('futurealkaline')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'futurealkaline' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Future Alkaline Water
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('rasettainnovations')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'rasettainnovations' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Rasetta Innovations
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('xtrallux')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'xtrallux' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  XTRALLUX
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('taily')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'taily' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <ShoppingCart className="w-4 h-4" />
-                  Taily
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('orbital')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'orbital' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Globe className="w-4 h-4" />
-                  Orbital Sunglasses
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('xtrallux-ads')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'xtrallux-ads' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Megaphone className="w-4 h-4" />
-                  XTRALLUX (Digital Ads)
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('av-nutraceuticals')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'av-nutraceuticals' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  AV Nutraceuticals
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('door-district')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'door-district' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  The Door District
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setActiveProposal('rumbas')}
-                  className={`gap-2 justify-start overflow-hidden text-left ${activeProposal === 'rumbas' ? 'bg-accent text-white hover:bg-accent/90' : ''}`}
-                >
-                  <Building className="w-4 h-4" />
-                  Rumbas Event Rentals
-                </Button>
+                <section className="min-w-0">
+                  <div className="mb-2 flex items-center gap-2 px-1 lg:hidden">
+                    <selectedProposal.Icon className="h-4 w-4 text-accent" />
+                    <p className="truncate text-sm font-semibold">Viewing: {selectedProposal.name}</p>
+                  </div>
+                  <Card className="overflow-hidden rounded-xl border-0 shadow-lg">
+                    <CardContent className="h-[calc(100vh-420px)] min-h-[600px] p-0">
+                      <ActiveProposalComponent />
+                    </CardContent>
+                  </Card>
+                </section>
               </div>
-              <Card className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-0" style={{ height: 'calc(100vh - 520px)', minHeight: '600px' }}>
-                  {activeProposal === 'skyscraper' && <SkyscraperProposal />}
-                  {activeProposal === 'costafirme' && <CostaFirmeProposal />}
-                  {activeProposal === 'valoresinmobiliarios' && <ValoresInmobiliariosProposal />}
-                  {activeProposal === 'futurealkaline' && <FutureAlkalineProposal />}
-                  {activeProposal === 'rasettainnovations' && <RasettaInnovationsProposal />}
-                  {activeProposal === 'xtrallux' && <XtralluxProposal />}
-                  {activeProposal === 'taily' && <TailyProposal />}
-                  {activeProposal === 'orbital' && <OrbitalSunglassesProposal />}
-                  {activeProposal === 'xtrallux-ads' && <XtralluxDigitalAdsProposal />}
-                  {activeProposal === 'av-nutraceuticals' && <AvNutraceuticalsProposal />}
-                  {activeProposal === 'door-district' && <DoorDistrictProposal />}
-                  {activeProposal === 'rumbas' && <RumbasEventRentalsProposal />}
-                  {activeProposal === 'scottsdale' && <ScottsdaleInstituteProposal />}
-                  {activeProposal === 'lok-foods' && <LokFoodsProposal />}
-                  {activeProposal === 'hazim-law' && <HazimLawProposal />}
-                  {activeProposal === 'ez-brick' && <EzBrickProposal />}
-                  {activeProposal === 'ramotar-peptide' && <RamotarPeptideProposal />}
-                </CardContent>
-              </Card>
             </TabsContent>
 
             {/* Icons Tab */}
