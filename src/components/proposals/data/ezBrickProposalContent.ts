@@ -247,10 +247,22 @@ export const ezBrickProposalContent = {
         icon: 'dollar',
       },
       {
-        title: 'Performance Commission',
+        title: 'Commission Waived: Months 1-3',
         description:
-          'Hipervínculo earns 3% of net sales, and only in months where campaign ROAS reaches 2.5 or better. Net sales = gross sales attributed to the campaigns less refunds, returns, chargebacks, and cancellations, excluding sales tax and shipping. Product cost and fulfillment cost are not part of the calculation.',
+          'No performance commission is charged during the first 3 months of the program, regardless of results. That period is dedicated to validating the campaigns and reviewing the retail pricing structure. Only the $1,000 retainer applies.',
+        icon: 'clock',
+      },
+      {
+        title: 'Performance Commission From Month 4',
+        description:
+          'Starting in month 4, Hipervínculo earns 3% of net sales, and only in months where campaign ROAS reaches 2.5 or better. Net sales = gross sales attributed to the campaigns less refunds, returns, chargebacks, and cancellations, excluding sales tax and shipping. Product cost and fulfillment cost are not part of the calculation.',
         icon: 'dollar',
+      },
+      {
+        title: 'Pricing Review',
+        description:
+          'Both parties agree to review the retail price structure within the first 90 days, taking into account competitor pricing, landed cost in the U.S., logistics, returns rate, and advertising spend, so that the price can sustain paid media and the commission model.',
+        icon: 'files',
       },
       {
         title: 'Media Spend',
