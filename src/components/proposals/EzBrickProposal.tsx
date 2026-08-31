@@ -215,7 +215,7 @@ export function EzBrickProposal() {
                       <Lock className="w-5 h-5" style={{ color: '#8BC34A' }} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-start justify-between gap-4 mb-1">
                         <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{platform.title}</h3>
                         <span className="text-[10px] font-bold px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: '#2d4a2d' }}>
                           {platform.role}
@@ -247,7 +247,7 @@ export function EzBrickProposal() {
               <div className="space-y-2.5 mb-6">
                 {content.mediaPlan.allocation.map((row, i) => (
                   <div key={i} className="bg-white rounded-xl p-4" style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-                    <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-start justify-between gap-4 mb-1">
                       <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{row.channel}</h3>
                       <div className="flex items-center gap-3">
                         <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: '#2d4a2d' }}>{row.share}</span>
