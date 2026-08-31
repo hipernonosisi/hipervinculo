@@ -314,18 +314,18 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
                   ['Refunds & returns', sc.returns],
                   ['Ad spend', sc.adSpend],
                 ].map(([label, value]) => (
-                  <View key={label} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
-                    <Text style={{ fontSize: 7.5, color: labelColor }}>{label}</Text>
-                    <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor }}>{value}</Text>
+                  <View key={label} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 5 }}>
+                    <Text style={{ fontSize: 7.5, color: labelColor, flexShrink: 1 }}>{label}</Text>
+                    <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor, textAlign: 'right' }}>{value}</Text>
                   </View>
                 ))}
                 <View style={{ height: 0.75, backgroundColor: highlight ? 'rgba(255,255,255,0.2)' : rule, marginVertical: 10 }} />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                   <Text style={{ fontSize: 7.5, color: labelColor }}>Net sales</Text>
                   <Text style={{ fontSize: 12, fontFamily: 'Helvetica-Bold', color: highlight ? '#c5e86a' : green }}>{sc.netSales}</Text>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 }}>
-                  <Text style={{ fontSize: 7.5, color: labelColor }}>Commission</Text>
+                <View style={{ marginBottom: 14 }}>
+                  <Text style={{ fontSize: 7.5, color: labelColor, marginBottom: 2 }}>Commission</Text>
                   <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor }}>{sc.commission}</Text>
                 </View>
                 <View style={{ backgroundColor: highlight ? 'rgba(197,232,106,0.16)' : 'rgba(139,195,74,0.14)', borderRadius: 10, padding: 10 }}>
@@ -419,7 +419,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         <View wrap={false} style={s.cardWhite}>
           <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.profitFormula.title}</Text>
           {content.investment.profitFormula.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4, borderBottomWidth: i === content.investment.profitFormula.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 14, paddingVertical: 5, borderBottomWidth: i === content.investment.profitFormula.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
               <Text style={T.rowLabel}>{row.label}</Text>
               <Text style={T.rowValue}>{row.value}</Text>
             </View>
@@ -436,7 +436,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
         <View wrap={false} style={s.cardWhite}>
           <Text style={{ ...T.sectionTitle, marginBottom: 12 }}>{content.investment.paymentTerms.title}</Text>
           {content.investment.paymentTerms.rows.map((row, i) => (
-            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4, borderBottomWidth: i === content.investment.paymentTerms.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 14, paddingVertical: 5, borderBottomWidth: i === content.investment.paymentTerms.rows.length - 1 ? 0 : 0.5, borderBottomColor: rule }}>
               <Text style={T.rowLabel}>{row.label}</Text>
               <Text style={T.rowValue}>{row.value}</Text>
             </View>
