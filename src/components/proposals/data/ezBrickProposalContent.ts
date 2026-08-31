@@ -208,12 +208,13 @@ export const ezBrickProposalContent = {
       subtitle: 'Simple and transparent',
       rows: [
         { label: 'Management retainer', value: '$1,000/mo in advance' },
-        { label: 'Performance commission', value: '3% of net sales, only in months at 2.5 ROAS or better' },
+        { label: 'Commission months 1-3', value: 'None. Retainer only' },
+        { label: 'Commission from month 4', value: '3% of net sales, only in months at 2.5 ROAS or better' },
         { label: 'Initial commitment', value: 'First 90 days committed' },
         { label: 'After 90 days', value: 'Month-to-month, 30 days notice' },
         { label: 'Media spend', value: 'Paid directly to Google and Meta' },
       ],
-      note: 'The retainer is invoiced at the beginning of each service month. The performance commission is invoiced after month-end close, once net sales and ROAS are confirmed from the platform reports. All invoices are payable within 10 days of receipt.',
+      note: 'The retainer is invoiced at the beginning of each service month. No performance commission is invoiced during the first 3 months. From month 4, the commission is invoiced after month-end close, once net sales and ROAS are confirmed from the platform reports. All invoices are payable within 10 days of receipt.',
     },
     timeline: {
       title: 'Launch Timeline',
