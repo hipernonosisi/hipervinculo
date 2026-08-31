@@ -50,7 +50,7 @@ export const ezBrickProposalContent = {
       },
       {
         title: 'ROAS-Driven Bidding',
-        description: 'Campaigns managed toward a 3.0 ROAS target, with 2.5 ROAS established as the condition that activates the performance commission.',
+        description: 'Campaigns managed toward a 3.0 ROAS target, with 2.5 ROAS established as the condition that activates the performance commission from month 4 onward.',
       },
       {
         title: 'Google & Meta Retargeting',

@@ -325,7 +325,7 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
                   <Text style={{ fontSize: 12, fontFamily: 'Helvetica-Bold', color: highlight ? '#c5e86a' : green }}>{sc.netSales}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 }}>
-                  <Text style={{ fontSize: 7.5, color: labelColor }}>3% commission</Text>
+                  <Text style={{ fontSize: 7.5, color: labelColor }}>Commission</Text>
                   <Text style={{ fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: valueColor }}>{sc.commission}</Text>
                 </View>
                 <View style={{ backgroundColor: highlight ? 'rgba(197,232,106,0.16)' : 'rgba(139,195,74,0.14)', borderRadius: 10, padding: 10 }}>
