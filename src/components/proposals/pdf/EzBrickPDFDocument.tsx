@@ -476,18 +476,18 @@ export function EzBrickPDFDocument({ logoBase64 }: Props) {
       {/* PAGE 11: Terms */}
       <Page size="A4" style={s.page}>
         <PageHead eyebrow="Legal" title={content.terms.title} lead={content.terms.headline} />
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {content.terms.sections.map((section, i) => {
             const Icon = iconMap[section.icon] || CheckIcon;
             return (
-              <View key={i} wrap={false} style={{ width: '47.6%', backgroundColor: bg, borderRadius: 12, padding: 12, marginBottom: 8 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 8 }}>
-                  <View style={{ width: 24, height: 24, borderRadius: 8, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
-                    <Icon size={12} />
+              <View key={i} wrap={false} style={{ width: '48.2%', backgroundColor: bg, borderRadius: 10, padding: 10, marginBottom: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 6 }}>
+                  <View style={{ width: 20, height: 20, borderRadius: 7, backgroundColor: 'rgba(139,195,74,0.18)', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon size={11} />
                   </View>
-                  <Text style={{ fontSize: 10, fontFamily: 'Helvetica-Bold', color: green, flex: 1 }}>{section.title}</Text>
+                  <Text style={{ fontSize: 9.5, fontFamily: 'Helvetica-Bold', color: green, flex: 1 }}>{section.title}</Text>
                 </View>
-                <Text style={{ fontSize: 8, color: ink, lineHeight: 1.6 }}>{section.description}</Text>
+                <Text style={{ fontSize: 7.5, color: ink, lineHeight: 1.5 }}>{section.description}</Text>
               </View>
             );
           })}
