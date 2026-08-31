@@ -304,7 +304,8 @@ export const ezBrickProposalContent = {
         items: [
           'Management retainer: $1,000 USD per month, invoiced at the beginning of each service month and payable within 10 days of receipt.',
           'The retainer is charged unconditionally each month, whether or not the 2.5 ROAS condition is reached.',
-          'Performance commission: 3% of monthly net sales, payable only in months where campaign ROAS reaches 2.5 or better, invoiced after month-end close once figures are confirmed.',
+          'No performance commission is charged during months 1, 2, and 3 of the program, under any performance scenario.',
+          'Performance commission from month 4 onward: 3% of monthly net sales, payable only in months where campaign ROAS reaches 2.5 or better, invoiced after month-end close once figures are confirmed.',
           '"Net sales" is defined exclusively as gross sales revenue attributed to the campaigns, less refunds, returns, chargebacks, and cancellations, and excluding sales tax and shipping charged to the customer.',
           'Product cost (COGS), fulfillment cost, and any other operating, administrative, overhead, payroll, financing, or tax expenses are not deducted when calculating the commission base.',
           'If campaign ROAS is below 2.5 in a given month, no commission is charged for that month and only the $1,000 retainer applies.',
