@@ -50,7 +50,7 @@ export const ezBrickProposalContent = {
       },
       {
         title: 'ROAS-Driven Bidding',
-        description: 'Campaigns managed toward a 3.0 ROAS target, with 2.5 ROAS established as the condition that activates the performance commission from month 4 onward.',
+        description: 'Campaigns managed toward a 3.0 ROAS target. The actual commission structure, if any, will be negotiated from month 4 based on real performance and unit economics.',
       },
       {
         title: 'Google & Meta Retargeting',
@@ -85,7 +85,7 @@ export const ezBrickProposalContent = {
       { title: 'Meta Business Manager', description: 'Access to the Business Manager, ad account, Facebook Page, and Instagram profile for retargeting campaigns.', role: 'Admin Access' },
       { title: 'Website / eCommerce Platform', description: 'Access to install and validate tracking (GA4, Google Ads tag, Meta Pixel) and to advise on product page conversion improvements.', role: 'Admin / Staff Access' },
       { title: 'Google Analytics 4 & Tag Manager', description: 'Editor access to configure events, purchase values, and audience lists used for retargeting.', role: 'Editor Access' },
-      { title: 'Sales Reporting Access', description: 'Monthly net sales reporting from the eCommerce platform and payment processor (gross sales, refunds, returns, chargebacks), required to calculate the performance commission.', role: 'Shared Data' },
+      { title: 'Sales Reporting Access', description: 'Monthly net sales reporting from the eCommerce platform and payment processor (gross sales, refunds, returns, chargebacks), required to evaluate performance and any future commission structure.', role: 'Shared Data' },
       { title: 'Brand & Product Assets', description: 'Product photography, installed-project photos, packaging art, logo files, and any existing video for use in ads.', role: 'Shared Files' },
     ],
   },
@@ -111,21 +111,21 @@ export const ezBrickProposalContent = {
   },
   projections: {
     title: 'Performance Targets',
-    headline: 'No Commission in Months 1 to 3. From Month 4, 3% of Net Sales at 2.5 ROAS or Better',
+    headline: 'No Commission in Months 1 to 3. From Month 4, a Commission Structure Will Be Discussed',
     description:
-      'The first 3 months are a validation period: Hipervínculo charges only the $1,000 monthly retainer and no performance commission, regardless of the ROAS achieved. From month 4 onward, the 3% commission on net sales applies only in months where campaign ROAS reaches 2.5 or better. We manage the program toward a 3.0 ROAS. This structure also assumes the retail price is reviewed and set at a level that supports advertising, returns, and commission.',
+      'The first 3 months are a validation period: Hipervínculo charges only the $1,000 monthly retainer and no performance commission, regardless of the ROAS achieved. From month 4 onward, both parties will discuss and agree on a commission structure that favors the EZ Brick business and Hipervínculo, so the commercial relationship can continue on solid footing. Any commission model will be based on actual results, net sales, and a retail price structure that supports paid media.',
     spendBasis: 'Based on $4,000/mo in media spend ($3,000 Search + $1,000 Retargeting) during the initial phase.',
     scenarios: [
       { label: 'Months 1-3 (Any ROAS)', roas: '2.0x', revenue: '$8,000', returns: '−$240', netSales: '$7,760', adSpend: '−$4,000', commission: '$0', totalFee: '$1,000' },
-      { label: 'Month 4+ Condition Met', roas: '2.5x', revenue: '$10,000', returns: '−$300', netSales: '$9,700', adSpend: '−$4,000', commission: '$291', totalFee: '$1,291' },
-      { label: 'Month 4+ Target', roas: '3.0x', revenue: '$12,000', returns: '−$360', netSales: '$11,640', adSpend: '−$4,000', commission: '$349', totalFee: '$1,349' },
+      { label: 'Month 4+ Baseline', roas: '2.5x', revenue: '$10,000', returns: '−$300', netSales: '$9,700', adSpend: '−$4,000', commission: 'To be agreed', totalFee: '$1,000 + commission' },
+      { label: 'Month 4+ Target', roas: '3.0x', revenue: '$12,000', returns: '−$360', netSales: '$11,640', adSpend: '−$4,000', commission: 'To be agreed', totalFee: '$1,000 + commission' },
     ],
     assumptions: [
       'Months 1, 2, and 3 carry no performance commission under any scenario. Only the $1,000 monthly retainer applies during that period.',
       'Net sales are defined as gross sales revenue attributed to the campaigns, less refunds, returns, chargebacks, cancellations, and sales tax or shipping charged to the customer. Product cost and fulfillment cost are not part of the calculation.',
       'Illustrative refunds and returns at 3% of gross sales. Actual figures come directly from the eCommerce platform and payment processor reports.',
-      'From month 4, at 4.0x ROAS the same structure produces roughly $16,000 in gross sales, $15,520 in net sales, a $466 commission, and a $1,466 total Hipervínculo fee.',
-      'Figures are projections, not guarantees. Results depend on retail pricing, margin, product page conversion rate, shipping costs, seasonality, and competition.',
+      'From month 4 onward, the exact commission percentage and conditions will be negotiated once real campaign data, return rates, and the final retail price structure are known.',
+      'Figures are projections, not guarantees. Results depend on pricing, margin, shipping cost, product page conversion rate, seasonality, and competition.',
     ],
   },
   searchService: {
@@ -176,22 +176,22 @@ export const ezBrickProposalContent = {
     },
     commission: {
       label: 'Performance Commission',
-      rate: '0% / 3%',
-      basis: '0% in months 1-3. From month 4, 3% of net sales only when ROAS is 2.5 or higher',
+      rate: '0% / To be agreed',
+      basis: '0% in months 1-3. From month 4, a commission structure to be mutually agreed',
       description:
-        'During the first 3 months there is no performance commission at all: Hipervínculo is paid only the $1,000 retainer while the program is validated and the pricing structure is reviewed. From month 4 onward, Hipervínculo earns 3% of the net sales produced by the paid media program, and only in months where campaign ROAS reaches 2.5 or better. Net sales are taken directly from the eCommerce platform and payment processor: gross sales attributed to the campaigns, less refunds, returns, chargebacks, and cancellations, and excluding sales tax and shipping charged to the customer. Product cost, fulfillment cost, and any other operating expenses are not part of the calculation.',
+        'During the first 3 months there is no performance commission at all: Hipervínculo is paid only the $1,000 retainer while the program is validated and the pricing structure is reviewed. From month 4 onward, both parties will discuss and agree on a commission structure that favors the EZ Brick business and Hipervínculo, based on actual net sales, ROAS, and a sustainable retail price. Net sales are taken directly from the eCommerce platform and payment processor: gross sales attributed to the campaigns, less refunds, returns, chargebacks, and cancellations, and excluding sales tax and shipping charged to the customer. Product cost, fulfillment cost, and any other operating expenses are not part of the calculation.',
     },
     profitFormula: {
-      title: 'How Net Sales and the Commission Are Calculated',
+      title: 'How Net Sales and Any Future Commission Are Calculated',
       rows: [
         { label: 'Months 1 to 3: no commission applies', value: '0%' },
         { label: 'Gross sales attributed to the campaigns', value: 'Gross Sales' },
         { label: 'Less: refunds, returns, chargebacks, cancellations', value: '− Refunds' },
         { label: 'Less: sales tax and shipping charged to the customer', value: '− Tax & Shipping' },
-        { label: 'Equals: net sales — commission base from month 4', value: '= Net Sales' },
-        { label: 'Condition: campaign ROAS of 2.5 or higher for the month', value: 'ROAS ≥ 2.5' },
+        { label: 'Equals: net sales — base for any future commission', value: '= Net Sales' },
+        { label: 'From month 4: commission terms to be negotiated', value: 'To be agreed' },
       ],
-      note: 'Months 1, 2, and 3 carry no commission under any circumstance. From month 4, Hipervínculo commission = 3% of net sales, payable only in months where campaign ROAS reaches 2.5 or better. Product cost, fulfillment, and administrative expenses are not part of the calculation. In any month where ROAS is below 2.5, no commission is charged and only the $1,000 retainer applies.',
+      note: 'Months 1, 2, and 3 carry no commission under any circumstance. From month 4, the commission percentage and conditions will be negotiated based on real campaign data, return rates, and the agreed retail price structure. Product cost, fulfillment, and administrative expenses are not part of the net sales calculation.',
     },
     clientPays: {
       title: 'Paid Directly by Client',
@@ -209,12 +209,12 @@ export const ezBrickProposalContent = {
       rows: [
         { label: 'Management retainer', value: '$1,000/mo in advance' },
         { label: 'Commission months 1-3', value: 'None. Retainer only' },
-        { label: 'Commission from month 4', value: '3% of net sales, only in months at 2.5 ROAS or better' },
+        { label: 'Commission from month 4', value: 'To be mutually agreed' },
         { label: 'Initial commitment', value: 'First 90 days committed' },
         { label: 'After 90 days', value: 'Month-to-month, 30 days notice' },
         { label: 'Media spend', value: 'Paid directly to Google and Meta' },
       ],
-      note: 'The retainer is invoiced at the beginning of each service month. No performance commission is invoiced during the first 3 months. From month 4, the commission is invoiced after month-end close, once net sales and ROAS are confirmed from the platform reports. All invoices are payable within 10 days of receipt.',
+      note: 'The retainer is invoiced at the beginning of each service month. No performance commission is invoiced during the first 3 months. From month 4, any commission structure and payment terms will be defined by mutual agreement once net sales and ROAS are confirmed from the platform reports. All invoices are payable within 10 days of receipt.',
     },
     timeline: {
       title: 'Launch Timeline',
@@ -243,7 +243,7 @@ export const ezBrickProposalContent = {
       {
         title: 'Retainer Is Unconditional',
         description:
-          'The $1,000 monthly retainer is charged every month regardless of whether the 2.5 ROAS condition is achieved. It is not contingent on performance.',
+          'The $1,000 monthly retainer is charged every month regardless of ROAS. It is not contingent on performance.',
         icon: 'dollar',
       },
       {
@@ -253,15 +253,15 @@ export const ezBrickProposalContent = {
         icon: 'clock',
       },
       {
-        title: 'Performance Commission From Month 4',
+        title: 'Commission From Month 4: To Be Agreed',
         description:
-          'Starting in month 4, Hipervínculo earns 3% of net sales, and only in months where campaign ROAS reaches 2.5 or better. Net sales = gross sales attributed to the campaigns less refunds, returns, chargebacks, and cancellations, excluding sales tax and shipping. Product cost and fulfillment cost are not part of the calculation.',
+          'Starting in month 4, Hipervínculo and EZ Brick will discuss and agree on a commission structure that favors both the business and the agency, based on actual net sales, ROAS, and a retail price that supports paid media and commission. No fixed percentage is set in this proposal.',
         icon: 'dollar',
       },
       {
         title: 'Pricing Review',
         description:
-          'Both parties agree to review the retail price structure within the first 90 days, taking into account competitor pricing, landed cost in the U.S., logistics, returns rate, and advertising spend, so that the price can sustain paid media and the commission model.',
+          'Both parties agree to review the retail price structure within the first 90 days, taking into account competitor pricing, landed cost in the U.S., logistics, returns rate, and advertising spend, so that the price can sustain paid media and any future commission model.',
         icon: 'files',
       },
       {
@@ -273,13 +273,13 @@ export const ezBrickProposalContent = {
       {
         title: 'ROAS Targets Are Goals',
         description:
-          'The 3.0 ROAS target is a performance objective and the 2.5 ROAS mark is the commission condition, not a guarantee of results. Results depend on pricing, margin, shipping cost, product page conversion rate, seasonality, and competition.',
+          'The 3.0 ROAS target is a performance objective, not a guarantee of results. Results depend on pricing, margin, shipping cost, product page conversion rate, seasonality, and competition.',
         icon: 'files',
       },
       {
         title: 'Data Access & Reporting',
         description:
-          'EZ Brick provides monthly net sales reports from the eCommerce platform and payment processor so the commission can be calculated accurately. Hipervínculo provides a monthly report reconciling media spend, gross and net sales, and ROAS.',
+          'EZ Brick provides monthly net sales reports from the eCommerce platform and payment processor so future commission terms can be evaluated accurately. Hipervínculo provides a monthly report reconciling media spend, gross and net sales, and ROAS.',
         icon: 'shield',
       },
       {
@@ -303,12 +303,11 @@ export const ezBrickProposalContent = {
         heading: 'Compensation & Payment',
         items: [
           'Management retainer: $1,000 USD per month, invoiced at the beginning of each service month and payable within 10 days of receipt.',
-          'The retainer is charged unconditionally each month, whether or not the 2.5 ROAS condition is reached.',
+          'The retainer is charged unconditionally each month, regardless of ROAS achieved.',
           'No performance commission is charged during months 1, 2, and 3 of the program, under any performance scenario.',
-          'Performance commission from month 4 onward: 3% of monthly net sales, payable only in months where campaign ROAS reaches 2.5 or better, invoiced after month-end close once figures are confirmed.',
+          'From month 4 onward, the exact commission percentage, conditions, and payment terms will be negotiated and agreed in writing by both parties, based on actual campaign data, net sales, and a retail price structure that supports paid media.',
           '"Net sales" is defined exclusively as gross sales revenue attributed to the campaigns, less refunds, returns, chargebacks, and cancellations, and excluding sales tax and shipping charged to the customer.',
           'Product cost (COGS), fulfillment cost, and any other operating, administrative, overhead, payroll, financing, or tax expenses are not deducted when calculating the commission base.',
-          'If campaign ROAS is below 2.5 in a given month, no commission is charged for that month and only the $1,000 retainer applies.',
           'All media spend is paid directly by EZ Brick to Google and Meta. Hipervínculo does not invoice or mark up media spend.',
         ],
       },
@@ -327,7 +326,7 @@ export const ezBrickProposalContent = {
           'The initial term is 90 days from campaign launch and is committed by both parties.',
           'After the initial 90 days, the agreement continues month-to-month.',
           'Either party may terminate after the initial term with 30 days written notice.',
-          'Upon termination, all outstanding retainer and commission invoices must be settled within 10 days.',
+          'Upon termination, all outstanding retainer invoices must be settled within 10 days.',
           'Campaign assets built in the client-owned ad accounts remain in those accounts; Hipervínculo retains its proprietary frameworks, templates, and methodologies.',
         ],
       },
@@ -343,7 +342,7 @@ export const ezBrickProposalContent = {
         heading: 'Client Responsibilities',
         items: [
           'Provide timely admin access to Google Ads, Meta Business Manager, the website/eCommerce platform, GA4, and Tag Manager.',
-          'Provide monthly net sales reports (gross sales, refunds, returns, chargebacks) from the eCommerce platform and payment processor so the commission can be calculated.',
+          'Provide monthly net sales reports (gross sales, refunds, returns, chargebacks) from the eCommerce platform and payment processor so future commission terms can be evaluated.',
           'Maintain adequate inventory, accurate pricing, and functioning checkout so that campaigns can convert.',
           'Provide product and installation imagery, packaging art, and any video assets to be used in advertising.',
           'Ensure all product claims, warranties, and any building-code or compliance statements used in advertising are accurate and legally supportable.',
@@ -352,7 +351,7 @@ export const ezBrickProposalContent = {
       {
         heading: 'Performance Disclaimer',
         items: [
-          'The 3.0 ROAS target and the 2.5 ROAS commission condition are objectives based on experience and the assumptions stated in this proposal, not guarantees of results.',
+          'The 3.0 ROAS target is an objective based on experience and the assumptions stated in this proposal, not a guarantee of results.',
           'Projections shown in the Performance Targets section are illustrative and use an assumed refund/return rate that will be replaced with actual client figures.',
           'Platform policy changes, auction competition, seasonality, shipping costs, and site performance can materially affect results.',
         ],
