@@ -117,8 +117,8 @@ export const ezBrickProposalContent = {
     spendBasis: 'Based on $4,000/mo in media spend ($3,000 Search + $1,000 Retargeting) during the initial phase.',
     scenarios: [
       { label: 'Months 1-3 (Any ROAS)', roas: '2.0x', revenue: '$8,000', returns: '−$240', netSales: '$7,760', adSpend: '−$4,000', commission: '$0', totalFee: '$1,000' },
-      { label: 'Month 4+ Baseline', roas: '2.5x', revenue: '$10,000', returns: '−$300', netSales: '$9,700', adSpend: '−$4,000', commission: 'To be discussed (month 4+)', totalFee: '$1,000' },
-      { label: 'Month 4+ Target', roas: '3.0x', revenue: '$12,000', returns: '−$360', netSales: '$11,640', adSpend: '−$4,000', commission: 'To be discussed (month 4+)', totalFee: '$1,000' },
+      { label: 'Month 4+ Baseline', roas: '2.5x', revenue: '$10,000', returns: '−$300', netSales: '$9,700', adSpend: '−$4,000', commission: 'To be agreed (month 4+)', totalFee: '$1,000' },
+      { label: 'Month 4+ Target', roas: '3.0x', revenue: '$12,000', returns: '−$360', netSales: '$11,640', adSpend: '−$4,000', commission: 'To be agreed (month 4+)', totalFee: '$1,000' },
     ],
     assumptions: [
       'Months 1, 2, and 3 carry no performance commission under any scenario. Only the $1,000 monthly retainer applies during that period.',

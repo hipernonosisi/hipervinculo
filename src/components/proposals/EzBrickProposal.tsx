@@ -215,7 +215,7 @@ export function EzBrickProposal() {
                       <Lock className="w-5 h-5" style={{ color: '#8BC34A' }} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-start justify-between gap-4 mb-1">
                         <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{platform.title}</h3>
                         <span className="text-[10px] font-bold px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: '#2d4a2d' }}>
                           {platform.role}
@@ -247,7 +247,7 @@ export function EzBrickProposal() {
               <div className="space-y-2.5 mb-6">
                 {content.mediaPlan.allocation.map((row, i) => (
                   <div key={i} className="bg-white rounded-xl p-4" style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-                    <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-start justify-between gap-4 mb-1">
                       <h3 className="font-bold text-[14px]" style={{ color: '#2d4a2d' }}>{row.channel}</h3>
                       <div className="flex items-center gap-3">
                         <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: '#2d4a2d' }}>{row.share}</span>
@@ -291,19 +291,19 @@ export function EzBrickProposal() {
                         ['Refunds & returns', sc.returns],
                         ['Ad spend', sc.adSpend],
                       ].map(([label, value]) => (
-                        <div key={label} className="flex justify-between">
+                        <div key={label} className="flex justify-between gap-3">
                           <span style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>{label}</span>
                           <span className="font-semibold" style={{ color: i === 1 ? '#ffffff' : '#2d4a2d' }}>{value}</span>
                         </div>
                       ))}
                     </div>
                     <div className="my-3 h-px" style={{ backgroundColor: i === 1 ? 'rgba(255,255,255,0.2)' : 'rgba(45,74,45,0.12)' }} />
-                    <div className="flex justify-between items-baseline mb-1">
+                    <div className="flex justify-between items-baseline gap-3 mb-1">
                       <span className="text-[11px]" style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>Net sales</span>
                       <span className="text-[16px] font-extrabold" style={{ color: i === 1 ? '#c5e86a' : '#8BC34A' }}>{sc.netSales}</span>
                     </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>Commission</span>
+                    <div className="text-[11px]">
+                      <span className="block" style={{ color: i === 1 ? 'rgba(255,255,255,0.65)' : '#6b7280' }}>Commission</span>
                       <span className="font-semibold" style={{ color: i === 1 ? '#ffffff' : '#2d4a2d' }}>{sc.commission}</span>
                     </div>
                     <div className="mt-auto pt-3">
