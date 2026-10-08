@@ -1,4 +1,6 @@
 import { Document, Page, View, Text, Image, StyleSheet, Svg, Path, Link } from '@react-pdf/renderer';
+import { Font } from '@react-pdf/renderer';
+Font.registerHyphenationCallback((word) => [word]);
 import { industrialAdvisorsContent } from '../data/industrialAdvisorsContent';
 
 const green = '#2d4a2d';
@@ -9,7 +11,7 @@ const grayLight = '#999999';
 
 const inkStrong = '#1f2d1f';
 const ink = '#4b5563';
-const rule = 'rgba(45,74,45,0.10)';
+const rule = '#e3e9e1';
 
 const T = {
   eyebrow: { fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: lime, letterSpacing: 3 },
