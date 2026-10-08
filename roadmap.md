@@ -1,6 +1,6 @@
 # Active tasks
-- [x] Create the complete Spanish Industrial Advisors proposal and public share link.
+- [x] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
 - [x] Add the proposal to the existing admin menu.
-- [x] Provide PDF download and verify all 16 pages visually; margin checks passed with no clipping or overlap.
-- [x] Verify public navigation, answers, sharing and mobile layout.
+- [x] Verify the revised 16-page PDF visually and replace the downloadable deliverable; no blank pages, clipping or overlap.
+- [x] Verify the revised public proposal and download; corrected inherited heading contrast, confirmed English title and answer-to-email flow.
 - [ ] Verify the admin menu while signed in — blocked: no managed auth account matches the requesting user.
