@@ -1,175 +1,299 @@
-export interface IASection {
-  id: string;
-  nav: string;
-  title: string;
-  intro: string;
-  blocks?: { title: string; text?: string; bullets?: string[] }[];
-  table?: { headers: string[]; rows: string[][] };
-  note?: string;
-}
+// Industrial Advisors / IA Miami — Google Ads proposal.
+// Same content shape and page order as the EZ Brick proposal (agency standard format).
 
-export const iaCover = {
-  title: 'Google Ads Proposal',
-  client: 'Industrial Advisors',
-  subtitle: 'Strategy, setup & ongoing management',
-  tagline: 'Connect industrial searches with real business opportunities—using your existing website.',
-  date: 'October 2026',
-  note: 'Media spend is separate and paid directly to Google. The initial range is preliminary, subject to validation, and does not guarantee results.',
-};
-export const iaPricing = [
-  { label: 'Monthly management', amount: 'USD 1,500', detail: 'Per month · one Google Ads account' },
-  { label: 'Initial setup', amount: 'USD 1,000', detail: 'One-time payment · at the start' },
-  { label: 'Recommended media spend', amount: 'USD 3,000–5,000', detail: 'Per month · paid separately to Google' },
-];
 export const iaQuestions = [
   'What monthly budget would you like to invest in Google Ads, separate from management fees?',
   'Which CRM do you use to record and follow up with contacts? If you do not use one, how do you currently manage them?',
   'For your previous Google Ads campaigns, what did you spend and what results did you obtain? Can we review the account and its history?',
   'Who will handle the leads, and how will follow-up be managed?',
 ];
-export const iaSections: IASection[] = [
-  {
-    id: 'contexto', nav: 'Starting point', title: 'Understanding Industrial Advisors',
-    intro: 'An industrial facility must support a company’s operations—not simply fit a location on a map.',
-    blocks: [
-      { title: 'Information published by the company', text: 'Industrial Advisors / IA Miami advises on and markets industrial real estate in South Florida. Its office is in Miami Lakes; this location does not define the limits of its market.', bullets: ['Industrial property leasing and sales; representation of companies seeking facilities.', 'Facility optimization and expansion planning.', 'Advisory services for aviation/MRO (aircraft maintenance, repair and overhaul), manufacturing and cold storage.', 'Assessment of electrical capacity, clear height, loading docks, layout, zoning and growth requirements.'] },
-      { title: 'Our strategic interpretation', text: 'We propose connecting property searches with real operational, expansion and relocation needs. Your technical knowledge helps match real estate to the business—not just to a property listing.' },
-      { title: 'A starting point we respect', text: 'You have confirmed that you previously ran Google Ads. We will review those results before drawing conclusions. Your recently renewed website will be the destination for the campaigns.' },
+
+export const industrialAdvisorsContent = {
+  cover: {
+    title: 'Google Ads Proposal',
+    subtitle: 'Google Search Campaigns\nfor Industrial Real Estate',
+    tagline: 'For: Industrial Advisors / IA Miami',
+  },
+  about: {
+    title: 'About Hipervínculo',
+    headline: 'Paid Media Measured by Qualified Opportunities, Not Clicks',
+    description:
+      'Hipervínculo is a performance marketing agency with 20+ years of experience managing paid media for businesses in the U.S. market. We have managed campaigns across Google Ads and Meta Ads, generating more than $92 million in tracked sales for our clients. Our approach is simple: start with the searches that show clear intent, measure the quality of every inquiry, and expand only what proves to work.',
+    stats: [
+      { value: '20+', label: 'Years of Experience' },
+      { value: '200+', label: 'Clients Served' },
+      { value: '$92M+', label: 'In Sales Generated' },
     ],
-    note: 'Corporate context source: information published on iamiami.com. This is not presented as Hipervínculo’s experience or results.',
-  },
-  {
-    id: 'estrategia', nav: 'Our service', title: 'What we can do for you',
-    intro: 'Connect Industrial Advisors with companies already looking for their next industrial facility.',
-    blocks: [
-      { title: 'Understand before investing', bullets: ['Audit the account and previous campaigns.', 'Review historical spend, search terms, ads and conversions.', 'Identify what to keep, improve or test.', 'Research demand and competition.'] },
-      { title: 'Set up, manage and improve', bullets: ['Create or restructure Search campaigns and ads.', 'Set up or review contact tracking.', 'Optimize continuously and review inquiry quality with your team.', 'Report clearly on spend and commercial opportunities.'] },
-    ],
-    note: 'The entire strategy uses your existing website. We are not proposing a redesign, new website, new landing pages or site migration.',
-  },
-  {
-    id: 'objetivos', nav: 'Objectives & measurement', title: 'Commercial quality comes first',
-    intro: 'Our objective is to generate qualified inquiries from people and companies interested in leasing or buying industrial real estate and related industrial solutions.',
-    blocks: [
-      { title: 'From interest to opportunity', text: 'Search → ad → existing website → inquiry → qualification → visit or meeting → opportunity → closing.' },
-      { title: 'What makes an inquiry qualified', bullets: ['A need compatible with your services and service areas.', 'Identifiable space or operational requirements.', 'A budget and timeline your team can evaluate.', 'A genuine contact able to decide or influence the decision.'] },
-      { title: 'What we will measure', bullets: ['Inquiries received and qualified inquiries.', 'Cost per inquiry and cost per qualified inquiry.', 'Visits or meetings scheduled and commercial opportunities.', 'Closed transactions and attributable commissions, when data is available.'] },
-    ],
-    note: 'Impressions, clicks and CTR (clicks as a percentage of impressions) help diagnose campaign performance. They do not replace contact quality or guarantee transactions.',
-  },
-  {
-    id: 'campanas', nav: 'Campaign structure', title: 'Searches with explicit intent',
-    intro: 'We will prioritize Google Search: ads shown when someone searches for an industrial facility or advisory services. Campaigns will be organized by intent, with a shared commercial objective.',
-    table: { headers: ['Campaign', 'Examples / criteria'], rows: [
-      ['A · Industrial leasing', 'warehouse for lease Miami Lakes\nindustrial space for rent Medley\nwarehouse for rent Hialeah'],
-      ['B · Industrial purchases', 'warehouse for sale Miami\nindustrial property for sale Hialeah\nbuy warehouse Medley'],
-      ['C · Advisory & facility search', 'industrial real estate advisor Miami\nindustrial tenant representation Miami\nwarehouse relocation South Florida'],
-      ['D · Specialized facilities', 'Manufacturing, aviation/MRO and cold storage. Only where there is relevant demand and actual capacity to serve it; we do not assume inventory is available.'],
-      ['E · Brand', 'Industrial Advisors / IA Miami. We will assess its value, with a limited budget based on competition and organic performance.'],
-    ] },
-    note: 'These are keyword hypotheses to validate with Google’s keyword planning tool and account history—not search-volume or CPC (cost per click) data. We will not launch every campaign automatically: initial spend will be focused and expanded based on evidence.',
-  },
-  {
-    id: 'anuncios', nav: 'Messaging & ads', title: 'Ads built around real needs',
-    intro: 'Messaging will address location, leasing or purchase, confirmed availability, space and verified property features, operational requirements, and guidance throughout the search and negotiation.',
-    blocks: [
-      { title: 'Leasing · illustrative example', bullets: ['Warehouse Space in Miami', 'Explore Industrial Options', 'Speak With Industrial Advisors'] },
-      { title: 'Purchase · illustrative example', bullets: ['Industrial Property for Sale', 'Find Your Next Facility', 'Discuss Your Requirements'] },
-      { title: 'Spanish-language campaign · illustrative copy', text: 'A Spanish-language version may address warehouse leasing, suitable facilities for the company and a conversation with an advisor. Final copy will be developed and approved in Spanish before launch.' },
-    ],
-    note: 'These examples are not approved ads. No property will be advertised as available without confirmation from Industrial Advisors.',
-  },
-  {
-    id: 'segmentacion', nav: 'Targeting', title: 'Relevance and budget control',
-    intro: 'We will begin where inventory, demand and commercial capacity align. Targeting will be validated with your team before launch.',
-    blocks: [
-      { title: 'Locations & languages', bullets: ['Miami Lakes, Hialeah, Medley, Doral, Opa-Locka and other relevant areas, subject to validation.', 'English and Spanish ads with consistent messaging and suitable destinations within the existing website.', 'Physical-presence targeting for the local evaluation period.', 'A separate campaign, if appropriate, for companies outside the area seeking facilities in South Florida.'] },
-      { title: 'Search controls', bullets: ['Exact and phrase match as a starting point: these control which searches can trigger ads.', 'Review search queries and add negative keywords to exclude jobs, housing, personal storage and other irrelevant searches.', 'Avoid broad exclusions that block valid industrial demand.'] },
-    ],
-    note: 'Performance Max, Display and YouTube may be evaluated later. They are not included in the base launch.',
-  },
-  {
-    id: 'web', nav: 'Your existing website', title: 'The website you just launched',
-    intro: 'Campaigns will direct traffic to the website Industrial Advisors has just launched.',
-    blocks: [
-      { title: 'A relevant destination for each ad', text: 'We will use the most suitable existing pages, listings and sections. Destinations will be checked before launch; we do not assume each property has its own page.' },
-      { title: 'Pre-launch checks', bullets: ['Working forms and contact buttons.', 'Mobile experience and correct delivery of inquiries.', 'Availability of promoted properties.', 'Tracking tags and actions that can be recorded.'] },
-      { title: 'Technical coordination—not a redesign', text: 'If a listing cannot be linked or an action cannot be tracked, we will explain the impact and coordinate a solution with your website administrator. Recommendations will be limited to what is needed to measure and receive contacts.' },
+    credentials: [
+      'Google Search Campaigns',
+      'Lead Tracking & CRM Feedback',
+      'English & Spanish Campaigns',
+      'Transparent Reporting',
     ],
   },
-  {
-    id: 'crm', nav: 'Tracking & CRM', title: 'Follow the contact, not just the click',
-    intro: 'Tracking connects spend with inquiries. Commercial follow-up identifies which contacts were qualified and which opportunities progressed.',
-    blocks: [
-      { title: 'Standard tracking included', bullets: ['Review or configuration of Google Tag Manager and GA4 where appropriate: website tags and analytics.', 'Conversions for successfully submitted forms, with duplicate prevention.', 'Actual calls where technically feasible. Phone clicks are secondary signals and do not automatically count as leads.', 'Identification of the originating campaign.', 'Enhanced conversions for leads where appropriate and applicable requirements are met.'] },
-      { title: 'Return quality signals to Google Ads', text: 'A CRM records contacts and their commercial progress. Its stages can be sent back to Google Ads to guide optimization. If you do not use one, we propose a simple shared register; purchasing a CRM is not required to begin.' },
-      { title: 'Technical scope', text: 'We will assess your system before promising an automatic connection. Custom integrations, development and licenses are quoted separately.' },
+  clientOverview: {
+    title: 'The Client',
+    headline: 'Industrial Advisors — Industrial Real Estate Advisory in South Florida',
+    description:
+      'Industrial Advisors / IA Miami advises on and markets industrial real estate in South Florida. Its office is in Miami Lakes, but that location does not define the limits of its market. An industrial facility must support a company’s operations — not simply fit a location on a map — and that technical knowledge is what connects real estate to the business, not just to a property listing.',
+    services: [
+      { title: 'Industrial Leasing & Sales', description: 'Leasing and sale of industrial properties, and representation of companies seeking facilities.' },
+      { title: 'Facility Optimization & Expansion', description: 'Planning for companies that need to optimize, expand or relocate their operations.' },
+      { title: 'Specialized Facilities', description: 'Advisory for aviation/MRO (aircraft maintenance, repair and overhaul), manufacturing and cold storage.' },
+      { title: 'Technical Requirements', description: 'Assessment of electrical capacity, clear height, loading docks, layout, zoning and growth requirements.' },
+    ],
+    marketNote:
+      'Source: information published on iamiami.com — presented as client context, not as Hipervínculo results. Industrial Advisors has run Google Ads before; we will review those results before drawing conclusions. The recently renewed website will be the destination for all campaigns.',
+  },
+  objective: {
+    title: 'Objective & Strategy',
+    headline: 'Qualified Leasing and Purchase Inquiries Through Google Search',
+    description:
+      'The objective is to generate qualified inquiries from people and companies interested in leasing or buying industrial real estate and related industrial solutions. Visitors are not forced to choose between leasing or buying: campaigns are organized by search intent, with one shared commercial objective. We start focused, measure contact quality, and expand only based on evidence.',
+    scope: [
+      { title: 'Account & History Audit', description: 'Review of the previous account: historical spend, search terms, ads and conversions, to identify what to keep, improve or test.' },
+      { title: 'Demand & Competition Research', description: 'Keyword hypotheses validated with Google’s keyword planning tool and account history before investing.' },
+      { title: 'Search Campaigns by Intent', description: 'Leasing, purchase, advisory, specialized facilities and brand — each with its own ads and destinations.' },
+      { title: 'English & Spanish Ads', description: 'Consistent messaging in both languages, with suitable destinations within the existing website.' },
+      { title: 'Lead Tracking', description: 'Conversions for successfully submitted forms and real calls, identifying the originating campaign.' },
+      { title: 'Lead Quality Review', description: 'Ongoing review of inquiry quality with the team that handles the contacts.' },
+      { title: 'Clear Reporting', description: 'Monthly reporting on spend, inquiries, qualified inquiries and commercial opportunities.' },
+    ],
+    exclusions: {
+      title: 'Out of Scope',
+      description:
+        'The entire strategy uses the existing website. This proposal does not include a website redesign, new website, new landing pages, site migration, SEO, social media management, third-party licenses, or complex CRM integrations and custom development (quoted separately if needed). Media spend is paid directly to Google by the client.',
+    },
+  },
+  platformAccess: {
+    title: 'Required Platform Access',
+    headline: 'Accounts & Information We Need',
+    description:
+      'All accounts, data and history remain owned and controlled by Industrial Advisors at all times. We require access to review, build, track and optimize correctly from day one.',
+    platforms: [
+      { title: 'Google Ads Account', description: 'Admin access to the existing account, including the history of previous campaigns.', role: 'Admin Access' },
+      { title: 'Google Analytics 4 & Tag Manager', description: 'Access to review or configure tags, analytics and conversion actions.', role: 'Editor Access' },
+      { title: 'Website Administrator', description: 'Coordination to verify forms, contact buttons, destinations and tracking tags on the existing website.', role: 'Coordination' },
+      { title: 'CRM or Lead Register', description: 'Access to the system where contacts are recorded, or a simple shared register if no CRM is in use.', role: 'Shared Data' },
+      { title: 'Inventory & Availability', description: 'Current list of properties and confirmed availability. No property is advertised without confirmation.', role: 'Shared Files' },
+      { title: 'Approvals', description: 'Approval of ads, property information and Spanish-language copy before launch.', role: 'Client Approval' },
     ],
   },
-  {
-    id: 'gestion', nav: 'Ongoing management', title: 'Management with consistent review',
-    intro: 'We will manage budgets and campaigns through a clear routine, coordinated with the team handling inquiries.',
-    blocks: [
-      { title: 'During launch', text: 'Frequent review of spend, searches, ads, conversions and initial inquiries.' },
-      { title: 'Weekly', bullets: ['Review search queries and add negative keywords.', 'Adjust ads and budgets.', 'Check destinations and availability.', 'Review lead quality with the client.'] },
-      { title: 'Monthly', bullets: ['Spend and results report.', 'Follow-up meeting.', 'Budget allocation recommendations.', 'Next tests.'] },
+  mediaPlan: {
+    title: 'Media Plan',
+    headline: 'Focused Spend on Searches With Explicit Intent',
+    total: 'USD 3,000–5,000',
+    totalLabel: 'Recommended Monthly Media Spend (paid to Google)',
+    description:
+      'We will prioritize Google Search: ads shown when someone searches for an industrial facility or advisory services. We will not launch every campaign automatically — initial spend is focused and expanded based on evidence. The range is preliminary and subject to account history and demand validation.',
+    allocation: [
+      { channel: 'A · Industrial Leasing', amount: 'Core', share: 'FROM LAUNCH', note: 'warehouse for lease Miami Lakes · industrial space for rent Medley · warehouse for rent Hialeah' },
+      { channel: 'B · Industrial Purchases', amount: 'Core', share: 'FROM LAUNCH', note: 'warehouse for sale Miami · industrial property for sale Hialeah · buy warehouse Medley' },
+      { channel: 'C · Advisory & Facility Search', amount: 'Core', share: 'FROM LAUNCH', note: 'industrial real estate advisor Miami · industrial tenant representation Miami · warehouse relocation South Florida' },
+      { channel: 'D · Specialized Facilities', amount: 'Test', share: 'ON EVIDENCE', note: 'Manufacturing, aviation/MRO and cold storage — only where there is relevant demand and actual capacity to serve it.' },
+      { channel: 'E · Brand', amount: 'Limited', share: 'TO ASSESS', note: 'Industrial Advisors / IA Miami — value assessed based on competition and organic performance.' },
     ],
-    note: 'The bidding strategy will be chosen after reviewing account history and tracking. We will not set an arbitrary target CPA (cost per acquisition).',
-  },
-  {
-    id: 'plan', nav: '90-day plan', title: 'Evaluate, learn and decide',
-    intro: 'We recommend 90 days as an initial evaluation period. It is not a guarantee of closings or a mandatory contractual commitment.',
-    blocks: [
-      { title: 'Month 01 · Prepare & launch', text: 'Audit, research, tracking, configuration and launch, subject to access and approvals.' },
-      { title: 'Month 02 · Refine & optimize', text: 'Refine search queries and optimize based on inquiries and the quality of contacts received.' },
-      { title: 'Month 03 · Evaluate the next step', text: 'Evaluate quality, opportunities and options for increasing spend based on actual evidence.' },
+    phases: [
+      { phase: 'Month 01', focus: 'Prepare & Launch', detail: 'Audit, research, tracking, configuration and launch, subject to access and approvals.' },
+      { phase: 'Month 02', focus: 'Refine & Optimize', detail: 'Refine search queries and optimize based on inquiries and the quality of contacts received.' },
+      { phase: 'Month 03', focus: 'Evaluate Next Step', detail: 'Evaluate quality, opportunities and options for increasing spend based on actual evidence.' },
     ],
-    note: 'Real estate closings may take longer than the initial evaluation period. They should continue to be tracked afterward to assess the campaigns’ commercial contribution.',
+    note: 'Keywords shown are hypotheses to validate — not search-volume or CPC (cost per click) data. Media spend is billed directly by Google to the client. Hipervínculo never invoices media spend.',
   },
-  {
-    id: 'inversion', nav: 'Investment', title: 'Transparent investment from the start',
-    intro: 'Hipervínculo fees and advertising spend are separate. All amounts are in USD.',
-    blocks: [
-      { title: 'USD 1,000 · Initial setup · one time', bullets: ['Audit of the previous account, research and initial structure.', 'Creation or restructuring of campaigns and ads.', 'Configuration or review of standard tracking and pre-launch checks.'] },
-      { title: 'USD 1,500 · Monthly management', bullets: ['One Google Ads account and the agreed Search campaigns.', 'English and Spanish ads where appropriate.', 'Ongoing optimization, search-query and negative-keyword reviews, and tracking checks.', 'Report, monthly meeting and coordination on lead quality.'] },
+  measurement: {
+    title: 'Objectives & Measurement',
+    headline: 'Commercial Quality Comes First',
+    description:
+      'Every inquiry follows the same path: search → ad → existing website → inquiry → qualification → visit or meeting → opportunity → closing. We measure the steps that matter commercially, not only the ones that are easy to count.',
+    basis: 'Search campaigns using the existing website as destination. No target CPA (cost per acquisition) is set before reviewing history and tracking.',
+    columns: [
+      { label: 'Qualified Inquiry', title: 'What makes it qualified', items: ['A need compatible with your services and areas', 'Identifiable space or operational requirements', 'A budget and timeline your team can evaluate', 'A genuine contact able to decide or influence'] },
+      { label: 'Primary KPIs', title: 'What we will measure', items: ['Inquiries and qualified inquiries', 'Cost per inquiry and per qualified inquiry', 'Visits or meetings scheduled', 'Opportunities and closings, when data is available'] },
+      { label: 'Diagnostics', title: 'Supporting signals', items: ['Impressions and clicks', 'CTR (clicks as a % of impressions)', 'Search terms that triggered ads', 'Phone clicks, as secondary signals'] },
     ],
-    table: { headers: ['Item', 'First month', 'Following months'], rows: [
-      ['Media · paid directly to Google', 'USD 3,000–5,000', 'USD 3,000–5,000'],
-      ['Management · Hipervínculo', 'USD 1,500', 'USD 1,500'],
-      ['Initial setup · Hipervínculo', 'USD 1,000', 'Not repeated'],
-      ['Monthly total', 'USD 5,500–7,500', 'USD 4,500–6,500'],
-    ] },
-    note: 'Management covers up to USD 10,000/month in media spend. Any increase in spend or scope will be quoted and agreed before it takes effect. The initial media range is preliminary, subject to account history and demand validation, and does not guarantee results.',
-  },
-  {
-    id: 'condiciones', nav: 'Agreement details', title: 'Agreement Details',
-    intro: 'A defined scope and a transparent relationship between Industrial Advisors and Hipervínculo.',
-    blocks: [
-      { title: 'Payments & ownership', bullets: ['Initial setup and monthly management are paid upfront.', 'Google bills advertising directly to the client.', 'The client retains ownership and control of the account, data and history.'] },
-      { title: 'Services not included', bullets: ['Third-party licenses and tools.', 'Complex CRM integrations or additional development, quoted separately.', 'Website creation or redesign, new landing pages, SEO and social media management.'] },
-      { title: 'Responsible expectations', text: 'We do not guarantee lead volume, cost per lead, Google rankings, sales, profitability or closed transactions. Results also depend on inventory, demand and commercial follow-up.' },
+    assumptions: [
+      'Impressions, clicks and CTR help diagnose campaign performance. They do not replace contact quality or guarantee transactions.',
+      'Phone clicks are secondary signals and do not automatically count as leads.',
+      'Real estate closings may take longer than the initial evaluation period and should continue to be tracked afterward.',
+      'We do not guarantee lead volume, cost per lead, Google rankings, sales, profitability or closed transactions. Results also depend on inventory, demand and commercial follow-up.',
     ],
   },
-  {
-    id: 'responsabilidades', nav: 'Responsibilities', title: 'What we need from your team',
-    intro: 'Advertising starts conversations. Your team provides current availability, property knowledge and commercial follow-up.',
-    blocks: [
-      { title: 'To prepare & launch', bullets: ['Access to Google Ads and analytics.', 'Coordination with your website administrator.', 'Current inventory and availability.', 'Approval of ads and property information.'] },
-      { title: 'To learn & improve', bullets: ['Timely response to contacts.', 'Feedback on quality and commercial progress.'] },
+  searchService: {
+    title: 'Google Search Management',
+    headline: 'Ongoing Management With a Consistent Review Routine',
+    mediaSpend: 'USD 1,500/mo',
+    mediaSpendLabel: 'Monthly Management Fee',
+    target: 'Up to USD 10K',
+    targetLabel: 'Monthly Media Spend Covered',
+    description:
+      'We manage budgets and campaigns through a clear routine, coordinated with the team handling inquiries. During launch, spend, searches, ads, conversions and initial inquiries are reviewed frequently; after that, on a weekly and monthly cadence.',
+    includes: [
+      { title: 'Search Query Review', description: 'Weekly review of the searches that triggered ads, adding negative keywords to exclude jobs, housing and personal storage.' },
+      { title: 'Match Type Control', description: 'Exact and phrase match as a starting point — they control which searches can trigger ads.' },
+      { title: 'Location & Language', description: 'Miami Lakes, Hialeah, Medley, Doral, Opa-Locka and other relevant areas, in English and Spanish, subject to validation.' },
+      { title: 'Ads Built on Real Needs', description: 'Location, leasing or purchase, verified features and operational requirements. No property advertised without confirmation.' },
+      { title: 'Budget & Bidding', description: 'Bidding strategy chosen after reviewing history and tracking. Budget adjustments based on lead quality.' },
+      { title: 'Destination Checks', description: 'Each ad points to the most suitable existing page, listing or section, checked for availability.' },
+      { title: 'Lead Quality Feedback', description: 'Weekly review of inquiry quality with your team to guide optimization.' },
+      { title: 'Monthly Report & Meeting', description: 'Spend and results report, follow-up meeting, budget allocation recommendations and next tests.' },
     ],
   },
-  {
-    id: 'lanzamiento', nav: 'Launch preparation', title: 'Information to prepare the launch',
-    intro: 'These four answers will help us refine the initial plan and coordinate with your team.',
-    blocks: iaQuestions.map((title, i) => ({ title: `${i + 1}. ${title}` })),
-    note: 'Please share your answers with Hipervínculo to coordinate the launch.',
-  },
-  {
-    id: 'cierre', nav: 'Next step', title: 'Let’s coordinate the launch',
-    intro: 'A Google Ads strategy using your existing website, with transparent investment and follow-up on commercial opportunities.',
-    blocks: [
-      { title: 'Hipervínculo · Miguel Camacho', text: 'info@hipervinculo.net · +1 (786) 529-0679\n2645 Executive Park Dr, Suite 146, Weston, FL 33331' },
-      { title: 'Next step', text: 'Let’s review the campaign history, confirm media spend, and coordinate access and approvals to prepare the launch.' },
+  trackingService: {
+    title: 'Setup, Tracking & CRM',
+    headline: 'Follow the Contact, Not Just the Click',
+    mediaSpend: 'USD 1,000',
+    mediaSpendLabel: 'Initial Setup · One-Time Payment',
+    description:
+      'Tracking connects spend with inquiries. Commercial follow-up identifies which contacts were qualified and which opportunities progressed. We assess your system before promising any automatic connection.',
+    includes: [
+      { title: 'Tag Manager & GA4', description: 'Review or configuration of Google Tag Manager and GA4 where appropriate: website tags and analytics.' },
+      { title: 'Form Conversions', description: 'Conversions for successfully submitted forms, with duplicate prevention and the originating campaign identified.' },
+      { title: 'Call Tracking', description: 'Actual calls where technically feasible. Phone clicks are tracked as secondary signals only.' },
+      { title: 'Enhanced Conversions for Leads', description: 'Where appropriate and when the applicable requirements are met.' },
+      { title: 'Quality Signals Back to Google Ads', description: 'CRM stages can be sent back to Google Ads to guide optimization. Without a CRM, we propose a simple shared register — purchasing one is not required.' },
+      { title: 'Pre-Launch Website Checks', description: 'Working forms and contact buttons, mobile experience, correct delivery of inquiries and promoted availability. Coordination, not a redesign.' },
     ],
   },
-];
+  investment: {
+    title: 'Investment',
+    headline: 'Hipervínculo Fees and Media Spend Are Separate — All Amounts in USD',
+    setup: {
+      label: 'Initial Setup',
+      rate: 'USD 1,000',
+      basis: 'One-time payment, at the start',
+      description:
+        'Audit of the previous account, research and initial structure; creation or restructuring of campaigns and ads; configuration or review of standard tracking and pre-launch checks.',
+    },
+    management: {
+      label: 'Monthly Management',
+      rate: 'USD 1,500/mo',
+      basis: 'One Google Ads account · up to USD 10,000/mo in media spend',
+      description:
+        'The agreed Search campaigns, English and Spanish ads where appropriate, ongoing optimization, search-query and negative-keyword reviews, tracking checks, monthly report and meeting, and coordination on lead quality.',
+    },
+    totals: {
+      title: 'Estimated Monthly Total',
+      rows: [
+        { label: 'Media spend · paid directly to Google', value: 'USD 3,000–5,000' },
+        { label: 'Monthly management · Hipervínculo', value: 'USD 1,500' },
+        { label: 'Initial setup · Hipervínculo (first month only)', value: 'USD 1,000' },
+        { label: 'First month total', value: 'USD 5,500–7,500' },
+        { label: 'Following months total', value: 'USD 4,500–6,500' },
+      ],
+      note: 'Management covers up to USD 10,000/month in media spend. Any increase in spend or scope will be quoted and agreed before it takes effect. The initial media range is preliminary, subject to account history and demand validation, and does not guarantee results.',
+    },
+    clientPays: {
+      title: 'Paid Directly by Client',
+      items: [
+        { name: 'Google Ads Media Spend', detail: 'USD 3,000–5,000/mo recommended, billed directly by Google' },
+        { name: 'Third-Party Licenses & Tools', detail: 'CRM, call tracking or other software, if required' },
+        { name: 'Custom Integrations', detail: 'Complex CRM integrations or development, quoted separately' },
+        { name: 'Website Administration', detail: 'Changes performed by your website administrator' },
+      ],
+    },
+    paymentTerms: {
+      title: 'Payment Terms',
+      subtitle: 'Simple and transparent',
+      rows: [
+        { label: 'Initial setup', value: 'USD 1,000, paid upfront' },
+        { label: 'Monthly management', value: 'USD 1,500/mo, paid upfront' },
+        { label: 'Media spend', value: 'Paid directly to Google' },
+        { label: 'Media spend covered', value: 'Up to USD 10,000/mo' },
+        { label: 'Evaluation period', value: '90 days, recommended' },
+      ],
+      note: 'Setup and management are invoiced in advance. Google bills advertising directly to the client. The client retains ownership and control of the account, data and history.',
+    },
+    timeline: {
+      title: 'Initial Evaluation Period',
+      duration: '90',
+      durationUnit: 'Days',
+      description:
+        'We recommend 90 days as an initial evaluation period to prepare, launch, refine and decide the next step with real evidence. It is not a guarantee of closings or a mandatory contractual commitment.',
+    },
+  },
+  terms: {
+    title: 'Terms & Conditions',
+    headline: 'What You Need to Know',
+    sections: [
+      { title: '90-Day Evaluation Period', description: 'A recommended period to gather data and evaluate quality and opportunities. It is not a guarantee of results or a mandatory commitment.', icon: 'calendar' },
+      { title: 'Payments in Advance', description: 'The initial setup and monthly management are paid upfront.', icon: 'dollar' },
+      { title: 'Media Spend', description: 'Google bills all advertising directly to Industrial Advisors. It is separate from Hipervínculo fees.', icon: 'dollar' },
+      { title: 'Management Coverage', description: 'The monthly fee covers one Google Ads account and up to USD 10,000/month in media spend.', icon: 'files' },
+      { title: 'Changes in Scope', description: 'Any increase in spend or scope will be quoted and agreed before it takes effect.', icon: 'clock' },
+      { title: 'Existing Website', description: 'Campaigns use the existing website. No redesign, new website or landing pages are included.', icon: 'globe' },
+      { title: 'Property Availability', description: 'No property is advertised as available without confirmation from Industrial Advisors.', icon: 'shield' },
+      { title: 'Account Ownership', description: 'The Google Ads account, analytics properties, data and history remain the property of Industrial Advisors.', icon: 'shield' },
+      { title: 'No Guaranteed Results', description: 'We do not guarantee lead volume, cost per lead, rankings, sales or closed transactions.', icon: 'files' },
+      { title: 'Budget Changes', description: 'Media budget increases or reductions are made only with written approval from Industrial Advisors.', icon: 'clock' },
+    ],
+  },
+  legalTerms: {
+    title: 'Agreement Details',
+    sections: [
+      {
+        heading: 'Fees & Payment',
+        items: [
+          'Initial setup: USD 1,000, one-time payment, paid upfront at the start.',
+          'Monthly management: USD 1,500 per month, paid upfront, covering one Google Ads account and up to USD 10,000/month in media spend.',
+          'All media spend is paid directly by Industrial Advisors to Google. Hipervínculo does not invoice or mark up media spend.',
+          'Any increase in media spend above USD 10,000/month or in scope will be quoted and agreed in writing before it takes effect.',
+        ],
+      },
+      {
+        heading: 'Scope of Services',
+        items: [
+          'Audit of the previous account, demand research, creation or restructuring of Google Search campaigns and ads in English and Spanish.',
+          'Standard tracking setup or review, pre-launch website checks, ongoing optimization, monthly report and meeting, and lead quality coordination.',
+          'Not included: website creation or redesign, new landing pages, SEO, social media management, third-party licenses, complex CRM integrations and additional development.',
+          'Performance Max, Display and YouTube may be evaluated later; they are not included in the base launch.',
+        ],
+      },
+      {
+        heading: 'Client Responsibilities',
+        items: [
+          'Provide timely access to Google Ads and analytics, and coordination with the website administrator.',
+          'Provide current inventory and availability, and approve ads and property information before launch.',
+          'Respond to contacts in a timely manner and share feedback on quality and commercial progress.',
+        ],
+      },
+      {
+        heading: 'Ownership & Data',
+        items: [
+          'Industrial Advisors retains ownership and control of the Google Ads account, data and history at all times.',
+          'Hipervínculo retains its proprietary frameworks, templates and methodologies.',
+        ],
+      },
+      {
+        heading: 'Performance Disclaimer',
+        items: [
+          'Keyword examples are hypotheses to validate; they are not search-volume or CPC data.',
+          'We do not guarantee lead volume, cost per lead, Google rankings, sales, profitability or closed transactions. Results also depend on inventory, demand and commercial follow-up.',
+        ],
+      },
+      {
+        heading: 'Confidentiality & Independence',
+        items: [
+          'Both parties agree to maintain the confidentiality of proprietary information, pricing, campaign data and account credentials shared during this engagement.',
+          'Hipervínculo LLC acts at all times as an independent contractor.',
+        ],
+      },
+    ],
+  },
+  launchQuestions: {
+    title: 'Launch Preparation',
+    headline: 'Four Answers to Refine the Initial Plan',
+    description: 'These answers will help us refine the initial plan and coordinate with your team. Please share them with Hipervínculo to prepare the launch.',
+    questions: iaQuestions,
+  },
+  contact: {
+    title: 'Ready to Launch?',
+    headline: 'Let’s Connect Industrial Searches With Real Opportunities',
+    description:
+      'Let’s review the campaign history, confirm media spend, and coordinate access and approvals to prepare the launch — using your existing website, with transparent investment and follow-up on every commercial opportunity.',
+    email: 'info@hipervinculo.net',
+    phone: '+1 (786) 529-0679',
+    address: '2645 Executive Park Dr, Suite 146\nWeston, FL 33331',
+    website: 'hipervinculo.net',
+    cta: 'Coordinate Launch',
+  },
+};
