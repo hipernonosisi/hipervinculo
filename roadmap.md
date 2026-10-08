@@ -1,6 +1,6 @@
 # Active tasks
-- [ ] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
+- [x] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
 - [x] Add the proposal to the existing admin menu.
-- [ ] Verify the revised PDF visually and replace the downloadable deliverable.
-- [ ] Verify the revised public proposal navigation and download.
+- [x] Verify the revised 16-page PDF visually and replace the downloadable deliverable; no blank pages, clipping or overlap.
+- [x] Verify the revised public proposal and download; corrected inherited heading contrast, confirmed English title and answer-to-email flow.
 - [ ] Verify the admin menu while signed in — blocked: no managed auth account matches the requesting user.
