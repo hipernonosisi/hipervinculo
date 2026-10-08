@@ -23,7 +23,7 @@ const s = StyleSheet.create({
   priceDetail: { fontSize: 8, lineHeight: 1.5, marginTop: 3 },
   price: { fontSize: 15, fontWeight: 700, flexShrink: 0 },
   coverNote: { fontSize: 8, lineHeight: 1.7, marginTop: 12 },
-  bottomStrip: { paddingHorizontal: 50, paddingVertical: 22, flexDirection: 'row', justifyContent: 'space-between', fontSize: 7, color: palette.muted, backgroundColor: palette.white },
+  bottomStrip: { paddingHorizontal: 50, paddingVertical: 28, flexDirection: 'row', justifyContent: 'space-between', fontSize: 7, color: palette.muted, backgroundColor: palette.white },
   accent: { width: 36, height: 3, backgroundColor: palette.lime, marginBottom: 20 },
   eyebrow: { fontSize: 8, color: palette.muted, marginBottom: 10, fontWeight: 700 },
   title: { fontSize: 25, fontWeight: 700, color: palette.green, lineHeight: 1.2, marginBottom: 16 },
