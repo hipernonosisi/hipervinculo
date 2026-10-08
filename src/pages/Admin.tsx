@@ -33,6 +33,7 @@ import { ScottsdaleInstituteProposal } from '@/components/proposals/ScottsdaleIn
 import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
 import { EzBrickProposal } from '@/components/proposals/EzBrickProposal';
+import { IndustrialAdvisorsProposal } from '@/components/proposals/IndustrialAdvisorsProposal';
 import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
@@ -51,6 +52,7 @@ const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
 const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 const proposalItems = [
+  { id: 'industrial-advisors', name: 'Industrial Advisors / IA Miami', category: 'Google Ads', Icon: Building, component: IndustrialAdvisorsProposal },
   { id: 'ez-brick', name: 'EZ Brick', category: 'Advertising', Icon: Building, component: EzBrickProposal },
   { id: 'hazim-law', name: 'Hazim Law, PLLC', category: 'Website + Advertising', Icon: Scale, component: HazimLawProposal },
   { id: 'ramotar-peptide', name: 'Ramotar Peptide Marketplace', category: 'E-commerce', Icon: Package, component: RamotarPeptideProposal },
