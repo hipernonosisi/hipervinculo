@@ -1,0 +1,8 @@
+@font-face { font-family: 'IA Jakarta'; src: url('/fonts/jakarta-regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'IA Jakarta'; src: url('/fonts/jakarta-bold.ttf') format('truetype'); font-weight: 700 900; font-display: swap; }
+.ia-proposal { font-family: 'IA Jakarta', sans-serif; --ia-logo-surface: 0 0% 100%; }
+.ia-proposal h1, .ia-proposal h2, .ia-proposal h3, .ia-proposal p { font-family: inherit; letter-spacing: 0; }
+.ia-logo { background: hsl(var(--ia-logo-surface)); }
+.ia-section { scroll-margin-top: 105px; }
+.ia-proposal textarea { font-family: inherit; }
+@media (prefers-reduced-motion: no-preference) { .ia-proposal { scroll-behavior: smooth; } }

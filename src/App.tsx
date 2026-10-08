@@ -42,6 +42,7 @@ const AmazonPpcEbookSuccess = lazy(() => import("./pages/AmazonPpcEbookSuccess")
 const EbookAnalytics = lazy(() => import("./pages/EbookAnalytics"));
 const PersonajesStatus = lazy(() => import("./pages/PersonajesStatus"));
 const Terms = lazy(() => import("./pages/Terms"));
+const IndustrialAdvisorsProposal = lazy(() => import("./components/proposals/IndustrialAdvisorsProposal"));
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,7 @@ const App = () => (
               <Route path="/publicidad-en-amazon/gracias" element={<AmazonPpcEbookSuccess />} />
               <Route path="/personajes-status" element={<PersonajesStatus />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/proposal/industrial-advisors" element={<IndustrialAdvisorsProposal />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
