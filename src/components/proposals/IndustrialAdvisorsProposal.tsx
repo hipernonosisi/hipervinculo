@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Check, Copy, Download, Loader2, Mail, Search, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Check, Copy, Download, Loader2, Mail, ExternalLink } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
