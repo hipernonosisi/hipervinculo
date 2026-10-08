@@ -1,5 +1,6 @@
 # Active tasks
-- [ ] Create the complete Spanish Industrial Advisors proposal and public share link.
-- [ ] Add the proposal to the existing admin menu.
-- [ ] Provide PDF download and verify all pages visually.
-- [ ] Verify navigation, answers, sharing and mobile layout.
+- [x] Create the complete Spanish Industrial Advisors proposal and public share link.
+- [x] Add the proposal to the existing admin menu.
+- [x] Provide PDF download and verify all 16 pages visually; margin checks passed with no clipping or overlap.
+- [x] Verify public navigation, answers, sharing and mobile layout.
+- [ ] Verify the admin menu while signed in — blocked: no managed auth account matches the requesting user.
