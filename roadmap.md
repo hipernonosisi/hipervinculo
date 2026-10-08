@@ -1,4 +1,5 @@
 # Active tasks
+- [ ] Inspect previous proposals and save their actual format as the mandatory design reference.
 - [x] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
 - [x] Add the proposal to the existing admin menu.
 - [x] Verify the revised 16-page PDF visually and replace the downloadable deliverable; no blank pages, clipping or overlap.
