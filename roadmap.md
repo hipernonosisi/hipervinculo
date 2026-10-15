@@ -1,4 +1,8 @@
 # Active tasks
+- [x] Create Supreme Herbals proposal in Spanish for Klaus, $1,250/month for 24 months, using the established proposal format.
+- [x] Add Supreme Herbals to the admin proposal menu and public noindex route.
+- [x] Verify 18 A4 PDF pages, safe text margins, successful UI download, desktop/mobile layout and no runtime errors.
+- [ ] Verify signed-in admin access — blocked: managed session minting failed; requesting user has no matching app account. User must sign in through the preview.
 - [x] Inspect previous proposals and save their actual format as the mandatory design reference.
 - [x] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
 - [x] Add the proposal to the existing admin menu.

@@ -43,6 +43,7 @@ const EbookAnalytics = lazy(() => import("./pages/EbookAnalytics"));
 const PersonajesStatus = lazy(() => import("./pages/PersonajesStatus"));
 const Terms = lazy(() => import("./pages/Terms"));
 const IndustrialAdvisorsProposal = lazy(() => import("./components/proposals/IndustrialAdvisorsProposal"));
+const SupremeHerbalsProposal = lazy(() => import("./components/proposals/SupremeHerbalsProposal"));
 
 const queryClient = new QueryClient();
 
@@ -88,6 +89,7 @@ const App = () => (
               <Route path="/personajes-status" element={<PersonajesStatus />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/proposal/industrial-advisors" element={<IndustrialAdvisorsProposal />} />
+              <Route path="/proposal/supreme-herbals" element={<SupremeHerbalsProposal />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
