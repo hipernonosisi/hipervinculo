@@ -34,6 +34,7 @@ import { LokFoodsProposal } from '@/components/proposals/LokFoodsProposal';
 import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
 import { EzBrickProposal } from '@/components/proposals/EzBrickProposal';
 import { IndustrialAdvisorsProposal } from '@/components/proposals/IndustrialAdvisorsProposal';
+import { SupremeHerbalsProposal } from '@/components/proposals/SupremeHerbalsProposal';
 import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
 
 import { LalenasFoodReport } from '@/components/reports/LalenasFoodReport';
@@ -52,6 +53,7 @@ const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
 const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 const proposalItems = [
+  { id: 'supreme-herbals', name: 'Supreme Herbals', category: 'Shopify + Meta & Google Ads', Icon: ShoppingBag, component: SupremeHerbalsProposal },
   { id: 'industrial-advisors', name: 'Industrial Advisors / IA Miami', category: 'Google Ads', Icon: Building, component: IndustrialAdvisorsProposal },
   { id: 'ez-brick', name: 'EZ Brick', category: 'Advertising', Icon: Building, component: EzBrickProposal },
   { id: 'hazim-law', name: 'Hazim Law, PLLC', category: 'Website + Advertising', Icon: Scale, component: HazimLawProposal },
