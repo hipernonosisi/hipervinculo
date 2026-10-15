@@ -1,4 +1,5 @@
 # Active tasks
+- [x] Add the 5% sales commission on top of the Supreme Herbals monthly retainer, including the $10,000 / $500 example in web and PDF; verified UI download and 19 nonblank A4 pages.
 - [x] Create Supreme Herbals proposal in Spanish for Klaus, $1,250/month for 24 months, using the established proposal format.
 - [x] Add Supreme Herbals to the admin proposal menu and public noindex route.
 - [x] Verify 18 A4 PDF pages, safe text margins, successful UI download, desktop/mobile layout and no runtime errors.
