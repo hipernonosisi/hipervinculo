@@ -10,6 +10,12 @@ export interface SupremeHerbalsSection {
 }
 
 export const supremeHerbalsContent = {
+  pricing: {
+    label: 'RETAINER + COMISIÓN SOBRE VENTAS',
+    monthly: 'USD 1,250 / mes + 5% sobre ventas',
+    commitment: '24 meses · USD 30,000 en retainer fijo + comisión variable',
+    exclusions: 'Medios y costos de terceros no incluidos',
+  },
   cover: {
     eyebrow: 'PROPUESTA DE SERVICIOS',
     title: 'Shopify &\nPublicidad Digital',
@@ -137,15 +143,17 @@ export const supremeHerbalsContent = {
       note: 'El riesgo económico pertenece exclusivamente a Supreme Herbals. Hipervínculo no financia publicidad, inventario, descuentos, pérdidas ni costos operativos.',
     },
     {
-      eyebrow: 'INVERSIÓN', title: 'Nuestra oferta económica', headline: 'USD 1,250 al mes · Compromiso mínimo de 24 meses.', layout: 'investment',
+      eyebrow: 'INVERSIÓN', title: 'Nuestra oferta económica', headline: 'USD 1,250 al mes + 5% sobre ventas · 24 meses.', layout: 'investment',
       intro: 'Este es el acuerdo integral ofrecido: desarrollo de Shopify incorporado al retainer, mantenimiento mensual y gestión de publicidad en Meta y Google Ads, sin una tarifa inicial separada por la web.',
       items: [
         { title: 'Retainer mensual', description: 'USD 1,250 · Se paga 100% por adelantado antes de cada periodo mensual de servicio.' },
-        { title: 'Compromiso de honorarios', description: 'USD 30,000 · Equivale a 24 mensualidades de USD 1,250; no supone un cobro único anticipado de las 24 mensualidades.' },
+        { title: 'Comisión adicional sobre ventas', description: '5% sobre las ventas de la tienda Shopify, adicional al retainer mensual. Se calcula sobre ventas, no sobre utilidades, y se liquida mensualmente con el reporte de ventas de Shopify.' },
+        { title: 'Ejemplo mensual', description: 'USD 10,000 en ventas × 5% = USD 500 de comisión adicional. Honorarios del mes: USD 1,250 de retainer + USD 500 = USD 1,750. El mismo cálculo proporcional aplica a cualquier monto de ventas.' },
+        { title: 'Compromiso de retainer fijo', description: 'USD 30,000 · Equivale a 24 mensualidades de USD 1,250, más la comisión variable del 5% sobre ventas; no supone un cobro único anticipado de las 24 mensualidades.' },
         { title: 'Desarrollo inicial', description: 'Incluido en el retainer bajo el compromiso de 24 meses, junto con catálogo, configuración de tienda e instalación/configuración de la aplicación de suscripciones.' },
         { title: 'Operación mensual incluida', description: 'Mantenimiento ordinario de Shopify, administración de ambas cuentas publicitarias, anuncios estáticos, optimización y reporte mensual.' },
       ],
-      note: 'Publicidad y costos de terceros se pagan aparte. USD 30,000 representa solo honorarios de Hipervínculo, no el costo total del negocio. Sin compromiso de 24 meses, la web y el servicio mensual deberán cotizarse nuevamente por separado.',
+      note: 'USD 30,000 representa únicamente el retainer fijo de 24 meses: no incluye la comisión adicional del 5% sobre ventas, publicidad ni costos de terceros. Sin compromiso de 24 meses, la web y el servicio mensual deberán cotizarse nuevamente por separado.',
     },
     {
       eyebrow: 'ALCANCE ECONÓMICO', title: 'Costos y responsabilidades', headline: 'Qué no está incluido en nuestros honorarios.', layout: 'table',
@@ -163,6 +171,7 @@ export const supremeHerbalsContent = {
       items: [
         { title: 'Compromiso mínimo', description: 'Supreme Herbals se compromete a 24 meses de retainer. La fecha de inicio y el calendario de facturación se confirmarán por escrito. No se incorpora una renovación automática a esta propuesta.' },
         { title: 'Pago anticipado', description: 'Cada mensualidad se factura mediante Square y debe pagarse antes del periodo correspondiente. El impago podrá suspender el trabajo y las campañas; no se exige pagar los 24 meses en una sola transacción.' },
+        { title: 'Comisión sobre ventas', description: 'Además del retainer mensual, Supreme Herbals pagará a Hipervínculo el 5% sobre las ventas de su tienda Shopify. La comisión se liquida al cierre de cada mes con el reporte de Shopify y se factura por separado del retainer anticipado; no depende de que la operación genere utilidades.' },
         { title: 'Cambios y servicios adicionales', description: 'Las solicitudes que excedan este alcance se cotizan y aprueban por escrito. El precio integral depende del plazo pactado; una modalidad sin ese compromiso requiere una propuesta nueva.' },
         { title: 'Salida anticipada', description: 'La decisión unilateral de detener campañas o dejar de usar la tienda no elimina por sí sola el compromiso de 24 meses. Cualquier terminación anticipada y sus condiciones deberán acordarse por escrito entre las partes.' },
         { title: 'No partnership', description: 'Hipervínculo actúa como proveedor independiente. No participa en utilidades, no asume pérdidas, no adquiere participación en la marca y no garantiza éxito ni rentabilidad.' },
@@ -182,7 +191,7 @@ export const supremeHerbalsContent = {
     {
       eyebrow: 'IMPLEMENTACIÓN', title: 'Preparación y lanzamiento', headline: 'El siguiente paso es confirmar los insumos.', layout: 'steps',
       items: [
-        { title: 'Confirmar el acuerdo', description: 'Aprobar USD 1,250 mensuales por 24 meses, determinar fecha de inicio y presupuesto de medios que Supreme Herbals está dispuesta a arriesgar.' },
+        { title: 'Confirmar el acuerdo', description: 'Aprobar USD 1,250 mensuales por 24 meses más el 5% sobre ventas de Shopify, determinar fecha de inicio y presupuesto de medios que Supreme Herbals está dispuesta a arriesgar.' },
         { title: 'Habilitar las cuentas', description: 'Abrir Shopify, completar pagos y datos empresariales, crear los canales sociales faltantes y conceder accesos administrativos y publicitarios.' },
         { title: 'Entregar catálogo y respaldo', description: 'Facilitar enlace/ASIN de todos los productos Amazon, materiales de marca, etiquetas, pruebas de terceros, certificaciones vigentes y políticas validadas.' },
         { title: 'Resolver logística y suscripción', description: 'Elegir laboratorio o Amazon MCF, confirmar costos e inventario y aprobar la aplicación, frecuencias, descuentos y condiciones de compras recurrentes.' },

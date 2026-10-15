@@ -49,7 +49,7 @@ export function SupremeHerbalsPDFDocument({ logoBase64 }: { logoBase64: string }
     {content.sections.map(section => <Page key={section.title} size="A4" style={s.page}>
       <Head eyebrow={section.eyebrow} title={section.title} headline={section.headline} />
       {section.intro && <Text style={{ ...s.body, marginBottom: 20 }}>{section.intro}</Text>}
-      {section.layout === 'investment' && <View wrap={false} style={{ backgroundColor: theme.green, padding: 22, marginBottom: 20, borderRadius: 8 }}><Text style={{ ...s.eyebrow, marginBottom: 10 }}>RETAINER INTEGRAL</Text><Text style={{ fontSize: 34, color: theme.paper, fontFamily: 'Helvetica-Bold' }}>USD 1,250 / mes</Text><Text style={{ fontSize: 11, color: theme.inverseMuted, marginTop: 12 }}>24 meses · USD 30,000 en honorarios</Text><Text style={{ fontSize: 9, color: theme.inverseMuted, marginTop: 8 }}>Medios y costos de terceros no incluidos</Text></View>}
+      {section.layout === 'investment' && <View wrap={false} style={{ backgroundColor: theme.green, padding: 22, marginBottom: 20, borderRadius: 8 }}><Text style={{ ...s.eyebrow, marginBottom: 10 }}>{content.pricing.label}</Text><Text style={{ fontSize: 24, color: theme.paper, fontFamily: 'Helvetica-Bold' }}>{content.pricing.monthly}</Text><Text style={{ fontSize: 11, color: theme.inverseMuted, marginTop: 12 }}>{content.pricing.commitment}</Text><Text style={{ fontSize: 9, color: theme.inverseMuted, marginTop: 8 }}>{content.pricing.exclusions}</Text></View>}
       <Items section={section} />{section.note && <Text style={s.note}>{section.note}</Text>}<Footer />
     </Page>)}
     <Page size="A4" style={{ fontFamily: 'Helvetica', backgroundColor: theme.paper }}>
