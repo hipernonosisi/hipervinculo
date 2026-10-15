@@ -37,7 +37,7 @@ function Items({ section }: { section: SupremeHerbalsSection }) {
 }
 export function SupremeHerbalsPDFDocument({ logoBase64 }: { logoBase64: string }) {
   return <Document title="Propuesta Supreme Herbals — Hipervínculo" author="Hipervínculo" language="es">
-    <Page size="A4" wrap={false} style={{ height: 841.89, fontFamily: 'Helvetica', backgroundColor: theme.paper }}>
+    <Page size="A4" style={{ fontFamily: 'Helvetica', backgroundColor: theme.paper }}>
       <View style={{ paddingHorizontal: 50, paddingTop: 46, paddingBottom: 30 }}><Image src={logoBase64} style={{ height: 30, objectFit: 'contain', objectPositionX: 'left' }} /></View>
       <View style={s.coverPanel}><Text style={{ ...s.eyebrow, marginBottom: 24 }}>{content.cover.eyebrow}</Text><Text style={s.coverTitle}>{content.cover.title}</Text><Text style={{ fontSize: 22, color: theme.paper, fontFamily: 'Helvetica-Bold', marginTop: 24 }}>{content.cover.client}</Text><Text style={{ fontSize: 12, color: theme.inverseMuted, marginTop: 10 }}>{content.cover.recipient}</Text><View style={{ ...s.accent, marginTop: 26, marginBottom: 22 }} /><Text style={{ fontSize: 11.5, color: theme.inverseMuted, lineHeight: 1.7, maxWidth: 360 }}>{content.cover.tagline}</Text></View>
       <View style={{ paddingHorizontal: 50, paddingVertical: 24, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={s.footerText}>CONFIDENCIAL</Text><Text style={s.footerText}>hipervinculo.net</Text></View>
@@ -52,7 +52,7 @@ export function SupremeHerbalsPDFDocument({ logoBase64 }: { logoBase64: string }
       {section.layout === 'investment' && <View wrap={false} style={{ backgroundColor: theme.green, padding: 22, marginBottom: 20, borderRadius: 8 }}><Text style={{ ...s.eyebrow, marginBottom: 10 }}>RETAINER INTEGRAL</Text><Text style={{ fontSize: 34, color: theme.paper, fontFamily: 'Helvetica-Bold' }}>USD 1,250 / mes</Text><Text style={{ fontSize: 11, color: theme.inverseMuted, marginTop: 12 }}>24 meses · USD 30,000 en honorarios</Text><Text style={{ fontSize: 9, color: theme.inverseMuted, marginTop: 8 }}>Medios y costos de terceros no incluidos</Text></View>}
       <Items section={section} />{section.note && <Text style={s.note}>{section.note}</Text>}<Footer />
     </Page>)}
-    <Page size="A4" wrap={false} style={{ height: 841.89, fontFamily: 'Helvetica', backgroundColor: theme.paper }}>
+    <Page size="A4" style={{ fontFamily: 'Helvetica', backgroundColor: theme.paper }}>
       <View style={{ paddingHorizontal: 50, paddingTop: 46, paddingBottom: 30 }}><Image src={logoBase64} style={{ height: 30, objectFit: 'contain', objectPositionX: 'left' }} /></View>
       <View style={s.coverPanel}><Text style={s.eyebrow}>HABLEMOS</Text><Text style={{ ...s.coverTitle, marginTop: 16 }}>{content.contact.title}</Text><Text style={{ fontSize: 12, color: theme.inverseMuted, marginTop: 20 }}>{content.contact.subtitle}</Text><View style={{ ...s.accent, marginTop: 30 }} />{[content.contact.name, content.contact.email, content.contact.phone, content.contact.website, content.contact.address].map(text => <Text key={text} style={{ fontSize: 11, color: theme.paper, lineHeight: 1.7, marginBottom: 9 }}>{text}</Text>)}</View>
       <View style={{ padding: 24 }}><Text style={{ ...s.footerText, textAlign: 'center' }}>CONFIDENCIAL · HIPERVÍNCULO</Text></View>
