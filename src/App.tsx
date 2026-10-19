@@ -44,6 +44,7 @@ const PersonajesStatus = lazy(() => import("./pages/PersonajesStatus"));
 const Terms = lazy(() => import("./pages/Terms"));
 const IndustrialAdvisorsProposal = lazy(() => import("./components/proposals/IndustrialAdvisorsProposal"));
 const SupremeHerbalsProposal = lazy(() => import("./components/proposals/SupremeHerbalsProposal"));
+const LalenasFoodProposal = lazy(() => import("./components/proposals/LalenasFoodProposal"));
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/proposal/industrial-advisors" element={<IndustrialAdvisorsProposal />} />
               <Route path="/proposal/supreme-herbals" element={<SupremeHerbalsProposal />} />
+              <Route path="/proposal/lalenas-food" element={<LalenasFoodProposal />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
