@@ -55,7 +55,7 @@ const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'
 
 const proposalItems = [
   { id: 'supreme-herbals', name: 'Supreme Herbals', category: 'Shopify + Meta & Google Ads', Icon: ShoppingBag, component: SupremeHerbalsProposal },
-  { id: 'lalenas-food', name: 'Lalenas Food', category: 'Google   { id: 'supreme-herbals', name: 'Supreme Herbals', category: 'Shopify + Meta & Google Ads', Icon: ShoppingBag, component: SupremeHerbalsProposal }, Meta Ads + Shopify', Icon: ShoppingBag, component: LalenasFoodProposal },
+  { id: 'lalenas-food', name: 'Lalenas Food', category: 'Google y Meta Ads + Shopify', Icon: ShoppingBag, component: LalenasFoodProposal },
   { id: 'industrial-advisors', name: 'Industrial Advisors / IA Miami', category: 'Google Ads', Icon: Building, component: IndustrialAdvisorsProposal },
   { id: 'ez-brick', name: 'EZ Brick', category: 'Advertising', Icon: Building, component: EzBrickProposal },
   { id: 'hazim-law', name: 'Hazim Law, PLLC', category: 'Website + Advertising', Icon: Scale, component: HazimLawProposal },
