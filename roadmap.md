@@ -1,6 +1,6 @@
 # Active tasks
-- [ ] Create separate Supreme Herbals Shopify-only Spanish proposal with approved USD 3,000 completion payment and up to 10 products; register in admin without changing old offer.
-- [ ] Test approved commercial rules, download PDF and visually inspect every page; deliver internal scope/cost estimate and unsent email.
+- [x] Create separate Supreme Herbals Shopify-only Spanish proposal with approved USD 3,000 completion payment and up to 10 products; register in admin without changing old offer.
+- [x] Test approved commercial rules (7 tests), download PDF and visually inspect all 12 pages; deliver internal scope/cost estimate and unsent email. Opened new proposal through signed-in admin menu.
 - [ ] Finalize optional commercial tools after Miguel approves exact functions — client PDF remains a draft until approval.
 - [x] Create BESAMIM proposal in English for Johanna, matching established format; public page and admin registration.
 - [x] Validate BESAMIM fee rules (5 tests), actual PDF download and all 14 pages; deliver PDF, internal summary, due-diligence questions and unsent email draft.
@@ -9,7 +9,7 @@
 - [x] Create Supreme Herbals proposal in Spanish for Klaus, $1,250/month for 24 months, using the established proposal format.
 - [x] Add Supreme Herbals to the admin proposal menu and public noindex route.
 - [x] Verify 18 A4 PDF pages, safe text margins, successful UI download, desktop/mobile layout and no runtime errors.
-- [ ] Verify signed-in admin access — blocked: managed session minting failed; requesting user has no matching app account. User must sign in through the preview.
+- [x] Verify signed-in admin access — restored managed session and opened the new Supreme Herbals Shopify proposal through the menu.
 - [x] Inspect previous proposals and save their actual format as the mandatory design reference.
 - [x] Convert Industrial Advisors to English and the established agency proposal format, for web and PDF.
 - [x] Add the proposal to the existing admin menu.
