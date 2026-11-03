@@ -1,4 +1,6 @@
 # Active tasks
+- [ ] Create BESAMIM proposal in English for Johanna, matching established format; public page and admin registration.
+- [ ] Validate BESAMIM fee rules, PDF download and all pages; deliver PDF, internal summary, due-diligence questions and email draft.
 - [x] Create Lalenas Food proposal (Spanish, Sra. Helena): $750/mo no commitment + $500 Shopify redesign; admin menu + public route; 9-page PDF verified.
 - [x] Add the sales commission on top of the Supreme Herbals monthly retainer (5%, then reduced to 3%), including the USD 10,000 / USD 300 example in web and PDF; verified UI download and 19 nonblank A4 pages.
 - [x] Create Supreme Herbals proposal in Spanish for Klaus, $1,250/month for 24 months, using the established proposal format.
