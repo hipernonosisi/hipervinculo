@@ -45,5 +45,5 @@ export function BesamimProposal() {
   </div>;
 }
 export default function BesamimPublicProposal() {
-  return <><Helmet><title>BESAMIM Proposal Perfumes | Hipervínculo</title><meta name="description" content="Shopify and paid media growth partnership proposal for BESAMIM Perfumes, prepared for Johanna." /><meta name="robots" content="noindex,nofollow" /><meta property="og:title" content="BESAMIM Proposal Perfumes | Hipervínculo" /><meta property="og:description" content="A strategic direct-to-consumer growth partnership for BESAMIM Perfumes." /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /></Helmet><div className="h-screen"><BesamimProposal /></div></>;
+  return <><Helmet><title>BESAMIM Perfumes Proposal | Hipervínculo</title><meta name="description" content="Shopify and paid media growth partnership proposal for BESAMIM Perfumes, prepared for Johanna." /><meta name="robots" content="noindex,nofollow" /><meta property="og:title" content="BESAMIM Perfumes Proposal | Hipervínculo" /><meta property="og:description" content="A strategic direct-to-consumer growth partnership for BESAMIM Perfumes." /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /></Helmet><div className="h-screen"><BesamimProposal /></div></>;
 }
