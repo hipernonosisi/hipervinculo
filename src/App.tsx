@@ -44,6 +44,7 @@ const PersonajesStatus = lazy(() => import("./pages/PersonajesStatus"));
 const Terms = lazy(() => import("./pages/Terms"));
 const IndustrialAdvisorsProposal = lazy(() => import("./components/proposals/IndustrialAdvisorsProposal"));
 const SupremeHerbalsProposal = lazy(() => import("./components/proposals/SupremeHerbalsProposal"));
+const SupremeHerbalsShopifyProposal = lazy(() => import("./components/proposals/SupremeHerbalsShopifyProposal"));
 const LalenasFoodProposal = lazy(() => import("./components/proposals/LalenasFoodProposal"));
 const BesamimProposal = lazy(() => import("./components/proposals/BesamimProposal"));
 
@@ -92,6 +93,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/proposal/industrial-advisors" element={<IndustrialAdvisorsProposal />} />
               <Route path="/proposal/supreme-herbals" element={<SupremeHerbalsProposal />} />
+              <Route path="/proposal/supreme-herbals-shopify" element={<SupremeHerbalsShopifyProposal />} />
               <Route path="/proposal/lalenas-food" element={<LalenasFoodProposal />} />
               <Route path="/proposal/besamim-perfumes" element={<BesamimProposal />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
