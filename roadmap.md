@@ -1,4 +1,7 @@
 # Active tasks
+- [ ] Create separate Supreme Herbals Shopify-only Spanish proposal with approved USD 3,000 completion payment and up to 10 products; register in admin without changing old offer.
+- [ ] Test approved commercial rules, download PDF and visually inspect every page; deliver internal scope/cost estimate and unsent email.
+- [ ] Finalize optional commercial tools after Miguel approves exact functions — client PDF remains a draft until approval.
 - [x] Create BESAMIM proposal in English for Johanna, matching established format; public page and admin registration.
 - [x] Validate BESAMIM fee rules (5 tests), actual PDF download and all 14 pages; deliver PDF, internal summary, due-diligence questions and unsent email draft.
 - [x] Create Lalenas Food proposal (Spanish, Sra. Helena): $750/mo no commitment + $500 Shopify redesign; admin menu + public route; 9-page PDF verified.

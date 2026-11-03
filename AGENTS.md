@@ -1,4 +1,5 @@
 # Architecture rules
+- Standalone Supreme Herbals Shopify content has its own typed module shared by web, PDF and terms tests, preserving the older integrated proposal unchanged and reusing its document theme.
 - BESAMIM uses a single typed English content and fee-calculation module shared by its web preview, PDF and financial tests; reuse the established proposal theme to preserve presentation and commercial consistency.
 - Supreme Herbals uses one typed Spanish content module for the web proposal and PDF, with a document-scoped semantic theme matching the established proposal format, so commercial terms and presentation stay consistent.
 - Industrial Advisors proposal content lives in one typed content module consumed by both the web proposal and the PDF renderer, so commercial terms stay consistent.
