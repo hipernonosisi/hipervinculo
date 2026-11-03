@@ -35,6 +35,7 @@ import { HazimLawProposal } from '@/components/proposals/HazimLawProposal';
 import { EzBrickProposal } from '@/components/proposals/EzBrickProposal';
 import { IndustrialAdvisorsProposal } from '@/components/proposals/IndustrialAdvisorsProposal';
 import { SupremeHerbalsProposal } from '@/components/proposals/SupremeHerbalsProposal';
+import { SupremeHerbalsShopifyProposal } from '@/components/proposals/SupremeHerbalsShopifyProposal';
 import { LalenasFoodProposal } from '@/components/proposals/LalenasFoodProposal';
 import { BesamimProposal } from '@/components/proposals/BesamimProposal';
 import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
@@ -55,6 +56,7 @@ const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
 const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 const proposalItems = [
+  { id: 'supreme-herbals-shopify', name: 'Supreme Herbals — Solo Shopify', category: 'Desarrollo Shopify · Borrador', Icon: ShoppingBag, component: SupremeHerbalsShopifyProposal },
   { id: 'besamim-perfumes', name: 'BESAMIM Perfumes', category: 'Shopify + Growth Partnership', Icon: ShoppingBag, component: BesamimProposal },
   { id: 'supreme-herbals', name: 'Supreme Herbals', category: 'Shopify + Meta & Google Ads', Icon: ShoppingBag, component: SupremeHerbalsProposal },
   { id: 'lalenas-food', name: 'Lalenas Food', category: 'Google y Meta Ads + Shopify', Icon: ShoppingBag, component: LalenasFoodProposal },
