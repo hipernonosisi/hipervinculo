@@ -2,7 +2,9 @@ import React from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
 import { PassThrough } from 'node:stream';
 import App from './App';
+import { redirectedPath } from './lib/seoRoutes';
 export { prerenderPaths } from './lib/seoRoutes';
+export { legacyRedirects } from './lib/seoRoutes';
 export async function renderPage(url: string) {
   const context: { helmet?: Record<string, { toString(): string }> } = {};
   const html = await new Promise<string>((resolve, reject) => {
@@ -11,7 +13,7 @@ export async function renderPage(url: string) {
     destination.on('data', chunk => chunks.push(Buffer.from(chunk)));
     destination.on('end', () => resolve(Buffer.concat(chunks).toString()));
     destination.on('error', reject);
-    const stream = renderToPipeableStream(<App ssrUrl={url} helmetContext={context} />, {
+    const stream = renderToPipeableStream(<App ssrUrl={redirectedPath(url)} helmetContext={context} />, {
       onAllReady() { stream.pipe(destination); }, onShellError: reject,
       onError(error) { reject(error); },
     });

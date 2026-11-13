@@ -1,4 +1,6 @@
 # Active tasks
+- [x] Add requested legacy browser/static-document redirects and a prerendered NotFound error document; preserve existing pages.
+- [ ] Unknown-path raw HTML/HTTP 404: blocked by Lovable hosting's fixed index.html fallback; requires host-level custom error-document support. Server-side 301 redirects also require hosting support.
 - [x] SEO audit: bilingual static HTML and hydration; verify page content without JavaScript.
 - [x] SEO audit: metadata, canonical URLs, noindex, route normalization, sitemap and business schema.
 - [x] SEO audit: approved commercial statements, About founder/reviews, accessible H1 and final counters.

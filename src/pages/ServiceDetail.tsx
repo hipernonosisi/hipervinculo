@@ -1,4 +1,5 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import NotFound from './NotFound';
 import { Link } from '@/components/LocalizedLink';
 import { ArrowRight, X, Check, ArrowLeft, Magnet, ShoppingCart, Globe, Package, Search, Activity, Code, Palette, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -57,7 +58,7 @@ export default function ServiceDetail() {
   const serviceInfo = getServiceInfo();
 
   if (!serviceInfo) {
-    return <Navigate to="/services" replace />;
+    return <NotFound />;
   }
 
   const { service, type } = serviceInfo;

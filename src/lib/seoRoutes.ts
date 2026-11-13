@@ -50,6 +50,22 @@ for (const project of portfolioProjects) {
 }
 export const publicPaths = Object.keys(pageMetadata);
 export const prerenderPaths = [...publicPaths, ...publicPaths.map(p => localizedPath(p, 'es')), '/book', '/audit', '/preview', '/404'];
+export const legacyRedirects: Record<string, string> = {
+  '/About': '/about',
+  '/index.html': '/',
+  '/ads': '/amazon-ads',
+  '/services/meta-ads': '/services',
+  '/services/google-ads': '/services',
+  '/services/seo': '/services',
+  '/services/ecommerce': '/services',
+  '/services/email-marketing': '/services',
+  '/services/lead-generation': '/services',
+};
+export function redirectedPath(path: string) {
+  const normalized = normalizedPath(path);
+  const destination = legacyRedirects[basePath(normalized)];
+  return destination ? localizedPath(destination, normalized.startsWith('/es/') ? 'es' : 'en') : normalized;
+}
 export function basePath(path: string) { return path.replace(/^\/es(?=\/|$)/, '') || '/'; }
 export function localizedPath(path: string, language: 'en' | 'es') {
   const base = basePath(path);
