@@ -16,3 +16,4 @@
 - [x] Verify the revised 16-page PDF visually and replace the downloadable deliverable; no blank pages, clipping or overlap.
 - [x] Verify the revised public proposal and download; corrected inherited heading contrast, confirmed English title and answer-to-email flow.
 - [x] Verify the admin menu while signed in — opened Hazim Law, EZ Brick and Industrial Advisors through the proposal menu with the managed session.- [x] Rebuild Industrial Advisors on the exact EZ Brick format (same fonts, colors, page order, hierarchy), web and PDF; compared against the user's EZ Brick PDF example.
+- [x] Sofibella Wear proposal (EN): $13,500 website project + optional $1,500/mo operations

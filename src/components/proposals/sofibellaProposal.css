@@ -1,0 +1,13 @@
+.sf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+.sf-option { border: 1px solid var(--sh-rule); border-radius: 12px; padding: 26px; background: var(--sh-paper); }
+.sf-option h3 { font-size: 18px; font-weight: 800; color: var(--sh-green); margin: 4px 0 14px; }
+.sf-option strong { display: block; font-size: 26px; font-weight: 800; color: var(--sh-green); line-height: 1.2; }
+.sf-cadence { display: block; font-size: 12px; margin: 6px 0 18px; opacity: .75; }
+.sf-option ul { list-style: none; padding: 0; margin: 0 0 16px; }
+.sf-option li { font-size: 13px; padding: 7px 0 7px 16px; border-bottom: 1px solid var(--sh-rule); position: relative; line-height: 1.5; }
+.sf-option li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--sh-lime); }
+.sf-excludes { font-size: 12px; line-height: 1.6; opacity: .8; }
+.sf-recommended { background: var(--sh-green); border-color: var(--sh-green); color: var(--sh-paper); }
+.sf-recommended h3, .sf-recommended strong { color: var(--sh-paper); }
+.sf-recommended li { border-color: rgba(255,255,255,.15); }
+@media (max-width: 767px) { .sf-options { grid-template-columns: 1fr; } .sf-option { padding: 20px; } .sf-option strong { font-size: 22px; } }

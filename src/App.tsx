@@ -47,6 +47,7 @@ const SupremeHerbalsProposal = lazy(() => import("./components/proposals/Supreme
 const SupremeHerbalsShopifyProposal = lazy(() => import("./components/proposals/SupremeHerbalsShopifyProposal"));
 const LalenasFoodProposal = lazy(() => import("./components/proposals/LalenasFoodProposal"));
 const BesamimProposal = lazy(() => import("./components/proposals/BesamimProposal"));
+const SofibellaProposal = lazy(() => import("./components/proposals/SofibellaProposal"));
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,7 @@ const App = () => (
               <Route path="/proposal/supreme-herbals-shopify" element={<SupremeHerbalsShopifyProposal />} />
               <Route path="/proposal/lalenas-food" element={<LalenasFoodProposal />} />
               <Route path="/proposal/besamim-perfumes" element={<BesamimProposal />} />
+              <Route path="/proposal/sofibella" element={<SofibellaProposal />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
