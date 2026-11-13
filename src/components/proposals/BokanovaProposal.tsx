@@ -1,140 +1,183 @@
 import { Helmet } from 'react-helmet-async';
-import { ArrowUpRight, Check, Mail } from 'lucide-react';
+import { ArrowUpRight, CheckCircle, Mail, Globe, Search, Calendar, DollarSign, Megaphone, ClipboardList, AlertCircle } from 'lucide-react';
+import logoHipervinculo from '@/assets/logo-hipervinculo.png';
 import { bokanovaContent as c, bokanovaLiveUrl, bokanovaMailto } from './data/bokanovaContent';
-import './bokanova/bokanova.css';
 
-const Placeholder = ({ label, ratio }: { label: string; ratio: string }) => (
-  <div className="bk-ph w-full" style={{ aspectRatio: ratio.replace(':', ' / ') }}>Captura: {label} · {ratio}</div>
+const PAGE_WIDTH = 794;
+const PAGE_HEIGHT = 1123;
+const GREEN = '#2d4a2d';
+const LIME = '#8BC34A';
+const SOFT = '#f8f9f5';
+
+function Page({ children, bg = '#ffffff', id }: { children: React.ReactNode; bg?: string; id?: string }) {
+  return (
+    <div id={id} className="relative mx-auto mb-8 shadow-xl overflow-visible scroll-mt-20" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: bg }}>
+      <div className="px-16 py-14 flex flex-col" style={{ minHeight: `${PAGE_HEIGHT}px` }}>{children}</div>
+    </div>
+  );
+}
+
+function SectionHead({ eyebrow, title, headline }: { eyebrow: string; title: string; headline?: string }) {
+  return (
+    <>
+      <div className="w-10 h-1 rounded-full mb-8" style={{ backgroundColor: LIME }} />
+      <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2" style={{ color: LIME }}>{eyebrow}</p>
+      <h2 className="text-3xl font-extrabold mb-1" style={{ color: GREEN }}>{title}</h2>
+      {headline && <p className="font-medium mb-5" style={{ color: LIME }}>{headline}</p>}
+    </>
+  );
+}
+
+function LiveBox() {
+  return (
+    <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 rounded-2xl px-6 py-5 mt-6" style={{ backgroundColor: GREEN }}>
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Versión provisional del sitio nuevo</p>
+        <p className="text-[15px] font-bold break-all" style={{ color: '#c5e86a' }}>{bokanovaLiveUrl}</p>
+      </div>
+      <ArrowUpRight className="w-6 h-6 text-white/70 shrink-0" />
+    </a>
+  );
+}
+
+const Item = ({ title, text, Icon = CheckCircle }: { title?: string; text: string; Icon?: React.ElementType }) => (
+  <div className="flex gap-3 p-4 rounded-xl" style={{ backgroundColor: SOFT }}>
+    <Icon className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: LIME }} />
+    <div>
+      {title && <h3 className="font-bold text-[14px]" style={{ color: GREEN }}>{title}</h3>}
+      <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{text}</p>
+    </div>
+  </div>
 );
 
-const Section = ({ n, dark, id, children }: { n: string; dark?: boolean; id?: string; children: React.ReactNode }) => (
-  <section id={id} className={`${dark ? 'bk-dark' : ''} px-6 sm:px-10 py-20 sm:py-28 scroll-mt-20`}>
-    <div className="max-w-6xl mx-auto"><div className="bk-num mb-6">{n}</div>{children}</div>
-  </section>
-);
-
-const LiveLink = ({ children, className }: { children: React.ReactNode; className: string }) => (
-  <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className={className}>{children}<ArrowUpRight className="w-4 h-4" /></a>
-);
+const about = {
+  title: 'Hipervínculo',
+  headline: 'Agencia de marketing digital con más de 20 años de trayectoria',
+  description: 'Diseñamos sitios web y gestionamos campañas digitales orientadas a resultados medibles. Hoy ya gestionamos las campañas de Google Ads de Bokanova, por lo que conocemos a fondo a sus pacientes y lo que buscan.',
+  stats: [['20+', 'Años de experiencia'], ['200+', 'Clientes atendidos'], ['$92M+', 'Ventas rastreadas']],
+};
 
 export function BokanovaProposal() {
   const { cover, current, built, seo, ads, timeline, needs, investment, close } = c;
   return (
-    <div className="bk min-h-full">
-      <header className="bk-header sticky top-0 z-30 px-4 sm:px-8 py-3 flex items-center justify-between gap-3">
-        <span className="text-sm sm:text-base font-medium truncate">{c.header}</span>
-        <LiveLink className="bk-btn bk-btn-line text-sm shrink-0 !py-2 !px-4 !min-h-0">Ver el sitio nuevo</LiveLink>
-      </header>
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-between gap-3 px-4 py-3 bg-white border-b sticky top-0 z-10">
+        <h2 className="text-sm sm:text-lg font-bold truncate" style={{ color: GREEN }}>{c.header}</h2>
+        <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-white shrink-0" style={{ backgroundColor: LIME }}>
+          Ver el sitio nuevo <ArrowUpRight className="w-4 h-4" />
+        </a>
+      </div>
 
-      <section className="bk-dark px-6 sm:px-10 pt-20 pb-24 sm:pt-28 sm:pb-32">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="bk-gold uppercase tracking-[0.2em] text-xs sm:text-sm mb-6">{cover.eyebrow}</p>
-            <h1 className="text-4xl sm:text-6xl leading-[1.05] mb-6">{cover.title}</h1>
-            <div className="bk-rule mb-6" />
-            <p className="text-lg sm:text-xl bk-muted mb-6 max-w-xl">{cover.subtitle}</p>
-            <p className="text-sm bk-gold mb-10">{cover.preparedFor}</p>
+      <div className="flex-1 overflow-auto bg-gray-300 py-8 px-4">
+        {/* Portada */}
+        <div className="relative mx-auto mb-8 shadow-xl flex flex-col" style={{ width: `${PAGE_WIDTH}px`, minHeight: `${PAGE_HEIGHT}px`, backgroundColor: '#ffffff' }}>
+          <div className="px-16 pt-14 pb-8"><img src={logoHipervinculo} width={500} height={144} alt="Hipervínculo" className="h-10 w-auto" /></div>
+          <div className="flex-1 flex flex-col justify-center px-16" style={{ backgroundColor: GREEN }}>
+            <p className="text-sm font-bold tracking-[0.2em] uppercase mb-6" style={{ color: LIME }}>{cover.eyebrow}</p>
+            <h1 className="text-5xl font-extrabold text-white mb-5 leading-[1.1]">{cover.title}</h1>
+            <p className="text-xl text-white/60 mb-6">{cover.subtitle}</p>
+            <p className="text-sm text-white/80 mb-8">{cover.preparedFor}</p>
+            <div className="w-20 h-1 rounded-full mb-8" style={{ backgroundColor: LIME }} />
             <div className="flex flex-wrap gap-3">
-              <LiveLink className="bk-btn bk-btn-gold">Ver el sitio nuevo en vivo</LiveLink>
-              <a href="#inversion" className="bk-btn bk-btn-line">Ver la inversión</a>
+              <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold" style={{ backgroundColor: LIME, color: GREEN }}>Ver el sitio nuevo en vivo <ArrowUpRight className="w-4 h-4" /></a>
+              <a href="#inversion" className="inline-flex items-center rounded-full px-5 py-3 text-sm font-bold text-white border border-white/40">Ver la inversión</a>
             </div>
           </div>
-          <Placeholder label="Portada del sitio nuevo (escritorio)" ratio="16:10" />
+          <div className="px-16 py-6 flex items-center justify-between bg-white">
+            <p className="text-xs text-gray-400 tracking-wider uppercase">Confidencial</p>
+            <p className="text-xs text-gray-400">hipervinculo.net</p>
+          </div>
         </div>
-      </section>
 
-      <Section n="01">
-        <h2 className="text-3xl sm:text-5xl mb-6 max-w-3xl">{current.title}</h2>
-        <p className="text-lg bk-muted mb-10 max-w-3xl">{current.intro}</p>
-        <ul className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-          {current.points.map(p => <li key={p} className="flex gap-4 border-t pt-5" style={{ borderColor: 'hsl(var(--bk-line))' }}><span className="bk-gold mt-1">—</span><span>{p}</span></li>)}
-        </ul>
-      </Section>
+        <Page>
+          <SectionHead eyebrow="Quiénes somos" title={about.title} headline={about.headline} />
+          <p className="text-gray-600 leading-relaxed mb-10 text-[15px]">{about.description}</p>
+          <div className="grid grid-cols-3 gap-6">
+            {about.stats.map(([v, l]) => (
+              <div key={l} className="text-center py-6 rounded-2xl" style={{ backgroundColor: SOFT }}>
+                <div className="text-4xl font-extrabold mb-1" style={{ color: LIME }}>{v}</div>
+                <div className="text-xs text-gray-500 font-medium">{l}</div>
+              </div>
+            ))}
+          </div>
+        </Page>
 
-      <Section n="02" dark>
-        <h2 className="text-3xl sm:text-5xl mb-4">{built.title}</h2>
-        <p className="text-lg bk-muted mb-10 max-w-2xl">{built.intro}</p>
-        <div className="grid md:grid-cols-[2fr_1fr] gap-4 mb-12">
-          <Placeholder label="Página de inicio completa" ratio="16:9" />
-          <Placeholder label="Vista en teléfono" ratio="9:16" />
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {built.cards.map(([t, d]) => <div key={t} className="bk-card p-6"><h3 className="text-xl bk-gold mb-3">{t}</h3><p className="text-sm bk-muted leading-relaxed">{d}</p></div>)}
-        </div>
-        <div className="grid sm:grid-cols-3 gap-4 mt-12">
-          <Placeholder label="Visor de antes y después" ratio="4:3" />
-          <Placeholder label="Turismo dental" ratio="4:3" />
-          <Placeholder label="Vitrina de tecnología" ratio="4:3" />
-        </div>
-      </Section>
+        <Page>
+          <SectionHead eyebrow="Punto de partida" title={current.title} />
+          <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{current.intro}</p>
+          <div className="space-y-2.5">{current.points.map(p => <Item key={p} text={p} Icon={AlertCircle} />)}</div>
+        </Page>
 
-      <Section n="03">
-        <h2 className="text-3xl sm:text-5xl mb-6 max-w-3xl">{seo.title}</h2>
-        <p className="text-lg bk-muted mb-10 max-w-3xl">{seo.intro}</p>
-        <ol className="grid md:grid-cols-2 gap-6 mb-14">
-          {seo.points.map((p, i) => <li key={p} className="bk-card p-6 flex gap-4"><span className="font-serif bk-gold text-2xl" style={{ fontFamily: 'Fraunces, serif' }}>{i + 1}</span><span>{p}</span></li>)}
-        </ol>
-        <blockquote className="text-2xl sm:text-3xl max-w-4xl leading-snug" style={{ fontFamily: 'Fraunces, serif' }}><span className="bk-gold">“</span>{seo.closing}<span className="bk-gold">”</span></blockquote>
-      </Section>
+        <Page>
+          <SectionHead eyebrow="Lo que ya está construido" title={built.title} headline={built.intro} />
+          <div className="grid grid-cols-2 gap-2.5">{built.cards.map(([t, d]) => <Item key={t} title={t} text={d} Icon={Globe} />)}</div>
+          <LiveBox />
+        </Page>
 
-      <Section n="04" dark>
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
-          <h2 className="text-3xl sm:text-5xl">{ads.title}</h2>
-          <p className="text-lg bk-muted leading-relaxed">{ads.text}</p>
-        </div>
-      </Section>
+        <Page>
+          <SectionHead eyebrow="Posicionamiento en buscadores" title={seo.title} />
+          <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{seo.intro}</p>
+          <div className="space-y-2.5 mb-6">{seo.points.map(p => <Item key={p} text={p} Icon={Search} />)}</div>
+          <div className="rounded-2xl px-8 py-6" style={{ backgroundColor: GREEN }}>
+            <p className="text-lg font-bold text-white leading-snug">{seo.closing}</p>
+          </div>
+          <div className="mt-10">
+            <SectionHead eyebrow="Campañas" title={ads.title} />
+            <Item text={ads.text} Icon={Megaphone} />
+          </div>
+        </Page>
 
-      <Section n="05">
-        <h2 className="text-3xl sm:text-5xl mb-12">{timeline.title}</h2>
-        <div className="grid md:grid-cols-4 gap-8 relative">
-          {timeline.steps.map(([t, d, when], i) => (
-            <div key={t} className="border-t-2 pt-6" style={{ borderColor: 'hsl(var(--bk-gold))' }}>
-              <p className="bk-gold text-sm mb-2">Paso {i + 1}</p>
-              <h3 className="text-2xl mb-3">{t}</h3>
-              <p className="bk-muted text-sm mb-3">{d}</p>
-              {when && <p className="text-sm font-medium bk-gold">{when}</p>}
+        <Page>
+          <SectionHead eyebrow="Calendario" title={timeline.title} />
+          <div className="grid grid-cols-4 gap-3 mb-12">
+            {timeline.steps.map(([t, d, when], i) => (
+              <div key={t} className="rounded-xl p-4" style={{ backgroundColor: SOFT, borderTop: `3px solid ${LIME}` }}>
+                <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: LIME }}>Paso {i + 1}</p>
+                <h3 className="font-bold text-[14px] mb-1.5" style={{ color: GREEN }}>{t}</h3>
+                <p className="text-[12px] text-gray-500 leading-relaxed mb-2">{d}</p>
+                {when && <p className="text-[12px] font-bold" style={{ color: GREEN }}>{when}</p>}
+              </div>
+            ))}
+          </div>
+          <SectionHead eyebrow="Requisitos" title={needs.title} />
+          <div className="space-y-2.5">{needs.items.map(i => <Item key={i} text={i} Icon={ClipboardList} />)}</div>
+        </Page>
+
+        <Page bg={SOFT} id="inversion">
+          <SectionHead eyebrow="Inversión" title={investment.title} />
+          <div className="rounded-[20px] p-8 mb-5" style={{ backgroundColor: GREEN }}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-3">{investment.web.name}</p>
+            <div className="font-extrabold mb-3" style={{ color: '#c5e86a', fontSize: '44px', lineHeight: 1 }}>{investment.web.price}</div>
+            <p className="text-[13px] text-white/85 leading-relaxed"><strong>Forma de pago:</strong> {investment.web.payment}</p>
+          </div>
+          <div className="bg-white rounded-2xl p-6 mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <div className="flex items-center gap-2 mb-4"><DollarSign className="w-4 h-4" style={{ color: LIME }} /><h3 className="font-bold text-[15px]" style={{ color: GREEN }}>Incluye</h3></div>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+              {investment.web.includes.map(i => <p key={i} className="flex gap-2 text-[13px] text-gray-700"><CheckCircle className="w-4 h-4 shrink-0 mt-0.5" style={{ color: LIME }} />{i}</p>)}
             </div>
-          ))}
-        </div>
-      </Section>
+          </div>
+          <div className="bg-white rounded-2xl p-6" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <div className="flex items-center gap-2"><Calendar className="w-4 h-4" style={{ color: LIME }} /><h3 className="font-bold text-[15px]" style={{ color: GREEN }}>{investment.seo.name}</h3></div>
+              <span className="text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap" style={{ backgroundColor: 'rgba(139,195,74,0.15)', color: GREEN }}>{investment.seo.badge}</span>
+            </div>
+            <ul className="space-y-2">
+              {investment.seo.points.map(p => <li key={p} className="flex gap-2 text-[13px] text-gray-600 leading-relaxed"><span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: LIME }} />{p}</li>)}
+            </ul>
+          </div>
+        </Page>
 
-      <Section n="06" dark>
-        <h2 className="text-3xl sm:text-5xl mb-10">{needs.title}</h2>
-        <ul className="grid sm:grid-cols-2 gap-4 max-w-4xl">
-          {needs.items.map(i => <li key={i} className="flex gap-3"><Check className="w-5 h-5 bk-gold shrink-0 mt-0.5" /><span>{i}</span></li>)}
-        </ul>
-      </Section>
-
-      <Section n="07" id="inversion">
-        <h2 className="text-3xl sm:text-5xl mb-10">{investment.title}</h2>
-        <div className="bk-dark rounded p-8 sm:p-12 mb-6">
-          <p className="bk-gold uppercase tracking-[0.2em] text-xs mb-3">{investment.web.name}</p>
-          <p className="text-5xl sm:text-7xl mb-6" style={{ fontFamily: 'Fraunces, serif' }}>{investment.web.price}</p>
-          <p className="text-lg bk-muted mb-8 max-w-2xl"><strong className="bk-gold font-medium">Forma de pago:</strong> {investment.web.payment}</p>
-          <div className="bk-rule mb-6" />
-          <p className="text-sm uppercase tracking-widest bk-gold mb-4">Incluye</p>
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {investment.web.includes.map(i => <li key={i} className="flex gap-2 text-sm"><Check className="w-4 h-4 bk-gold shrink-0 mt-0.5" />{i}</li>)}
-          </ul>
-        </div>
-        <div className="bk-card p-8 sm:p-10">
-          <div className="flex flex-wrap items-center gap-4 mb-6"><h3 className="text-2xl sm:text-3xl">{investment.seo.name}</h3><span className="bk-badge">{investment.seo.badge}</span></div>
-          <ul className="space-y-4 max-w-3xl">
-            {investment.seo.points.map(p => <li key={p} className="flex gap-3"><span className="bk-gold">—</span><span>{p}</span></li>)}
-          </ul>
-        </div>
-      </Section>
-
-      <section className="bk-dark px-6 sm:px-10 py-24 sm:py-32 text-center">
-        <div className="max-w-2xl mx-auto">
-          <div className="bk-num mb-6">08</div>
-          <h2 className="text-4xl sm:text-6xl mb-6">{close.title}</h2>
-          <p className="text-lg bk-muted mb-10">{close.text}</p>
-          <a href={bokanovaMailto} className="bk-btn bk-btn-gold"><Mail className="w-4 h-4" />{close.cta}</a>
-          <p className="mt-16 text-sm bk-muted">{close.signature}</p>
-          <p className="mt-2 text-xs bk-gold">{close.footer}</p>
-        </div>
-      </section>
+        <Page>
+          <SectionHead eyebrow="Siguiente paso" title={close.title} />
+          <p className="text-gray-600 leading-relaxed mb-6 text-[15px]">{close.text}</p>
+          <a href={bokanovaMailto} className="inline-flex items-center gap-2 self-start rounded-full px-6 py-3 text-sm font-bold text-white" style={{ backgroundColor: GREEN }}><Mail className="w-4 h-4" />{close.cta}</a>
+          <LiveBox />
+          <div className="mt-auto pt-10 border-t border-gray-200 flex items-center justify-between">
+            <img src={logoHipervinculo} width={500} height={144} alt="Hipervínculo" className="h-8 w-auto" />
+            <p className="text-[12px] text-gray-500">{close.signature}</p>
+          </div>
+        </Page>
+      </div>
     </div>
   );
 }
@@ -142,8 +185,8 @@ export function BokanovaProposal() {
 export default function BokanovaPublicProposal() {
   const title = 'Propuesta · Nuevo sitio web de Bokanova | Hipervínculo';
   const desc = 'Propuesta privada para Bokanova Dental Center: rediseño de bokanova.mx y plan de posicionamiento en buscadores.';
-  return <>
+  return <div className="h-screen">
     <Helmet><title>{title}</title><meta name="description" content={desc} /><meta name="robots" content="noindex, nofollow" /><meta property="og:title" content={title} /><meta property="og:description" content={desc} /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /></Helmet>
     <BokanovaProposal />
-  </>;
+  </div>;
 }
