@@ -38,6 +38,7 @@ import { SupremeHerbalsProposal } from '@/components/proposals/SupremeHerbalsPro
 import { SupremeHerbalsShopifyProposal } from '@/components/proposals/SupremeHerbalsShopifyProposal';
 import { LalenasFoodProposal } from '@/components/proposals/LalenasFoodProposal';
 import { BesamimProposal } from '@/components/proposals/BesamimProposal';
+import { BokanovaProposal } from '@/components/proposals/BokanovaProposal';
 import { SofibellaProposal } from '@/components/proposals/SofibellaProposal';
 import { RamotarPeptideProposal } from '@/components/proposals/RamotarPeptideProposal';
 
@@ -57,6 +58,7 @@ const SessionReplays = lazy(() => import('@/components/admin/SessionReplays'));
 const EbookDailyReport = lazy(() => import('@/components/admin/EbookDailyReport'));
 
 const proposalItems = [
+  { id: 'bokanova', name: 'Bokanova Dental Center', category: 'Sitio web + SEO', Icon: ShoppingBag, component: BokanovaProposal },
   { id: 'sofibella', name: 'Sofibella Wear', category: 'Shopify + E-commerce Operations', Icon: ShoppingBag, component: SofibellaProposal },
   { id: 'supreme-herbals-shopify', name: 'Supreme Herbals — Solo Shopify', category: 'Desarrollo Shopify · Borrador', Icon: ShoppingBag, component: SupremeHerbalsShopifyProposal },
   { id: 'besamim-perfumes', name: 'BESAMIM Perfumes', category: 'Shopify + Growth Partnership', Icon: ShoppingBag, component: BesamimProposal },

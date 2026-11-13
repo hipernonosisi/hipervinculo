@@ -49,6 +49,7 @@ const SupremeHerbalsProposal = lazy(() => import("./components/proposals/Supreme
 const SupremeHerbalsShopifyProposal = lazy(() => import("./components/proposals/SupremeHerbalsShopifyProposal"));
 const LalenasFoodProposal = lazy(() => import("./components/proposals/LalenasFoodProposal"));
 const BesamimProposal = lazy(() => import("./components/proposals/BesamimProposal"));
+const BokanovaProposal = lazy(() => import("./components/proposals/BokanovaProposal"));
 const SofibellaProposal = lazy(() => import("./components/proposals/SofibellaProposal"));
 
 const queryClient = new QueryClient();
@@ -90,6 +91,7 @@ const pageRoutes = (nested = false) => (<>
               <Route path={nested ? "proposal/supreme-herbals-shopify" : "/proposal/supreme-herbals-shopify"} element={<SupremeHerbalsShopifyProposal />} />
               <Route path={nested ? "proposal/lalenas-food" : "/proposal/lalenas-food"} element={<LalenasFoodProposal />} />
               <Route path={nested ? "proposal/besamim-perfumes" : "/proposal/besamim-perfumes"} element={<BesamimProposal />} />
+              <Route path={nested ? "proposal/bokanova" : "/proposal/bokanova"} element={<BokanovaProposal />} />
               <Route path={nested ? "proposal/sofibella" : "/proposal/sofibella"} element={<SofibellaProposal />} />
               <Route path="*" element={<NotFound />} />
 
