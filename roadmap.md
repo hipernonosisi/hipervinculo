@@ -1,4 +1,9 @@
 # Active tasks
+- [ ] SEO audit: bilingual static HTML and hydration; verify page content without JavaScript.
+- [ ] SEO audit: metadata, canonical URLs, noindex, route normalization, sitemap and business schema.
+- [ ] SEO audit: approved commercial statements, About founder/reviews, accessible H1 and final counters.
+- [ ] SEO audit: images, loading, analytics timing and mobile controls; preserve forms and tracking IDs.
+- [ ] SEO audit: tests, browser verification and completion report with hosting limitations.
 - [x] Create separate Supreme Herbals Shopify-only Spanish proposal with approved USD 3,000 completion payment and up to 10 products; register in admin without changing old offer.
 - [x] Test approved commercial rules (7 tests), download PDF and visually inspect all 12 pages; deliver internal scope/cost estimate and unsent email. Opened new proposal through signed-in admin menu.
 - [ ] Finalize optional commercial tools after Miguel approves exact functions — client PDF remains a draft until approval.
