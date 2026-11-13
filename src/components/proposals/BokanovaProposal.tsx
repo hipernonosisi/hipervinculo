@@ -1,7 +1,12 @@
+import { useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowUpRight, CheckCircle, Mail, Globe, Search, Calendar, DollarSign, Megaphone, ClipboardList, AlertCircle } from 'lucide-react';
+import { ArrowUpRight, CheckCircle, Mail, Globe, Search, Calendar, DollarSign, Megaphone, ClipboardList, AlertCircle, Download } from 'lucide-react';
 import logoHipervinculo from '@/assets/logo-hipervinculo.png';
 import { bokanovaContent as c, bokanovaLiveUrl, bokanovaMailto } from './data/bokanovaContent';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { pdf } from '@react-pdf/renderer';
+import { BokanovaPDFDocument } from './pdf/BokanovaPDFDocument';
 
 const PAGE_WIDTH = 794;
 const PAGE_HEIGHT = 1123;
@@ -57,15 +62,64 @@ const about = {
   stats: [['20+', 'Años de experiencia'], ['200+', 'Clientes atendidos'], ['$92M+', 'Ventas rastreadas']],
 };
 
+function imageToBase64(url: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
 export function BokanovaProposal() {
   const { cover, current, built, seo, ads, timeline, needs, investment, close } = c;
+  const { toast } = useToast();
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handleDownloadPDF = useCallback(async () => {
+    setIsExporting(true);
+    toast({ title: 'Generando PDF...', description: 'Un momento, estamos preparando el documento.' });
+    try {
+      const logoBase64 = await imageToBase64(logoHipervinculo);
+      const blob = await pdf(<BokanovaPDFDocument logoBase64={logoBase64} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Proposal-Bokanova-Hipervinculo.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 30_000);
+      toast({ title: 'PDF descargado', description: 'La propuesta se guardó en tu equipo.' });
+    } catch (error) {
+      console.error('PDF export error:', error);
+      toast({ title: 'Error', description: 'No se pudo generar el PDF.', variant: 'destructive' });
+    } finally {
+      setIsExporting(false);
+    }
+  }, [toast]);
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between gap-3 px-4 py-3 bg-white border-b sticky top-0 z-10">
         <h2 className="text-sm sm:text-lg font-bold truncate" style={{ color: GREEN }}>{c.header}</h2>
-        <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-white shrink-0" style={{ backgroundColor: LIME }}>
-          Ver el sitio nuevo <ArrowUpRight className="w-4 h-4" />
-        </a>
+        <div className="flex items-center gap-2 shrink-0">
+          <Button onClick={handleDownloadPDF} size="sm" variant="outline" className="gap-2" disabled={isExporting}>
+            <Download className="w-4 h-4" />
+            {isExporting ? 'Generando...' : 'Download PDF'}
+          </Button>
+          <a href={bokanovaLiveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-white shrink-0" style={{ backgroundColor: LIME }}>
+            Ver el sitio nuevo <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
       </div>
 
       <div className="flex-1 overflow-auto bg-gray-300 py-8 px-4">
