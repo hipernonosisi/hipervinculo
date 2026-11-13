@@ -163,9 +163,9 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
             <div className="lg:col-span-4">
               <Link to="/" className="inline-block mb-4">
                 <img 
-                  src={logoFull} width={566} height={160} 
+                  src={logoFull} width={500} height={144} 
                   alt="Hipervínculo" 
-                  className="h-12" 
+                  className="h-12 w-auto" 
                 />
               </Link>
               <p className="text-muted-foreground mb-6">

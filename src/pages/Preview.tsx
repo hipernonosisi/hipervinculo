@@ -609,7 +609,7 @@ export default function Preview() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-transparent'}`}>
         <div className="container flex h-16 items-center justify-between">
           <Link to="/">
-            <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-10" />
+            <ContentImage src={logoFull} width={500} height={144} loading="eager" alt="Hipervínculo" className="h-10 w-auto" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>{p.header.bookACall}</a>
@@ -1028,7 +1028,7 @@ export default function Preview() {
       <footer className="py-10 border-t border-border bg-background">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link to="/">
-            <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8" />
+            <ContentImage src={logoFull} width={500} height={144} loading="eager" alt="Hipervínculo" className="h-8 w-auto" />
           </Link>
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. {p.footer.rights}</p>
           <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>

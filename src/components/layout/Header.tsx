@@ -64,8 +64,8 @@ export function Header() {
       <div className="container flex h-36 items-center justify-between">
         {/* Logo */}
         <Link to={localizedPath('/', language)} className="flex items-center">
-          <img src={logoFull} width={566} height={160} alt="Hipervínculo" className="h-20 hidden sm:block" />
-          <img src={logoSymbol} width={100} height={123} alt="Hipervínculo" className="h-16 sm:hidden" />
+          <img src={logoFull} width={500} height={144} alt="Hipervínculo" className="h-20 w-auto hidden sm:block" />
+          <img src={logoSymbol} width={100} height={123} alt="Hipervínculo" className="h-16 w-auto sm:hidden" />
         </Link>
 
         {/* Desktop Navigation */}

@@ -455,7 +455,7 @@ export default function HipervinculoAds() {
         style={{ backgroundColor: navBg, boxShadow: navShadow }}
       >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
+          <ContentImage src={logoFull} width={500} height={144} loading="eager" alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
           <div className="hidden items-center gap-8 text-sm text-primary/70 md:flex">
             <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">{t.nav.howItWorks}</a>
@@ -1070,7 +1070,7 @@ export default function HipervinculoAds() {
               transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
               className="mb-8 inline-flex rounded-2xl px-5 py-4"
             >
-              <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-10 w-auto" />
+              <ContentImage src={logoFull} width={500} height={144} loading="eager" alt="Hipervínculo" className="h-10 w-auto" />
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -1112,7 +1112,7 @@ export default function HipervinculoAds() {
       {/* FOOTER */}
       <footer className="border-t border-primary/10 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8 w-auto" />
+          <ContentImage src={logoFull} width={500} height={144} loading="eager" alt="Hipervínculo" className="h-8 w-auto" />
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary/65">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-primary transition-colors hover:text-accent">{t.footer.home}</a>
