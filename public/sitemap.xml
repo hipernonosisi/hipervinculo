@@ -1,168 +1,396 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Homepage -->
+<!-- lastmod records the actual November 13, 2026 route/content/head revision; never refreshed on build. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hipervinculo.net/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/"/>
   </url>
-  
-  <!-- About -->
+  <url>
+    <loc>https://hipervinculo.net/es/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/"/>
+  </url>
   <url>
     <loc>https://hipervinculo.net/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/about?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/about?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/about"/>
   </url>
-  
-  <!-- Services -->
+  <url>
+    <loc>https://hipervinculo.net/es/about</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/about"/>
+  </url>
   <url>
     <loc>https://hipervinculo.net/services</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/services?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Service Detail Pages -->
-  <url>
-    <loc>https://hipervinculo.net/services/meta-ads</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services"/>
   </url>
   <url>
-    <loc>https://hipervinculo.net/services/google-ads</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/services</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services"/>
   </url>
   <url>
-    <loc>https://hipervinculo.net/services/seo</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/amazon-ads</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/amazon-ads"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/amazon-ads"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/amazon-ads"/>
   </url>
   <url>
-    <loc>https://hipervinculo.net/services/email-marketing</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/amazon-ads</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/amazon-ads"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/amazon-ads"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/amazon-ads"/>
   </url>
   <url>
-    <loc>https://hipervinculo.net/services/ecommerce</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/pricing</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/pricing"/>
   </url>
   <url>
-    <loc>https://hipervinculo.net/services/lead-generation</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/pricing</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/pricing"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/faqs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/faqs"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/faqs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/faqs"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/faqs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/faqs"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/faqs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/faqs"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/contact</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/contact"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/contact</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/contact"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/hiper-influencers</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/hiper-influencers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/hiper-influencers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/hiper-influencers"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/hiper-influencers</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/hiper-influencers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/hiper-influencers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/hiper-influencers"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/privacy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/privacy"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/privacy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/privacy"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/terms</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/terms"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/terms</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/terms"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/lead-generation-systems</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/lead-generation-systems"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/lead-generation-systems"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/lead-generation-systems"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/lead-generation-systems</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/lead-generation-systems"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/lead-generation-systems"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/lead-generation-systems"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/conversion-website-development</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/conversion-website-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/conversion-website-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/conversion-website-development"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/conversion-website-development</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/conversion-website-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/conversion-website-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/conversion-website-development"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/ecommerce-growth-partners</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/ecommerce-growth-partners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/ecommerce-growth-partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/ecommerce-growth-partners"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/ecommerce-growth-partners</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/ecommerce-growth-partners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/ecommerce-growth-partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/ecommerce-growth-partners"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/amazon-seller-services</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/amazon-seller-services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/amazon-seller-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/amazon-seller-services"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/amazon-seller-services</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/amazon-seller-services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/amazon-seller-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/amazon-seller-services"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/google-ads-management</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/google-ads-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/google-ads-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/google-ads-management"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/google-ads-management</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/google-ads-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/google-ads-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/google-ads-management"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/services/tracking-attribution</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/tracking-attribution"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/tracking-attribution"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/tracking-attribution"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/services/tracking-attribution</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/tracking-attribution"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/tracking-attribution"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/tracking-attribution"/>
   </url>
   <url>
     <loc>https://hipervinculo.net/services/custom-enterprise-applications</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/custom-enterprise-applications"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/custom-enterprise-applications"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/custom-enterprise-applications"/>
   </url>
-  
-  <!-- Pricing -->
   <url>
-    <loc>https://hipervinculo.net/pricing</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/pricing?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/pricing?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/services/custom-enterprise-applications</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/custom-enterprise-applications"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/custom-enterprise-applications"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/custom-enterprise-applications"/>
   </url>
-  
-  <!-- FAQs -->
   <url>
-    <loc>https://hipervinculo.net/faqs</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/faqs?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/faqs?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://hipervinculo.net/services/brand-identity-manual</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/brand-identity-manual"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/brand-identity-manual"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/brand-identity-manual"/>
   </url>
-  
-  <!-- Contact -->
   <url>
-    <loc>https://hipervinculo.net/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/contact?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/contact?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/services/brand-identity-manual</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/services/brand-identity-manual"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/services/brand-identity-manual"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/services/brand-identity-manual"/>
   </url>
-  
-  <!-- Audit -->
   <url>
-    <loc>https://hipervinculo.net/audit</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/audit?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/audit?lang=es"/>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/portfolio/step-solution-usa</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/step-solution-usa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/step-solution-usa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/step-solution-usa"/>
   </url>
-  
-  <!-- Privacy Policy -->
   <url>
-    <loc>https://hipervinculo.net/privacy</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://hipervinculo.net/es/portfolio/step-solution-usa</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/step-solution-usa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/step-solution-usa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/step-solution-usa"/>
   </url>
-
-  <!-- Terms of Service -->
   <url>
-    <loc>https://hipervinculo.net/terms</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://hipervinculo.net/portfolio/zerma-latin-america</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/zerma-latin-america"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/zerma-latin-america"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/zerma-latin-america"/>
   </url>
-
-  <!-- Portfolio -->
   <url>
-    <loc>https://hipervinculo.net/portfolio</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://hipervinculo.net/es/portfolio/zerma-latin-america</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/zerma-latin-america"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/zerma-latin-america"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/zerma-latin-america"/>
   </url>
-  <url><loc>https://hipervinculo.net/portfolio/step-solution-usa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/zerma-latin-america</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/lbc-cold</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/filtro-laser</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/pulverizadores-industriales</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/stillwater-day-spa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/rasetta-innovations</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/lajex-llc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://hipervinculo.net/portfolio/delios-home</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- Book a call -->
   <url>
-    <loc>https://hipervinculo.net/book</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://hipervinculo.net/portfolio/lbc-cold</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/lbc-cold"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/lbc-cold"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/lbc-cold"/>
   </url>
-
-  <!-- Amazon Ads landing -->
   <url>
-    <loc>https://hipervinculo.net/amazon-ads</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://hipervinculo.net/es/portfolio/lbc-cold</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/lbc-cold"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/lbc-cold"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/lbc-cold"/>
   </url>
-
+  <url>
+    <loc>https://hipervinculo.net/portfolio/filtro-laser</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/filtro-laser"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/filtro-laser"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/filtro-laser"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/filtro-laser</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/filtro-laser"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/filtro-laser"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/filtro-laser"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio/pulverizadores-industriales</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/pulverizadores-industriales"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/pulverizadores-industriales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/pulverizadores-industriales"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/pulverizadores-industriales</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/pulverizadores-industriales"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/pulverizadores-industriales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/pulverizadores-industriales"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio/stillwater-day-spa</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/stillwater-day-spa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/stillwater-day-spa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/stillwater-day-spa"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/stillwater-day-spa</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/stillwater-day-spa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/stillwater-day-spa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/stillwater-day-spa"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio/rasetta-innovations</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/rasetta-innovations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/rasetta-innovations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/rasetta-innovations"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/rasetta-innovations</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/rasetta-innovations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/rasetta-innovations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/rasetta-innovations"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio/lajex-llc</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/lajex-llc"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/lajex-llc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/lajex-llc"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/lajex-llc</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/lajex-llc"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/lajex-llc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/lajex-llc"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/portfolio/delios-home</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/delios-home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/delios-home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/delios-home"/>
+  </url>
+  <url>
+    <loc>https://hipervinculo.net/es/portfolio/delios-home</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hipervinculo.net/portfolio/delios-home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://hipervinculo.net/es/portfolio/delios-home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hipervinculo.net/portfolio/delios-home"/>
+  </url>
 </urlset>

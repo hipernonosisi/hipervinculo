@@ -1,10 +1,8 @@
-import { createRoot } from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import App from "./App.tsx";
-import "./index.css";
-
-createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
-    <App />
-  </HelmetProvider>
-);
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+const root = document.getElementById('root');
+if (root) {
+  if (root.hasAttribute('data-prerendered')) hydrateRoot(root, <App />);
+  else createRoot(root).render(<App />);
+}

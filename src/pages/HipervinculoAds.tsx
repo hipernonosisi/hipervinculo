@@ -1,3 +1,4 @@
+import { ContentImage } from '@/components/ui/content-image';
 import { useEffect, useRef, useState } from 'react';
 import { Globe } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
@@ -272,13 +273,14 @@ const stats = [
 ];
 
 function AnimatedCounter({ end, suffix = '', prefix = '' }: { end: number; suffix?: string; prefix?: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!isInView) return;
     let start = 0;
+    setCount(0);
     const duration = 1800;
     const increment = end / (duration / 16);
     const timer = setInterval(() => {
@@ -293,7 +295,7 @@ function AnimatedCounter({ end, suffix = '', prefix = '' }: { end: number; suffi
     return () => clearInterval(timer);
   }, [isInView, end]);
 
-  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
+  return <span ref={ref}><span className="sr-only">{prefix}{end.toLocaleString('en-US')}{suffix}</span><span aria-hidden="true">{prefix}{count.toLocaleString('en-US')}{suffix}</span></span>;
 }
 
 function FadeIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -429,15 +431,6 @@ function BrandCard({ children, className = '' }: { children: React.ReactNode; cl
 export default function HipervinculoAds() {
   const { language, setLanguage } = useLanguage();
 
-  // Default to English on this page
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    if (!langParam) {
-      setLanguage('en');
-    }
-  }, []);
-
   const t = content[language];
 
   const scrollToHow = () => {
@@ -454,7 +447,7 @@ export default function HipervinculoAds() {
       <SEO
         title={t.seo.title}
         description={t.seo.description}
-        url="https://hipervinculo.net/ads"
+        url="https://hipervinculo.net/amazon-ads"
       />
 
       <motion.nav
@@ -462,7 +455,7 @@ export default function HipervinculoAds() {
         style={{ backgroundColor: navBg, boxShadow: navShadow }}
       >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
+          <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8 w-auto sm:h-9" />
 
           <div className="hidden items-center gap-8 text-sm text-primary/70 md:flex">
             <a href="#como-funciona" className="text-primary transition-colors hover:text-accent">{t.nav.howItWorks}</a>
@@ -664,7 +657,7 @@ export default function HipervinculoAds() {
                 <div className="absolute z-10" style={{ left: '550px', top: '550px', transform: 'translate(-50%, -50%)' }}>
                   <FadeIn>
                     <div className="h-[180px] w-[180px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
-                      <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
+                      <ContentImage src={flowImage} width={1024} height={1024} alt="Motor de automatización" className="h-full w-full object-cover" />
                     </div>
                   </FadeIn>
                 </div>
@@ -710,7 +703,7 @@ export default function HipervinculoAds() {
             <div className="lg:hidden">
               <FadeIn className="mb-8 flex justify-center">
                 <div className="h-[160px] w-[160px] overflow-hidden rounded-full border-2 border-accent/30 shadow-lg">
-                  <img src={flowImage} alt="Motor de automatización" className="h-full w-full object-cover" />
+                  <ContentImage src={flowImage} width={1024} height={1024} alt="Motor de automatización" className="h-full w-full object-cover" />
                 </div>
               </FadeIn>
 
@@ -1077,7 +1070,7 @@ export default function HipervinculoAds() {
               transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
               className="mb-8 inline-flex rounded-2xl px-5 py-4"
             >
-              <img src={logoFull} alt="Hipervínculo" className="h-10 w-auto" />
+              <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-10 w-auto" />
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -1119,7 +1112,7 @@ export default function HipervinculoAds() {
       {/* FOOTER */}
       <footer className="border-t border-primary/10 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <img src={logoFull} alt="Hipervínculo" className="h-8 w-auto" />
+          <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8 w-auto" />
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary/65">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-primary transition-colors hover:text-accent">{t.footer.home}</a>

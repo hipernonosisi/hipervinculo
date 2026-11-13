@@ -55,7 +55,7 @@ export default function Book() {
 
           {/* Trust */}
           <div className="flex justify-center gap-8 sm:gap-12 mt-12 pt-8 border-t border-[hsl(147,20%,16%)]">
-            {['200+ Businesses', '20+ Years', '$30M+ Generated'].map((s) => (
+            {['200+ Businesses', '20+ Years', '$92M+ Tracked Sales'].map((s) => (
               <span key={s} className="text-xs sm:text-sm font-semibold text-[hsl(0,0%,50%)]">{s}</span>
             ))}
           </div>

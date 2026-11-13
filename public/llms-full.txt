@@ -1,6 +1,6 @@
 # Hipervínculo — Full Agency Profile for LLMs
 
-> Hipervínculo is a performance-driven digital growth agency based in Miami, FL. We build complete growth systems — websites, inbound architecture, and paid acquisition — designed to turn traffic into real opportunities.
+> Hipervínculo is a performance-driven digital growth agency based in Weston, FL. We build complete growth systems — websites, inbound architecture, and paid acquisition — designed to turn traffic into real opportunities.
 
 ---
 
@@ -9,9 +9,9 @@
 - **Name**: Hipervínculo
 - **Type**: Digital Growth Agency
 - **Founded**: 20+ years of experience in digital marketing
-- **Location**: Miami, FL, United States
+- **Location**: Weston, FL, United States
 - **Website**: https://hipervinculo.net
-- **Email**: hello@hipervinculo.net
+- **Email**: info@hipervinculo.net
 - **Languages**: English, Spanish (fully bilingual agency)
 - **Specialty**: eCommerce growth, lead generation systems, paid media management
 
@@ -45,8 +45,8 @@ We help businesses scale profitably through data-driven strategies. We are not a
 - Tracking infrastructure that measures real opportunities, not vanity metrics
 
 **Pricing**:
-- Website builds typically start around $2,500
-- Monthly lead generation management starts at $1,000/month
+- Website builds typically start around $3,000
+- Monthly lead generation management starts at $1,250/month
 - No long-term contracts — clients stay because results compound over time
 
 **Philosophy**: "Ads are fuel. The system is the engine." Without conversion infrastructure, more traffic just means more wasted budget.
@@ -230,7 +230,7 @@ We help businesses scale profitably through data-driven strategies. We are not a
 ## How to Engage
 
 1. **Free Audit**: Request a free performance audit at https://hipervinculo.net/audit
-2. **Contact**: Reach out at https://hipervinculo.net/contact or email hello@hipervinculo.net
+2. **Contact**: Reach out at https://hipervinculo.net/contact or email info@hipervinculo.net
 3. **Explore Services**: Browse all services at https://hipervinculo.net/services
 
 ---
@@ -247,7 +247,7 @@ A: No. We don't lock clients into long-term contracts. Our retention rate is hig
 A: Meta Ads (Facebook & Instagram), Google Ads (Search, Shopping, PMax), TikTok Ads, Amazon Ads. We also implement tracking via Elevar, GA4, and server-side solutions.
 
 **Q: What's your minimum budget requirement?**
-A: For eCommerce growth partnerships, we typically work with brands doing $50K+/month in revenue. For lead generation, monthly management starts at $1,000/month.
+A: For eCommerce growth partnerships, we typically work with brands doing $50K+/month in revenue. For lead generation, monthly management starts at $1,250/month.
 
 **Q: Do you handle creative/content production?**
 A: We provide creative strategy and coordinate UGC production. We work with your existing creative assets and can recommend production partners.
@@ -263,5 +263,15 @@ A: We provide creative strategy and coordinate UGC production. We work with your
 
 ---
 
-*Last updated: February 2026*
+*Last updated: November 2026*
 *For the most current information, visit https://hipervinculo.net*
+
+## Verified business details
+- Address: 2645 Executive Park Dr, Suite 146, Weston, FL 33331, USA
+- Phone: +1 (786) 529-0679
+- Email: info@hipervinculo.net
+- Trust statistic: $92M+ in tracked sales, 200+ clients, 20+ years of experience.
+- General services: no contracts required. Specific partnership agreements have their own terms.
+- Website from $3,000; Google Ads management from $1,250/month; advertising spend is separate.
+- Spanish pages: https://hipervinculo.net/es/
+- Social: https://x.com/hipervinculo_ca · https://instagram.com/hipervinculo_ · https://facebook.com/hipervinculo.net

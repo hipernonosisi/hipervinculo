@@ -692,7 +692,7 @@ export const translations = {
       questions: [
         {
           q: 'What is the starting investment?',
-          a: 'Our Performance Retainer starts at $2,500/month plus a minimum ad spend of $10,000/month. The Growth Partnership model is based on a percentage of sales.',
+          a: 'Conversion websites start at $3,000 and Google Ads management starts at $1,250/month. Advertising spend is separate. Performance partnership terms depend on the agreed scope.',
         },
         {
           q: 'What is net ROAS?',
@@ -724,7 +724,7 @@ export const translations = {
         },
         {
           q: 'Do you require long-term contracts?',
-          a: 'No. We have a 3-month initial commitment, but after that it\'s month-to-month. Our clients stay because we deliver results, not because they\'re locked in.',
+          a: 'No contracts required for our general services. Our clients stay because we deliver results. Specific partnership terms are agreed separately.',
         },
         {
           q: 'What platforms do you advertise on?',
@@ -804,7 +804,7 @@ export const translations = {
         ],
       },
       info: {
-        email: 'hello@hipervinculo.net',
+        email: 'info@hipervinculo.net',
         phone: '+1 (555) 123-4567',
         address: 'Remote-first agency serving clients worldwide',
         hours: 'Monday - Friday, 9am - 6pm EST',
@@ -890,9 +890,9 @@ export const translations = {
       },
       stats: {
         title: 'Experience That Goes Beyond Theory',
-        subtitle: 'Hipervinculo has managed over $92M in advertising spend across platforms.',
+        subtitle: 'Hipervínculo has tracked over $92M in sales across platforms.',
         adSpend: '$92M+',
-        adSpendLabel: 'Managed Ad Spend',
+        adSpendLabel: 'Tracked Sales',
         years: '20+',
         yearsLabel: 'Years of Experience',
         retention: '5-8',
@@ -986,7 +986,7 @@ export const translations = {
       subtitle: 'No hidden fees. No long-term contracts. Just results-driven partnerships.',
       notes: [
         'All pricing is based on performance. We only win when you win.',
-        'Minimum 3-month commitment for all services.',
+        'No contracts required for general services.',
         'Custom enterprise solutions available for brands spending $100K+/month.',
       ],
     },
@@ -1165,7 +1165,7 @@ export const translations = {
         stats: [
           { value: '200+', label: 'Businesses Served' },
           { value: '20+', label: 'Years Experience' },
-          { value: '$92M+', label: 'Revenue Generated' },
+          { value: '$92M+', label: 'Tracked Sales' },
         ],
       },
       footer: {
@@ -1864,7 +1864,7 @@ export const translations = {
       questions: [
         {
           q: '¿Cuál es la inversión inicial?',
-          a: 'Nuestro Performance Retainer comienza en $2,500/mes más un gasto mínimo en anuncios de $10,000/mes. El modelo Growth Partnership se basa en un porcentaje de las ventas.',
+          a: 'Los sitios web de conversión comienzan en $3,000 y la gestión de Google Ads desde $1,250/mes. La inversión publicitaria es aparte. Los términos de partnership dependen del alcance acordado.',
         },
         {
           q: '¿Qué es el ROAS neto?',
@@ -1896,7 +1896,7 @@ export const translations = {
         },
         {
           q: '¿Requieren contratos a largo plazo?',
-          a: 'No. Tenemos un compromiso inicial de 3 meses, pero después es mes a mes. Nuestros clientes se quedan porque entregamos resultados, no porque estén atrapados.',
+          a: 'Sin contratos para nuestros servicios generales. Nuestros clientes se quedan porque entregamos resultados. Los términos de partnerships específicos se acuerdan por separado.',
         },
         {
           q: '¿En qué plataformas anuncian?',
@@ -1976,7 +1976,7 @@ export const translations = {
         ],
       },
       info: {
-        email: 'hello@hipervinculo.net',
+        email: 'info@hipervinculo.net',
         phone: '+1 (555) 123-4567',
         address: 'Agencia remota sirviendo clientes en todo el mundo',
         hours: 'Lunes - Viernes, 9am - 6pm EST',
@@ -2062,9 +2062,9 @@ export const translations = {
       },
       stats: {
         title: 'Experiencia que Va Más Allá de la Teoría',
-        subtitle: 'Hipervínculo ha gestionado más de $92M en gasto publicitario en todas las plataformas.',
+        subtitle: 'Hipervínculo ha rastreado más de $92M en ventas en todas las plataformas.',
         adSpend: '$92M+',
-        adSpendLabel: 'Gasto Publicitario Gestionado',
+        adSpendLabel: 'Ventas Rastreadas',
         years: '20+',
         yearsLabel: 'Años de Experiencia',
         retention: '5-8',
@@ -2158,7 +2158,7 @@ export const translations = {
       subtitle: 'Sin cargos ocultos. Sin contratos a largo plazo. Solo asociaciones orientadas a resultados.',
       notes: [
         'Todos los precios están basados en rendimiento. Solo ganamos cuando tú ganas.',
-        'Compromiso mínimo de 3 meses para todos los servicios.',
+        'Sin contratos para los servicios generales.',
         'Soluciones enterprise personalizadas disponibles para marcas gastando $100K+/mes.',
       ],
     },
@@ -2337,7 +2337,7 @@ export const translations = {
         stats: [
           { value: '200+', label: 'Negocios Atendidos' },
           { value: '20+', label: 'Años de Experiencia' },
-          { value: '$92M+', label: 'Ingresos Generados' },
+          { value: '$92M+', label: 'Ventas Rastreadas' },
         ],
       },
       footer: {

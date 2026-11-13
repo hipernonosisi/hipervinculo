@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { SEO } from "@/components/SEO";
 import { Layout } from "@/components/layout/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowRight, Search, Megaphone, Globe, ShoppingBag, Palette } from "lucide-react";
@@ -53,6 +54,7 @@ const NotFound = () => {
 
   return (
     <Layout>
+      <SEO title="404 — Page Not Found" noIndex notFound />
       {/* Hero 404 */}
       <section className="bg-primary py-24 md:py-32">
         <div className="container mx-auto px-6 text-center">

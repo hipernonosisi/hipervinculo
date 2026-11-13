@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { ContentImage } from '@/components/ui/content-image';
+import { Link } from '@/components/LocalizedLink';
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -32,8 +33,8 @@ export function PortfolioGrid({ limit }: PortfolioGridProps) {
               {/* Desktop screenshot */}
               <div className="absolute inset-0 overflow-hidden rounded-t-2xl">
                 {project.image ? (
-                  <img
-                    src={project.image}
+                  <ContentImage
+                    src={project.image.replace('.webp', '-thumb.webp')}
                     alt={`${project.name} desktop`}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -47,8 +48,8 @@ export function PortfolioGrid({ limit }: PortfolioGridProps) {
               {/* Mobile screenshot overlay */}
               {project.imageMobile && (
                 <div className="absolute -bottom-4 right-3 w-[22%] rounded-lg overflow-hidden shadow-2xl border-2 border-white/90 z-10">
-                  <img
-                    src={project.imageMobile}
+                  <ContentImage
+                    src={project.imageMobile.replace('.webp', '-thumb.webp')}
                     alt={`${project.name} mobile`}
                     className="w-full object-cover object-top"
                     loading="lazy"

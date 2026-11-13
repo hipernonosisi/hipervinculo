@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { ContentImage } from '@/components/ui/content-image';
+import { Link } from '@/components/LocalizedLink';
 import { useState, useEffect } from 'react';
 import { ArrowRight, Check, Download, ShieldCheck, Phone, Magnet, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, Activity, ExternalLink, Star } from 'lucide-react';
 import { portfolioProjects } from '@/data/portfolioData';
@@ -78,8 +79,9 @@ export default function Index() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mb-6 min-h-[180px] md:min-h-[210px]"
               >
+                <h1 className="sr-only">{language === 'en' ? 'Google Ads, Amazon Ads & Websites That Drive Calls, Leads and Sales' : 'Google Ads, Amazon Ads y sitios web que generan llamadas, leads y ventas'}</h1>
                 <AnimatePresence mode="wait">
-                  <motion.h1
+                  <motion.div aria-hidden="true"
                     key={wordIndex}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -89,7 +91,7 @@ export default function Index() {
                     style={{ fontWeight: 800, color: '#2d4a2d' }}
                   >
                     <HeroShutterText text={rotatingHeadlines[wordIndex]} />
-                  </motion.h1>
+                  </motion.div>
                 </AnimatePresence>
               </motion.div>
               
@@ -478,8 +480,8 @@ export default function Index() {
                 <Link to={`/portfolio/${project.slug}`} className="group block">
                   <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-muted mb-3">
                     {project.image ? (
-                      <img
-                        src={project.image}
+                      <ContentImage
+                        src={project.image.replace('.webp', '-thumb.webp')}
                         alt={project.name}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

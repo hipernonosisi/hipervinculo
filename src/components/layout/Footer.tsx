@@ -1,3 +1,4 @@
+import { localizedPath } from '@/lib/seoRoutes';
 import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle, Flame, ShieldCheck, Download, FileText } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -162,7 +163,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
             <div className="lg:col-span-4">
               <Link to="/" className="inline-block mb-4">
                 <img 
-                  src={logoFull} 
+                  src={logoFull} width={566} height={160} 
                   alt="Hipervínculo" 
                   className="h-12" 
                 />
@@ -171,16 +172,13 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 {t.footer.tagline}
               </p>
               <div className="flex items-center gap-4">
-                <a href="https://www.instagram.com/hipervinculo_" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://instagram.com/hipervinculo_" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 min-w-11 text-muted-foreground hover:text-foreground transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="https://www.linkedin.com/company/hipervinculo" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a href="https://x.com/hipervinculo_ca" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://x.com/hipervinculo_ca" aria-label="X" target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 min-w-11 text-muted-foreground hover:text-foreground transition-colors">
                   <Twitter className="h-5 w-5" />
                 </a>
-                <a href="https://www.facebook.com/hipervinculo.net" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://facebook.com/hipervinculo.net" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 min-w-11 text-muted-foreground hover:text-foreground transition-colors">
                   <Facebook className="h-5 w-5" />
                 </a>
               </div>
@@ -193,8 +191,8 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 {quickLinks.map((link) => (
                   <li key={link.href}>
                     <Link
-                      to={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      to={localizedPath(link.href, language)}
+                      className="inline-flex items-center min-h-11 min-w-11 text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -209,13 +207,13 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Mail className="h-4 w-4 flex-shrink-0" />
-                  <a href="mailto:info@hipervinculo.net" className="hover:text-foreground transition-colors">
+                  <a href="mailto:info@hipervinculo.net" className="inline-flex items-center min-h-11 hover:text-foreground transition-colors">
                     info@hipervinculo.net
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <a href="tel:+17865290679" className="hover:text-foreground transition-colors">
+                  <a href="tel:+17865290679" className="inline-flex items-center min-h-11 hover:text-foreground transition-colors">
                     +1 (786) 529-0679
                   </a>
                 </li>
@@ -242,10 +240,10 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
               © {currentYear} - Hipervinculo LLC | Lead Generation & eCommerce Growth Agency
             </p>
             <div className="flex items-center gap-4">
-              <Link to="/terms" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Link to={localizedPath('/terms', language)} className="inline-flex items-center min-h-11 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
                 {t.footer.terms}
               </Link>
-              <Link to="/privacy" className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+              <Link to={localizedPath('/privacy', language)} className="inline-flex items-center min-h-11 text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">
                 {t.footer.privacy}
               </Link>
             </div>

@@ -1,3 +1,4 @@
+import { useFloatingContactVisibility } from '@/hooks/useFloatingContactVisibility';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
@@ -21,6 +22,7 @@ interface ChatWidgetProps {
 
 export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
   const { language, t } = useLanguage();
+  const hidden = useFloatingContactVisibility();
   const [isOpen, setIsOpenState] = useState(false);
   const setIsOpen = (open: boolean) => {
     setIsOpenState(open);
@@ -32,6 +34,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [sessionId] = useState(() => {
+    if (typeof window === 'undefined') return '';
     const stored = localStorage.getItem('chat-session-id');
     if (stored) return stored;
     const newId = crypto.randomUUID();
@@ -330,12 +333,12 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
     <>
       {/* Floating Button */}
       <AnimatePresence>
-        {!isOpen && (
+        {!isOpen && !hidden && (
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="fixed bottom-6 right-6 z-50"
+            className="fixed bottom-24 right-3 sm:bottom-6 sm:right-6 z-50"
           >
             <div className="relative">
               {/* Pulse animation */}
@@ -372,7 +375,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
               {/* Main button */}
               <motion.button
                 onClick={() => setIsOpen(true)}
-                className="relative flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
+                className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{

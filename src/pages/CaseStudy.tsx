@@ -1,4 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
+import logo from '@/assets/logo-hipervinculo.png';
+import { ContentImage } from '@/components/ui/content-image';
+import { useParams } from 'react-router-dom';
+import { Link } from '@/components/LocalizedLink';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout/Layout';
@@ -64,7 +67,7 @@ export default function CaseStudy() {
     publisher: {
       '@type': 'Organization',
       name: 'Hipervínculo',
-      logo: { '@type': 'ImageObject', url: 'https://hipervinculo.net/favicon.png' },
+      logo: { '@type': 'ImageObject', url: `https://hipervinculo.net${logo}` },
     },
     mainEntityOfPage: `https://hipervinculo.net/portfolio/${project.slug}`,
   };
@@ -127,7 +130,7 @@ export default function CaseStudy() {
                   transition={{ duration: 0.4 }}
                 >
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    <img
+                    <ContentImage
                       src={project.image}
                       alt={`${project.name} website screenshot`}
                       className="w-full object-cover object-top"
@@ -142,7 +145,7 @@ export default function CaseStudy() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <img
+                    <ContentImage
                       src={project.imageMobile}
                       alt={`${project.name} mobile screenshot`}
                       className="w-full object-cover object-top"
@@ -175,7 +178,7 @@ export default function CaseStudy() {
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     whileHover={{ scale: 1.01 }}
                   >
-                    <img
+                    <ContentImage
                       src={img}
                       alt={`${project.name} screenshot ${i + 1}`}
                       className="w-full h-full object-cover object-top"

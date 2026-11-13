@@ -1,61 +1,31 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { translations, type Language } from '@/lib/i18n';
+import { isPublicPath, localizedPath } from '@/lib/seoRoutes';
 
 type TranslationType = typeof translations.en | typeof translations.es;
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: TranslationType;
-}
-
+interface LanguageContextType { language: Language; setLanguage: (lang: Language) => void; t: TranslationType; }
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      // Check URL param first (?lang=es or ?lang=en)
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang') as Language;
-      if (langParam === 'en' || langParam === 'es') {
-        localStorage.setItem('hipervinculo-language', langParam);
-        return langParam;
-      }
-      const saved = localStorage.getItem('hipervinculo-language') as Language;
-      if (saved === 'en' || saved === 'es') {
-        return saved;
-      }
-      // Detect browser language
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith('es')) {
-        return 'es';
-      }
-    }
-    return 'en';
-  });
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('hipervinculo-language', lang);
-  };
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [preferred, setPreferred] = useState<Language>('en');
   useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
-
-  const t = translations[language];
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+    const param = new URLSearchParams(window.location.search).get('lang');
+    const stored = localStorage.getItem('hipervinculo-language');
+    setPreferred(param === 'es' || param === 'en' ? param : stored === 'es' ? 'es' : 'en');
+  }, []);
+  const language: Language = isPublicPath(location.pathname) ? (location.pathname.startsWith('/es/') || location.pathname === '/es' ? 'es' : 'en') : preferred;
+  const setLanguage = (lang: Language) => {
+    setPreferred(lang);
+    localStorage.setItem('hipervinculo-language', lang);
+    if (isPublicPath(location.pathname)) navigate(`${localizedPath(location.pathname, lang)}${location.search}${location.hash}`);
+  };
+  useEffect(() => { document.documentElement.lang = language; localStorage.setItem('hipervinculo-language', language); }, [language]);
+  return <LanguageContext.Provider value={{ language, setLanguage, t: translations[language] }}>{children}</LanguageContext.Provider>;
 }
-
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
+  if (!context) throw new Error('useLanguage must be used within a LanguageProvider');
   return context;
 }

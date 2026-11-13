@@ -1,4 +1,5 @@
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import { Link } from '@/components/LocalizedLink';
 import { ArrowRight, X, Check, ArrowLeft, Magnet, ShoppingCart, Globe, Package, Search, Activity, Code, Palette, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -2002,6 +2003,7 @@ export default function ServiceDetail() {
   // Render Conversion Website layout
   return (
     <Layout>
+      <SEO title={service.title || service.heroTitle} description={service.heroSubtitle} structuredData={serviceSchema} />
       {/* Hero Section */}
       <section 
         className="relative py-28 md:py-36 overflow-hidden"

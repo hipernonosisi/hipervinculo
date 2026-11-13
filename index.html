@@ -15,16 +15,22 @@
     </script>
     
     <!-- Contentsquare / Hotjar (async to avoid render-blocking on mobile) -->
-    <script async src="https://t.contentsquare.net/uxa/29b3e6819873c.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        if (window.__HV_PRERENDER__) return;
+        var load = function () { var s = document.createElement("script"); s.async = true; s.src = "https://t.contentsquare.net/uxa/29b3e6819873c.js"; document.head.appendChild(s); };
+        if (window.requestIdleCallback) window.requestIdleCallback(load, { timeout: 3000 }); else setTimeout(load, 1500);
+      }, { once: true });
+    </script>
     
     <!-- Primary Meta Tags -->
-    <title>Hipervínculo | Digital Growth Agency for eCommerce</title>
-    <meta name="title" content="Hipervínculo | Digital Growth Agency for eCommerce" />
-    <meta name="description" content="Your growth partner for ambitious eCommerce. We help brands scale profitably through Meta Ads, Google Ads, SEO, Email Marketing, and data-driven strategies." />
-    <meta name="keywords" content="eCommerce agency, digital marketing, Meta Ads, Google Ads, SEO, email marketing, lead generation, growth marketing, performance marketing, ROAS optimization" />
+    <title data-rh="true">Google Ads &amp; Amazon Ads Agency in Florida | Hipervínculo</title>
+    <meta data-rh="true" name="title" content="Google Ads &amp; Amazon Ads Agency in Florida | Hipervínculo" />
+    <meta data-rh="true" name="description" content="Bilingual performance marketing agency in Weston, FL. Google Ads, Amazon Ads, Meta Ads and conversion websites for US and Latin American businesses." />
+    <meta data-rh="true" name="keywords" content="eCommerce agency, digital marketing, Meta Ads, Google Ads, SEO, email marketing, lead generation, growth marketing, performance marketing, ROAS optimization" />
     <meta name="author" content="Hipervínculo" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="language" content="English" />
+    <meta data-rh="true" name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta data-rh="true" name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
     
     <!-- AI / LLM Discovery -->
@@ -38,30 +44,30 @@
     <link rel="shortcut icon" href="/favicon.png?v=2" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="HV Admin" />
+    <meta name="apple-mobile-web-app-title" content="Hipervínculo" />
     
     <!-- Canonical URL is set per-route via react-helmet-async (see src/components/SEO.tsx) -->
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hipervinculo.net/" />
-    <meta property="og:title" content="Hipervínculo | Digital Growth Agency for eCommerce" />
-    <meta property="og:description" content="Your growth partner for ambitious eCommerce. We help brands scale profitably through Meta Ads, Google Ads, SEO, Email Marketing, and data-driven strategies." />
-    <meta property="og:image" content="https://hipervinculo.net/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="es_ES" />
-    <meta property="og:site_name" content="Hipervínculo" />
+    <meta data-rh="true" property="og:type" content="website" />
+    <meta data-rh="true" property="og:url" content="https://hipervinculo.net/" />
+    <meta data-rh="true" property="og:title" content="Google Ads &amp; Amazon Ads Agency in Florida | Hipervínculo" />
+    <meta data-rh="true" property="og:description" content="Bilingual performance marketing agency in Weston, FL. Google Ads, Amazon Ads, Meta Ads and conversion websites for US and Latin American businesses." />
+    <meta data-rh="true" property="og:image" content="https://hipervinculo.net/og-image.png" />
+    <meta data-rh="true" property="og:image:width" content="1200" />
+    <meta data-rh="true" property="og:image:height" content="630" />
+    <meta data-rh="true" property="og:locale" content="en_US" />
+    <meta data-rh="true" property="og:locale:alternate" content="es_ES" />
+    <meta data-rh="true" property="og:site_name" content="Hipervínculo" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://hipervinculo.net/" />
-    <meta name="twitter:title" content="Hipervínculo | Digital Growth Agency for eCommerce" />
-    <meta name="twitter:description" content="Your growth partner for ambitious eCommerce. We help brands scale profitably through Meta Ads, Google Ads, SEO, Email Marketing, and data-driven strategies." />
-    <meta name="twitter:image" content="https://hipervinculo.net/og-image.png" />
-    <meta name="twitter:site" content="@hipervinculo" />
-    <meta name="twitter:creator" content="@hipervinculo" />
+    <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+    <meta data-rh="true" name="twitter:url" content="https://hipervinculo.net/" />
+    <meta data-rh="true" name="twitter:title" content="Google Ads &amp; Amazon Ads Agency in Florida | Hipervínculo" />
+    <meta data-rh="true" name="twitter:description" content="Bilingual performance marketing agency in Weston, FL. Google Ads, Amazon Ads, Meta Ads and conversion websites for US and Latin American businesses." />
+    <meta data-rh="true" name="twitter:image" content="https://hipervinculo.net/og-image.png" />
+    <meta data-rh="true" name="twitter:site" content="@hipervinculo" />
+    <meta data-rh="true" name="twitter:creator" content="@hipervinculo" />
 
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,110 +78,6 @@
     <meta name="theme-color" content="#2d4a2d" />
     <meta name="msapplication-TileColor" content="#6366F1" />
     
-    <!-- Structured Data - Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Hipervínculo",
-      "alternateName": ["Hipervinculo", "Hipervinculo Digital Growth Agency", "Hipervínculo Agency"],
-      "url": "https://hipervinculo.net",
-      "logo": "https://hipervinculo.net/favicon.png",
-      "image": "https://hipervinculo.net/og-image.png",
-      "description": "Performance-driven digital growth agency specializing in eCommerce growth, lead generation systems, and paid media management. 20+ years helping businesses scale profitably.",
-      "slogan": "Where strategy meets scalable growth",
-      "foundingDate": "2004",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Miami",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      },
-      "email": "hello@hipervinculo.net",
-      "sameAs": [
-        "https://twitter.com/hipervinculo",
-        "https://www.linkedin.com/company/hipervinculo",
-        "https://www.instagram.com/hipervinculo"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "email": "hello@hipervinculo.net",
-        "availableLanguage": ["English", "Spanish"]
-      },
-      "areaServed": [
-        { "@type": "Country", "name": "United States" },
-        { "@type": "Country", "name": "Mexico" },
-        { "@type": "Country", "name": "Colombia" }
-      ],
-      "knowsAbout": [
-        "eCommerce Marketing", "Meta Ads Management", "Google Ads Management",
-        "Amazon Advertising", "TikTok Ads", "Lead Generation Systems",
-        "Performance Marketing", "Shopify Development", "Conversion Rate Optimization",
-        "Server-Side Tracking", "GA4 Implementation", "Brand Identity Design"
-      ],
-      "hasCredential": [
-        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Google Ads Certified Partner" },
-        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Meta Ads Certified Buyer Professional" },
-        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Shopify Partner" }
-      ]
-    }
-    </script>
-    
-    <!-- Structured Data - Website -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Hipervínculo",
-      "alternateName": "Hipervinculo",
-      "url": "https://hipervinculo.net",
-      "inLanguage": ["en", "es"],
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://hipervinculo.net/services?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    
-    <!-- Structured Data - Professional Service -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Hipervínculo",
-      "image": "https://hipervinculo.net/og-image.png",
-      "url": "https://hipervinculo.net",
-      "priceRange": "$$-$$$",
-      "description": "Full-service digital growth agency for eCommerce brands and service businesses. We build complete growth systems — not just campaigns.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Miami",
-        "addressRegion": "FL",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 25.7617,
-        "longitude": -80.1918
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Digital Growth Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead Generation Systems", "description": "Complete inbound systems: conversion websites, landing pages, Google Ads, WhatsApp/call/form optimization.", "url": "https://hipervinculo.net/services/lead-generation-systems" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "eCommerce Growth Partners", "description": "Full-funnel paid media for Shopify brands across Meta, Google, TikTok, and Amazon.", "url": "https://hipervinculo.net/services/ecommerce-growth-partners" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads Management", "description": "Search, Shopping, Performance Max managed with profit-first bidding strategies.", "url": "https://hipervinculo.net/services/google-ads-management" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conversion Website Development", "description": "Websites built as performance systems for lead capture and conversion.", "url": "https://hipervinculo.net/services/conversion-website-development" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amazon Seller Services", "description": "Full-service Amazon account and advertising management.", "url": "https://hipervinculo.net/services/amazon-seller-services" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tracking & Attribution", "description": "Server-side tracking, GA4, Meta CAPI, and custom dashboards.", "url": "https://hipervinculo.net/services/tracking-attribution" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Enterprise Applications", "description": "Tailored web apps for inventory, production, and operations.", "url": "https://hipervinculo.net/services/custom-enterprise-applications" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity Manual Design", "description": "Professional brand identity systems with logo, colors, typography, and guidelines.", "url": "https://hipervinculo.net/services/brand-identity-manual" } }
-        ]
-      }
-    }
-    </script>
   </head>
 
   <body>
@@ -185,9 +87,9 @@
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      n.queue=[];var load=function(){if(f.__HV_PRERENDER__)return;t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+      f.addEventListener('load',function(){if(f.requestIdleCallback)f.requestIdleCallback(load,{timeout:3000});else setTimeout(load,1500)},{once:true})}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1488250718116666');
       fbq('track', 'PageView');

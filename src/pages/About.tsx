@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { FounderAndReviews } from '@/components/home/FounderAndReviews';
+import { Link } from '@/components/LocalizedLink';
 import { ArrowRight, Target, Users, TrendingUp, Award, Shield, BarChart3, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -22,8 +23,8 @@ export default function About() {
       <SEO
         title={t.about.title}
         description={language === 'en' 
-          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $92M+ in managed ad spend."
-          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $92M+ en inversión publicitaria gestionada."
+          ? "Learn about Hipervínculo, your growth partner for ambitious eCommerce. Over 20 years of experience and $92M+ in tracked sales."
+          : "Conoce a Hipervínculo, tu socio de crecimiento para eCommerce ambicioso. Más de 20 años de experiencia y $92M+ en ventas rastreadas."
         }
         url="https://hipervinculo.net/about"
       />
@@ -405,6 +406,8 @@ export default function About() {
           </AnimatedSection>
         </div>
       </section>
+
+      <FounderAndReviews />
 
       {/* The Best Marketing Section */}
       <section className="py-24 md:py-32 bg-white">

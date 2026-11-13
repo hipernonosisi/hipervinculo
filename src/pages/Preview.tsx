@@ -1,3 +1,4 @@
+import { ContentImage } from '@/components/ui/content-image';
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { ChatWidget } from '@/components/chat/ChatWidget';
 import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
@@ -101,7 +102,7 @@ function ScrollRevealCard({ project, index }: { project: { name: string; result:
     >
       <a href={project.url} target="_blank" rel="noopener noreferrer" className="group block">
         <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-muted border border-border shadow-sm hover:shadow-xl transition-shadow duration-500">
-          <img src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
+          <ContentImage src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
             <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">{project.name}</h3>
             <p className="text-sm md:text-base text-white/80 font-medium">{project.result}</p>
@@ -115,21 +116,21 @@ function ScrollRevealCard({ project, index }: { project: { name: string; result:
 
 // ── Case studies images & URLs (language-independent) ──
 const caseStudyMeta = [
-  { image: '/portfolio/step-solution-hero.png', url: 'https://stepsolutionusa.com/' },
-  { image: '/portfolio/zerma-la.png', url: 'https://zerma-la.com/' },
-  { image: '/portfolio/filtro-laser.png', url: 'https://filtrolaserparaplastico.com/' },
-  { image: '/portfolio/pulverizadores-industriales.png', url: 'https://pulverizadoresindustriales.com/' },
-  { image: '/portfolio/stillwater-day-spa-hero.png', url: 'https://stillwaterdayspa.com/' },
-  { image: '/portfolio/rasetta-innovations-hero.png', url: 'https://rasettainnovations.com/' },
-  { image: '/portfolio/lajex-llc.png', url: 'https://lajexllc.com/' },
-  { image: '/portfolio/delios-home-hero.png', url: 'https://delioshome.com/' },
+  { image: '/portfolio/step-solution-hero.webp', url: 'https://stepsolutionusa.com/' },
+  { image: '/portfolio/zerma-la.webp', url: 'https://zerma-la.com/' },
+  { image: '/portfolio/filtro-laser.webp', url: 'https://filtrolaserparaplastico.com/' },
+  { image: '/portfolio/pulverizadores-industriales.webp', url: 'https://pulverizadoresindustriales.com/' },
+  { image: '/portfolio/stillwater-day-spa-hero.webp', url: 'https://stillwaterdayspa.com/' },
+  { image: '/portfolio/rasetta-innovations-hero.webp', url: 'https://rasettainnovations.com/' },
+  { image: '/portfolio/lajex-llc.webp', url: 'https://lajexllc.com/' },
+  { image: '/portfolio/delios-home-hero.webp', url: 'https://delioshome.com/' },
 ];
 
 const stepImages = [
-  '/portfolio/delios-home-hero.png',
-  '/portfolio/stillwater-day-spa-hero.png',
-  '/portfolio/google-ads-dashboard-1.png',
-  '/portfolio/google-ads-dashboard-2.png',
+  '/portfolio/delios-home-hero.webp',
+  '/portfolio/stillwater-day-spa-hero.webp',
+  '/portfolio/google-ads-dashboard-1.webp',
+  '/portfolio/google-ads-dashboard-2.webp',
 ];
 
 const stepIcons = [Eye, Hammer, Rocket, Zap];
@@ -393,12 +394,12 @@ function VSLPlayer() {
         {/* Fallback background image while video loads */}
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/miguel-founder.png)' }}
+          style={{ backgroundImage: 'url(/images/miguel-founder.webp)' }}
         />
         <video
           ref={videoRef}
           src={VSL_URLS[videoSrcIndex]}
-          poster="/images/miguel-founder.png"
+          poster="/images/miguel-founder.webp"
           className={`absolute inset-0 w-full h-full ${isFullscreen ? 'object-contain' : 'object-cover'}`}
           playsInline
           muted
@@ -608,7 +609,7 @@ export default function Preview() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-transparent'}`}>
         <div className="container flex h-16 items-center justify-between">
           <Link to="/">
-            <img src={logoFull} alt="Hipervínculo" className="h-10" />
+            <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-10" />
           </Link>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6 h-10 font-semibold text-sm">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Header - Book a Call'); trackCalendarClick(); }}>{p.header.bookACall}</a>
@@ -702,7 +703,7 @@ export default function Preview() {
                 </div>
                 <div className="flex-1 w-full">
                   <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
-                    <img src={step.image} alt={step.title} className="w-full h-auto object-cover" loading="lazy" />
+                    <ContentImage src={step.image} alt={step.title} className="w-full h-auto object-cover" loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -715,7 +716,7 @@ export default function Preview() {
       <Section className="py-16 md:py-20">
         <div className="container">
           <a href="https://www.google.com/search?q=Hipervinculo+agency+Weston" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 mb-8 hover:opacity-80 transition-opacity">
-            <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
+            <ContentImage src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
             <span className="text-sm font-semibold text-foreground">{p.reviews.title}</span>
             <div className="flex gap-0.5 ml-1">
               {[...Array(5)].map((_, i) => (
@@ -885,7 +886,7 @@ export default function Preview() {
             {/* Photo */}
             <div className="shrink-0 w-full max-w-[280px] md:max-w-[320px]">
               <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
-                <img src="/images/miguel-founder.png" alt="Miguel — Founder of Hipervínculo" className="w-full h-auto object-cover" />
+                <ContentImage src="/images/miguel-founder.webp" alt="Miguel — Founder of Hipervínculo" className="w-full h-auto object-cover" />
               </div>
             </div>
             {/* Story */}
@@ -1027,7 +1028,7 @@ export default function Preview() {
       <footer className="py-10 border-t border-border bg-background">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link to="/">
-            <img src={logoFull} alt="Hipervínculo" className="h-8" />
+            <ContentImage src={logoFull} width={566} height={160} loading="eager" alt="Hipervínculo" className="h-8" />
           </Link>
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Hipervínculo. {p.footer.rights}</p>
           <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{p.footer.privacy}</Link>

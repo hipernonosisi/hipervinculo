@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { localizedPath } from '@/lib/seoRoutes';
 import { cn } from '@/lib/utils';
 import logoFull from '@/assets/logo-hipervinculo.png';
 import logoSymbol from '@/assets/symbol-hipervinculo.png';
@@ -62,9 +63,9 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full bg-white">
       <div className="container flex h-36 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img src={logoFull} alt="Hipervínculo" className="h-20 hidden sm:block" />
-          <img src={logoSymbol} alt="Hipervínculo" className="h-16 sm:hidden" />
+        <Link to={localizedPath('/', language)} className="flex items-center">
+          <img src={logoFull} width={566} height={160} alt="Hipervínculo" className="h-20 hidden sm:block" />
+          <img src={logoSymbol} width={100} height={123} alt="Hipervínculo" className="h-16 sm:hidden" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -87,7 +88,7 @@ export function Header() {
                   {servicesOpen && (
                     <div className="absolute top-full left-0 mt-2 z-50 bg-white border border-border rounded-xl shadow-xl py-2 w-64">
                       <Link
-                        to="/services"
+                        to={localizedPath('/services', language)}
                         className="block px-4 py-2.5 text-[14px] font-semibold text-foreground hover:bg-muted/50 transition-colors border-b border-border/50 mb-1"
                       >
                         {language === 'en' ? 'All Services' : 'Todos los Servicios'}
@@ -95,7 +96,7 @@ export function Header() {
                       {serviceLinks.map((s) => (
                         <Link
                           key={s.slug}
-                          to={s.path ?? `/services/${s.slug}`}
+                          to={localizedPath(s.path ?? `/services/${s.slug}`, language)}
                           className="block px-4 py-2 text-[13px] text-muted-foreground hover:text-accent hover:bg-muted/50 transition-colors"
                         >
                           {s[language]}
@@ -106,7 +107,7 @@ export function Header() {
                 </div>
               ) : (
                 <Link
-                  to={link.href}
+                  to={localizedPath(link.href, language)}
                   className={cn(
                     "text-[14px] font-medium transition-colors hover:text-accent px-3 py-2 whitespace-nowrap",
                     location.pathname === link.href ? "text-accent" : "text-foreground"
@@ -139,6 +140,9 @@ export function Header() {
           </Button>
         </div>
 
+        <Button asChild variant="ghost" size="icon" className="lg:hidden ml-auto mr-2 h-12 w-12">
+          <a href="tel:+17865290679" aria-label={language === 'es' ? 'Llamar a Hipervínculo' : 'Call Hipervínculo'}><Phone className="h-5 w-5" /></a>
+        </Button>
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -173,7 +177,7 @@ export function Header() {
                     {servicesOpen && (
                       <div className="ml-4 mt-1 mb-2 space-y-1 border-l-2 border-accent/30 pl-4">
                         <Link
-                          to="/services"
+                          to={localizedPath('/services', language)}
                           onClick={() => setIsMenuOpen(false)}
                           className="block text-[14px] font-semibold text-foreground py-1.5"
                         >
@@ -182,7 +186,7 @@ export function Header() {
                         {serviceLinks.map((s) => (
                           <Link
                             key={s.slug}
-                            to={s.path ?? `/services/${s.slug}`}
+                            to={localizedPath(s.path ?? `/services/${s.slug}`, language)}
                             onClick={() => setIsMenuOpen(false)}
                             className="block text-[13px] text-muted-foreground hover:text-accent py-1.5"
                           >
@@ -194,7 +198,7 @@ export function Header() {
                   </div>
                 ) : (
                   <Link
-                    to={link.href}
+                    to={localizedPath(link.href, language)}
                     onClick={() => setIsMenuOpen(false)}
                     className={cn(
                       "text-[15px] font-medium transition-colors hover:text-accent py-2",

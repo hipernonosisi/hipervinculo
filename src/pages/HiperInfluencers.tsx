@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Link } from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import {
   Rocket,

@@ -150,13 +150,13 @@ export default function Contact() {
       <section className="py-16 md:py-20">
         <div className="container">
           <motion.div 
-            className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             {/* Form Card */}
-            <div className="bg-[#f8f9fa] rounded-2xl p-8 md:p-10">
+            <div className="min-w-0 bg-[#f8f9fa] rounded-2xl p-8 md:p-10">
               <h2 className="text-[24px] md:text-[28px] font-extrabold mb-8">
                 {language === 'en' ? 'Send us a Message' : 'Envíanos un Mensaje'}
               </h2>
