@@ -8,3 +8,4 @@
 - Public bilingual pages share a route metadata registry and render to static HTML during Vite publishing, then hydrate the same router tree, so crawlers see route-specific content without changing the UI.
 - Maintain the existing static sitemap; lastmod is an explicit significant page revision date, never a build or generation timestamp.
 - Content images use pre-sized WebP variants and a shared dimensions-aware image component to avoid excessive payloads and layout shifts.
+- Incomplete leads and chat conversations reject direct client inserts/updates; server-side service-role writers preserve admin-only reads, preventing cross-visitor record tampering.
