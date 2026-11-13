@@ -8,6 +8,13 @@
       "when": 1794604018266,
       "tag": "0000_restrict_selected_lead_and_conversation_writes",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794607580465,
+      "tag": "0001_tighten_public_submission_policies",
+      "breakpoints": true
     }
   ]
 }
