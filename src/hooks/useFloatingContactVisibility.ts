@@ -7,9 +7,9 @@ export function useFloatingContactVisibility() {
     const check = () => {
       frame = 0;
       if (window.innerWidth >= 640) { setHidden(false); return; }
-      const occupied = Array.from(document.querySelectorAll('main form, main button, main a')).some(node => {
+      const occupied = Array.from(document.querySelectorAll('main form, main button, main a, main h1, main h2, main h3, main p')).some(node => {
         const rect = node.getBoundingClientRect();
-        return rect.width > 90 && rect.bottom > window.innerHeight - 180 && rect.top < window.innerHeight && rect.right > window.innerWidth - 80;
+        return rect.width > 90 && rect.bottom > window.innerHeight - 212 && rect.top < window.innerHeight && rect.right > window.innerWidth - 80;
       });
       setHidden(occupied || document.activeElement?.matches('input,textarea,select') === true);
     };

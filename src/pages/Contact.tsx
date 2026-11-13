@@ -162,7 +162,7 @@ export default function Contact() {
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
                     placeholder={t.contact.form.fullName}
                     value={formData.fullName}
@@ -178,7 +178,7 @@ export default function Contact() {
                   />
                 </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input
                   placeholder={t.contact.form.email}
                   type="email"

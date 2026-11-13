@@ -1,9 +1,9 @@
 # Active tasks
-- [ ] SEO audit: bilingual static HTML and hydration; verify page content without JavaScript.
-- [ ] SEO audit: metadata, canonical URLs, noindex, route normalization, sitemap and business schema.
-- [ ] SEO audit: approved commercial statements, About founder/reviews, accessible H1 and final counters.
-- [ ] SEO audit: images, loading, analytics timing and mobile controls; preserve forms and tracking IDs.
-- [ ] SEO audit: tests, browser verification and completion report with hosting limitations.
+- [x] SEO audit: bilingual static HTML and hydration; verify page content without JavaScript.
+- [x] SEO audit: metadata, canonical URLs, noindex, route normalization, sitemap and business schema.
+- [x] SEO audit: approved commercial statements, About founder/reviews, accessible H1 and final counters.
+- [x] SEO audit: images, loading, analytics timing and mobile controls; preserve forms and tracking IDs.
+- [x] SEO audit: tests, browser verification and completion report with hosting limitations.
 - [x] Create separate Supreme Herbals Shopify-only Spanish proposal with approved USD 3,000 completion payment and up to 10 products; register in admin without changing old offer.
 - [x] Test approved commercial rules (7 tests), download PDF and visually inspect all 12 pages; deliver internal scope/cost estimate and unsent email. Opened new proposal through signed-in admin menu.
 - [ ] Finalize optional commercial tools after Miguel approves exact functions — client PDF remains a draft until approval.
@@ -22,3 +22,5 @@
 - [x] Verify the revised public proposal and download; corrected inherited heading contrast, confirmed English title and answer-to-email flow.
 - [x] Verify the admin menu while signed in — opened Hazim Law, EZ Brick and Industrial Advisors through the proposal menu with the managed session.- [x] Rebuild Industrial Advisors on the exact EZ Brick format (same fonts, colors, page order, hierarchy), web and PDF; compared against the user's EZ Brick PDF example.
 - [x] Sofibella Wear proposal (EN): $13,500 website project + optional $1,500/mo operations
+
+- [ ] SEO publishing verification: verify actual published source and rerun SEO review after Miguel publishes; publication pending.
