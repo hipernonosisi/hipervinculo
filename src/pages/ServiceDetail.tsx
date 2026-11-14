@@ -4,10 +4,17 @@ import { Link } from '@/components/LocalizedLink';
 import { ArrowRight, X, Check, ArrowLeft, Magnet, ShoppingCart, Globe, Package, Search, Activity, Code, Palette, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Layout } from '@/components/layout/Layout';
+import { Layout as SiteLayout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AnimatedSection } from '@/components/ui/motion';
+
+function Layout({ children }: { children: React.ReactNode }) {
+  const { slug } = useParams();
+  const { language } = useLanguage();
+  const showShopifyLink = ['ecommerce-growth-partners', 'conversion-website-development', 'google-ads-management', 'tracking-attribution'].includes(slug ?? '');
+  return <SiteLayout>{children}{showShopifyLink && <div className="container py-8 text-center"><Link to="/shopify-agency" className="text-primary underline underline-offset-4">{language === 'en' ? 'Running a Shopify store? See our full-service Shopify agency.' : '¿Tienes una tienda Shopify? Conoce nuestra agencia integral de Shopify.'}</Link></div>}</SiteLayout>;
+}
 
 type ServiceType = 'leadGen' | 'conversionWeb' | 'ecommerce' | 'amazon' | 'googleAds' | 'tracking' | 'customApps' | 'brandIdentity';
 

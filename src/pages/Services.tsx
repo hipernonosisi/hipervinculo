@@ -13,6 +13,13 @@ export default function Services() {
 
   const services = [
     {
+      icon: ShoppingCart,
+      title: language === 'en' ? 'Shopify Agency' : 'Agencia de Shopify',
+      description: language === 'en' ? 'Store design, Google Ads, Meta Ads and SEO for Shopify brands, managed to net profit.' : 'Diseño de tiendas, Google Ads, Meta Ads y SEO para marcas Shopify, gestionados según la utilidad neta.',
+      features: language === 'en' ? ['Shopify Store Design & Redesign', 'Google Ads for Shopify', 'Meta Ads for Shopify', 'Shopify SEO'] : ['Diseño y rediseño de tiendas Shopify', 'Google Ads para Shopify', 'Meta Ads para Shopify', 'SEO para Shopify'],
+      detailPath: '/shopify-agency',
+    },
+    {
       icon: Magnet,
       title: t.servicesPage.leadGen.title,
       description: t.servicesPage.leadGen.description,

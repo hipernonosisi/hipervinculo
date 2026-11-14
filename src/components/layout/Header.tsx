@@ -11,6 +11,7 @@ import logoSymbol from '@/assets/symbol-hipervinculo.png';
 type ServiceLink = { slug: string; en: string; es: string; path?: string };
 
 const serviceLinks: ServiceLink[] = [
+  { slug: 'shopify-agency', en: 'Shopify Agency', es: 'Agencia de Shopify', path: '/shopify-agency' },
   { slug: 'lead-generation-systems', en: 'Lead Generation Systems', es: 'Sistemas de Generación de Leads' },
   { slug: 'ecommerce-growth-partners', en: 'E-Commerce Growth', es: 'Crecimiento E-Commerce' },
   { slug: 'conversion-website-development', en: 'Website Development', es: 'Desarrollo Web' },

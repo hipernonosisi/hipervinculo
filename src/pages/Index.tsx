@@ -255,6 +255,18 @@ export default function Index() {
             </p>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <AnimatedSection>
+              <Card className="h-full border bg-card hover:shadow-lg transition-shadow rounded-2xl">
+                <CardHeader className="pb-4">
+                  <ShoppingCart className="h-8 w-8 text-accent mb-4" />
+                  <CardTitle className="text-[20px] md:text-[22px] font-bold">{language === 'en' ? 'Shopify Agency' : 'Agencia de Shopify'}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-[16px] md:text-[17px] leading-[1.7]">{language === 'en' ? 'Store design, Google Ads, Meta Ads and SEO for Shopify brands, managed to net profit.' : 'Diseño de tiendas, Google Ads, Meta Ads y SEO para marcas Shopify, gestionados según la utilidad neta.'}</CardDescription>
+                  <Button asChild variant="link" className="px-0 mt-3"><Link to="/shopify-agency">{t.homepage.serviceDetail.viewDetails}<ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
             {t.homepage.services.map((service, index) => {
               const Icon = serviceIcons[index];
               return (

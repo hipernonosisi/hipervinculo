@@ -16,7 +16,7 @@ export function SEO({ title, description, keywords, image, type = 'website', noI
   const segments = basePath(pathname).split('/').filter(Boolean);
   const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: language === 'es' ? 'Inicio' : 'Home', item: `${SITE_URL}${localizedPath('/', language)}` },
-    ...segments.map((part, i) => ({ '@type': 'ListItem', position: i + 2, name: i === segments.length - 1 ? finalTitle.split('|')[0].trim() : part, item: `${SITE_URL}${localizedPath('/' + segments.slice(0, i + 1).join('/'), language)}` })),
+    ...segments.map((part, i) => ({ '@type': 'ListItem', position: i + 2, name: part === 'shopify-agency' ? (language === 'en' ? 'Shopify Agency' : 'Agencia de Shopify') : i === segments.length - 1 ? finalTitle.split('|')[0].trim() : part, item: `${SITE_URL}${localizedPath('/' + segments.slice(0, i + 1).join('/'), language)}` })),
   ] };
   return <Helmet>
     <html lang={language} />

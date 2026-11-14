@@ -1,4 +1,6 @@
 # Active tasks
+- [x] Add bilingual Shopify agency hub, requested internal links/home titles, inline audit form, metadata/schema/sitemap; 23 tests passed, prerender output checked and mobile/desktop verified. Real audit write and thank-you page verified; test record removed.
+- [ ] Shopify published-source verification: requires publishing the new pages; email delivery and signed-in admin read-back were not verified (no usable admin session).
 - [x] Add requested legacy browser/static-document redirects and a prerendered NotFound error document; preserve existing pages.
 - [ ] Unknown-path raw HTML/HTTP 404: blocked by Lovable hosting's fixed index.html fallback; requires host-level custom error-document support. Server-side 301 redirects also require hosting support.
 - [x] SEO audit: bilingual static HTML and hydration; verify page content without JavaScript.

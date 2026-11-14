@@ -15,6 +15,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
   const quickLinks = [
     { href: '/about', label: t.nav.aboutUs },
     { href: '/services', label: t.nav.services },
+    { href: '/shopify-agency', label: language === 'en' ? 'Shopify Agency' : 'Agencia de Shopify' },
     { href: '/pricing', label: t.nav.pricing },
     { href: '/faqs', label: t.nav.faqs },
     { href: '/contact', label: t.nav.getInTouch },
