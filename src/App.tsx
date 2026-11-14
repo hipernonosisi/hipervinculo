@@ -22,6 +22,10 @@ const ShopifyAgency = lazy(() => import("./pages/ShopifyAgency"));
 const ShopifyStoreDesign = lazy(() => import("./pages/ShopifyStoreDesign"));
 const ShopifySeo = lazy(() => import("./pages/ShopifySeo"));
 const ShopifyGoogleAds = lazy(() => import("./pages/ShopifyGoogleAds"));
+const ShopifyMetaAds = lazy(() => import("./pages/ShopifyMetaAds"));
+const ShopifyCro = lazy(() => import("./pages/ShopifyCro"));
+const ShopifyTracking = lazy(() => import("./pages/ShopifyTracking"));
+const GoogleAdsShopifyGuide = lazy(() => import("./pages/GoogleAdsShopifyGuide"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQs = lazy(() => import("./pages/FAQs"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -66,6 +70,10 @@ const pageRoutes = (nested = false) => (<>
               <Route path={nested ? "shopify-agency/store-design" : "/shopify-agency/store-design"} element={<ShopifyStoreDesign />} />
               <Route path={nested ? "shopify-agency/seo" : "/shopify-agency/seo"} element={<ShopifySeo />} />
               <Route path={nested ? "shopify-agency/google-ads" : "/shopify-agency/google-ads"} element={<ShopifyGoogleAds />} />
+              <Route path={nested ? "shopify-agency/meta-ads" : "/shopify-agency/meta-ads"} element={<ShopifyMetaAds />} />
+              <Route path={nested ? "shopify-agency/cro" : "/shopify-agency/cro"} element={<ShopifyCro />} />
+              <Route path={nested ? "shopify-agency/tracking" : "/shopify-agency/tracking"} element={<ShopifyTracking />} />
+              <Route path={nested ? "guides/google-ads-for-shopify" : "/guides/google-ads-for-shopify"} element={<GoogleAdsShopifyGuide />} />
               <Route path={nested ? "pricing" : "/pricing"} element={<Pricing />} />
               <Route path={nested ? "faqs" : "/faqs"} element={<FAQs />} />
               <Route path={nested ? "contact" : "/contact"} element={<Contact />} />

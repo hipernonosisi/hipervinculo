@@ -12,7 +12,7 @@ import { shopifyGoogleAdsContent, googleAdsDefaultHelp, googleAdsPricingCopy } f
 import { SITE_URL, localizedPath } from '@/lib/seoRoutes';
 
 const icons = [ShoppingCart, BarChart3, Search, Play];
-const links = ['/shopify-agency', '/shopify-agency/store-design', '/shopify-agency/seo'];
+const links = ['/shopify-agency', '/shopify-agency/store-design', '/shopify-agency/seo', '/shopify-agency/meta-ads'];
 
 export default function ShopifyGoogleAds() {
   const { language } = useLanguage();
@@ -42,12 +42,13 @@ export default function ShopifyGoogleAds() {
       return <Card key={title} className="rounded-lg"><CardContent className="p-7 md:p-8"><Icon className="h-8 w-8 text-primary mb-5" /><h3 className="text-2xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed">{text}</p></CardContent></Card>;
     })}</div></Section>
     <Section title={c.feedTitle} intro={c.feedIntro} muted><ul className="grid gap-x-12 gap-y-6 md:grid-cols-2">{c.feed.map(([title, text]) => <li key={title} className="flex gap-3 min-w-0"><Check className="h-5 w-5 text-primary mt-1 shrink-0" /><p className="leading-relaxed break-words min-w-0"><strong>{title}:</strong> {text}</p></li>)}</ul></Section>
-    <Section title={c.trackingTitle} intro={c.trackingIntro}><Link to="/services/tracking-attribution" className="text-primary underline underline-offset-4 min-h-11 inline-flex items-center">{c.trackingLink}</Link></Section>
+    <Section title={c.trackingTitle} intro={c.trackingIntro}><Link to="/shopify-agency/tracking" className="text-primary underline underline-offset-4 min-h-11 inline-flex items-center">{c.trackingLink}</Link></Section>
     <Section title={c.structureTitle} intro={c.structureIntro} id="structure" muted><div className="grid gap-8 md:grid-cols-2">{c.structure.map(([title, text]) => <div key={title} className="border-t-4 border-accent pt-6"><h3 className="text-2xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed">{text}</p></div>)}</div></Section>
     <Section title={c.roasTitle} intro={c.roasIntro}><Link to="/shopify-agency" className="text-primary underline underline-offset-4 min-h-11 inline-flex items-center">{c.roasLink}</Link></Section>
     <Section title={c.processTitle} muted><div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">{c.steps.map(([title, text]) => <div key={title} className="border-t-4 border-accent pt-6"><h3 className="text-xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed">{text}</p></div>)}</div></Section>
     <Section title={c.roofTitle} intro={c.roofIntro}><div className="flex flex-wrap gap-x-6 gap-y-3">{c.links.map((label, i) => <Link key={label} to={links[i]} className="text-primary underline underline-offset-4 min-h-11 inline-flex items-center">{label}</Link>)}</div></Section>
     <Section title={c.pricingTitle} intro={c.pricingIntro} muted><div className="grid gap-6 md:grid-cols-2">{[c.retainerTitle, c.partnershipTitle].map((title, i) => <Card key={title} className="rounded-lg"><CardContent className="p-7 md:p-8"><h3 className="text-2xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed">{googleAdsPricingCopy(language)[i]}</p></CardContent></Card>)}</div><p className="mt-7 text-muted-foreground">{c.adSpend}</p></Section>
+    <div className="container max-w-6xl py-8"><p>{language === 'en' ? 'New to Google Ads? Read our practical guide: ' : '¿Empiezas con Google Ads? Lee nuestra guía práctica: '}<Link to="/guides/google-ads-for-shopify" className="text-primary underline underline-offset-4">{language === 'en' ? 'Google Ads for Shopify' : 'Google Ads para Shopify'}</Link>.</p></div>
     <Section title={c.faqTitle}><Accordion type="single" collapsible className="max-w-4xl [&_[role=region][data-state=closed]]:hidden">{c.faqs.map(([question, answer], i) => <AccordionItem key={question} value={`faq-${i}`}><AccordionTrigger className="text-left text-lg">{question}</AccordionTrigger><AccordionContent forceMount className="text-base leading-relaxed">{answer}</AccordionContent></AccordionItem>)}</Accordion></Section>
     <Section title={c.auditTitle} intro={c.auditIntro} id="audit" muted><div className="max-w-3xl"><ShopifyAuditForm defaultHelp={googleAdsDefaultHelp} /></div></Section>
   </Layout>;

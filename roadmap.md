@@ -1,4 +1,10 @@
 # Active tasks
+- [x] Prompt 7: complete bilingual Meta Ads page with default Meta Ads audit, schema, links and sitemap.
+- [x] Prompt 7: complete bilingual CRO page with default design audit, schema, links and sitemap.
+- [x] Prompt 7: complete bilingual tracking page with default Tracking audit, schema, links and sitemap.
+- [x] Prompt 7: complete bilingual Google Ads guide with reading layout, contents, dates, Article/FAQ schema, links and sitemap.
+- [x] Prompt 7: verified eight static pages and desktop/mobile, requested incoming links, guide contents, FAQ and three real saved audit submissions/thank-you destinations; 37 tests passed.
+- [ ] Prompt 7: published source requires publication; notification email delivery remains unverified.
 - [x] Add Prompt 6 bilingual Shopify Google Ads page, supplied content, reused layout/form with Google Ads default, requested internal links and SEO/sitemap; 29 tests, SSR, desktop/mobile, real saved audit and thank-you verified.
 - [ ] Verify published Shopify Google Ads HTML after publication; notification email delivery not verified.
 - [x] Add bilingual Shopify SEO child page with supplied copy, existing design/form, SEO default selection, internal links, static metadata/schema and sitemap; 25 tests passed, SSR and desktop/mobile checked, real audit saved and thank-you verified.
