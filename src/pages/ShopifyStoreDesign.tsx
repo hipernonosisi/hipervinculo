@@ -12,7 +12,7 @@ import { shopifyStoreDesignContent, storeDesignDefaultHelp } from '@/data/shopif
 import { SITE_URL, localizedPath } from '@/lib/seoRoutes';
 
 const icons = [ShoppingCart, RefreshCw, MoveRight];
-const links = ['/shopify-agency', '/services/google-ads-management', '/services/tracking-attribution', '/shopify-agency/seo'];
+const links = ['/shopify-agency', '/shopify-agency/google-ads', '/services/tracking-attribution', '/shopify-agency/seo'];
 
 export default function ShopifyStoreDesign() {
   const { language } = useLanguage();

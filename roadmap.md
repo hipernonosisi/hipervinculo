@@ -1,4 +1,6 @@
 # Active tasks
+- [x] Add Prompt 6 bilingual Shopify Google Ads page, supplied content, reused layout/form with Google Ads default, requested internal links and SEO/sitemap; 29 tests, SSR, desktop/mobile, real saved audit and thank-you verified.
+- [ ] Verify published Shopify Google Ads HTML after publication; notification email delivery not verified.
 - [x] Add bilingual Shopify SEO child page with supplied copy, existing design/form, SEO default selection, internal links, static metadata/schema and sitemap; 25 tests passed, SSR and desktop/mobile checked, real audit saved and thank-you verified.
 - [ ] Verify published Shopify SEO HTML after publication; email delivery remains unverified.
 - [x] Add bilingual Shopify store-design child page, shared sections/form with default design selection, requested links/home H1 and SEO/sitemap; 24 tests passed, static HTML and desktop/mobile verified, real audit saved and test removed.
