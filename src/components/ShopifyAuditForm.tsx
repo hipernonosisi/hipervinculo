@@ -12,12 +12,12 @@ import { shopifyAgencyContent } from '@/data/shopifyAgencyContent';
 import { shopifyAuditPayload } from '@/lib/shopifyAudit';
 import { localizedPath } from '@/lib/seoRoutes';
 
-export function ShopifyAuditForm() {
+export function ShopifyAuditForm({ defaultHelp = [] }: { defaultHelp?: readonly string[] }) {
   const { language } = useLanguage();
   const c = shopifyAgencyContent[language];
   const navigate = useNavigate();
   const openedAt = useRef(Date.now());
-  const [help, setHelp] = useState<string[]>([]);
+  const [help, setHelp] = useState<string[]>(() => [...defaultHelp]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 

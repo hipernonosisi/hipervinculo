@@ -1,5 +1,5 @@
 # Architecture rules
-- Shopify agency hub uses one bilingual content module for the page and FAQ schema; its inline form writes the existing audit destination and uses the existing thank-you conversion flow without modifying other forms.
+- Shopify section pages use bilingual content modules shared by page and FAQ schema, a common section layout and inline audit form; the form writes the existing audit destination and thank-you conversion flow, with page-specific default service selections.
 - Standalone Supreme Herbals Shopify content has its own typed module shared by web, PDF and terms tests, preserving the older integrated proposal unchanged and reusing its document theme.
 - BESAMIM uses a single typed English content and fee-calculation module shared by its web preview, PDF and financial tests; reuse the established proposal theme to preserve presentation and commercial consistency.
 - Supreme Herbals uses one typed Spanish content module for the web proposal and PDF, with a document-scoped semantic theme matching the established proposal format, so commercial terms and presentation stay consistent.

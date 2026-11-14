@@ -1,4 +1,6 @@
 # Active tasks
+- [x] Add bilingual Shopify store-design child page, shared sections/form with default design selection, requested links/home H1 and SEO/sitemap; 24 tests passed, static HTML and desktop/mobile verified, real audit saved and test removed.
+- [ ] Verify published store-design HTML on the custom domain after publication; email delivery not tested.
 - [x] Add bilingual Shopify agency hub, requested internal links/home titles, inline audit form, metadata/schema/sitemap; 23 tests passed, prerender output checked and mobile/desktop verified. Real audit write and thank-you page verified; test record removed.
 - [ ] Shopify published-source verification: requires publishing the new pages; email delivery and signed-in admin read-back were not verified (no usable admin session).
 - [x] Add requested legacy browser/static-document redirects and a prerendered NotFound error document; preserve existing pages.

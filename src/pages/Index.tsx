@@ -79,7 +79,7 @@ export default function Index() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mb-6 min-h-[180px] md:min-h-[210px]"
               >
-                <h1 className="sr-only">{language === 'en' ? 'Google Ads, Amazon Ads & Websites That Drive Calls, Leads and Sales' : 'Google Ads, Amazon Ads y sitios web que generan llamadas, leads y ventas'}</h1>
+                <h1 className="sr-only">{language === 'en' ? 'Shopify Stores, Google Ads & Meta Ads That Drive Sales and Leads' : 'Tiendas Shopify, Google Ads y Meta Ads que generan ventas y clientes'}</h1>
                 <AnimatePresence mode="wait">
                   <motion.div aria-hidden="true"
                     key={wordIndex}

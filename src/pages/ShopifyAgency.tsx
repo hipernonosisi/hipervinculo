@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { ShopifySection as Section } from '@/components/ShopifySection';
 import { ArrowRight, ShoppingCart, Search, Megaphone, BarChart3, Check, X } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
@@ -12,13 +12,6 @@ import { localizedPath, SITE_URL } from '@/lib/seoRoutes';
 
 const ids = ['store-design', 'google-ads', 'meta-ads', 'shopify-seo'];
 const icons = [ShoppingCart, Search, Megaphone, BarChart3];
-function Section({ title, intro, children, id, muted = false }: { title: string; intro?: string; children: ReactNode; id?: string; muted?: boolean }) {
-  return <section id={id} className={`py-16 md:py-24 scroll-mt-28 ${muted ? 'bg-secondary' : 'bg-background'}`}><div className="container max-w-6xl">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-normal leading-tight mb-6">{title}</h2>
-    {intro && <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mb-10">{intro}</p>}
-    {children}
-  </div></section>;
-}
 function Bullets({ items, negative = false }: { items: readonly string[]; negative?: boolean }) {
   const Icon = negative ? X : Check;
   return <ul className="space-y-4">{items.map(item => <li key={item} className="flex gap-3"><Icon className={`h-5 w-5 mt-1 shrink-0 ${negative ? 'text-muted-foreground' : 'text-primary'}`} /><span className="leading-relaxed">{item}</span></li>)}</ul>;
@@ -42,7 +35,7 @@ export default function ShopifyAgency() {
     <section className="border-b border-border py-10"><div className="container max-w-6xl grid gap-6 md:grid-cols-3">{c.stats.map(([number, text]) => <div key={number} className="border-l-4 border-accent pl-6"><p className="text-4xl font-extrabold text-primary mb-2">{number}</p><p className="text-muted-foreground">{text}</p></div>)}</div></section>
     <Section title={c.servicesTitle} intro={c.servicesIntro}><div className="grid gap-6 md:grid-cols-2">{c.services.map(([title, text], i) => {
       const Icon = icons[i];
-      return <Card id={ids[i]} key={title} className="rounded-lg scroll-mt-28"><CardContent className="p-7 md:p-8 flex flex-col h-full"><Icon className="h-8 w-8 text-primary mb-5" /><h3 className="text-2xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed mb-5">{text}</p><Button asChild variant="link" className="self-start p-0 mt-auto"><a href={`#${ids[i]}`}>{c.learnMore}<ArrowRight className="ml-2 h-4 w-4" /></a></Button></CardContent></Card>;
+      return <Card id={ids[i]} key={title} className="rounded-lg scroll-mt-28"><CardContent className="p-7 md:p-8 flex flex-col h-full"><Icon className="h-8 w-8 text-primary mb-5" /><h3 className="text-2xl tracking-normal mb-4">{title}</h3><p className="text-muted-foreground leading-relaxed mb-5">{text}</p><Button asChild variant="link" className="self-start p-0 mt-auto"><a href={i === 0 ? localizedPath('/shopify-agency/store-design', language) : `#${ids[i]}`}>{c.learnMore}<ArrowRight className="ml-2 h-4 w-4" /></a></Button></CardContent></Card>;
     })}</div></Section>
     <Section title={c.trackingTitle} intro={c.trackingIntro} muted><Bullets items={c.tracking} /></Section>
     <Section title={c.profitTitle} intro={c.profitIntro}><div className="border border-border rounded-lg p-6 md:p-8 max-w-3xl"><p className="text-sm font-semibold text-muted-foreground mb-4">{c.exampleLabel}</p><dl>{c.example.map(([label, value]) => <div key={label} className="flex items-center justify-between gap-6 py-4 border-b border-border last:border-0"><dt>{label}</dt><dd className="text-3xl font-extrabold text-primary shrink-0">{value}</dd></div>)}</dl></div></Section>
