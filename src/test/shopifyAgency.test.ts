@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { shopifyTerms } from '../data/shopifyAgencyContent';
 import { shopifyAuditPayload } from '../lib/shopifyAudit';
 import { storeDesignDefaultHelp } from '../data/shopifyStoreDesignContent';
+import { seoDefaultHelp } from '../data/shopifySeoContent';
 
 describe('Shopify commercial rules', () => {
   it('targets a minimum Net ROAS of 2.5x', () => expect(shopifyTerms.minimumNetRoas).toBe(2.5));
@@ -10,6 +11,10 @@ describe('Shopify commercial rules', () => {
   it('requires no long-term contract', () => expect(shopifyTerms.longTermContract).toBe(false));
 });
 describe('Shopify audit field mapping', () => {
+  it('preselects SEO and sends it to the existing audit destination', () => {
+    expect(seoDefaultHelp).toEqual(['SEO']);
+    expect(shopifyAuditPayload({ name: 'Owner', email: 'owner@example.com', website: 'https://example.com', revenue: 'Under $10K', help: [...seoDefaultHelp], message: '' }).growth_goals).toBe('SEO');
+  });
   it('preselects store design or redesign for the store-design audit', () => {
     expect(storeDesignDefaultHelp).toEqual(['Store design or redesign']);
     const payload = shopifyAuditPayload({ name: 'Owner', email: 'owner@example.com', website: 'https://example.com', revenue: 'Under $10K', help: [...storeDesignDefaultHelp], message: '' });

@@ -20,6 +20,7 @@ const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const ShopifyAgency = lazy(() => import("./pages/ShopifyAgency"));
 const ShopifyStoreDesign = lazy(() => import("./pages/ShopifyStoreDesign"));
+const ShopifySeo = lazy(() => import("./pages/ShopifySeo"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const FAQs = lazy(() => import("./pages/FAQs"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -62,6 +63,7 @@ const pageRoutes = (nested = false) => (<>
               <Route path={nested ? "services" : "/services"} element={<Services />} />
               <Route path={nested ? "shopify-agency" : "/shopify-agency"} element={<ShopifyAgency />} />
               <Route path={nested ? "shopify-agency/store-design" : "/shopify-agency/store-design"} element={<ShopifyStoreDesign />} />
+              <Route path={nested ? "shopify-agency/seo" : "/shopify-agency/seo"} element={<ShopifySeo />} />
               <Route path={nested ? "pricing" : "/pricing"} element={<Pricing />} />
               <Route path={nested ? "faqs" : "/faqs"} element={<FAQs />} />
               <Route path={nested ? "contact" : "/contact"} element={<Contact />} />

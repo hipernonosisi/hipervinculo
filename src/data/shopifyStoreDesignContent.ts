@@ -107,7 +107,8 @@ export const shopifyStoreDesignContent = {
     "links": [
       "Shopify agency overview",
       "Google Ads management",
-      "Tracking and attribution"
+      "Tracking and attribution",
+      "Shopify SEO"
     ],
     "pricingTitle": "Pricing",
     "pricingIntro": "Every store is different, so projects are scoped after a free audit. You get a fixed quote before any work starts.",
@@ -253,7 +254,8 @@ export const shopifyStoreDesignContent = {
     "links": [
       "Conoce nuestra agencia de Shopify",
       "Gestión de Google Ads",
-      "Medición y atribución"
+      "Medición y atribución",
+      "SEO para Shopify"
     ],
     "pricingTitle": "Precios",
     "pricingIntro": "Cada tienda es diferente, por eso definimos el alcance después de una auditoría gratuita. Recibes una cotización fija antes de comenzar cualquier trabajo.",
