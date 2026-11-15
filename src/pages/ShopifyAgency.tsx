@@ -21,7 +21,7 @@ export default function ShopifyAgency() {
   const c = shopifyAgencyContent[language];
   const url = `${SITE_URL}${localizedPath('/shopify-agency', language)}`;
   const schema = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Service', name: 'Shopify Agency Services', serviceType: 'Shopify store design, Google Ads, Meta Ads and SEO', provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
+    { '@type': 'Service', name: language === 'es' ? 'Servicios de agencia de Shopify' : 'Shopify Agency Services', serviceType: language === 'es' ? 'Diseño de tiendas Shopify, Google Ads, Meta Ads y SEO' : 'Shopify store design, Google Ads, Meta Ads and SEO', inLanguage: language, provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <Layout hideBottomCta>

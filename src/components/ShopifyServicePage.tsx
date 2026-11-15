@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { remainingContent, remainingDefaults, remainingServices, type ContentSection } from '@/data/shopifyRemainingContent';
+import { remainingContent, remainingDefaults, remainingServices, remainingServicesEs, type ContentSection } from '@/data/shopifyRemainingContent';
 import { SITE_URL, localizedPath } from '@/lib/seoRoutes';
 
 const icons = [Search, ShoppingCart, Megaphone, BarChart3];
@@ -32,7 +32,7 @@ export function ShopifyServicePage({ service }: { service: keyof typeof remainin
   const c = remainingContent[service][language];
   const url = `${SITE_URL}${localizedPath(`/shopify-agency/${service}`, language)}`;
   const schema = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Service', ...remainingServices[service], provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
+    { '@type': 'Service', ...(language === 'es' ? remainingServicesEs[service] : remainingServices[service]), inLanguage: language, provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <Layout hideBottomCta>

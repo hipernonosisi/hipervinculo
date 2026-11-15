@@ -7,6 +7,11 @@ export const remainingServices = {
   cro: { name: 'Shopify Conversion Rate Optimization', serviceType: 'Conversion rate optimization for Shopify stores' },
   tracking: { name: 'Shopify Conversion Tracking Setup', serviceType: 'Conversion tracking and server-side tracking for Shopify stores' },
 };
+export const remainingServicesEs = {
+  'meta-ads': { name: 'Gestión de Meta Ads para Shopify', serviceType: 'Gestión de publicidad en Facebook e Instagram para tiendas Shopify' },
+  cro: { name: 'Optimización de conversión para Shopify', serviceType: 'Optimización de la tasa de conversión de tiendas Shopify' },
+  tracking: { name: 'Medición de conversiones en Shopify', serviceType: 'Medición de conversiones y medición del lado del servidor para tiendas Shopify' },
+};
 const enLinks: [string, string][] = [['Shopify agency overview', '/shopify-agency'], ['Shopify store design', '/shopify-agency/store-design'], ['Google Ads for Shopify', '/shopify-agency/google-ads'], ['Meta Ads for Shopify', '/shopify-agency/meta-ads']];
 const esLinks: [string, string][] = [['Conoce nuestra agencia de Shopify', '/shopify-agency'], ['Diseño de tiendas Shopify', '/shopify-agency/store-design'], ['Google Ads para Shopify', '/shopify-agency/google-ads'], ['Meta Ads para Shopify', '/shopify-agency/meta-ads']];
 export const remainingContent: Record<keyof typeof remainingServices, Record<'en' | 'es', ShopifyServiceContent>> = {

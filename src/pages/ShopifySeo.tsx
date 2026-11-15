@@ -19,7 +19,7 @@ export default function ShopifySeo() {
   const c = shopifySeoContent[language];
   const url = `${SITE_URL}${localizedPath('/shopify-agency/seo', language)}`;
   const schema = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Service', name: 'Shopify SEO Services', serviceType: 'Search engine optimization for Shopify stores', provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
+    { '@type': 'Service', name: language === 'es' ? 'Servicios de SEO para Shopify' : 'Shopify SEO Services', serviceType: language === 'es' ? 'Optimización para buscadores de tiendas Shopify' : 'Search engine optimization for Shopify stores', inLanguage: language, provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <Layout hideBottomCta>

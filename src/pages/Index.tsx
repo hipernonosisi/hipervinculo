@@ -37,8 +37,6 @@ export default function Index() {
 
   const toolPartners = [
     { name: 'Shopify', subtitle: 'Partner' },
-    { name: 'Amazon', subtitle: 'Amazon PPC Specialist' },
-    { name: 'Helium 10', subtitle: 'Partner' },
     { name: 'Elevar', subtitle: language === 'es' ? 'Integración' : 'Integration' },
     { name: 'MNTN', subtitle: 'MNTN Media Buyer' },
     { name: 'Polar Analytics', subtitle: 'Partner' },
@@ -267,7 +265,7 @@ export default function Index() {
                 </CardContent>
               </Card>
             </AnimatedSection>
-            {t.homepage.services.map((service, index) => {
+            {t.homepage.services.map((service, index) => ({ service, index })).sort((a, b) => Number(a.index === 4) - Number(b.index === 4)).map(({ service, index }) => {
               const Icon = serviceIcons[index];
               return (
                 <AnimatedSection key={index} delay={index * 0.08}>

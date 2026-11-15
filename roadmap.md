@@ -1,4 +1,9 @@
 # Active tasks
+- [x] Prompt 8: bilingual guides index, reading layout, metadata/schema/sitemap and footer/breadcrumb links.
+- [x] Prompt 8: translate Shopify Service schema and add language to both versions; verified all 14 service schemas.
+- [x] Prompt 8: Shopify-first homepage descriptions/copy/order/certifications, preserving Amazon pages and figures.
+- [x] Prompt 8: bilingual conversion-tracking link after guide Step 3; 37 tests and 20 static pages passed, desktop/mobile and index → guide → tracking → breadcrumb return verified in both languages. Recovered stale preview dependency cache; no final runtime errors.
+- [ ] Prompt 8: verify published /guides and /es/guides source on hipervinculo.net after publication; not published in this request.
 - [x] Prompt 7: complete bilingual Meta Ads page with default Meta Ads audit, schema, links and sitemap.
 - [x] Prompt 7: complete bilingual CRO page with default design audit, schema, links and sitemap.
 - [x] Prompt 7: complete bilingual tracking page with default Tracking audit, schema, links and sitemap.

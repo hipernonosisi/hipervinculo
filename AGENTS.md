@@ -1,5 +1,5 @@
 # Architecture rules
-- New Shopify services render ordered typed bilingual section data through the shared service page; guide articles use a reusable reading layout and shared content for their body, contents and Article/FAQ schema, keeping translations and search output consistent.
+- New Shopify services render ordered typed bilingual section data through the shared service page; guide articles and their collection index use the same reading conventions, localized links and shared bilingual content, keeping their body, contents and search schemas consistent.
 - Shopify section pages use bilingual content modules shared by page and FAQ schema, a common section layout and inline audit form; the form writes the existing audit destination and thank-you conversion flow, with page-specific default service selections.
 - Standalone Supreme Herbals Shopify content has its own typed module shared by web, PDF and terms tests, preserving the older integrated proposal unchanged and reusing its document theme.
 - BESAMIM uses a single typed English content and fee-calculation module shared by its web preview, PDF and financial tests; reuse the established proposal theme to preserve presentation and commercial consistency.

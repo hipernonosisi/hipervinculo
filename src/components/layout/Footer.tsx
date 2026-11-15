@@ -16,6 +16,7 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
     { href: '/about', label: t.nav.aboutUs },
     { href: '/services', label: t.nav.services },
     { href: '/shopify-agency', label: language === 'en' ? 'Shopify Agency' : 'Agencia de Shopify' },
+    { href: '/guides', label: language === 'en' ? 'Guides' : 'Guías' },
     { href: '/pricing', label: t.nav.pricing },
     { href: '/faqs', label: t.nav.faqs },
     { href: '/contact', label: t.nav.getInTouch },

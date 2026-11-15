@@ -20,5 +20,5 @@ describe('Prompt 7 approved rules', () => {
     expect(shopifyAuditPayload({ name: 'Owner', email: 'owner@example.com', website: 'https://example.com', revenue: 'Under $10K', help: [...remainingDefaults.tracking], message: '' }).growth_goals).toBe('Tracking');
   });
   it('dates the guide publication November 14, 2026', () => expect(guideDates.published).toBe('2026-11-14'));
-  it('dates the guide revision November 14, 2026', () => expect(guideDates.modified).toBe('2026-11-14'));
+  it('dates the guide revision November 15, 2026', () => expect(guideDates.modified).toBe('2026-11-15'));
 });

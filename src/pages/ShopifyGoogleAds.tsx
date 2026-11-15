@@ -19,7 +19,7 @@ export default function ShopifyGoogleAds() {
   const c = shopifyGoogleAdsContent[language];
   const url = `${SITE_URL}${localizedPath('/shopify-agency/google-ads', language)}`;
   const schema = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Service', name: 'Google Ads Management for Shopify', serviceType: 'Google Ads, Google Shopping and Performance Max management for Shopify stores', provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
+    { '@type': 'Service', name: language === 'es' ? 'Gestión de Google Ads para Shopify' : 'Google Ads Management for Shopify', serviceType: language === 'es' ? 'Gestión de Google Ads, Google Shopping y Performance Max para tiendas Shopify' : 'Google Ads, Google Shopping and Performance Max management for Shopify stores', inLanguage: language, provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <Layout hideBottomCta>

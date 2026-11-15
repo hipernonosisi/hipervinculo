@@ -19,7 +19,7 @@ export default function ShopifyStoreDesign() {
   const c = shopifyStoreDesignContent[language];
   const url = `${SITE_URL}${localizedPath('/shopify-agency/store-design', language)}`;
   const schema = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Service', name: 'Shopify Website Design and Redesign', serviceType: 'Shopify store design, redesign and migration', provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
+    { '@type': 'Service', name: language === 'es' ? 'Diseño de tiendas Shopify' : 'Shopify Website Design and Redesign', serviceType: language === 'es' ? 'Diseño, rediseño y desarrollo de tiendas Shopify' : 'Shopify store design, redesign and migration', inLanguage: language, provider: { '@id': `${SITE_URL}/#organization` }, areaServed: 'US', url },
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <Layout hideBottomCta>
