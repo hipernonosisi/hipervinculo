@@ -17,3 +17,4 @@
 - Retired portfolio URLs are emitted only as noindex NotFound documents, never as public content or sitemap entries, so old links cannot republish client proof.
 - Homepage and founder/about sections reuse the GoogleReviews export from FounderAndReviews so the original review cards, order and Google links stay identical without duplicating the founder story.
 - Agency mobile containment and body-text floors are scoped to the shared public layout and standalone agency pages below the desktop breakpoint, keeping proposal/report themes and desktop rendering unchanged.
+- Business opening hours and the Google Business profile URL come from the shared business module behind the organization schema, footer and contact page, so one change updates every surface and no Review/AggregateRating schema is ever added.

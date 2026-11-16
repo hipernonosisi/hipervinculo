@@ -1,6 +1,6 @@
-import { localizedPath } from '@/lib/seoRoutes';
+import { business, localizedPath } from '@/lib/seoRoutes';
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle, Flame, ShieldCheck, Download, FileText } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle, Flame, ShieldCheck, Download, FileText } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
@@ -221,7 +221,13 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 </li>
                 <li className="flex items-start gap-3 text-muted-foreground">
                   <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                  <span>2645 Executive Park Dr, Suite 146, Weston, FL 33331</span>
+                  <a href={business.googleMaps} target="_blank" rel="noopener" className="min-h-11 hover:text-foreground transition-colors">
+                    2645 Executive Park Dr, Suite 146, Weston, FL 33331
+                  </a>
+                </li>
+                <li className="flex items-center gap-3 text-muted-foreground">
+                  <Clock className="h-4 w-4 flex-shrink-0" />
+                  <span>{language === 'en' ? 'Mon–Fri, 10 AM – 5 PM ET' : 'Lun–Vie, 10 a. m. – 5 p. m. ET'}</span>
                 </li>
               </ul>
             </div>

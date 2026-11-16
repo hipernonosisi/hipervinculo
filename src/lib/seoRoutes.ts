@@ -4,7 +4,9 @@ export const business = {
   name: 'Hipervínculo', telephone: '+1 (786) 529-0679', email: 'info@hipervinculo.net',
   address: '2645 Executive Park Dr, Suite 146, Weston, FL 33331, USA',
   trackedSales: '$92M+', minimumContractMonths: 0,
-  sameAs: ['https://x.com/hipervinculo_ca', 'https://instagram.com/hipervinculo_', 'https://facebook.com/hipervinculo.net'],
+  googleMaps: 'https://www.google.com/maps?cid=4036466165487798554',
+  openingHours: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '17:00' }],
+  sameAs: ['https://x.com/hipervinculo_ca', 'https://instagram.com/hipervinculo_', 'https://facebook.com/hipervinculo.net', 'https://www.google.com/maps?cid=4036466165487798554'],
 } as const;
 
 type PageMeta = { en: [string, string]; es: [string, string] };
@@ -24,7 +26,7 @@ export const pageMetadata: Record<string, PageMeta> = {
   '/amazon-ads': { en: ['Amazon PPC Management & Automation | Hipervínculo', 'Amazon PPC with hourly bid changes, single-keyword campaigns and daily organic rank tracking. Built to win sales and top organic positions on Amazon.'], es: ['Gestión y automatización de Amazon PPC | Hipervínculo', 'Amazon PPC con cambios de puja por hora, campañas de una palabra clave y seguimiento diario del posicionamiento orgánico para impulsar ventas en Amazon.'] },
   '/pricing': { en: ['Pricing: Websites, Google Ads & Growth Plans', 'Lead generation systems are quoted after a free review of your website and lead systems. Performance partnership terms depend on the agreed scope.'], es: ['Precios: sitios web, Google Ads y planes de crecimiento', 'Los sistemas de generación de leads se cotizan tras una revisión gratuita de tu sitio web y tus sistemas de leads. Los términos de partnership dependen del alcance acordado.'] },
   '/faqs': { en: ['Agency FAQs: Pricing, Contracts & Results', 'Answers on pricing, contracts, minimum ad spend, reporting, timelines, Net ROAS and TACoS, and how we run Google Ads, Amazon Ads and Meta Ads.'], es: ['Preguntas frecuentes: precios, contratos y resultados', 'Respuestas sobre precios, contratos, publicidad, reportes, plazos, ROAS neto y TACoS, y cómo gestionamos Google Ads, Amazon Ads y Meta Ads.'] },
-  '/contact': { en: ['Contact Hipervínculo | Weston, FL Marketing Agency', 'Call +1 (786) 529-0679, email info@hipervinculo.net or visit us at 2645 Executive Park Dr, Weston, FL. Hours Mon-Fri 9:30-5:30 ET. English & Spanish.'], es: ['Contacta a Hipervínculo | Agencia de marketing en Weston', 'Llama al +1 (786) 529-0679 o escribe a info@hipervinculo.net. Visítanos en 2645 Executive Park Dr, Weston, FL. Lun-vie 9:30-5:30 ET. Inglés y español.'] },
+  '/contact': { en: ['Contact Hipervínculo | Weston, FL Marketing Agency', 'Call +1 (786) 529-0679, email info@hipervinculo.net or visit us at 2645 Executive Park Dr, Weston, FL. Hours Mon-Fri 10-5 ET. English & Spanish.'], es: ['Contacta a Hipervínculo | Agencia de marketing en Weston', 'Llama al +1 (786) 529-0679 o escribe a info@hipervinculo.net. Visítanos en 2645 Executive Park Dr, Weston, FL. Lun-vie 10-5 ET. Inglés y español.'] },
   '/hiper-influencers': { en: ['Hiper Influencers: Creator Monetization Program', 'We build the funnel, fund and run the Meta Ads, and share revenue on every sale of your digital product. No upfront investment. Apply to the program.'], es: ['Hiper Influencers: monetización para creadores', 'Creamos el embudo, financiamos y gestionamos Meta Ads y compartimos ingresos por cada venta de tu producto digital. Sin inversión inicial. Solicita acceso.'] },
   '/privacy': { en: ['Privacy Policy | Hipervínculo', 'Read how Hipervínculo handles personal information, contact requests, analytics and cookies, and how to contact us about your privacy rights.'], es: ['Política de privacidad | Hipervínculo', 'Conoce cómo Hipervínculo trata los datos personales, solicitudes de contacto, analítica y cookies, y cómo contactarnos sobre tus derechos de privacidad.'] },
   '/terms': { en: ['Terms of Service | Hipervínculo', 'Review the terms that apply to Hipervínculo services, including payment, responsibilities, intellectual property and the scope of our work.'], es: ['Términos de servicio | Hipervínculo', 'Consulta los términos de los servicios de Hipervínculo, incluidos pagos, responsabilidades, propiedad intelectual y alcance del trabajo.'] },
@@ -88,6 +90,7 @@ export function businessSchema(logo: string) {
     { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE_URL}/#organization`, name: business.name, url: `${SITE_URL}/`, logo, telephone: business.telephone, email: business.email,
       address: { '@type': 'PostalAddress', streetAddress: '2645 Executive Park Dr, Suite 146', addressLocality: 'Weston', addressRegion: 'FL', postalCode: '33331', addressCountry: 'US' },
       geo: { '@type': 'GeoCoordinates', latitude: 26.085917, longitude: -80.374306 },
+      openingHoursSpecification: business.openingHours, hasMap: business.googleMaps,
       sameAs: business.sameAs, areaServed: [{ '@type': 'Country', name: 'United States' }],
     },
     { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, name: business.name, url: `${SITE_URL}/`, publisher: { '@id': `${SITE_URL}/#organization` }, inLanguage: ['en', 'es'] },

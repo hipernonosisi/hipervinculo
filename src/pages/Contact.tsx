@@ -314,7 +314,7 @@ export default function Contact() {
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-accent" />
                     <span className="text-muted-foreground">
-                      {language === 'en' ? 'Monday - Friday: 9:30 AM - 5:30 PM EST' : 'Lunes - Viernes: 9:30 AM - 5:30 PM EST'}
+                      {language === 'en' ? 'Monday - Friday: 10:00 AM - 5:00 PM ET' : 'Lunes - Viernes: 10:00 a. m. - 5:00 p. m. ET'}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">

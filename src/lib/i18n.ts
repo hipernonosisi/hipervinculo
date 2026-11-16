@@ -803,7 +803,7 @@ export const translations = {
         email: 'info@hipervinculo.net',
         phone: '+1 (555) 123-4567',
         address: 'Remote-first agency serving clients worldwide',
-        hours: 'Monday - Friday, 9am - 6pm EST',
+        hours: 'Monday - Friday, 10am - 5pm EST',
       },
     },
     // Audit Form
@@ -1956,7 +1956,7 @@ export const translations = {
         email: 'info@hipervinculo.net',
         phone: '+1 (555) 123-4567',
         address: 'Agencia remota sirviendo clientes en todo el mundo',
-        hours: 'Lunes - Viernes, 9am - 6pm EST',
+        hours: 'Lunes - Viernes, 10am - 5pm EST',
       },
     },
     // Audit Form
