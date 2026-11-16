@@ -999,7 +999,8 @@ export const translations = {
     // Privacy Policy Page
     privacy: {
       title: 'Privacy Policy',
-      lastUpdated: 'Last updated: February 5, 2026',
+      lastUpdated: 'Last updated: November 16, 2026',
+      email: 'info@hipervinculo.net',
       intro: 'At HIPERVINCULO, we take your privacy and the protection of your personal information seriously. This privacy policy outlines the types of information we collect, how we use that information, and how we keep it secure.',
       sections: {
         collect: {
@@ -1015,6 +1016,15 @@ export const translations = {
         security: {
           title: 'How We Keep Your Information Secure',
           content: 'We take the security of your personal information seriously and take steps to keep your information secure. We use industry-standard encryption and security measures to protect your information from unauthorized access, disclosure, or use.',
+        },
+        social: {
+          title: 'Data from Instagram and Facebook',
+          content: 'When you comment on or send a message to our Instagram or Facebook accounts, we receive your username, the content of your comment or message, and the conversation history with our account. We use this information only to reply to you and to follow up on your inquiry. We do not sell this information or share it with third parties.',
+        },
+        deletion: {
+          title: 'How to Request Deletion of Your Data',
+          contentBefore: 'You can ask us to delete the data we hold about you at any time. Send an email to ',
+          contentAfter: ' with the subject "Data deletion request" and include your Instagram or Facebook username. We will delete your data within 30 days and confirm by email.',
         },
         changes: {
           title: 'Changes to Our Privacy Policy',
@@ -2152,7 +2162,8 @@ export const translations = {
     // Privacy Policy Page
     privacy: {
       title: 'Política de Privacidad',
-      lastUpdated: 'Última actualización: 5 de febrero de 2026',
+      lastUpdated: 'Última actualización: 16 de noviembre de 2026',
+      email: 'info@hipervinculo.net',
       intro: 'En HIPERVINCULO, nos tomamos muy en serio tu privacidad y la protección de tu información personal. Esta política de privacidad describe los tipos de información que recopilamos, cómo usamos esa información y cómo la mantenemos segura.',
       sections: {
         collect: {
@@ -2168,6 +2179,15 @@ export const translations = {
         security: {
           title: 'Cómo Mantenemos Tu Información Segura',
           content: 'Nos tomamos muy en serio la seguridad de tu información personal y tomamos medidas para mantenerla segura. Usamos encriptación estándar de la industria y medidas de seguridad para proteger tu información contra acceso no autorizado, divulgación o uso.',
+        },
+        social: {
+          title: 'Datos de Instagram y Facebook',
+          content: 'Cuando comentas o envías un mensaje a nuestras cuentas de Instagram o Facebook, recibimos tu nombre de usuario, el contenido de tu comentario o mensaje y el historial de la conversación con nuestra cuenta. Usamos esta información solo para responderte y dar seguimiento a tu consulta. No vendemos esta información ni la compartimos con terceros.',
+        },
+        deletion: {
+          title: 'Cómo solicitar la eliminación de tus datos',
+          contentBefore: 'Puedes pedirnos que eliminemos los datos que tenemos sobre ti en cualquier momento. Envía un correo electrónico a ',
+          contentAfter: ' con el asunto "Solicitud de eliminación de datos" e incluye tu nombre de usuario de Instagram o Facebook. Eliminaremos tus datos en un plazo de 30 días y te lo confirmaremos por correo electrónico.',
         },
         changes: {
           title: 'Cambios en Nuestra Política de Privacidad',

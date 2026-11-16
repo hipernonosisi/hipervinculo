@@ -115,6 +115,45 @@ export default function Privacy() {
               </div>
             </AnimatedSection>
 
+            {/* Data from Instagram and Facebook */}
+            <AnimatedSection delay={0.4}>
+              <div className="space-y-4">
+                <h2 
+                  className="text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.02em]"
+                  style={{ fontWeight: 800, color: '#2d4a2d' }}
+                >
+                  {t.privacy.sections.social.title}
+                </h2>
+                <p className="text-[17px] text-muted-foreground leading-relaxed">
+                  {t.privacy.sections.social.content}
+                </p>
+              </div>
+            </AnimatedSection>
+
+            {/* How to Request Deletion of Your Data */}
+            <div id="data-deletion" className="scroll-mt-28">
+              <AnimatedSection delay={0.45}>
+                <div className="space-y-4">
+                  <h2 
+                    className="text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.02em]"
+                    style={{ fontWeight: 800, color: '#2d4a2d' }}
+                  >
+                    {t.privacy.sections.deletion.title}
+                  </h2>
+                  <p className="text-[17px] text-muted-foreground leading-relaxed">
+                    {t.privacy.sections.deletion.contentBefore}
+                    <a
+                      href={`mailto:${t.privacy.email}`}
+                      className="text-primary underline underline-offset-4 transition-opacity hover:opacity-70"
+                    >
+                      {t.privacy.email}
+                    </a>
+                    {t.privacy.sections.deletion.contentAfter}
+                  </p>
+                </div>
+              </AnimatedSection>
+            </div>
+
             {/* Changes to Our Privacy Policy */}
             <AnimatedSection delay={0.4}>
               <div className="space-y-4">
@@ -140,7 +179,13 @@ export default function Privacy() {
                   {t.privacy.sections.contact.title}
                 </h2>
                 <p className="text-[17px] text-muted-foreground leading-relaxed">
-                  {t.privacy.sections.contact.content}
+                  {t.privacy.sections.contact.content}{' '}
+                  <a
+                    href={`mailto:${t.privacy.email}`}
+                    className="text-primary underline underline-offset-4 transition-opacity hover:opacity-70"
+                  >
+                    {t.privacy.email}
+                  </a>
                 </p>
               </div>
             </AnimatedSection>

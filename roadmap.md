@@ -54,3 +54,4 @@
 - [x] Sofibella Wear proposal (EN): $13,500 website project + optional $1,500/mo operations
 
 - [ ] SEO publishing verification: verify actual published source and rerun SEO review after Miguel publishes; publication pending.
+- [x] Privacy policy: add Instagram/Facebook data and data-deletion sections in EN/ES, the #data-deletion deep link, contact mailto link and the November 16, 2026 revision date.
