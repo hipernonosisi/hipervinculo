@@ -12,6 +12,48 @@
   }
 }
 
+/* Shared agency-page mobile containment; never affects proposal/report layouts or desktop. */
+@media (max-width: 767px) {
+  .agency-public .grid > *,
+  .agency-public .flex > * {
+    min-width: 0;
+  }
+  .agency-public :is(h1, h2, h3, h4, p, li) {
+    overflow-wrap: anywhere;
+  }
+  .agency-public :is(p, li)[class~="text-xs"],
+  .agency-public :is(p, li)[class~="text-[10px]"],
+  .agency-public :is(p, li)[class~="text-[11px]"],
+  .agency-public :is(p, li)[class~="text-[12px]"],
+  .agency-public :is(p, li)[class~="text-[13px]"] {
+    font-size: 14px;
+  }
+  .agency-public .agency-section-motion,
+  .agency-public .agency-shutter-text [aria-hidden] {
+    transform: none !important;
+  }
+  .agency-public a:not([class*="fixed"]) {
+    max-width: 100%;
+    white-space: normal;
+  }
+  .agency-public input[type="tel"] {
+    min-width: 0;
+    width: 100%;
+  }
+  .agency-public .agency-preview-zoom {
+    height: auto !important;
+  }
+  .agency-public .agency-preview-zoom-card,
+  .agency-public .agency-preview-zoom-title {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .agency-public .pointer-events-none[class~="w-[600px]"] {
+    display: none;
+  }
+}
+
 /* Hipervínculo Design System - EXACT values from hipervinculo.net
    Primary/Accent: #8BC34A (lime green)
    Text Primary: #2F4F2F (dark forest green)

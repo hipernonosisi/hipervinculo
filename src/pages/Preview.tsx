@@ -66,7 +66,7 @@ function ZoomCard({ card, index, scrollYProgress }: { card: { title: string; des
 
   return (
     <motion.div
-      className="bg-secondary border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
+      className="agency-preview-zoom-card bg-secondary border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
       style={{ opacity, scale, filter: filterStyle }}
     >
       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
@@ -542,7 +542,7 @@ export default function Preview() {
   }, []);
 
   return (
-    <div className="bg-background min-h-screen text-foreground">
+    <div className="agency-public bg-background min-h-screen text-foreground">
       <SEO
         title={p.seo.title}
         description={p.seo.description}
@@ -671,8 +671,8 @@ export default function Preview() {
       </Section>
 
       {/* ── S5: Why Hipervínculo — Scroll-hijack zoom reveal ── */}
-      <section ref={whyCardsRef} className="relative" style={{ height: '350vh' }}>
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+      <section ref={whyCardsRef} className="agency-preview-zoom relative" style={{ height: '350vh' }}>
+        <div className="relative md:sticky top-0 md:h-screen py-16 md:py-0 flex items-center overflow-hidden">
           <div className="container max-w-5xl w-full">
             <div className="text-center mb-4">
               <motion.p
@@ -682,7 +682,7 @@ export default function Preview() {
                 {p.whyUs.subtitle}
               </motion.p>
               <motion.h2
-                className="text-xl sm:text-2xl md:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
+                className="agency-preview-zoom-title text-xl sm:text-2xl md:text-4xl font-extrabold text-foreground mb-12 whitespace-normal md:whitespace-nowrap"
                 style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
               >
                 {p.whyUs.title}

@@ -234,8 +234,8 @@ export default function Pricing() {
                 </div>
                 
                 {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(30%, -30%)' }} />
-                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(-30%, 30%)' }} />
+                <div className="hidden md:block absolute top-0 right-0 w-64 h-64 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(30%, -30%)' }} />
+                <div className="hidden md:block absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-5" style={{ backgroundColor: '#8BC34A', transform: 'translate(-30%, 30%)' }} />
               </motion.div>
             </AnimatedSection>
           </div>

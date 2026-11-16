@@ -12,7 +12,7 @@ export function HeroShutterText({ text, className = "" }: HeroShutterTextProps) 
   let wordCounter = 0;
 
   return (
-    <span className={cn("inline", className)}>
+    <span className={cn("agency-shutter-text inline", className)}>
       {lines.map((line, lineIdx) => {
         const words = line.split(" ");
         return (

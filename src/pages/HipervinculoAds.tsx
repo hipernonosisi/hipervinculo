@@ -361,7 +361,7 @@ function ParallaxBg({ className = '', speed = 0.15 }: { className?: string; spee
   const rotate = useTransform(scrollYProgress, [0, 1], [0, speed * 30]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.1, 0.9]);
   return (
-    <motion.div ref={ref} style={{ y, rotate, scale }} className={`pointer-events-none absolute ${className}`} />
+    <motion.div ref={ref} style={{ y, rotate, scale }} className={`hidden md:block pointer-events-none absolute ${className}`} />
   );
 }
 
@@ -443,7 +443,7 @@ export default function HipervinculoAds() {
   const heroParallaxY = useTransform(scrollY, [0, 600], [0, -80]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="agency-public min-h-screen overflow-x-hidden bg-background text-foreground">
       <SEO
         title={t.seo.title}
         description={t.seo.description}

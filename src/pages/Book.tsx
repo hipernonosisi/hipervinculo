@@ -6,7 +6,7 @@ const BOOKING_URL = 'https://meetings-eu1.hubspot.com/acamacho?uuid=c5d18399-7c2
 
 export default function Book() {
   return (
-    <div className="dark bg-[hsl(147,25%,6%)] min-h-screen text-[hsl(0,0%,98%)]">
+    <div className="agency-public dark bg-[hsl(147,25%,6%)] min-h-screen text-[hsl(0,0%,98%)]">
       <SEO
         title="Book a Strategy Call — Hipervínculo"
         description="Pick a time for your free 15-minute strategy call. No pressure, no hard sell."

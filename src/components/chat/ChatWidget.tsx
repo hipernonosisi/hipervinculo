@@ -343,7 +343,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
               {showPulse && (
                 <>
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-primary"
+                    className="hidden md:block absolute inset-0 rounded-full bg-primary"
                     animate={{
                       scale: [1, 1.5, 1.5],
                       opacity: [0.5, 0, 0],
@@ -355,7 +355,7 @@ export function ChatWidget({ onOpenChange }: ChatWidgetProps) {
                     }}
                   />
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-primary"
+                    className="hidden md:block absolute inset-0 rounded-full bg-primary"
                     animate={{
                       scale: [1, 1.8, 1.8],
                       opacity: [0.3, 0, 0],

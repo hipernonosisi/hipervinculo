@@ -13,7 +13,7 @@ export function Layout({ children, hideBottomCta }: LayoutProps) {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="agency-public flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer hideBottomCta={hideBottomCta} />

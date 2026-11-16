@@ -56,7 +56,7 @@ export default function About() {
               >
                 {t.about.heroTitle}
               </h1>
-              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-none mx-auto whitespace-nowrap">
+              <p className="text-[15px] md:text-[16px] text-muted-foreground max-w-none mx-auto whitespace-normal md:whitespace-nowrap">
                 {t.about.heroSubtitle}
               </p>
             </AnimatedSection>

@@ -16,3 +16,4 @@
 - Audit notifications use an explicit source discriminator and a shared identity-label helper so Shopify names do not relabel company-based forms.
 - Retired portfolio URLs are emitted only as noindex NotFound documents, never as public content or sitemap entries, so old links cannot republish client proof.
 - Homepage and founder/about sections reuse the GoogleReviews export from FounderAndReviews so the original review cards, order and Google links stay identical without duplicating the founder story.
+- Agency mobile containment and body-text floors are scoped to the shared public layout and standalone agency pages below the desktop breakpoint, keeping proposal/report themes and desktop rendering unchanged.
