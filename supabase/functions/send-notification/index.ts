@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { auditIdentityLabel } from './auditIdentity.ts';
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,6 +34,7 @@ interface ContactNotification {
 
 interface AuditNotification {
   type: "audit";
+  source?: 'shopify-audit';
   language: "en" | "es";
   companyName: string;
   email: string;
@@ -560,7 +562,7 @@ const generateClientContactEmail = (t: typeof emailTranslations.en.contact, data
 `;
 
 // Generate client audit email HTML
-const generateClientAuditEmail = (t: typeof emailTranslations.en.audit, data: { companyName: string; email: string; websiteUrl?: string; businessType?: string; monthlyRevenue?: string; monthlyAdSpend?: string; growthGoals?: string }) => `
+const generateClientAuditEmail = (t: typeof emailTranslations.en.audit, data: { companyName: string; email: string; websiteUrl?: string; businessType?: string; monthlyRevenue?: string; monthlyAdSpend?: string; growthGoals?: string }, identityLabel: string) => `
   <!DOCTYPE html>
   <html>
    <head>
@@ -583,7 +585,7 @@ const generateClientAuditEmail = (t: typeof emailTranslations.en.audit, data: { 
           <div class="section">
             <div class="section-title">${t.yourSubmission}</div>
             <div class="field">
-              <div class="label">${t.company}</div>
+              <div class="label">${identityLabel}</div>
               <div class="value">${data.companyName}</div>
             </div>
             <div class="field">
@@ -746,6 +748,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     } else if (payload.type === "audit") {
       const { companyName, email, websiteUrl, monthlyRevenue, monthlyAdSpend, businessType, growthGoals } = payload;
+      const identityLabel = auditIdentityLabel(payload.source, lang, t.audit.company);
       clientEmail = email;
       
       // Admin email (simple)
@@ -770,7 +773,7 @@ const handler = async (req: Request): Promise<Response> => {
               </div>
               <div class="content">
                 <div class="field">
-                  <div class="label">${t.audit.company}</div>
+                  <div class="label">${identityLabel}</div>
                   <div class="value">${companyName}</div>
                 </div>
                 <div class="field">
@@ -811,7 +814,7 @@ const handler = async (req: Request): Promise<Response> => {
 
       // Client confirmation email (beautiful)
       clientSubject = t.subject.auditClient;
-      clientHtml = generateClientAuditEmail(t.audit, { companyName, email, websiteUrl, businessType, monthlyRevenue, monthlyAdSpend, growthGoals });
+      clientHtml = generateClientAuditEmail(t.audit, { companyName, email, websiteUrl, businessType, monthlyRevenue, monthlyAdSpend, growthGoals }, identityLabel);
     } else if (payload.type === "website-audit") {
       const { businessName, email, websiteUrl, businessType, contactName, phone, overallScore, estimatedLeadsLost, estimatedRevenueLost } = payload;
       clientEmail = email;

@@ -259,10 +259,7 @@ export default function ServiceDetail() {
                   <CardContent className="p-8 md:p-10">
                     <div className="space-y-4">
                       <p className="text-[18px] md:text-[20px] text-foreground">
-                        {service.entryOffer.website}
-                      </p>
-                      <p className="text-[18px] md:text-[20px] text-foreground">
-                        {service.entryOffer.monthly}
+                        {service.entryOffer.quote}
                       </p>
                     </div>
                   </CardContent>

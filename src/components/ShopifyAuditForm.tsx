@@ -39,7 +39,7 @@ export function ShopifyAuditForm({ defaultHelp = [] }: { defaultHelp?: readonly 
       if (insertError) throw insertError;
       // Same notification and conversion destination as /audit; ad spend is not collected here.
       supabase.functions.invoke('send-notification', { body: {
-        type: 'audit', language, companyName: payload.company_name, email: payload.email,
+        type: 'audit', source: 'shopify-audit', language, companyName: payload.company_name, email: payload.email,
         websiteUrl: payload.website_url, businessType: payload.business_type,
         monthlyRevenue: payload.monthly_revenue, monthlyAdSpend: '', growthGoals: payload.growth_goals,
       } }).catch(() => undefined);

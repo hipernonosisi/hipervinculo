@@ -41,8 +41,6 @@ const ThankYouContact = lazy(() => import("./pages/ThankYouContact"));
 const ThankYouAudit = lazy(() => import("./pages/ThankYouAudit"));
 const Preview = lazy(() => import("./pages/Preview"));
 const ThankYouPreview = lazy(() => import("./pages/ThankYouPreview"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const CaseStudy = lazy(() => import("./pages/CaseStudy"));
 const Book = lazy(() => import("./pages/Book"));
 const AmazonCallback = lazy(() => import("./pages/AmazonCallback"));
 const HipervinculoAds = lazy(() => import("./pages/HipervinculoAds"));
@@ -90,8 +88,6 @@ const pageRoutes = (nested = false) => (<>
               <Route path={nested ? "thank-you/audit" : "/thank-you/audit"} element={<ThankYouAudit />} />
               <Route path={nested ? "preview" : "/preview"} element={<Preview />} />
               <Route path={nested ? "thank-you/preview" : "/thank-you/preview"} element={<ThankYouPreview />} />
-              <Route path={nested ? "portfolio" : "/portfolio"} element={<Portfolio />} />
-              <Route path={nested ? "portfolio/:slug" : "/portfolio/:slug"} element={<CaseStudy />} />
               <Route path={nested ? "book" : "/book"} element={<Book />} />
               <Route path={nested ? "amazon/callback" : "/amazon/callback"} element={<AmazonCallback />} />
               <Route path={nested ? "amazon-ads" : "/amazon-ads"} element={<HipervinculoAds />} />

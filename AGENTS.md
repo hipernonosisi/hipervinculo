@@ -12,3 +12,6 @@
 - Maintain the existing static sitemap; lastmod is an explicit significant page revision date, never a build or generation timestamp.
 - Content images use pre-sized WebP variants and a shared dimensions-aware image component to avoid excessive payloads and layout shifts.
 - Incomplete leads and chat conversations reject direct client inserts/updates; server-side service-role writers preserve admin-only reads, preventing cross-visitor record tampering.
+
+- Audit notifications use an explicit source discriminator and a shared identity-label helper so Shopify names do not relabel company-based forms.
+- Retired portfolio URLs are emitted only as noindex NotFound documents, never as public content or sitemap entries, so old links cannot republish client proof.

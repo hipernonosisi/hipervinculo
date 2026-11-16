@@ -63,6 +63,45 @@ export default function Pricing() {
       <section className="py-20">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Growth Partnership */}
+            <AnimatedSection delay={0.1}>
+              <Card className="relative overflow-hidden flex flex-col h-full border-2 border-accent">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t.pricing.partnership.title}</CardTitle>
+                  <CardDescription>
+                    {t.pricing.partnership.subtitle}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 flex-grow flex flex-col">
+                  <div>
+                    <p className="text-4xl font-bold text-primary">5%</p>
+                    <p className="text-muted-foreground">
+                      {language === 'en' ? 'of Net Shopify Sales' : 'de Ventas Netas Shopify'}
+                    </p>
+                  </div>
+                  <p className="text-muted-foreground">
+                    {language === 'en' 
+                      ? 'A true partnership model where we grow with you. This is available for qualified brands with strong historical data.'
+                      : 'Un modelo de asociación real donde crecemos contigo. Disponible para marcas calificadas con datos históricos sólidos.'}
+                  </p>
+                  <div className="flex-grow">
+                    <p className="font-medium mb-3">{language === 'en' ? 'Includes:' : 'Incluye:'}</p>
+                    <ul className="space-y-3">
+                      {t.pricing.partnership.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Button asChild variant="outline" className="w-full mt-auto rounded-xl">
+                    <Link to="/audit">{t.pricing.partnership.cta}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
             {/* Lead Generation System */}
             <AnimatedSection delay={0.1}>
               <Card className="relative overflow-hidden flex flex-col h-full">
@@ -74,22 +113,9 @@ export default function Pricing() {
                 </CardHeader>
                 <CardContent className="space-y-6 flex-grow flex flex-col">
                   <div>
-                    <p className="text-3xl font-bold text-primary">{t.pricing.leadGen.setupPrice}</p>
-                    <p className="text-muted-foreground">
-                      {language === 'en' ? 'Conversion Website + Lead System Setup' : 'Sitio Web de Conversión + Setup del Sistema de Leads'}
-                    </p>
+                    <p className="text-3xl font-bold text-primary">{t.pricing.leadGen.quote}</p>
+                    <p className="text-muted-foreground mt-3">{t.pricing.leadGen.quoteDescription}</p>
                   </div>
-                  <div>
-                    <p className="text-2xl font-bold text-primary">{t.pricing.leadGen.monthlyPrice}</p>
-                    <p className="text-muted-foreground">
-                      {language === 'en' ? 'Lead Generation Management' : 'Gestión de Generación de Leads'}
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {language === 'en' 
-                      ? '(No contracts — clients stay because the system works)'
-                      : '(Sin contratos — los clientes se quedan porque el sistema funciona)'}
-                  </p>
                   <div className="flex-grow">
                     <p className="font-medium mb-3">{language === 'en' ? 'Includes:' : 'Incluye:'}</p>
                     <ul className="space-y-3">
@@ -139,7 +165,7 @@ export default function Pricing() {
                     </ul>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    {language === 'en' 
+                    {language === 'en'
                       ? '(This model suits brands with established conversion systems already in place.)'
                       : '(Este modelo es ideal para marcas con sistemas de conversión establecidos.)'}
                   </p>
@@ -150,44 +176,7 @@ export default function Pricing() {
               </Card>
             </AnimatedSection>
 
-            {/* Growth Partnership */}
-            <AnimatedSection delay={0.3}>
-              <Card className="relative overflow-hidden flex flex-col h-full">
-                <CardHeader>
-                  <CardTitle className="text-xl">{t.pricing.partnership.title}</CardTitle>
-                  <CardDescription>
-                    {t.pricing.partnership.subtitle}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6 flex-grow flex flex-col">
-                  <div>
-                    <p className="text-4xl font-bold text-primary">5%</p>
-                    <p className="text-muted-foreground">
-                      {language === 'en' ? 'of Net Shopify Sales' : 'de Ventas Netas Shopify'}
-                    </p>
-                  </div>
-                  <p className="text-muted-foreground">
-                    {language === 'en' 
-                      ? 'A true partnership model where we grow with you. This is available for qualified brands with strong historical data.'
-                      : 'Un modelo de asociación real donde crecemos contigo. Disponible para marcas calificadas con datos históricos sólidos.'}
-                  </p>
-                  <div className="flex-grow">
-                    <p className="font-medium mb-3">{language === 'en' ? 'Includes:' : 'Incluye:'}</p>
-                    <ul className="space-y-3">
-                      {t.pricing.partnership.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button asChild variant="outline" className="w-full mt-auto rounded-xl">
-                    <Link to="/audit">{t.pricing.partnership.cta}</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </AnimatedSection>
+
           </div>
         </div>
       </section>

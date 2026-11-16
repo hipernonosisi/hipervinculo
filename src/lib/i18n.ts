@@ -96,8 +96,7 @@ export const translations = {
           },
           entryOffer: {
             title: 'Entry Offer',
-            website: 'Website builds typically start around $3,000',
-            monthly: 'Monthly lead generation management starts at $1,250',
+            quote: 'Custom quote after a free review',
             note: 'No long-term contracts. Clients stay because results compound over time.',
           },
           whoFor: {
@@ -546,9 +545,6 @@ export const translations = {
       differentPartnership: 'True Partnership',
       differentPartnershipDesc: 'We become an extension of your team. Weekly calls, Slack access, and proactive recommendations — not just monthly reports.',
       partnersTitle: 'Certified Partners',
-      portfolioSneakTitle: 'Recent Work',
-      portfolioSneakSubtitle: 'A look at some of our latest projects',
-      portfolioSneakCta: 'View All Projects',
       industriesTitle: 'Industries We Serve',
       industriesSubtitle: 'We have deep experience across these verticals',
       industries: [
@@ -641,7 +637,7 @@ export const translations = {
     },
     // Pricing
     pricing: {
-      title: 'Transparent Pricing',
+      title: 'How We Work With You',
       subtitle: 'Choose the model that works for your business',
       viewAll: 'View Full Pricing Details',
       retainer: {
@@ -671,8 +667,8 @@ export const translations = {
       leadGen: {
         title: 'Lead Generation System',
         subtitle: 'For service businesses',
-        setupPrice: '$3,000',
-        monthlyPrice: '$1,250/month',
+        quote: 'Custom quote',
+        quoteDescription: 'Scoped after a free review of your website and lead systems. No long-term contracts.',
         features: [
           'Landing page development',
           'Google Ads setup & management',
@@ -692,7 +688,7 @@ export const translations = {
       questions: [
         {
           q: 'What is the starting investment?',
-          a: 'Conversion websites start at $3,000 and Google Ads management starts at $1,250/month. Advertising spend is separate. Performance partnership terms depend on the agreed scope.',
+          a: 'Lead generation systems are quoted after a free review of your website and lead systems. Advertising spend is separate. Performance partnership terms depend on the agreed scope.',
         },
         {
           q: 'What is net ROAS?',
@@ -982,7 +978,7 @@ export const translations = {
     },
     // Pricing Page
     pricingPage: {
-      title: 'Transparent Pricing',
+      title: 'How We Work With You',
       subtitle: 'No hidden fees. No long-term contracts. Just results-driven partnerships.',
       notes: [
         'All pricing is based on performance. We only win when you win.',
@@ -1070,22 +1066,7 @@ export const translations = {
         rating: '5.0 (23 reviews)',
         readAll: 'Read All 23 Reviews on Google',
       },
-      results: {
-        subtitle: 'Explore work',
-        title: 'Projects That Speak for Themselves',
-        description: 'Live websites you can visit right now. Real businesses generating real revenue.',
-        cta: 'Want results like these? Book Your Free Strategy Call',
-        caseStudies: [
-          { name: 'Step Solution USA', type: 'Manufacturing', result: '+320% increase in qualified dealer leads' },
-          { name: 'ZERMA Latin America', type: 'Industrial Machinery', result: '+200% increase in quote requests across LATAM' },
-          { name: 'Filtro Láser', type: 'Industrial Equipment', result: 'Full digital presence built & launched in 2 days' },
-          { name: 'Pulverizadores Industriales', type: 'Industrial Equipment', result: '50+ qualified leads/year in a highly specialized niche' },
-          { name: 'Stillwater Day Spa', type: 'Wellness & Spa', result: 'From 2-3 calls/day to 20+ calls/day' },
-          { name: 'Rasetta Innovations', type: 'Interior Design', result: '+180% increase in consultation requests' },
-          { name: 'Lajex LLC', type: 'Plumbing & Water Purification', result: '1-2 clients/week to 7-8 clients/week in 90 days' },
-          { name: 'Délios Home', type: 'Home Renovation', result: '3 consultation calls booked in first 24 hours' },
-        ],
-      },
+
       whyUs: {
         subtitle: 'Why us?',
         title: 'Why 200+ Businesses Trust Us',
@@ -1104,7 +1085,7 @@ export const translations = {
         description: 'No hidden fees. No long-term contracts. Just results.',
         website: {
           title: 'Website Development',
-          price: '$3,000',
+          price: 'Custom quote after a free review',
           period: 'one-time investment',
           pause: 'Pause or cancel anytime',
           cta: 'Book A Call',
@@ -1119,7 +1100,7 @@ export const translations = {
         },
         ads: {
           title: 'Google Ads Management',
-          price: '$1,250',
+          price: 'Custom quote after a free review',
           period: '/month',
           periodDesc: 'ongoing lead generation',
           pause: 'Pause or cancel anytime',
@@ -1148,8 +1129,8 @@ export const translations = {
         title: 'Frequently Asked Questions',
         items: [
           { q: 'How does the free website preview work?', a: 'We design a custom preview of your new website in just 1 business day. You see exactly what your site will look like before paying anything. If you love it, we move forward. If not, you walk away — no charge.' },
-          { q: 'What\'s included in the $3,000 website?', a: 'A fully custom, mobile-optimized website designed to convert visitors into customers. This includes design, development, content setup, SEO-ready structure, and launch.' },
-          { q: 'What does the $1,250/month Google Ads management include?', a: 'Campaign strategy, ad creation, keyword targeting, landing page optimization, conversion tracking, and weekly optimization. Your ad spend with Google is separate and you control the budget.' },
+          { q: 'What\'s included in the website?', a: 'A fully custom, mobile-optimized website designed to convert visitors into customers. This includes design, development, content setup, SEO-ready structure, and launch.' },
+          { q: 'What does Google Ads management include?', a: 'Campaign strategy, ad creation, keyword targeting, landing page optimization, conversion tracking, and weekly optimization. Your ad spend with Google is separate and you control the budget.' },
           { q: 'Do I need to sign a long-term contract?', a: 'No. We work month to month. You stay because the results speak for themselves.' },
           { q: 'How soon will I see results?', a: 'Most clients see their first qualified leads within 30-60 days of launching Google Ads. Some see results in as little as 2 weeks.' },
           { q: 'What industries do you work with?', a: 'We work with any service-based business that has a Google Business Profile — plumbers, spas, realtors, dentists, contractors, retailers, distributors, and more.' },
@@ -1268,8 +1249,7 @@ export const translations = {
           },
           entryOffer: {
             title: 'Oferta de Entrada',
-            website: 'Los sitios web típicamente comienzan alrededor de $3,000',
-            monthly: 'La gestión mensual de generación de leads comienza en $1,250',
+            quote: 'Cotización a medida tras una revisión gratuita',
             note: 'Sin contratos a largo plazo. Los clientes se quedan porque los resultados se componen con el tiempo.',
           },
           whoFor: {
@@ -1718,9 +1698,6 @@ export const translations = {
       differentPartnership: 'Asociación Verdadera',
       differentPartnershipDesc: 'Nos convertimos en una extensión de tu equipo. Llamadas semanales, acceso a Slack y recomendaciones proactivas — no solo reportes mensuales.',
       partnersTitle: 'Socios Certificados',
-      portfolioSneakTitle: 'Trabajo Reciente',
-      portfolioSneakSubtitle: 'Un vistazo a algunos de nuestros últimos proyectos',
-      portfolioSneakCta: 'Ver Todos los Proyectos',
       industriesTitle: 'Industrias que Atendemos',
       industriesSubtitle: 'Tenemos experiencia profunda en estos verticales',
       industries: [
@@ -1813,7 +1790,7 @@ export const translations = {
     },
     // Pricing
     pricing: {
-      title: 'Precios Transparentes',
+      title: 'Cómo trabajamos contigo',
       subtitle: 'Elige el modelo que funcione para tu negocio',
       viewAll: 'Ver Todos los Detalles de Precios',
       retainer: {
@@ -1843,8 +1820,8 @@ export const translations = {
       leadGen: {
         title: 'Sistema de Generación de Leads',
         subtitle: 'Para negocios de servicios',
-        setupPrice: '$3,000',
-        monthlyPrice: '$1,250/mes',
+        quote: 'Cotización a medida',
+        quoteDescription: 'Se define tras una revisión gratuita de tu sitio web y tus sistemas de leads. Sin contratos a largo plazo.',
         features: [
           'Desarrollo de landing page',
           'Configuración y gestión de Google Ads',
@@ -1864,7 +1841,7 @@ export const translations = {
       questions: [
         {
           q: '¿Cuál es la inversión inicial?',
-          a: 'Los sitios web de conversión comienzan en $3,000 y la gestión de Google Ads desde $1,250/mes. La inversión publicitaria es aparte. Los términos de partnership dependen del alcance acordado.',
+          a: 'Los sistemas de generación de leads se cotizan tras una revisión gratuita de tu sitio web y tus sistemas de leads. La inversión publicitaria es aparte. Los términos de partnership dependen del alcance acordado.',
         },
         {
           q: '¿Qué es el ROAS neto?',
@@ -2154,7 +2131,7 @@ export const translations = {
     },
     // Pricing Page
     pricingPage: {
-      title: 'Precios Transparentes',
+      title: 'Cómo trabajamos contigo',
       subtitle: 'Sin cargos ocultos. Sin contratos a largo plazo. Solo asociaciones orientadas a resultados.',
       notes: [
         'Todos los precios están basados en rendimiento. Solo ganamos cuando tú ganas.',
@@ -2242,22 +2219,7 @@ export const translations = {
         rating: '5.0 (23 reseñas)',
         readAll: 'Leer las 23 Reseñas en Google',
       },
-      results: {
-        subtitle: 'Explorar trabajo',
-        title: 'Proyectos que Hablan por Sí Mismos',
-        description: 'Sitios web en vivo que puedes visitar ahora mismo. Negocios reales generando ingresos reales.',
-        cta: '¿Quieres resultados así? Agenda Tu Llamada Estratégica Gratis',
-        caseStudies: [
-          { name: 'Step Solution USA', type: 'Manufactura', result: '+320% aumento en leads calificados de distribuidores' },
-          { name: 'ZERMA Latin America', type: 'Maquinaria Industrial', result: '+200% aumento en solicitudes de cotización en LATAM' },
-          { name: 'Filtro Láser', type: 'Equipos Industriales', result: 'Presencia digital completa construida y lanzada en 2 días' },
-          { name: 'Pulverizadores Industriales', type: 'Equipos Industriales', result: '50+ leads calificados/año en un nicho altamente especializado' },
-          { name: 'Stillwater Day Spa', type: 'Bienestar y Spa', result: 'De 2-3 llamadas/día a 20+ llamadas/día' },
-          { name: 'Rasetta Innovations', type: 'Diseño de Interiores', result: '+180% aumento en solicitudes de consulta' },
-          { name: 'Lajex LLC', type: 'Plomería y Purificación de Agua', result: 'De 1-2 clientes/semana a 7-8 clientes/semana en 90 días' },
-          { name: 'Délios Home', type: 'Renovación de Hogares', result: '3 llamadas de consulta agendadas en las primeras 24 horas' },
-        ],
-      },
+
       whyUs: {
         subtitle: '¿Por qué nosotros?',
         title: 'Por Qué 200+ Negocios Confían en Nosotros',
@@ -2276,7 +2238,7 @@ export const translations = {
         description: 'Sin costos ocultos. Sin contratos a largo plazo. Solo resultados.',
         website: {
           title: 'Desarrollo Web',
-          price: '$3,000',
+          price: 'Cotización a medida tras una revisión gratuita',
           period: 'inversión única',
           pause: 'Pausa o cancela en cualquier momento',
           cta: 'Agenda una Llamada',
@@ -2291,7 +2253,7 @@ export const translations = {
         },
         ads: {
           title: 'Gestión de Google Ads',
-          price: '$1,250',
+          price: 'Cotización a medida tras una revisión gratuita',
           period: '/mes',
           periodDesc: 'generación continua de leads',
           pause: 'Pausa o cancela en cualquier momento',
@@ -2320,8 +2282,8 @@ export const translations = {
         title: 'Preguntas Frecuentes',
         items: [
           { q: '¿Cómo funciona el preview gratuito del sitio web?', a: 'Diseñamos un preview personalizado de tu nuevo sitio web en solo 1 día hábil. Ves exactamente cómo se verá tu sitio antes de pagar nada. Si te encanta, avanzamos. Si no, te vas — sin cargo.' },
-          { q: '¿Qué incluye el sitio web de $3,000?', a: 'Un sitio web totalmente personalizado, optimizado para móvil, diseñado para convertir visitantes en clientes. Incluye diseño, desarrollo, configuración de contenido, estructura lista para SEO y lanzamiento.' },
-          { q: '¿Qué incluye la gestión de Google Ads de $1,250/mes?', a: 'Estrategia de campaña, creación de anuncios, segmentación de palabras clave, optimización de landing pages, seguimiento de conversiones y optimización semanal. Tu gasto en anuncios con Google es separado y tú controlas el presupuesto.' },
+          { q: '¿Qué incluye el sitio web?', a: 'Un sitio web totalmente personalizado, optimizado para móvil, diseñado para convertir visitantes en clientes. Incluye diseño, desarrollo, configuración de contenido, estructura lista para SEO y lanzamiento.' },
+          { q: '¿Qué incluye la gestión de Google Ads?', a: 'Estrategia de campaña, creación de anuncios, segmentación de palabras clave, optimización de landing pages, seguimiento de conversiones y optimización semanal. Tu gasto en anuncios con Google es separado y tú controlas el presupuesto.' },
           { q: '¿Necesito firmar un contrato a largo plazo?', a: 'No. Trabajamos mes a mes. Te quedas porque los resultados hablan por sí mismos.' },
           { q: '¿Qué tan pronto veré resultados?', a: 'La mayoría de los clientes ven sus primeros leads calificados dentro de 30-60 días de lanzar Google Ads. Algunos ven resultados en tan solo 2 semanas.' },
           { q: '¿Con qué industrias trabajan?', a: 'Trabajamos con cualquier negocio basado en servicios que tenga un Perfil de Google Business — plomeros, spas, agentes inmobiliarios, dentistas, contratistas, distribuidores y más.' },

@@ -33,7 +33,6 @@ export function Header() {
   const navLinks = [
     { href: '/about', label: t.nav.aboutUs },
     { href: '/services', label: t.nav.services, hasDropdown: true },
-    { href: '/portfolio', label: language === 'en' ? 'Portfolio' : 'Portafolio' },
     { href: '/pricing', label: t.nav.pricing },
     { href: '/faqs', label: t.nav.faqs },
     { href: '/contact', label: t.nav.getInTouch },

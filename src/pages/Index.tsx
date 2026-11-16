@@ -1,8 +1,6 @@
-import { ContentImage } from '@/components/ui/content-image';
 import { Link } from '@/components/LocalizedLink';
 import { useState, useEffect } from 'react';
 import { ArrowRight, Check, Download, ShieldCheck, Phone, Magnet, BarChart3, Settings, ShoppingCart, Users, Zap, Award, Package, Search, Code, Activity, ExternalLink, Star } from 'lucide-react';
-import { portfolioProjects } from '@/data/portfolioData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -44,6 +42,7 @@ export default function Index() {
 
   return (
     <Layout>
+      <div className="agency-home">
       <SEO url="https://hipervinculo.net/" />
       <section className="relative overflow-hidden bg-[#f8f9f5] py-16 lg:py-20">
         <div 
@@ -470,52 +469,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Portfolio Sneak Peek */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container">
-          <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
-            <div>
-              <p className="text-accent font-semibold text-[14px] mb-2">{t.homepage.portfolioSneakTitle}</p>
-              <h3 className="text-[24px] md:text-[28px] font-bold" style={{ color: '#2d4a2d' }}>
-                {t.homepage.portfolioSneakSubtitle}
-              </h3>
-            </div>
-            <Button asChild size="lg" className="rounded-full h-14 px-10 text-[16px] font-semibold shadow-lg text-white hover:opacity-90" style={{ backgroundColor: '#8BC34A' }}>
-              <Link to="/portfolio">{t.homepage.portfolioSneakCta} <ArrowRight className="ml-2 h-5 w-5" /></Link>
-            </Button>
-          </AnimatedSection>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {portfolioProjects.slice(0, 4).map((project, index) => (
-              <AnimatedSection key={project.slug} delay={index * 0.08}>
-                <Link to={`/portfolio/${project.slug}`} className="group block">
-                  <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-muted mb-3">
-                    {project.image ? (
-                      <ContentImage
-                        src={project.image.replace('.webp', '-thumb.webp')}
-                        alt={project.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
-                        {project.name}
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                  </div>
-                  <h4 className="text-[14px] md:text-[15px] font-bold text-foreground group-hover:text-accent transition-colors">
-                    {project.name}
-                  </h4>
-                  <p className="text-[12px] md:text-[13px] text-muted-foreground">
-                    {project.industry[language]}
-                  </p>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Clients Stay */}
       <section className="py-24 md:py-32 bg-white">
         <div className="container">
@@ -577,7 +530,7 @@ export default function Index() {
                 return (
                   <div 
                     key={index}
-                    className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
+                    className="group min-w-0 bg-white rounded-2xl p-3 md:p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
                   >
                     <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                       <Icon className="h-6 w-6 text-accent" />
@@ -653,7 +606,7 @@ export default function Index() {
                     }}
                   />
                   
-                  <Card className="relative bg-white shadow-2xl border-0 rounded-3xl w-80 md:w-96">
+                  <Card className="relative bg-white shadow-2xl border-0 rounded-3xl w-80 max-w-full md:w-96">
                     <CardContent className="p-12 md:p-16 text-center">
                       <motion.p 
                         className="text-accent text-[14px] md:text-[16px] font-bold mb-4 tracking-widest"
@@ -717,7 +670,7 @@ export default function Index() {
             
             <AnimatedSection direction="right" delay={0.2}>
               <div className="relative">
-                <div className="absolute top-8 -right-4 w-full h-full bg-white/10 rounded-3xl transform rotate-3"></div>
+                <div className="absolute top-8 right-0 md:-right-4 w-full h-full bg-white/10 rounded-3xl transform md:rotate-3"></div>
                 
                 <Card className="relative bg-white border-0 shadow-2xl rounded-3xl">
                   <CardContent className="p-12 md:p-16 text-center">
@@ -818,7 +771,7 @@ export default function Index() {
             {toolPartners.map((partner, index) => (
               <AnimatedSection key={partner.name} delay={index * 0.05}>
                 <Card className="text-center bg-white border-0 rounded-2xl hover:shadow-lg transition-shadow shadow-sm">
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <h3 className="font-bold text-[16px] md:text-[18px] mb-1 text-foreground">{partner.name}</h3>
                     <p className="text-[13px] md:text-[14px] text-muted-foreground">{partner.subtitle}</p>
                   </CardContent>
@@ -905,6 +858,7 @@ export default function Index() {
           </AnimatedSection>
         </div>
       </section>
+      </div>
     </Layout>
   );
 }

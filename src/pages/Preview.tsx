@@ -78,61 +78,6 @@ function ZoomCard({ card, index, scrollYProgress }: { card: { title: string; des
   );
 }
 
-// ── Apple-style scroll-reveal project card ──
-function ScrollRevealCard({ project, index }: { project: { name: string; result: string; image: string; url: string }; index: number }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  // Alternate: even from left, odd from right
-  const fromLeft = index % 2 === 0;
-  const startX = fromLeft ? -60 : 60; // start percentage off-screen
-
-  const x = useTransform(scrollYProgress, [0, 0.3, 0.5], [startX, startX * 0.3, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.45], [0.3, 0.7, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5], [0.85, 0.95, 1]);
-
-  return (
-    <motion.div
-      ref={ref}
-      style={{ x: useTransform(x, (v) => `${v}%`), opacity, scale }}
-      className="mb-6 md:mb-10"
-    >
-      <a href={project.url} target="_blank" rel="noopener noreferrer" className="group block">
-        <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-muted border border-border shadow-sm hover:shadow-xl transition-shadow duration-500">
-          <ContentImage src={project.image} alt={project.name} className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy" />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">{project.name}</h3>
-            <p className="text-sm md:text-base text-white/80 font-medium">{project.result}</p>
-          </div>
-        </div>
-      </a>
-    </motion.div>
-  );
-}
-
-
-// ── Case studies images & URLs (language-independent) ──
-const caseStudyMeta = [
-  { image: '/portfolio/step-solution-hero.webp', url: 'https://stepsolutionusa.com/' },
-  { image: '/portfolio/zerma-la.webp', url: 'https://zerma-la.com/' },
-  { image: '/portfolio/filtro-laser.webp', url: 'https://filtrolaserparaplastico.com/' },
-  { image: '/portfolio/pulverizadores-industriales.webp', url: 'https://pulverizadoresindustriales.com/' },
-  { image: '/portfolio/stillwater-day-spa-hero.webp', url: 'https://stillwaterdayspa.com/' },
-  { image: '/portfolio/rasetta-innovations-hero.webp', url: 'https://rasettainnovations.com/' },
-  { image: '/portfolio/lajex-llc.webp', url: 'https://lajexllc.com/' },
-  { image: '/portfolio/delios-home-hero.webp', url: 'https://delioshome.com/' },
-];
-
-const stepImages = [
-  '/portfolio/delios-home-hero.webp',
-  '/portfolio/stillwater-day-spa-hero.webp',
-  '/portfolio/google-ads-dashboard-1.webp',
-  '/portfolio/google-ads-dashboard-2.webp',
-];
-
 const stepIcons = [Eye, Hammer, Rocket, Zap];
 
 const whyCardIcons = [Award, Users, Eye, Shield, Zap, Globe2];
@@ -576,8 +521,7 @@ export default function Preview() {
   const p = t.preview;
   
   // Build translated data arrays
-  const caseStudies = useMemo(() => p.results.caseStudies.map((cs, i) => ({ ...cs, ...caseStudyMeta[i] })), [p]);
-  const steps = useMemo(() => p.howWeWork.steps.map((s, i) => ({ ...s, icon: stepIcons[i], image: stepImages[i] })), [p]);
+  const steps = useMemo(() => p.howWeWork.steps.map((s, i) => ({ ...s, icon: stepIcons[i] })), [p]);
   const whyCards = useMemo(() => p.whyUs.cards.map((c, i) => ({ ...c, icon: whyCardIcons[i] })), [p]);
   const faqs = useMemo(() => p.faq.items, [p]);
 
@@ -654,14 +598,6 @@ export default function Preview() {
               <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-14 text-base font-semibold">
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Hero - Book a Free Strategy Call'); trackCalendarClick(); }}>{p.hero.cta1}</a>
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-border text-foreground hover:bg-muted rounded-full px-8 h-14 text-base font-semibold bg-transparent"
-                onClick={() => { trackClick('Hero - See Our Work'); document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' }); }}
-              >
-                {p.hero.cta2}
-              </Button>
             </div>
             <div className="flex gap-8 justify-center">
               {[
@@ -686,7 +622,7 @@ export default function Preview() {
         <div className="container max-w-6xl">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.howWeWork.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-2xl md:text-4xl font-extrabold text-foreground max-w-3xl mx-auto">
               {p.howWeWork.title}
             </h2>
           </div>
@@ -700,11 +636,6 @@ export default function Preview() {
                   </span>
                   <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-4 leading-tight">{step.title}</h3>
                   <p className="text-base text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
-                <div className="flex-1 w-full">
-                  <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border shadow-sm">
-                    <ContentImage src={step.image} alt={step.title} className="w-full h-auto object-cover" loading="lazy" />
-                  </div>
                 </div>
               </div>
             ))}
@@ -725,36 +656,6 @@ export default function Preview() {
             </div>
             <span className="text-sm text-muted-foreground ml-1">{p.reviews.rating}</span>
           </a>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { name: 'Javier Garcia Jimenez', text: 'Highly recommend this team. They combine commitment with speed launching fast, testing rapidly, and iterating based on real data. What I appreciate most is their openness and constant drive to improve. They are proactive, responsive, and focused on results. A reliable digital partner.', years: '7 years working together', color: '#4285F4' },
-              { name: 'Rebecca Riera', text: "We've seen a clear increase in qualified appointments. It's not just more traffic — it's the right traffic converting into real opportunities.", years: '14 years working together', color: '#EA4335' },
-              { name: 'Patrizia Garcia', text: 'Gracias a Hipervinculo hemos logrado captar nuevos clientes y las ventas de nuestros productos se han incrementado. Tenemos más de 15 años trabajando con Hipervinculo y esperamos que siga así por muchos años más, agradecidos con Miguel y con todo el equipo de Hipervinculo por su valiosa ayuda siempre', years: '16 years working together', color: '#34A853' },
-              { name: 'Vicente Marino', text: 'After trying other agencies with limited success, we started with Hipervínculo who finally delivered measurable and great results. Our appointment bookings increased and our sales team is seeing clearly the quality of leads targeted and generated by them.', years: '4 years working together', color: '#4285F4' },
-              { name: 'Juan Lattuf', text: 'From Meta Ads to full funnel strategy, Hipervinculo brought structure and clarity to our digital marketing efforts. They built a solid strategy, improved our creative direction, and consistently optimized campaigns based on real data. Communication is excellent and the results speak for themselves.', years: '3 years working together', color: '#FBBC05' },
-              { name: 'Melina Carfi', text: 'Working with Hipervinculo completely transformed our lead generation. We went from inconsistent inquiries and wasted ad spend to a steady flow of qualified leads every single week. Their team rebuilt our Google Ads campaigns with a clear, data-driven strategy focused on high-intent searches and proper conversion tracking.', years: '8 years working together', color: '#EA4335' },
-              { name: 'Hernan Rivas', text: "What I value most about Hipervínculo is their accessibility and patience. They aren't just experts at what they do; they guide you through the entire process, answering every question and providing valuable insights we hadn't even considered. It's rare to find technology partners this committed nowadays. We will definitely continue working with them!", years: '16 years working together', color: '#795548' },
-              { name: 'Raúl Riera', text: 'What sets Hipervinculo apart is their performance based mindset. They genuinely care about profitability, not vanity metrics. Their strategic guidance on pricing, advertising structure, and marketplace growth has been invaluable to our business. Professional, knowledgeable, and results oriented from day one.', years: '20 years working together', color: '#4285F4' },
-            ].map((review) => (
-              <div key={review.name} className="bg-secondary border border-border rounded-xl p-4 hover:shadow-md transition-shadow">
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-4">"{review.text}"</p>
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0" style={{ backgroundColor: review.color }}>
-                    {review.name.charAt(0)}
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-xs font-semibold text-foreground block truncate">{review.name}</span>
-                    <span className="text-[10px] text-accent font-medium">{review.years}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
           <div className="text-center mt-8">
             <a
               href="https://www.google.com/search?q=Hipervinculo+agency+Weston"
@@ -769,29 +670,6 @@ export default function Preview() {
         </div>
       </Section>
 
-      {/* ── S4: Results / Case Studies (Apple-style scroll reveal) ── */}
-      <section className="py-20 md:py-28 bg-secondary overflow-hidden" id="results">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.results.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.results.title}</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              {p.results.description}
-            </p>
-          </div>
-
-          {caseStudies.map((cs, i) => (
-            <ScrollRevealCard key={cs.name} project={cs} index={i} />
-          ))}
-
-          <div className="text-center mt-8">
-            <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 md:px-8 h-14 text-xs sm:text-sm md:text-base font-semibold w-full sm:w-auto">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackClick('Results - Want results like these?'); trackCalendarClick(); }} className="whitespace-nowrap">{p.results.cta}</a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* ── S5: Why Hipervínculo — Scroll-hijack zoom reveal ── */}
       <section ref={whyCardsRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
@@ -804,7 +682,7 @@ export default function Preview() {
                 {p.whyUs.subtitle}
               </motion.p>
               <motion.h2
-                className="text-xl sm:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
+                className="text-xl sm:text-2xl md:text-4xl font-extrabold text-foreground mb-12 whitespace-nowrap"
                 style={{ opacity: whyTitleOpacity, scale: whyTitleScale }}
               >
                 {p.whyUs.title}
@@ -825,7 +703,7 @@ export default function Preview() {
         <div className="container max-w-4xl">
           <div className="text-center mb-4">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.pricing.subtitle}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground mb-4">{p.pricing.title}</h2>
+            <h2 className="text-2xl sm:text-2xl md:text-4xl font-extrabold text-foreground mb-4">{p.pricing.title}</h2>
             <p className="text-muted-foreground">{p.pricing.description}</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mt-14">
@@ -833,7 +711,7 @@ export default function Preview() {
             <div className="bg-background border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
               <h3 className="text-lg font-bold text-foreground mb-1">{p.pricing.website.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold text-foreground">{p.pricing.website.price}</span>
+                <span className="text-2xl md:text-4xl font-extrabold text-foreground">{p.pricing.website.price}</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6">{p.pricing.website.period}</p>
               <p className="text-xs text-muted-foreground mb-4">{p.pricing.website.pause}</p>
@@ -854,8 +732,8 @@ export default function Preview() {
             <div className="bg-foreground text-background rounded-2xl p-8 relative">
               <h3 className="text-lg font-bold mb-1">{p.pricing.ads.title}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-extrabold">{p.pricing.ads.price}</span>
-                <span className="text-lg opacity-60">{p.pricing.ads.period}</span>
+                <span className="text-2xl md:text-4xl font-extrabold">{p.pricing.ads.price}</span>
+                <span className="text-lg opacity-60">{''}</span>
               </div>
               <p className="text-sm opacity-60 mb-6">{p.pricing.ads.periodDesc}</p>
               <p className="text-xs opacity-60 mb-4">{p.pricing.ads.pause}</p>
@@ -914,7 +792,7 @@ export default function Preview() {
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">{p.faq.subtitle} {new Date().getFullYear()}</p>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground">{p.faq.title}</h2>
+            <h2 className="text-2xl sm:text-2xl md:text-4xl font-extrabold text-foreground">{p.faq.title}</h2>
           </div>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (

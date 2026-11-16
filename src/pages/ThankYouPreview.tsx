@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
 
 declare global {
   interface Window {
@@ -36,19 +35,11 @@ export default function ThankYouPreview() {
       title: "You're All Set! We'll Be in Touch Soon",
       text: "Thanks for booking your strategy call! You'll receive a confirmation email shortly with all the details. We may also give you a quick call or text to confirm the time — please keep an eye out and answer when we reach out. We're excited to learn about your business!",
       backHome: 'Back to Home',
-      bookCall: 'View Our Portfolio',
-      portfolioTitle: "Recent Projects We've Built",
-      portfolioSubtitle: "While you wait, take a look at some of the websites we've recently developed for our clients.",
-      viewAll: 'View Full Portfolio',
     },
     es: {
       title: '¡Listo! Nos Pondremos en Contacto Pronto',
       text: '¡Gracias por agendar tu llamada de estrategia! Recibirás un email de confirmación con todos los detalles. También es posible que te llamemos o enviemos un mensaje para confirmar la hora — por favor estate atento y responde cuando te contactemos. ¡Estamos emocionados de conocer tu negocio!',
       backHome: 'Volver al Inicio',
-      bookCall: 'Ver Nuestro Portafolio',
-      portfolioTitle: 'Proyectos Recientes que Hemos Construido',
-      portfolioSubtitle: 'Mientras esperas, echa un vistazo a algunos de los sitios web que hemos desarrollado recientemente para nuestros clientes.',
-      viewAll: 'Ver Portafolio Completo',
     },
   };
 
@@ -77,35 +68,11 @@ export default function ThankYouPreview() {
               <Button asChild variant="outline" className="rounded-xl">
                 <Link to="/">{t.backHome}</Link>
               </Button>
-              <Button asChild className="rounded-xl bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link to="/portfolio">
-                  {t.bookCall}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Portfolio section */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-12 space-y-3">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">{t.portfolioTitle}</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">{t.portfolioSubtitle}</p>
-          </div>
-          <PortfolioGrid limit={6} />
-          <div className="text-center mt-10">
-            <Button asChild variant="outline" className="rounded-full px-6 border-2" style={{ borderColor: '#8BC34A', color: '#2d4a2d' }}>
-              <Link to="/portfolio">
-                {t.viewAll}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </Layout>
   );
 }

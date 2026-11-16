@@ -301,3 +301,33 @@
   animation: shine-flash 5s ease-in-out infinite;
   pointer-events: none;
 }
+
+/* Home-only mobile corrections; desktop cards and motion remain unchanged. */
+@media (max-width: 767px) {
+  .agency-home .grid > *,
+  .agency-home .flex > * {
+    min-width: 0;
+  }
+  .agency-home .grid > [style*="transform"] {
+    transform: none !important;
+  }
+  .agency-home p[class~="text-[12px]"],
+  .agency-home p[class~="text-[13px]"],
+  .agency-home p[class~="text-xs"],
+  .agency-home li[class~="text-[12px]"],
+  .agency-home li[class~="text-[13px]"],
+  .agency-home li[class~="text-xs"] {
+    font-size: 14px;
+  }
+  .agency-home h2,
+  .agency-home h3,
+  .agency-home h4,
+  .agency-home p,
+  .agency-home li {
+    overflow-wrap: anywhere;
+  }
+  .agency-home a {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

@@ -1,4 +1,7 @@
 # Active tasks
+- [x] Prompt 9: all six agency-site changes; individual proposals/reports preserved; no MIGUEL comments were present. Removed portfolio pages/data/assets, preview/thank-you cases and named reviews; updated shared bilingual FAQ, quote copy and source-specific email labels.
+- [x] Prompt 9: 79 tests passed; 78 static documents checked including 20 noindex NotFound documents; 390px EN/ES no overflow without clipping and no paragraphs/lists below 14px, desktop preserved. Real audit stored/thank-you verified; both emails accepted, both source/language template pairs checked; test request deleted.
+- [ ] Prompt 9: publish and verify custom-domain source; currently still serves old client content. True HTTP 404 depends on unsupported host-level status control; retired URLs have explicit static NotFound documents, not old content.
 - [x] Prompt 8: bilingual guides index, reading layout, metadata/schema/sitemap and footer/breadcrumb links.
 - [x] Prompt 8: translate Shopify Service schema and add language to both versions; verified all 14 service schemas.
 - [x] Prompt 8: Shopify-first homepage descriptions/copy/order/certifications, preserving Amazon pages and figures.
