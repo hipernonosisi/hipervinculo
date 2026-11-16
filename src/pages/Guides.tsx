@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { guidesContent } from '@/data/guidesContent';
 import { localizedPath, SITE_URL } from '@/lib/seoRoutes';
+import { preferredSource, PREFERRED_SOURCE_URL } from '@/data/preferredSource';
 
 export default function Guides() {
   const { language } = useLanguage();
@@ -28,6 +29,7 @@ export default function Guides() {
         <Button asChild variant="link" className="px-0 min-h-11 whitespace-normal h-auto text-base"><Link to="/guides/google-ads-for-shopify">{c.read}<ArrowRight className="ml-2 h-4 w-4 shrink-0" /></Link></Button>
       </CardContent></Card>
       <p className="text-lg leading-relaxed">{c.closing}<Link to="/shopify-agency" className="text-primary underline underline-offset-4">{c.services}</Link></p>
+      <p className="text-lg leading-relaxed mt-8">{preferredSource[language].prompt}<a href={PREFERRED_SOURCE_URL} target="_blank" rel="noopener" className="text-primary underline underline-offset-4">{preferredSource[language].link}</a>.</p>
     </main>
   </Layout>;
 }

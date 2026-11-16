@@ -1,6 +1,7 @@
 import { business, localizedPath } from '@/lib/seoRoutes';
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle, Flame, ShieldCheck, Download, FileText } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Instagram, Linkedin, Twitter, Facebook, ArrowRight, CheckCircle, Flame, ShieldCheck, Download, FileText, Star } from 'lucide-react';
+import { preferredSource, PREFERRED_SOURCE_URL } from '@/data/preferredSource';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import logoFull from '@/assets/logo-hipervinculo.png';
@@ -182,6 +183,17 @@ export function Footer({ hideBottomCta }: { hideBottomCta?: boolean }) {
                 </a>
                 <a href="https://facebook.com/hipervinculo.net" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 min-w-11 text-muted-foreground hover:text-foreground transition-colors">
                   <Facebook className="h-5 w-5" />
+                </a>
+              </div>
+              <div className="mt-4">
+                <a
+                  href={PREFERRED_SOURCE_URL}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 min-h-11 rounded-full border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Star className="h-4 w-4 flex-shrink-0" />
+                  {preferredSource[language].footer}
                 </a>
               </div>
             </div>

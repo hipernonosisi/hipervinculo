@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { useLanguage } from '@/contexts/LanguageContext';
 import { googleAdsShopifyGuideContent, guideDates } from '@/data/googleAdsShopifyGuideContent';
 import { SITE_URL, localizedPath, routeMeta } from '@/lib/seoRoutes';
+import { preferredSource, PREFERRED_SOURCE_URL } from '@/data/preferredSource';
 
 export default function GoogleAdsShopifyGuide() {
   const { language } = useLanguage();
@@ -17,6 +18,7 @@ export default function GoogleAdsShopifyGuide() {
     { '@type': 'FAQPage', mainEntity: c.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
   ] };
   return <><SEO type="article" structuredData={schema} /><GuideArticle title={c.h1} byline={c.byline} intro={c.intro} sections={c.sections}>
+    <p className="text-lg leading-relaxed mb-6">{preferredSource[language].prompt}<a href={PREFERRED_SOURCE_URL} target="_blank" rel="noopener" className="text-primary underline underline-offset-4">{preferredSource[language].link}</a>.</p>
     <Card className="rounded-lg mb-14"><CardContent className="p-7 md:p-8"><h3 className="text-2xl mb-4">{c.ctaTitle}</h3><p className="text-lg leading-relaxed mb-6">{c.ctaText}</p><div className="flex flex-wrap items-center gap-5"><Button asChild size="lg" className="h-auto min-h-12 whitespace-normal"><Link to="/shopify-agency/google-ads">{c.ctaButton}</Link></Button><Link to="/shopify-agency#audit" className="text-primary underline underline-offset-4 min-h-11 inline-flex items-center">{c.auditLink}</Link></div></CardContent></Card>
     <section id="faq" className="scroll-mt-28"><h2 className="text-3xl md:text-4xl font-extrabold mb-6">{language === 'en' ? 'Frequently Asked Questions' : 'Preguntas frecuentes'}</h2><Accordion type="single" collapsible className="[&_[role=region][data-state=closed]]:hidden">{c.faqs.map(([question, answer], i) => <AccordionItem key={question} value={`faq-${i}`}><AccordionTrigger className="text-left text-lg">{question}</AccordionTrigger><AccordionContent forceMount className="text-base leading-relaxed">{answer}</AccordionContent></AccordionItem>)}</Accordion></section>
   </GuideArticle></>;

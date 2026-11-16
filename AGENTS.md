@@ -18,3 +18,4 @@
 - Homepage and founder/about sections reuse the GoogleReviews export from FounderAndReviews so the original review cards, order and Google links stay identical without duplicating the founder story.
 - Agency mobile containment and body-text floors are scoped to the shared public layout and standalone agency pages below the desktop breakpoint, keeping proposal/report themes and desktop rendering unchanged.
 - Business opening hours and the Google Business profile URL come from the shared business module behind the organization schema, footer and contact page, so one change updates every surface and no Review/AggregateRating schema is ever added.
+- The Google preferred-source link comes from one shared bilingual module behind the footer, the guides index and the guide article, rendered as a plain new-tab anchor; no Google publisher script is ever loaded.
