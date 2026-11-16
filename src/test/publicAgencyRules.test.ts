@@ -1,6 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { isPublicPath, localizedPath, retiredPaths, prerenderPaths, routeMeta, business } from '../lib/seoRoutes';
 import { auditIdentityLabel } from '../../supabase/functions/send-notification/auditIdentity';
+import founderSource from '../components/home/FounderAndReviews.tsx?raw';
+import homeSource from '../pages/Index.tsx?raw';
+import previewSource from '../pages/Preview.tsx?raw';
+import translationsSource from '../lib/i18n.ts?raw';
+import chatSource from '../../supabase/functions/chat/index.ts?raw';
+
+describe('Public client-company confidentiality', () => {
+  // Personal names in public Google reviews are allowed; only client companies are prohibited.
+  const publicSources = [founderSource, homeSource, previewSource, translationsSource, chatSource].join('\n');
+  for (const company of ['Step Solution USA', 'ZERMA', 'LBC Cold', 'Filtro Láser', 'Filtro Laser', 'Pulverizadores Industriales', 'Stillwater Day Spa', 'Rasetta Innovations', 'Lajex LLC', 'Délios Home', 'Delios Home']) {
+    it(`keeps ${company} out of public homepage, preview and chat content`, () => {
+      expect(publicSources.toLocaleLowerCase()).not.toContain(company.toLocaleLowerCase());
+    });
+  }
+});
 
 describe('Retired client URLs', () => {
   const slugs = ['step-solution-usa', 'zerma-latin-america', 'lbc-cold', 'filtro-laser', 'pulverizadores-industriales', 'stillwater-day-spa', 'rasetta-innovations', 'lajex-llc', 'delios-home'];
